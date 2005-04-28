@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Cargas de Archivos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de directivas de núcleo en php.ini"
+HREF="ini.html"><LINK
+REL="PREVIOUS"
+TITLE="Rutas y Directorios"
+HREF="ini.sect.path-directory.html"><LINK
+REL="NEXT"
+TITLE="SQL General"
+HREF="ini.sql-general.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ini.sect.path-directory.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice H. Lista de directivas de núcleo en <TT
+CLASS="filename"
+>php.ini</TT
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ini.sql-general.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ini.sect.file_uploads"
+>Cargas de Archivos</A
+></H1
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN125109"
+></A
+><P
+><B
+>Tabla H-6. Opciones de Configuración de Cargas de
+      Archivos</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>file_uploads</TD
+><TD
+>"1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>upload_tmp_dir</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>upload_max_filesize</TD
+><TD
+>"2M"</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.file-uploads"
+></A
+><VAR
+CLASS="parameter"
+>file_uploads</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Indica si se permite o no la <A
+HREF="features.file-upload.html"
+>carga de archivos</A
+>
+         HTTP. Vea también las directivas <A
+HREF="ini.sect.file_uploads.html#ini.upload-max-filesize"
+>upload_max_filesize</A
+>,
+         <A
+HREF="ini.sect.file_uploads.html#ini.upload-tmp-dir"
+>upload_tmp_dir</A
+>, y
+         <A
+HREF="ini.sect.data-handling.html#ini.post-max-size"
+>post_max_size</A
+>.
+        </P
+></DD
+><DT
+><A
+NAME="ini.upload-tmp-dir"
+></A
+><VAR
+CLASS="parameter"
+>upload_tmp_dir</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         El directorio temporal usado para almacenar archivos cuando
+         se realiza carga de archivos. Debe tener permisos de
+         escritura para el usuario bajo el que PHP es ejecutado. Si no
+         se especifica, PHP usará el valor predeterminado del
+         sistema.
+        </P
+></DD
+><DT
+><A
+NAME="ini.upload-max-filesize"
+></A
+><VAR
+CLASS="parameter"
+>upload_max_filesize</VAR
+>
+        <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;         El tamaño máximo de un archivo cargado.
+        </P
+></DD
+></DL
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ini.sect.path-directory.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ini.sql-general.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Rutas y Directorios</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ini.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SQL General</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

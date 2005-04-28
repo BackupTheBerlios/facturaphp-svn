@@ -1,0 +1,598 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Manejo de envío de archivos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Características"
+HREF="features.html"><LINK
+REL="PREVIOUS"
+TITLE="Manejo de XForms"
+HREF="features.xforms.html"><LINK
+REL="NEXT"
+TITLE="Errores comunes"
+HREF="features.file-upload.common-pitfalls.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.xforms.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.common-pitfalls.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="features.file-upload"
+>Capítulo 19. Manejo de envío de archivos</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="features.file-upload.html#features.file-upload.post-method"
+>Envío de archivos con el método POST</A
+></DT
+><DT
+><A
+HREF="features.file-upload.common-pitfalls.html"
+>Errores comunes</A
+></DT
+><DT
+><A
+HREF="features.file-upload.multiple.html"
+>Envío de multiples ficheros</A
+></DT
+><DT
+><A
+HREF="features.file-upload.put-method.html"
+>Soporte del método PUT</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="features.file-upload.post-method"
+>Envío de archivos con el método POST</A
+></H1
+><P
+>&#13;    PHP es capaz de recibir envíos de archivo de cualquier navegador
+    que cumpla la norma RFC-1867 (entre los que se incluyen Netscape
+    Navigator 3 o posterior, Microsoft Internet Explorer 3 con un
+    parche o posterior sin éste). Ésta característica permite que los
+    usuarios envien archivos de texto y binarios. Mediante la 
+    autentificación y funciones de manejo de archivos de PHP, es
+    posible un control total de quién puede enviar archivos y que se
+    hace con éstos una vez recibidos.
+   </P
+><P
+>&#13;    Es importante destacar que PHP también soporta el método PUT
+    para envío de archivos tal y como lo utiliza Netscape Composer
+    y el cliente Amaya de W3C. Consulte <A
+HREF="features.file-upload.put-method.html"
+>&#13;    Soporte del método PUT</A
+> para más detalles.
+   </P
+><P
+>&#13;    Una página de envío de archivos se puede crear mediante un formulario
+    parecido a éste:
+
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN5056"
+></A
+><P
+><B
+>Ejemplo 19-1. Formulario de envío de archivo</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;form enctype="multipart/form-data" action="_URL_" method="post"&#62;
+&#60;input type="hidden" name="MAX_FILE_SIZE" value="1000"&#62;
+Send this file: &#60;input name="userfile" type="file"&#62;
+&#60;input type="submit" value="Send File"&#62;
+&#60;/form&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    
+    La _URL_ debe tener como destino un script PHP. El input oculto MAX_FILE_SIZE 
+    debe encontrarse antes del input de tipo "file" para indicar  
+    el tamaño máximo de archivo que se puede enviar en bytes
+
+    <DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>	
+	MAX_FILE_SIZE debe ser consultado por el navegador; aun así es
+	sencillo saltarse este máximo por lo tanto no se debe presuponer
+	que el navegador siempre lo respetará. En contrapartida,
+	la configuracion de PHP relativa al tamaño maximo no puede 
+	ser obviada.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+>
+   </P
+><P
+>&#13;	Las variables definidas para los archivos enviados varian
+	en función de la versión y configuración de PHP que se utilice.
+	Las variables de las que hablamos a continuación serán 
+	definidas en la página destino despues de una recepción de fichero correcta.
+	Cuando  <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+>track_vars</A
+> este activado,
+	el array $HTTP_POST_FILES/$_FILES se inicializará. Por ultimo, las
+	variables relacionadas seran inicializadas como globales cuando
+	<A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+> esté
+	habilitado. Cabe señalar que el uso de las variables globales
+	no esta recomendado en ningún caso.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+>track_vars</A
+> esta activado siempre 
+	desde PHP 4.0.3. A partir de PHP 4.1.0 , $_FILES puede ser utilizado
+	alternativamente a <VAR
+CLASS="varname"
+>$HTTP_POST_FILES</VAR
+>. 
+	<VAR
+CLASS="varname"
+>$_FILES</VAR
+> es siempre global asi que <VAR
+CLASS="literal"
+>global</VAR
+> 
+	no debe ser usado con $_FILES en el ámbito de función.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES</VAR
+>/<VAR
+CLASS="varname"
+>$_FILES</VAR
+> contienen
+	la información sobre el fichero recibido.
+   </P
+><P
+>&#13; 	 A continuación se describe el contenido de 
+	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES</VAR
+>.
+	Se ha tomado el nombre 'userfile' para el fichero recibido tal y
+	como se usaba en el script de ejemplo anterior:
+    <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['name']</VAR
+></DT
+><DD
+><P
+>&#13;        El nombre original del fichero en la máquina cliente.
+       </P
+></DD
+><DT
+><VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['type']</VAR
+></DT
+><DD
+><P
+>&#13;        El tipo mime del fichero (si el navegador lo proporciona). Un ejemplo
+	podría ser <VAR
+CLASS="literal"
+>"image/gif"</VAR
+>.
+        </P
+></DD
+><DT
+><VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['size']</VAR
+></DT
+><DD
+><P
+>&#13;        El tamaño en bytes del fichero recibido.
+       </P
+></DD
+><DT
+><VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['tmp_name']</VAR
+></DT
+><DD
+><P
+>&#13;	El nombre del fichero temporal que se utiliza para almacenar en el
+	servidor el archivo recibido.
+       </P
+></DD
+></DL
+></DIV
+>
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     A partir de PHP 4.1.0 se puede utilizar el variable corta 
+     <VAR
+CLASS="varname"
+>$_FILES</VAR
+>. PHP 3 no soporta
+     <VAR
+CLASS="varname"
+>$HTTP_POST_FILES</VAR
+>.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Cuando <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>
+    se activa en el <TT
+CLASS="filename"
+>php.ini</TT
+> las siguientes variables son accesibles.
+    Se ha tomado el nombre 'userfile' para el fichero recibido tal y
+    como se usaba en el script de ejemplo del principio:
+
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       <VAR
+CLASS="varname"
+>$userfile</VAR
+> - El nombre del fichero temporal que 
+	se utiliza para almacenar en el servidor el archivo recibido.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="varname"
+>$userfile_name</VAR
+> - El nombre original del fichero 
+	en la máquina cliente.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="varname"
+>$userfile_size</VAR
+> - El tamaño en bytes del fichero recibido.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="varname"
+>$userfile_type</VAR
+> - El tipo mime del fichero 
+	(si el navegador lo proporciona). Un ejemplo podría ser "image/gif".
+      </P
+></LI
+></UL
+>
+	Se puede ver que "<VAR
+CLASS="varname"
+>$userfile</VAR
+>" (en las
+	variables anteriores) toma el valor del atributo "name"
+	que contenga el campo &#60;input&#62; de tipo "file" del 
+	formulario de envio. En el ejemplo anterior, elegimos 
+	llamarlo "userfile".
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     <VAR
+CLASS="literal"
+>register_globals = On</VAR
+> se desaconseja por
+	razones de seguridad y rendimiento.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;	Por defecto, los ficheros serán almacenados en el directorio
+	temporal por defecto del servidor a no ser que se especifique
+	otra localizacion con la directiva <A
+HREF="ini.sect.file_uploads.html#ini.upload-tmp-dir"
+>upload_tmp_dir</A
+> en <TT
+CLASS="filename"
+>php.ini</TT
+>.
+	El directorio temporal por defecto del servidor puede ser
+	modificado cambiando el valor de la variable de entorno
+	<VAR
+CLASS="envar"
+>TMPDIR</VAR
+> en el contexto en que se ejecuta PHP
+	La configuración de las variables de entorno no se puede
+	realizar en PHP a través de la función <A
+HREF="function.putenv.html"
+><B
+CLASS="function"
+>putenv()</B
+></A
+>.
+	Esta variable de entorio puede ser utilizada también para 
+	asegurarnos que otras operaciones con archivos recibidos están
+	funcionando correctamente.
+
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN5126"
+></A
+><P
+><B
+>Ejemplo 19-2. Verificando los archivos recibidos</B
+></P
+><P
+>&#13;	Los siguientes ejemplos son validos para versiones de PHP 4 
+	superiores a la 4.0.2. Veanse las funciones
+      	<A
+HREF="function.is-uploaded-file.html"
+><B
+CLASS="function"
+>is_uploaded_file()</B
+></A
+> y
+      	<A
+HREF="function.move-uploaded-file.html"
+><B
+CLASS="function"
+>move_uploaded_file()</B
+></A
+>.
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php <br /></font><font color="#FF8000">// In PHP 4.1.0 or later, $_FILES should be used instead of $HTTP_POST_FILES.<br /></font><font color="#007700">if (</font><font color="#0000BB">is_uploaded_file</font><font color="#007700">(</font><font color="#0000BB">$HTTP_POST_FILES</font><font color="#007700">[</font><font color="#DD0000">'userfile'</font><font color="#007700">][</font><font color="#DD0000">'tmp_name'</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">copy</font><font color="#007700">(</font><font color="#0000BB">$HTTP_POST_FILES</font><font color="#007700">[</font><font color="#DD0000">'userfile'</font><font color="#007700">][</font><font color="#DD0000">'tmp_name'</font><font color="#007700">], </font><font color="#DD0000">"/place/to/put/uploaded/file"</font><font color="#007700">);<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Possible file upload attack. Filename: " </font><font color="#007700">. </font><font color="#0000BB">$HTTP_POST_FILES</font><font color="#007700">[</font><font color="#DD0000">'userfile'</font><font color="#007700">][</font><font color="#DD0000">'name'</font><font color="#007700">];<br />}<br /></font><font color="#FF8000">/* ...or... */<br /></font><font color="#0000BB">move_uploaded_file</font><font color="#007700">(</font><font color="#0000BB">$HTTP_POST_FILES</font><font color="#007700">[</font><font color="#DD0000">'userfile'</font><font color="#007700">][</font><font color="#DD0000">'tmp_name'</font><font color="#007700">], </font><font color="#DD0000">"/place/to/put/uploaded/file"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;	El script PHP que recibe el fichero, debe implementar la lógica
+	necesaria para determinar que debe ser realizado con el fichero.
+	Se puede utilizar, por ejemplo, la variable
+	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['size']</VAR
+> 
+	para descartar los ficheros demasiado chicos o demasiado grandes;
+	por otro lado, se puede usar la variable
+	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['type']</VAR
+>
+	 para descartar los que no se ajusten a algun criterio de tipo.
+	Cualquiera que sea la logica que utilicemos, se debe borrar
+	o mover el archivo del directorio temporal.
+   </P
+><P
+>&#13;	El archivo será borrado del directorio temporal al final de la petición
+	si no se ha movido o renombrado.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.xforms.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.file-upload.common-pitfalls.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Manejo de XForms</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Errores comunes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

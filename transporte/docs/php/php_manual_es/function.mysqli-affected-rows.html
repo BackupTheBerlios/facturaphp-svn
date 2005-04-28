@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_affected_rows</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="NEXT"
+TITLE="mysqli_autocommit"
+HREF="function.mysqli-autocommit.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-autocommit.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-affected-rows"
+></A
+>mysqli_affected_rows</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN64484"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_affected_rows<P
+>    (no version information, might be only in CVS)</P
+>mysqli-&#62;affected_rows&nbsp;--&nbsp;Obtiene el número de filas afectadas en una operación 
+  de MySQL previa</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64488"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>mixto <B
+CLASS="methodname"
+>mysqli_affected_rows</B
+> ( objeto identificador_de_enlace)<BR
+></BR
+><P
+>Estilo orientado a objetos (característica):</P
+>class <B
+CLASS="classname"
+>mysqli</B
+> { <BR
+></BR
+>mixto affected_rows<BR
+></BR
+>}<P
+>&#13;   <B
+CLASS="function"
+>mysqli_affected_rows()</B
+> Regresa el número de filas 
+	afectadas por la última consulta INSERT, UPDATE, o DELETE asociada 
+	con el <VAR
+CLASS="parameter"
+>identificador_de_enlace</VAR
+> dado. Si la última 
+	consulta fue invalida, esta función regresará -1.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	 Para sentencias SELECT <B
+CLASS="function"
+>mysqli_affected_rows()</B
+> trabaja 
+	 igual a <A
+HREF="function.mysqli-num-rows.html"
+><B
+CLASS="function"
+>mysqli_num_rows()</B
+></A
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   La función <B
+CLASS="function"
+>mysqli_affected_rows()</B
+> s???lo trabaja 
+	con consultas que modifican o afectan una tabla. En caso de que necesite el 
+	número de filas de una consulta SELECT, use la función 
+   <A
+HREF="function.mysqli-num-rows.html"
+><B
+CLASS="function"
+>mysqli_num_rows()</B
+></A
+> en su lugar.
+  </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64514"
+></A
+><H2
+>Valores Regresados</H2
+><P
+>&#13;   Un entero mayor a cero indica el número de filas afectadas u obtenidas. 
+	Cero indica que no se actualizaron registros para una sentencia UPDATE, no hubo 
+	coincidencias con la clausula WHERE en la consulta o que no se ha ejecutado 
+	aún ninguna consulta. -1 indica que la consulta regreso un error.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	 Si el número de filas afectadas es mayor que el valor entero máximo, 
+	 entonces el número de filas afectadas será regresado como una cadena.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64519"
+></A
+><H2
+>Vea también</H2
+><P
+>&#13;   <A
+HREF="function.mysqli-num-rows.html"
+><B
+CLASS="function"
+>mysqli_num_rows()</B
+></A
+>,
+   <A
+HREF="function.mysqli-info.html"
+><B
+CLASS="function"
+>mysqli_info()</B
+></A
+>.
+  </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64524"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN64526"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#FF8000">/* Insert rows */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"CREATE TABLE Language SELECT * from CountryLanguage"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (INSERT): %d\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">affected_rows</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"ALTER TABLE Language ADD Status int default 0"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* update rows */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"UPDATE Language SET Status=1 WHERE Percentage &gt; 50"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (UPDATE): %d\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">affected_rows</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* delete rows */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"DELETE FROM Language WHERE Percentage &lt; 50"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (DELETE): %d\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">affected_rows</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* select all rows */<br /></font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"SELECT CountryCode FROM Language"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (SELECT): %d\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">affected_rows</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /><br /></font><font color="#FF8000">/* Delete table Language */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"DROP TABLE Language"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN64529"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br />if (!</font><font color="#0000BB">$link</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Can't connect to localhost. Error: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#FF8000">/* Insert rows */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"CREATE TABLE Language SELECT * from CountryLanguage"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (INSERT): %d\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_affected_rows</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"ALTER TABLE Language ADD Status int default 0"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* update rows */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"UPDATE Language SET Status=1 WHERE Percentage &gt; 50"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (UPDATE): %d\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_affected_rows</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* delete rows */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"DELETE FROM Language WHERE Percentage &lt; 50"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (DELETE): %d\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_affected_rows</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* select all rows */<br /></font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"SELECT CountryCode FROM Language"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Affected rows (SELECT): %d\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_affected_rows</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#0000BB">mysqli_free_result</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Delete table Language */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"DROP TABLE Language"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;    Los ejemplos anteriores producirán la siguiente salida:
+  </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Affected rows (INSERT): 984
+Affected rows (UPDATE): 168
+Affected rows (DELETE): 815
+Affected rows (SELECT): 169</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-autocommit.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Extensión mejorada de MySQL</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_autocommit</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

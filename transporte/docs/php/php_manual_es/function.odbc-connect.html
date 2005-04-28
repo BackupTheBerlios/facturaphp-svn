@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>odbc_connect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="PREVIOUS"
+TITLE="odbc_commit"
+HREF="function.odbc-commit.html"><LINK
+REL="NEXT"
+TITLE="odbc_cursor"
+HREF="function.odbc-cursor.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.odbc-commit.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.odbc-cursor.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.odbc-connect"
+></A
+>odbc_connect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN74458"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>odbc_connect&nbsp;--&nbsp;Conecta a una fuente de datos</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN74461"
+></A
+><H2
+>Descripcion</H2
+>int <B
+CLASS="methodname"
+>odbc_connect</B
+> ( string dsn, string user, string password [, int cursor_type])<BR
+></BR
+><P
+>&#13;     Devuelve una conexion ODBC id, o 0 (<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>) cuando ocurre un error.</P
+><P
+>&#13;     La conexion id devuelta por estas funciones es necesaria para otras
+     funciones ODBC. Se pueden tener multiples conexiones abiertas a la vez.
+     El opcional cuarto parametro asigna el tipo de cursor que va a ser usado
+     para esta conexion. Este parametro normalmente no es necesario, pero
+     puede ser util para trabajar sobre problemas con algunos drivers ODBC.</P
+><P
+>&#13;     Con algunos drivers ODBC, si ejecutamos un procedimiento complejo, este
+     puede fallar con un error similar a: "Cannot open a cursor on a stored
+     procedure that has anything other than a single select statement
+     in it".  Usando SQL_CUR_USE_ODBC se puede evitar ese error. Algunos
+     drivers tampoco soportan el parametro row_number en 
+     <A
+HREF="function.odbc-fetch-row.html"
+><B
+CLASS="function"
+>odbc_fetch_row()</B
+></A
+>. SQL_CUR_USE_ODBC tambien podria ayudar 
+     en ese caso.</P
+><P
+>&#13;     Las siguientes constantes son definidas por tipos de cursor:</P
+><P
+>&#13;     <P
+></P
+><UL
+><LI
+><P
+>&#13;      SQL_CUR_USE_IF_NEEDED
+      </P
+></LI
+><LI
+><P
+>&#13;      SQL_CUR_USE_ODBC
+      </P
+></LI
+><LI
+><P
+>&#13;      SQL_CUR_USE_DRIVER
+      </P
+></LI
+><LI
+><P
+>&#13;      SQL_CUR_DEFAULT
+      </P
+></LI
+></UL
+></P
+><P
+>&#13;     Para conexiones persistentes ver <A
+HREF="function.odbc-pconnect.html"
+><B
+CLASS="function"
+>odbc_pconnect()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.odbc-commit.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.odbc-cursor.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>odbc_commit</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>odbc_cursor</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

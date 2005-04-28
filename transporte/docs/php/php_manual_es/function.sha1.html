@@ -1,0 +1,271 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sha1</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="sha1_file"
+HREF="function.sha1-file.html"><LINK
+REL="NEXT"
+TITLE="similar_text"
+HREF="function.similar-text.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sha1-file.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.similar-text.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sha1"
+></A
+>sha1</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN106973"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>sha1&nbsp;--&nbsp;Calcular el resumen criptográfico sha1 de una
+    cadena</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN106976"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>sha1</B
+> ( string cadena [, bool salida_pura])<BR
+></BR
+><P
+>&#13;     Calcula el resumen criptográfico sha1 de
+     <VAR
+CLASS="parameter"
+>cadena</VAR
+> usando el <A
+HREF="http://www.faqs.org/rfcs/rfc3174"
+TARGET="_top"
+>Algoritmo de Hash Seguro US 1</A
+>, y
+     devuelve ese resumen. El resumen criptográfico es un
+     número hexadecimal de 40 caracteres. Si el
+     parámetro opcional <VAR
+CLASS="parameter"
+>salida_pura</VAR
+> es
+     definido a <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, entonces el resumen sha1 es devuelto en su
+     lugar en un formato binario puro, con una longitud de 20.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El parámetro opcional <VAR
+CLASS="parameter"
+>salida_pura</VAR
+>
+      fue añadido en PHP 5.0.0 y tiene un valor predeterminado
+      de <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN106997"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo de <B
+CLASS="function"
+>sha1()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$cadena </font><font color="#007700">= </font><font color="#DD0000">'manzana'</font><font color="#007700">;<br /><br />if (</font><font color="#0000BB">sha1</font><font color="#007700">(</font><font color="#0000BB">$cadena</font><font color="#007700">) === </font><font color="#DD0000">'6cc76bddf29e934258e30fbf301ad8ec89cb7cc6'</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&amp;iquest;Quisiera una manzana verde o roja?"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.sha1-file.html"
+><B
+CLASS="function"
+>sha1_file()</B
+></A
+>,
+     <A
+HREF="function.crc32.html"
+><B
+CLASS="function"
+>crc32()</B
+></A
+>, y <A
+HREF="function.md5.html"
+><B
+CLASS="function"
+>md5()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sha1-file.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.similar-text.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sha1_file</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>similar_text</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ftp_fget</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones FTP"
+HREF="ref.ftp.html"><LINK
+REL="PREVIOUS"
+TITLE="ftp_exec"
+HREF="function.ftp-exec.html"><LINK
+REL="NEXT"
+TITLE="ftp_fput"
+HREF="function.ftp-fput.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ftp-exec.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ftp-fput.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ftp-fget"
+></A
+>ftp_fget</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN31285"
+></A
+><P
+>    (PHP 3&#62;= 3.0.13, PHP 4 , PHP 5)</P
+>ftp_fget&nbsp;--&nbsp;Descarga un archivo desde el servidor FTP y lo guarda
+    en un archivo abierto</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN31288"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>ftp_fget</B
+> ( resource secuencia_ftp, resource gestor, string archivo_remoto, int modo [, int pos_reanudar])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>ftp_fget()</B
+> recupera
+     <VAR
+CLASS="parameter"
+>archivo_remoto</VAR
+> desde el servidor FTP, y lo
+     escribe en el apuntador de archivo dado,
+     <VAR
+CLASS="parameter"
+>gestor</VAR
+>. El <VAR
+CLASS="parameter"
+>modo</VAR
+> de
+     transferencia especificado debe ser un valor entre
+     <TT
+CLASS="constant"
+><B
+>FTP_ASCII</B
+></TT
+> y <TT
+CLASS="constant"
+><B
+>FTP_BINARY</B
+></TT
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN31316"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>ftp_fget()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// abrir algun archivo para lectura<br /></font><font color="#0000BB">$archivo </font><font color="#007700">= </font><font color="#DD0000">'algun_archivo.txt'</font><font color="#007700">;<br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#0000BB">$archivo</font><font color="#007700">, </font><font color="#DD0000">'w'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// establecer la conexion basica<br /></font><font color="#0000BB">$id_con </font><font color="#007700">= </font><font color="#0000BB">ftp_connect</font><font color="#007700">(</font><font color="#0000BB">$servidor_ftp</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// iniciar sesion con nombre de usuario y contrasenya<br /></font><font color="#0000BB">$resultado_login </font><font color="#007700">= </font><font color="#0000BB">ftp_login</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">, </font><font color="#0000BB">$ftp_nombre_usuario</font><font color="#007700">, </font><font color="#0000BB">$ftp_contrasenya</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// intento por descargar $archivo<br /></font><font color="#007700">if (</font><font color="#0000BB">ftp_fget</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">, </font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#0000BB">$archivo</font><font color="#007700">, </font><font color="#0000BB">FTP_ASCII</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">)) {<br /> echo </font><font color="#DD0000">"Se ha escrito satisfactoriamente sobre $archivo</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />} else {<br /> echo </font><font color="#DD0000">"Hubo un problema con $archivo</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// cerrar la conexion y el gestor de archivo<br /></font><font color="#0000BB">ftp_close</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">);<br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El parámetro <VAR
+CLASS="parameter"
+>pos_reanudar</VAR
+> fue
+      agregado en PHP 4.3.0.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.ftp-get.html"
+><B
+CLASS="function"
+>ftp_get()</B
+></A
+>,
+     <A
+HREF="function.ftp-nb-get.html"
+><B
+CLASS="function"
+>ftp_nb_get()</B
+></A
+> y
+     <A
+HREF="function.ftp-nb-fget.html"
+><B
+CLASS="function"
+>ftp_nb_fget()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ftp-exec.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ftp-fput.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ftp_exec</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ftp.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ftp_fput</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

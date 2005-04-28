@@ -1,0 +1,342 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sybase_set_message_handler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Sybase"
+HREF="ref.sybase.html"><LINK
+REL="PREVIOUS"
+TITLE="sybase_select_db"
+HREF="function.sybase-select-db.html"><LINK
+REL="NEXT"
+TITLE="sybase_unbuffered_query"
+HREF="function.sybase-unbuffered-query.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sybase-select-db.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sybase-unbuffered-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sybase-set-message-handler"
+></A
+>sybase_set_message_handler</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN109063"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>sybase_set_message_handler&nbsp;--&nbsp;Fija el manejador a ser llamado cuando se emite un mensaje
+    del sistema</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN109066"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>sybase_set_message_handler</B
+> ( callback handler [, int conexión])<BR
+></BR
+><P
+> 
+     <B
+CLASS="function"
+>sybase_set_message_handler()</B
+> Fija una función definida
+      por el usuario para manejar los mensajes generados por el servidor SYBASE.
+      Se debe especificar el nombre de una función global, o usar una matriz
+      para especificar una referencia a un objeto y al nombre de un método. 
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función se encuentra disponible solamente cuando se usan las bibliotecas 
+CT de Sybase y no las bibliotecas DB.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     El manejador debe recibir cinco argumentos en el siguiente orden: 
+     número del mensaje, severidad, estado, número de linea 
+     y descripción.  Los primeros cuatro son de tipo entero. El 
+     último es una cadena. Si la función regresa <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, 
+     PHP genera un mensajer de error ordinario. 
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El parámetro <VAR
+CLASS="parameter"
+>conexión</VAR
+> fue agregado 
+      en PHP 4.3.5.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN109090"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>sybase_set_message_handler()</B
+> llamada a una función</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function </font><font color="#0000BB">msg_handler</font><font color="#007700">(</font><font color="#0000BB">$msgnumber</font><font color="#007700">, </font><font color="#0000BB">$severity</font><font color="#007700">, </font><font color="#0000BB">$state</font><font color="#007700">, </font><font color="#0000BB">$line</font><font color="#007700">, </font><font color="#0000BB">$text</font><font color="#007700">) <br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$msgnumber</font><font color="#007700">, </font><font color="#0000BB">$severity</font><font color="#007700">, </font><font color="#0000BB">$state</font><font color="#007700">, </font><font color="#0000BB">$line</font><font color="#007700">, </font><font color="#0000BB">$text</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sybase_set_message_handler</font><font color="#007700">(</font><font color="#DD0000">'msg_handler'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN109094"
+></A
+><P
+><B
+>Ejemplo 2. <B
+CLASS="function"
+>sybase_set_message_handler()</B
+> llamada a una clase</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">class </font><font color="#0000BB">Sybase </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">handler</font><font color="#007700">(</font><font color="#0000BB">$msgnumber</font><font color="#007700">, </font><font color="#0000BB">$severity</font><font color="#007700">, </font><font color="#0000BB">$state</font><font color="#007700">, </font><font color="#0000BB">$line</font><font color="#007700">, </font><font color="#0000BB">$text</font><font color="#007700">) <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$msgnumber</font><font color="#007700">, </font><font color="#0000BB">$severity</font><font color="#007700">, </font><font color="#0000BB">$state</font><font color="#007700">, </font><font color="#0000BB">$line</font><font color="#007700">, </font><font color="#0000BB">$text</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$sybase</font><font color="#007700">= new </font><font color="#0000BB">Sybase</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sybase_set_message_handler</font><font color="#007700">(array(</font><font color="#0000BB">$sybase</font><font color="#007700">, </font><font color="#DD0000">'handler'</font><font color="#007700">));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN109098"
+></A
+><P
+><B
+>Ejemplo 3. <B
+CLASS="function"
+>sybase_set_message_handler()</B
+> Mensajes no 
+		manejados</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Regresa FALSE, desde esta funcion para indicar que no se pudo<br />&nbsp;&nbsp;&nbsp;&nbsp;// manejar el mensaje, El error es impreso como un WARNING, la forma<br />&nbsp;&nbsp;&nbsp;&nbsp;// de usar esto, es si no hay un manejador de mensajes instalado.<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function </font><font color="#0000BB">msg_handler</font><font color="#007700">(</font><font color="#0000BB">$msgnumber</font><font color="#007700">, </font><font color="#0000BB">$severity</font><font color="#007700">, </font><font color="#0000BB">$state</font><font color="#007700">, </font><font color="#0000BB">$line</font><font color="#007700">, </font><font color="#0000BB">$text</font><font color="#007700">) <br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">257 </font><font color="#007700">== </font><font color="#0000BB">$msgnumber</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">false</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$msgnumber</font><font color="#007700">, </font><font color="#0000BB">$severity</font><font color="#007700">, </font><font color="#0000BB">$state</font><font color="#007700">, </font><font color="#0000BB">$line</font><font color="#007700">, </font><font color="#0000BB">$text</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sybase_set_message_handler</font><font color="#007700">(</font><font color="#DD0000">'msg_handler'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sybase-select-db.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sybase-unbuffered-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sybase_select_db</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sybase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sybase_unbuffered_query</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

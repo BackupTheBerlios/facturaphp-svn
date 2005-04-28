@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>socket_write</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Socket"
+HREF="ref.sockets.html"><LINK
+REL="PREVIOUS"
+TITLE="socket_strerror"
+HREF="function.socket-strerror.html"><LINK
+REL="NEXT"
+TITLE="socket_writev"
+HREF="function.socket-writev.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.socket-strerror.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.socket-writev.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.socket-write"
+></A
+>socket_write</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN102455"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>socket_write&nbsp;--&nbsp;Write to a socket</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN102458"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>socket_write</B
+> ( resource socket, string buffer [, int length])<BR
+></BR
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     The function <B
+CLASS="function"
+>socket_write()</B
+> writes to the socket 
+     <VAR
+CLASS="parameter"
+>socket</VAR
+> from
+     <VAR
+CLASS="parameter"
+>buffer</VAR
+>.
+    </P
+><P
+>&#13;     The optional parameter <VAR
+CLASS="parameter"
+>length</VAR
+> can specify an
+     alternate length of bytes written to the socket. If this length is
+     greater then the buffer length, it is silently truncated to the length of
+     the buffer.
+    </P
+><P
+>&#13;     Returns the number of bytes successfully written to the socket or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+     one error. The error code can be retrieved with
+     <A
+HREF="function.socket-last-error.html"
+><B
+CLASS="function"
+>socket_last_error()</B
+></A
+>. This code may be passed to
+     <A
+HREF="function.socket-strerror.html"
+><B
+CLASS="function"
+>socket_strerror()</B
+></A
+> to get a textual explanation of the
+     error.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      <B
+CLASS="function"
+>socket_write()</B
+> does not necessarily write all bytes
+      from the given buffer. It's valid that, depending on the network
+      buffers etc., only a certain amount of data, even one byte, is written
+      though your buffer is greater. You have to watch out so you don't
+      unintentionally forget to transmit the rest of your data.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      It is perfectly valid for <B
+CLASS="function"
+>socket_write()</B
+> to
+      return zero which means no bytes have been written. Be sure to use the
+      <VAR
+CLASS="literal"
+>===</VAR
+> operator to check for <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> in case of an
+      error.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     See also 
+     <A
+HREF="function.socket-accept.html"
+><B
+CLASS="function"
+>socket_accept()</B
+></A
+>,
+     <A
+HREF="function.socket-bind.html"
+><B
+CLASS="function"
+>socket_bind()</B
+></A
+>,
+     <A
+HREF="function.socket-connect.html"
+><B
+CLASS="function"
+>socket_connect()</B
+></A
+>,
+     <A
+HREF="function.socket-listen.html"
+><B
+CLASS="function"
+>socket_listen()</B
+></A
+>,
+     <A
+HREF="function.socket-read.html"
+><B
+CLASS="function"
+>socket_read()</B
+></A
+> and
+     <A
+HREF="function.socket-strerror.html"
+><B
+CLASS="function"
+>socket_strerror()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.socket-strerror.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.socket-writev.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>socket_strerror</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>socket_writev</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,359 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>socket_listen</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Socket"
+HREF="ref.sockets.html"><LINK
+REL="PREVIOUS"
+TITLE="socket_last_error"
+HREF="function.socket-last-error.html"><LINK
+REL="NEXT"
+TITLE="socket_read"
+HREF="function.socket-read.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.socket-last-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.socket-read.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.socket-listen"
+></A
+>socket_listen</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN101808"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>socket_listen&nbsp;--&nbsp;Listens for a connection on a socket</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN101811"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>socket_listen</B
+> ( resource socket [, int backlog])<BR
+></BR
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     After the socket <VAR
+CLASS="parameter"
+>socket</VAR
+> has been created
+     using <A
+HREF="function.socket-create.html"
+><B
+CLASS="function"
+>socket_create()</B
+></A
+> and bound to a name with
+     <A
+HREF="function.socket-bind.html"
+><B
+CLASS="function"
+>socket_bind()</B
+></A
+>, it may be told to listen for incoming
+     connections on <VAR
+CLASS="parameter"
+>socket</VAR
+>.
+    </P
+><P
+>&#13;     A maximum of <VAR
+CLASS="parameter"
+>backlog</VAR
+> incoming connections will be
+     queued for processing. If a connection request arrives with the queue
+     full the client may receive an error with an indication of
+     <VAR
+CLASS="literal"
+>ECONNREFUSED</VAR
+>, or, if the underlying protocol supports
+     retransmission, the request may be ignored so that retries may succeed.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      The maximum number passed to the <VAR
+CLASS="parameter"
+>backlog</VAR
+>
+      parameter highly depends on the underlying platform. On Linux, it is
+      silently truncated to <TT
+CLASS="constant"
+><B
+>SOMAXCONN</B
+></TT
+>. On win32, if
+      passed <TT
+CLASS="constant"
+><B
+>SOMAXCONN</B
+></TT
+>, the underlying service provider
+      responsible for the socket will set the backlog to a maximum
+      <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>reasonable</I
+></SPAN
+> value. There is no standard provision to
+      find out the actual backlog value on this platform.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <B
+CLASS="function"
+>socket_listen()</B
+> is applicable only to sockets of
+     type <TT
+CLASS="constant"
+><B
+>SOCK_STREAM</B
+></TT
+> or
+     <TT
+CLASS="constant"
+><B
+>SOCK_SEQPACKET</B
+></TT
+>.
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo. The error code can be retrieved with
+     <A
+HREF="function.socket-last-error.html"
+><B
+CLASS="function"
+>socket_last_error()</B
+></A
+>. This code may be passed to
+     <A
+HREF="function.socket-strerror.html"
+><B
+CLASS="function"
+>socket_strerror()</B
+></A
+> to get a textual explanation of the
+     error.
+    </P
+><P
+>&#13;     See also
+     <A
+HREF="function.socket-accept.html"
+><B
+CLASS="function"
+>socket_accept()</B
+></A
+>,
+     <A
+HREF="function.socket-bind.html"
+><B
+CLASS="function"
+>socket_bind()</B
+></A
+>,
+     <A
+HREF="function.socket-connect.html"
+><B
+CLASS="function"
+>socket_connect()</B
+></A
+>,
+     <A
+HREF="function.socket-create.html"
+><B
+CLASS="function"
+>socket_create()</B
+></A
+> and
+     <A
+HREF="function.socket-strerror.html"
+><B
+CLASS="function"
+>socket_strerror()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.socket-last-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.socket-read.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>socket_last_error</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>socket_read</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

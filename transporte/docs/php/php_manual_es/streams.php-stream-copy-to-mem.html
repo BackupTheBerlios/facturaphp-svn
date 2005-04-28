@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_copy_to_mem</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_copy_to_stream"
+HREF="streams.php-stream-copy-to-stream.html"><LINK
+REL="NEXT"
+TITLE="php_stream_make_seekable"
+HREF="streams.php-stream-make-seekable.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-copy-to-stream.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-make-seekable.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-copy-to-mem"
+></A
+>php_stream_copy_to_mem</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN120833"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_copy_to_mem&nbsp;--&nbsp;Copiar datos de una secuencia en un búfer
+    reservado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN120836"
+></A
+><H2
+>Descripción</H2
+>size_t <B
+CLASS="methodname"
+>php_stream_copy_to_mem</B
+> ( php_stream * fuente, char ** buf, size_t long_max, int persistente)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_copy_to_mem()</B
+> reserva un
+     búfer de <VAR
+CLASS="parameter"
+>long_max</VAR
+>+1 bytes de
+     longitud usando <B
+CLASS="function"
+>pemalloc()</B
+>
+     (pasando <VAR
+CLASS="parameter"
+>persistente</VAR
+>). Luego
+     lee <VAR
+CLASS="parameter"
+>long_max</VAR
+> bytes
+     desde <VAR
+CLASS="parameter"
+>fuente</VAR
+> y los almacena en el
+     búfer reservado.
+    </P
+><P
+>&#13;     El búfer reservado es devuelto
+     en <VAR
+CLASS="parameter"
+>buf</VAR
+>, y el número de bytes
+     leídos satisfactoriamente. Usted, el origen de la llamada,
+     es responsable de liberar el búfer, pasando éste y
+     el parámetro <VAR
+CLASS="parameter"
+>persistente</VAR
+>
+     a <B
+CLASS="function"
+>pefree()</B
+>.
+    </P
+><P
+>&#13;     Si desea copiar todos los datos restantes de la
+     secuencia <VAR
+CLASS="parameter"
+>fuente</VAR
+>, pase la
+     constante <TT
+CLASS="constant"
+><B
+>PHP_STREAM_COPY_ALL</B
+></TT
+> como el valor
+     de <VAR
+CLASS="parameter"
+>long_max</VAR
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Esta función intentará copiar los datos en la
+      manera más eficiente posible, usando archivos
+      referenciados en memoria cuando sea posible.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-copy-to-stream.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-make-seekable.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_copy_to_stream</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_make_seekable</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

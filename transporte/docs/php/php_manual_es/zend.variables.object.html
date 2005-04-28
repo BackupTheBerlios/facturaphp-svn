@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Objects</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Creating Variables"
+HREF="zend.variables.html"><LINK
+REL="PREVIOUS"
+TITLE="Arrays"
+HREF="zend.variables.array.html"><LINK
+REL="NEXT"
+TITLE="Resources"
+HREF="zend.variables.resource.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.variables.array.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 34. Creating Variables</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.variables.resource.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.variables.object"
+>Objects</A
+></H1
+><P
+>&#13;    Since objects can be converted to arrays (and vice versa), you
+    might have already guessed that they have a lot of similarities to
+    arrays in PHP. Objects are maintained with the same hash
+    functions, but there's a different API for creating them.
+   </P
+><P
+>&#13;    To initialize an object, you use the
+    function <B
+CLASS="function"
+>object_init()</B
+>: 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zval *new_object;
+
+MAKE_STD_ZVAL(new_object);
+
+if(object_init(new_object) != SUCCESS)
+{
+    // do error handling here
+}</PRE
+></TD
+></TR
+></TABLE
+>
+    You can use the functions described in 
+    <A
+HREF="zend.variables.object.html#tab.object-creation"
+>Tabla 34-4</A
+> 
+    to add members to your object.
+   </P
+><DIV
+CLASS="table"
+><A
+NAME="tab.object-creation"
+></A
+><P
+><B
+>Tabla 34-4. Zend's API for Object Creation</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1.24*"
+TITLE="col1"><COL
+WIDTH="1*"
+TITLE="col2"><TBODY
+><TR
+><TD
+>Function</TD
+><TD
+>Description</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_long(zval *object, char *key, long
+          l);()</B
+></TD
+><TD
+>Adds a long to the object.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_unset(zval *object, char
+          *key);()</B
+></TD
+><TD
+>Adds an unset property to the object.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_bool(zval *object, char *key, int
+          b);()</B
+></TD
+><TD
+>Adds a Boolean to the object.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_resource(zval *object, char *key,
+          long r);()</B
+></TD
+><TD
+>Adds a resource to the object.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_double(zval *object, char *key,
+          double d);()</B
+></TD
+><TD
+>Adds a double to the object.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_string(zval *object, char *key,
+          char *str, int duplicate);()</B
+></TD
+><TD
+>Adds a string to the object.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>add_property_stringl(zval *object, char *key,
+          char *str, uint length, int duplicate);()</B
+></TD
+><TD
+>Adds a string of the specified length to the object. This
+         function is faster than <B
+CLASS="function"
+>add_property_string()</B
+> and also
+         binary-safe.</TD
+></TR
+><TR
+><TD
+>&#13;         <B
+CLASS="function"
+>add_property_zval(zval *obect, char *key, zval *container):()</B
+>
+        </TD
+><TD
+>&#13;         Adds a <VAR
+CLASS="literal"
+>zval</VAR
+> container to the object. This is useful if you
+         have to add properties which aren't simple types like integers or strings but
+         arrays or other objects.
+        </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.variables.array.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.variables.resource.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Arrays</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.variables.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Resources</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

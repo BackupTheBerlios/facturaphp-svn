@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>dbmopen</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones DBM Functions [obsoletas]"
+HREF="ref.dbm.html"><LINK
+REL="PREVIOUS"
+TITLE="dbmnextkey"
+HREF="function.dbmnextkey.html"><LINK
+REL="NEXT"
+TITLE="dbmreplace"
+HREF="function.dbmreplace.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dbmnextkey.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.dbmreplace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.dbmopen"
+></A
+>dbmopen</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN18202"
+></A
+><P
+>    (PHP 3, PHP 4 )</P
+>dbmopen&nbsp;--&nbsp;Abre una base de datos DBM</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN18205"
+></A
+><H2
+>Descripción</H2
+>resource <B
+CLASS="methodname"
+>dbmopen</B
+> ( string nombre_archivo, string banderas)<BR
+></BR
+><P
+>&#13;     El primer argumento es la ruta completa al nombre de archivo de
+     la base DBM a ser abierta, y el segundo es el modo de apertura de
+     archivo, el cual es uno de "r", "n", "c" o "w" para los modos de
+     sólo-lectura, nuevo (implica lectura-escritura, y muy
+     probablemente trunque una base de datos existente con el mismo
+     nombre), crear (implica lectura-escritura, y no truncará
+     una base de datos existente con el mismo nombre) y
+     lectura-escritura respectivamente.
+    </P
+><P
+>&#13;     Devuelve un identificador a ser pasado a las demás
+     funciones DBM en caso de éxito, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ocurre un
+     error.
+    </P
+><P
+>&#13;     Si es usado el soporte NDBM, lo que hará NDBM en realidad
+     es crear los archivos <TT
+CLASS="filename"
+>nombre_archivo.dir</TT
+> y
+     <TT
+CLASS="filename"
+>nombre_archivo.pag</TT
+>. GDBM usa sólo un
+     archivo, asi como lo hace el soporte interno de archivos planos,
+     y la BD Berkeley crea un archivo
+     <TT
+CLASS="filename"
+>nombre_archivo.db</TT
+>. Note que PHP realiza su
+     propio bloqueo de archivos adicionalmente a cualquier bloqueo de
+     archivos que pueda ser efectuado por la biblioteca DBM misma. PHP
+     no elimina los archivos <TT
+CLASS="filename"
+>.lck</TT
+> que crea. Estos
+     archivos son usados simplemente como inodes fijos sobre los que
+     se realiza el bloqueo de archivos. Para más
+     información sobre los archivos DBM, consulte sus
+     páginas man Unix, u obtenga <A
+HREF="ftp://ftp.gnu.org/pub/gnu/gdbm/"
+TARGET="_top"
+>GNU
+     GDBM</A
+>.
+
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Cuando <A
+HREF="features.safe-mode.html"
+>safe-mode (modo-seguro)</A
+>
+está activado, PHP comprueba si los archivos o directorios que
+va a utilizar tienen la misma UID que el script que está siendo
+ejecutado.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dbmnextkey.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.dbmreplace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dbmnextkey</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.dbm.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>dbmreplace</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Sintaxis if..endif</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Migración desde PHP/FI 2 hacia PHP 3"
+HREF="migration.html"><LINK
+REL="PREVIOUS"
+TITLE="Etiquetas de inicio/final"
+HREF="migration.startendtags.html"><LINK
+REL="NEXT"
+TITLE="Sintaxis while"
+HREF="migration.while.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration.startendtags.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice D. Migración desde PHP/FI 2 hacia PHP 3</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="migration.while.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration.if-endif"
+>Sintaxis if..endif</A
+></H1
+><P
+>&#13;   El modo `alternativo' de escribir sentencias if/elseif/else, usando
+   if();elseif(); else; endif; no puede implementarse de forma
+   eficiente sin agregar una gran cantidad de complejidad al
+   analizador sintáctico 3.0. Debido a esto, la sintaxis
+   ha sido modificada:
+   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123612"
+></A
+><P
+><B
+>Ejemplo D-5. Migración: sintaxis if..endif antigua</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+if ($foo);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "sip\n";<br />elseif ($bar);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "casi\n";<br />else;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "nop\n";<br />endif;</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123615"
+></A
+><P
+><B
+>Ejemplo D-6. Migración: sintaxis if..endif nueva</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+if ($foo):<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "sip\n";<br />elseif ($bar):<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "casi\n";<br />else:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "nop\n";<br />endif;</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   Note que los punto-y-coma, han sido reemplazados por los los
+   dos-puntos en todas las sentencias, excepto en aquella que termina
+   la expresión (endif).
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration.startendtags.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="migration.while.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Etiquetas de inicio/final</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="migration.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Sintaxis while</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

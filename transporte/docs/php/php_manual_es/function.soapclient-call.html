@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SoapClient::__call</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SOAP Functions"
+HREF="ref.soap.html"><LINK
+REL="PREVIOUS"
+TITLE="SoapClient::SoapClient"
+HREF="function.soapclient-soapclient.html"><LINK
+REL="NEXT"
+TITLE="SoapClient::__getFunctions"
+HREF="function.soapclient-getfunctions.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.soapclient-soapclient.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.soapclient-getfunctions.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.SoapClient-call"
+></A
+>SoapClient::__call</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN97573"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>SoapClient::__call&nbsp;--&nbsp;
+     Calls a SOAP function
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN97576"
+></A
+><H2
+>Description</H2
+>mixed <B
+CLASS="methodname"
+>SoapClient::__call</B
+> ( string function_name [, array arguments [, array options [, array input_headers [, array output_headers]]]])<BR
+></BR
+><P
+>&#13;     This is a low level API function to make a SOAP call. Usually in WSDL mode
+     you can simply call SOAP functions as SoapClient methods. It is useful for
+     non-WSDL mode when <VAR
+CLASS="literal"
+>soapaction</VAR
+> is unknown, <VAR
+CLASS="literal"
+>uri</VAR
+> 
+     differs from the default or when you like to send and/or receive SOAP Headers.
+     On error, a call to a SOAP function can cause PHP exceptions or return a
+     SoapFault object if exceptions was disabled.
+     To check if the function call failed catch the SoapFault exceptions or 
+     check the result with the <A
+HREF="function.is-soap-fault.html"
+><B
+CLASS="function"
+>is_soap_fault()</B
+></A
+> function.
+   </P
+><P
+>&#13;     SOAP functions may return one or several values. In the first case it will
+     return just the value of output parameter, in the second it will return
+     the associative array with named output parameters.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN97602"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>SoapClient::__call()</B
+> examples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">);<br /></font><font color="#0000BB">$client</font><font color="#007700">-&gt;</font><font color="#0000BB">SomeFunction</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">$c</font><font color="#007700">);<br /></font><font color="#0000BB">$client</font><font color="#007700">-&gt;</font><font color="#0000BB">__call</font><font color="#007700">(</font><font color="#DD0000">"SomeFunction"</font><font color="#007700">, array(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">$c</font><font color="#007700">));<br /></font><font color="#0000BB">$client</font><font color="#007700">-&gt;</font><font color="#0000BB">__call</font><font color="#007700">(</font><font color="#DD0000">"SomeFunction"</font><font color="#007700">, array(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">$c</font><font color="#007700">), </font><font color="#0000BB">NULL</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;new </font><font color="#0000BB">SoapHeader</font><font color="#007700">(...), </font><font color="#0000BB">$output_headers</font><font color="#007700">);<br /><br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">, array(</font><font color="#DD0000">'location' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://localhost/soap.php"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'uri'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"http://test-uri/"</font><font color="#007700">));<br /></font><font color="#0000BB">$client</font><font color="#007700">-&gt;</font><font color="#0000BB">SomeFunction</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">$c</font><font color="#007700">);<br /></font><font color="#0000BB">$client</font><font color="#007700">-&gt;</font><font color="#0000BB">__call</font><font color="#007700">(</font><font color="#DD0000">"SomeFunction"</font><font color="#007700">, array(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">$c</font><font color="#007700">));<br /></font><font color="#0000BB">$client</font><font color="#007700">-&gt;</font><font color="#0000BB">__call</font><font color="#007700">(</font><font color="#DD0000">"SomeFunction"</font><font color="#007700">, array(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">$c</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array(</font><font color="#DD0000">'soapaction' </font><font color="#007700">=&gt; </font><font color="#DD0000">'some_action'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'uri'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'some_uri'</font><font color="#007700">));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     See also
+     <B
+CLASS="function"
+>SoapClient::SoapClient()</B
+>,
+     <B
+CLASS="function"
+>SoapParam::SoapParam()</B
+>,
+     <B
+CLASS="function"
+>SoapVar::SoapVar()</B
+>,
+     <B
+CLASS="function"
+>SoapHeader::SoapHeader()</B
+>,
+     <B
+CLASS="function"
+>SoapFault::SoapFault()</B
+>, and
+     <A
+HREF="function.is-soap-fault.html"
+><B
+CLASS="function"
+>is_soap_fault()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.soapclient-soapclient.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.soapclient-getfunctions.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SoapClient::SoapClient</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.soap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SoapClient::__getFunctions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

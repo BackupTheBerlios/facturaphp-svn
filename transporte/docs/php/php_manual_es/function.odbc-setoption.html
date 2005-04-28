@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>odbc_setoption</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="PREVIOUS"
+TITLE="odbc_rollback"
+HREF="function.odbc-rollback.html"><LINK
+REL="NEXT"
+TITLE="odbc_specialcolumns"
+HREF="function.odbc-specialcolumns.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.odbc-rollback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.odbc-specialcolumns.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.odbc-setoption"
+></A
+>odbc_setoption</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN75296"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>odbc_setoption&nbsp;--&nbsp;
+     Ajusta la configuracion de ODBC. Devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de error, en otro caso 
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>.
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN75301"
+></A
+><H2
+>Descripcion</H2
+>int <B
+CLASS="methodname"
+>odbc_setoption</B
+> ( int id, int function, int option, int param)<BR
+></BR
+><P
+>&#13;      Esta funcion permite buscar las opciones ODBC para una conexion 
+      particular o consulta resultante.  Esto esta escrito para 
+      trabajar sobre problemas en peculiaries drivers ODBC.  Esta funcion 
+      Solo se deberia usar siendo un programador de ODBC y entendiendo los
+      efectos que las opciones tendran. Debemos tener la certeza de que 
+	necesitamos una buena referencia de reference to explicar
+      todas las diferentes opciones y valores que pueden ser usados.
+      Las diferentes versiones de drivers soportan diferentes opciones.</P
+><P
+>&#13;      Ya que los efectos pueden variar dependiendo del driver ODBC, deberiamos 
+      usar la function en scripts para ser hecho publico lo que permitira que sea 
+      fuertemente desalentado.  Algunas opciones ODBC no estan permitidas 
+      para esta funcion porque debe ser configurada antes de que la conexion sea 
+      establecida o la consulta este preparada.  Sin embargo, si un determinado 
+	trabajo hace la tarea de PHP, el jefe no contaria con nosotros para usar 
+	un producto comercial, esto es lo que realmente suele pasar.</P
+><P
+>&#13;      <VAR
+CLASS="parameter"
+>Id</VAR
+> es una coexion id o resultado id sobre la que 
+      cambiaremos la configuracion. Para SQLSetConnectOption(), esta es 
+      una conexion id. Para SQLSetStmtOption(), este es un resultado id.</P
+><P
+>&#13;      <VAR
+CLASS="parameter"
+>function</VAR
+> es la funcion ODBC a usar. El valor 
+      deberia ser 1 para SQLSetConnectOption() y 2 para 
+      SQLSetStmtOption().</P
+><P
+>&#13;      Parmeter <VAR
+CLASS="parameter"
+>option</VAR
+> es la opcion a configurar.</P
+><P
+>&#13;      El parametro <VAR
+CLASS="parameter"
+>param</VAR
+> es el valor para la 
+      escogida opcion <VAR
+CLASS="parameter"
+>option</VAR
+>.
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN75329"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplos ODBC Setoption</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// 1. Option 102 of SQLSetConnectOption() is SQL_AUTOCOMMIT.<br />//&nbsp;&nbsp;&nbsp;&nbsp;Value 1 of SQL_AUTOCOMMIT is SQL_AUTOCOMMIT_ON.<br />//&nbsp;&nbsp;&nbsp;&nbsp;Este ejemplo tiene el mismo efecto que<br />//&nbsp;&nbsp;&nbsp;&nbsp;odbc_autocommit($conn, true);<br /><br />odbc_setoption ($conn, 1, 102, 1);<br /><br />// 2. Option 0 of SQLSetStmtOption() is SQL_QUERY_TIMEOUT.<br />//&nbsp;&nbsp;&nbsp;&nbsp;Este ejemplo asigna el tiempo de espera de la consulta a 30 segundos.<br /><br />$result = odbc_prepare ($conn, $sql);<br />odbc_setoption ($result, 2, 0, 30);<br />odbc_execute ($result);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.odbc-rollback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.odbc-specialcolumns.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>odbc_rollback</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>odbc_specialcolumns</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

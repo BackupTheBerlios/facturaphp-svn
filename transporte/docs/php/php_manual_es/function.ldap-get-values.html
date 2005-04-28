@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ldap_get_values</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones LDAP"
+HREF="ref.ldap.html"><LINK
+REL="PREVIOUS"
+TITLE="ldap_get_values_len"
+HREF="function.ldap-get-values-len.html"><LINK
+REL="NEXT"
+TITLE="ldap_list"
+HREF="function.ldap-list.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ldap-get-values-len.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ldap-list.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ldap-get-values"
+></A
+>ldap_get_values</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN46148"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>ldap_get_values&nbsp;--&nbsp;Obtiene todos los valores de un atributo de una entrada</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN46151"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>ldap_get_values</B
+> ( int identificador_de_conexion, int identificador_de_entrada_de_resultado, string atributo)<BR
+></BR
+><P
+>&#13;     Devuelve un array de valores del atributo o falso en caso de error.</P
+><P
+>  
+     La función <B
+CLASS="function"
+>ldap_get_values()</B
+> se utiliza para
+     obtener todos los valores de un atributo de una entrada. La entrada
+     del resultado es especificada por el
+     <VAR
+CLASS="parameter"
+>identificador_de_entrada_de_resultado</VAR
+>. El
+     número de valores se almacena en el índice "count" del array
+     devuelto. Los valores individuales se almacenan con índices enteros
+     en el array.  El primer índice es 0.</P
+><P
+>&#13;     Esta llamada necesita un <VAR
+CLASS="parameter"
+>identificador_de_entrada_de_resultado</VAR
+>,
+     por lo que necesita ser precedida por una de las llamadas de
+     búsqueda ldap y una llamada para obtener una entrada en particular
+     del resultado.</P
+><P
+>&#13;     La aplicación debe ser o bien programada específicamente para
+     buscar ciertos atributos (como apellidos o email) o bien
+     utilizar la función <A
+HREF="function.ldap-get-attributes.html"
+><B
+CLASS="function"
+>ldap_get_attributes()</B
+></A
+>
+     para averiguar que atributos existen para una entrada dada,
+     antes de llamar a <B
+CLASS="function"
+>ldap_get_values()</B
+>.</P
+><P
+>&#13;     LDAP permite mas de un valor para cada atributo, por lo que
+     se puede, por ejemplo, almacenar varias direcciones de email
+     para una persona en el directorio y nombrar a ese atributo como
+     "email"
+
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN46175"
+></A
+><P
+CLASS="literallayout"
+><br>
+valor_devuelto["count"]&nbsp;=&nbsp;número&nbsp;de&nbsp;valores&nbsp;del&nbsp;atributo<br>
+valor_devuelto[0]&nbsp;=&nbsp;primer&nbsp;valor&nbsp;del&nbsp;atributo<br>
+valor_devuelto[i]&nbsp;=&nbsp;iésimo&nbsp;valor&nbsp;del&nbsp;atributo<br>
+</P
+><P
+></P
+></DIV
+>
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN46177"
+></A
+><P
+><B
+>Ejemplo 1. Listar todos los valores del atributo "email" de una entrada de un directorio </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// $ds es un identificador de conexión al directorio<br /><br />// $sr es un resultado de búsqueda válido de una llamada<br />// anterior a una de las funciones de búsqueda en directorios<br />// ldap.<br /><br />// $entrada es un identificador de entrada válido de una llamada<br />// anterior a una de las funciones que devuelven una entrada de<br />// directorio<br /><br />$valores = ldap_get_values($ds, $entrada,"email");<br /><br />echo $valores["count"]." direcciones de email para esta entrada.&lt;p&gt;";<br /><br />for ($i=0; $i &lt; $valores["count"]; $i++)<br />&nbsp;&nbsp;&nbsp;&nbsp;echo $valores[$i]."&lt;br&gt;";</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ldap-get-values-len.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ldap-list.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ldap_get_values_len</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ldap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ldap_list</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación como módulo de Apache</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación como un binario CGI"
+HREF="security.cgi-bin.html"><LINK
+REL="NEXT"
+TITLE="Seguridad del sistema de archivos"
+HREF="security.filesystem.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.cgi-bin.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.filesystem.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.apache"
+>Instalación como módulo de Apache</A
+></H1
+><P
+>&#13;    Cuando PHP es usado como un módulo de Apache, hereda los
+    permisos del usuario de Apache (generalmente los del usuario
+    "nobody"). Este hecho representa varios impactos sobre la
+    seguridad y las autorizaciones. Por ejemplo, si está usando
+    PHP para acceder a una base de datos, a menos que tal base de
+    datos disponga de un control de acceso propio, usted tendrá
+    que hacer que la base de datos sea asequible por el usuario
+    "nobody".  Esto quiere decir que un script malicioso podría
+    tener acceso y modificar la base de datos, incluso sin un nombre
+    de usuario y contraseña. Es completamente posible que un
+    archivador automatizado de documentos web pudiera toparse con la
+    página web de administración de una base de datos, y
+    eliminar todas sus bases de datos. Usted puede protegerse de este
+    tipo de situaciones mediante mecanismos de autorización de
+    Apache, o puede diseñar su propio modelo de acceso usando
+    LDAP, archivos <TT
+CLASS="filename"
+>.htaccess</TT
+>, etc. e incluir ese código como
+    parte de sus scripts PHP.
+   </P
+><P
+>&#13;    Con frecuencia, una vez la seguridad se ha establecido en un punto
+    en donde el usuario de PHP (en este caso, el usuario de apache)
+    tiene asociada una muy leve capacidad de riesgo, se descubre que
+    PHP se encuentra ahora imposibilitado de escribir archivos en los
+    directorios de los usuarios. O quizás se le haya
+    desprovisto de la capacidad de acceder o modificar bases de
+    datos. Se ha prevenido exitosamente que pudiera escribir tanto
+    archivos buenos como malos, o que pudiera realizar transacciones
+    buenas o malas en la base de datos.
+   </P
+><P
+>&#13;    Un error de seguridad cometido con frecuencia en este punto es
+    darle permisos de administrador (root) a apache, o incrementar las
+    habilidades del usuario de apache de alguna otra forma.
+   </P
+><P
+>&#13;    Escalar los permisos del usuario de Apache hasta el nivel de
+    administrador es extremadamente peligroso y puede comprometer al
+    sistema entero, así que el uso de entornos sudo, chroot, o
+    cualquier otro mecanismo que sea ejecutado como root no
+    debería ser una opción viable para aquellos que no
+    son profesionales en seguridad.
+   </P
+><P
+>&#13;    Existen otras soluciones más simples. Mediante el uso
+    de <A
+HREF="missing-stuff.html#ini.open-basedir"
+>open_basedir</A
+> usted
+    puede controlar y restringir aquellos directorios que
+    podrían ser usados por PHP. También puede definir
+    áreas solo-Apache, para restringir todas las actividades
+    basadas en web a archivos que no son de usuarios, o del sistema.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.cgi-bin.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.filesystem.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación como un binario CGI</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Seguridad del sistema de archivos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

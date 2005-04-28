@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sqlite_column</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SQLite"
+HREF="ref.sqlite.html"><LINK
+REL="PREVIOUS"
+TITLE="sqlite_close"
+HREF="function.sqlite-close.html"><LINK
+REL="NEXT"
+TITLE="sqlite_create_aggregate"
+HREF="function.sqlite-create-aggregate.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sqlite-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sqlite-create-aggregate.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sqlite-column"
+></A
+>sqlite_column</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN98209"
+></A
+><P
+>    (PHP 5)</P
+>sqlite_column&nbsp;--&nbsp;Fetches a column from the current row of a result set.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN98212"
+></A
+><H2
+>Description</H2
+>mixed <B
+CLASS="methodname"
+>sqlite_column</B
+> ( resource result, mixed index_or_name [, bool decode_binary])<BR
+></BR
+><P
+>&#13;   Fetches the value of a column named <VAR
+CLASS="parameter"
+>index_or_name</VAR
+>
+   (if it is a string), or of the ordinal column numbered
+   <VAR
+CLASS="parameter"
+>index_or_name</VAR
+> (if it is an integer) from the
+   current row of the query result handle <VAR
+CLASS="parameter"
+>result</VAR
+>.
+   The decode binary flag operates in the same way as described under
+   <A
+HREF="function.sqlite-fetch-array.html"
+><B
+CLASS="function"
+>sqlite_fetch_array()</B
+></A
+>.
+  </P
+><P
+>&#13;   Use this function when you are iterating a large result set with many
+   columns, or with columns that contain large amounts of data.
+  </P
+><P
+>&#13;   See also <A
+HREF="function.sqlite-fetch-string.html"
+><B
+CLASS="function"
+>sqlite_fetch_string()</B
+></A
+>.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sqlite-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sqlite-create-aggregate.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sqlite_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sqlite.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sqlite_create_aggregate</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

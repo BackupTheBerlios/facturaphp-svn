@@ -1,0 +1,1034 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>dns_get_record</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Red"
+HREF="ref.network.html"><LINK
+REL="PREVIOUS"
+TITLE="dns_get_mx"
+HREF="function.dns-get-mx.html"><LINK
+REL="NEXT"
+TITLE="fsockopen"
+HREF="function.fsockopen.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dns-get-mx.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.fsockopen.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.dns-get-record"
+></A
+>dns_get_record</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN69522"
+></A
+><P
+>    (PHP 5)</P
+>dns_get_record&nbsp;--&nbsp;
+      Recuperar Registros de Recursos DNS asociados con un nombre de
+      servidor huésped
+     </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN69525"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>dns_get_record</B
+> ( string nombre_host [, int tipo [, array &#38;authns, array &#38;addtl]])<BR
+></BR
+><P
+>&#13;      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Esta función no está implementada en plataformas
+Windows. Pruebe con la clase <A
+HREF="http://pear.php.net/"
+TARGET="_top"
+>PEAR</A
+> <A
+HREF="http://pear.php.net/package/Net_DNS"
+TARGET="_top"
+>Net_DNS</A
+>.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+     </P
+><P
+>&#13;Esta función devuelve una matriz de matrices asociativas. Cada
+matriz asociativa contiene <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>por lo menos</I
+></SPAN
+> las
+siguientes claves:
+      <DIV
+CLASS="table"
+><A
+NAME="AEN69549"
+></A
+><P
+><B
+>Tabla 1. Atributos DNS básicos</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Atributo</TH
+><TH
+>Significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>host</TD
+><TD
+>&#13;           El registro en el espacio de nombres DNS al que hacen
+           referencia el resto de datos asociados.
+          </TD
+></TR
+><TR
+><TD
+>class</TD
+><TD
+>&#13;           <B
+CLASS="function"
+>dns_get_record()</B
+> devuelve
+           únicamente registros de clase Internet y como tal,
+           éste parámetro siempre
+           devolverá <VAR
+CLASS="literal"
+>IN</VAR
+>.
+          </TD
+></TR
+><TR
+><TD
+>type</TD
+><TD
+>&#13;           Cadena que contiene el tipo de registro. Otros atributos
+           adicionales serán contenidos también en la
+           matriz resultante dependiendo del valor de type. Vea la
+           tabla más adelante.
+          </TD
+></TR
+><TR
+><TD
+>ttl</TD
+><TD
+>&#13;           Valor Time To Live restante para este
+           registro. Este <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> será igual al
+           ttl original del registro, sino que será igual al
+           ttl original menos cualquiera que haya sido la longitud de
+           tiempo transcurrido desde que el servidor de nombres
+           oficial fuera consultado.
+          </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+     </P
+><P
+>&#13;<VAR
+CLASS="parameter"
+>nombre_host</VAR
+> debe ser un nombre de servidor
+huésped DNS válido, como "www.example.com". Pueden
+generarse consultas revertidas usando la notación in-addr.arpa,
+pero <A
+HREF="function.gethostbyaddr.html"
+><B
+CLASS="function"
+>gethostbyaddr()</B
+></A
+> es más apropiada para
+la mayoría de consultas revertidas.
+     </P
+><P
+>&#13;Por defecto, <B
+CLASS="function"
+>dns_get_record()</B
+> buscará por
+cualquier registro de recurso asociado
+con <VAR
+CLASS="parameter"
+>nombre_host</VAR
+>. Para limitar la consulta,
+especifique el parámetro
+opcional <VAR
+CLASS="parameter"
+>tipo</VAR
+>. <VAR
+CLASS="parameter"
+>tipo</VAR
+>
+puede ser cualquiera de los siguientes:
+<TT
+CLASS="constant"
+><B
+>DNS_A</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>DNS_CNAME</B
+></TT
+>, 
+<TT
+CLASS="constant"
+><B
+>DNS_HINFO</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>DNS_MX</B
+></TT
+>, 
+<TT
+CLASS="constant"
+><B
+>DNS_NS</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>DNS_PTR</B
+></TT
+>, 
+<TT
+CLASS="constant"
+><B
+>DNS_SOA</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>DNS_TXT</B
+></TT
+>, 
+<TT
+CLASS="constant"
+><B
+>DNS_AAAA</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>DNS_SRV</B
+></TT
+>,
+<TT
+CLASS="constant"
+><B
+>DNS_NAPTR</B
+></TT
+>,
+<TT
+CLASS="constant"
+><B
+>DNS_ALL</B
+></TT
+> o <TT
+CLASS="constant"
+><B
+>DNS_ANY</B
+></TT
+>. El valor
+predeterminado es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>DNS_ANY</I
+></SPAN
+>.  
+      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Debido a excentricidades en el rendimiento de libresolv entre
+plataformas, <TT
+CLASS="constant"
+><B
+>DNS_ANY</B
+></TT
+> no siempre devolverá
+todos los registros, la alternativa más
+lenta <TT
+CLASS="constant"
+><B
+>DNS_ALL</B
+></TT
+> recolectará todos los
+registros de forma más confiable.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+     </P
+><P
+>&#13;Los opcionales tercer y cuarto argumento de esta
+función, <VAR
+CLASS="parameter"
+>authns</VAR
+>
+y <VAR
+CLASS="parameter"
+>addtl</VAR
+> son pasados por referencia y, si son
+usados, serán llenados con Registros de Recurso para
+los <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Servidores de Nombres Oficiales</I
+></SPAN
+>, y
+cualquier <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Registro Adicional</I
+></SPAN
+> respectivamente. Vea
+el ejemplo más adelante.
+     </P
+><P
+>&#13;      <DIV
+CLASS="table"
+><A
+NAME="AEN69604"
+></A
+><P
+><B
+>Tabla 2. Otras claves en las matrices asociativas, dependientes
+       de 'type'</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Tipo</TH
+><TH
+>Columnas Extra</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>A</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>ip</VAR
+>: Una dirección IPv4 en
+           notación decimal con puntos.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>MX</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>pri</VAR
+>: Prioridad del gestor de
+           correo. Números bás bajos indican mayor
+           prioridad.
+           <VAR
+CLASS="literal"
+>target</VAR
+>: FQDN del gestor de correo. Vea
+           también <A
+HREF="function.dns-get-mx.html"
+><B
+CLASS="function"
+>dns_get_mx()</B
+></A
+>.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>CNAME</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>target</VAR
+>: FQDN de la ubicación en
+           el espacio de nombres DNS de la cual es alias el registro.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>NS</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>target</VAR
+>: FQDN del servidor de nombres que
+           es la autoridad para este nombre de host.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>PTR</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>target</VAR
+>: Ubicación dentro del
+           espacio de nombres DNS a la que apunta este registro.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>TXT</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>txt</VAR
+>: Cadena de datos arbitraria asociada
+           con este registro.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>HINFO</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>cpu</VAR
+>: Número IANA que indica el
+           CPU de la máquina referenciada por este registro.
+           <VAR
+CLASS="literal"
+>os</VAR
+>: Número IANA que indica el
+           Sistema Operativo en la máquina referenciada por
+           este registro.  Vea los <A
+HREF="http://www.iana.org/assignments/operating-system-names"
+TARGET="_top"
+>Nombres de Sistemas
+           Operativos</A
+> de IANA para consultar el significado de
+           estos valores.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>SOA</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>mname</VAR
+>: FQDN de la máquina desde
+           donde se originaron los registros de recurso.
+           <VAR
+CLASS="literal"
+>rname</VAR
+>: Dirección de correo
+           electrónico del contacto administrativo para este
+           dominio.
+           <VAR
+CLASS="literal"
+>serial</VAR
+>: # serial de esta revisión
+           del dominio solicitado.
+           <VAR
+CLASS="literal"
+>refresh</VAR
+>: Intervalo de
+           actualización (segundos) que deben usar los
+           servidores de nombre secundarios cuando actualicen las
+           copias remotas de este dominio.
+           <VAR
+CLASS="literal"
+>retry</VAR
+>: Periodo de tiempo (segundos) para
+           esperar después de una actualización fallida
+           antes de hacer un segundo intento.
+           <VAR
+CLASS="literal"
+>expire</VAR
+>: Periodo máximo de tiempo
+           (segundos) que un servidor DNS secundario debe conservar
+           copias remotas de los datos de zona sin una
+           actualización exitosa antes de descartarlos.
+           <VAR
+CLASS="literal"
+>minimum-ttl</VAR
+>: Periodo mínimo de
+           tiempo (segundos) en el que un cliente puede continuar
+           usando una resolución DNS antes de que deba
+           solicitar una nueva resolución del servidor. Puede
+           ser sobrescrito por registros de recurso individuales.
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>AAAA</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>ipv6</VAR
+>: Dirección IPv6
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>SRV</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>pri</VAR
+>: (Prioridad) las prioridades
+           más bajas deben ser usadas primero.
+           <VAR
+CLASS="literal"
+>weight</VAR
+>: Rangos para pesar cuál de
+           los <VAR
+CLASS="parameter"
+>destinos</VAR
+> comunmente con
+           prioridades debe ser elegido al azar.
+           <VAR
+CLASS="literal"
+>target</VAR
+> y <VAR
+CLASS="literal"
+>port</VAR
+>: nombre
+           de servidor huésped y puerto en dondo puede
+           encontrarse el servicio solicitado. Para más
+           información, vea: <A
+HREF="http://www.faqs.org/rfcs/rfc2782"
+TARGET="_top"
+>RFC
+           2782</A
+>
+          </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>NAPTR</VAR
+></TD
+><TD
+>&#13;           <VAR
+CLASS="literal"
+>order</VAR
+> y <VAR
+CLASS="literal"
+>pref</VAR
+>: Equivalente a
+           <VAR
+CLASS="parameter"
+>pri</VAR
+> y <VAR
+CLASS="parameter"
+>weight</VAR
+>
+           descritos anteriormente.
+           <VAR
+CLASS="literal"
+>flags</VAR
+>, <VAR
+CLASS="literal"
+>services</VAR
+>,
+           <VAR
+CLASS="literal"
+>regex</VAR
+>, y <VAR
+CLASS="literal"
+>replacement</VAR
+>:
+           Parámetros, como se definen por <A
+HREF="http://www.faqs.org/rfcs/rfc2915"
+TARGET="_top"
+>RFC 2915</A
+>.
+          </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+     </P
+><P
+>&#13;      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Debido a estándares DNS, las direcciones de correo
+electrónico son dadas en formato usuario.host (por ejemplo:
+hostmaster.example.com en lugar de hostmaster@example.com),
+asegúrese de chequear este valor y modificarlo si es necesario
+antes de usarlo con funciones como <A
+HREF="function.mail.html"
+><B
+CLASS="function"
+>mail()</B
+></A
+>.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+     </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN69694"
+></A
+><P
+><B
+>Ejemplo 1. Uso de <B
+CLASS="function"
+>dns_get_record()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$resultado </font><font color="#007700">= </font><font color="#0000BB">dns_get_record</font><font color="#007700">(</font><font color="#DD0000">"php.net"</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Produce una salida similar a la siguiente:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; MX
+            [pri] =&#62; 5
+            [target] =&#62; pair2.php.net
+            [class] =&#62; IN
+            [ttl] =&#62; 6765
+        )
+
+    [1] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; A
+            [ip] =&#62; 64.246.30.37
+            [class] =&#62; IN
+            [ttl] =&#62; 8125
+        )
+
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;Ya que es muy común desear la dirección IP de un
+servidor de correo una vez el registro MX ha sido
+resuelto, <B
+CLASS="function"
+>dns_get_record()</B
+> también devuelve
+una matriz en <VAR
+CLASS="parameter"
+>addtl</VAR
+> la cual contiene registros
+asociados. <VAR
+CLASS="parameter"
+>authns</VAR
+> es devuelto también,
+conteniendo una lista de servidores de nombre oficiales.
+     </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN69704"
+></A
+><P
+><B
+>Ejemplo 2. Uso de  <B
+CLASS="function"
+>dns_get_record()</B
+> y DNS_ANY</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">/* Solicitar "cualquier" registro para php.net, y crear las matrices<br />&nbsp;&nbsp;&nbsp;$authns y $addtl conteniendo una lista de servidores de nombre y<br />&nbsp;&nbsp;&nbsp;cualquier registro adicional que vaya con ellos */<br /><br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">dns_get_record</font><font color="#007700">(</font><font color="#DD0000">"php.net"</font><font color="#007700">, </font><font color="#0000BB">DNS_ANY</font><font color="#007700">, </font><font color="#0000BB">$authns</font><font color="#007700">, </font><font color="#0000BB">$addtl</font><font color="#007700">);<br />echo </font><font color="#DD0000">"Resultado = "</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">);<br />echo </font><font color="#DD0000">"Auth NS = "</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$authns</font><font color="#007700">);<br />echo </font><font color="#DD0000">"Adicional = "</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$addtl</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Produce una salida similar a la siguiente:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Result = Array
+(
+    [0] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; MX
+            [pri] =&#62; 5
+            [target] =&#62; pair2.php.net
+            [class] =&#62; IN
+            [ttl] =&#62; 6765
+        )
+
+    [1] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; A
+            [ip] =&#62; 64.246.30.37
+            [class] =&#62; IN
+            [ttl] =&#62; 8125
+        )
+
+)
+Auth NS = Array
+(
+    [0] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; NS
+            [target] =&#62; remote1.easydns.com
+            [class] =&#62; IN
+            [ttl] =&#62; 10722
+        )
+
+    [1] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; NS
+            [target] =&#62; remote2.easydns.com
+            [class] =&#62; IN
+            [ttl] =&#62; 10722
+        )
+
+    [2] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; NS
+            [target] =&#62; ns1.easydns.com
+            [class] =&#62; IN
+            [ttl] =&#62; 10722
+        )
+
+    [3] =&#62; Array
+        (
+            [host] =&#62; php.net
+            [type] =&#62; NS
+            [target] =&#62; ns2.easydns.com
+            [class] =&#62; IN
+            [ttl] =&#62; 10722
+        )
+
+)
+Additional = Array
+(
+    [0] =&#62; Array
+        (
+            [host] =&#62; pair2.php.net
+            [type] =&#62; A
+            [ip] =&#62; 216.92.131.5
+            [class] =&#62; IN
+            [ttl] =&#62; 6766
+        )
+
+    [1] =&#62; Array
+        (
+            [host] =&#62; remote1.easydns.com
+            [type] =&#62; A
+            [ip] =&#62; 64.39.29.212
+            [class] =&#62; IN
+            [ttl] =&#62; 100384
+        )
+
+    [2] =&#62; Array
+        (
+            [host] =&#62; remote2.easydns.com
+            [type] =&#62; A
+            [ip] =&#62; 212.100.224.80
+            [class] =&#62; IN
+            [ttl] =&#62; 81241
+        )
+
+    [3] =&#62; Array
+        (
+            [host] =&#62; ns1.easydns.com
+            [type] =&#62; A
+            [ip] =&#62; 216.220.40.243
+            [class] =&#62; IN
+            [ttl] =&#62; 81241
+        )
+
+    [4] =&#62; Array
+        (
+            [host] =&#62; ns2.easydns.com
+            [type] =&#62; A
+            [ip] =&#62; 216.220.40.244
+            [class] =&#62; IN
+            [ttl] =&#62; 81241
+        )
+
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;      Vea también
+       <A
+HREF="function.dns-get-mx.html"
+><B
+CLASS="function"
+>dns_get_mx()</B
+></A
+>, y
+       <A
+HREF="function.dns-check-record.html"
+><B
+CLASS="function"
+>dns_check_record()</B
+></A
+>
+     </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dns-get-mx.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.fsockopen.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dns_get_mx</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.network.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>fsockopen</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

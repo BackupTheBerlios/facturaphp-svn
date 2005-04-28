@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Crack Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="cpdf_translate"
+HREF="function.cpdf-translate.html"><LINK
+REL="NEXT"
+TITLE="crack_check"
+HREF="function.crack-check.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.cpdf-translate.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.crack-check.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.crack"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XI. Crack Functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN14580"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     These functions allow you to use the CrackLib library to test the
+     'strength' of a password.  The 'strength' of a password is tested by that
+     checks length, use of upper and lower case and checked against the
+     specified CrackLib dictionary.  CrackLib will also give helpful diagnostic
+     messages that will help 'strengthen' the password.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+This extension has been removed as of PHP 5 and moved to the
+<A
+HREF="http://pecl.php.net"
+TARGET="_top"
+>PECL</A
+> repository.
+</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     More information regarding CrackLib along with the library can be found at
+     <A
+HREF="http://www.crypticide.org/users/alecm/"
+TARGET="_top"
+>http://www.crypticide.org/users/alecm/</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  In order to use these functions, you must compile PHP with Crack support
+  by using the <VAR
+CLASS="option"
+>--with-crack[=DIR]</VAR
+> option.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13; <DIV
+CLASS="table"
+><A
+NAME="AEN14600"
+></A
+><P
+><B
+>Tabla 1. Crack configuration options</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Default</TH
+><TH
+>Changeable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>crack.default_dictionary</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ For further details and definition of the PHP_INI_* constants see
+ <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="crack.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     This example shows how to open a CrackLib dictionary, test a given
+     password, retrieve any diagnostic messages, and close the dictionary.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN14623"
+></A
+><P
+><B
+>Ejemplo 1. CrackLib example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Open CrackLib Dictionary<br /></font><font color="#0000BB">$dictionary </font><font color="#007700">= </font><font color="#0000BB">crack_opendict</font><font color="#007700">(</font><font color="#DD0000">'/usr/local/lib/pw_dict'</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">'Unable to open CrackLib dictionary'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Perform password check<br /></font><font color="#0000BB">$check </font><font color="#007700">= </font><font color="#0000BB">crack_check</font><font color="#007700">(</font><font color="#0000BB">$dictionary</font><font color="#007700">, </font><font color="#DD0000">'gx9A2s0x'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Retrieve messages<br /></font><font color="#0000BB">$diag </font><font color="#007700">= </font><font color="#0000BB">crack_getlastmessage</font><font color="#007700">();<br />echo </font><font color="#0000BB">$diag</font><font color="#007700">; </font><font color="#FF8000">// 'strong password'<br /><br />// Close dictionary<br /></font><font color="#0000BB">crack_closedict</font><font color="#007700">(</font><font color="#0000BB">$dictionary</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      If <A
+HREF="function.crack-check.html"
+><B
+CLASS="function"
+>crack_check()</B
+></A
+> returns <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>,
+      <A
+HREF="function.crack-getlastmessage.html"
+><B
+CLASS="function"
+>crack_getlastmessage()</B
+></A
+> will return 'strong password'.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.crack-check.html"
+>crack_check</A
+>&nbsp;--&nbsp;Performs an obscure check with the given password</DT
+><DT
+><A
+HREF="function.crack-closedict.html"
+>crack_closedict</A
+>&nbsp;--&nbsp;Closes an open CrackLib dictionary </DT
+><DT
+><A
+HREF="function.crack-getlastmessage.html"
+>crack_getlastmessage</A
+>&nbsp;--&nbsp;Returns the message from the last obscure check</DT
+><DT
+><A
+HREF="function.crack-opendict.html"
+>crack_opendict</A
+>&nbsp;--&nbsp;Opens a new CrackLib dictionary</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.cpdf-translate.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.crack-check.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>cpdf_translate</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>crack_check</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

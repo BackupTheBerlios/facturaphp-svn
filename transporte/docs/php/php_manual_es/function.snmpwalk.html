@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>snmpwalk</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones SNMP "
+HREF="ref.snmp.html"><LINK
+REL="PREVIOUS"
+TITLE="snmpset"
+HREF="function.snmpset.html"><LINK
+REL="NEXT"
+TITLE="snmpwalkoid"
+HREF="function.snmpwalkoid.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.snmpset.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.snmpwalkoid.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.snmpwalk"
+></A
+>snmpwalk</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN100675"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>snmpwalk&nbsp;--&nbsp;Busqueda por un arbol de información acerca de un entidad de red
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN100678"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>snmpwalk</B
+> ( string hostname, string community, string object_id [, int timeout [, int retries]])<BR
+></BR
+><P
+>&#13;     Devuelve una matriz de valores de objetos SMNP comenzando por el
+     <B
+CLASS="function"
+>object_id()</B
+> como raíz y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de error.
+    </P
+><P
+> 
+     La función <B
+CLASS="function"
+>snmpwalk()</B
+> es usada para leer todos los
+     valores de un agente SNMP especificado por el
+     <VAR
+CLASS="parameter"
+>hostname</VAR
+>. <VAR
+CLASS="parameter"
+>Community</VAR
+>
+     especifica la comunidad lectora para el agente. Un
+     <VAR
+CLASS="parameter"
+>object_id</VAR
+> nulo se toma como la raíz del arbol de
+     los objetos SNMP y todos los objetos por debajo de ese arbol son
+     devueltos como una matriz. Si <VAR
+CLASS="parameter"
+>object_id</VAR
+> es
+     especificado, todos los objetos SNMP por debajo de
+     <VAR
+CLASS="parameter"
+>object_id</VAR
+> son devueltos.
+
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN100708"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a = snmpwalk("127.0.0.1", "public", "");</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+><P
+>&#13;     Encima de una función de llamada podrían devolverse todos los objetos SNMP del
+     agente SNMP en ejecución en el servidor local. Uno puede pasar por todos los valores 
+     con un bucle. 
+
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN100711"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+for ($i=0; $i&lt;count($a); $i++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo $a[$i];<br />}</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.snmpset.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.snmpwalkoid.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>snmpset</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.snmp.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>snmpwalkoid</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

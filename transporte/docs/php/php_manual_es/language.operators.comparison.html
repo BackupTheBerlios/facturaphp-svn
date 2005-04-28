@@ -1,0 +1,385 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Operadores de Comparación</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Operadores"
+HREF="language.operators.html"><LINK
+REL="PREVIOUS"
+TITLE="Operadores Bit a Bit"
+HREF="language.operators.bitwise.html"><LINK
+REL="NEXT"
+TITLE="Operadores de Control de Errores"
+HREF="language.operators.errorcontrol.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.operators.bitwise.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 10. Operadores</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.operators.errorcontrol.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.operators.comparison"
+>Operadores de Comparación</A
+></H1
+><P
+>&#13;    Los operadores de comparación, como su nombre indica, le
+    permiten comparar dos valores. Puede que también se
+    encuentre interesado en consultar las
+    <A
+HREF="types.comparisons.html"
+>tablas de comparación de
+    tipos</A
+>, ya que éstas muestran ejemplos de varios
+    tipos de comparaciones relacionadas con tipos.
+   </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN3443"
+></A
+><P
+><B
+>Tabla 10-4. Operadores de Comparación</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Ejemplo</TH
+><TH
+>Nombre</TH
+><TH
+>Resultado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>$a == $b</TD
+><TD
+>Igual</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a es igual a $b.</TD
+></TR
+><TR
+><TD
+>$a === $b</TD
+><TD
+>Idéntico</TD
+><TD
+>&#13;        <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a es igual a $b, y son del mismo tipo. (Sólo
+        en PHP 4)
+       </TD
+></TR
+><TR
+><TD
+>$a != $b</TD
+><TD
+>Diferente</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a no es igual a $b.</TD
+></TR
+><TR
+><TD
+>$a &#60;&#62; $b</TD
+><TD
+>Diferente</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a no es igual a $b.</TD
+></TR
+><TR
+><TD
+>$a !== $b</TD
+><TD
+>No idénticos</TD
+><TD
+>&#13;        <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a no es igual a $b, o si no son del mismo
+        tipo. (Sólo en PHP 4)
+       </TD
+></TR
+><TR
+><TD
+>$a &#60; $b</TD
+><TD
+>Menor que</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a es escrictamente menor que $b.</TD
+></TR
+><TR
+><TD
+>$a &#62; $b</TD
+><TD
+>Mayor que</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a es estrictamente mayor que $b.</TD
+></TR
+><TR
+><TD
+>$a &#60;= $b</TD
+><TD
+>Menor o igual que</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a es menor o igual que $b.</TD
+></TR
+><TR
+><TD
+>$a &#62;= $b</TD
+><TD
+>Mayor o igual que</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si $a es mayor o igual que $b.</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;    Otro operador condicional es el operador "?:" (o ternario).
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3498"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Ejemplo de uso de: el Operador Ternario<br /></font><font color="#0000BB">$accion </font><font color="#007700">= (empty(</font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">'accion'</font><font color="#007700">])) ? </font><font color="#DD0000">'predeterminada' </font><font color="#007700">: </font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">'accion'</font><font color="#007700">];<br /><br /></font><font color="#FF8000">// La sentencia anterior es identica a este bloque if/else<br /></font><font color="#007700">if (empty(</font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">'accion'</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$accion </font><font color="#007700">= </font><font color="#DD0000">'predeterminada'</font><font color="#007700">;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$accion </font><font color="#007700">= </font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">'accion'</font><font color="#007700">];<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    La expresión <VAR
+CLASS="literal"
+>(expr1) ? (expr2) : (expr3)</VAR
+>
+    evalúa a <VAR
+CLASS="replaceable"
+>expr2</VAR
+> si
+    <VAR
+CLASS="replaceable"
+>expr1</VAR
+> evalúa a <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, y
+    <VAR
+CLASS="replaceable"
+>expr3</VAR
+> si
+    <VAR
+CLASS="replaceable"
+>expr1</VAR
+> evalúa a <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+   </P
+><P
+>&#13;    Vea también <A
+HREF="function.strcasecmp.html"
+><B
+CLASS="function"
+>strcasecmp()</B
+></A
+>,
+    <A
+HREF="function.strcmp.html"
+><B
+CLASS="function"
+>strcmp()</B
+></A
+>,
+    <A
+HREF="language.operators.array.html"
+>Operadores de
+    matriz</A
+>, y la sección del manual sobre
+    <A
+HREF="language.types.html"
+>Tipos</A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.operators.bitwise.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.operators.errorcontrol.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Operadores Bit a Bit</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.operators.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Operadores de Control de Errores</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

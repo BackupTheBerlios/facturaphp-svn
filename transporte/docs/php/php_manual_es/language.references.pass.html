@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Paso de variables por Referencia</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Explicando las Referencias"
+HREF="language.references.html"><LINK
+REL="PREVIOUS"
+TITLE="Lo que las Referencias no son"
+HREF="language.references.arent.html"><LINK
+REL="NEXT"
+TITLE="Retorno por Referencia"
+HREF="language.references.return.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.references.arent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 14. Explicando las Referencias</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.references.return.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.references.pass"
+>Paso de variables por Referencia</A
+></H1
+><P
+>&#13;		Podemos pasar variables a una función por referencia, para que ésta pueda modificar
+		sus argumentos. La sintáxis es la siguiente :
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4538"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+function foo (&amp;$var)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;$var++;<br />}<br /><br />$a=5;<br />foo ($a);<br />// $a ser&amp;aacute; 6 aqui</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+		Notar que no hay signo de referencia en la llamada a la función - 
+		solo en la definición de la misma. Colocar el signo de referencia
+		solo en la definición de la función alcanza para pasar correctamente
+		el argumento por referencia.
+  </P
+><P
+>&#13;		La lista siguiente indica que puede ser pasado por referencia:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Variables, por ejemplo <VAR
+CLASS="literal"
+>foo($a)</VAR
+>
+					</P
+></LI
+><LI
+><P
+>&#13;      Operador New, por ejemplo <VAR
+CLASS="literal"
+>foo(new foobar())</VAR
+>
+					</P
+></LI
+><LI
+><P
+>&#13;					Referencias, devueltas por una función: 
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4550"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+function &amp;bar()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;$a = 5;<br />&nbsp;&nbsp;&nbsp;&nbsp;return $a;<br />}<br />foo(bar());</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    Se recomienda leer también la explicación sobre <A
+HREF="language.references.return.html"
+>retorno por referencia</A
+>. 
+     </P
+></LI
+></UL
+>
+		</P
+><P
+>&#13;		Cualquier otro tipo de expresión no debería pasarse por referencia,
+		ya que el resultado sería indefinido. Los ejemplos de paso 
+		por referencia siguientes son inválidos:
+	<DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4554"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+function bar() // Notar que falta &amp;<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;$a = 5;<br />&nbsp;&nbsp;&nbsp;&nbsp;return $a;<br />}<br />foo(bar());<br /><br />foo($a = 5) // Expresi&amp;oacute;n, no variable<br />foo(5) // Constante, no variable</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+		Estos requerimientos son para PHP 4.0.4 y superior.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.references.arent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.references.return.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Lo que las Referencias no son</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.references.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Retorno por Referencia</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

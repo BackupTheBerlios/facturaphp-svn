@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Manejo de XForms</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Características"
+HREF="features.html"><LINK
+REL="PREVIOUS"
+TITLE="Cookies"
+HREF="features.cookies.html"><LINK
+REL="NEXT"
+TITLE="Manejo de envío de archivos"
+HREF="features.file-upload.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.cookies.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="features.xforms"
+>Capítulo 18. Manejo de XForms</A
+></H1
+><P
+>&#13;  <A
+HREF="http://www.w3.org/MarkUp/Forms/"
+TARGET="_top"
+>XForms</A
+> define una variación
+  de los tradicionales formularios web que permite que éstos
+  sean usados en una variedad más amplia de plataformas y
+  navegadores, e incluso en medios no-tradicionales como documentos
+  PDF.
+ </P
+><P
+>&#13;  La primera diferencia clave en XForms es el modo en que el
+  formulario es enviado al cliente. <A
+HREF="http://www.w3.org/MarkUp/Forms/2003/xforms-for-html-authors.html"
+TARGET="_top"
+>XForms para Autores HTML</A
+>
+  contiene una descripción detallada de cómo crear
+  XForms; para los propósitos de este tutorial, tan solo
+  estaremos viendo un ejemplo sencillo.
+ </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN5027"
+></A
+><P
+><B
+>Ejemplo 18-1. Un formulario XForms de búsqueda simple</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;h:html xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.w3.org/2002/xforms"&#62;
+&#60;h:head&#62;
+ &#60;h:title&#62;B&#38;uacute;squeda&#60;/h:title&#62;
+ &#60;model&#62;
+  &#60;submission action="http://example.com/buscar"
+              method="post" id="s"/&#62;
+ &#60;/model&#62;
+&#60;/h:head&#62;
+&#60;h:body&#62;
+ &#60;h:p&#62;
+  &#60;input ref="q"&#62;&#60;label&#62;Buscar&#60;/label&#62;&#60;/input&#62;
+  &#60;submit submission="s"&#62;&#60;label&#62;Iniciar&#60;/label&#62;&#60;/submit&#62;
+ &#60;/h:p&#62;
+&#60;/h:body&#62;
+&#60;/h:html&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;  El anterior formulario despliega una caja de entrada de texto
+  (llamada <VAR
+CLASS="parameter"
+>q</VAR
+>), y un botón de
+  enviar. Cuando el botón de enviar es pulsado, el formulario
+  será enviado a la página indicada por
+  <VAR
+CLASS="literal"
+>action</VAR
+>.
+ </P
+><P
+>&#13;  Aquí es en donde empieza a lucir diferente desde el punto de
+  vista de su aplicación web. En un formulario HTML normal, los
+  datos serían enviados como
+  <VAR
+CLASS="literal"
+>application/x-www-form-urlencoded</VAR
+>, sin embargo,
+  en el mundo de XForms, esta información es enviada como datos
+  en formato XML.
+ </P
+><P
+>&#13;  Si ha tomado la decisión de trabajar con XForms, entonces
+  probablemente quiera los datos en XML, en ese caso, debe echar un
+  vistazo a <VAR
+CLASS="varname"
+>$HTTP_RAW_POST_DATA</VAR
+> en donde
+  encontrará el documento XML generado por el navegador, el
+  cual puede pasar a su motor XSLT o intérprete de documentos
+  favorito.
+ </P
+><P
+>&#13;  Si no se encuentra interesado en dar formato, y sólo desea
+  que los datos sean cargados en la variable <VAR
+CLASS="varname"
+>$_POST</VAR
+>
+  tradicional, puede indicarle al navegador del cliente que
+  envíe sus datos como
+  <VAR
+CLASS="literal"
+>application/x-www-form-urlencoded</VAR
+> modificando el
+  atributo <VAR
+CLASS="parameter"
+>method</VAR
+> al valor
+  <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>urlencoded-post</I
+></SPAN
+>.
+ </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN5042"
+></A
+><P
+><B
+>Ejemplo 18-2. Uso de un XForm para poblar <VAR
+CLASS="varname"
+>$_POST</VAR
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;h:html xmlns:h="http://www.w3.org/1999/xhtml"
+        xmlns="http://www.w3.org/2002/xforms"&#62;
+&#60;h:head&#62;
+ &#60;h:title&#62;B&#38;uacute;squeda&#60;/h:title&#62;
+ &#60;model&#62;
+  &#60;submission action="http://example.com/search"
+              method="urlencoded-post" id="s"/&#62;
+ &#60;/model&#62;
+&#60;/h:head&#62;
+&#60;h:body&#62;
+ &#60;h:p&#62;
+  &#60;input ref="q"&#62;&#60;label&#62;Buscar&#60;/label&#62;&#60;/input&#62;
+  &#60;submit submission="s"&#62;&#60;label&#62;Iniciar&#60;/label&#62;&#60;/submit&#62;
+ &#60;/h:p&#62;
+&#60;/h:body&#62;
+&#60;/h:html&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Al momento en que se escriben estas líneas, muchos
+   navegadores no ofrecen soporte para XForms. Revise la
+   versión de su navegador si el anterior ejemplo falla.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.cookies.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Cookies</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Manejo de envío de archivos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

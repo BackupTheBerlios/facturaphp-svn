@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Sybase</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="wordwrap"
+HREF="function.wordwrap.html"><LINK
+REL="NEXT"
+TITLE="sybase_affected_rows"
+HREF="function.sybase-affected-rows.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.wordwrap.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sybase-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.sybase"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CVIII. Funciones de Sybase</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.sybase-affected-rows.html"
+>sybase_affected_rows</A
+>&nbsp;--&nbsp;obtiene el número de filas afectadas por la última consulta</DT
+><DT
+><A
+HREF="function.sybase-close.html"
+>sybase_close</A
+>&nbsp;--&nbsp;cierra una conexión Sybase</DT
+><DT
+><A
+HREF="function.sybase-connect.html"
+>sybase_connect</A
+>&nbsp;--&nbsp;Abre una conexión con un servidor
+    Sybase</DT
+><DT
+><A
+HREF="function.sybase-data-seek.html"
+>sybase_data_seek</A
+>&nbsp;--&nbsp;mueve el puntero interno de la fila</DT
+><DT
+><A
+HREF="function.sybase-deadlock-retry-count.html"
+>sybase_deadlock_retry_count</A
+>&nbsp;--&nbsp;Fija el contador de reintentos del deadlock </DT
+><DT
+><A
+HREF="function.sybase-fetch-array.html"
+>sybase_fetch_array</A
+>&nbsp;--&nbsp;carga una fila como un array</DT
+><DT
+><A
+HREF="function.sybase-fetch-assoc.html"
+>sybase_fetch_assoc</A
+>&nbsp;--&nbsp;Obtiene el resultado de la sentencia como una matriz asociativa</DT
+><DT
+><A
+HREF="function.sybase-fetch-field.html"
+>sybase_fetch_field</A
+>&nbsp;--&nbsp;obtiene la información del campo</DT
+><DT
+><A
+HREF="function.sybase-fetch-object.html"
+>sybase_fetch_object</A
+>&nbsp;--&nbsp;carga una fila como un objeto</DT
+><DT
+><A
+HREF="function.sybase-fetch-row.html"
+>sybase_fetch_row</A
+>&nbsp;--&nbsp;obtiene una fila como un array enumerado</DT
+><DT
+><A
+HREF="function.sybase-field-seek.html"
+>sybase_field_seek</A
+>&nbsp;--&nbsp;establece el offset de un campo</DT
+><DT
+><A
+HREF="function.sybase-free-result.html"
+>sybase_free_result</A
+>&nbsp;--&nbsp;libera el resultado de la memoria</DT
+><DT
+><A
+HREF="function.sybase-get-last-message.html"
+>sybase_get_last_message</A
+>&nbsp;--&nbsp;Regresa el último mensaje del servidor Sybase</DT
+><DT
+><A
+HREF="function.sybase-min-client-severity.html"
+>sybase_min_client_severity</A
+>&nbsp;--&nbsp;Fija el nivel minimo de severidad del problema reportado 
+    por el servidor</DT
+><DT
+><A
+HREF="function.sybase-min-error-severity.html"
+>sybase_min_error_severity</A
+>&nbsp;--&nbsp;Fija el error minimo a reportar según su severidad</DT
+><DT
+><A
+HREF="function.sybase-min-message-severity.html"
+>sybase_min_message_severity</A
+>&nbsp;--&nbsp;Fija el mensaje Sets minimum message severity</DT
+><DT
+><A
+HREF="function.sybase-min-server-severity.html"
+>sybase_min_server_severity</A
+>&nbsp;--&nbsp;Fija el nivel minimo de severidad del problema reportado 
+    por el servidor</DT
+><DT
+><A
+HREF="function.sybase-num-fields.html"
+>sybase_num_fields</A
+>&nbsp;--&nbsp;obtiene el número de campos de un resultado</DT
+><DT
+><A
+HREF="function.sybase-num-rows.html"
+>sybase_num_rows</A
+>&nbsp;--&nbsp;obtiene el número de filas de un resultado</DT
+><DT
+><A
+HREF="function.sybase-pconnect.html"
+>sybase_pconnect</A
+>&nbsp;--&nbsp;abre una conexión con Sybase persistente</DT
+><DT
+><A
+HREF="function.sybase-query.html"
+>sybase_query</A
+>&nbsp;--&nbsp;envía una consulta a Sybase</DT
+><DT
+><A
+HREF="function.sybase-result.html"
+>sybase_result</A
+>&nbsp;--&nbsp;obtiene datos de un resultado</DT
+><DT
+><A
+HREF="function.sybase-select-db.html"
+>sybase_select_db</A
+>&nbsp;--&nbsp;seleccciona una base de datos Sybase</DT
+><DT
+><A
+HREF="function.sybase-set-message-handler.html"
+>sybase_set_message_handler</A
+>&nbsp;--&nbsp;Fija el manejador a ser llamado cuando se emite un mensaje
+    del sistema</DT
+><DT
+><A
+HREF="function.sybase-unbuffered-query.html"
+>sybase_unbuffered_query</A
+>&nbsp;--&nbsp;Envía una sentencia SQL a Sybase sin bloquear
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.wordwrap.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sybase-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>wordwrap</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sybase_affected_rows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

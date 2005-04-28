@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Servidores-Caudium</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Servidores-Apache 2.0"
+HREF="install.apache2.html"><LINK
+REL="NEXT"
+TITLE="Servidores-fhttpd"
+HREF="install.fhttpd.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.apache2.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.fhttpd.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.caudium"
+>Servidores-Caudium</A
+></H1
+><P
+>&#13;  PHP 4 puede ser compilado como un módulo "Pike" para el <A
+HREF="http://caudium.net/"
+TARGET="_top"
+>servidor web Caudium</A
+>. Tener en cuenta
+  que esto no está soportado en PHP 3. Para instalar PHP 4 con
+  Caudium, seguir las instruciones de mas abajo.
+ </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="install.caudium.instructions"
+></A
+><P
+><B
+>Ejemplo 3-10. Instrucciones de instalación con Caudium</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>1. Asegurarse que Caudium est&#38;aacute; instalado antes de intentar instalar
+   PHP 4. Para que PHP 4 trabaje correctamente se necesita Pike
+   versi&#38;oacute;n 7.0.268 &#38;oacute; posterior. En este ejemplo asumimos que Caudium
+   est&#38;aacute; instalado en /opt/caudium/server/.
+
+2. Cambiar al directorio php-x.y.z (en donde x.y.z es el n&#38;uacute;mero de
+   versi&#38;oacute;n)
+
+3. ./configure --with-caudium=/opt/caudium/server
+4. make
+5. make install
+6. Arrancar de nuevo Caudium, si estaba ejecutandose.
+7. Conectarse al interfaz gr&#38;aacute;fico de configuraci&#38;oacute;n e ir al servidor
+   virtual en donde quereis a&#38;ntilde;adir soporte para PHP 4. 
+
+8. Pulsar "Add Module" y localizar y a&#38;ntilde;adir "PHP 4 Script Support module".
+9. Si la documentaci&#38;oacute;n dice que "el interprete de PHP 4 no est&#38;aacute;
+   disponible", asegurarse de haber arrancado de nuevo el servidor. Si
+   se hizo, comprobar si existe alg&#38;uacute;n mensaje de error relacionado con
+   &#60;filename&#62;PHP4.so&#60;/filename&#62; en
+   /opt/caudium/logs/debug/default.1. Asegurarse tambi&#38;eacute;n que
+   &#60;filename&#62;caudium/server/lib/[pike-version]/PHP4.so&#60;/filename&#62; existe.
+10. Si es necesario, configurar el soporte de m&#38;oacute;dulos de PHP.</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;  Se puede compilar el módulo Caudium con soporte para las diversas
+  extensiones disponibles en PHP 4. Vea la <A
+HREF="missing-stuff.html#install.configure"
+>lista completa de opciones de
+  configuración</A
+> para obtener información detallada.
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Cuando se compila PHP 4 con soporte para MySQL, hay que asegurarse
+   que el código normal del cliente MySQL es el usado. Si no, pueden
+   existir conflictos si Pike ya tiene soporte para MySQL. Esto se
+   arregla, especificando el directorio donde MySQL está instalado con
+   la opción <VAR
+CLASS="option"
+> --with-mysql</VAR
+>
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.apache2.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.fhttpd.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Servidores-Apache 2.0</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-fhttpd</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

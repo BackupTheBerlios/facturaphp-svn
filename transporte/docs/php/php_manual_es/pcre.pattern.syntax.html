@@ -1,0 +1,2947 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Sintaxis de los Patrones</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Expresiones Regulares (Compatibles con
+  Perl)"
+HREF="ref.pcre.html"><LINK
+REL="PREVIOUS"
+TITLE="Modificadores de Patrón"
+HREF="pcre.pattern.modifiers.html"><LINK
+REL="NEXT"
+TITLE="preg_grep"
+HREF="function.preg-grep.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="pcre.pattern.modifiers.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.preg-grep.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="pcre.pattern.syntax"
+></A
+>Sintaxis de los Patrones</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN93177"
+></A
+>Sintaxis de los Patrones&nbsp;--&nbsp;Describe la sintaxis de expresiones regulares
+    PCRE</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN93180"
+></A
+><H2
+>Descripción</H2
+><P
+>&#13;     La biblioteca PCRE es un conjunto de funciones que implementa
+     comparaciones con patrones de expresiones regulares usando usando
+     la misma sintaxis y semántica de Perl 5, con tan solo unas
+     pocas diferencias (ver más adelante). La
+     implementación actual corresponde a Perl 5.005.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN93183"
+></A
+><H2
+>Diferencias con Perl</H2
+><P
+>&#13;     Las diferencias descritas aquí existen con respecto a Perl
+     5.005.
+    <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;       Por defecto, un caracter de espacio en blanco es cualquier
+       caracter que reconozca la función isspace() de la
+       biblioteca C, aunque es posible compilar PCRE con tablas
+       alternativas de tipos de caracteres. Normalmente, isspace()
+       coincide con el espacio, la alimentación de
+       página, la nueva línea, el retorno de carro, el
+       tabulador horizontal y el tabulador vertical. Perl 5 ya no
+       incluye el tabulador vertical en su conjunto de caracteres de
+       espacio en blanco. La secuencia de escape \v que
+       permaneció durante mucho tiempo en la
+       documentación de Perl nunca fue reconocida en
+       realidad. Sin embargo, el caracter mismo era tratado como
+       espacio en blanco por lo menos hasta 5.002. En 5.004 y 5.005 no
+       coincide con \s.
+      </P
+></LI
+><LI
+><P
+>&#13;       PCRE no permite cuantificadores de repetición en
+       aserciones hacia adelante. Perl las permite, pero no quieren
+       decir lo que probablemente piense. Por ejemplo, (?!a){3} no
+       quiere decir que los siguientes tres caracteres no sean
+       "a". Simplemente indica que el siguiente caracter no sea "a"
+       tres veces.
+      </P
+></LI
+><LI
+><P
+>&#13;       Los sub-patrones de captura que aparecen al interior de
+       aserciones negativas hacia adelante son contados, pero sus
+       entradas en el vector de desplazamientos no son definidas. Perl
+       define sus variables numéricas a partir de cualquiera de
+       tales patrones que coinciden antes que la aserción falle
+       en coincidir algo (y por lo tanto tiene éxito), pero
+       solo si la aserción negativa hacia adelante contiene
+       una sola rama.
+      </P
+></LI
+><LI
+><P
+>&#13;       Aunque los caracteres de cero binario son soportados en la
+       cadena de asunto, no son permitidos en una cadena de
+       patrón porque éstas son pasadas como un cadena
+       normal de C, terminada en cero. La secuencia de escape "\0"
+       puede ser usada en el patrón para representar el cero
+       binario.
+      </P
+></LI
+><LI
+><P
+>&#13;       Las siguientes secuencias de escape de Perl no son soportadas:
+       \l, \u, \L, \U, \E, \Q. De hecho, estas son implementadas por
+       el mecanismo de gestión general de cadenas de Perl y no
+       son parte de su motor de comparación de patrones.
+      </P
+></LI
+><LI
+><P
+>&#13;       La aserción \G de Perl no es soportada, ya que no es
+       relevante para las coincidencias sencillas de patrones.
+      </P
+></LI
+><LI
+><P
+>&#13;       Obviamente, PCRE no soporta la construcción
+       (?{código}).
+      </P
+></LI
+><LI
+><P
+>&#13;       En la actualidad hay algunas peculiaridades en Perl 5.005_02
+       con respecto a los grupos de cadenas capturadas cuando parte de
+       un patrón se repite. Por ejemplo, al coincidir "aba" con
+       el patrón /^(a(b)?)+$/ se define $2 como "b", pero al
+       coincidir "aabbaa" con /^(aa(bb)?)+$/ deja $2 sin definir. Sin
+       embargo, si el patrón se modifica a /^(aa(b(b))?)+$/
+       entonces $2 (y $3) se definen.
+
+       En Perl 5.004 se define $2 en ambos casos, y también
+       ocurre en PCRE. Si en el futuro Perl se adapta a un estilo
+       consistente que sea diferente, PCRE puede cambiar para
+       ajustarse.
+      </P
+></LI
+><LI
+><P
+>&#13;       Otra discrepancia aún no resuelta consiste en que, en
+       Perl 5.005_02, el patrón /^(a)?(?(1)a|b)+$/ coincide con
+       la cadena "a", pero en PCRE no. Sin embargo, tanto en Perl como
+       en PCRE /^(a)?a/ coincide con "a", dejando $1 sin definir.
+      </P
+></LI
+><LI
+><P
+>&#13;       PCRE ofrece algunas extensiones a las capacidades de
+       expresiones regulares de Perl:
+        <P
+></P
+><OL
+TYPE="a"
+><LI
+><P
+>&#13;           Aunque las aserciones hacia atrás deben coincidir
+           con cadenas de longitud fija, cada rama alternativa de una
+           aserción hacia atrás puede coincidir con una
+           longitud diferente de cadena. Perl 5.005 requiere que todas
+           ellas tengan la misma longitud.
+         </P
+></LI
+><LI
+><P
+>&#13;          Si <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOLLAR_ENDONLY</A
+>
+          se define y <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+> no,
+          el meta-caracter $ sólo coincide al final absoluto de
+          la cadena.
+         </P
+></LI
+><LI
+><P
+>&#13;          Si se define <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTRA</A
+>, una
+          barra invertida seguida de una letra sin significado
+          especial provoca un error.
+         </P
+></LI
+><LI
+><P
+>&#13;          Si se define <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_UNGREEDY</A
+>, la
+          ambición de los cuantificadores de repetición
+          es invertida, es decir, no son ambiciosos por defecto, pero
+          si son seguidos de un signo de interrogación,
+          sí lo serán.
+         </P
+></LI
+></OL
+>
+      </P
+></LI
+></OL
+>
+   </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="regexp.reference"
+></A
+><H2
+>Detalles de las Expresiones Regulares</H2
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.introduction"
+></A
+><H3
+>Introducción</H3
+><P
+>&#13;       La sintaxis y semántica de las expresiones regulares
+       soportadas por PCRE se describe a continuación. Las
+       expresiones reglurares son descritas en la documentación
+       de Perl y en varios libros más, algunos de los cuales
+       contienen numerosos ejemplos. El libro "Mastering Regular
+       Expressions" de Jeffrey Friedl, publicado por O'Reilly (ISBN
+       1-56592-257-3), las cubre con gran detalle. El propósito
+       de la presente descripción es el de servir como
+       documentación de referencia.
+    </P
+><P
+>&#13;     Una expresión regular es un patrón que es comparado
+     contra una cadena de asunto, de izquierda a derecha. La
+     mayoría de caracteres se representan a ellos mismos en un
+     patrón, y coinciden con el caracter correspondiente en el
+     asunto. Como ejemplo trivial, el patrón <VAR
+CLASS="literal"
+>The quick
+     brown fox</VAR
+> coincide con una porción de la cadena
+     de asunto que sea idéntica al patrón dado.
+    </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.meta"
+></A
+><H3
+>Meta-caracteres</H3
+><P
+>&#13;      El poder de las expresiones regulares proviene de la habilidad
+      de incluir alternativas y repeticiones en el
+      patrón. Éstos recursos son codificados en el
+      patrón mediante el uso de
+      <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>meta-caracteres</I
+></SPAN
+>, los cuales no se
+      representan a ellos mismos, en su lugar, son interpretados de
+      una forma especial.
+    </P
+><P
+>&#13;     Hay dos conjuntos diferentes de meta-caracteres: aquellos que son
+     reconocidos en cualquier parte dentro del patrón excepto
+     entre corchetes cuadrados, y aquellos que son reconocidos entre
+     corchetes cuadrados. Por fuera de tales corchetes, los
+     meta-caracteres son los siguientes:
+      <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          caracter de escape general con varios usos
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>^</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          aserción de inicio de la cadena de asunto (o
+          línea, en modo multilínea)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>$</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          aserción de fin de la cadena de asunto (o
+          línea, en modo multilínea)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>.</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          coincide con cualquier caracter excepto la nueva
+          línea (por defecto)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>[</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          inicia la definición de clases de caracteres
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>]</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          fin de la definición de clases de caracteres
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>|</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          inicio de rama alternativa
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>(</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          inicio de sub-patrón
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>)</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          fin de sub-patrón
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>?</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          extiende el significado de (, también es el
+          cuantificador 0 ó 1 también es el
+          cuantificador de mínimo
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>*</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cuantificador cero o más
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>+</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cuantificador uno o más
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>{</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cuantificador de inicio de valores
+          mínimo/máximo
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>}</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cuantificador de final de valores
+          mínimo/máximo
+         </P
+></DD
+></DL
+></DIV
+>
+     Un segmento de un patrón que se encuentre entre corchetes
+     cuadrados es llamado una "clase de caracteres". En una clase de
+     caracteres, los únicos meta-caracteres son:
+      <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          caracter general de escape
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>^</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          niega la clase, pero sólo si se trata del primer
+          caracter
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>-</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          indica un rango de caracteres
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>]</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          finaliza la clase de caracteres
+         </P
+></DD
+></DL
+></DIV
+>
+     Las secciones siguientes describen el uso de cada uno de los
+     meta-caracteres.
+    </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.backslash"
+></A
+><H3
+>barra invertida</H3
+><P
+>&#13;      El caracter de barra invertida tiene varios usos. Primero, si es
+      seguido por un caracter no-alfanumérico, remueve
+      cualquier significado que el caracter pueda tener. Este uso de
+      la barra invertida como un caracter de escape se aplica tanto
+      dentro como fuera de las clases de caracteres.
+    </P
+><P
+>&#13;     Por ejemplo, si desea crear una coincidencia con un caracter "*",
+     debe escribir "\*" en el patrón. Esto es aplicable bien
+     sea que el caracter siguiente hubiese sido interpretado como un
+     meta-caracter o no, así que siempre es seguro preceder un
+     caracter no-alfanumérico con "\" para indicar que se
+     representa a él mismo. En particular, si desea crear una
+     coincidencia con una barra invertida, escriba "\\".
+    </P
+><P
+>&#13;     Si un patrón es compilado con la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+>, los
+     espacios en blanco del patrón (fuera de una clase de
+     caracteres) y los caracteres entre un "#", fuera de una clase de
+     caracteres, y el siguiente salto de línea son
+     ignorados. Una barra invertida de escape puede ser usada para
+     incluir un espacio en blanco o un caracter "#" como parte del
+     patrón.
+    </P
+><P
+>&#13;     Un segundo uso de la barra invertida ofrece una forma de
+     codificar caracteres no-imprimibles en los patrones de una forma
+     visible. No hay restricciones sobre la apariencia de los
+     caracteres no-imprimibles, aparte del cero binario que finaliza
+     un patrón, pero cuando un patrón está siendo
+     preparado mediante la edición de texto, usualmente es
+     más fácil usar una de las siguientes secuencias de
+     escape en lugar de los caracteres binarios que representan:
+    </P
+><P
+>&#13;      <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\a</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          alarma, esto es, el caracter BEL (hexadecimal 07)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\cx</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          "control-x", en donde x es cualquier caracter
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\e</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          escape (hexadecimal 1B)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\f</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          alimentación de página (hexadecimal 0C)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\n</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          nueva línea (hexadecimal 0A)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\r</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          retorno de carro (hexadecimal 0D)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\t</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          tabulador (hexadecimal 09)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\xhh</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          caracter con código hexadecimal hh
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\ddd</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          caracter con código octal ddd, o referencia hacia
+          atrás
+         </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     El efecto preciso de "<VAR
+CLASS="literal"
+>\cx</VAR
+>" es como sigue: si
+     "<VAR
+CLASS="literal"
+>x</VAR
+>" es una letra minúscula, ésta
+     es convertida a mayúscula. Entonces el sexto bit del
+     caracter (40 en hexadecimal) es invertido. Por lo tanto,
+     "<VAR
+CLASS="literal"
+>\cz</VAR
+>" se convierte en 1A en hexadecimal, pero
+     "<VAR
+CLASS="literal"
+>\c{</VAR
+>" se convierte en 3B en hexadecimal,
+     mientras que "<VAR
+CLASS="literal"
+>\c;</VAR
+>" se convierte en 7B en
+     hexadecimal.
+    </P
+><P
+>&#13;     Después de "<VAR
+CLASS="literal"
+>\x</VAR
+>", son leidos hasta dos
+     dígitos hexadecimales (las letras pueden ser
+     mayúsculas o minúsculas).
+    </P
+><P
+>&#13;     Después de "<VAR
+CLASS="literal"
+>\0</VAR
+>", son leídos
+     hasta dos dígitos octales más. En ambos casos, si
+     hay menos de dos dígitos, se usarán sólo los
+     que estén presentes. Por lo tanto, la secuencia
+     "<VAR
+CLASS="literal"
+>\0\x\07</VAR
+>" especifica dos ceros binarios
+     seguidos de un caracter BEL. Asegúrese de indicar dos
+     dígitos después del cero inicial si el caracter que
+     sigue es en sí un dígito octal.
+    </P
+><P
+>&#13;     La gestión de una barra invertida seguida por un
+     dígito diferente de cero es complicada. Por fuera de una
+     clase de caracteres, PCRE lee el dígito y cualquier otro
+     que le siga como un número decimal. Si el número es
+     menor que diez, o si han habido al menos tantos paréntesis
+     izquierdos de captura en la expresión, entonces la
+     secuencia entera es tomada como
+     una <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>referencia</I
+></SPAN
+>
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>hacia atrás</I
+></SPAN
+>. Una descripción
+     de cómo trabaja esto es presentada más adelante,
+     tras la discusión sobre sub-patrones con
+     paréntesis.
+    </P
+><P
+>&#13;     Al interior de una clase de caracteres, o si el número
+     decimal es mayor que 9 y no han habido tantos sub-patrones de
+     captura, PCRE lee de nuevo hasta tres dígitos octales que
+     sigan a la barra invertida, y genera un byte sencillo a partir de
+     los ocho bits menos significativos del valor. Cualquier
+     dígito subsiguiente se representa a él mismo. Por
+     ejemplo:
+    </P
+><P
+>&#13;      <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\040</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          es otro modo de escribir un espacio
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\40</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          es lo mismo, siempre que haya menos de cuarenta sub-patrones
+          de captura previos
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\7</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          siempre es una referencia hacia atrás
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\11</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          puede ser una referencia hacia atrás, u otra forma de
+          escribir un tabulador
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\011</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          siempre es un tabulador
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\0113</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          es un tabulador seguido del caracter "3"
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\113</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          es el caracter con el código octal 113 (ya que no
+          puede haber más de 99 referencias hacia atrás)
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\377</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          es un byte que consiste completamente de bits 1
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\81</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          puede ser una referencia hacia atrás, o un cero
+          binario seguido por los caracteres "8" y "1"
+         </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     Note que los valores octales del 100 o números más
+     grandes no deben iniciar con un cero, ya que no se leen
+     más de tres dígitos octales.
+    </P
+><P
+>&#13;     Todas las secuencias que definen el valor de un byte sencillo
+     pueden ser usadas tanto dentro como fuera de las clases de
+     caracteres. Adicionalmente, la secuencia "<VAR
+CLASS="literal"
+>\b</VAR
+>"
+     es interpretada como el caracter backspace (hexadecimal 08) al
+     interior de una clase de caracteres. Por fuera de una clase de
+     caracteres tiene un significado diferente (ver más
+     adelante).
+    </P
+><P
+>&#13;     El tercer uso de la barra invertida es para especificar tipos
+     genéricos de caracteres:
+    </P
+><P
+>&#13;      <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\d</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cualquier dígito decimal
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\D</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cualquier caracter que no sea un dígito decimal
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\s</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cualquier caracter de espacio en blanco
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\S</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cualquier caracter que no sea un espacio en blanco
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\w</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cualquier caracter de "palabra"
+         </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\W</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;          cualquier caracter que no sea de "palabra"
+         </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     Cada pareja de las secuencias de escape divide el conjunto global
+     de caracteres en dos grupos separados. Cualquier caracter dado
+     coincide con uno, y sólo uno, de cada pareja.
+    </P
+><P
+>&#13;     Un caracter de "palabra" es cualquier letra o dígito, o el
+     caracter de subrayado, esto quiere decir, cualquier caracter que
+     pueda ser parte de una "<VAR
+CLASS="literal"
+>palabra</VAR
+>" en Perl. La
+     definición de letras y dígitos es controlada por
+     las tablas de caracteres de PCRE, y puede variar si se
+     están efectuando coincidencias específicas a
+     localidades (vea "Soporte de localidades" más arriba). Por
+     ejemplo, en la localidad "fr" (Francia), algunos códigos
+     de caracteres mayores a 128 son usados para letras con acentos, y
+     éstas coinciden con <VAR
+CLASS="literal"
+>\w</VAR
+>.
+    </P
+><P
+>&#13;     Estas secuencias de tipos de caracter pueden aparecer tanto
+     dentro como fuera de las clases de caracteres. Cada una coincide
+     con un caracter del tipo apropiado. Si el punto de coincidencia
+     actual es el final de la cadena de asunto, todas las secuencias
+     fallan, ya que no hay caracteres a coincidir.
+    </P
+><P
+>&#13;     El cuarto uso de la barra invertida es para ciertas aserciones
+     simples. Una aserción especifica una condición que
+     tiene que cumplirse en un punto particular de una coincidencia,
+     sin consumir caracter alguno de la cadena de asunto. El uso de
+     sub-patrones para aserciones más complicadas se describe
+     más adelante. Las aserciones de barra invertida son
+    </P
+><P
+>&#13;     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\b</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;         límite de palabra
+        </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\B</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;         no-límite de palabra
+        </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\A</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;         inicio de la cadena de asunto (independiente del modo
+         multilínea)
+        </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\Z</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;         fin de la cadena de asunto o una nueva línea al final
+         (independiente del modo multilínea)
+        </P
+></DD
+><DT
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>\z</I
+></SPAN
+></DT
+><DD
+><P
+>&#13;         fin de la cadena de asunto (independiente del modo
+         multilínea)
+        </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     Estas aserciones no pueden aparecer dentro de clases de
+     caracteres (pero note que "<VAR
+CLASS="literal"
+>\b</VAR
+>" tiene un
+     significado diferente, el cual es el caracter backspace, dentro
+     de una clase de caracteres).
+    </P
+><P
+>&#13;     Un límite de palabra es una posición en la cadena
+     de asunto en donde el caracter actual y el anterior no coinciden
+     ambos con <VAR
+CLASS="literal"
+>\w</VAR
+> o <VAR
+CLASS="literal"
+>\W</VAR
+> (es
+     decir, uno coincide con <VAR
+CLASS="literal"
+>\w</VAR
+> y el otro coincide
+     con <VAR
+CLASS="literal"
+>\W</VAR
+>), o se puede tratar del principio o el
+     final de la cadena, si el primer o último caracter
+     coincide con <VAR
+CLASS="literal"
+>\w</VAR
+>, respectivamente.
+    </P
+><P
+>&#13;     Las aserciones <VAR
+CLASS="literal"
+>\A</VAR
+>, <VAR
+CLASS="literal"
+>\Z</VAR
+>, y
+     <VAR
+CLASS="literal"
+>\z</VAR
+> se diferencian de los caracteres
+     tradicionales circunflejo y dólar (descritos más
+     adelante) en que las primeras sólo coinciden al inicio y
+     final absolutos de la cadena de asunto, independientemente de las
+     opciones definidas. No son influenciadas por las opciones <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+> o
+     <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOLLAR_ENDONLY</A
+>. La
+     diferencia entre <VAR
+CLASS="literal"
+>\Z</VAR
+> y <VAR
+CLASS="literal"
+>\z</VAR
+> es
+     que <VAR
+CLASS="literal"
+>\Z</VAR
+> coincide antes de una nueva
+     línea que sea el último caracter de la cadena como
+     también al final de la cadena, mientas
+     que <VAR
+CLASS="literal"
+>\z</VAR
+> sólo coincide al final.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.circudollar"
+></A
+><H3
+>El circunflejo y el dólar</H3
+><P
+>&#13;      Por fuera de una clase de caracteres, en el modo predeterminado
+      de coincidencia, el caracter circunflejo es una aserción
+      que sólo es verdadera si el punto de coincidencia actual
+      es el inicio de la cadena de asunto. Al interior de una clase de
+      caracteres, el circunflejo tiene un significado completamente
+      distinto (ver más adelante).
+    </P
+><P
+>&#13;     El circunflejo no necesita ser el primer caracter del
+     patrón si se involucra un número de alternativas,
+     pero debe ser la primer cosa en cada alternativa en la que
+     aparezca si se espera que el patrón coincida con esa rama.
+     Si todas las alternativas posibles empiezan con un circunflejo,
+     esto es, si el patrón está limitado a coincidir
+     sólo con en el inicio del asunto, se dice que es un
+     patrón "anclado". (También hay otras construcciones
+     que pueden hacer que un patrón sea anclado.)
+    </P
+><P
+>&#13;     Un caracter de dólar es una aserción que es
+     verdadera sólo si el punto de coincidencia actual se
+     encuentra al final de la cadena de asunto, o inmediatamente antes
+     de un caracter de nueva línea que sea el último
+     caracter en la cadena (por defecto). El dólar no necesita
+     ser el último caracter del patrón si hay varias
+     alternativas involucradas, pero debe ser el último
+     elemento en cada rama en la que aparezca. El dólar no
+     tiene un significado especial en una clase de caracteres.
+    </P
+><P
+>&#13;     El significado del dólar puede ser modificado para que
+     coincida sólo al final absoluto de la cadena, definiendo
+     la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOLLAR_ENDONLY</A
+> en
+     tiempo de compilación o a la hora de efectuar la
+     comparación. Esto no afecta a la aserción \Z.
+    </P
+><P
+>&#13;     Los significados de los caracteres circunflejo y dólar son
+     modificados si la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+> es
+     definida. Cuando éste es el caso, éstos caracteres
+     coinciden inmediatamente antes e inmediatamente después de
+     un caracter "\n" interno, respectivamente, además de
+     coincidir con el inicio y el final de la cadena de asunto. Por
+     ejemplo, el patrón /^abc$/ coincide con la cadena de
+     asunto "def\nabc" en modo multilínea, pero no en otro
+     caso. Consecuentemente, los patrones que son anclados en modo de
+     línea sencilla ya que todas las ramas empiezan con "^" no
+     son anclados en modo multilínea. La opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOLLAR_ENDONLY</A
+> es
+     ignorada si <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+> es
+     definido.
+    </P
+><P
+>&#13;     Tenga en cuenta que las secuencias \A, \Z y \z pueden ser usadas
+     para coincidir con el inicio y el final del asunto en ambos
+     modos, y si todas las ramas de un patrón comienzan con \A,
+     el patrón siempre es anclado, independientemente de
+     si <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+>
+     es definido o no.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.dot"
+></A
+><H3
+>PUNTO</H3
+><P
+>&#13;      Por fuera de una clase de caracteres, un punto en el
+      patrón coincide con cualquier caracter del asunto,
+      incluyendo caracteres no-imprimibles, pero no el salto de
+      línea (por defecto). Si la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+> es definida,
+      entonces los puntos coinciden con los saltos de línea
+      también. El manejo del punto es completamente
+      independiente del uso del circunflejo y el dólar, dado
+      que la única relación entre ellos es que ambos
+      casos involucran caracteres de nueva línea. El punto no
+      tiene un significado especial dentro de una clase de caracteres.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.squarebrackets"
+></A
+><H3
+>Corchetes cuadrados</H3
+><P
+>&#13;      Un corchete cuadrado de apertura inicia una clase de caracteres,
+      terminada por un corchete cuadrado de cierre. Un corchete
+      cuadrado de cierre por sí solo no es especial. Si un
+      corchete cuadrado de cierre es requerido como un miembro de la
+      clase, debería ser el primer caracter de datos en la
+      clase (después de un circunflejo inicial, si está
+      presente) o escapado con una barra invertida.
+    </P
+><P
+>&#13;     Una clase de caracteres coincide con un caracter único en
+     el asunto; el caracter debe estar en el conjunto de los
+     caracteres definidos por la clase, a menos que el primer caracter
+     en la clase sea un circunflejo, en cuyo caso el caracter del
+     asunto no debe estar en el conjunto definido por la clase. Si un
+     circunflejo es necesitado realmente como un miembro de la clase,
+     asegúrese de que no sea el primer caracter, o
+     escápelo con una barra invertida.
+    </P
+><P
+>&#13;     Por ejemplo, la clase de caracteres [aeiou] coincide con
+     cualquier vocal minúscula, mientras que [^aeiou] coincide
+     con cualquier caracter que no sea una vocal minúscula.
+     Note que un circunflejo es una notación conveniente para
+     especificar los caracteres que están en la clase
+     enumerando aquellos que no lo están. No es una
+     aserción: aun consume un caracter de la cadena de asunto,
+     y falla si el apuntador actual está al final de la cadena.
+    </P
+><P
+>&#13;     Cuando se recurre a las comparaciones insensibles a
+     mayúsculas y minúsculas, cualquier letra en una
+     clase representa ambas versiones, por ejemplo, un patrón
+     insensible a mayúsculas y minúsculas [aeiou]
+     coincide tanto con "A" como con "a", y un patrón
+     insensible a mayúsculas y minúsculas [^aeiou] no
+     coincide con "A", mientras que una versión sensible lo
+     haría.
+    </P
+><P
+>&#13;     El caracter de nueva línea nunca es tratado de un modo
+     especial entra las clases de caracteres, independientemente de
+     los valores de las opciones <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+> o <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+>. Una clase
+     como [^a] siempre coincidirá con una nueva línea.
+    </P
+><P
+>&#13;     El caracter menos (guión) puede ser usado para especificar
+     un rango de caracteres en una clase de caracteres. Por ejemplo,
+     [d-m] coincide con cualquier letra entre d y m, ambas
+     inclusive. Si un caracter menos es requerido en una clase, debe
+     ser escapado con una barra invertida, o aparecer en una
+     posición en donde no pueda ser interpretado como indicador
+     de rango, normalmente como primer o último caracter de la
+     clase.
+    </P
+><P
+>&#13;     No es posible tener el caracter literal "]" como el caracter
+     final de un rango.  Un patrón como [W-]46] es interpretado
+     como una clase de dos caracteres ("W" y "-") seguida por la
+     cadena literal "46]", así que coincidiría con
+     "W46]" o "-46]". Sin embargo, si el caracter "]" es escapado con
+     una barra invertida, éste es interpretado como el final
+     del rango, así que [W-\]46] es interpretado como una clase
+     única que contiene un rango seguido por dos caracteres
+     diferentes. La representación octal o hexadecimal de "]"
+     puede ser usada también para finalizar un rango.
+    </P
+><P
+>&#13;     Los rangos trabajan en el orden de la secuencia ASCII. Pueden ser
+     usados también para caracteres especificados
+     numéricamente, por ejemplo [\000-\037]. Si un rango que
+     incluye letras es usado cuando es definida la comparación
+     insensible a mayúsculas y minúsculas, el rango
+     coincide las letras en cualquiera de los casos. Por ejemplo,
+     [W-c] es equivalente a [][\^_`wxyzabc], efectuando la
+     coincidencia insensible a mayúsculas y minúsculas,
+     y si las tablas de caracteres para la localidad "fr" están
+     en uso, entonces [\xc8-\xcb] coincide con los caracteres E
+     acentuados en ambos casos.
+    </P
+><P
+>&#13;     Los tipos de caracteres \d, \D, \s, \S, \w, y \W también
+     pueden aparecer en una clase de caracteres, y añaden los
+     caracteres que ellos representan a la clase.  Por ejemplo,
+     [\dABCDEF] coincide con cualquier dígito hexadecimal. Un
+     circunflejo puede ser convenientemente usado con los tipos de
+     caracter en mayúscula para especificar un conjunto
+     más restringido de caracteres que el de una
+     comparación con tipo en minúscula. Por ejemplo, la
+     clase [^\W_] coincide con cualquier letra o dígito, pero
+     no con el signo de subrayado.
+    </P
+><P
+>&#13;     Todos los caracteres no-alfanuméricos diferentes a \, -, ^
+     (al comienzo) y el caracter ] de cierre no tienen un significado
+     especial en una clase de caracteres, pero no hace daño que
+     se encuentren escapados..
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.verticalbar"
+></A
+><H3
+>Barra vertical</H3
+><P
+>&#13;      Los caracteres de barra vertical son usados para separar
+      patrones alternativos. Por ejemplo, el patrón
+
+       <VAR
+CLASS="literal"
+>gilbert|sullivan</VAR
+>
+
+      coincide o bien con "gilbert" o con "sullivan". Puede usarse
+      cualquier número de alternativas, y se permiten
+      alternativas vacías (que coinciden con la cadena
+      vacía). El proceso de comparación prueba con cada
+      alternativa de izquierda a derecha, y la primera que tenga
+      éxito es usada. Si las alternativas están al
+      interior de un sub-patrón (definido más adelante),
+      el "éxito" quiere decir que coincida con el resto del
+      patrón principal como también con la alternativa
+      en el sub-patrón.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.internal-options"
+></A
+><H3
+>Definición de opciones internas</H3
+><P
+>&#13;      Los valores de <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_CASELESS</A
+>,
+      <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+>,
+      <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+>,
+      y <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+>
+      pueden ser modificados desde el interior del patrón por
+      una secuencia de letras de opciones de Perl encerradas entre
+      "(?" y ")".  Las letras de opciones son
+     <DIV
+CLASS="table"
+><A
+NAME="AEN93569"
+></A
+><P
+><B
+>Tabla 1. Letras de opciones internas</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>i</VAR
+></TD
+><TD
+>para <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_CASELESS</A
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>m</VAR
+></TD
+><TD
+>para <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>s</VAR
+></TD
+><TD
+>para <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>x</VAR
+></TD
+><TD
+>para <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     Por ejemplo, (?im) define una comparación insensible a
+     mayúsculas y minúsculas y en modo
+     multilínea. También es posible eliminar
+     éstas opciones precediendo las letras con un guión,
+     así como se permite también una combinación
+     de activaciones y desactivaciones como (?im-sx), la cual
+     define <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_CASELESS</A
+> y <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_MULTILINE</A
+> al mismo
+     tiempo que desactiva <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+> y <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+>. Si una
+     letra aparece antes y después del guión, la
+     opción será desactivada.
+    </P
+><P
+>&#13;     El contexto de éstas opciones cambia dependiendo del lugar
+     en el que ocurra la definición. Para las definiciones que
+     son hechas por fuera de sub-patrones (definidos más
+     adelante), el efecto es el mismo que si la opción fuera
+     activada o desactivada al inicio de la coincidencia. Los
+     siguientes patrones se comportan todos de la misma manera:
+    </P
+><P
+CLASS="literallayout"
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(?i)abc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a(?i)bc<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ab(?i)c<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;abc(?i)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+><P
+>&#13;     que a su vez tienen el mismo efecto que compilar el patrón
+     abc con la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_CASELESS</A
+> activa. En
+     otras palabras, tales definiciones de "nivel superior" se aplican
+     en todo el patrón (a menos que haya otros cambios al
+     interior de sub-patrones). Si hay más de una
+     definición de la misma opción en el nivel superior,
+     la definición más a la derecha es usada.
+    </P
+><P
+>&#13;     Si un cambio de opción sucede dentro de un
+     sub-patrón, el efecto es diferente. Este es un cambio
+     respecto a la conducta de Perl 5.005. Un cambio de opción
+     dentro de un sub-patrón afecta sólo a la parte del
+     sub-patrón que lo sigue, de modo que
+
+       <VAR
+CLASS="literal"
+>(a(?i)b)c</VAR
+>
+
+     coincide con abc y aBc y ninguna otra cadena (asumiendo que no se
+     está usando <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_CASELESS</A
+>). De esta
+     forma, las opciones pueden definirse para tener diferentes
+     significados en diferente partes del patrón. Cualquier
+     cambio realizado en una alternativa ciertamente se aplica a ramas
+     subsecuentes al interior del mismo sub-patrón. Por
+     ejemplo,
+
+       <VAR
+CLASS="literal"
+>(a(?i)b|c)</VAR
+>
+
+     coincide con "ab", "aB", "c", y "C", aun cuando al coincidir con
+     "C", la primera rama es abandonada antes de definir la
+     opción. Esto es porque los efectos de definir de opciones
+     ocurren en tiempo de compilación. De otro modo,
+     ocurriría un comportamiento muy extraño.
+    </P
+><P
+>&#13;     Las opciones específicas de PCRE <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_UNGREEDY</A
+> y
+     <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTRA</A
+> pueden
+     ser modificadas del mismo modo que las opciones compatibles con
+     Perl usando los caracteres U y X respectivamente. La
+     opción bandera (?X) es especial en el sentido en que
+     siempre debe ocurrir antes que cualquier otra
+     característica adicional que active en el patrón,
+     incluso cuando es definida en el nivel superior. Su mejor
+     ubicación es el inicio.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.subpatterns"
+></A
+><H3
+>sub-patrones</H3
+><P
+>&#13;      Los sub-patrones son delimitados por paréntesis, y pueden
+      estar anidados. Marcar parte de un patrón como un
+      sub-patrón logra dos cosas:
+    </P
+><P
+>&#13;     1. Ubica un conjunto de alternativas. Por ejemplo, el
+     patrón
+
+       <VAR
+CLASS="literal"
+>cat(aract|erpillar|)</VAR
+>
+
+     coincide con una de las palabras "cat", "cataract", o
+     "caterpillar". Sin los paréntesis, coincidiría con
+     "cataract", "erpillar" o la cadena vacía.
+    </P
+><P
+>&#13;     2. Define el sub-patrón como un sub-patrón de
+     captura (como se definió anteriormente). Cuando el
+     patrón completo coincida, esa porción de la cadena
+     de asunto que coincidió con el sub-patrón es
+     devuelta al origen mediante el
+     argumento <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>ovector</I
+></SPAN
+>
+     de <B
+CLASS="function"
+>pcre_exec()</B
+>. Los paréntesis de
+     apertura son contados de izquierda a derecha (empezando desde 1)
+     para obtener los números de los sub-patrones de captura.
+    </P
+><P
+>&#13;     Por ejemplo, si la cadena "the red king" es comparada contra el
+     patrón
+
+       <VAR
+CLASS="literal"
+>the ((red|white) (king|queen))</VAR
+>
+
+     las sub-cadenas capturadas son "red king", "red", y "king", y son
+     numeradas como 1, 2 y 3.
+    </P
+><P
+>&#13;     El hecho de que los simples paréntesis realicen dos
+     funciones no siempre es útil. Con frecuencia se presenta
+     el caso en el que un sub-patrón de agrupamiento es
+     requerido sin necesidad de una captura. Si un paréntesis
+     de apertura es seguido por "?:", el sub-patrón no realiza
+     ninguna captura, y no es contado cuando se compute el
+     número de sub-patrones subsiguientes capturados. Por
+     ejemplo, si la cadena "the white queen" es comparada con el
+     patrón
+
+       <VAR
+CLASS="literal"
+>the ((?:red|white) (king|queen))</VAR
+>
+
+     las sub-cadenas capturadas son "white queen" y "queen", y son
+     numeradas como 1 y 2. El número máximo de
+     sub-cadenas capturadas es de 99, y el número máximo
+     de todos los sub-patrones, de captura o no, es de 200.
+    </P
+><P
+>&#13;     Como un atajo conveniente, si cualquiera de las opciones se
+     requiere al inicio de un sub-patrón que no sea de captura,
+     las letras de las opciones pueden aparecer entre los caracteres
+     "?" y ":". Por lo tanto, los dos patrones
+    </P
+><P
+CLASS="literallayout"
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(?i:saturday|sunday)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(?:(?i)saturday|sunday)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</P
+><P
+>&#13;     coinciden con exactamente el mismo conjunto de cadenas. Dado que
+     las ramas alternativas son probadas de izquierda a derecha, y las
+     opciones no son reestablecidas hasta el final del
+     sub-patrón, una definición de opción en una
+     rama afecta las ramas subsecuentes, así que los patrones
+     anteriores coinciden con "SUNDAY", al igual que con "Saturday".
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.repetition"
+></A
+><H3
+>Repetición</H3
+><P
+>&#13;      La repetición es especificada por cuantificadores, los
+      cuales pueden ir tras cualquiera de los siguientes elementos:
+      <P
+></P
+><UL
+><LI
+><P
+>un caracter sencillo, posiblemente
+       escapado</P
+></LI
+><LI
+><P
+>el meta-caracter .</P
+></LI
+><LI
+><P
+>una clase de caracteres</P
+></LI
+><LI
+><P
+>una referencia hacia atrás (vea la
+       siguiente sección)</P
+></LI
+><LI
+><P
+>un sub-patrón entre paréntesis
+       (a menos que se trate de una aserción - vea más
+       adelante)</P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     El cuantificador general de repetición indica un
+     número mínimo y un número máximo de
+     coincidencias permitidas, dando los dos números entre
+     corchetes ondulados (llaves), separados por una coma. Los
+     números deben ser menores a 65536, y el primero debe ser
+     menor o igual al segundo. Por ejemplo:
+
+       <VAR
+CLASS="literal"
+>z{2,4}</VAR
+>
+
+     coincide con "zz", "zzz", o "zzzz". Una llave de cierre por
+     sí sola no es un caracter especial. Si el segundo
+     número es omitido, pero aparece la coma, entonces no hay
+     límite superior; si el segundo número y la coma son
+     omitidos ambos, el cuantificador indica el número exacto
+     de repeticiones requeridas. Por lo tanto
+
+       <VAR
+CLASS="literal"
+>[aeiou]{3,}</VAR
+>
+
+     coincide con al menos 3 vocales sucesivas, pero podría
+     coincidir con muchas más, mientras que
+
+       <VAR
+CLASS="literal"
+>\d{8}</VAR
+>
+
+     coincide con exactamente ocho dígitos. Una llave de
+     apertura que aparezca en una posición en donde no se
+     permite un cuantificador, o una que no coincida con la sintaxis
+     de un cuantificador, es tomada como un caracter literal. Por
+     ejemplo, {,6} no es un cuantificador, sino una cadena literal de
+     cuatro caracteres.
+    </P
+><P
+>&#13;     Se permite el uso del cuantificador {0}, lo que provoca que la
+     expresión se comporte como si el elemento anterior y el
+     cuantificador no estuvieran presentes.
+    </P
+><P
+>&#13;     Por conveniencia (y compatibilidad histórica) los tres
+     cuantificadores más comunes tienen abreviaciones de un
+     solo caracter:
+     <DIV
+CLASS="table"
+><A
+NAME="AEN93644"
+></A
+><P
+><B
+>Tabla 2. Cuantificadores de caracter-único</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>*</VAR
+></TD
+><TD
+>equivalente a <VAR
+CLASS="literal"
+>{0,}</VAR
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>+</VAR
+></TD
+><TD
+>equivalente a <VAR
+CLASS="literal"
+>{1,}</VAR
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>?</VAR
+></TD
+><TD
+>equivalente a <VAR
+CLASS="literal"
+>{0,1}</VAR
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     Es posible construir ciclos infinitos mediante un
+     sub-patrón que no pueda coincidar con ningún
+     caracter con un cuantificador que no tenga límite
+     superior, por ejemplo:
+
+       <VAR
+CLASS="literal"
+>(a?)*</VAR
+>
+    </P
+><P
+>&#13;     Las primeras versiones de Perl y PCRE solían producir un
+     error en tiempo de compilación para tales patrones. Sin
+     embargo, dado que existen casos en donde esto puede ser
+     útil, tales patrones son aceptados ahora, pero si
+     cualquier repetición del sub-patrón no coincide
+     realmente con ningún caracter, el ciclo es interrumpido a
+     la fuerza.
+    </P
+><P
+>&#13;     Por defecto, los cuantificadores son "ambiciosos", lo que quiere
+     decir, coinciden con tanto material como les es posible (hasta el
+     número máximo de veces permitido), sin provocar que
+     el resto del patrón falle. El ejemplo clásico en el
+     que esto causa problema es a la hora de crear coincidencias con
+     comentarios en programas en C. Éstos aparecen entre las
+     secuencias /* y */ y, al interior de la secuencia, los caracteres
+     * y / pueden aparecer individualmente. Un intento por coincidir
+     comentarios en C al aplicar el patrón
+
+       <VAR
+CLASS="literal"
+>/\*.*\*/</VAR
+>
+
+     sobre la cadena
+
+       <VAR
+CLASS="literal"
+>/* primer comentario */ no comentado /* segundo
+       comentario */</VAR
+>
+
+
+     falla, ya que coincide con la cadena entera debido a la
+     ambición del elemento .*
+    </P
+><P
+>&#13;     Sin embargo, si un cuantificador es seguido por un signo de
+     interrogación, entonces deja de ser ambicioso, y en su
+     lugar coincide el mínimo número de veces posibles,
+     de tal suerte que el patrón
+
+       <VAR
+CLASS="literal"
+>/\*.*?\*/</VAR
+>
+
+     hace lo correcto con los comentarios en C. El significado de los
+     varios cuantificadores no se modifica en otro modo, tan
+     sólo el número preferido de coincidencias. No
+     confunda éste uso del signo de interrogación con su
+     uso como un cuantificador por sí solo. Debido a que tiene
+     dos usos, a veces puede aparecer dos veces seguidas, como en
+
+       <VAR
+CLASS="literal"
+>\d??\d</VAR
+>
+
+     caso que coincide con un dígito de ser posible, pero puede
+     coincidir con dos si ese el único modo en que el resto del
+     patrón coincida.
+    </P
+><P
+>&#13;     Si se encuentra definida la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_UNGREEDY</A
+> (la cual no
+     está disponible en Perl) entonces los cuantificadores no
+     son ambiciosos por defecto, pero cada uno por separado puede
+     serlo cuando a continuación de ellos se encuentra un signo
+     de interrogación. En otras palabras, invierte la conducta
+     predeterminada.
+    </P
+><P
+>&#13;     Cuando un sub-patrón entre paréntesis es
+     cuantificado con un número mínimo de repeticiones
+     superior a 1 o con un límite máximo, se necesita
+     mayor almacenamiento para el patrón compilado, en
+     proporción al tamaño del mínimo o del
+     máximo.
+    </P
+><P
+>&#13;     Si un patrón empieza con .* o .{0,} y la opción
+     <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+>
+     (equivalente a /s en Perl) es definida, permitiendo de esa forma
+     que . coincida con nuevas líneas, entonces el
+     patrón es anclado implícitamente, ya que cualquier
+     cosa a continuación será comparada contra cada
+     posición de caracter en la cadena de asunto, así
+     que no hay razones para reintentar la coincidencia en su
+     totalidad en cualquier posición luego de la primera. PCRE
+     trata tales patrones como si estuvieran precedidos por \A. En los
+     casos donde se conoce que la cadena de asunto no contiene nuevas
+     líneas, vale la pena definir
+     <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+> cuando
+     el patrón comienza con .* para obtener esta
+     optimización, o alternativamente usar ^ para indicar el
+     anclamiento explícitamente.
+    </P
+><P
+>&#13;     Cuando un sub-patrón de captura es repetido, el valor
+     capturado es la sub-cadena que coincidió con la
+     iteración final. Por ejemplo, luego de que
+
+       <VAR
+CLASS="literal"
+>(tweedle[dume]{3}\s*)+</VAR
+>
+
+     ha coincidido con "tweedledum tweedledee" el valor de la
+     sub-cadena capturada es "tweedledee". Sin embargo, si hay
+     sub-patrones de captura anidados, los valores capturados
+     correspondientes pueden haber sido definidos en las iteraciones
+     anteriores. Por ejemplo, después de que
+     
+       <VAR
+CLASS="literal"
+>/(a|(b))+/</VAR
+>
+
+     coincide con "aba", el valor de la segunda sub-cadena capturada
+     es "b".
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.back-references"
+></A
+><H3
+>REFERENCIAS HACIA ATRÁS</H3
+><P
+>&#13;     Por fuera de una clase de caracteres, una barra invertida seguida
+     por un digito mayor que cero (y posiblemente más
+     dígitos) es una referencia hacia atrás a un
+     sub-patrón de captura anterior (es decir, a su izquierda)
+     en el patrón, siempre y cuando existan tantos
+     paréntesis izquierdos de captura.
+    </P
+><P
+>&#13;     Sin embargo, si el número decimal a continuación de
+     la barra invertida es menor que diez, siempre es tomado como una
+     referencia hacia atrás, y causa un error sólo si no
+     hay los suficientes paréntesis izquierdos de captura en
+     todo el patrón. En otras palabras, los paréntesis
+     que son referidos no necesitan estar a la izquierda de la
+     referencia para números menores que diez.  Vea la
+     sección anterior titulada "Barra invertida" para
+     más detalles sobre el manejo de los dígitos que
+     siguen a una barra invertida.
+    </P
+><P
+>&#13;     Una referencia hacia atrás coincide con cualquier cosa que
+     haya coincidido realmente con el sub-patrón de captura en
+     la cadena de asunto actual, en lugar de hacerlo con cualquier
+     cosa que coincida con el sub-patrón mismo. De modo que el
+     patrón
+
+       <VAR
+CLASS="literal"
+>(sens|respons)e and \1ibility</VAR
+>
+
+     coincide con "sense and sensibility" y "response and
+     responsibility", pero no "sense and responsibility". Si se
+     está aplicando una comparación sensible a
+     mayúsculas y minúsculas al momento de la referencia
+     hacia atrás, entonces la distinción de las letras
+     es importante. Por ejemplo,
+
+       <VAR
+CLASS="literal"
+>((?i)rah)\s+\1</VAR
+>
+
+     coincide con "rah rah" y "RAH RAH", pero no "RAH rah", incluso
+     cuando el sub-patrón de captura original fue comparado de
+     forma insensible a mayúsculas y minúsculas.
+    </P
+><P
+>&#13;     Puede haber más de una referencia hacia atrás hacia
+     el mismo sub-patrón. Si un sub-patrón no ha sido
+     usado realmente en una coincidencia particular, entonces
+     cualquier referencia hacia atrás hacia aquél
+     siempre falla. Por ejemplo, el patrón
+
+       <VAR
+CLASS="literal"
+>(a|(bc))\2</VAR
+>
+
+     siempre falla si comienza coincidiendo con "a" en lugar de
+     "bc". Ya que puede haber hasta 99 referencias hacia atrás,
+     todos los dígitos que siguen a la barra invertida son
+     tomados como parte de un potencial número de referencia
+     hacia atrás. Si el patrón continúa con un
+     caracter de dígito, entonces debe ser usado algún
+     delimitador para terminar la referencia hacia atrás. Si la
+     opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+> es
+     definida, este puede ser el espacio en blanco. De otro modo, un
+     comentario vació puede ser usado.
+    </P
+><P
+>&#13;     Una referencia hacia atrás que ocurra dentro del
+     paréntesis al cual hace referencia falla cuando el
+     sub-patrón es usado por primera vez, así que, por
+     ejemplo, (a\1) nunca crea coincidencias. Sin embargo, tales
+     referencia pueden ser útiles al interior de sub-patrones
+     repetidos. Por ejemplo, el patrón
+
+       <VAR
+CLASS="literal"
+>(a|b\1)+</VAR
+>
+
+     coincide con cualquier número de "a"s y también con
+     "aba", "ababaa" etc. Para cada iteración del
+     sub-patrón, la referencia hacia atrás coincide con
+     la cadena de caracteres correspondiente a la iteración
+     anterior. Para que esto funcione, el patrón debe ser tal
+     que la primera iteración no necesite coincidir con la
+     referencia hacia atrás. Esto puede lograrse usando
+     alternaciones, como en el ejemplo anterior, o por medio de un
+     cuantificador con un mínimo de cero.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.assertions"
+></A
+><H3
+>Aserciones</H3
+><P
+>&#13;      Una aserción es una prueba sobre los caracteres a
+      continuación o antes del punto actual de coincidencia que
+      no consume caracteres en realidad. Las aserciones simples
+      codificadas como \b, \B, \A, \Z, \z, ^ y $ son descritas
+      anteriormente. Las aserciones más complicadas son
+      codificadas como sub-patrones. Hay dos tipos: aquellas que
+      trabajan con material más adelante de la posición
+      actual en la cadena de asunto y aquellas que lo hacen con
+      material hacia atrás.
+    </P
+><P
+>&#13;     Un sub-patrón de aserción es comparado del modo
+     usual, excepto que no causa que el punto actual de coincidencia
+     cambie. Las aserciones hacia adelante comienzan con (?= en el
+     caso de aserciones positivas y (?! para las negativas. Por
+     ejemplo,
+
+       <VAR
+CLASS="literal"
+>\w+(?=;)</VAR
+>
+
+     coincide con una palabra seguida por un punto-y-coma. pero no
+     incluye el punto-y-coma en la coincidencia, y
+
+       <VAR
+CLASS="literal"
+>foo(?!bar)</VAR
+>
+
+     coincide con cualquier ocurrencia de "foo" que no sea seguida por
+     "bar". Note que el patrón, en apariencia semejante,
+
+       <VAR
+CLASS="literal"
+>(?!foo)bar</VAR
+>
+
+     no encuentra una ocurrencia de "bar" que sea precedida por algo
+     diferente de "foo"; encuentra cualquier ocurrencia de "bar", ya
+     que la aserción (?!foo) es siempre verdadera cuando los
+     siguientes tres caracteres son "bar". Una aserción hacia
+     atrás es necesaria para conseguir este efecto.
+    </P
+><P
+>&#13;     Las aserciones hacia atrás comienzan con (?&#60;= para las
+     aserciones positivas y (?&#60;!  para las negativas. Por ejemplo,
+
+       <VAR
+CLASS="literal"
+>(?&#60;!foo)bar</VAR
+>
+
+     encuentra una ocurrencia de "bar" que no es precedida por "foo".
+     Los contenidos de una aserción hacia atrás son
+     restringidos de tal forma que todas las cadenas con las que
+     coinciden deben tener una longitud fija. Sin embargo, si hay
+     varias alternativas, no todas tienen que tener la misma
+     longitud. Por lo tanto
+
+       <VAR
+CLASS="literal"
+>(?&#60;=bullock|donkey)</VAR
+>
+
+     se permite, pero
+
+       <VAR
+CLASS="literal"
+>(?&#60;!dogs?|cats?)</VAR
+>
+
+     genera un error en tiempo de compilación. Las ramas que
+     coinciden con cadenas de diferentes longitudes son permitidas
+     sólo en el nivel superior de la aserción hacia
+     atrás. Ésta es una extensión en
+     comparación con Perl 5.005, en donde se requiere que todas
+     las ramas coincidan con la misma longitud de cadena. Una
+     aserción como
+
+       <VAR
+CLASS="literal"
+>(?&#60;=ab(c|de))</VAR
+>
+
+     no es permitida, ya que su rama única de nivel superior
+     puede coincidir con dos longitudes diferentes, pero es aceptable
+     si se reescribe para usar dos ramas de nivel superior:
+
+       <VAR
+CLASS="literal"
+>(?&#60;=abc|abde)</VAR
+>
+
+     La implementación de las aserciones hacia atrás
+     consiste en, para cada alternativa, mover temporalmente la
+     posición actual hacia atrás en el ancho fijo e
+     intentar la coincidencia. Si no hay suficientes caracteres antes
+     de la posición actual, la coincidencia está
+     destinada a fallar. Las aserciones hacia atrás, en
+     unión con los sub-patrones de una sola aplicación,
+     pueden ser particularmente útiles para las coincidencias
+     al final de cadenas; un ejemplo es dado al final de la
+     sección sobre sub-patrones de una aplicación.
+    </P
+><P
+>&#13;     Varias aserciones (de cualquier tipo) pueden ocurrir en
+     sucesión. Por ejemplo,
+
+       <VAR
+CLASS="literal"
+>(?&#60;=\d{3})(?&#60;!999)foo</VAR
+>
+
+     coincide con "foo" precedido de tres dígitos que no sean
+     "999". Note que cada una de las aserciones es aplicada
+     independientemente en el mismo punto en la cadena de
+     asunto. Primero hay un chequeo para que los tres caracteres
+     previos sean todos dígitos, luego hay un chequeo para que
+     los mismos caracteres no sean "999". Este patrón no
+     coincide con "foo" precedido de seis caracteres, en donde los
+     primeros son dígitos y los últimos tres no son
+     "999". Por ejemplo, no coincide con "123abcfoo". Un patrón
+     para conseguir eso es
+
+       <VAR
+CLASS="literal"
+>(?&#60;=\d{3}...)(?&#60;!999)foo</VAR
+>
+    </P
+><P
+>&#13;     En este caso la primera aserción revisa los seis
+     caracteres anteriores, y chequea que los tres primeros sean
+     dígitos, y luego la segunda aserción chequea que
+     los tres caracteres anteriores no sean "999".
+    </P
+><P
+>&#13;     Las aserciones puede ser anidadas en cualquier
+     combinación. Por ejemplo,
+
+       <VAR
+CLASS="literal"
+>(?&#60;=(?&#60;!foo)bar)baz</VAR
+>
+
+     coincide con una ocurrencia de "baz" que sea precedida por "bar",
+     la cual a su vez no sea precedida por "foo", mientras que
+
+       <VAR
+CLASS="literal"
+>(?&#60;=\d{3}(?!999)...)foo</VAR
+>
+
+     es otro patrón que coincide con "foo" precedido por tres
+     dígitos y tres caracteres cualquiera que no sean "999".
+
+    </P
+><P
+>&#13;     Los sub-patrones de aserción no son sub-patrones de
+     captura, y no pueden ser repetidos, ya que no tiene sentido
+     afirmar la misma cosa varias veces. Si una aserción de
+     cualquier tipo contiene sub-patrones de captura en su interior,
+     éstos son contados con el propósito de numerar los
+     sub-patrones de captura en todo el patrón. Sin embargo, la
+     captura de subcadenas solo se lleva a cabo en las aserciones
+     positivas, porque no tiene sentido para las negativas.
+    </P
+><P
+>&#13;     Las aserciones cuentan para el máximo de 200 sub-patrones
+     entre paréntesis.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.onlyonce"
+></A
+><H3
+>Sub-patrones de una sola aplicación</H3
+><P
+>&#13;      Tanto con las repeticiones máximas como en las
+      mínimas, el hecho de que falle de lo que se encuentra a
+      continuación causa por lo general que el item repetido
+      sea re-evaluado para ver si un número diferente de
+      repeticiones permite que el resto del patrón coincida. A
+      veces es útil prevenir esto, ya sea cambiando la
+      naturaleza de la coincidencia, o causando que falle antes de
+      cuando ocurriría de otra forma, cuando el creador del
+      patrón sabe que no tiene sentido continuar.
+    </P
+><P
+>&#13;     Considere, por ejemplo, el patrón \d+foo cuando se aplica
+     a la línea de asunto
+
+       <VAR
+CLASS="literal"
+>123456bar</VAR
+>
+    </P
+><P
+>&#13;     Después de coincidir con los seis dígitos y fallar
+     al comparar con "foo", la acción normal del motor es
+     intentar otra vez con sólo cinco dígitos para
+     coincidir con \d+, y luego con cuatro, y así
+     sucesivamente, antes de fallar por completo. Los sub-patrones de
+     una aplicación ofrecen el medio de especificar que una vez
+     una porción del patrón ha coincidido, no debe ser
+     re-evaluada en esta manera, así que el motor se
+     rendiría inmediamente al fallar su intento por coincidir
+     con "foo" la primera vez. La notación es otra forma
+     especial de paréntesis, iniciado con (?&#62; como en este
+     ejemplo:
+
+       <VAR
+CLASS="literal"
+>(?&#62;\d+)bar</VAR
+>
+    </P
+><P
+>&#13;     Este tipo de paréntesis "bloquea" la parte del
+     patrón que contiene una vez ha coincidido, y se previene
+     que un fallo más al interior del patrón retroceda
+     al punto original. El retroceso hacia elementos previos funciona
+     normalmente, después de todo.
+    </P
+><P
+>&#13;     Una descripción alternativa es que un sub-patrón de
+     este tipo coincide con la cadena de carecteres que un
+     patrón independiente idéntico coincidiría,
+     si estuviera anclado en el punto actual de la cadena de asunto.
+    </P
+><P
+>&#13;     Los sub-patrones de una sola aplicación no son
+     sub-patrones de captura. Los casos simples como el ejemplo
+     anterior pueden verse como una repetición máxima
+     que debe tragar todo lo que pueda. Así que, mientras que
+     tanto \d+ como \d?  están preparados para ajustar el
+     número de dígitos con los que coinciden para hacer
+     que el resto del patrón coincida, (?&#62;\d+) puede
+     coincidir sólo con un secuencia enteramente de
+     dígitos.
+    </P
+><P
+>&#13;     Esta construcción puede, por supuesto, contener
+     sub-patrones arbitrariamente complicados, y pueden estar
+     anidados.
+    </P
+><P
+>&#13;     Los sub-patrones de una aplicación pueden ser usados en
+     unión con aserciones hacia atrás para especificar
+     coincidencias eficientes al final de la cadena de asunto.
+     Considere un patrón sencillo como
+
+       <VAR
+CLASS="literal"
+>abcd$</VAR
+>
+
+     cuando se aplica a una cadena larga con la cual no coincide. Dado
+     que la comparación se realiza de izquierda a derecha, PCRE
+     buscará cada "a" en el asunto y luego verá si lo
+     que sigue coincide con el resto del patrón. Si el
+     patrón se especifica como
+
+       <VAR
+CLASS="literal"
+>^.*abcd$</VAR
+>
+
+     entonces el segmento .* inicial coincide con la cadena entera
+     primero, pero cuando esto falle (ya que no habrá una "a" a
+     continuación), retrocede para coincidir con todo menos el
+     último caracter, luego con todo excepto los dos
+     últimos y así sucesivamente. Una vez más, la
+     búsqueda de "a" cubre la cadena completa, de derecha a
+     izquierda, así que no hemos mejorado. Sin embargo, si el
+     patrón se escribiese como
+
+       <VAR
+CLASS="literal"
+>^(?&#62;.*)(?&#60;=abcd)</VAR
+>
+
+     entonces no hay retroceso para el elemento .*; sólo puede
+     coincidir con la cadena entera. La aserción hacia
+     atrás subsiguiente realiza una prueba única sobre
+     los últimos cuatro caracteres. Si falla, la coincidencia
+     falla inmediatamente. Para cadena largas, este enfoque representa
+     una diferencia significativa en el tiempo de procesamiento.
+    </P
+><P
+>&#13;     Cuando un patrón contiene una repetición ilimitada
+     al interior de un sub-patrón que puede ser por sí
+     mismo repetido un número ilimitado de veces, el uso de un
+     sub-patrón de una aplicación es la única
+     forma de evitar algunas coincidencias fallidas que consumen
+     ciertamente un tiempo muy largo. El patrón
+
+       <VAR
+CLASS="literal"
+>(\D+|&#60;\d+&#62;)*[!?]</VAR
+>
+
+     coincide con un número ilimitado de subcadenas que
+     consisten ya sea de no-dígitos, o dígitos entre
+     &#60;&#62;, seguidos por ! o ?. Cuando coincida, se ejecuta
+     rápido. Sin embargo, si se aplica sobre
+
+       <VAR
+CLASS="literal"
+>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</VAR
+>
+
+     toma un largo tiempo antes de reportar el fallo. Esto es porque
+     la cadena puede ser dividida entre las dos repeticiones en un
+     gran número de formas, y todas deben ser probadas. (El
+     ejemplo usó [!?] en lugar de un caracter sencillo al
+     final, ya que tanto PCRE como Perl cuentan con una
+     optimización que permite reportar fallos
+     rápidamente cuando un caracter sencillo es
+     usado. Recuerdan el último caracter simple que es
+     requerido para una coincidencia, y falla tempranamente si no
+     está presente en la cadena.) Si el patrón es
+     modificado a
+
+       <VAR
+CLASS="literal"
+>((?&#62;\D+)|&#60;\d+&#62;)*[!?]</VAR
+>
+
+     las secuencias de no-dígitos no pueden ser interrumpidas,
+     y la falla ocurre rápidamente.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.conditional"
+></A
+><H3
+>Sub-patrones condicionales</H3
+><P
+>&#13;      Es posible hacer que el proceso de comparación obedezca a
+      un sub-patrón condicionalmente o que elija entre dos
+      sub-patrones alternativos, dependiendo del resultado de una
+      aserción, o de si un sub-patrón de captura previo
+      coincidió o no. Las dos formas posibles de sub-patrones
+      condicionales son:
+    </P
+><P
+CLASS="literallayout"
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(?(condición)patrón-si)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(?(condición)patrón-si|patrón-no)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</P
+><P
+>&#13;     Si la condición es satisfecha, el patrón-si es
+     usado; de otra forma el patrón-no es usado (si está
+     presente). Si hay más de dos alternativas en el
+     sub-patrón, se produce un error en tiempo de
+     compilación.
+    </P
+><P
+>&#13;     Hay dos clases de condición. Si el texto entre los
+     paréntesis consiste de una secuencia de dígitos,
+     entonces la condición es satisfecha si el
+     sub-patrón de captura de ese número ha sido
+     coincidido previamente. Consideremos el siguiente patrón,
+     el cual contiene espacios en blanco sin significado para hacerlo
+     más legible (asumiendo la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+>) y lo
+     dividimos en tres partes para facilitar su discusión:
+
+       <VAR
+CLASS="literal"
+>( \( )?    [^()]+    (?(1) \) )</VAR
+>
+    </P
+><P
+>&#13;     La primera parte coincide con un paréntesis de apertura
+     opcional, y si ese caracter está presente, lo define como
+     la primera subcadena capturada. La segunda parte coincide con uno
+     o más caracteres que no sean paréntesis. La tercera
+     parte es un sub-patrón condicional que examina si el
+     primer conjunto de paréntesis coincidió o no. Si lo
+     hizo, es decir, si el asunto comenzó con un
+     paréntesis de apertura, la condición es cierta,
+     así que el patrón-si es ejecutado y un
+     paréntesis de cierre es requerido. De otro modo, ya que no
+     existe un patrón-no, el sub-patrón coincide con
+     nada. En otras palabras, este patrón coincide con una
+     secuencia de no-paréntesis, opcionalmente entre
+     paréntesis.
+    </P
+><P
+>&#13;     Si la condición no es una secuencia de dígitos,
+     debe ser una aserción.  Ésta puede ser una
+     aserción positiva o negativa hacia adelante o hacia
+     atrás. Considere este patrón, el cual contiene una
+     vez más espacios en blanco sin significado, y con las dos
+     alternativas en la siguiente línea:
+    </P
+><P
+CLASS="literallayout"
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(?(?=[^a-z]*[a-z])<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\d{2}-[a-z]{3}-\d{2}&nbsp;&nbsp;|&nbsp;&nbsp;\d{2}-\d{2}-\d{2}&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;</P
+><P
+>&#13;     La condición es una aserción positiva hacia
+     adelante que coincide con una secuencia opcional de no-letras
+     seguida por una letra. En otras palabras, examina la presencia de
+     al menos una letra en el asunto. Si se encuentra una letra, el
+     asunto es comparado contra la primera alternativa; de otra forma
+     lo es con la segunda. Este patrón coincide con cadenas en
+     una de las dos formas dd-aaa-dd o dd-dd-dd, en donde aaa son
+     letras y dd son dígitos.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.comments"
+></A
+><H3
+>Comentarios</H3
+><P
+>&#13;      La secuencia (?# marca el inicio de un comentario el cual
+      continúa hasta el siguiente paréntesis de
+      cierre. Los paréntesis anidados no son permitidos. Los
+      caracteres que forman un comentario no hacen parte del
+      patrón de coincidencia en ningún caso.
+    </P
+><P
+>&#13;     Si la opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+> es
+     definida, un caracter # no escapado por fuera de una clase de
+     caracteres crea un comentario que continúa hasta el
+     próximo caracter de nueva línea en el
+     patrón.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.recursive"
+></A
+><H3
+>Patrones recursivos</H3
+><P
+>&#13;      Considere el problema de coincidir con una cadena entre
+      paréntesis, permitiendo un número ilimitado de
+      paréntesis anidados. Sin el uso de recursiones, lo mejor
+      que puede lograrse es usar un patrón que coincida hasta
+      un número límite de profundidad en el
+      anidamiento. No es posible manejar una profundidad arbitraria de
+      anidamiento. Perl 5.6 contiene una característica
+      experimental que permite que las expresiones regulares sean
+      recursivas (entre otras cosas). El elemento especial (?R)
+      está disponible para el caso específico de
+      recursión. Este patrón de PCRE resuelve el
+      problema de los paréntesis (asumiendo que la
+      opción <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_EXTENDED</A
+> es
+      definida, de modo que los espacios en blanco sean ignorados):
+
+       <VAR
+CLASS="literal"
+>\( ( (?&#62;[^()]+) | (?R) )* \)</VAR
+>
+    </P
+><P
+>&#13;     Primero coincide con un paréntesis de apertura. Luego
+     coincide con cualquier número de subcadenas, que pueden
+     ser o bien una secuencia de no-paréntesis, o una
+     coincidencia recursiva del patrón mismo (es decir, una
+     subcadena correctamente envuelta por
+     paréntesis). Finalmente hay un paréntesis de
+     cierre.
+    </P
+><P
+>&#13;     Este patrón de ejemplo en particular contiene repeticiones
+     anidadas ilimitadas, así que el uso de un
+     sub-patrón de una aplicación para la
+     comparación de cadenas de no-paréntesis es
+     importante cuando se aplica el patrón a cadenas que no
+     coinciden. Por ejemplo, cuando se aplica a
+
+       <VAR
+CLASS="literal"
+>(aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa()</VAR
+>
+
+     descubre una "no coincidencia" rápidamente. Sin embargo,
+     si un sub-patrón de una aplicación no es usado, la
+     comparación es ejecutada por un tiempo muy largo realmente
+     ya que hay muchas formas diferentes en las que las repeticiones +
+     y * pueden moldear el asunto, y todas deben ser probadas antes
+     que pueda reportarse el fallo.
+    </P
+><P
+>&#13;     Los valores establecidos para cualquier sub-patrón de
+     captura son aquellos del nivel de recursión más
+     externo en el que esté definido el valor del
+     sub-patrón. Si el patrón anterior fuera comparado
+     contra
+
+       <VAR
+CLASS="literal"
+>(ab(cd)ef)</VAR
+>
+
+     el valor para los paréntesis de captura es "ef", el cual
+     es el último valor tomado del nivel superior. Si se
+     agregan paréntesis adicionales, produciendo
+
+       <VAR
+CLASS="literal"
+>\( ( ( (?&#62;[^()]+) | (?R) )* ) \)</VAR
+>
+
+     entonces la cadena que capturan es "ab(cd)ef", los contenidos de
+     los paréntesis del nivel superior. Si hay más de 15
+     paréntesis de captura en un patrón, PCRE tiene que
+     obtener memoria extra para almacenar datos durante una
+     recursión, cosa que logra usando pcre_malloc, y la libera
+     más adelante mediante pcre_free. Si no se puede obtener
+     memoria, guarda datos únicamente para los primeros 15
+     paréntesis de captura, dado que no hay forma de producir
+     un error de memoria-insuficiente desde el interior de una
+     recursión.
+     </P
+></DIV
+><DIV
+CLASS="refsect2"
+><A
+NAME="regexp.reference.performances"
+></A
+><H3
+>Rendimientos</H3
+><P
+>&#13;      Ciertos elementos que pueden aparecer entre los patrones son
+      más eficientes que otros. Es más eficiente usar
+      una clase de caracteres como [aeiou] que un conjunto de
+      alternativas tal como (a|e|i|o|u). En general, la
+      contrucción más simple que ofrezca el
+      comportamiento requerido es usualmente la más
+      eficiente. El libro de Jeffrey Friedl contiene una cantidad
+      considerable de comentarios sobre la optimización de
+      expresiones regulares para un rendimiento eficiente.
+    </P
+><P
+>&#13;     Cuando un patrón empieza con .* y la opción
+     <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+>
+     está definida, el patrón es anclado
+     implícitamente por PCRE, ya que sólo puede
+     coincidir al inicio de la cadena de asunto. Sin embargo, si <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+> no es
+     definido, PCRE no puede hacer esta optimización, ya que el
+     meta-caracter . no coincide entonces con una nueva línea y
+     si la cadena de asunto contiene nuevas líneas, el
+     patrón podría coincidir desde el caracter
+     inmediatamente siguiente a una de ellas en vez del inicio
+     absoluto. Por ejemplo, el patrón
+
+       <VAR
+CLASS="literal"
+>(.*) second</VAR
+>
+
+     coincide con el asunto "first\nand second" (en donde \n
+     representa un caracter de nueva línea) con la primera
+     subcadena capturada que sea "and". Para conseguirlo, PCRE tiene
+     que reintentar la coincidencia comenzando en cada nueva
+     línea del asunto.
+    </P
+><P
+>&#13;     Si está usando un patrón así con cadenas de
+     asunto que no contienen nuevas líneas, el mejor
+     rendimiento se obtiene definiendo <A
+HREF="pcre.pattern.modifiers.html"
+>PCRE_DOTALL</A
+> o iniciando
+     el patrón con ^.* para indicar un anclamiento
+     explícito. Esto le ahorra a PCRE tener que examinar toda
+     la cadena de entrada buscando nuevas líneas para empezar
+     de nuevo.
+    </P
+><P
+>&#13;     Tenga cuidado con los patrones que contienen repeticiones
+     anidadas ilimitadas. Éstos pueden tomar un tiempo de
+     ejecución muy largo cuando se aplican sobre una cadena que
+     no coincide. Considere el fragmento de patrón
+
+       <VAR
+CLASS="literal"
+>(a+)*</VAR
+>
+    </P
+><P
+>&#13;     Éste puede coincidir con "aaaa" en 33 maneras diferentes,
+     y este número crece muy rápidamente a medida que la
+     cadena se hace más larga. (La repetición * puede
+     coincidir 0, 1, 2, 3, o 4 veces, y por cada uno de esos casos
+     diferentes a 0, las repeticiones + pueden coincidir un
+     número diferente de veces.)  Cuando el resto del
+     patrón es de tal forma que la coincidencia completa
+     está destinada a fallar, PCRE en principio intenta cada
+     variación posible, y esto puede tomar un tiempo
+     extremadamente largo.
+    </P
+><P
+>&#13;     Una optimización atrapa algunos de los casos más
+     simples tales como
+
+       <VAR
+CLASS="literal"
+>(a+)*b</VAR
+>
+
+     en donde un caracter literal se encuentra a
+     continuación. Antes de embarcarse en el procedimiento
+     estándar de comparación, PCRE chequea que haya una
+     letra "b" más adelante en la cadena de asunto, y si no lo
+     hay, falla la coincidencia inmediatamente. Sin embargo, cuando no
+     hay un literal a continuación, esta optimización no
+     puede ser usada. Puede apreciar la diferencia al comparar el
+     comportamiento de
+
+       <VAR
+CLASS="literal"
+>(a+)*\d</VAR
+>
+
+     con el patrón anterior. El primero produce un fallo casi
+     instantáneamente cuando se aplica a una línea
+     completa de caracteres "a", mientras que el segundo toma un
+     tiempo apreciable con cadenas más largas de
+     aproximadamente 20 caracteres.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="pcre.pattern.modifiers.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.preg-grep.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Modificadores de Patrón</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pcre.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>preg_grep</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

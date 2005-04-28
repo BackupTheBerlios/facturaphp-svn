@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>do..while</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Estructuras de Control"
+HREF="control-structures.html"><LINK
+REL="PREVIOUS"
+TITLE="while"
+HREF="control-structures.while.html"><LINK
+REL="NEXT"
+TITLE="for"
+HREF="control-structures.for.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="control-structures.while.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 11. Estructuras de Control</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="control-structures.for.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="control-structures.do.while"
+><VAR
+CLASS="literal"
+>do..while</VAR
+></A
+></H1
+><P
+>&#13;   Los bucles <VAR
+CLASS="literal"
+>do..while</VAR
+> son muy similares a los
+   bucles <VAR
+CLASS="literal"
+>while</VAR
+>, excepto que las condiciones se
+   comprueban al final de cada iteración en vez de al
+   principio.  La principal diferencia frente a los bucles regulares
+   <VAR
+CLASS="literal"
+>while</VAR
+> es que se garantiza la ejecución de
+   la primera iteración de un bucle
+   <VAR
+CLASS="literal"
+>do..while</VAR
+> (la condición se comprueba
+   sólo al final de la iteración), mientras que puede no
+   ser necesariamente ejecutada con un bucle <VAR
+CLASS="literal"
+>while</VAR
+>
+   regular (la condición se comprueba al principio de cada
+   iteración, si esta se evalúa como <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> desde el
+   principio la ejecución del bucle finalizará
+   inmediatamente).
+  </P
+><P
+>&#13;   Hay una sola sintaxis para los bucles <VAR
+CLASS="literal"
+>do..while</VAR
+>:
+   
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3870"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /> $i </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br /> do {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#0000BB">$i</font><font color="#007700">;<br /> } while (</font><font color="#0000BB">$i</font><font color="#007700">&gt;</font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   El bucle de arriba se ejecutaría exactamente una sola vez,
+   después de la primera iteración, cuando la
+   condición se comprueba, se evalúa como <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> ($i no
+   es más grande que 0) y la ejecución del bucle
+   finaliza.
+  </P
+><P
+>&#13;   Los usuarios avanzados de C pueden estar familiarizados con un uso
+   distinto del bucle <VAR
+CLASS="literal"
+>do..while</VAR
+>, para permitir
+   parar la ejecución en medio de los bloques de código,
+   encapsulandolos con <VAR
+CLASS="literal"
+>do..while</VAR
+>(0), y usando la
+   sentencia <A
+HREF="control-structures.break.html"
+><VAR
+CLASS="literal"
+>break</VAR
+></A
+>.
+   El siguiente fragmento de código demuestra esto:
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3879"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">do {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">5</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i no es lo suficientemente grande"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$i </font><font color="#007700">*= </font><font color="#0000BB">$factor</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">$minimum_limit</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es correcto"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* procesa i */<br /> </font><font color="#007700">} while(</font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   No se preocupes si no entiende esto completamente o en absoluto.
+   Se pueden codificar archivos de comandos e incluso archivos de
+   comandos potentes sin usar esta 'propiedad'.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="control-structures.while.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="control-structures.for.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>while</VAR
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="control-structures.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>for</VAR
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>tcpwrap_check</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="TCP Wrappers Functions"
+HREF="ref.tcpwrap.html"><LINK
+REL="PREVIOUS"
+TITLE="TCP Wrappers Functions"
+HREF="ref.tcpwrap.html"><LINK
+REL="NEXT"
+TITLE="Tidy Functions"
+HREF="ref.tidy.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.tcpwrap.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.tidy.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.tcpwrap-check"
+></A
+>tcpwrap_check</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN109166"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>tcpwrap_check&nbsp;--&nbsp;
+     tcpwrap check
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN109169"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>tcpwrap_check</B
+> ( string daemon, string address [, string user [, bool nodns]])<BR
+></BR
+><P
+>&#13;     This function consults /etc/hosts.allow and /etc/hosts.deny files to 
+     check if access to service <VAR
+CLASS="parameter"
+>daemon</VAR
+> should be
+     granted or denied for client with remote address 
+     <VAR
+CLASS="parameter"
+>address</VAR
+> (and optional username 
+     <VAR
+CLASS="parameter"
+>user</VAR
+>). <VAR
+CLASS="parameter"
+>address</VAR
+> can be 
+     either IP address or domain name. <VAR
+CLASS="parameter"
+>user</VAR
+> can be 
+     <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>.
+    </P
+><P
+>&#13;     If <VAR
+CLASS="parameter"
+>address</VAR
+> looks like domain name then DNS is 
+     used to resolve it to IP address; set <VAR
+CLASS="parameter"
+>nodns</VAR
+> to 
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> to avoid this.
+    </P
+><P
+>&#13;     For more details please consult hosts_access(3) man page.
+    </P
+><P
+>&#13;     This function returns <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if access should be granted, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> otherwise.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.tcpwrap.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.tidy.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>TCP Wrappers Functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.tcpwrap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Tidy Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

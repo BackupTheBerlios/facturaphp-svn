@@ -1,0 +1,396 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>VARIANT</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones COM y .Net (Windows)"
+HREF="ref.com.html"><LINK
+REL="PREVIOUS"
+TITLE="DOTNET"
+HREF="class.dotnet.html"><LINK
+REL="NEXT"
+TITLE="com_addref"
+HREF="function.com-addref.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="class.dotnet.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.com-addref.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="class.variant"
+></A
+>VARIANT</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN10888"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>VARIANT&nbsp;--&nbsp;VARIANT class</DIV
+><DIV
+CLASS="refsynopsisdiv"
+><A
+NAME="AEN10891"
+></A
+><H2
+>Sinopsis</H2
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+>$vVar = new VARIANT($var)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.variant.class"
+></A
+><H2
+>Description</H2
+><P
+>&#13;    The VARIANT is COM's equivalent of the PHP zval; it is a structure that
+    can contain a value with a range of different possible types.  The VARIANT
+    class provided by the COM extension allows you to have more control over
+    the way that PHP passes values to and from COM.
+   </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.variant.constructor"
+></A
+><H2
+>Methods</H2
+>object <B
+CLASS="methodname"
+>VARIANT::VARIANT</B
+> ( [mixed value [, int type [, int codepage]]])<BR
+></BR
+><P
+>&#13;    VARIANT class constructor. Parameters:
+    <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>value</DT
+><DD
+><P
+>&#13;      initial value. if omitted, or set to <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> an VT_EMPTY object is created.
+     </P
+></DD
+><DT
+>type</DT
+><DD
+><P
+>&#13;      specifies the content type of the VARIANT object. Possible values are
+      one of the <TT
+CLASS="constant"
+><B
+>VT_XXX</B
+></TT
+> <A
+HREF="ref.com.html#com.constants"
+>la sección de nombre <I
+>Constantes predefinidas</I
+> en Referencia VIII, <I
+>Funciones COM y .Net (Windows)</I
+></A
+>.
+     </P
+><P
+>&#13;      In PHP versions prior to PHP 5, you could force PHP to pass a variant
+      object by reference by OR'ing <TT
+CLASS="constant"
+><B
+>VT_BYREF</B
+></TT
+>
+      with the <VAR
+CLASS="parameter"
+>type</VAR
+>.  In PHP 5, this hack is not
+      supported; instead, PHP 5 can detect parameters passed by reference
+      automatically; they do not even need to be passed as VARIANT objects.
+     </P
+><P
+>&#13;      Consult the <ACRONYM
+CLASS="acronym"
+>MSDN</ACRONYM
+> library for additional information
+      on the VARIANT type.
+     </P
+></DD
+><DT
+>codepage</DT
+><DD
+><P
+>&#13;      specifies the codepage that is used to convert strings to
+      unicode.  See the parameter of the same name in the 
+      <A
+HREF="class.com.html"
+>COM</A
+> class for more information.
+     </P
+></DD
+></DL
+></DIV
+>
+   </P
+><P
+>&#13;    PHP versions prior to PHP 5 define a number of (undocumented) virtual properties
+    for instances of the VARIANT class; these properties have all been removed in
+    PHP 5 in favour of its more natural syntax; these differences are best
+    highlighted by example:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="com.variant.example.php4"
+></A
+><P
+><B
+>Ejemplo 1. Variant example, PHP 4.x style</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$v </font><font color="#007700">= new </font><font color="#0000BB">VARIANT</font><font color="#007700">(</font><font color="#0000BB">42</font><font color="#007700">);<br />print </font><font color="#DD0000">"The type is " </font><font color="#007700">. </font><font color="#0000BB">$v</font><font color="#007700">-&gt;</font><font color="#0000BB">type </font><font color="#007700">. </font><font color="#DD0000">"&lt;br/&gt;"</font><font color="#007700">;<br />print </font><font color="#DD0000">"The value is " </font><font color="#007700">. </font><font color="#0000BB">$v</font><font color="#007700">-&gt;</font><font color="#0000BB">value </font><font color="#007700">. </font><font color="#DD0000">"&lt;br/&gt;"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="com.variant.example.php5"
+></A
+><P
+><B
+>Ejemplo 2. Variant example, PHP 5 style</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$v </font><font color="#007700">= new </font><font color="#0000BB">VARIANT</font><font color="#007700">(</font><font color="#0000BB">42</font><font color="#007700">);<br />print </font><font color="#DD0000">"The type is " </font><font color="#007700">. </font><font color="#0000BB">variant_get_type</font><font color="#007700">(</font><font color="#0000BB">$v</font><font color="#007700">) . </font><font color="#DD0000">"&lt;br/&gt;"</font><font color="#007700">;<br />print </font><font color="#DD0000">"The value is " </font><font color="#007700">. </font><font color="#0000BB">$v </font><font color="#007700">. </font><font color="#DD0000">"&lt;br/&gt;"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    The reason for the change is that, internally, the COM extension sees
+    VARIANT, COM and DOTNET classes as the same thing, and the design
+    philosophy for these classes is that all property and member accesses are
+    passed through to COM with no interference.  The new syntax is more
+    natural and less effort, and most of the removed virtual properties didn't
+    make any sense in a PHP context in any case.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     PHP 5 takes a much simpler approach to handling VARIANTs; when returning
+     a value or fetching a variant property, the variant is converted to a PHP
+     value only when there is a direct mapping between the types that would
+     not result in a loss of information.  In all other cases, the result is
+     returned as an instance of the VARIANT class.  You can force PHP to
+     convert or evaluate the variant as a PHP native type by using a casting
+     operator explicitly, or implicitly casting to a string by
+     <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+>ing it.  You may use the wide range of variant
+     functions to perform arithmetic operations on variants without forcing a
+     conversion or risking a loss of data.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    See also <A
+HREF="function.variant-get-type.html"
+><B
+CLASS="function"
+>variant_get_type()</B
+></A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="class.dotnet.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.com-addref.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DOTNET</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.com.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>com_addref</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

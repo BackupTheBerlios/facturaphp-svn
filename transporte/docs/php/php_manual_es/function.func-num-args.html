@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>func_num_args</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Gestión de Funciones"
+HREF="ref.funchand.html"><LINK
+REL="PREVIOUS"
+TITLE="func_get_args"
+HREF="function.func-get-args.html"><LINK
+REL="NEXT"
+TITLE="function_exists"
+HREF="function.function-exists.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.func-get-args.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.function-exists.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.func-num-args"
+></A
+>func_num_args</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN32299"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>func_num_args&nbsp;--&nbsp;Devuelve el número de argumentos pasados a la función.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN32302"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>func_num_args</B
+> ( void )<BR
+></BR
+><P
+>&#13;       Devuelve el número de argumentos pasados a la función actual definida por el usuario.
+       <B
+CLASS="function"
+>func_num_args()</B
+> generará un aviso si es llamada desde fuera de
+       la definición de la función.
+    </P
+><P
+>&#13;	 <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN32313"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+function foo() {
+   $numargs = func_num_args();
+   echo "Number of arguments: $numargs\n";
+}
+
+foo( 1, 2, 3 );  // Prints 'Number of arguments: 3'
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+	</P
+><P
+>&#13;	 <B
+CLASS="function"
+>func_num_args()</B
+> puede utilizarse conjuntamente con
+       <A
+HREF="function.func-get-arg.html"
+><B
+CLASS="function"
+>func_get_arg()</B
+></A
+> y
+	 <A
+HREF="function.func-get-args.html"
+><B
+CLASS="function"
+>func_get_args()</B
+></A
+> para permitir a las funciones definidas
+       por el usuario que acepten listas de argumentos de longitud variable.
+	</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	  Esta función fue añadida en PHP 4.
+	 </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.func-get-args.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.function-exists.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>func_get_args</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.funchand.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>function_exists</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

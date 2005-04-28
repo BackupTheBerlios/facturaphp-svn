@@ -1,0 +1,389 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stripos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="stripcslashes"
+HREF="function.stripcslashes.html"><LINK
+REL="NEXT"
+TITLE="stripslashes"
+HREF="function.stripslashes.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stripcslashes.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stripslashes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stripos"
+></A
+>stripos</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN107618"
+></A
+><P
+>    (PHP 5)</P
+>stripos&nbsp;--&nbsp;
+     Encontrar la posición de la primera ocurrencia de una cadena,
+     insensible a mayúsculas y minúsculas
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN107621"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>stripos</B
+> ( string pajar, string aguja [, int desplazamiento])<BR
+></BR
+><P
+>&#13;Devuelve la posición numérica de la primera ocurrencia
+de <VAR
+CLASS="parameter"
+>aguja</VAR
+> en el <VAR
+CLASS="parameter"
+>pajar</VAR
+>
+tipo <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>. A diferencia de <A
+HREF="function.strpos.html"
+><B
+CLASS="function"
+>strpos()</B
+></A
+>,
+<B
+CLASS="function"
+>stripos()</B
+> es indiferente a mayúsculas y
+minúsculas.
+    </P
+><P
+>&#13;Note que la <VAR
+CLASS="parameter"
+>aguja</VAR
+> puede ser una cadena de uno o
+más caracteres.
+    </P
+><P
+>&#13;Si <VAR
+CLASS="parameter"
+>aguja</VAR
+> no se encuentra,
+<B
+CLASS="function"
+>stripos()</B
+> devolverá el
+valor <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+> <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+puede devolver <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, pero también puede devolver un valor
+no-booleano que será evaluado <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, como por ejemplo
+<VAR
+CLASS="literal"
+>0</VAR
+> o "". Por favor, lea la sección
+<A
+HREF="language.types.boolean.html"
+>Booleans</A
+> para más
+información.  Utilice <A
+HREF="language.operators.comparison.html"
+>el operador ===</A
+> para
+comprobar el valor devuelto por esta
+función.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN107656"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplos de <B
+CLASS="function"
+>stripos()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$encontradme </font><font color="#007700">= </font><font color="#DD0000">'a'</font><font color="#007700">;<br /></font><font color="#0000BB">$micadena1 </font><font color="#007700">= </font><font color="#DD0000">'xyz'</font><font color="#007700">;<br /></font><font color="#0000BB">$micadena2 </font><font color="#007700">= </font><font color="#DD0000">'ABC'</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$pos1 </font><font color="#007700">= </font><font color="#0000BB">stripos</font><font color="#007700">(</font><font color="#0000BB">$micadena1</font><font color="#007700">, </font><font color="#0000BB">$encontradme</font><font color="#007700">);<br /></font><font color="#0000BB">$pos2 </font><font color="#007700">= </font><font color="#0000BB">stripos</font><font color="#007700">(</font><font color="#0000BB">$micadena2</font><font color="#007700">, </font><font color="#0000BB">$encontradme</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// No, ciertamente 'a' no esta en 'xyz'<br /></font><font color="#007700">if (</font><font color="#0000BB">$pos1 </font><font color="#007700">=== </font><font color="#0000BB">false</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"La cadena '$encontradme' no fue encontrada en la cadena '$micadena1'"</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// Note nuestro uso de ===.&nbsp;&nbsp;Simplemente == no funcionaria como es de<br />// esperarse, ya que la posicion de 'a' es el caracter 0 (el primero).<br /></font><font color="#007700">if (</font><font color="#0000BB">$pos2 </font><font color="#007700">!== </font><font color="#0000BB">false</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Encontramos '$encontradme' en '$micadena2' en la posicion $pos2"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;Si <VAR
+CLASS="parameter"
+>aguja</VAR
+> no es una cadena, es convertida a un
+entero y aplicada como el valor ordinal de un caracter.
+    </P
+><P
+>&#13;El parámetro opcional <VAR
+CLASS="parameter"
+>desplazamiento</VAR
+> le
+permite especificar el caracter en <VAR
+CLASS="parameter"
+>pajar</VAR
+> a
+partir del que desea empezar a buscar. La posición devuelta
+sigue siendo relativa al comienzo de <VAR
+CLASS="parameter"
+>pajar</VAR
+>.
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.strpos.html"
+><B
+CLASS="function"
+>strpos()</B
+></A
+>, <A
+HREF="function.strrpos.html"
+><B
+CLASS="function"
+>strrpos()</B
+></A
+>,
+     <A
+HREF="function.strrchr.html"
+><B
+CLASS="function"
+>strrchr()</B
+></A
+>, <A
+HREF="function.substr.html"
+><B
+CLASS="function"
+>substr()</B
+></A
+>,
+     <A
+HREF="function.stristr.html"
+><B
+CLASS="function"
+>stristr()</B
+></A
+>, <A
+HREF="function.strstr.html"
+><B
+CLASS="function"
+>strstr()</B
+></A
+>,
+     <A
+HREF="function.strripos.html"
+><B
+CLASS="function"
+>strripos()</B
+></A
+> y <A
+HREF="function.str-ireplace.html"
+><B
+CLASS="function"
+>str_ireplace()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stripcslashes.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stripslashes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stripcslashes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stripslashes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

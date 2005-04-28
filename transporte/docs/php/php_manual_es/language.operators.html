@@ -1,0 +1,460 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Operadores</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="PREVIOUS"
+TITLE="Expresiones"
+HREF="language.expressions.html"><LINK
+REL="NEXT"
+TITLE="Operadores de Aritmética"
+HREF="language.operators.arithmetic.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.expressions.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.operators.arithmetic.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="language.operators"
+>Capítulo 10. Operadores</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="language.operators.html#language.operators.precedence"
+>Precedencia de Operadores</A
+></DT
+><DT
+><A
+HREF="language.operators.arithmetic.html"
+>Operadores de Aritmética</A
+></DT
+><DT
+><A
+HREF="language.operators.assignment.html"
+>Operadores de Asignación</A
+></DT
+><DT
+><A
+HREF="language.operators.bitwise.html"
+>Operadores Bit a Bit</A
+></DT
+><DT
+><A
+HREF="language.operators.comparison.html"
+>Operadores de Comparación</A
+></DT
+><DT
+><A
+HREF="language.operators.errorcontrol.html"
+>Operadores de Control de Errores</A
+></DT
+><DT
+><A
+HREF="language.operators.execution.html"
+>Operadores de ejecución</A
+></DT
+><DT
+><A
+HREF="language.operators.increment.html"
+>Operadores de Incremento/Decremento</A
+></DT
+><DT
+><A
+HREF="language.operators.logical.html"
+>Operadores de Lógica</A
+></DT
+><DT
+><A
+HREF="language.operators.string.html"
+>Operadores de Cadena</A
+></DT
+><DT
+><A
+HREF="language.operators.array.html"
+>Operadores de Matrices</A
+></DT
+><DT
+><A
+HREF="language.operators.type.html"
+>Operadores de Tipo</A
+></DT
+></DL
+></DIV
+><P
+>&#13;   Un operador es algo a lo que usted entrega uno o más valores
+   (o expresiones, en jerga de programación) y produce otro
+   valor (de modo que la construcción misma se convierte en una
+   expresión). Así que puede pensar sobre las funciones
+   o construcciones que devuelven un valor (como print) como
+   operadores, y en aquellas que no devuelven nada (como echo) como
+   cualquier otra cosa.
+  </P
+><P
+>&#13;   Existen tres tipos de operadores. En primer lugar se encuentra el
+   operador unario, el cual opera sobre un único valor, por
+   ejemplo ! (el operador de negación) o ++ (el operador de
+   incremento). El segundo grupo se conoce como operadores binarios;
+   éste grupo contiene la mayoría de operadores que
+   soporta PHP, y una lista se encuentra disponible más
+   adelante en la sección <A
+HREF="language.operators.html#language.operators.precedence"
+>Precedencia de
+   Operadores</A
+>.
+  </P
+><P
+>&#13;   El tercer grupo consiste del operador ternario: ?:. Éste
+   debe ser usado para seleccionar entre dos expresiones, en base a
+   una tercera, en lugar de seleccionar dos sentencias o rutas de
+   ejecución. Rodear las expresiones ternarias con
+   paréntesis es una muy buena idea.
+  </P
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.operators.precedence"
+>Precedencia de Operadores</A
+></H1
+><P
+>&#13;    La precedencia de un operador indica qué tan "cerca" se
+    agrupan dos expresiones. Por ejemplo, en la
+    expresión <VAR
+CLASS="literal"
+>1 + 5 * 3</VAR
+>, la respuesta
+    es <VAR
+CLASS="literal"
+>16</VAR
+> y no
+    <VAR
+CLASS="literal"
+>18</VAR
+>, ya que el operador de multiplicación
+    ("*") tiene una mayor precedencia que el operador de
+    adición ("+"). Los paréntesis pueden ser usados para
+    marcar la precedencia, si resulta necesario. Por
+    ejemplo: <VAR
+CLASS="literal"
+>(1 + 5) * 3</VAR
+> evalúa
+    a <VAR
+CLASS="literal"
+>18</VAR
+>.
+   </P
+><P
+>&#13;    La siguiente tabla lista la precedencia de los operadores, con
+    aquellos de mayor precedencia listados de primeros.
+    <DIV
+CLASS="table"
+><A
+NAME="AEN3277"
+></A
+><P
+><B
+>Tabla 10-1. Precedencia de Operadores</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Asociatividad</TH
+><TH
+>Operadores</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>no-asociativo</TD
+><TD
+>new</TD
+></TR
+><TR
+><TD
+>derecha</TD
+><TD
+>[</TD
+></TR
+><TR
+><TD
+>derecha</TD
+><TD
+>! ~ ++ -- (int) (float) (string) (array) (object) @</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>* / %</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>+ - .</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>&#60;&#60; &#62;&#62;</TD
+></TR
+><TR
+><TD
+>no-asociativos</TD
+><TD
+>&#60; &#60;= &#62; &#62;=</TD
+></TR
+><TR
+><TD
+>no-asociativos</TD
+><TD
+>== != === !==</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>&#38;</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>^</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>|</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>&#38;&#38;</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>||</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>? :</TD
+></TR
+><TR
+><TD
+>derecha</TD
+><TD
+>&#13;         = += -= *= /= .= %= &#38;= |= ^= &#60;&#60;= &#62;&#62;=
+        </TD
+></TR
+><TR
+><TD
+>derecha</TD
+><TD
+>print</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>and</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>xor</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>or</TD
+></TR
+><TR
+><TD
+>izquierda</TD
+><TD
+>,</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Aunque <VAR
+CLASS="literal"
+>!</VAR
+> tiene una mayor precedencia
+     que <VAR
+CLASS="literal"
+>=</VAR
+>, PHP permitirá aun expresionas
+     similares a la siguiente: <VAR
+CLASS="literal"
+>if (!$a = foo())</VAR
+>, en
+     cuyo caso la salida de <VAR
+CLASS="literal"
+>foo()</VAR
+> va a dar
+     a <VAR
+CLASS="varname"
+>$a</VAR
+>.
+    </P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.expressions.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.operators.arithmetic.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Expresiones</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Operadores de Aritmética</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

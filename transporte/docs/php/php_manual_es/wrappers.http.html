@@ -1,0 +1,666 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>HTTP y HTTPS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de Protocolos/Envolturas Soportadas"
+HREF="wrappers.html"><LINK
+REL="PREVIOUS"
+TITLE="Lista de Protocolos/Envolturas Soportadas"
+HREF="wrappers.html"><LINK
+REL="NEXT"
+TITLE="FTP y FTPS"
+HREF="wrappers.ftp.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="wrappers.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice L. Lista de Protocolos/Envolturas Soportadas</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="wrappers.ftp.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="wrappers.http"
+>HTTP y HTTPS</A
+></H1
+><P
+>PHP 3, PHP 4, PHP 5. <TT
+CLASS="filename"
+>https://</TT
+> a
+   partir de <VAR
+CLASS="literal"
+>PHP 4.3.0</VAR
+></P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>http://example.com</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>http://example.com/archivo.php?var1=val1&#38;var2=val2</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>http://usuario:contrasenya@example.com</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>https://example.com</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>https://example.com/archivo.php?var1=val1&#38;var2=val2</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>https://usuario:contrasenya@example.com</TT
+></P
+></LI
+></UL
+><P
+>&#13;   Permite acceso de sólo-lectura a archivos/recursos a
+   través de HTTP 1.0, usando el método HTTP GET. Una
+   cabecera <VAR
+CLASS="literal"
+>Host:</VAR
+> es enviada con la petición
+   para gestionar hosts virtuales basados en nombres. Si ha
+   configurado una cadena <A
+HREF="ref.filesystem.html#ini.user-agent"
+>user_agent</A
+> usando su archivo ini o
+   en el contexto de secuencia, también ésta será
+   usada en la petición.
+  </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>When using SSL, Microsoft IIS
+will violate the protocol by closing the connection without sending a
+close_notify indicator.  PHP will report this as "SSL: Fatal Protocol Error"
+when you reach the end of the data.  To workaround this, you should lower your
+<A
+HREF="ref.errorfunc.html#ini.error-reporting"
+>error_reporting</A
+> level not to include warnings.
+PHP 4.3.7 and higher can detect buggy IIS server software when you open
+the stream using the https:// wrapper and will suppress the warning for you.
+If you are using <A
+HREF="function.fsockopen.html"
+><B
+CLASS="function"
+>fsockopen()</B
+></A
+> to create an ssl:// socket,
+you are responsible for detecting and suppressing the warning yourself.
+</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;   Las redirecciones han sido soportadas desde PHP 4.0.5; si se
+   encuentra usando una versión anterior, necesitará
+   incluir barras de cierre en sus URLs. Si es importante conocer la
+   URL del recurso del cual proviene su documento (luego de que todas
+   las redirecciones han sido procesadas), necesitará trabajar
+   con la serie de cabeceras de respuesta devueltas por la secuencia.
+  </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN131055"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$url </font><font color="#007700">= </font><font color="#DD0000">'http://www.example.com/pagina_de_redireccion.php'</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#0000BB">$url</font><font color="#007700">, </font><font color="#DD0000">'r'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Antes de PHP 4.3.0, use $http_response_header <br />&nbsp;&nbsp;&nbsp;en lugar de stream_get_meta_data() */<br /></font><font color="#007700">foreach(</font><font color="#0000BB">stream_get_meta_data</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">) as </font><font color="#0000BB">$respuesta</font><font color="#007700">) {<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">/* Fuimos redireccionados? */<br />&nbsp;&nbsp;</font><font color="#007700">if (</font><font color="#0000BB">substr</font><font color="#007700">(</font><font color="#0000BB">strtolower</font><font color="#007700">(</font><font color="#0000BB">$respuesta</font><font color="#007700">), </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">10</font><font color="#007700">) == </font><font color="#DD0000">'location: '</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* actualizar $url con la ubicacion desde donde fuimos<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redireccionados */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$url </font><font color="#007700">= </font><font color="#0000BB">substr</font><font color="#007700">(</font><font color="#0000BB">$respuesta</font><font color="#007700">, </font><font color="#0000BB">10</font><font color="#007700">);<br />&nbsp;&nbsp;}<br /><br />}<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;   La secuencia permite acceso al <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>cuerpo</I
+></SPAN
+> del
+   recurso; las cabeceras son almacenadas en la variable
+   <VAR
+CLASS="varname"
+>$http_response_header</VAR
+>. A partir de <VAR
+CLASS="literal"
+>PHP
+   4.3.0</VAR
+>, las cabeceras están disponibles mediante el
+   uso de <A
+HREF="function.stream-get-meta-data.html"
+><B
+CLASS="function"
+>stream_get_meta_data()</B
+></A
+>.
+  </P
+><P
+>&#13;   Las conexiones HTTP son de sólo-lectura; no puede escribir
+   datos o copiar archivos hacia un recurso HTTP.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    HTTPS es soportado a partir de <VAR
+CLASS="literal"
+>PHP 4.3.0</VAR
+>, si ha
+    compilado el soporte para OpenSSL.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN131067"
+></A
+><P
+><B
+>Tabla L-2. Resumen de Envoltura</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Atributo</TH
+><TH
+>Soporte</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Restricción
+       por <VAR
+CLASS="literal"
+>allow_url_fopen</VAR
+>.</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Permite Lectura</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Permite Escritura</TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Permite Adición</TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Permite Lectura y Escritura Simultánea</TD
+><TD
+>N/D</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.stat.html"
+><B
+CLASS="function"
+>stat()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.unlink.html"
+><B
+CLASS="function"
+>unlink()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.rename.html"
+><B
+CLASS="function"
+>rename()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.mkdir.html"
+><B
+CLASS="function"
+>mkdir()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.rmdir.html"
+><B
+CLASS="function"
+>rmdir()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN131112"
+></A
+><P
+><B
+>Tabla L-3. Opciones de contexto (a la altura de <VAR
+CLASS="literal"
+>PHP
+    5.0.0</VAR
+>)</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Uso</TH
+><TH
+>Predeterminado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>method</VAR
+></TD
+><TD
+>&#13;        <TT
+CLASS="constant"
+><B
+>GET</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>POST</B
+></TT
+>, u otro
+        método HTTP soportado por el servidor remoto.
+       </TD
+><TD
+><TT
+CLASS="constant"
+><B
+>GET</B
+></TT
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>header</VAR
+></TD
+><TD
+>&#13;       Cabeceras adicionales a ser enviadas durante la
+       petición. Los valores en esta opción
+       sobrescribirán otros valores (tales
+       como <VAR
+CLASS="literal"
+>User-agent:</VAR
+>,
+       <VAR
+CLASS="literal"
+>Host:</VAR
+>,
+       y <VAR
+CLASS="literal"
+>Authentication:</VAR
+>).
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>user_agent</VAR
+></TD
+><TD
+>&#13;       Valor a enviar con la cabecera User-Agent:. Este valor solo
+       será usado si user-agent <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> es
+       especificado en la opción de
+       contexto <VAR
+CLASS="literal"
+>header</VAR
+> anterior.
+       </TD
+><TD
+>&#13;        Parámetro <TT
+CLASS="filename"
+>php.ini</TT
+>: <VAR
+CLASS="literal"
+>user_agent</VAR
+>
+       </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>content</VAR
+></TD
+><TD
+>&#13;       Datos adicionales a ser enviados después de las
+       cabeceras. Típicamente usados con peticiones POST o PUT.
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>proxy</VAR
+></TD
+><TD
+>&#13;        URI que especifica la dirección del servidor
+        proxy. (p.ej.
+        <VAR
+CLASS="literal"
+>tcp://proxy.example.com:5100</VAR
+> ).
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>request_fulluri</VAR
+></TD
+><TD
+>&#13;        Cuando es definido como <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, la URI completa será
+        usada a la hora de construir la petición. (Es decir,
+        <VAR
+CLASS="literal"
+>GET http://www.example.com/ruta/hacia/archivo.html
+        HTTP/1.0</VAR
+>). Aunque éste es un formato de
+        petición no-estándar, algunos servidores proxy
+        lo requieren.
+       </TD
+><TD
+><TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Opciones de contexto de las secuencias de socket interno: </B
+>
+    Puede que se soporten opciones de contexto adicionales por el
+    <A
+HREF="transports.html#transports.inet"
+>transporte
+    implícito</A
+>.  Para
+    secuencias <VAR
+CLASS="literal"
+>http://</VAR
+>, refiérase a las
+    opciones de contexto para el
+    transporte <VAR
+CLASS="literal"
+>tcp://</VAR
+>. Para
+    secuencias <VAR
+CLASS="literal"
+>https://</VAR
+>, refiérase a las
+    opciones de contexto del transporte <VAR
+CLASS="literal"
+>ssl://</VAR
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="wrappers.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="wrappers.ftp.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Lista de Protocolos/Envolturas Soportadas</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="wrappers.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FTP y FTPS</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

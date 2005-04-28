@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ora_do</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones Oracle"
+HREF="ref.oracle.html"><LINK
+REL="PREVIOUS"
+TITLE="Ora_CommitOn"
+HREF="function.ora-commiton.html"><LINK
+REL="NEXT"
+TITLE="Ora_Error"
+HREF="function.ora-error.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ora-commiton.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ora-error.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ora-do"
+></A
+>ora_do</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN80261"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>ora_do&nbsp;--&nbsp;Parse, Exec, Fetch</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN80264"
+></A
+><H2
+>Description</H2
+>resource <B
+CLASS="methodname"
+>ora_do</B
+> ( resource conn, string query)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>ora_do()</B
+> is quick combination of <A
+HREF="function.ora-parse.html"
+><B
+CLASS="function"
+>ora_parse()</B
+></A
+>,
+     <A
+HREF="function.ora-exec.html"
+><B
+CLASS="function"
+>ora_exec()</B
+></A
+> and <A
+HREF="function.ora-fetch.html"
+><B
+CLASS="function"
+>ora_fetch()</B
+></A
+>.
+     It will parse and execute a statement, then fetch the first result row.
+    </P
+><P
+>&#13;     This function returns a cursor index or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on failure. Details 
+     about the error can be retrieved using the <A
+HREF="function.ora-error.html"
+><B
+CLASS="function"
+>ora_error()</B
+></A
+>
+     and <A
+HREF="function.ora-errorcode.html"
+><B
+CLASS="function"
+>ora_errorcode()</B
+></A
+> functions.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.ora-parse.html"
+><B
+CLASS="function"
+>ora_parse()</B
+></A
+>,<A
+HREF="function.ora-exec.html"
+><B
+CLASS="function"
+>ora_exec()</B
+></A
+>,
+     and <A
+HREF="function.ora-fetch.html"
+><B
+CLASS="function"
+>ora_fetch()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ora-commiton.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ora-error.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Ora_CommitOn</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oracle.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Ora_Error</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

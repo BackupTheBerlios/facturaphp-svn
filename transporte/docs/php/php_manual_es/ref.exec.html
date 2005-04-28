@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Ejecución de Programas</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="pcntl_wtermsig"
+HREF="function.pcntl-wtermsig.html"><LINK
+REL="NEXT"
+TITLE="escapeshellarg"
+HREF="function.escapeshellarg.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pcntl-wtermsig.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.escapeshellarg.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.exec"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXXXVII. Funciones de Ejecución de Programas</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN90712"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.intro"
+>Introducción</A
+></H1
+><P
+>&#13;    Estas funciones proveen medios para ejecutar comandos en el
+    sistema mismo, y medios para proveer seguridad con tales comandos.
+   </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.installation"
+>Instalación</A
+></H1
+><P
+>No se necesita ninguna instalación
+para usar estas funciones, son parte del núcleo de
+PHP.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="exec.seealso"
+>Ver también</A
+></H1
+><P
+>&#13;     Estas funciones se relacionan estrechamente también con el
+     <A
+HREF="language.operators.execution.html"
+>operador de comilla
+     invertida</A
+>. Asimismo, cuando se encuentre bajo <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+>,
+     debe considerar la directiva <A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.escapeshellarg.html"
+>escapeshellarg</A
+>&nbsp;--&nbsp;escapar una cadena a ser usada como argumento del
+    intérprete de comandos</DT
+><DT
+><A
+HREF="function.escapeshellcmd.html"
+>escapeshellcmd</A
+>&nbsp;--&nbsp;enmascara los metacaracteres del intérprete de ordenes
+    </DT
+><DT
+><A
+HREF="function.exec.html"
+>exec</A
+>&nbsp;--&nbsp;Ejecuta un programa externo</DT
+><DT
+><A
+HREF="function.passthru.html"
+>passthru</A
+>&nbsp;--&nbsp;Ejecuta un programa externo y muestra su salida literal
+    </DT
+><DT
+><A
+HREF="function.proc-close.html"
+>proc_close</A
+>&nbsp;--&nbsp;
+     Cierra un proceso abierto por <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+> y
+     devuelve el código de salida del proceso.
+    </DT
+><DT
+><A
+HREF="function.proc-get-status.html"
+>proc_get_status</A
+>&nbsp;--&nbsp;
+     Obtiene información sobre un proceso abierto
+     por <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+>
+    </DT
+><DT
+><A
+HREF="function.proc-nice.html"
+>proc_nice</A
+>&nbsp;--&nbsp;
+     Modificar la prioridad del proceso actual
+    </DT
+><DT
+><A
+HREF="function.proc-open.html"
+>proc_open</A
+>&nbsp;--&nbsp;
+     Ejecutar un comando y abrir apuntadores de archivo para
+     entrada/salida
+    </DT
+><DT
+><A
+HREF="function.proc-terminate.html"
+>proc_terminate</A
+>&nbsp;--&nbsp;
+     mata un proceso abierto por proc_open
+    </DT
+><DT
+><A
+HREF="function.shell-exec.html"
+>shell_exec</A
+>&nbsp;--&nbsp;
+     Ejecutar un comando mediante el intérprete de comandos y
+     devolver la salida completa como una cadena
+    </DT
+><DT
+><A
+HREF="function.system.html"
+>system</A
+>&nbsp;--&nbsp;Ejecutar un programa externo y mostrar su
+    salida</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pcntl-wtermsig.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.escapeshellarg.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pcntl_wtermsig</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>escapeshellarg</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

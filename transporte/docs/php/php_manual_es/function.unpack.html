@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>unpack</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Miscelánea"
+HREF="ref.misc.html"><LINK
+REL="PREVIOUS"
+TITLE="uniqid"
+HREF="function.uniqid.html"><LINK
+REL="NEXT"
+TITLE="usleep"
+HREF="function.usleep.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.uniqid.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.usleep.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.unpack"
+></A
+>unpack</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN60117"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>unpack&nbsp;--&nbsp;desempaqueta datos de una cadena binaria</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN60120"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>unpack</B
+> ( string format, string data)<BR
+></BR
+><P
+>&#13;     Desempaqueta datos de una cadena binaria en un array, de acuerdo
+     al formato <VAR
+CLASS="parameter"
+>format</VAR
+>. Devuelve un array que contiene
+     los elementos de la cadena binaria desempaquetados.</P
+><P
+>&#13;     Unpack funciona de manera ligeramente diferente a Perl, ya que los datos
+     desempaquetados se almacenan en un array asociativo. Para conseguir ésto
+     debe nombrar los diferentes códigos de formato y separarlos por una barra
+     inclinada /.
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN60134"
+></A
+><P
+><B
+>Ejemplo 1. cadena de formato unpack</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$array = unpack("c2chars/nint", $binarydata);</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       El array resultante contendrá las entradas "chars1",
+       "chars2" y "int".</P
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;     Para una explicación de los códigos de formato véase también:
+     <A
+HREF="function.pack.html"
+><B
+CLASS="function"
+>pack()</B
+></A
+></P
+><P
+>&#13;     Advierta que PHP almacena internamente los valores enteros con signo.
+     Si desempaqueta un unsigned long (largo sin signo) demasiado grande
+     y es del mismo tamaño tal como PHP almacena internamente los valores,
+     el resultado será un número negativo a pesar de que se especificara
+     desempaquetamiento sin signo.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.uniqid.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.usleep.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>uniqid</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.misc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>usleep</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

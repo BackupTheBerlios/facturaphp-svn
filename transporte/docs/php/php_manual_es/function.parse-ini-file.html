@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>parse_ini_file</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="move_uploaded_file"
+HREF="function.move-uploaded-file.html"><LINK
+REL="NEXT"
+TITLE="pathinfo"
+HREF="function.pathinfo.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.move-uploaded-file.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pathinfo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.parse-ini-file"
+></A
+>parse_ini_file</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN29316"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>parse_ini_file&nbsp;--&nbsp;Procesar un archivo de configuración</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN29319"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>parse_ini_file</B
+> ( string nombre_archivo [, bool procesar_secciones])<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>parse_ini_file()</B
+> lee el contenido del archivo ini
+especificado en <VAR
+CLASS="parameter"
+>nombre_archivo</VAR
+>, y devuelve los
+parámetros que incluye en una matriz asociativa. Al definir el
+último
+parámetro <VAR
+CLASS="parameter"
+>procesar_secciones</VAR
+> como
+<TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, recibe una matriz multidimensional, con los nombres de
+secciones y parámetros incluidos. El valor predeterminado
+para <VAR
+CLASS="parameter"
+>procesar_secciones</VAR
+> es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Esta función no tiene relación alguna con el archivo
+<TT
+CLASS="filename"
+>php.ini</TT
+>. Éste ya ha sido procesado al momento de
+ejecutar su script. Esta función puede ser usada para leer los
+archivos de configuración de su propia aplicación.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Si un valor en el archivo ini contiene caracteres
+no-alfanuméricos, éste necesita ser rodeado por comillas
+dobles (").
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+A partir de PHP 4.2.1, esta función se ve afectada
+también por <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+> y <A
+HREF="missing-stuff.html#ini.open-basedir"
+>open_basedir</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Existen palabras reservadas que no deben ser usadas como claves en
+archivos ini. Entre estas se encuentran: null, yes, no, true, y false.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;La estructura del archivo ini es similar al de <TT
+CLASS="filename"
+>php.ini</TT
+>.
+    </P
+><P
+>&#13;También pueden procesarse <A
+HREF="language.constants.html"
+>Constantes</A
+> en el archivo ini, de
+tal modo que si define una constante como un valor ini antes de
+ejecutar <B
+CLASS="function"
+>parse_ini_file()</B
+>, ésta será
+integrada en los resultados. Solo son evaluados los valores ini. Por
+ejemplo:
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN29354"
+></A
+><P
+><B
+>Ejemplo 1. Contenidos de <TT
+CLASS="filename"
+>ejemplo.ini</TT
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>; Este es un archivo de configuracion de ejemplo
+; Los comentarios comienzan con ';', como en php.ini
+
+[primera_seccion]
+uno = 1
+cinco = 5
+animal = PAJARO
+
+[segunda_seccion]
+ruta = /usr/local/bin
+URL = "http://www.example.com/~nombreusuario"</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN29359"
+></A
+><P
+><B
+>Ejemplo 2. Ejemplo de <B
+CLASS="function"
+>parse_ini_file()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />define</font><font color="#007700">(</font><font color="#DD0000">'PAJARO'</font><font color="#007700">, </font><font color="#DD0000">'Ave Dodo'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Procesar sin secciones<br /></font><font color="#0000BB">$matriz_ini </font><font color="#007700">= </font><font color="#0000BB">parse_ini_file</font><font color="#007700">(</font><font color="#DD0000">"ejemplo.ini"</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz_ini</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Procesar con secciones<br /></font><font color="#0000BB">$matriz_ini </font><font color="#007700">= </font><font color="#0000BB">parse_ini_file</font><font color="#007700">(</font><font color="#DD0000">"ejemplo.ini"</font><font color="#007700">, </font><font color="#0000BB">true</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz_ini</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Produciría:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [uno] =&#62; 1
+    [cinco] =&#62; 5
+    [animal] =&#62; Ave Dodo
+    [ruta] =&#62; /usr/local/bin
+    [URL] =&#62; http://www.example.com/~nombreusuario
+)
+Array
+(
+    [primera_seccion] =&#62; Array
+        (
+            [uno] =&#62; 1
+            [cinco] =&#62; 5
+            [animal] = Ave Dodo
+        )
+
+    [segunda_seccion] =&#62; Array
+        (
+            [ruta] =&#62; /usr/local/bin
+            [URL] =&#62; http://www.example.com/~nombreusuario
+        )
+
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.move-uploaded-file.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pathinfo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>move_uploaded_file</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pathinfo</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

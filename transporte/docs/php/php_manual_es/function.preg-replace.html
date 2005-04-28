@@ -1,0 +1,411 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>preg_replace</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Expresiones Regulares (Compatibles con
+  Perl)"
+HREF="ref.pcre.html"><LINK
+REL="PREVIOUS"
+TITLE="preg_replace_callback"
+HREF="function.preg-replace-callback.html"><LINK
+REL="NEXT"
+TITLE="preg_split"
+HREF="function.preg-split.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.preg-replace-callback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.preg-split.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.preg-replace"
+></A
+>preg_replace</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN93985"
+></A
+><P
+>    (PHP 3&#62;= 3.0.9, PHP 4 , PHP 5)</P
+>preg_replace&nbsp;--&nbsp;Lleva a cabo la búsqueda de una expresión y su sustitución</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN93988"
+></A
+><H2
+>Descripción</H2
+>mixed <B
+CLASS="methodname"
+>preg_replace</B
+> ( mixed pattern, mixed replacement, mixed subject)<BR
+></BR
+><P
+>&#13;     Busca en <VAR
+CLASS="parameter"
+>subject</VAR
+> los emparejamientos con
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+> y los sustituye por
+     <VAR
+CLASS="parameter"
+>replacement</VAR
+>.</P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>replacement</VAR
+> puede contener referencias de la forma
+     <VAR
+CLASS="literal"
+>\\<VAR
+CLASS="replaceable"
+>n</VAR
+></VAR
+>. Éstas serán
+     sustituidas por el texto obtenido por el patrón del paréntesis
+     <VAR
+CLASS="replaceable"
+>n</VAR
+>ésimo. <VAR
+CLASS="replaceable"
+>n</VAR
+> puede tener
+     un valor de cero a noventa y nueve, y <VAR
+CLASS="literal"
+>\\0</VAR
+> se refiere al
+     texto casado por el patrón completo. Para obtener el número del subpatrón
+     de búsqueda, los paréntesis abiertos son contados de izquierda derecha
+     tomando el primero como uno.</P
+><P
+>&#13;     Si el patrón no es encontrado en <VAR
+CLASS="parameter"
+>subject</VAR
+>, entonces
+     no se realizarán cambios.</P
+><P
+>&#13;     Todos los parámetros de la función <B
+CLASS="function"
+>preg_replace()</B
+> pueden
+     ser un array.</P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>subject</VAR
+> es un array, entonces la búsqueda y sustitución
+     es realizada para todos los elementos de <VAR
+CLASS="parameter"
+>subject</VAR
+>,
+     y el valor devuelto es también un array.</P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>pattern</VAR
+> y <VAR
+CLASS="parameter"
+>replacement</VAR
+>
+     son arrays, entonces <B
+CLASS="function"
+>preg_replace()</B
+> toma un valor desde
+     cada array y los usas para buscar y sustituir sobre
+     <VAR
+CLASS="parameter"
+>subject</VAR
+>.  Si <VAR
+CLASS="parameter"
+>replacement</VAR
+>
+     tiene menos valores que <VAR
+CLASS="parameter"
+>pattern</VAR
+>, entonces la cadena
+     vacía es usada como valor para el resto de sustituciones. Si <VAR
+CLASS="parameter"
+>pattern</VAR
+>
+     es una array y <VAR
+CLASS="parameter"
+>replacement</VAR
+> es una cadena,
+     entonces esta cadena de sustitución es usada para todos los valores de
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+>. Sin embargo, lo contrario no tiene sentido.
+     </P
+><P
+>&#13;     El modificador <VAR
+CLASS="literal"
+>/e</VAR
+> hace que la función <B
+CLASS="function"
+>preg_replace()</B
+>
+     trate el parámetro <VAR
+CLASS="parameter"
+>replacement</VAR
+> como código PHP después
+     de que la apropiada sustitución sea hecha. Atención, asegúrate que <VAR
+CLASS="parameter"
+>replacement</VAR
+>
+     es un código PHP correcto, de otro modo PHP dará un error de parse en la
+     línea que contenga <B
+CLASS="function"
+>preg_replace()</B
+>.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Este modificador fue añadido en PHP 4.0.</P
+></BLOCKQUOTE
+></DIV
+></P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN94039"
+></A
+><P
+><B
+>Ejemplo 1. Sustituir varios valores</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+$patterns = array("/(19|20\d{2})-(\d{1,2})-(\d{1,2})/", "/^\s*{(\w+)}\s*=/");
+$replace = array("\\3/\\4/\\1", "$\\1 =");
+print preg_replace($patterns, $replace, "{startDate} = 1999-5-27");
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+
+     Esta ejemplo dará como resultado:
+
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$startDate = 5/27/1999</PRE
+></TD
+></TR
+></TABLE
+>
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN94043"
+></A
+><P
+><B
+>Ejemplo 2. Usar el modificador /e</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />preg_replace</font><font color="#007700">(</font><font color="#DD0000">"/(&lt;\/?)(\w+)([^&gt;]*&gt;)/e"</font><font color="#007700">, </font><font color="#DD0000">"'\\1'.strtoupper('\\2').'\\3'"</font><font color="#007700">, </font><font color="#0000BB">$html_body</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Pondrá en mayúscula todos los tags HTML del texto de entrada.</P
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;     Examina también <A
+HREF="function.preg-match.html"
+><B
+CLASS="function"
+>preg_match()</B
+></A
+>,
+     <A
+HREF="function.preg-match-all.html"
+><B
+CLASS="function"
+>preg_match_all()</B
+></A
+>, y
+     <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.preg-replace-callback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.preg-split.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>preg_replace_callback</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pcre.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>preg_split</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

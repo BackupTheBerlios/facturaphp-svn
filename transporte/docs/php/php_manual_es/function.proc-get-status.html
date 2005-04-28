@@ -1,0 +1,410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>proc_get_status</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Ejecución de Programas"
+HREF="ref.exec.html"><LINK
+REL="PREVIOUS"
+TITLE="proc_close"
+HREF="function.proc-close.html"><LINK
+REL="NEXT"
+TITLE="proc_nice"
+HREF="function.proc-nice.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.proc-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.proc-nice.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.proc-get-status"
+></A
+>proc_get_status</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN90876"
+></A
+><P
+>    (PHP 5)</P
+>proc_get_status&nbsp;--&nbsp;
+     Obtiene información sobre un proceso abierto
+     por <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+>
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN90880"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>proc_get_status</B
+> ( resource proceso)<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>proc_get_status()</B
+> recupera información sobre
+un proceso abierto mediante el uso
+de <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+>. Los datos recolectados son
+devueltos en una matriz que contiene los siguientes elementos:
+    </P
+><DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN90891"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>elemento</TH
+><TH
+>tipo</TH
+><TH
+>descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>command</TD
+><TD
+><A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></TD
+><TD
+>la cadena del comando que fue pasada a
+         <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+></TD
+></TR
+><TR
+><TD
+>pid</TD
+><TD
+><A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>int</B
+></A
+></TD
+><TD
+>id del proceso</TD
+></TR
+><TR
+><TD
+>running</TD
+><TD
+><A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>bool</B
+></A
+></TD
+><TD
+>&#13;         <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el proceso aun está siendo ejecutado, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ha
+         terminado
+        </TD
+></TR
+><TR
+><TD
+>signaled</TD
+><TD
+><A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>bool</B
+></A
+></TD
+><TD
+>&#13;         <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el proceso hijo ha sido terminado por una señal no
+         atrapada. En windows, este valor siempre es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+        </TD
+></TR
+><TR
+><TD
+>stopped</TD
+><TD
+><A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>bool</B
+></A
+></TD
+><TD
+> 
+         <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el proceso hijo fue detenido por una señal. En
+         windows, este valor siempre es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+        </TD
+></TR
+><TR
+><TD
+>exitcode</TD
+><TD
+><A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>int</B
+></A
+></TD
+><TD
+>&#13;         el código de salida devuelto por el proceso (el cual tiene
+         sentido únicamente si <VAR
+CLASS="literal"
+>running</VAR
+> es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>)
+        </TD
+></TR
+><TR
+><TD
+>termsig</TD
+><TD
+><A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>int</B
+></A
+></TD
+><TD
+>&#13;         el número de la señal que causó que el
+         proceso hijo finalizara su ejecución (sólo
+         tiene sentido si <VAR
+CLASS="literal"
+>signaled</VAR
+> es <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>)
+        </TD
+></TR
+><TR
+><TD
+>stopsig</TD
+><TD
+><A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>int</B
+></A
+></TD
+><TD
+>&#13;         el número de la señal que causó que el
+         proceso hijo detuviera su ejecución (sólo tiene
+         sentido si <VAR
+CLASS="literal"
+>stopped</VAR
+> es <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>)
+        </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.proc-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.proc-nice.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>proc_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.exec.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>proc_nice</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,408 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>http_build_query</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de URL"
+HREF="ref.url.html"><LINK
+REL="PREVIOUS"
+TITLE="get_meta_tags"
+HREF="function.get-meta-tags.html"><LINK
+REL="NEXT"
+TITLE="parse_url"
+HREF="function.parse-url.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-meta-tags.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.parse-url.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.http-build-query"
+></A
+>http_build_query</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN111886"
+></A
+><P
+>    (PHP 5)</P
+>http_build_query&nbsp;--&nbsp;Generar una cadena de consulta codificada estilo
+    URL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN111889"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>http_build_query</B
+> ( array datos_formulario [, string prefijo_numerico])<BR
+></BR
+><P
+>&#13;     Genera una cadena de consulta codificada estilo URL a partir de
+     la matriz asociativa (o indexada)
+     dada. <VAR
+CLASS="parameter"
+>datos_formulario</VAR
+> puede ser una
+     matriz u objeto que contenga propiedades. Una
+     matriz <VAR
+CLASS="parameter"
+>datos_formulario</VAR
+> puede ser una
+     estructura uni-dimensional sencilla, o una matriz de matrices
+     (que a su vez puede contener otras matrices). Si se usan
+     índices numéricos en la matriz base, y se provee
+     un <VAR
+CLASS="parameter"
+>prefijo_numerico</VAR
+>, éste
+     será añadido al comienzo de los índices
+     numéricos para aquellos elementos encontrados sólo
+     en la matriz base. Esto es para permitir que se opere con nombres
+     de variables legales cuando los datos sean decodificados
+     por <VAR
+CLASS="literal"
+>PHP</VAR
+> u otra aplicación CGI
+     más adelante.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN111905"
+></A
+><P
+><B
+>Ejemplo 1. Uso simple de <B
+CLASS="function"
+>http_build_query()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$datos </font><font color="#007700">= array(</font><font color="#DD0000">'foo'</font><font color="#007700">=&gt;</font><font color="#DD0000">'bar'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'baz'</font><font color="#007700">=&gt;</font><font color="#DD0000">'boom'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'vaca'</font><font color="#007700">=&gt;</font><font color="#DD0000">'leche'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'php'</font><font color="#007700">=&gt;</font><font color="#DD0000">'procesador de hipertexto'</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />echo </font><font color="#0000BB">http_build_query</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">); </font><font color="#FF8000">// foo=bar&amp;baz=boom&amp;vaca=leche&amp;php=procesador+de+hipertexto<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN111909"
+></A
+><P
+><B
+>Ejemplo 2. <B
+CLASS="function"
+>http_build_query()</B
+> con elementos
+     indexados numéricamente.</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$datos </font><font color="#007700">= array(</font><font color="#DD0000">'foo'</font><font color="#007700">, </font><font color="#DD0000">'bar'</font><font color="#007700">, </font><font color="#DD0000">'baz'</font><font color="#007700">, </font><font color="#DD0000">'boom'</font><font color="#007700">, </font><font color="#DD0000">'vaca' </font><font color="#007700">=&gt; </font><font color="#DD0000">'leche'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'php' </font><font color="#007700">=&gt; </font><font color="#DD0000">'procesador de hipertexto'</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />echo </font><font color="#0000BB">http_build_query</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">);<br /></font><font color="#FF8000">/* Genera la salida:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0=foo&amp;1=bar&amp;2=baz&amp;3=boom&amp;vaca=leche&amp;php=procesador+de+hipertexto<br /> */<br /> <br /></font><font color="#007700">echo </font><font color="#0000BB">http_build_query</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">, </font><font color="#DD0000">'mivar_'</font><font color="#007700">);<br /></font><font color="#FF8000">/* Genera la salida:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mivar_0=foo&amp;mivar_1=bar&amp;mivar_2=baz&amp;mivar_3=boom&amp;vaca=leche&amp;php=procesador+de+hipertexto<br /> */<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN111913"
+></A
+><P
+><B
+>Ejemplo 3. <B
+CLASS="function"
+>http_build_query()</B
+> con matrices
+     complejas</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$datos </font><font color="#007700">= array(</font><font color="#DD0000">'usuario'</font><font color="#007700">=&gt;array(</font><font color="#DD0000">'nombre'</font><font color="#007700">=&gt;</font><font color="#DD0000">'Bob Smith'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'edad'</font><font color="#007700">=&gt;</font><font color="#0000BB">47</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'sexo'</font><font color="#007700">=&gt;</font><font color="#DD0000">'M'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'fdm'</font><font color="#007700">=&gt;</font><font color="#DD0000">'5/12/1956'</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'pasatiempos'</font><font color="#007700">=&gt;array(</font><font color="#DD0000">'golf'</font><font color="#007700">, </font><font color="#DD0000">'opera'</font><font color="#007700">, </font><font color="#DD0000">'poker'</font><font color="#007700">, </font><font color="#DD0000">'rap'</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'hijos'</font><font color="#007700">=&gt;array(</font><font color="#DD0000">'bobby'</font><font color="#007700">=&gt;array(</font><font color="#DD0000">'edad'</font><font color="#007700">=&gt;</font><font color="#0000BB">12</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'sexo'</font><font color="#007700">=&gt;</font><font color="#DD0000">'M'</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'sally'</font><font color="#007700">=&gt;array(</font><font color="#DD0000">'edad'</font><font color="#007700">=&gt;</font><font color="#0000BB">8</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'sexo'</font><font color="#007700">=&gt;</font><font color="#DD0000">'F'</font><font color="#007700">)),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'CEO'</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />echo </font><font color="#0000BB">http_build_query</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">, </font><font color="#DD0000">'banderas_'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      esto generará la salida: (acotada por razones de legibilidad)
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>usuario[nombre]=Bob+Smith&#38;usuario[edad]=47&#38;usuario[sexo]=M&#38;
+usuario[fdm]=5%1F12%1F1956&#38;pasatiempos[0]=golf&#38;pasatiempos[1]=opera&#38;
+pasatiempos[2]=poker&#38;pasatiempos[3]=rap&#38;hijos[bobby][edad]=12&#38;
+hijos[bobby][sexo]=M&#38;hijos[sally][edad]=8&#38;hijos[sally][sexo]=F&#38;banderas_0=CEO</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+        Sólo el elemento "CEO" indexado numéricamente en
+        la matriz base recibió un prefijo. Los otros
+        índices numéricos, encontrados bajo los
+        pasatiempos, no requieren un prefijo tipo cadena para ser
+        nombres legales de variables.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+     </P
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN111922"
+></A
+><P
+><B
+>Ejemplo 4. Uso de <B
+CLASS="function"
+>http_build_query()</B
+> con un
+     objeto</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">miClase </font><font color="#007700">{<br />&nbsp;&nbsp;var </font><font color="#0000BB">$foo</font><font color="#007700">;<br />&nbsp;&nbsp;var </font><font color="#0000BB">$baz</font><font color="#007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;function </font><font color="#0000BB">miClase</font><font color="#007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">foo </font><font color="#007700">= </font><font color="#DD0000">'bar'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">baz </font><font color="#007700">= </font><font color="#DD0000">'boom'</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$datos </font><font color="#007700">= new </font><font color="#0000BB">miClase</font><font color="#007700">();<br /><br />echo </font><font color="#0000BB">http_build_query</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">); </font><font color="#FF8000">// foo=bar&amp;baz=boom<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Vea también:
+     <A
+HREF="function.parse-str.html"
+><B
+CLASS="function"
+>parse_str()</B
+></A
+>,
+     <A
+HREF="function.parse-url.html"
+><B
+CLASS="function"
+>parse_url()</B
+></A
+>,
+     <A
+HREF="function.urlencode.html"
+><B
+CLASS="function"
+>urlencode()</B
+></A
+>, y
+     <A
+HREF="function.array-walk.html"
+><B
+CLASS="function"
+>array_walk()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-meta-tags.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.parse-url.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_meta_tags</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.url.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>parse_url</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

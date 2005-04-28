@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>virtual</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones específicas de Apache"
+HREF="ref.apache.html"><LINK
+REL="PREVIOUS"
+TITLE="getallheaders"
+HREF="function.getallheaders.html"><LINK
+REL="NEXT"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.getallheaders.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.array.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.virtual"
+></A
+>virtual</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6299"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>virtual&nbsp;--&nbsp;Realizar una sub-petición de
+    Apache</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6302"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>virtual</B
+> ( string nombre_archivo)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>virtual()</B
+> es una función
+     específica de Apache que es equivalente a &#60;!--#include
+     virtual...--&#62; en mod_include. Realiza una sub-petición
+     de Apache. Es útil para incluir scripts CGI o archivos
+     .shtml, o cualquier otra cosa que quisiera procesar a
+     través de Apache. Note que para un script CGI, el script
+     debe generar cabeceras CGI válidas. Esto quiere decir que,
+     por lo menos, debe generar una cabecera Content-type.
+    </P
+><P
+>&#13;     Para ejecutar la sub-petición, todos los búferes
+     son terminados y volcados al navegador, y las cabeceras
+     pendientes son enviadas también.
+    </P
+><P
+>&#13;     A partir de PHP 4.0.6, puede usar <B
+CLASS="function"
+>virtual()</B
+>
+     sobre archivos PHP. Sin embargo, típicamente es mejor
+     usar <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> o <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+>
+     si desea incluier otro archivo PHP.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>From PHP 4.3.3 on you can use this function with the
+<A
+HREF="ref.nsapi.html"
+>NSAPI server module</A
+> in Netscape/iPlanet/SunONE
+webservers, too.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.getallheaders.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>getallheaders</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.apache.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Funciones de matrices</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

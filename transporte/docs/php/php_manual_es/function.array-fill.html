@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_fill</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_diff"
+HREF="function.array-diff.html"><LINK
+REL="NEXT"
+TITLE="array_filter"
+HREF="function.array-filter.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-diff.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-filter.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-fill"
+></A
+>array_fill</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6729"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>array_fill&nbsp;--&nbsp;Llena una matriz con valores</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6732"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>array_fill</B
+> ( int start_index, int num, mixed value)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_fill()</B
+> introduce en una matriz tantas entradas 
+     como especifique el parámetro <VAR
+CLASS="parameter"
+>num</VAR
+>, 
+     numerandolas a partir de <VAR
+CLASS="parameter"
+>start_index</VAR
+>, y les asigna 
+     el valor del parámetro <VAR
+CLASS="parameter"
+>value</VAR
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN6752"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>array_fill()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a = array_fill(5, 6, 'banana');<br />print_r($a);</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       <VAR
+CLASS="varname"
+>$a</VAR
+> contendrá ahora:
+       <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [5]  =&#62; banana
+    [6]  =&#62; banana
+    [7]  =&#62; banana
+    [8]  =&#62; banana
+    [9]  =&#62; banana
+    [10] =&#62; banana
+)</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-diff.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-filter.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_diff</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_filter</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

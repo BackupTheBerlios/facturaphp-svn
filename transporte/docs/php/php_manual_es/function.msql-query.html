@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>msql_query</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones mSQL"
+HREF="ref.msql.html"><LINK
+REL="PREVIOUS"
+TITLE="msql_pconnect"
+HREF="function.msql-pconnect.html"><LINK
+REL="NEXT"
+TITLE="msql_regcase"
+HREF="function.msql-regcase.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.msql-pconnect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.msql-regcase.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.msql-query"
+></A
+>msql_query</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN62229"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>msql_query&nbsp;--&nbsp;envía una consulta mSQL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN62232"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>msql_query</B
+> ( string query, int link_identifier)<BR
+></BR
+><P
+>&#13;     msql_query() envía una consulta a la base de datos activa actual
+     en el servidor que está asociada con el identificador de conexión
+     (link identifier) especificado.  Si no se especifica el identificador 
+     de conexión, se asume la última conexión abierta. Si no hay ninguna
+     conexión abierta, la función intenta establecer una conexión como si
+     se hubiera llamado a <A
+HREF="function.msql-connect.html"
+><B
+CLASS="function"
+>msql_connect()</B
+></A
+>, y la
+     utiliza.</P
+><P
+>&#13;     En caso de éxito devuelve un identificador de consulta mSQL positivo, 
+     o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de error.</P
+><P
+>&#13;     Véase también:  
+     <A
+HREF="function.msql.html"
+><B
+CLASS="function"
+>msql()</B
+></A
+>, 
+     <A
+HREF="function.msql-select-db.html"
+><B
+CLASS="function"
+>msql_select_db()</B
+></A
+>, y
+     <A
+HREF="function.msql-connect.html"
+><B
+CLASS="function"
+>msql_connect()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.msql-pconnect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.msql-regcase.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>msql_pconnect</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.msql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>msql_regcase</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

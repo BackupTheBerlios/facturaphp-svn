@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="PREVIOUS"
+TITLE="Manipulación de Tipos"
+HREF="language.types.type-juggling.html"><LINK
+REL="NEXT"
+TITLE="Variables predefinidas"
+HREF="language.variables.predefined.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.types.type-juggling.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.variables.predefined.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="language.variables"
+>Capítulo 7. Variables</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="language.variables.html#language.variables.basics"
+>Conceptos Básicos</A
+></DT
+><DT
+><A
+HREF="language.variables.predefined.html"
+>Variables predefinidas</A
+></DT
+><DT
+><A
+HREF="language.variables.scope.html"
+>Ambito de las variables</A
+></DT
+><DT
+><A
+HREF="language.variables.variable.html"
+>Variables variables</A
+></DT
+><DT
+><A
+HREF="language.variables.external.html"
+>Variables externas a PHP</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.variables.basics"
+>Conceptos Básicos</A
+></H1
+><P
+>&#13;   En PHP las variables se representan como un signo de dólar
+   seguido por el nombre de la variable. El nombre de la variable es
+   sensible a minúsculas y mayúsculas.
+  </P
+><P
+>&#13;   Los nombres de variables siguen las mismas reglas que otras
+   etiquetas en PHP. Un nombre de variable valido tiene que empezar
+   con una letra o una raya (underscore), seguido de cualquier número
+   de letras, números y rayas. Como expresión regular se podria
+   expresar como: '[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*'
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    En nuestro caso, una letra es a-z, A-Z, y los caracteres ASCII del
+    127 al 255 (0x7f-0xff).
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2882"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$var </font><font color="#007700">= </font><font color="#DD0000">"Bob"</font><font color="#007700">;<br /></font><font color="#0000BB">$Var </font><font color="#007700">= </font><font color="#DD0000">"Joe"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"$var, $Var"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// outputs "Bob, Joe"<br /><br /></font><font color="#007700">$</font><font color="#0000BB">4site </font><font color="#007700">= </font><font color="#DD0000">'not yet'</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// invalid; starts with a number<br /></font><font color="#0000BB">$_4site </font><font color="#007700">= </font><font color="#DD0000">'not yet'</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// valid; starts with an underscore<br /></font><font color="#0000BB">$täyte </font><font color="#007700">= </font><font color="#DD0000">'mansikka'</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// valid; 'ä' is ASCII 228 (Extendido)<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   En PHP3, las variables siempre se asignan por valor. Esto significa
+   que cuando se asigna una expresión a una variable, el valor
+   íntegro de la expresión original se copia en la
+   variable de destino. Esto quiere decir que, por ejemplo,
+   después e asignar el valor de una variable a otra, los
+   cambios que se efectúen a una de esas variables no
+   afectará a la otra. Para más información sobre
+   este tipo de asignación, vea <A
+HREF="language.expressions.html"
+>Expresiones</A
+>.
+  </P
+><P
+>&#13;   PHP4 ofrece otra forma de asignar valores a las variables:
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>asignar por referencia</I
+></SPAN
+>. Esto significa que la
+   nueva variable simplemente referencia (en otras palabras, "se
+   convierte en un alias de" ó "apunta a") la variable original. Los
+   cambios a la nueva variable afectan a la original, y
+   viceversa. Esto también significa que no se produce una
+   copia de valores; por tanto, la asignación ocurre más
+   rápidamente. De cualquier forma, cualquier incremento de
+   velocidad se notará sólo en los bucles
+   críticos cuando se asignen grandes <A
+HREF="language.types.array.html"
+>matrices</A
+> u <A
+HREF="language.types.object.html"
+>objetos</A
+>.
+  </P
+><P
+>&#13;   Para asignar por referencia, simplemente se antepone un
+   ampersandsigno "&#38;" al comienzo de la variable cuyo valor se
+   está asignando (la variable fuente). Por ejemplo, el
+   siguiente trozo de código produce la salida 'Mi nombre es
+   Bob' dos veces:
+
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2891"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$foo </font><font color="#007700">= </font><font color="#DD0000">'Bob'</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Asigna el valor 'Bob' a $foo<br /></font><font color="#0000BB">$bar </font><font color="#007700">= &amp;</font><font color="#0000BB">amp</font><font color="#007700">;</font><font color="#0000BB">$foo</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Referencia $foo v&amp;iacute;a $bar.<br /></font><font color="#0000BB">$bar </font><font color="#007700">= </font><font color="#DD0000">"Mi nombre es $bar"</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">// Modifica $bar...<br /></font><font color="#007700">echo </font><font color="#0000BB">$foo</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo tambi&amp;eacute;n se modifica.<br /></font><font color="#007700">echo </font><font color="#0000BB">$bar</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   Algo importante a tener en cuenta es que sólo las variables
+   con nombre pueden ser asignadas por referencia.
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2894"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$foo </font><font color="#007700">= </font><font color="#0000BB">25</font><font color="#007700">;<br /></font><font color="#0000BB">$bar </font><font color="#007700">= &amp;</font><font color="#0000BB">amp</font><font color="#007700">;</font><font color="#0000BB">$foo</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Esta es una asignaci&amp;oacute;n v&amp;aacute;lida.<br /></font><font color="#0000BB">$bar </font><font color="#007700">= &amp;</font><font color="#0000BB">amp</font><font color="#007700">;(</font><font color="#0000BB">24 </font><font color="#007700">* </font><font color="#0000BB">7</font><font color="#007700">);&nbsp;&nbsp;</font><font color="#FF8000">// Inv&amp;aacute;lida; referencia una expresi&amp;oacute;n sin nombre.<br /><br /></font><font color="#007700">function </font><font color="#0000BB">test</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">25</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">$bar </font><font color="#007700">= &amp;</font><font color="#0000BB">amp</font><font color="#007700">;</font><font color="#0000BB">test</font><font color="#007700">();&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Inv&amp;aacute;lida.<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.types.type-juggling.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.variables.predefined.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Manipulación de Tipos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Variables predefinidas</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

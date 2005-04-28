@@ -1,0 +1,1684 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Matrices</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Tipos"
+HREF="language.types.html"><LINK
+REL="PREVIOUS"
+TITLE="Cadenas"
+HREF="language.types.string.html"><LINK
+REL="NEXT"
+TITLE="Objetos"
+HREF="language.types.object.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.types.string.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 6. Tipos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.types.array"
+>Matrices</A
+></H1
+><P
+>&#13;    Una matriz en PHP es en realidad un mapa ordenado. Un mapa es un
+    tipo de datos que asocia <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>valores</I
+></SPAN
+> con
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>claves</I
+></SPAN
+>. Este tipo es optimizado en varias
+    formas, de modo que puede usarlo como una matriz real, o una lista
+    (vector), tabla asociativa (caso particular de
+    implementación de un mapa), diccionario, colección,
+    pila, cola y probablemente más. Ya que puede tener otra
+    matriz PHP como valor, es realmente fácil simular
+    árboles.
+   </P
+><P
+>&#13;    Una explicación sobre tales estructuras de datos se
+    encuentra por fuera del propósito de este manual, pero
+    encontrará al menos un ejemplo de cada uno de ellos. Para
+    más información, le referimos a literatura externa
+    sobre este amplio tema.
+   </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.array.syntax"
+>Sintaxis</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.array.syntax.array-func"
+>Especificación con
+     <A
+HREF="function.array.html"
+><B
+CLASS="function"
+>array()</B
+></A
+></A
+></H3
+><P
+>&#13;      Un <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+> puede ser creado por la
+      construcción de lenguaje
+      <A
+HREF="function.array.html"
+><B
+CLASS="function"
+>array()</B
+></A
+>. Ésta toma un cierto
+      número de parejas
+      <VAR
+CLASS="literal"
+><VAR
+CLASS="replaceable"
+>clave</VAR
+> =&#62;
+      <VAR
+CLASS="replaceable"
+>valor</VAR
+></VAR
+> separadas con coma.
+     </P
+><P
+>&#13;      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+>array( [<VAR
+CLASS="replaceable"
+>clave</VAR
+> =&#62;] <VAR
+CLASS="replaceable"
+>valor</VAR
+>
+     , ...
+     )
+// <VAR
+CLASS="replaceable"
+>clave</VAR
+> puede ser un <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> o <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>
+// <VAR
+CLASS="replaceable"
+>valor</VAR
+> puede ser cualquier valor</PRE
+></TD
+></TR
+></TABLE
+>
+     </P
+><P
+>&#13;      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2505"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz </font><font color="#007700">= array(</font><font color="#DD0000">"foo" </font><font color="#007700">=&gt; </font><font color="#DD0000">"bar"</font><font color="#007700">, </font><font color="#0000BB">12 </font><font color="#007700">=&gt; </font><font color="#0000BB">true</font><font color="#007700">);<br /><br />echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"foo"</font><font color="#007700">]; </font><font color="#FF8000">// bar<br /></font><font color="#007700">echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">12</font><font color="#007700">];&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// 1<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+><P
+>&#13;      Una <VAR
+CLASS="varname"
+>clave</VAR
+> puede ser un
+      <VAR
+CLASS="literal"
+>integer</VAR
+> o un <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>. Si una
+      clave es la representación estándar de un
+      <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, será interpretada como tal (es
+      decir, <VAR
+CLASS="literal"
+>"8"</VAR
+> será interpretado como
+      <VAR
+CLASS="literal"
+>8</VAR
+>, mientras que <VAR
+CLASS="literal"
+>"08"</VAR
+>
+      será interpretado como <VAR
+CLASS="literal"
+>"08"</VAR
+>). No
+      existen tipos diferentes para matrices indexadas y asociativas
+      en PHP; sólo existe un tipo de matriz, el cual puede
+      contener índices tipo entero o cadena.
+     </P
+><P
+>&#13;      Un valor puede ser de cualquier tipo en PHP.
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2517"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz </font><font color="#007700">= array(</font><font color="#DD0000">"unamatriz" </font><font color="#007700">=&gt; array(</font><font color="#0000BB">6 </font><font color="#007700">=&gt; </font><font color="#0000BB">5</font><font color="#007700">, </font><font color="#0000BB">13 </font><font color="#007700">=&gt; </font><font color="#0000BB">9</font><font color="#007700">, </font><font color="#DD0000">"a" </font><font color="#007700">=&gt; </font><font color="#0000BB">42</font><font color="#007700">));<br /><br />echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"unamatriz"</font><font color="#007700">][</font><font color="#0000BB">6</font><font color="#007700">];&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// 5<br /></font><font color="#007700">echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"unamatriz"</font><font color="#007700">][</font><font color="#0000BB">13</font><font color="#007700">];&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// 9<br /></font><font color="#007700">echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"unamatriz"</font><font color="#007700">][</font><font color="#DD0000">"a"</font><font color="#007700">];&nbsp;&nbsp;</font><font color="#FF8000">// 42<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+><P
+>&#13;      Si no especifica una clave para un valor dado, entonces es usado
+      el máximo de los índices enteros, y la nueva clave
+      será ese valor máximo + 1. Si especifica una clave
+      que ya tiene un valor asignado, ése valor será
+      sobrescrito.
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2520"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Esta matriz es la misma que ...<br /></font><font color="#007700">array(</font><font color="#0000BB">5 </font><font color="#007700">=&gt; </font><font color="#0000BB">43</font><font color="#007700">, </font><font color="#0000BB">32</font><font color="#007700">, </font><font color="#0000BB">56</font><font color="#007700">, </font><font color="#DD0000">"b" </font><font color="#007700">=&gt; </font><font color="#0000BB">12</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// ...esta matriz<br /></font><font color="#007700">array(</font><font color="#0000BB">5 </font><font color="#007700">=&gt; </font><font color="#0000BB">43</font><font color="#007700">, </font><font color="#0000BB">6 </font><font color="#007700">=&gt; </font><font color="#0000BB">32</font><font color="#007700">, </font><font color="#0000BB">7 </font><font color="#007700">=&gt; </font><font color="#0000BB">56</font><font color="#007700">, </font><font color="#DD0000">"b" </font><font color="#007700">=&gt; </font><font color="#0000BB">12</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;       A partir de PHP 4.3.0, el comportamiento de generación
+       de índices descrito ha cambiado. Ahora, si agrega un
+       elemento a una matriz cuya clave máxima actual es un
+       valor negativo, entonces la siguiente clave creada será
+       cero (<VAR
+CLASS="literal"
+>0</VAR
+>). Anteriormente, el nuevo
+       índice hubiera sido establecido a la clave mayor
+       existente + 1, al igual que con los índices positivos.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;      Al usar <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> como clave, el valor será evaluado al
+      <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> <VAR
+CLASS="literal"
+>1</VAR
+>. Al usar <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> como
+      clave, el valor será evaluado al <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>
+      <VAR
+CLASS="literal"
+>0</VAR
+>. Al usar <VAR
+CLASS="literal"
+>NULL</VAR
+> como
+      clave, el valor será evaluado a una cadena
+      vacía. El uso de una cadena vacía como clave
+      creará (o reemplazará) una clave con la cadena
+      vacía y su valor; no es lo mismo que usar corchetes
+      vacíos.
+     </P
+><P
+>&#13;      No es posible usar matrices u objetos como claves. Al hacerlo se
+      producirá una advertencia: <VAR
+CLASS="literal"
+>Illegal offset
+      type</VAR
+>.
+     </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.array.syntax.modifying"
+>Creación/modificación con sintaxis de
+     corchetes cuadrados</A
+></H3
+><P
+>&#13;      Es posible modificar una matriz existente al definir valores
+      explícitamente en ella.
+     </P
+><P
+>&#13;      Esto es posible al asignar valores a la matriz al mismo tiempo
+      que se especifica la clave entre corchetes. También es
+      posible omitir la clave, agregar una pareja vacía de
+      corchetes ("<VAR
+CLASS="literal"
+>[]</VAR
+>") al nombre de la variable en
+      ese caso.
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+>$matriz[<VAR
+CLASS="replaceable"
+>clave</VAR
+>] = <VAR
+CLASS="replaceable"
+>valor</VAR
+>;
+$matriz[] = <VAR
+CLASS="replaceable"
+>valor</VAR
+>;
+// <VAR
+CLASS="replaceable"
+>clave</VAR
+> puede ser un <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> o <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>
+// <VAR
+CLASS="replaceable"
+>valor</VAR
+> puede ser cualquier valor</PRE
+></TD
+></TR
+></TABLE
+>
+      Si <VAR
+CLASS="varname"
+>$matriz</VAR
+> no existe aun, ésta
+      será creada. De modo que esta es también una forma
+      alternativa de especificar una matriz. Para modificar un cierto
+      valor, simplemente asigne un nuevo valor a un elemento
+      especificado con su clave. Si desea remover una pareja
+      clave/valor, necesita eliminarla mediante
+      <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+>.
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2550"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz </font><font color="#007700">= array(</font><font color="#0000BB">5 </font><font color="#007700">=&gt; </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">12 </font><font color="#007700">=&gt; </font><font color="#0000BB">2</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$matriz</font><font color="#007700">[] = </font><font color="#0000BB">56</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Esto es igual que $matriz[13] = 56;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// en este punto del script<br /><br /></font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"x"</font><font color="#007700">] = </font><font color="#0000BB">42</font><font color="#007700">; </font><font color="#FF8000">// Esto agrega un nuevo elemento a la<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// matriz con la clave "x"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#007700">unset(</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">5</font><font color="#007700">]); </font><font color="#FF8000">// Esto elimina el elemento de la matriz<br /><br /></font><font color="#007700">unset(</font><font color="#0000BB">$matriz</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Esto elimina la matriz completa<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Como se menciona anteriormente, si provee los corchetes sin
+       ninguna clave especificada, entonces se toma el máximo
+       de los índices enteros existentes, y la nueva clave
+       será ese valor máximo + 1. Si no existen
+       índices enteros aun, la clave será
+       <VAR
+CLASS="literal"
+>0</VAR
+> (cero). Si especifica una clave que ya
+       tenía un valor asignado, el valor será
+       reemplazado.
+      </P
+><P
+>&#13;       <DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;         A partir de PHP 4.3.0, el comportamiento de generación
+         de índices descrito ha cambiado. Ahora, si agrega un
+         elemento al final de una matriz en la que la clave
+         máxima actual es negativa, la siguiente clave creada
+         será cero (<VAR
+CLASS="literal"
+>0</VAR
+>). Anteriormente, el
+         nuevo índice hubiera sido definido como la mayor clave
+         + 1, al igual que ocurre con los índices positivos.
+        </P
+></TD
+></TR
+></TABLE
+></DIV
+>
+      </P
+><P
+>&#13;       Note que la clave entera máxima usada para este caso
+       <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no necesita existir actualmente en la
+       matriz</I
+></SPAN
+>. Tan solo debe haber existido en la matriz en
+       algún punto desde que la matriz haya sido
+       re-indexada. El siguiente ejemplo ilustra este caso:
+      </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2561"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Crear una matriz simple.<br /></font><font color="#0000BB">$matriz </font><font color="#007700">= array(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#0000BB">4</font><font color="#007700">, </font><font color="#0000BB">5</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Ahora eliminar cada item, pero dejar la matriz misma intacta:<br /></font><font color="#007700">foreach (</font><font color="#0000BB">$matriz </font><font color="#007700">as </font><font color="#0000BB">$i </font><font color="#007700">=&gt; </font><font color="#0000BB">$valor</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;unset(</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">]);<br />}<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Agregar un item (note que la nueva clave es 5, en lugar de 0 como<br />// podria esperarse).<br /></font><font color="#0000BB">$matriz</font><font color="#007700">[] = </font><font color="#0000BB">6</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Re-indexar:<br /></font><font color="#0000BB">$matriz </font><font color="#007700">= </font><font color="#0000BB">array_values</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">);<br /></font><font color="#0000BB">$matriz</font><font color="#007700">[] = </font><font color="#0000BB">7</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;        El anterior ejemplo produciría la siguiente salida:
+        <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; 1
+    [1] =&#62; 2
+    [2] =&#62; 3
+    [3] =&#62; 4
+    [4] =&#62; 5
+)
+Array
+(
+)
+Array
+(
+    [5] =&#62; 6
+)
+Array
+(
+    [0] =&#62; 6
+    [1] =&#62; 7
+)</PRE
+></TD
+></TR
+></TABLE
+>
+       </P
+><P
+></P
+></DIV
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.array.useful-funcs"
+>Funciones útiles</A
+></H2
+><P
+>&#13;     Existe un buen número de funciones útiles para
+     trabajar con matrices. Consulte la sección <A
+HREF="ref.array.html"
+>funciones de matrices</A
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La función <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+> le permite remover
+      la definición de claves de una matriz. Tenga en cuenta
+      que la matriz NO es re-indexada. Si sólo usa
+      "índices enteros comunes" (comenzando desde cero,
+      incrementando en uno), puede conseguir el efecto de
+      re-indexación usando <A
+HREF="function.array-values.html"
+><B
+CLASS="function"
+>array_values()</B
+></A
+>.
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2573"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$a </font><font color="#007700">= array(</font><font color="#0000BB">1 </font><font color="#007700">=&gt; </font><font color="#DD0000">'uno'</font><font color="#007700">, </font><font color="#0000BB">2 </font><font color="#007700">=&gt; </font><font color="#DD0000">'dos'</font><font color="#007700">, </font><font color="#0000BB">3 </font><font color="#007700">=&gt; </font><font color="#DD0000">'tres'</font><font color="#007700">);<br />unset(</font><font color="#0000BB">$a</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">]);<br /></font><font color="#FF8000">/* producira una matriz que hubiera sido definida como<br />&nbsp;&nbsp;&nbsp;$a = array(1 =&gt; 'uno', 3 =&gt; 'tres');<br />&nbsp;&nbsp;&nbsp;y NO<br />&nbsp;&nbsp;&nbsp;$a = array(1 =&gt; 'uno', 2 =&gt;'tres');<br />*/<br /><br /></font><font color="#0000BB">$b </font><font color="#007700">= </font><font color="#0000BB">array_values</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">);<br /></font><font color="#FF8000">// Ahora $b es array(0 =&gt; 'uno', 1 =&gt;'tres')<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     La estructura de control <A
+HREF="control-structures.foreach.html"
+>foreach</A
+> existe
+     específicamente para las matrices. Ésta provee una
+     manera fácil de recorrer una matriz.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.array.donts"
+>Recomendaciones sobre matrices y cosas a evitar</A
+></H2
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.array.foo-bar"
+>¿Porqué es incorrecto
+     <VAR
+CLASS="literal"
+>$foo[bar]</VAR
+>?</A
+></H3
+><P
+>&#13;      Siempre deben usarse comillas alrededor de un índice de
+      matriz tipo cadena literal. Por ejemplo, use $foo['bar'] y no
+      $foo[bar]. ¿Pero qué está mal en $foo[bar]?
+      Es posible que haya visto la siguiente sintaxis en scripts
+      viejos:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2583"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$foo</font><font color="#007700">[</font><font color="#0000BB">bar</font><font color="#007700">] = </font><font color="#DD0000">'enemigo'</font><font color="#007700">;<br />echo </font><font color="#0000BB">$foo</font><font color="#007700">[</font><font color="#0000BB">bar</font><font color="#007700">];<br /></font><font color="#FF8000">// etc<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      Esto está mal, pero funciona. Entonces,
+      ¿porqué está mal? La razón es que
+      este código tiene una constante indefinida (bar) en lugar
+      de una cadena ('bar' - note las comillas), y puede que en el
+      futuro PHP defina constantes que, desafortunadamente para su
+      código, tengan el mismo nombre. Funciona porque PHP
+      automáticamente convierte una <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>cadena
+      pura</I
+></SPAN
+> (una cadena sin comillas que no corresponda con
+      símbolo conocido alguno) en una cadena que contiene la
+      cadena pura. Por ejemplo, si no se ha definido una constante
+      llamada <TT
+CLASS="constant"
+><B
+>bar</B
+></TT
+>, entonces PHP
+      reemplazará su valor por la cadena
+      <VAR
+CLASS="literal"
+>'bar'</VAR
+> y usará ésta
+      última.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Esto no quiere decir que <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>siempre</I
+></SPAN
+> haya que
+       usar comillas en la clave. No querrá usar comillas con
+       claves que sean <A
+HREF="language.constants.html"
+>constantes</A
+> o <A
+HREF="language.variables.html"
+>variables</A
+>, ya que en tal
+       caso PHP no podrá interpretar sus valores.
+      </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2593"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />error_reporting</font><font color="#007700">(</font><font color="#0000BB">E_ALL</font><font color="#007700">);<br /></font><font color="#0000BB">ini_set</font><font color="#007700">(</font><font color="#DD0000">'display_errors'</font><font color="#007700">, </font><font color="#0000BB">true</font><font color="#007700">);<br /></font><font color="#0000BB">ini_set</font><font color="#007700">(</font><font color="#DD0000">'html_errors'</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);<br /></font><font color="#FF8000">// Matriz simple:<br /></font><font color="#0000BB">$matriz </font><font color="#007700">= array(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">);<br /></font><font color="#0000BB">$conteo </font><font color="#007700">= </font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">);<br />for (</font><font color="#0000BB">$i </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">$conteo</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"</font><font color="#007700">\n</font><font color="#DD0000">Revisando $i: </font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Mal: " </font><font color="#007700">. </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">'$i'</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Bien: " </font><font color="#007700">. </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Mal: </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">'$i'</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Bien: </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">$i</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+><B
+>Nota: </B
+>
+       La salida del anterior fragmento es:
+       <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Revisando 0: 
+Notice: Undefined index:  $i in /path/to/script.html on line 9
+Mal: 
+Bien: 1
+Notice: Undefined index:  $i in /path/to/script.html on line 11
+Mal: 
+Bien: 1
+
+Revisando 1: 
+Notice: Undefined index:  $i in /path/to/script.html on line 9
+Mal: 
+Bien: 2
+Notice: Undefined index:  $i in /path/to/script.html on line 11
+Mal: 
+Bien: 2</PRE
+></TD
+></TR
+></TABLE
+>
+      </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;      Más ejemplos para demostrar este hecho:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2598"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Mostrar todos los errores<br /></font><font color="#0000BB">error_reporting</font><font color="#007700">(</font><font color="#0000BB">E_ALL</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$matriz </font><font color="#007700">= array(</font><font color="#DD0000">'fruta' </font><font color="#007700">=&gt; </font><font color="#DD0000">'manzana'</font><font color="#007700">, </font><font color="#DD0000">'vegetal' </font><font color="#007700">=&gt; </font><font color="#DD0000">'zanahoria'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Correcto<br /></font><font color="#007700">print </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">'fruta'</font><font color="#007700">];&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// manzana<br /></font><font color="#007700">print </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">'vegetal'</font><font color="#007700">]; </font><font color="#FF8000">// zanahoria<br /><br />// Incorrecto. Esto funciona pero tambi&amp;eacute;n genera un error de PHP de<br />// nivel E_NOTICE ya que no hay definida una constante llamada fruta<br />// <br />// Notice: Use of undefined constant fruta - assumed 'fruta' in...<br /></font><font color="#007700">print </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">fruta</font><font color="#007700">];&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// manzana<br /><br />// Definamos una constante para demostrar lo que pasa. Asignaremos el<br />// valor 'vegetal' a una constante llamada fruta.<br /></font><font color="#0000BB">define</font><font color="#007700">(</font><font color="#DD0000">'fruta'</font><font color="#007700">, </font><font color="#DD0000">'vegetal'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Note la diferencia ahora<br /></font><font color="#007700">print </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">'fruta'</font><font color="#007700">];&nbsp;&nbsp;</font><font color="#FF8000">// manzana<br /></font><font color="#007700">print </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">fruta</font><font color="#007700">];&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// zanahoria<br /><br />// Lo siguiente esta bien ya que se encuentra al interior de una<br />// cadena. Las constantes no son procesadas al interior de<br />// cadenas, asi que no se produce un error E_NOTICE aqui<br /></font><font color="#007700">print </font><font color="#DD0000">"Hola $matriz</font><font color="#007700">[</font><font color="#DD0000">fruta</font><font color="#007700">]</font><font color="#DD0000">"</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">// Hola manzana<br /><br />// Con una excepcion, los corchetes que rodean las matrices al<br />// interior de cadenas permiten el uso de constantes<br /></font><font color="#007700">print </font><font color="#DD0000">"Hola </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">fruta</font><font color="#007700">]}</font><font color="#DD0000">"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Hola zanahoria<br /></font><font color="#007700">print </font><font color="#DD0000">"Hola </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">'fruta'</font><font color="#007700">]}</font><font color="#DD0000">"</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">// Hola manzana<br /><br />// Esto no funciona, resulta en un error de interprete como:<br />// Parse error: parse error, expecting T_STRING' or T_VARIABLE' or T_NUM_STRING'<br />// Esto se aplica tambien al uso de autoglobales en cadenas, por supuesto<br /></font><font color="#007700">print </font><font color="#DD0000">"Hola $matriz</font><font color="#007700">[</font><font color="#DD0000">'fruta'</font><font color="#007700">]</font><font color="#DD0000">"</font><font color="#007700">;<br />print </font><font color="#DD0000">"Hola $_GET</font><font color="#007700">[</font><font color="#DD0000">'foo'</font><font color="#007700">]</font><font color="#DD0000">"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// La concatenacion es otra opcion<br /></font><font color="#007700">print </font><font color="#DD0000">"Hola " </font><font color="#007700">. </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">'fruta'</font><font color="#007700">]; </font><font color="#FF8000">// Hola manzana<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+><P
+>&#13;      Cuando habilita <A
+HREF="function.error-reporting.html"
+><B
+CLASS="function"
+>error_reporting()</B
+></A
+> para
+      mostrar errores de nivel <TT
+CLASS="constant"
+><B
+>E_NOTICE</B
+></TT
+> (como por
+      ejemplo definiendo el valor <TT
+CLASS="constant"
+><B
+>E_ALL</B
+></TT
+>)
+      verá estos errores. Por defecto, <A
+HREF="ref.errorfunc.html#ini.error-reporting"
+>error_reporting</A
+> se
+      encuentra configurado para no mostrarlos.
+     </P
+><P
+>&#13;      Tal y como se indica en la sección de <A
+HREF="language.types.array.html#language.types.array.syntax"
+>sintaxis</A
+>, debe
+      existir una expresión entre los corchetes cuadrados
+      ('<VAR
+CLASS="literal"
+>[</VAR
+>' y '<VAR
+CLASS="literal"
+>]</VAR
+>'). Eso quiere
+      decir que puede escribir cosas como esta:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2609"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">alguna_funcion</font><font color="#007700">(</font><font color="#0000BB">$bar</font><font color="#007700">)];<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      Este es un ejemplo del uso de un valor devuelto por una
+      función como índice de matriz. PHP también
+      conoce las constantes, tal y como ha podido apreciar aquellas
+      <VAR
+CLASS="literal"
+>E_*</VAR
+> antes.
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2612"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$descripciones_de_error</font><font color="#007700">[</font><font color="#0000BB">E_ERROR</font><font color="#007700">]&nbsp;&nbsp;&nbsp;= </font><font color="#DD0000">"Un error fatal ha ocurrido"</font><font color="#007700">;<br /></font><font color="#0000BB">$descripciones_de_error</font><font color="#007700">[</font><font color="#0000BB">E_WARNING</font><font color="#007700">] = </font><font color="#DD0000">"PHP produjo una advertencia"</font><font color="#007700">;<br /></font><font color="#0000BB">$descripciones_de_error</font><font color="#007700">[</font><font color="#0000BB">E_NOTICE</font><font color="#007700">]&nbsp;&nbsp;= </font><font color="#DD0000">"Esta es una noticia informal"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      Note que <VAR
+CLASS="literal"
+>E_ERROR</VAR
+> es también un
+      identificador válido, asi como <VAR
+CLASS="literal"
+>bar</VAR
+> en
+      el primer ejemplo. Pero el último ejemplo es equivalente
+      a escribir:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2616"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$descripciones_de_error</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">] = </font><font color="#DD0000">"Un error fatal ha ocurrido"</font><font color="#007700">;<br /></font><font color="#0000BB">$descripciones_de_error</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">] = </font><font color="#DD0000">"PHP produjo una advertencia"</font><font color="#007700">;<br /></font><font color="#0000BB">$descripciones_de_error</font><font color="#007700">[</font><font color="#0000BB">8</font><font color="#007700">] = </font><font color="#DD0000">"Esta es una noticia informal"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      ya que <VAR
+CLASS="literal"
+>E_ERROR</VAR
+> es igual a
+      <VAR
+CLASS="literal"
+>1</VAR
+>, etc.
+     </P
+><P
+>&#13;      Tal y como lo hemos explicado en los anteriores ejemplos,
+      <VAR
+CLASS="literal"
+>$foo[bar]</VAR
+> aun funciona pero está
+      mal. Funciona, porque debido a su sintaxis, se espera que
+      <VAR
+CLASS="literal"
+>bar</VAR
+> sea una expresión constante. Sin
+      embargo, en este caso no existe una constante con el nombre
+      <VAR
+CLASS="literal"
+>bar</VAR
+>. PHP asume ahora que usted quiso decir
+      <VAR
+CLASS="literal"
+>bar</VAR
+> literalmente, como la cadena
+      <VAR
+CLASS="literal"
+>"bar"</VAR
+>, pero que olvidó escribir las
+      comillas.
+     </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="AEN2626"
+>¿Entonces porqué está mal?</A
+></H4
+><P
+>&#13;       En algún momento en el futuro, el equipo de PHP puede
+       querer usar otra constante o palabra clave, o puede que usted
+       introduzca otra constante en su aplicación, y entonces
+       se ve en problemas. Por ejemplo, en este momento no puede usar
+       las palabras <VAR
+CLASS="literal"
+>empty</VAR
+> y
+       <VAR
+CLASS="literal"
+>default</VAR
+> de esta forma, ya que son <A
+HREF="reserved.html"
+>palabras clave reservadas</A
+> especiales.
+      </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+        Reiterando, al interior de un valor <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+> entre
+        comillas dobles, es válido no rodear los índices
+        de matriz con comillas, así que
+        <VAR
+CLASS="literal"
+>"$foo[bar]"</VAR
+> es válido. Consulte los
+        ejemplos anteriores para más detalles sobre el
+        porqué, asi como la sección sobre <A
+HREF="language.types.string.html#language.types.string.parsing"
+>procesamiento de
+        variables en cadenas</A
+>.
+       </P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.array.casting"
+>Conversión a matriz</A
+></H2
+><P
+>&#13;     Para cualquiera de los tipos: <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>,
+     <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>, <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>, <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+> y
+     <A
+HREF="language.types.resource.html"
+><B
+CLASS="type"
+>resource</B
+></A
+>, si convierte un valor a un
+     <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+>, obtiene una matriz con un elemento (con
+     índice 0), el cual es el valor escalar con el que
+     inició.
+    </P
+><P
+>&#13;     Si convierte un <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+> a una matriz, obtiene las
+     propiedades (variables miembro) de ese objeto como los elementos
+     de la matriz. Las claves son los nombres de las variables
+     miembro.
+    </P
+><P
+>&#13;     Si convierte un valor <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> a matriz, obtiene una matriz
+     vacía.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.array.comparing"
+>Comparación</A
+></H2
+><P
+>&#13;     Es posible comparar matrices con <A
+HREF="function.array-diff.html"
+><B
+CLASS="function"
+>array_diff()</B
+></A
+>
+     y mediante <A
+HREF="language.operators.array.html"
+>operadores de
+     matriz</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.array.examples"
+>Ejemplos</A
+></H2
+><P
+>&#13;     El tipo matriz en PHP es bastante versátil, así que
+     aquí se presentan algunos ejemplos que demuestran el poder
+     completo de las matrices.
+    </P
+><P
+>&#13;      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2659"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// esto<br /></font><font color="#0000BB">$a </font><font color="#007700">= array( </font><font color="#DD0000">'color'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'rojo'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'sabor'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'dulce'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'forma'&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'redonda'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'nombre' </font><font color="#007700">=&gt; </font><font color="#DD0000">'manzana'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// la clave sera 0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// es completamente equivalente con<br /></font><font color="#0000BB">$a</font><font color="#007700">[</font><font color="#DD0000">'color'</font><font color="#007700">]&nbsp;&nbsp;= </font><font color="#DD0000">'rojo'</font><font color="#007700">;<br /></font><font color="#0000BB">$a</font><font color="#007700">[</font><font color="#DD0000">'sabor'</font><font color="#007700">]&nbsp;&nbsp;= </font><font color="#DD0000">'dulce'</font><font color="#007700">;<br /></font><font color="#0000BB">$a</font><font color="#007700">[</font><font color="#DD0000">'forma'</font><font color="#007700">]&nbsp;&nbsp;= </font><font color="#DD0000">'redonda'</font><font color="#007700">;<br /></font><font color="#0000BB">$a</font><font color="#007700">[</font><font color="#DD0000">'nombre'</font><font color="#007700">] = </font><font color="#DD0000">'manzana'</font><font color="#007700">;<br /></font><font color="#0000BB">$a</font><font color="#007700">[]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= </font><font color="#0000BB">4</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// la clave sera 0<br /><br /></font><font color="#0000BB">$b</font><font color="#007700">[] = </font><font color="#DD0000">'a'</font><font color="#007700">;<br /></font><font color="#0000BB">$b</font><font color="#007700">[] = </font><font color="#DD0000">'b'</font><font color="#007700">;<br /></font><font color="#0000BB">$b</font><font color="#007700">[] = </font><font color="#DD0000">'c'</font><font color="#007700">;<br /></font><font color="#FF8000">// resultara en la matriz array(0 =&gt; 'a' , 1 =&gt; 'b' , 2 =&gt; 'c'),<br />// o simplemente array('a', 'b', 'c')<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2661"
+></A
+><P
+><B
+>Ejemplo 6-4. Uso de array()</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Array como mapa de propiedades<br /></font><font color="#0000BB">$mapa </font><font color="#007700">= array( </font><font color="#DD0000">'version'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#0000BB">4</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'SO'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">'Linux'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'idioma&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&gt; '</font><font color="#0000BB">ingles</font><font color="#DD0000">',<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</font><font color="#0000BB">etiquetas_cortas</font><font color="#DD0000">' =&gt; true<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />// claves estrictamente numericas<br />$matriz = array( 7,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;156,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-10<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />// esto es lo mismo que array(0 =&gt; 7, 1 =&gt; 8, ...)<br /><br />$cambios = array(&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;10, // clave = 0<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;6,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3&nbsp;&nbsp;&nbsp;&nbsp;=&gt;&nbsp;&nbsp;7, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</font><font color="#0000BB">a</font><font color="#DD0000">'&nbsp;&nbsp;=&gt;&nbsp;&nbsp;4,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11, // clave = 6 (el indice entero maximo era 5)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</font><font color="#0000BB">8</font><font color="#DD0000">'&nbsp;&nbsp;=&gt;&nbsp;&nbsp;2, // clave = 8 (entero!)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'</font><font color="#0000BB">02</font><font color="#DD0000">' =&gt; 77, // clave = '</font><font color="#0000BB">02</font><font color="#007700">'</font><font color="#0000BB"><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&nbsp;&nbsp;&nbsp;=&gt; 12&nbsp;&nbsp;// el valor 10 sera reemplazado por 12<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />// matriz vacia<br />$vacio = array();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="language.types.array.examples.loop"
+></A
+><P
+><B
+>Ejemplo 6-5. Colección</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$colores </font><font color="#007700">= array(</font><font color="#DD0000">'rojo'</font><font color="#007700">, </font><font color="#DD0000">'azul'</font><font color="#007700">, </font><font color="#DD0000">'verde'</font><font color="#007700">, </font><font color="#DD0000">'amarillo'</font><font color="#007700">);<br /><br />foreach (</font><font color="#0000BB">$colores </font><font color="#007700">as </font><font color="#0000BB">$color</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&amp;iquest;Le gusta el $color?</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      Esto producirá la salida:
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#38;iquest;Le gusta el rojo?
+&#38;iquest;Le gusta el azul?
+&#38;iquest;Le gusta el verde?
+&#38;iquest;Le gusta el amarillo?</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Note que actualmente no es posible cambiar los valores de la
+     matriz directamente en un ciclo de ese tipo.
+      
+     Una solución parcial es la siguiente:
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="language.types.array.examples.changeloop"
+></A
+><P
+><B
+>Ejemplo 6-6. Colección</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">foreach (</font><font color="#0000BB">$colores </font><font color="#007700">as </font><font color="#0000BB">$clave </font><font color="#007700">=&gt; </font><font color="#0000BB">$color</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// no funciona:<br />&nbsp;&nbsp;&nbsp;&nbsp;//$color = strtoupper($color);<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;// funciona:<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$colores</font><font color="#007700">[</font><font color="#0000BB">$clave</font><font color="#007700">] = </font><font color="#0000BB">strtoupper</font><font color="#007700">(</font><font color="#0000BB">$color</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$colores</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Esto genera la salida:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; ROJO
+    [1] =&#62; AZUL
+    [2] =&#62; VERDE
+    [3] =&#62; AMARILLO
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Este ejemplo crea una matriz con base uno.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2676"
+></A
+><P
+><B
+>Ejemplo 6-7. Índice con base 1</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$primercuarto&nbsp;&nbsp;</font><font color="#007700">= array(</font><font color="#0000BB">1 </font><font color="#007700">=&gt; </font><font color="#DD0000">'Enero'</font><font color="#007700">, </font><font color="#DD0000">'Febrero'</font><font color="#007700">, </font><font color="#DD0000">'Marzo'</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$primercuarto</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Esto imprime:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array 
+(
+    [1] =&#62; 'Enero'
+    [2] =&#62; 'Febrero'
+    [3] =&#62; 'Marzo'
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2681"
+></A
+><P
+><B
+>Ejemplo 6-8. Llenado de una matriz</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// llenar una matriz con todos los items de un directorio<br /></font><font color="#0000BB">$gestor </font><font color="#007700">= </font><font color="#0000BB">opendir</font><font color="#007700">(</font><font color="#DD0000">'.'</font><font color="#007700">);<br />while (</font><font color="#0000BB">false </font><font color="#007700">!== (</font><font color="#0000BB">$archivo </font><font color="#007700">= </font><font color="#0000BB">readdir</font><font color="#007700">(</font><font color="#0000BB">$gestor</font><font color="#007700">))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$archivos</font><font color="#007700">[] = </font><font color="#0000BB">$archivo</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">closedir</font><font color="#007700">(</font><font color="#0000BB">$gestor</font><font color="#007700">); <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Las matrices son ordenadas. Puede también cambiar el orden
+     usando varias funciones de ordenamiento. Vea la sección
+     sobre <A
+HREF="ref.array.html"
+>funciones de matrices</A
+> para
+     más información. Puede contar el número de
+     items en una matriz usando la función
+     <A
+HREF="function.count.html"
+><B
+CLASS="function"
+>count()</B
+></A
+>.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2687"
+></A
+><P
+><B
+>Ejemplo 6-9. Ordenamiento de una matriz</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />sort</font><font color="#007700">(</font><font color="#0000BB">$archivos</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$archivos</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Dado que el valor de una matriz puede ser cualquier cosa,
+     también puede ser otra matriz. De esta forma es posible
+     crear matrices recursivas y multi-dimensionales.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2691"
+></A
+><P
+><B
+>Ejemplo 6-10. Matrices recursivas y multi-dimensionales</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$frutas </font><font color="#007700">= array ( </font><font color="#DD0000">"frutas"&nbsp;&nbsp;</font><font color="#007700">=&gt; array ( </font><font color="#DD0000">"a" </font><font color="#007700">=&gt; </font><font color="#DD0000">"naranja"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"b" </font><font color="#007700">=&gt; </font><font color="#DD0000">"banano"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"c" </font><font color="#007700">=&gt; </font><font color="#DD0000">"manzana"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"numeros" </font><font color="#007700">=&gt; array ( </font><font color="#0000BB">1</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">2</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">3</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">4</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">5</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">6<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"hoyos"&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; array (&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"primero"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">5 </font><font color="#007700">=&gt; </font><font color="#DD0000">"segundo"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"tercero"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;);<br /><br /></font><font color="#FF8000">// Algunos ejemplos que hacen referencia a los valores de la matriz anterior<br /></font><font color="#007700">echo </font><font color="#0000BB">$frutas</font><font color="#007700">[</font><font color="#DD0000">"hoyos"</font><font color="#007700">][</font><font color="#0000BB">5</font><font color="#007700">];&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// imprime "segundo"<br /></font><font color="#007700">echo </font><font color="#0000BB">$frutas</font><font color="#007700">[</font><font color="#DD0000">"frutas"</font><font color="#007700">][</font><font color="#DD0000">"a"</font><font color="#007700">]; </font><font color="#FF8000">// imprime "naranja"<br /></font><font color="#007700">unset(</font><font color="#0000BB">$frutas</font><font color="#007700">[</font><font color="#DD0000">"hoyos"</font><font color="#007700">][</font><font color="#0000BB">0</font><font color="#007700">]);&nbsp;&nbsp;</font><font color="#FF8000">// elimina "primero"<br /><br />// Crear una nueva matriz multi-dimensional<br /></font><font color="#0000BB">$jugos</font><font color="#007700">[</font><font color="#DD0000">"manzana"</font><font color="#007700">][</font><font color="#DD0000">"verde"</font><font color="#007700">] = </font><font color="#DD0000">"bien"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Debe advertir que la asignación de matrices siempre
+     involucra la copia de valores. Necesita usar el operador de
+     referencia para copiar una matriz por referencia.
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2695"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz1 </font><font color="#007700">= array(</font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">);<br /></font><font color="#0000BB">$matriz2 </font><font color="#007700">= </font><font color="#0000BB">$matriz1</font><font color="#007700">;<br /></font><font color="#0000BB">$matriz2</font><font color="#007700">[] = </font><font color="#0000BB">4</font><font color="#007700">; </font><font color="#FF8000">// $matriz2 cambia,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// $matriz1 sigue siendo array(2, 3)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">$matriz3 </font><font color="#007700">= &amp;</font><font color="#0000BB">$matriz1</font><font color="#007700">;<br /></font><font color="#0000BB">$matriz3</font><font color="#007700">[] = </font><font color="#0000BB">4</font><font color="#007700">; </font><font color="#FF8000">// ahora $matriz1 y $matriz3 son iguales<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.types.string.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Cadenas</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.types.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Objetos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

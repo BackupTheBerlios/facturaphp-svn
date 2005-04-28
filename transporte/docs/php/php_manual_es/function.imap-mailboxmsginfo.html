@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imap_mailboxmsginfo</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones IMAP"
+HREF="ref.imap.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_mail"
+HREF="function.imap-mail.html"><LINK
+REL="NEXT"
+TITLE="imap_mime_header_decode"
+HREF="function.imap-mime-header-decode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-mail.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-mime-header-decode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imap-mailboxmsginfo"
+></A
+>imap_mailboxmsginfo</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN41334"
+></A
+><P
+>    (PHP 3&#62;= 3.0.2, PHP 4 , PHP 5)</P
+>imap_mailboxmsginfo&nbsp;--&nbsp;Obtiene información acerca del buzón actual</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN41337"
+></A
+><H2
+>Descripción</H2
+>object <B
+CLASS="methodname"
+>imap_mailboxmsginfo</B
+> ( int imap_stream)<BR
+></BR
+><P
+>&#13;     Devuelve información acerca del buzón actual. Devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de
+     fallo.
+    </P
+><P
+> 
+     La función <B
+CLASS="function"
+>imap_mailboxmsginfo()</B
+> comprueba el estado
+     del buzón actual en el servidor y devuelve la información en un objeto
+     con las siguientes propiedades.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN41350"
+></A
+><P
+CLASS="literallayout"
+><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date&nbsp;:&nbsp;fecha&nbsp;del&nbsp;mensaje<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Driver&nbsp;:&nbsp;driver<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Mailbox&nbsp;:&nbsp;nombre&nbsp;del&nbsp;buzón<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nmsgs&nbsp;:&nbsp;número&nbsp;de&nbsp;mensajes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recent&nbsp;:&nbsp;número&nbsp;de&nbsp;los&nbsp;mensajes&nbsp;recientes<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unread&nbsp;:&nbsp;número&nbsp;de&nbsp;los&nbsp;mensajes&nbsp;no&nbsp;leidos<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Size&nbsp;:&nbsp;tama¤o&nbsp;del&nbsp;buzon<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+><P
+></P
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-mail.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-mime-header-decode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_mail</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.imap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_mime_header_decode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

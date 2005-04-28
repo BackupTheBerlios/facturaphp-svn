@@ -1,0 +1,336 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ifx_query</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Informix"
+HREF="ref.ifx.html"><LINK
+REL="PREVIOUS"
+TITLE="ifx_prepare"
+HREF="function.ifx-prepare.html"><LINK
+REL="NEXT"
+TITLE="ifx_textasvarchar"
+HREF="function.ifx-textasvarchar.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ifx-prepare.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ifx-textasvarchar.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ifx-query"
+></A
+>ifx_query</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN42767"
+></A
+><P
+>    (PHP 3&#62;= 3.0.3, PHP 4 , PHP 5)</P
+>ifx_query&nbsp;--&nbsp;Enviar una consulta Informix</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN42770"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ifx_query</B
+> ( string consulta, int id_enlace [, int tipo_cursor [, mixed matriz_id_blob]])<BR
+></BR
+><P
+> 
+     Devuelve un identificador de resultado positivo si tuvo
+     éxito, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ocurrió un error.
+    </P
+><P
+> 
+     Un recurso "id_resultado" es usado por otras funciones para
+     obtener los resultados de la consulta. Define "filas_afectadas"
+     para su consulta a través de la
+     función <A
+HREF="function.ifx-affected-rows.html"
+><B
+CLASS="function"
+>ifx_affected_rows()</B
+></A
+>.
+    </P
+><P
+> 
+     <B
+CLASS="function"
+>ifx_query()</B
+> envía una consulta a la
+     base de datos activa actualmente en el servidor, la cual
+     está asociada con el identificador de enlace dado. 
+    </P
+><P
+>&#13;     Ejecuta <VAR
+CLASS="parameter"
+>consulta</VAR
+> sobre la
+     conexión <VAR
+CLASS="parameter"
+>id_enlace</VAR
+>. En el caso de
+     consultas "tipo-select", un cursor es declarado y abierto. El
+     parámetro opcional <VAR
+CLASS="parameter"
+>tipo_cursor</VAR
+> le
+     permite hacer que éste sea un cursor "scroll" o "hold". Es
+     una máscara de bits y puede ser IFX_SCROLL, IFX_HOLD, o
+     ambos unidos mediante la operación lógica OR. Las
+     consultas que no son de selección son de "ejecución
+     inmediata". IFX_SCROLL e IFX_HOLD son constantes
+     simbólicas, y como tales no deben encontrarse entre
+     comillas. Si omite este parámetro, el cursor será
+     un cursor secuencial normal.
+    </P
+><P
+>&#13;     Para cualquier tipo de consulta, el número (estimado o
+     real) de filas afectadas es almacenado para su consulta mediante
+     <A
+HREF="function.ifx-affected-rows.html"
+><B
+CLASS="function"
+>ifx_affected_rows()</B
+></A
+>.
+    </P
+><P
+>&#13;     Si tiene columnas BLOB (BYTE o TEXT) en una consulta de
+     actualización, puede añadir un
+     parámetro <VAR
+CLASS="parameter"
+>matriz_id_blob</VAR
+> que
+     contenga los "ids de blob" correspondientes, y debería
+     reemplazar esas columnas con un "?"  en el texto de la consulta.
+    </P
+><P
+>&#13;     Si el contenido de la columna TEXT (o BYTE) lo permite, puede
+     usar también "ifx_textasvarchar(1)" y
+     "ifx_byteasvarchar(1)". Esto le permite tratar columnas TEXT (o
+     BYTE) como si fueran columnas normales (pero largas) de tipo
+     VARCHAR para consultas select, y no necesita complicarse con id's
+     de blob.
+    </P
+><P
+>&#13;     Con ifx_textasvarchar(0) o ifx_byteasvarchar(0) (la
+     situación predeterminada), las consultas select
+     devolverán columnas BLOB como id's blob (valores
+     enteros). Puede obtener el valor del blob como una cadena o
+     archivo con las funciones blob (vea más adelante).
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN42804"
+></A
+><P
+><B
+>Ejemplo 1. 
+       Mostrar todas las filas de la tabla "ordenes" como una tabla
+       HTML
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />ifx_textasvarchar</font><font color="#007700">(</font><font color="#0000BB">1</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// usar "modo de texto" para blobs<br /></font><font color="#0000BB">$id_res </font><font color="#007700">= </font><font color="#0000BB">ifx_query</font><font color="#007700">(</font><font color="#DD0000">"select * from ordenes"</font><font color="#007700">, </font><font color="#0000BB">$id_con</font><font color="#007700">);<br />if (! </font><font color="#0000BB">$id_res</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"No se pueden seleccionar &amp;oacute;rdenes: %s\n&lt;br /&gt;%s&lt;br /&gt;\n"</font><font color="#007700">, </font><font color="#0000BB">ifx_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">ifx_errormsg</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;die;<br />}<br /></font><font color="#0000BB">ifx_htmltbl_result</font><font color="#007700">(</font><font color="#0000BB">$id_res</font><font color="#007700">, </font><font color="#DD0000">"border=\"1\""</font><font color="#007700">);<br /></font><font color="#0000BB">ifx_free_result</font><font color="#007700">(</font><font color="#0000BB">$id_res</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN42807"
+></A
+><P
+><B
+>Ejemplo 2. Insertar algunos valores en la tabla "catalogo"</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// crear id's blob para una columna byte y text<br /></font><font color="#0000BB">$textid </font><font color="#007700">= </font><font color="#0000BB">ifx_create_blob</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#DD0000">"Text column in memory"</font><font color="#007700">);<br /></font><font color="#0000BB">$byteid </font><font color="#007700">= </font><font color="#0000BB">ifx_create_blob</font><font color="#007700">(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#DD0000">"Byte column in memory"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// almacenar id's blob en una matriz id_blob<br /></font><font color="#0000BB">$matriz_id_blob</font><font color="#007700">[] = </font><font color="#0000BB">$textid</font><font color="#007700">;<br /></font><font color="#0000BB">$matriz_id_blob</font><font color="#007700">[] = </font><font color="#0000BB">$byteid</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// ejecutar consulta<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#DD0000">"insert into catalogo (num_bodega, cod_manu, " </font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"descr_cat,imagen_cat) values(1,'HRO',?,?)"</font><font color="#007700">;<br /></font><font color="#0000BB">$id_res </font><font color="#007700">= </font><font color="#0000BB">ifx_query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">, </font><font color="#0000BB">$id_con</font><font color="#007700">, </font><font color="#0000BB">$matriz_id_blob</font><font color="#007700">);<br />if (! </font><font color="#0000BB">$id_res</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* ... error ... */<br /></font><font color="#007700">}<br /><br /></font><font color="#FF8000">// liberar el id de resultado<br /></font><font color="#0000BB">ifx_free_result</font><font color="#007700">(</font><font color="#0000BB">$id_res</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.ifx-connect.html"
+><B
+CLASS="function"
+>ifx_connect()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ifx-prepare.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ifx-textasvarchar.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ifx_prepare</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ifx.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ifx_textasvarchar</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

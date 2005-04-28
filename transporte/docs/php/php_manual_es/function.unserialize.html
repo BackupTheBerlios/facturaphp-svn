@@ -1,0 +1,376 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>unserialize</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Variables"
+HREF="ref.var.html"><LINK
+REL="PREVIOUS"
+TITLE="strval"
+HREF="function.strval.html"><LINK
+REL="NEXT"
+TITLE="unset"
+HREF="function.unset.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.strval.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.unset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.unserialize"
+></A
+>unserialize</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN112868"
+></A
+><P
+>    (PHP 3&#62;= 3.0.5, PHP 4 , PHP 5)</P
+>unserialize&nbsp;--&nbsp;
+      Crea un valor PHP a partir de una representación
+      almacenada
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN112871"
+></A
+><H2
+>Descripción</H2
+>mixed <B
+CLASS="methodname"
+>unserialize</B
+> ( string cadena)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>unserialize()</B
+> toma una variable sencilla
+     seriada (vea <A
+HREF="function.serialize.html"
+><B
+CLASS="function"
+>serialize()</B
+></A
+>) y la convierte de
+     vuelta a su valor PHP. El valor convertido es retornado, y puede
+     ser
+     un <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>, <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>,
+     <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+> u <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+>. En caso de que la
+     cadena pasada no pueda ser procesada para revertir la
+     seriación, se devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Directiva unserialize_callback_func: </B
+>
+      Es posible establecer una función-llamada de retorno la
+      cual será llamada si una clase no definida debería
+      ser instanciada durante el proceso de revertir la
+      seriación. (para prevenir que se reciba
+      un <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+> incompleto "__PHP_Incomplete_Class".) Use
+      su <TT
+CLASS="filename"
+>php.ini</TT
+>, <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+> o <TT
+CLASS="filename"
+>.htaccess</TT
+> para
+      definir 'unserialize_callback_func'. Cada vez que una clase no
+      definida deba ser instanciada, ésta función
+      será llamada. Para deshabilitar esta
+      característica simplemente asigne un valor vacío a
+      este parámetro. También note que la directiva
+      unserialize_callback_func se hizo disponible en PHP 4.2.0.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Si la variable que está siendo convertida de vuelta es un
+     objeto, PHP intentará llamar la función
+     miembro <B
+CLASS="function"
+>__wakeup()</B
+> (si existe)
+     automáticamente luego de haber recontruido
+     satisfactoriamente el objeto.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN112897"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de unserialize_callback_func</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$objeto_seriado</font><font color="#007700">=</font><font color="#DD0000">'O:1:"a":1:{s:5:"valor";s:3:"100";}'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// la directiva unserialize_callback_func esta disponible a partir de PHP 4.2.0<br /></font><font color="#0000BB">ini_set</font><font color="#007700">(</font><font color="#DD0000">'unserialize_callback_func'</font><font color="#007700">, </font><font color="#DD0000">'mi_llamada_de_retorno'</font><font color="#007700">); </font><font color="#FF8000">// defina su callback_function<br /><br /></font><font color="#007700">function </font><font color="#0000BB">mi_llamada_de_retorno</font><font color="#007700">(</font><font color="#0000BB">$nombre_clase</font><font color="#007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// tan solo incluya un archivo que contenga su definicion de clase<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;// usted recibe $nombre_clase para determinar que definicion de<br />&nbsp;&nbsp;&nbsp;&nbsp;// clase requiere<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      En PHP 3, los métodos no se preservan cuando se revierte
+      un objeto seriado. PHP 4 elimina esta limitación y
+      recupera tanto propiedades como métodos. Por favor
+      consulte la sección <A
+HREF="missing-stuff.html#language.oop.serialization"
+>Seriación de
+      Objetos</A
+> de <A
+HREF="language.oop.html"
+>Clases y
+      Objetos</A
+> para más información.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN112905"
+></A
+><P
+><B
+>Ejemplo 2. Ejemplo de <B
+CLASS="function"
+>unserialize()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Aqui usamos unserialize() para cargar los datos de sesion<br />// provenientes de la cadena seleccionada desde la base de datos en la<br />// matriz $datos_sesion. Este ejemplo complementa aquel descrito con<br />// serialize().<br /><br /></font><font color="#0000BB">$con&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">odbc_connect</font><font color="#007700">(</font><font color="#DD0000">"bd_web"</font><font color="#007700">, </font><font color="#DD0000">"php"</font><font color="#007700">, </font><font color="#DD0000">"gallina"</font><font color="#007700">);<br /></font><font color="#0000BB">$sent </font><font color="#007700">= </font><font color="#0000BB">odbc_prepare</font><font color="#007700">(</font><font color="#0000BB">$con</font><font color="#007700">, </font><font color="#DD0000">"SELECT datos FROM sesiones WHERE id = ?"</font><font color="#007700">);<br /></font><font color="#0000BB">$datos_sql </font><font color="#007700">= array (</font><font color="#0000BB">$PHP_AUTH_USER</font><font color="#007700">);<br /><br />if (!</font><font color="#0000BB">odbc_execute</font><font color="#007700">(</font><font color="#0000BB">$sent</font><font color="#007700">, &amp;</font><font color="#0000BB">$datos_sql</font><font color="#007700">) || !</font><font color="#0000BB">odbc_fetch_into</font><font color="#007700">(</font><font color="#0000BB">$sent</font><font color="#007700">, &amp;</font><font color="#0000BB">$tmp</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// si la ejecucion del comando o la recuperacion de datos falla,<br />&nbsp;&nbsp;&nbsp;&nbsp;// inicializar una matriz vacia<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$datos_sesion </font><font color="#007700">= array();<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ahora deberiamos tener los datos seriados en $tmp[0].<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$datos_sesion </font><font color="#007700">= </font><font color="#0000BB">unserialize</font><font color="#007700">(</font><font color="#0000BB">$tmp</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000BB">is_array</font><font color="#007700">(</font><font color="#0000BB">$datos_sesion</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// algo ha fallado, inicializar una matriz vacia<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$datos_sesion </font><font color="#007700">= array();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;    Vea también <A
+HREF="function.serialize.html"
+><B
+CLASS="function"
+>serialize()</B
+></A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.strval.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.unset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>strval</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.var.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>unset</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

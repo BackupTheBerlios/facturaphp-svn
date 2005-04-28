@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imap_reopen</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones IMAP"
+HREF="ref.imap.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_renamemailbox"
+HREF="function.imap-renamemailbox.html"><LINK
+REL="NEXT"
+TITLE="imap_rfc822_parse_adrlist"
+HREF="function.imap-rfc822-parse-adrlist.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-renamemailbox.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-rfc822-parse-adrlist.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imap-reopen"
+></A
+>imap_reopen</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN41514"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>imap_reopen&nbsp;--&nbsp;Reabre una sesión IMAP a un nuevo buzón</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN41517"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>imap_reopen</B
+> ( string imap_stream, string mailbox [, string flags])<BR
+></BR
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si no hay error y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso contrario.</P
+><P
+>  
+     Esta funció reabre la sesión especificada con un nuevo buzón.</P
+><P
+>&#13;     Las opciones son máscaras de bit con una o más de las siguientes:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;   OP_READONLY - Abre el buzón en modo de sólo lectura
+       </P
+></LI
+><LI
+><P
+>&#13;   OP_ANONYMOUS - No usa o actualiza .newsrc para noticias
+       </P
+></LI
+><LI
+><P
+>&#13;   OP_HALFOPEN - Para nombres IMAP y NNTP, abre una conexión pero no
+   abre el buzon.
+       </P
+></LI
+><LI
+><P
+>&#13;   CL_EXPUNGE - Expurga automaticamente el buzon antes de cerra la sesión
+       </P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-renamemailbox.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-rfc822-parse-adrlist.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_renamemailbox</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.imap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_rfc822_parse_adrlist</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

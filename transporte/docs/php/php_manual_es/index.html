@@ -1,0 +1,1258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Manual de PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="NEXT"
+TITLE="Prefacio"
+HREF="preface.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="book"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="BOOK"
+><A
+NAME="manual"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+><A
+NAME="bookinfo"
+>Manual de PHP</A
+></H1
+><DIV
+CLASS="author"
+>Stig Sæther Bakken</DIV
+><DIV
+CLASS="author"
+>Alexander Aulbach</DIV
+><DIV
+CLASS="author"
+>Egon Schmid</DIV
+><DIV
+CLASS="author"
+>Jim Winstead</DIV
+><DIV
+CLASS="author"
+>Lars Torben Wilson</DIV
+><DIV
+CLASS="author"
+>Rasmus Lerdorf</DIV
+><DIV
+CLASS="author"
+>Andrei Zmievski</DIV
+><DIV
+CLASS="author"
+>Jouni Ahto</DIV
+><H2
+CLASS="EDITEDBY"
+>Editado por</H2
+><DIV
+CLASS="editor"
+>Rafael Martínez</DIV
+><DIV
+CLASS="editor"
+>Angela Pardo</DIV
+><DIV
+CLASS="editor"
+>Federico Finos</DIV
+><DIV
+CLASS="editor"
+>Pablo Daniel Rigazzi</DIV
+><DIV
+CLASS="editor"
+>Robert Sánchez</DIV
+><DIV
+CLASS="editor"
+>Leonardo Boshell</DIV
+><DIV
+CLASS="editor"
+>Javier Eguiluz Perez</DIV
+><DIV
+CLASS="editor"
+>Javier Tacón Iglesias</DIV
+><P
+CLASS="pubdate"
+>12-06-2004<BR></P
+><P
+CLASS="copyright"
+><A
+HREF="copyright.html"
+>Copyright</A
+> &copy; 2003-2004 por el Grupo de documentación de PHP</P
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="preface.html"
+>Prefacio</A
+></DT
+><DT
+>I. <A
+HREF="getting-started.html"
+>Conceptos Básicos</A
+></DT
+><DD
+><DL
+><DT
+>1. <A
+HREF="introduction.html"
+>Introducción</A
+></DT
+><DT
+>2. <A
+HREF="tutorial.html"
+>Una explicación sencilla</A
+></DT
+><DT
+>3. <A
+HREF="installation.html"
+>Instalación</A
+></DT
+><DT
+>4. <A
+HREF="configuration.html"
+>Configuración del comportamiento de PHP</A
+></DT
+></DL
+></DD
+><DT
+>II. <A
+HREF="langref.html"
+>Referencia del Lenguaje</A
+></DT
+><DD
+><DL
+><DT
+>5. <A
+HREF="language.basic-syntax.html"
+>Sintaxis básica</A
+></DT
+><DT
+>6. <A
+HREF="language.types.html"
+>Tipos</A
+></DT
+><DT
+>7. <A
+HREF="language.variables.html"
+>Variables</A
+></DT
+><DT
+>8. <A
+HREF="language.constants.html"
+>Constantes</A
+></DT
+><DT
+>9. <A
+HREF="language.expressions.html"
+>Expresiones</A
+></DT
+><DT
+>10. <A
+HREF="language.operators.html"
+>Operadores</A
+></DT
+><DT
+>11. <A
+HREF="control-structures.html"
+>Estructuras de Control</A
+></DT
+><DT
+>12. <A
+HREF="functions.html"
+>Funciones</A
+></DT
+><DT
+>13. <A
+HREF="language.oop.html"
+>Clases y Objetos</A
+></DT
+><DT
+>14. <A
+HREF="language.references.html"
+>Explicando las Referencias</A
+></DT
+></DL
+></DD
+><DT
+>III. <A
+HREF="security.html"
+>Seguridad</A
+></DT
+><DD
+><DL
+><DT
+>15. <A
+HREF="security.index.html"
+>Seguridad</A
+></DT
+></DL
+></DD
+><DT
+>IV. <A
+HREF="features.html"
+>Características</A
+></DT
+><DD
+><DL
+><DT
+>16. <A
+HREF="features.http-auth.html"
+>Autentificación HTTP con PHP</A
+></DT
+><DT
+>17. <A
+HREF="features.cookies.html"
+>Cookies</A
+></DT
+><DT
+>18. <A
+HREF="features.xforms.html"
+>Manejo de XForms</A
+></DT
+><DT
+>19. <A
+HREF="features.file-upload.html"
+>Manejo de envío de archivos</A
+></DT
+><DT
+>20. <A
+HREF="features.remote-files.html"
+>Usando archivos remotos</A
+></DT
+><DT
+>21. <A
+HREF="features.connection-handling.html"
+>Manejando conexiones</A
+></DT
+><DT
+>22. <A
+HREF="features.persistent-connections.html"
+>Conexiones persistentes a bases de datos</A
+></DT
+><DT
+>23. <A
+HREF="features.safe-mode.html"
+>Modo Seguro (Safe Mode)</A
+></DT
+><DT
+>24. <A
+HREF="features.commandline.html"
+>Usando PHP desde la línea de comando</A
+></DT
+></DL
+></DD
+><DT
+>V. <A
+HREF="funcref.html"
+>Referencia de las Funciones</A
+></DT
+><DD
+><DL
+><DT
+>I. <A
+HREF="ref.apache.html"
+>Funciones específicas de Apache</A
+></DT
+><DT
+>II. <A
+HREF="ref.array.html"
+>Funciones de matrices</A
+></DT
+><DT
+>III. <A
+HREF="ref.aspell.html"
+>Funciones Aspell [deprecated]</A
+></DT
+><DT
+>IV. <A
+HREF="ref.bc.html"
+>Funciones matemáticas de precisión arbitraria BCMath</A
+></DT
+><DT
+>V. <A
+HREF="ref.bzip2.html"
+>Funciones de compresión Bzip2</A
+></DT
+><DT
+>VI. <A
+HREF="ref.calendar.html"
+>Funciones de calendario</A
+></DT
+><DT
+>VII. <A
+HREF="ref.ccvs.html"
+>Funciones del API de CCVS</A
+></DT
+><DT
+>VIII. <A
+HREF="ref.com.html"
+>Funciones COM y .Net (Windows)</A
+></DT
+><DT
+>IX. <A
+HREF="ref.classobj.html"
+>Funciones de Clases/Objetos</A
+></DT
+><DT
+>X. <A
+HREF="ref.cpdf.html"
+>Funciones ClibPDF</A
+></DT
+><DT
+>XI. <A
+HREF="ref.crack.html"
+>Crack Functions</A
+></DT
+><DT
+>XII. <A
+HREF="ref.curl.html"
+>Funciones CURL (Client URL Library)</A
+></DT
+><DT
+>XIII. <A
+HREF="ref.cybercash.html"
+>Funciones de pago electrónico</A
+></DT
+><DT
+>XIV. <A
+HREF="ref.cyrus.html"
+>Cyrus IMAP administration Functions</A
+></DT
+><DT
+>XV. <A
+HREF="ref.ctype.html"
+>Funciones de Tipo de Caracter</A
+></DT
+><DT
+>XVI. <A
+HREF="ref.dba.html"
+>Funciones de la capa de abstraccion de bases de datos (dbm-style)</A
+></DT
+><DT
+>XVII. <A
+HREF="ref.datetime.html"
+>Funciones de Fecha y Hora</A
+></DT
+><DT
+>XVIII. <A
+HREF="ref.dbase.html"
+>Funciones para dBase</A
+></DT
+><DT
+>XIX. <A
+HREF="ref.dbm.html"
+>Funciones DBM Functions [obsoletas]</A
+></DT
+><DT
+>XX. <A
+HREF="ref.dbx.html"
+>dbx Functions</A
+></DT
+><DT
+>XXI. <A
+HREF="ref.dbplus.html"
+>DB++ Functions</A
+></DT
+><DT
+>XXII. <A
+HREF="ref.dio.html"
+>Funciones de acceso directo a E/S</A
+></DT
+><DT
+>XXIII. <A
+HREF="ref.dir.html"
+>Funciones de Directorio</A
+></DT
+><DT
+>XXIV. <A
+HREF="ref.dom.html"
+>DOM Functions</A
+></DT
+><DT
+>XXV. <A
+HREF="ref.domxml.html"
+>Funciones DOM XML</A
+></DT
+><DT
+>XXVI. <A
+HREF="ref.dotnet.html"
+>.NET Functions</A
+></DT
+><DT
+>XXVII. <A
+HREF="ref.errorfunc.html"
+>Funciones de Gestión de Errores y Registros</A
+></DT
+><DT
+>XXVIII. <A
+HREF="ref.fam.html"
+>File Alteration Monitor Functions</A
+></DT
+><DT
+>XXIX. <A
+HREF="ref.fbsql.html"
+>FrontBase Functions</A
+></DT
+><DT
+>XXX. <A
+HREF="ref.filepro.html"
+>Funciones filePro</A
+></DT
+><DT
+>XXXI. <A
+HREF="ref.filesystem.html"
+>Funciones del Sistema de Archivos</A
+></DT
+><DT
+>XXXII. <A
+HREF="ref.fdf.html"
+>Funciones del Formato de Datos de Formulario</A
+></DT
+><DT
+>XXXIII. <A
+HREF="ref.fribidi.html"
+>FriBiDi Functions</A
+></DT
+><DT
+>XXXIV. <A
+HREF="ref.ftp.html"
+>Funciones FTP</A
+></DT
+><DT
+>XXXV. <A
+HREF="ref.funchand.html"
+>Funciones de Gestión de Funciones</A
+></DT
+><DT
+>XXXVI. <A
+HREF="ref.gettext.html"
+>Gettext</A
+></DT
+><DT
+>XXXVII. <A
+HREF="ref.gmp.html"
+>GMP Functions</A
+></DT
+><DT
+>XXXVIII. <A
+HREF="ref.http.html"
+>Funciones HTTP</A
+></DT
+><DT
+>XXXIX. <A
+HREF="ref.hyperwave.html"
+>Funciones para Hyperwave</A
+></DT
+><DT
+>XL. <A
+HREF="ref.hwapi.html"
+>Hyperwave API Functions</A
+></DT
+><DT
+>XLI. <A
+HREF="ref.iconv.html"
+>iconv Functions</A
+></DT
+><DT
+>XLII. <A
+HREF="ref.image.html"
+>Funciones para imágenes</A
+></DT
+><DT
+>XLIII. <A
+HREF="ref.imap.html"
+>Funciones IMAP</A
+></DT
+><DT
+>XLIV. <A
+HREF="ref.ifx.html"
+>Funciones de Informix</A
+></DT
+><DT
+>XLV. <A
+HREF="ref.ibase.html"
+>Funciones InterBase</A
+></DT
+><DT
+>XLVI. <A
+HREF="ref.ingres.html"
+>Ingres II functions</A
+></DT
+><DT
+>XLVII. <A
+HREF="ref.ircg.html"
+>IRC Gateway Functions</A
+></DT
+><DT
+>XLVIII. <A
+HREF="ref.java.html"
+>Integración de Java y PHP</A
+></DT
+><DT
+>XLIX. <A
+HREF="ref.ldap.html"
+>Funciones LDAP</A
+></DT
+><DT
+>L. <A
+HREF="ref.lzf.html"
+>LZF Functions</A
+></DT
+><DT
+>LI. <A
+HREF="ref.mail.html"
+>Funciones de Correo</A
+></DT
+><DT
+>LII. <A
+HREF="ref.mailparse.html"
+>Funciones mailparse</A
+></DT
+><DT
+>LIII. <A
+HREF="ref.math.html"
+>Funciones matemáticas</A
+></DT
+><DT
+>LIV. <A
+HREF="ref.mbstring.html"
+>Multibyte String Functions</A
+></DT
+><DT
+>LV. <A
+HREF="ref.mcal.html"
+>MCAL functions</A
+></DT
+><DT
+>LVI. <A
+HREF="ref.mcrypt.html"
+>Funciones de Cifrado Mcrypt</A
+></DT
+><DT
+>LVII. <A
+HREF="ref.mcve.html"
+>MCVE Payment Functions</A
+></DT
+><DT
+>LVIII. <A
+HREF="ref.mhash.html"
+>Funciones Mhash</A
+></DT
+><DT
+>LIX. <A
+HREF="ref.mime-magic.html"
+>Funciones Mimetype</A
+></DT
+><DT
+>LX. <A
+HREF="ref.mssql.html"
+>Funciones de Microsoft SQL Server</A
+></DT
+><DT
+>LXI. <A
+HREF="ref.ming.html"
+>Ming functions for Flash</A
+></DT
+><DT
+>LXII. <A
+HREF="ref.misc.html"
+>Funciones de Miscelánea</A
+></DT
+><DT
+>LXIII. <A
+HREF="ref.mnogosearch.html"
+>mnoGoSearch Functions</A
+></DT
+><DT
+>LXIV. <A
+HREF="ref.msql.html"
+>Funciones mSQL</A
+></DT
+><DT
+>LXV. <A
+HREF="ref.mysql.html"
+>Funciones MySQL</A
+></DT
+><DT
+>LXVI. <A
+HREF="ref.mysqli.html"
+>Extensión mejorada de MySQL</A
+></DT
+><DT
+>LXVII. <A
+HREF="ref.msession.html"
+>Mohawk Software Session Handler Functions</A
+></DT
+><DT
+>LXVIII. <A
+HREF="ref.muscat.html"
+>muscat Functions</A
+></DT
+><DT
+>LXIX. <A
+HREF="ref.network.html"
+>Funciones de Red</A
+></DT
+><DT
+>LXX. <A
+HREF="ref.ncurses.html"
+>Funciones de Control de Pantalla con Terminal Ncurses</A
+></DT
+><DT
+>LXXI. <A
+HREF="ref.notes.html"
+>Lotus Notes Functions</A
+></DT
+><DT
+>LXXII. <A
+HREF="ref.nsapi.html"
+>NSAPI-specific Functions</A
+></DT
+><DT
+>LXXIII. <A
+HREF="ref.odbc.html"
+>ODBC functions</A
+></DT
+><DT
+>LXXIV. <A
+HREF="ref.objaggregation.html"
+>Object Aggregation/Composition Functions</A
+></DT
+><DT
+>LXXV. <A
+HREF="ref.oci8.html"
+>Funciones de Oracle 8</A
+></DT
+><DT
+>LXXVI. <A
+HREF="ref.openssl.html"
+>OpenSSL Functions</A
+></DT
+><DT
+>LXXVII. <A
+HREF="ref.oracle.html"
+>Funciones Oracle</A
+></DT
+><DT
+>LXXVIII. <A
+HREF="ref.ovrimos.html"
+>Ovrimos SQL functions</A
+></DT
+><DT
+>LXXIX. <A
+HREF="ref.outcontrol.html"
+>Funciones de Control de Salida</A
+></DT
+><DT
+>LXXX. <A
+HREF="ref.overload.html"
+>Object property and method call overloading</A
+></DT
+><DT
+>LXXXI. <A
+HREF="ref.pdf.html"
+>Funciones PDF</A
+></DT
+><DT
+>LXXXII. <A
+HREF="ref.pfpro.html"
+>Verisign Payflow Pro functions</A
+></DT
+><DT
+>LXXXIII. <A
+HREF="ref.info.html"
+>Opciones e Información de PHP</A
+></DT
+><DT
+>LXXXIV. <A
+HREF="ref.posix.html"
+>Funciones POSIX</A
+></DT
+><DT
+>LXXXV. <A
+HREF="ref.pgsql.html"
+>Funciones PostgreSQL</A
+></DT
+><DT
+>LXXXVI. <A
+HREF="ref.pcntl.html"
+>Process Control Functions</A
+></DT
+><DT
+>LXXXVII. <A
+HREF="ref.exec.html"
+>Funciones de Ejecución de Programas</A
+></DT
+><DT
+>LXXXVIII. <A
+HREF="ref.printer.html"
+>Printer Functions</A
+></DT
+><DT
+>LXXXIX. <A
+HREF="ref.pspell.html"
+>Pspell Functions</A
+></DT
+><DT
+>XC. <A
+HREF="ref.readline.html"
+>GNU Readline</A
+></DT
+><DT
+>XCI. <A
+HREF="ref.recode.html"
+>Funciones GNU Recode</A
+></DT
+><DT
+>XCII. <A
+HREF="ref.pcre.html"
+>Funciones de Expresiones Regulares (Compatibles con
+  Perl)</A
+></DT
+><DT
+>XCIII. <A
+HREF="ref.qtdom.html"
+>qtdom Functions</A
+></DT
+><DT
+>XCIV. <A
+HREF="ref.regex.html"
+>Funciones de Expresiones Regulares (POSIX Extendido)</A
+></DT
+><DT
+>XCV. <A
+HREF="ref.sem.html"
+>Funciones Semáforo y de memoria compartida</A
+></DT
+><DT
+>XCVI. <A
+HREF="ref.sesam.html"
+>SESAM database functions</A
+></DT
+><DT
+>XCVII. <A
+HREF="ref.session.html"
+>Funciones para el manejo de sesiones</A
+></DT
+><DT
+>XCVIII. <A
+HREF="ref.shmop.html"
+>Funciones de Memoria Compartida</A
+></DT
+><DT
+>XCIX. <A
+HREF="ref.simplexml.html"
+>SimpleXML functions</A
+></DT
+><DT
+>C. <A
+HREF="ref.soap.html"
+>SOAP Functions</A
+></DT
+><DT
+>CI. <A
+HREF="ref.sqlite.html"
+>SQLite</A
+></DT
+><DT
+>CII. <A
+HREF="ref.swf.html"
+>Shockwave Flash functions</A
+></DT
+><DT
+>CIII. <A
+HREF="ref.snmp.html"
+>Funciones SNMP</A
+></DT
+><DT
+>CIV. <A
+HREF="ref.sockets.html"
+>Funciones de Socket</A
+></DT
+><DT
+>CV. <A
+HREF="ref.spl.html"
+>Standard PHP Library (SPL) Functions</A
+></DT
+><DT
+>CVI. <A
+HREF="ref.stream.html"
+>Funciones de Secuencias</A
+></DT
+><DT
+>CVII. <A
+HREF="ref.strings.html"
+>Funciones de Cadenas</A
+></DT
+><DT
+>CVIII. <A
+HREF="ref.sybase.html"
+>Funciones de Sybase</A
+></DT
+><DT
+>CIX. <A
+HREF="ref.tcpwrap.html"
+>TCP Wrappers Functions</A
+></DT
+><DT
+>CX. <A
+HREF="ref.tidy.html"
+>Tidy Functions</A
+></DT
+><DT
+>CXI. <A
+HREF="ref.tokenizer.html"
+>Tokenizer Functions</A
+></DT
+><DT
+>CXII. <A
+HREF="ref.url.html"
+>Funciones de URL</A
+></DT
+><DT
+>CXIII. <A
+HREF="ref.var.html"
+>Funciones de Variables</A
+></DT
+><DT
+>CXIV. <A
+HREF="ref.vpopmail.html"
+>vpopmail Functions</A
+></DT
+><DT
+>CXV. <A
+HREF="ref.w32api.html"
+>W32api Functions</A
+></DT
+><DT
+>CXVI. <A
+HREF="ref.wddx.html"
+>Funciones WDDX</A
+></DT
+><DT
+>CXVII. <A
+HREF="ref.xml.html"
+>Funciones de intérprete XML</A
+></DT
+><DT
+>CXVIII. <A
+HREF="ref.xmlrpc.html"
+>XML-RPC Functions</A
+></DT
+><DT
+>CXIX. <A
+HREF="ref.xdiff.html"
+>xdiff Functions</A
+></DT
+><DT
+>CXX. <A
+HREF="ref.xsl.html"
+>XSL functions</A
+></DT
+><DT
+>CXXI. <A
+HREF="ref.xslt.html"
+>XSLT functions</A
+></DT
+><DT
+>CXXII. <A
+HREF="ref.yaz.html"
+>YAZ</A
+></DT
+><DT
+>CXXIII. <A
+HREF="ref.nis.html"
+>NIS funciona</A
+></DT
+><DT
+>CXXIV. <A
+HREF="ref.zip.html"
+>Funciones de manejo de archivos Zip (sólo
+  lectura)</A
+></DT
+><DT
+>CXXV. <A
+HREF="ref.zlib.html"
+>Funciones de Compresión Zlib</A
+></DT
+></DL
+></DD
+><DT
+>VI. <A
+HREF="zend.html"
+>Zend API</A
+></DT
+><DD
+><DL
+><DT
+>25. <A
+HREF="zend.overview.html"
+>Overview</A
+></DT
+><DT
+>26. <A
+HREF="zend.possibilities.html"
+>Extension Possibilities</A
+></DT
+><DT
+>27. <A
+HREF="zend.layout.html"
+>Source Layout</A
+></DT
+><DT
+>28. <A
+HREF="zend.build.html"
+>PHP's Automatic Build System</A
+></DT
+><DT
+>29. <A
+HREF="zend.creating.html"
+>Creating Extensions</A
+></DT
+><DT
+>30. <A
+HREF="zend.using.html"
+>Using Extensions</A
+></DT
+><DT
+>31. <A
+HREF="zend.troubleshooting.html"
+>Troubleshooting</A
+></DT
+><DT
+>32. <A
+HREF="zend.structure.html"
+>Source Discussion</A
+></DT
+><DT
+>33. <A
+HREF="zend.arguments.html"
+>Accepting Arguments</A
+></DT
+><DT
+>34. <A
+HREF="zend.variables.html"
+>Creating Variables</A
+></DT
+><DT
+>35. <A
+HREF="zend.copy-constructor.html"
+>Duplicating Variable Contents: The Copy Constructor</A
+></DT
+><DT
+>36. <A
+HREF="zend.returning.html"
+>Returning Values</A
+></DT
+><DT
+>37. <A
+HREF="zend.printing.html"
+>Printing Information</A
+></DT
+><DT
+>38. <A
+HREF="zend.startup-and-shutdown.html"
+>Startup and Shutdown Functions</A
+></DT
+><DT
+>39. <A
+HREF="zend.calling-user-functions.html"
+>Calling User Functions</A
+></DT
+><DT
+>40. <A
+HREF="zend.ini-file-support.html"
+>Initialization File Support</A
+></DT
+><DT
+>41. <A
+HREF="zend.where-to-go.html"
+>Where to Go from Here</A
+></DT
+><DT
+>42. <A
+HREF="zend.configuration-macros.html"
+>Reference: Some Configuration Macros</A
+></DT
+><DT
+>43. <A
+HREF="zend.api-macros.html"
+>API Macros</A
+></DT
+></DL
+></DD
+><DT
+>VII. <A
+HREF="api.html"
+>PHP API: Interfaces para autores de extensiones</A
+></DT
+><DD
+><DL
+><DT
+>44. <A
+HREF="streams.html"
+>API de Secuencia para Autores de Extensiones PHP</A
+></DT
+></DL
+></DD
+><DT
+>VIII. <A
+HREF="faq.html"
+>FAQ: Preguntas frecuentes</A
+></DT
+><DD
+><DL
+><DT
+>45. <A
+HREF="faq.general.html"
+>General Information</A
+></DT
+><DT
+>46. <A
+HREF="faq.mailinglist.html"
+>Listas de correo</A
+></DT
+><DT
+>47. <A
+HREF="faq.obtaining.html"
+>Obtención de PHP</A
+></DT
+><DT
+>48. <A
+HREF="faq.databases.html"
+>Database issues</A
+></DT
+><DT
+>49. <A
+HREF="faq.installation.html"
+>Instalación</A
+></DT
+><DT
+>50. <A
+HREF="faq.build.html"
+>Build Problems</A
+></DT
+><DT
+>51. <A
+HREF="faq.using.html"
+>Uso de PHP</A
+></DT
+><DT
+>52. <A
+HREF="faq.html.html"
+>PHP and HTML</A
+></DT
+><DT
+>53. <A
+HREF="faq.com.html"
+>PHP and COM</A
+></DT
+><DT
+>54. <A
+HREF="faq.languages.html"
+>PHP y otros lenguajes</A
+></DT
+><DT
+>55. <A
+HREF="faq.migration.html"
+>Migración de PHP 2 a PHP 3</A
+></DT
+><DT
+>56. <A
+HREF="faq.migration4.html"
+>Migración de PHP 3 a PHP 4</A
+></DT
+><DT
+>57. <A
+HREF="faq.misc.html"
+>Preguntas Varias</A
+></DT
+></DL
+></DD
+><DT
+>IX. <A
+HREF="appendixes.html"
+>Apéndices</A
+></DT
+><DD
+><DL
+><DT
+>A. <A
+HREF="history.html"
+>Historia de PHP y proyectos relacionados</A
+></DT
+><DT
+>B. <A
+HREF="migration5.html"
+>Migrating from PHP 4 to PHP 5</A
+></DT
+><DT
+>C. <A
+HREF="migration4.html"
+>Migración de PHP 3 a PHP 4</A
+></DT
+><DT
+>D. <A
+HREF="migration.html"
+>Migración desde PHP/FI 2 hacia PHP 3</A
+></DT
+><DT
+>E. <A
+HREF="debugger.html"
+>Depuración en PHP</A
+></DT
+><DT
+>F. <A
+HREF="phpdevel.html"
+>Extensión de PHP 3</A
+></DT
+><DT
+>G. <A
+HREF="configure.html"
+>Configure options</A
+></DT
+><DT
+>H. <A
+HREF="ini.html"
+>Lista de directivas de núcleo en <TT
+CLASS="filename"
+>php.ini</TT
+></A
+></DT
+><DT
+>I. <A
+HREF="aliases.html"
+>Lista de alias de funciones</A
+></DT
+><DT
+>J. <A
+HREF="reserved.html"
+>Lista de Palabras Reservadas</A
+></DT
+><DT
+>K. <A
+HREF="resource.html"
+>Lista de Tipos de Recurso</A
+></DT
+><DT
+>L. <A
+HREF="wrappers.html"
+>Lista de Protocolos/Envolturas Soportadas</A
+></DT
+><DT
+>M. <A
+HREF="filters.html"
+>List of Available Filters</A
+></DT
+><DT
+>N. <A
+HREF="transports.html"
+>Lista de Transportes de Sockets Soportados</A
+></DT
+><DT
+>O. <A
+HREF="types.comparisons.html"
+>Tablas de comparación de tipos PHP</A
+></DT
+><DT
+>P. <A
+HREF="tokens.html"
+>Lista de Identificadores (tokens) del Analizador</A
+></DT
+><DT
+>Q. <A
+HREF="about.html"
+>Sobre el manual</A
+></DT
+><DT
+>R. <A
+HREF="opl.license.html"
+>Open Publication License</A
+></DT
+><DT
+>S. <A
+HREF="indexes.html"
+>Índice de funciones</A
+></DT
+><DT
+>T. <A
+HREF="missing-stuff.html"
+>Material que falta</A
+></DT
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="preface.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Prefacio</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

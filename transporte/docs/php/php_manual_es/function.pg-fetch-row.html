@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_Fetch_Row</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_fetch_result"
+HREF="function.pg-fetch-result.html"><LINK
+REL="NEXT"
+TITLE="pg_field_is_null"
+HREF="function.pg-field-is-null.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-fetch-result.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-field-is-null.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-fetch-row"
+></A
+>pg_Fetch_Row</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN88698"
+></A
+><P
+>    (PHP 3&#62;= 3.0.1, PHP 4 , PHP 5)</P
+>pg_Fetch_Row&nbsp;--&nbsp;obtiene la fila como un array enumerado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN88701"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>pg_fetch_row</B
+> ( int result, int row)<BR
+></BR
+><P
+> 
+     Devuelve: Un array que se corresponde con la fila obtenida, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en el
+     caso de que no haya más filas.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>pg_fetch_row()</B
+> obtiene una fila de datos a partir
+     del resultado asociado con el identificador de resultado especificado. La fila
+     se devuelve en forma de array. Cada columna del resultado se almacena en una
+     posición del array, empezando a partir de la posición 0.
+    </P
+><P
+>&#13;     Las siguientes llamadas a <B
+CLASS="function"
+>pg_fetch_row()</B
+> devolverán la
+     fila siguiente en el conjunto resultado, o falso en el caso de que no haya
+     más filas que devolver.
+    </P
+><P
+>&#13;     Ver también: <A
+HREF="function.pg-fetch-array.html"
+><B
+CLASS="function"
+>pg_fetch_array()</B
+></A
+>,
+     <A
+HREF="function.pg-fetch-object.html"
+><B
+CLASS="function"
+>pg_fetch_object()</B
+></A
+>,
+     <B
+CLASS="function"
+>pg_result()</B
+>.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN88722"
+></A
+><P
+><B
+>Ejemplo 1. Postgres fetch row</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$conn </font><font color="#007700">= </font><font color="#0000BB">pg_pconnect</font><font color="#007700">(</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">""</font><font color="#007700">,</font><font color="#DD0000">"publisher"</font><font color="#007700">);<br />if (!</font><font color="#0000BB">$conn</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"An error occured.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br /></font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">pg_Exec </font><font color="#007700">(</font><font color="#0000BB">$conn</font><font color="#007700">, </font><font color="#DD0000">"SELECT * FROM authors"</font><font color="#007700">);<br />if (!</font><font color="#0000BB">$result</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"An error occured.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /><br /></font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">pg_fetch_row </font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);<br />echo </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">" &lt;- row\n"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">pg_fetch_row </font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">);<br />echo </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">" &lt;- row\n"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">pg_fetch_row </font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">);<br />echo </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">] . </font><font color="#DD0000">" &lt;- row\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-fetch-result.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-field-is-null.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_fetch_result</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_field_is_null</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>odbc_binmode</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="PREVIOUS"
+TITLE="odbc_autocommit"
+HREF="function.odbc-autocommit.html"><LINK
+REL="NEXT"
+TITLE="odbc_close_all"
+HREF="function.odbc-close-all.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.odbc-autocommit.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.odbc-close-all.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.odbc-binmode"
+></A
+>odbc_binmode</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN74235"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>odbc_binmode&nbsp;--&nbsp;Manejo de campos de datos binarios</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN74238"
+></A
+><H2
+>Descripcion</H2
+>int <B
+CLASS="methodname"
+>odbc_binmode</B
+> ( int result_id, int mode)<BR
+></BR
+><P
+>(Elementos afectados ODBC SQL: BINARY, VARBINARY, LONGVARBINARY)
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;      ODBC_BINMODE_PASSTHRU: Paso a traves de datos binarios
+      </P
+></LI
+><LI
+><P
+>&#13;      ODBC_BINMODE_RETURN: Devuelve como es
+      </P
+></LI
+><LI
+><P
+>&#13;      ODBC_BINMODE_CONVERT: Devuelve convertido en caracter
+      </P
+></LI
+></UL
+><P
+>&#13;    Cuando los datos binarios en SQL son convertidos a datos caracter
+    en C, cada byte (8 bits) de datos fuente es representada como
+    dos caracteres en ASCII.
+    Esos caracteres son la representacion en ASCII de los numeros en su
+    forma Hexadecimal. Por ejemplo, un 00000001 binario es
+    convertido a <VAR
+CLASS="literal"
+>"01"</VAR
+> y un 11111111 binario es
+    convertido a <VAR
+CLASS="literal"
+>"FF"</VAR
+>.
+
+     <DIV
+CLASS="table"
+><A
+NAME="AEN74260"
+></A
+><P
+><B
+>Tabla 1. Manejo de LONGVARBINARY</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>modo binario</TH
+><TH
+>longreadlen</TH
+><TH
+>resultado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ODBC_BINMODE_PASSTHRU</TD
+><TD
+>0</TD
+><TD
+>passthru</TD
+></TR
+><TR
+><TD
+>ODBC_BINMODE_RETURN</TD
+><TD
+>0</TD
+><TD
+>passthru</TD
+></TR
+><TR
+><TD
+>ODBC_BINMODE_CONVERT</TD
+><TD
+>0</TD
+><TD
+>passthru</TD
+></TR
+><TR
+><TD
+>ODBC_BINMODE_PASSTHRU</TD
+><TD
+>0</TD
+><TD
+>passthru</TD
+></TR
+><TR
+><TD
+>ODBC_BINMODE_PASSTHRU</TD
+><TD
+>&#62;0</TD
+><TD
+>passthru</TD
+></TR
+><TR
+><TD
+>ODBC_BINMODE_RETURN</TD
+><TD
+>&#62;0</TD
+><TD
+>Devuleve como es</TD
+></TR
+><TR
+><TD
+>ODBC_BINMODE_CONVERT</TD
+><TD
+>&#62;0</TD
+><TD
+>Devuelve como caracter</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+><P
+>&#13;     Si usamos <A
+HREF="function.odbc-fetch-into.html"
+><B
+CLASS="function"
+>odbc_fetch_into()</B
+></A
+>, passthru significara
+     que una cadena vacia es devuelta por esas campos.</P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>result_id</VAR
+> es <VAR
+CLASS="literal"
+>0</VAR
+>, las
+     definiciones se aplican por defecto para nuevos resultados.
+
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+> Por defecto, longreadlen es
+       <VAR
+CLASS="literal"
+>4096</VAR
+> y el modo binario por defecto es
+       <VAR
+CLASS="literal"
+>ODBC_BINMODE_RETURN</VAR
+>.  El manejo de campos binarias
+       largas tambien esta afectado por 
+       <A
+HREF="function.odbc-longreadlen.html"
+><B
+CLASS="function"
+>odbc_longreadlen()</B
+></A
+>
+    </P
+></BLOCKQUOTE
+></DIV
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.odbc-autocommit.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.odbc-close-all.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>odbc_autocommit</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>odbc_close_all</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysql_get_proto_info</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones MySQL"
+HREF="ref.mysql.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_get_host_info"
+HREF="function.mysql-get-host-info.html"><LINK
+REL="NEXT"
+TITLE="mysql_get_server_info"
+HREF="function.mysql-get-server-info.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-get-host-info.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-get-server-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysql-get-proto-info"
+></A
+>mysql_get_proto_info</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN63260"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.5, PHP 5)</P
+>mysql_get_proto_info&nbsp;--&nbsp;Obtener información del protocolo
+    MySQL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN63263"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mysql_get_proto_info</B
+> ( [resource id_enlace])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>mysql_get_proto_info()</B
+> devuelve la
+     versión del protocolo usada por la
+     conexión <VAR
+CLASS="parameter"
+>id_enlace</VAR
+>. Si se
+     omite <VAR
+CLASS="parameter"
+>id_enlace</VAR
+>, se usará la
+     última conexión abierta.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN63276"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo
+      de <B
+CLASS="function"
+>mysql_get_proto_info()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$enlace </font><font color="#007700">= </font><font color="#0000BB">mysql_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"mysql_user"</font><font color="#007700">, </font><font color="#DD0000">"mysql_password"</font><font color="#007700">);<br />if (!</font><font color="#0000BB">$enlace</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</font><font color="#DD0000">"No pudo conectarse: " </font><font color="#007700">. </font><font color="#0000BB">mysql_error</font><font color="#007700">());<br />}<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Versi&amp;oacute;n del protocolo MySQL: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysql_get_proto_info</font><font color="#007700">());<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       El ejemplo anterior produciría la siguiente salida:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Versi&#38;oacute;n del protocolo MySQL: 10</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.mysql-get-client-info.html"
+><B
+CLASS="function"
+>mysql_get_client_info()</B
+></A
+>,
+     <A
+HREF="function.mysql-get-host-info.html"
+><B
+CLASS="function"
+>mysql_get_host_info()</B
+></A
+> y
+     <A
+HREF="function.mysql-get-server-info.html"
+><B
+CLASS="function"
+>mysql_get_server_info()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-get-host-info.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-get-server-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_get_host_info</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_get_server_info</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

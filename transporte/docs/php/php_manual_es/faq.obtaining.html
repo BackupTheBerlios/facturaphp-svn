@@ -1,0 +1,622 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Obtención de PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQ: Preguntas frecuentes"
+HREF="faq.html"><LINK
+REL="PREVIOUS"
+TITLE="Listas de correo"
+HREF="faq.mailinglist.html"><LINK
+REL="NEXT"
+TITLE="Database issues"
+HREF="faq.databases.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="faq.mailinglist.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.databases.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="faq.obtaining"
+>Capítulo 47. Obtención de PHP</A
+></H1
+><P
+>&#13;    Esta sección contiene detalles sobre las ubicaciones de
+    descarga de PHP, y asuntos particulares a ciertos sistemas
+    operativos.
+   </P
+><DIV
+CLASS="qandaset"
+><DL
+><DT
+>1. <A
+HREF="faq.obtaining.html#faq.obtaining.where"
+>¿Desde dónde puedo obtener PHP?</A
+></DT
+><DT
+>2. <A
+HREF="faq.obtaining.html#faq.obtaining.precompiled"
+>¿Hay versiones binarias pre-compiladas
+     disponibles?</A
+></DT
+><DT
+>3. <A
+HREF="faq.obtaining.html#faq.obtaining.optional"
+>&#13;      ¿En dónde puedo encontrar las bibliotecas
+      requeridas para compilar algunas de las extensiones opcionales
+      de PHP?
+     </A
+></DT
+><DT
+>4. <A
+HREF="faq.obtaining.html#faq.obtaining.how"
+>¿Cómo logro que éstas bibliotecas
+     funcionen?</A
+></DT
+><DT
+>5. <A
+HREF="faq.obtaining.html#faq.obtaining.compileNT"
+>&#13;      He conseguido la última versión del código
+      PHP desde el repositorio CVS en mi máquina Windows,
+      ¿qué necesito para su compilación?
+     </A
+></DT
+><DT
+>6. <A
+HREF="faq.obtaining.html#faq.obtaining.browscap"
+>¿En dónde encuentro el Archivo de Capacidades
+     del Navegador?</A
+></DT
+></DL
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.obtaining.where"
+></A
+><B
+>1. </B
+>¿Desde dónde puedo obtener PHP?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Puede descargar PHP desde cualquiera de los miembros de la red
+      de sitios PHP. Estos pueden encontrarse en <A
+HREF="http://www.php.net/"
+TARGET="_top"
+>http://www.php.net/</A
+>. También puede usar CVS
+      anónimo para obtener la última versión del
+      código fuente. Para más información,
+      visite <A
+HREF="http://www.php.net/anoncvs.php"
+TARGET="_top"
+>http://www.php.net/anoncvs.php</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.obtaining.precompiled"
+></A
+><B
+>2. </B
+>¿Hay versiones binarias pre-compiladas
+     disponibles?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Nosotros sólo distribuimos binarios pre-compilados para
+      sistemas Windows, dado que no tenemos la capacidad de compilar
+      PHP para cada plataforma Linux/Unix popular con todas las
+      combinaciones de extensiones. También note que muchas
+      distribuciones Linux vienen con PHP integrado en la
+      actualidad. Los binarios de Windows pueden descargarse desde
+      nuestra página de <A
+HREF="http://www.php.net/downloads.php"
+TARGET="_top"
+>Descargas</A
+>, para encontrar
+      binarios Linux, por favor visite el sitio web de su
+      distribución.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.obtaining.optional"
+></A
+><B
+>3. </B
+>
+      ¿En dónde puedo encontrar las bibliotecas
+      requeridas para compilar algunas de las extensiones opcionales
+      de PHP?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+        Aquellas marcadas con el signo * son líbrerias que no
+        son seguras en entornos multi-hilos, y no deberían ser
+        usadas con PHP como módulo de servidor en los
+        servidores web milti-hilos de Windows (IIS, Netscape). Por el
+        momento, esto no tiene importancia en los entornos Unix.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+     </P
+><P
+>&#13;      <P
+></P
+><UL
+><LI
+><P
+>&#13;         <A
+HREF="ftp://ftp.openldap.org/pub/openldap/openldap-stable.tgz"
+TARGET="_top"
+>LDAP (Unix)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="ftp://terminator.rs.itd.umich.edu/ldap/ldap-3.3.tar.Z"
+TARGET="_top"
+>LDAP* (Unix)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://developer.netscape.com/tech/directory/downloads.html"
+TARGET="_top"
+>LDAP (Unix/Win)</A
+>
+         : Netscape Directory (LDAP) SDK 1.1.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://developer.netscape.com/tech/directory/downloads.html"
+TARGET="_top"
+>servidor LDAP
+         gratuito</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.sleepycat.com/"
+TARGET="_top"
+>Berkeley DB2 (Unix/Win)</A
+>
+         : http://www.sleepycat.com/.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.net-snmp.org/"
+TARGET="_top"
+>SNMP* (Unix): </A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.boutell.com/gd/"
+TARGET="_top"
+>GD* (Unix/Win)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.hughes.com.au/"
+TARGET="_top"
+>mSQL* (Unix)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.postgresql.org/"
+TARGET="_top"
+>PostgreSQL (Unix)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="ftp://ftp.cac.washington.edu/imap/"
+TARGET="_top"
+>IMAP* (Win/Unix)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.sybase.com/"
+TARGET="_top"
+>Sybase-CT* (Linux, libc5)</A
+> :
+         Disponible localmente.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.freetype.org/"
+TARGET="_top"
+>FreeType (libttf):</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.gzip.org/zlib/"
+TARGET="_top"
+>ZLib (Unix/Win32)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.jclark.com/xml/expat.html"
+TARGET="_top"
+>procesador XML expat
+         (Unix/Win32)</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://www.pdflib.com/products/pdflib/index.html"
+TARGET="_top"
+>PDFLib</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://mcrypt.sourceforge.net/"
+TARGET="_top"
+>mcrypt</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://mhash.sourceforge.net/"
+TARGET="_top"
+>mhash</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="ftp://sunsite.unc.edu/pub/Linux/libs/graphics/"
+TARGET="_top"
+>t1lib</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://dmalloc.com/"
+TARGET="_top"
+>dmalloc</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://aspell.sourceforge.net/"
+TARGET="_top"
+>aspell</A
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         <A
+HREF="http://cnswww.cns.cwru.edu/~chet/readline/rltop.html"
+TARGET="_top"
+>readline</A
+>.
+        </P
+></LI
+></UL
+>
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.obtaining.how"
+></A
+><B
+>4. </B
+>¿Cómo logro que éstas bibliotecas
+     funcionen?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Necesitará seguir las instrucciones provistas con la
+      biblioteca. Algunas de estas bibliotecas son detectadas
+      automáticamente cuando ejecuta el script 'configure' de
+      PHP (como la biblioteca GD), y otras tendrán que ser
+      habilitadas usando opciones
+      '<VAR
+CLASS="literal"
+>--with-EXTENSION</VAR
+>' con
+      '<VAR
+CLASS="literal"
+>configure</VAR
+>'. Ejecute '<VAR
+CLASS="literal"
+>configure
+      --help</VAR
+>' para recibir un listado de éstas
+      opciones.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.obtaining.compileNT"
+></A
+><B
+>5. </B
+>
+      He conseguido la última versión del código
+      PHP desde el repositorio CVS en mi máquina Windows,
+      ¿qué necesito para su compilación?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Primero, necesita Microsoft Visual C++ v6 (la versión 5
+      puede que funcione, pero nosotros usamos la versión 6), y
+      necesitará algunos archivos de soporte. Vea la
+      sección del manual sobre <A
+HREF="install.windows.html#install.windows.build"
+>la compilación de PHP
+      desde las fuentes en Windows</A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.obtaining.browscap"
+></A
+><B
+>6. </B
+>¿En dónde encuentro el Archivo de Capacidades
+     del Navegador?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Puede encontrar un archivo <TT
+CLASS="filename"
+>browscap.ini</TT
+> en
+      <A
+HREF="http://www.garykeith.com/browsers/downloads.asp"
+TARGET="_top"
+>http://www.garykeith.com/browsers/downloads.asp</A
+>.
+     </P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="faq.mailinglist.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.databases.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Listas de correo</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Database issues</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

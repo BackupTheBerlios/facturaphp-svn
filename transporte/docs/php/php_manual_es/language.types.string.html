@@ -1,0 +1,1262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Cadenas</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Tipos"
+HREF="language.types.html"><LINK
+REL="PREVIOUS"
+TITLE="Números de punto flotante"
+HREF="language.types.float.html"><LINK
+REL="NEXT"
+TITLE="Matrices"
+HREF="language.types.array.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.types.float.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 6. Tipos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.array.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.types.string"
+>Cadenas</A
+></H1
+><P
+>&#13;    Un valor <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+> es una serie de caracteres. En PHP,
+    un caracter es lo mismo que un byte, es decir, hay exactamente 256
+    tipos de caracteres diferentes. Esto implica también que
+    PHP no tiene soporte nativo de Unicode. Vea
+    <A
+HREF="function.utf8-encode.html"
+><B
+CLASS="function"
+>utf8_encode()</B
+></A
+> y
+    <A
+HREF="function.utf8-decode.html"
+><B
+CLASS="function"
+>utf8_decode()</B
+></A
+> para conocer sobre el soporte
+    Unicode.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     El que una cadena se haga muy grande no es un problema. PHP no
+     impone límite práctico alguno sobre el
+     tamaño de las cadenas, así que no hay ninguna
+     razón para preocuparse sobre las cadenas largas.
+    </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.string.syntax"
+>Sintaxis</A
+></H2
+><P
+>&#13;     Un literal de cadena puede especificarse en tres formas
+     diferentes.
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        <A
+HREF="language.types.string.html#language.types.string.syntax.single"
+>comillas
+        simples</A
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        <A
+HREF="language.types.string.html#language.types.string.syntax.double"
+>comillas
+        dobles</A
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        <A
+HREF="language.types.string.html#language.types.string.syntax.heredoc"
+>sintaxis
+        heredoc</A
+>
+       </P
+></LI
+></UL
+>
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.string.syntax.single"
+>Comillas simples</A
+></H3
+><P
+>&#13;      La forma más simple de especificar una cadena sencilla es
+      rodearla de comillas simples (el caracter <VAR
+CLASS="literal"
+>'</VAR
+>).
+     </P
+><P
+>&#13;      Para especificar una comilla sencilla literal, necesita
+      escaparla con una barra invertida (<VAR
+CLASS="literal"
+>\</VAR
+>), como
+      en muchos otros lenguajes. Si una barra invertida necesita
+      aparecer antes de una comilla sencilla o al final de la cadena,
+      necesitará doblarla. Note que si intenta escapar
+      cualquier otro caracter, ¡la barra invertida será
+      impresa también! De modo que, por lo general, no hay
+      necesidad de escapar la barra invertida misma.
+      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+        En PHP 3, se generará una advertencia de nivel
+        <VAR
+CLASS="literal"
+>E_NOTICE</VAR
+> cuando esto ocurra.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+      <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+        A diferencia de las otras dos sintaxis, las <A
+HREF="language.variables.html"
+>variables</A
+> y secuencias de
+        escape para caracteres especiales <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+>
+        serán expandidas cuando ocurren al interior de cadenas
+        entre comillas sencillas.
+       </P
+></BLOCKQUOTE
+></DIV
+>
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2301"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#DD0000">'esta es una cadena simple'</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">'Tambi&amp;eacute;n puede tener saltos de l&amp;iacute;nea embebidos<br />en las cadenas de esta forma, ya que<br />es v&amp;aacute;lido'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Imprime: Arnold dijo una vez: "I'll be back"<br /></font><font color="#007700">echo </font><font color="#DD0000">'Arnold dijo una vez: "I\'ll be back"'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Imprime: Ha eliminado C:\*.*?<br /></font><font color="#007700">echo </font><font color="#DD0000">'Ha eliminado C:\\*.*?'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Imprime: Ha eliminado C:\*.*?<br /></font><font color="#007700">echo </font><font color="#DD0000">'Ha eliminado C:\*.*?'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Imprime: Esto no va a expandirse: \n una nueva linea<br /></font><font color="#007700">echo </font><font color="#DD0000">'Esto no va a expandirse: \n una nueva linea'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Imprime: Las variables no se $expanden $tampoco<br /></font><font color="#007700">echo </font><font color="#DD0000">'Las variables no se $expanden $tampoco'</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.string.syntax.double"
+>Comillas dobles</A
+></H3
+><P
+>&#13;      Si la cadena se encuentra rodeada de comillas dobles ("), PHP
+      entiende más secuencias de escape para caracteres
+      especiales:
+     </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN2306"
+></A
+><P
+><B
+>Tabla 6-1. Caracteres escapados</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>secuencia</TH
+><TH
+>significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\n</VAR
+></TD
+><TD
+>alimentación de línea (LF o 0x0A (10) en
+         ASCII)</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\r</VAR
+></TD
+><TD
+>retorno de carro (CR o 0x0D (13) en ASCII)</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\t</VAR
+></TD
+><TD
+>tabulación horizontal (HT o 0x09 (9) en
+         ASCII)</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\\</VAR
+></TD
+><TD
+>barra invertida</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\$</VAR
+></TD
+><TD
+>signo de dólar</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\"</VAR
+></TD
+><TD
+>comilla-doble</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\[0-7]{1,3}</VAR
+></TD
+><TD
+>&#13;          la secuencia de caracteres que coincide con la
+          expresión regular es un caracter en notación
+          octal
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>\x[0-9A-Fa-f]{1,2}</VAR
+></TD
+><TD
+>&#13;          la secuencia de caracteres que coincide con la
+          expresión regular es un caracter en notación
+          hexadecimal
+         </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;      Nuevamente, si intenta escapar cualquier otro caracter,
+      ¡la barra invertida será impresa también!
+     </P
+><P
+>&#13;      Pero la característica más importante de las
+      cadenas entre comillas dobles es el hecho de que los nombres de
+      variables serán expandidos. Vea <A
+HREF="language.types.string.html#language.types.string.parsing"
+>procesamiento de
+      cadenas</A
+> para más detalles.
+     </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.string.syntax.heredoc"
+>Heredoc</A
+></H3
+><P
+>&#13;      Otra forma de delimitar cadenas es mediante el uso de la
+      sintaxis heredoc ("&#60;&#60;&#60;"). Debe indicarse un
+      identificador después de la secuencia
+      <VAR
+CLASS="literal"
+>&#60;&#60;&#60;</VAR
+>, luego la cadena, y luego el
+      mismo identificador para cerrar la cita.
+     </P
+><P
+>&#13;      El identificador de cierre <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>debe</I
+></SPAN
+> comenzar en
+      la primera columna de la línea. Asimismo, el
+      identificador usado debe seguir las mismas reglas que cualquier
+      otra etiqueta en PHP: debe contener solo caracteres
+      alfanuméricos y de subrayado, y debe iniciar con un
+      caracter no-dígito o de subrayado.
+     </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;       Es muy importante notar que la línea con el
+       identificador de cierre no contenga otros caracteres, excepto
+       <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>quizás</I
+></SPAN
+> por un punto-y-coma
+       (<VAR
+CLASS="literal"
+>;</VAR
+>). Esto quiere decir en especial que el
+       identificador <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no debe usar sangría</I
+></SPAN
+>,
+       y no debe haber espacios o tabuladores antes o después
+       del punto-y-coma. Es importante también notar que el
+       primer caracter antes del identificador de cierre debe ser un
+       salto de línea, tal y como lo defina su sistema
+       operativo. Esto quiere decir <VAR
+CLASS="literal"
+>\r</VAR
+> en
+       Macintosh, por ejemplo.
+      </P
+><P
+>&#13;       Si esta regla es rota y el identificador de cierre no es
+       "limpio", entonces no se considera un identificador de cierre y
+       PHP continuará en busca de uno. Si, en tal caso, no se
+       encuentra un identificador de cierre apropiado, entonces un
+       error del analizador sintáctico resultará con el
+       número de línea apuntando al final del script.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;      El texto heredoc se comporta tal como una cadena entre comillas
+      dobles, sin las comillas dobles. Esto quiere decir que no
+      necesita escapar tales comillas en sus bloques heredoc, pero aun
+      puede usar los códigos de escape listados
+      anteriormente. Las variables son expandidas, aunque debe tenerse
+      el mismo cuidado cuando se expresen variables complejas al
+      interior de un segmento heredoc, al igual que con otras cadenas.
+      <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2363"
+></A
+><P
+><B
+>Ejemplo 6-2. Ejemplo de uso de una cadena heredoc</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$cadena </font><font color="#007700">= &lt;&lt;&lt;FIN<br /></font><font color="#0000BB">Ejemplo de una cadena<br />que se extiende por varias l&amp;iacute;neas<br />usando la sintaxis heredoc.<br /></font><font color="#007700">FIN;<br /><br /></font><font color="#FF8000">/* Un ejemplo mas complejo, con variables. */<br /></font><font color="#007700">class </font><font color="#0000BB">foo<br /></font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;var </font><font color="#0000BB">$foo</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;var </font><font color="#0000BB">$bar</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">foo</font><font color="#007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">foo </font><font color="#007700">= </font><font color="#DD0000">'Foo'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">bar </font><font color="#007700">= array(</font><font color="#DD0000">'Bar1'</font><font color="#007700">, </font><font color="#DD0000">'Bar2'</font><font color="#007700">, </font><font color="#DD0000">'Bar3'</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$foo </font><font color="#007700">= new </font><font color="#0000BB">foo</font><font color="#007700">();<br /></font><font color="#0000BB">$nombre </font><font color="#007700">= </font><font color="#DD0000">'MiNombre'</font><font color="#007700">;<br /><br />echo &lt;&lt;&lt;FIN<br /></font><font color="#0000BB">Mi nombre es "$nombre". Estoy imprimiendo algo de $foo</font><font color="#007700">-&gt;</font><font color="#0000BB">foo.<br />Ahora, estoy imprimiendo algo de </font><font color="#007700">{</font><font color="#0000BB">$foo</font><font color="#007700">-&gt;</font><font color="#0000BB">bar</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">]}</font><font color="#0000BB">.<br />Esto deber&amp;iacute;a imprimir una letra 'A' may&amp;uacute;scula: </font><font color="#007700">\x41</font><font color="#0000BB"><br /></font><font color="#007700">FIN;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       El soporte heredoc fue agregado en PHP 4.
+      </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.string.parsing"
+>Procesamiento de variables</A
+></H3
+><P
+>&#13;      Cuando una cadena es especificada en comillas dobles o al
+      interior de un bloque heredoc, las <A
+HREF="language.variables.html"
+>variables</A
+> son interpretadas
+      en su interior.
+     </P
+><P
+>&#13;      Existen dos tipos de sintaxis: una <A
+HREF="language.types.string.html#language.types.string.parsing.simple"
+>simple</A
+> y
+      una <A
+HREF="language.types.string.html#language.types.string.parsing.complex"
+>compleja</A
+>. La
+      sintaxis simple es la más común y
+      conveniente. Esta ofrece una forma de interpretar una variable,
+      un valor <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+>, o una propiedad de un
+      <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+>.
+     </P
+><P
+>&#13;      La sintaxis compleja fue introducida en PHP 4, y puede
+      reconocerse por las llaves que rodean la expresión.
+     </P
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="language.types.string.parsing.simple"
+>Sintaxis simple</A
+></H4
+><P
+>&#13;       Si un signo de dólar (<VAR
+CLASS="literal"
+>$</VAR
+>) es
+       encontrado, el analizador sintáctico tomará
+       ambiciosamente tantos lexemas como le sea posible para formar
+       un nombre de variable válido. Rodee el nombre de la
+       variable de llaves si desea especificar explícitamente
+       el final del nombre.
+      </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2382"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$cerveza </font><font color="#007700">= </font><font color="#DD0000">'Heineken'</font><font color="#007700">;<br />echo </font><font color="#DD0000">"El sabor de varias $cerveza's es excelente"</font><font color="#007700">; </font><font color="#FF8000">// funciona, "'" no es un caracter valido para nombres de variables<br /></font><font color="#007700">echo </font><font color="#DD0000">"Tom&amp;oacute; algunas $cervezas"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// no funciona, 's' es un caracter valido para nombres de variables<br /></font><font color="#007700">echo </font><font color="#DD0000">"Tom&amp;oacute; algunas </font><font color="#007700">${</font><font color="#DD0000">cerveza</font><font color="#007700">}</font><font color="#DD0000">s"</font><font color="#007700">; </font><font color="#FF8000">// funciona<br /></font><font color="#007700">echo </font><font color="#DD0000">"Tom&amp;oacute; algunas </font><font color="#007700">{</font><font color="#DD0000">$cerveza</font><font color="#007700">}</font><font color="#DD0000">s"</font><font color="#007700">; </font><font color="#FF8000">// funciona<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;       De forma similar, puede hacer que un índice de un
+       <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+> o una propiedad de un <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+>
+       sean interpretados. En el caso de los índices de
+       matrices, el corchete cuadrado de cierre (<VAR
+CLASS="literal"
+>]</VAR
+>)
+       marca el final del índice. Para las propiedades de
+       objetos, se aplican las mismas reglas de las variables simples,
+       aunque con las propiedades de objetos no existe un truco como
+       el que existe con las variables.
+
+       
+      
+      </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2388"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Estos ejemplos son especificos al uso de matrices al interior de<br />// cadenas. Cuando se encuentre por fuera de una cadena, siempre rodee<br />// de comillas las claves tipo cadena de su matriz, y no use<br />// {llaves} por fuera de cadenas tampoco.<br /><br />// Mostremos todos los errores<br /></font><font color="#0000BB">error_reporting</font><font color="#007700">(</font><font color="#0000BB">E_ALL</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$frutas </font><font color="#007700">= array(</font><font color="#DD0000">'fresa' </font><font color="#007700">=&gt; </font><font color="#DD0000">'roja'</font><font color="#007700">, </font><font color="#DD0000">'banano' </font><font color="#007700">=&gt; </font><font color="#DD0000">'amarillo'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Funciona pero note que esto trabaja de forma diferente por fuera de<br />// cadenas entre comillas<br /></font><font color="#007700">echo </font><font color="#DD0000">"Un banano es $frutas</font><font color="#007700">[</font><font color="#DD0000">banano</font><font color="#007700">]</font><font color="#DD0000">."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona<br /></font><font color="#007700">echo </font><font color="#DD0000">"Un banano es </font><font color="#007700">{</font><font color="#DD0000">$frutas</font><font color="#007700">[</font><font color="#DD0000">'banano'</font><font color="#007700">]}</font><font color="#DD0000">."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona, pero PHP musca una constante llamada banano primero, como<br />// se describe mas adelante.<br /></font><font color="#007700">echo </font><font color="#DD0000">"Un banano es </font><font color="#007700">{</font><font color="#DD0000">$frutas</font><font color="#007700">[</font><font color="#DD0000">banano</font><font color="#007700">]}</font><font color="#DD0000">."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// No funciona, use llaves. Esto resulta en un error de analisis sintactico.<br /></font><font color="#007700">echo </font><font color="#DD0000">"Un banano es $frutas</font><font color="#007700">[</font><font color="#DD0000">'banano'</font><font color="#007700">]</font><font color="#DD0000">."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona<br /></font><font color="#007700">echo </font><font color="#DD0000">"Un banano es " </font><font color="#007700">. </font><font color="#0000BB">$frutas</font><font color="#007700">[</font><font color="#DD0000">'banano'</font><font color="#007700">] . </font><font color="#DD0000">"."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona<br /></font><font color="#007700">echo </font><font color="#DD0000">"Este cuadro tiene $cuadro</font><font color="#007700">-&gt;</font><font color="#DD0000">ancho metros de ancho."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// No funciona. Para una solucion, vea la sintaxis compleja.<br /></font><font color="#007700">echo </font><font color="#DD0000">"Este cuadro tiene $cuadro</font><font color="#007700">-&gt;</font><font color="#DD0000">ancho00 cent&amp;iacute;metros de ancho."</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;       Para cualquier cosa más sofisticada, debería
+       usarse la sintaxis compleja.
+      </P
+></DIV
+><DIV
+CLASS="sect4"
+><H4
+CLASS="sect4"
+><A
+NAME="language.types.string.parsing.complex"
+>Sintaxis compleja (llaves)</A
+></H4
+><P
+>&#13;       Esta no es llamada compleja porque la sintaxis sea compleja,
+       sino porque es posible incluir expresiones complejas de esta
+       forma.
+      </P
+><P
+>&#13;       De hecho, de esta forma puede incluir cualquier valor que sea
+       parte del espacio de nombres al interior de
+       cadenas. Simplemente escriba la expresión en la misma
+       forma que lo haría si se encontrara por fuera de una
+       cadena, y luego la ubica entre { y }. Ya que no es posible
+       escapar '{', esta sintaxis será reconocida
+       únicamente cuando el caracter $ se encuentra
+       inmediatamente después de {. (Use "{\$" o "\{$" para
+       obtener una secuencia literal "{$"). Algunos ejemplos para
+       aclarar el asunto:
+      </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2395"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Mostremos todos los errores<br /></font><font color="#0000BB">error_reporting</font><font color="#007700">(</font><font color="#0000BB">E_ALL</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$genial </font><font color="#007700">= </font><font color="#DD0000">'fant&amp;aacute;stico'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// No funciona, imprime: Esto es { fant&amp;aacute;stico}<br /></font><font color="#007700">echo </font><font color="#DD0000">"Esto es </font><font color="#007700">{</font><font color="#DD0000"> $genial</font><font color="#007700">}</font><font color="#DD0000">"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona, imprime: Esto es fant&amp;aacute;stico<br /></font><font color="#007700">echo </font><font color="#DD0000">"Esto es </font><font color="#007700">{</font><font color="#DD0000">$genial</font><font color="#007700">}</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Esto es </font><font color="#007700">${</font><font color="#DD0000">genial</font><font color="#007700">}</font><font color="#DD0000">"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona<br /></font><font color="#007700">echo </font><font color="#DD0000">"Este cuadro tiene </font><font color="#007700">{</font><font color="#DD0000">$cuadro</font><font color="#007700">-&gt;</font><font color="#DD0000">ancho</font><font color="#007700">}</font><font color="#DD0000">00 cent&amp;iacute;metros de ancho."</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona<br /></font><font color="#007700">echo </font><font color="#DD0000">"Esto funciona: </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">4</font><font color="#007700">][</font><font color="#DD0000">3</font><font color="#007700">]}</font><font color="#DD0000">"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Esto esta mal por la misma razon por la que $foo[bar] esta mal por<br />// fuera de una cadena. En otras palabras, aun funciona pero ya que<br />// PHP busca primero una constante llamada foo, genera un error de<br />// nivel E_NOTICE (constante indefinida).<br /></font><font color="#007700">echo </font><font color="#DD0000">"Esto esta mal: </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">foo</font><font color="#007700">][</font><font color="#DD0000">3</font><font color="#007700">]}</font><font color="#DD0000">"</font><font color="#007700">; <br /><br /></font><font color="#FF8000">// Funciona. Cuando se usan matrices multi-dimensionales, use siempre<br />// llaves alrededor de las matrices al interior de cadenas<br /></font><font color="#007700">echo </font><font color="#DD0000">"Esto funciona: </font><font color="#007700">{</font><font color="#DD0000">$matriz</font><font color="#007700">[</font><font color="#DD0000">'foo'</font><font color="#007700">][</font><font color="#DD0000">3</font><font color="#007700">]}</font><font color="#DD0000">"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Funciona.<br /></font><font color="#007700">echo </font><font color="#DD0000">"Esto funciona: " </font><font color="#007700">. </font><font color="#0000BB">$arr</font><font color="#007700">[</font><font color="#DD0000">'foo'</font><font color="#007700">][</font><font color="#0000BB">3</font><font color="#007700">];<br /><br />echo </font><font color="#DD0000">"Puede incluso escribir </font><font color="#007700">{</font><font color="#DD0000">$obj</font><font color="#007700">-&gt;</font><font color="#DD0000">valores</font><font color="#007700">[</font><font color="#DD0000">3</font><font color="#007700">]-&gt;</font><font color="#DD0000">nombre</font><font color="#007700">}</font><font color="#DD0000">"</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">"Este es el valor de la variable llamada $nombre: </font><font color="#007700">{${</font><font color="#DD0000">$nombre</font><font color="#007700">}}</font><font color="#DD0000">"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.string.substr"
+>Acceso a cadenas y modificación por
+     caracter</A
+></H3
+><P
+>&#13;      Los caracteres al interior de una cadena pueden ser consultados
+      y modificados al especificar el desplazamiento, comenzando en
+      cero, del caracter deseado después de la cadena entre
+      llaves.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Para efectos de compatibilidad con versiones anteriores, aun
+       puede usar corchetes tipo matriz para el mismo
+       propósito. Sin embargo, esta sintaxis es obsoleta a
+       partir de PHP 4.
+      </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;      <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2403"
+></A
+><P
+><B
+>Ejemplo 6-3. Algunos ejemplos de cadenas</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Obtener el primer caracter de una cadena<br /></font><font color="#0000BB">$cadena </font><font color="#007700">= </font><font color="#DD0000">'Esta es una prueba.'</font><font color="#007700">;<br /></font><font color="#0000BB">$primer </font><font color="#007700">= </font><font color="#0000BB">$cadena</font><font color="#007700">{</font><font color="#0000BB">0</font><font color="#007700">};<br /><br /></font><font color="#FF8000">// Obtener el tercer caracter de una cadena<br /></font><font color="#0000BB">$tercer </font><font color="#007700">= </font><font color="#0000BB">$cadena</font><font color="#007700">{</font><font color="#0000BB">2</font><font color="#007700">};<br /><br /></font><font color="#FF8000">// Obtener el ultimo caracter de una cadena.<br /></font><font color="#0000BB">$cadena </font><font color="#007700">= </font><font color="#DD0000">'Esta es tambien una prueba.'</font><font color="#007700">;<br /></font><font color="#0000BB">$ultimo </font><font color="#007700">= </font><font color="#0000BB">$cadena</font><font color="#007700">{</font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$cadena</font><font color="#007700">)-</font><font color="#0000BB">1</font><font color="#007700">}; <br /><br /></font><font color="#FF8000">// Modificar el ultimo caracter de una cadena<br /></font><font color="#0000BB">$cadena </font><font color="#007700">= </font><font color="#DD0000">'Observe el mar'</font><font color="#007700">;<br /></font><font color="#0000BB">$cadena</font><font color="#007700">{</font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$cadena</font><font color="#007700">)-</font><font color="#0000BB">1</font><font color="#007700">} = </font><font color="#DD0000">'l'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.string.useful-funcs"
+>Funciones y operadores útiles</A
+></H2
+><P
+>&#13;     Las cadenas pueden ser concatenadas usando el operador '.'
+     (punto). Note que el operador '+' (adición) no funciona
+     para este propósito. Por favor refiérase a la
+     sección <A
+HREF="language.operators.string.html"
+>Operadores de cadena</A
+>
+     para más información.
+    </P
+><P
+>&#13;     Existen bastantes funciones útiles para la
+     modificación de cadenas.
+    </P
+><P
+>&#13;     Vea la <A
+HREF="ref.strings.html"
+>sección de funciones de
+     cadena</A
+> para consultar funciones de uso general, o las
+     funciones de expresiones regulares para búsquedas y
+     reemplazos avanzados (en dos sabores: <A
+HREF="ref.pcre.html"
+>Perl</A
+> y <A
+HREF="ref.regex.html"
+>POSIX
+     extendido</A
+>).
+    </P
+><P
+>&#13;     Existen también <A
+HREF="ref.url.html"
+>funciones para
+     cadenas tipo URL</A
+>, y funciones para encriptar/descifrar
+     cadenas (<A
+HREF="ref.mcrypt.html"
+>mcrypt</A
+> y <A
+HREF="ref.mhash.html"
+>mhash</A
+>).
+    </P
+><P
+>&#13;     Finalmente, si aun no ha encontrado lo que busca, vea
+     también las <A
+HREF="ref.ctype.html"
+>funciones de tipo de
+     caracter</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.string.casting"
+>Conversión a cadena</A
+></H2
+><P
+>&#13;     Es posible convertir un valor a una cadena usando el moldeamiento
+     <VAR
+CLASS="literal"
+>(string)</VAR
+>, o la función
+     <A
+HREF="function.strval.html"
+><B
+CLASS="function"
+>strval()</B
+></A
+>. La conversión a cadena se
+     realiza automáticamente para usted en el contexto de una
+     expresión cuando se necesita una cadena. Esto ocurre
+     cuando usa las funciones <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+> o
+     <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+>, o cuando compara el valor de una
+     variable con una cadena. El contenido de las secciones del manual
+     sobre <A
+HREF="language.types.html"
+>Tipos</A
+> y <A
+HREF="language.types.type-juggling.html"
+>Manipulación de
+     Tipos</A
+> ayudan a aclarar este hecho. Vea también
+     <A
+HREF="function.settype.html"
+><B
+CLASS="function"
+>settype()</B
+></A
+>.
+    </P
+><P
+>&#13;     Un valor <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+> <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> es convertido a la cadena
+     <VAR
+CLASS="literal"
+>"1"</VAR
+>, el valor <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> se representa como
+     <VAR
+CLASS="literal"
+>""</VAR
+> (una cadena vacía). De esta forma,
+     usted puede convertir de ida y vuelta entre valores booleanos y
+     de cadena.
+    </P
+><P
+>&#13;     Un número <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> o de punto flotante
+     (<A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>) es convertido a una cadena que representa el
+     número con sus dígitos (incluyendo la parte del
+     exponente para los números de punto flotante).
+    </P
+><P
+>&#13;     Las matrices son siempre convertidas a la cadena
+     <VAR
+CLASS="literal"
+>"Array"</VAR
+>, de modo que no puede volcar los
+     contenidos de un valor <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+> con
+     <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+> o <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+> para ver
+     lo que se encuentra en su interior. Para ver un elemento, usted
+     tendría que hacer algo como <VAR
+CLASS="literal"
+>echo
+     $arr['foo']</VAR
+>. Vea más adelante algunos consejos
+     sobre el volcado/vista del contenido completo.
+    </P
+><P
+>&#13;     Los objetos son convertidos siempre a la cadena
+     <VAR
+CLASS="literal"
+>"Object"</VAR
+>. Si quisiera imprimir los valores de
+     variables miembro de un <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+> para efectos de
+     depuración, lea los parágrafos siguientes. Si
+     quiere conocer el nombre de clase del cual un objeto dado es
+     instancia, use <A
+HREF="function.get-class.html"
+><B
+CLASS="function"
+>get_class()</B
+></A
+>.
+    </P
+><P
+>&#13;     Los recursos son siempre convertidos a cadenas con la estructura
+     <VAR
+CLASS="literal"
+>"Resource id #1"</VAR
+> en donde <VAR
+CLASS="literal"
+>1</VAR
+>
+     es el número único del valor <A
+HREF="language.types.resource.html"
+><B
+CLASS="type"
+>resource</B
+></A
+>
+     asignado por PHP durante tiempo de ejecución. Si quisiera
+     obtener el tipo del recurso, use
+     <A
+HREF="function.get-resource-type.html"
+><B
+CLASS="function"
+>get_resource_type()</B
+></A
+>.
+    </P
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> se convierte siempre a una cadena vacía.
+    </P
+><P
+>&#13;     Como puede apreciar, el imprimir matrices, objetos o recursos no
+     le ofroce información útil sobre los valores
+     mismos. Consulte las funciones <A
+HREF="function.print-r.html"
+><B
+CLASS="function"
+>print_r()</B
+></A
+> y
+     <A
+HREF="function.var-dump.html"
+><B
+CLASS="function"
+>var_dump()</B
+></A
+> para conocer mejores formas de
+     imprimir valores para depuración.
+    </P
+><P
+>&#13;     También puede convertir valores PHP a cadenas y
+     almacenarlas permanentemente. Este método es conocido como
+     seriación, y puede ser efectuado con la función
+     <A
+HREF="function.serialize.html"
+><B
+CLASS="function"
+>serialize()</B
+></A
+>. También puede seriar
+     valores PHP a estructuras XML, si cuenta con soporte <A
+HREF="ref.wddx.html"
+>WDDX</A
+> en su configuración de PHP.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.string.conversion"
+>Conversión de cadenas a números</A
+></H2
+><P
+>&#13;     Cuando una cadena es evaluada como un valor numérico, el
+     valor resultante y su tipo son determinados como sigue.
+    </P
+><P
+>&#13;     La cadena será evaluada como un <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+> si
+     contiene cualquier caracter entre '.', 'e', o 'E'. De otra forma,
+     evaluará como un entero.
+    </P
+><P
+>&#13;     El valor es dado por la porción inicial de la cadena. Si
+     la cadena comienza con datos numéricos válidos,
+     éstos serán el valor usado. De lo contrario, el
+     valor será 0 (cero). Un signo opcional es considerado un
+     dato numérico válido, seguido por uno o más
+     dígitos (que pueden contener un punto decimal), seguidos
+     por un exponente opcional. El exponente es una 'e' o 'E' seguida
+     de uno o más dígitos.
+    </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2469"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$foo </font><font color="#007700">= </font><font color="#0000BB">1 </font><font color="#007700">+ </font><font color="#DD0000">"10.5"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es flotante (11.5)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#0000BB">1 </font><font color="#007700">+ </font><font color="#DD0000">"-1.3e3"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es flotante (-1299)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#0000BB">1 </font><font color="#007700">+ </font><font color="#DD0000">"bob-1.3e3"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es entero (1)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#0000BB">1 </font><font color="#007700">+ </font><font color="#DD0000">"bob3"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es entero (1)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#0000BB">1 </font><font color="#007700">+ </font><font color="#DD0000">"10 Cerditos"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es entero (11)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#0000BB">4 </font><font color="#007700">+ </font><font color="#DD0000">"10.2 Cerditos"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es flotante (14.2)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#DD0000">"10.0 cerdos " </font><font color="#007700">+ </font><font color="#0000BB">1</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es flotante (11)<br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#DD0000">"10.0 cerdos " </font><font color="#007700">+ </font><font color="#0000BB">1.0</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $foo es flotante (11)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;     Para más información sobre esta conversión,
+     vea la página del manual Unix sobre strtod(3).
+    </P
+><P
+>&#13;     Si quisiera probar cualquiera de los ejemplos presentados en esta
+     sección, puede cortar y pegar los ejemplos e insertar la
+     siguiente línea para verificar por sí mismo lo que
+     está sucediendo:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2473"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#DD0000">"</font><font color="#007700">\$</font><font color="#DD0000">foo==$foo; tipo es " </font><font color="#007700">. </font><font color="#0000BB">gettype </font><font color="#007700">(</font><font color="#0000BB">$foo</font><font color="#007700">) . </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     No espere obtener el código de un caractar
+     convirtiéndolo a un entero (como lo haría en C, por
+     ejemplo). Use las funciones <A
+HREF="function.ord.html"
+><B
+CLASS="function"
+>ord()</B
+></A
+> y
+     <A
+HREF="function.chr.html"
+><B
+CLASS="function"
+>chr()</B
+></A
+> para convertir entre códigos de
+     caracter y caracteres.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.types.float.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.array.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Números de punto flotante</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.types.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Matrices</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pspell_add_to_personal</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Pspell Functions"
+HREF="ref.pspell.html"><LINK
+REL="PREVIOUS"
+TITLE="Pspell Functions"
+HREF="ref.pspell.html"><LINK
+REL="NEXT"
+TITLE="pspell_add_to_session"
+HREF="function.pspell-add-to-session.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.pspell.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pspell-add-to-session.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pspell-add-to-personal"
+></A
+>pspell_add_to_personal</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN92206"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.2, PHP 5)</P
+>pspell_add_to_personal&nbsp;--&nbsp;Agrega la palabra a la lista personal de palabras</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN92209"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>pspell_add_to_personal</B
+> ( int dictionary_link, cadena palabra)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pspell_add_to_personal()</B
+> agrega una palabra a la lista personal 
+     de palabras. Si usas <A
+HREF="function.pspell-new-config.html"
+><B
+CLASS="function"
+>pspell_new_config()</B
+></A
+> con
+     <A
+HREF="function.pspell-config-personal.html"
+><B
+CLASS="function"
+>pspell_config_personal()</B
+></A
+> para abrir el diccionario,
+     puedes salvar la lista de palabras luego, con
+     <A
+HREF="function.pspell-save-wordlist.html"
+><B
+CLASS="function"
+>pspell_save_wordlist()</B
+></A
+>. Nota: Esta función no funcionará
+     hasta que tengas pspell .11.2 y aspell .32.5 o superior.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN92226"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>pspell_add_to_personal()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$pspell_config = pspell_config_create ("en");<br />pspell_config_personal ($pspell_config, "/var/dictionaries/custom.pws");<br />$pspell_link = pspell_new_config ($pspell_config);<br /><br />pspell_add_to_personal ($pspell_link, "Vlad");<br />pspell_save_wordlist ($pspell_link);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.pspell.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pspell-add-to-session.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Pspell Functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pspell.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pspell_add_to_session</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

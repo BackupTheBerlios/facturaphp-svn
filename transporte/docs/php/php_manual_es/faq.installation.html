@@ -1,0 +1,1260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQ: Preguntas frecuentes"
+HREF="faq.html"><LINK
+REL="PREVIOUS"
+TITLE="Database issues"
+HREF="faq.databases.html"><LINK
+REL="NEXT"
+TITLE="Build Problems"
+HREF="faq.build.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="faq.databases.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.build.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="faq.installation"
+>Capítulo 49. Instalación</A
+></H1
+><P
+>&#13;   Esta sección contiene preguntas comunes sobre el modo de
+   instalar PHP. PHP se encuentra disponible para casi cualquier SO
+   (excepto quizás por MacOS antes de OSX), y casi cualquier
+   servidor web.
+  </P
+><P
+>&#13;   Para instalar PHP, siga las instrucciones del archivo <A
+HREF="http://cvs.php.net/co.php/php-src/INSTALL"
+TARGET="_top"
+>INSTALL</A
+> ubicado en la
+   distribución. Los usuarios de windows también
+   deberían leer el archivo <A
+HREF="http://cvs.php.net/co.php/php-src/win32/install.txt"
+TARGET="_top"
+>install.txt</A
+>. También
+   existen algunas pistas útiles para usuarios de windows <A
+HREF="install.windows.html"
+>aquí</A
+>.
+  </P
+><DIV
+CLASS="qandaset"
+><DL
+><DT
+>1. <A
+HREF="faq.installation.html#faq.installation.phpini"
+>&#13;      Unix/Windows: ¿En dónde debe estar ubicado mi
+      archivo <TT
+CLASS="filename"
+>php.ini</TT
+>?
+     </A
+></DT
+><DT
+>2. <A
+HREF="faq.installation.html#faq.installation.nodata"
+>&#13;      Unix: Instalé PHP, ¡pero cada vez que cargo un
+      documento, recibo el mensaje 'Document Contains No Data'!
+      ¿Qué está pasando aquí?
+     </A
+></DT
+><DT
+>3. <A
+HREF="faq.installation.html#faq.installation.processing"
+>&#13;      Unix: Instalé PHP usando RPMS, ¡pero Apache no
+      está procesando las páginas PHP¡
+      ¿Qué está pasando aquí?
+     </A
+></DT
+><DT
+>4. <A
+HREF="faq.installation.html#faq.installation.compile"
+>&#13;      Unix: Instalé PHP 3 usando RPMS, ¡pero no compila
+      con el soporte de bases de datos que necesito!
+      ¿Qué está pasando?
+     </A
+></DT
+><DT
+>5. <A
+HREF="faq.installation.html#faq.installation.frontpage"
+>&#13;      Unix: He aplicado el parche de extensiones FrontPage a Apache, y
+      de pronto PHP dejó de funcionar. ¿Es PHP
+      incompatible con las extensiones FrontPage de Apache?
+     </A
+></DT
+><DT
+>6. <A
+HREF="faq.installation.html#faq.installation.blankscreen"
+>&#13;      Unix/Windows: He instalado PHP, pero cuando intento acceder a un
+      script PHP a través de mi navegador, recibo una pantalla
+      en blanco.
+     </A
+></DT
+><DT
+>7. <A
+HREF="faq.installation.html#faq.installation.500error"
+>&#13;      Unix/Windows: He instalado PHP, pero cuando intento acceder a un
+      script PHP a través de mi navegador, recibo un error 500
+      de servidor.
+     </A
+></DT
+><DT
+>8. <A
+HREF="faq.installation.html#faq.installation.undefinedsyms"
+> 
+      Algunos sistemas operativos: He instalado PHP sin errores, pero
+      cuando intento iniciar apache, recibo errores de símbolos
+      indefinidos:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>[mi_maquina:usuario /src/php4] root# apachectl configtest
+ apachectl: /usr/local/apache/bin/httpd Undefined symbols:
+  _compress
+  _uncompress</PRE
+></TD
+></TR
+></TABLE
+>
+     </A
+></DT
+><DT
+>9. <A
+HREF="faq.installation.html#faq.installation.cgierror"
+>&#13;      Windows: He instalado PHP, pero cuando intento acceder a un
+      script PHP a través de mi navegador, recibo el error:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>cgi error:
+ The specified CGI application misbehaved by not
+ returning a complete set of HTTP headers.
+ The headers it did return are:</PRE
+></TD
+></TR
+></TABLE
+>
+     </A
+></DT
+><DT
+>10. <A
+HREF="faq.installation.html#faq.installation.phpandiis"
+>&#13;      Windows: He seguido todas las instrucciones, ¡pero aun no
+      logro que PHP e IIS trabajen juntos!
+     </A
+></DT
+><DT
+>11. <A
+HREF="faq.installation.html#faq.installation.forceredirect"
+>&#13;      Cuando corro PHP como CGI con IIS, PWS, OmniHTTPD o Xitami,
+      recibo el siguiente error: <VAR
+CLASS="literal"
+>Security Alert! PHP CGI
+      cannot be accessed directly.</VAR
+>.
+     </A
+></DT
+><DT
+>12. <A
+HREF="faq.installation.html#faq.installation.findphpini"
+>&#13;      ¿Cómo se si mi <TT
+CLASS="filename"
+>php.ini</TT
+> está siendo
+      encontrado y leído? Pareciera que mis cambios no
+      están siendo implementados.
+     </A
+></DT
+></DL
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.phpini"
+></A
+><B
+>1. </B
+>
+      Unix/Windows: ¿En dónde debe estar ubicado mi
+      archivo <TT
+CLASS="filename"
+>php.ini</TT
+>?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Por defecto, en Unix debe estar en
+      <TT
+CLASS="filename"
+>/usr/local/lib</TT
+>, lo que es,
+      <TT
+CLASS="filename"
+>&#60;ruta-instalacion&#62;/lib</TT
+>. La
+      mayoría de personas querrán modificar éste
+      valor en tiempo de compilación con la bandera <A
+HREF="configure.html#configure.with-config-file-path"
+>--with-config-file-path</A
+>.
+      Podría, por ejemplo, definirla como:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>--with-config-file-path=/etc</PRE
+></TD
+></TR
+></TABLE
+>
+      Y luego copiaría <TT
+CLASS="filename"
+>php.ini-dist</TT
+> desde
+      su distribución a <TT
+CLASS="filename"
+>/etc/php.ini</TT
+> y lo
+      editaría para hacer cualquier modificación local
+      que desee.
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>--with-config-file-scan-dir=PATH</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;      En windows, la ruta predeterminada para el archivo <TT
+CLASS="filename"
+>php.ini</TT
+> es
+      el directorio de windows. Si está usando el servidor web
+      Apache, <TT
+CLASS="filename"
+>php.ini</TT
+> será buscado primero en el directorio
+      de instalación de Apache, p.ej. <TT
+CLASS="filename"
+>c:\program
+      files\apache group\apache</TT
+>. De este modo, puede contar
+      con diferentes archivos <TT
+CLASS="filename"
+>php.ini</TT
+> para diferentes versiones de
+      Apache en la misma máquina.
+     </P
+><P
+>&#13;      Vea también el capítulo sobre el <A
+HREF="configuration.html#configuration.file"
+>archivo de
+      configuración</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.nodata"
+></A
+><B
+>2. </B
+>
+      Unix: Instalé PHP, ¡pero cada vez que cargo un
+      documento, recibo el mensaje 'Document Contains No Data'!
+      ¿Qué está pasando aquí?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Esto probablemente quiere decir que PHP está sufriendo
+      algún tipo de dificultad y está produciendo
+      volcados de memoria. Eche un vistazo a su registro de errores
+      del servidor para ver si éste es el caso, y luego trate
+      de reproducir el problema con un pequeño caso de
+      prueba. Si sabe cómo usar 'gdb', es muy útil
+      cuando puede proveer un backtrace con su reporte de fallo para
+      ayudar a los desarrolladores a ubicar el problema. Si
+      está usando PHP como módulo de Apache, intente
+      algo como:
+      <P
+></P
+><UL
+><LI
+><P
+>&#13;         Detener todos sus procesos httpd
+        </P
+></LI
+><LI
+><P
+>&#13;         gdb httpd
+        </P
+></LI
+><LI
+><P
+>&#13;         Detener todos sus procesos httpd
+        </P
+></LI
+><LI
+><P
+>&#13;         &#62; run -X -f /ruta/hacia/httpd.conf
+        </P
+></LI
+><LI
+><P
+>&#13;         Luego recuperar la URL que causa el problema con su navegador
+        </P
+></LI
+><LI
+><P
+>&#13;         &#62; run -X -f /ruta/hacia/httpd.conf
+        </P
+></LI
+><LI
+><P
+>&#13;         Si está recibiendo un volcado de memoria, gdb debe
+         informarle de ésto.
+        </P
+></LI
+><LI
+><P
+>&#13;         escriba: bt
+        </P
+></LI
+><LI
+><P
+>&#13;         Ahora debe incluir su backtrace en su reporte de
+         fallo. Éste debe ser enviado desde <A
+HREF="http://bugs.php.net/"
+TARGET="_top"
+>http://bugs.php.net/</A
+>
+        </P
+></LI
+></UL
+>
+     </P
+><P
+>&#13;      Si su script usa las funciones de expresiones regulares
+      (<A
+HREF="function.ereg.html"
+><B
+CLASS="function"
+>ereg()</B
+></A
+> y amigas), debe asegurarse de que
+      compiló PHP y Apache con el mismo paquete de expresiones
+      regulares. Esto debe pasar automáticamente con PHP y
+      Apache 1.3.x
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.processing"
+></A
+><B
+>3. </B
+>
+      Unix: Instalé PHP usando RPMS, ¡pero Apache no
+      está procesando las páginas PHP¡
+      ¿Qué está pasando aquí?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Asumiendo que ha instalado tanto Apache como PHP desde paquetes
+      RPM, necesita remover los caracteres de comentario, o agregar
+      algunas o todas de las siguientes líneas en su archivo
+      <TT
+CLASS="filename"
+>httpd.conf</TT
+>:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+># Modulos Extra
+AddModule mod_php.c
+AddModule mod_php3.c
+AddModule mod_perl.c
+
+# Modulos Extra
+LoadModule php_module         modules/mod_php.so
+LoadModule php3_module        modules/libphp3.so     # para PHP 3
+LoadModule php4_module        modules/libphp4.so     # para PHP 4
+LoadModule perl_module        modules/libperl.so</PRE
+></TD
+></TR
+></TABLE
+>
+      Y agregar:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+>AddType application/x-httpd-php3 .php3    # para PHP 3
+AddType application/x-httpd-php .php      # para PHP 4</PRE
+></TD
+></TR
+></TABLE
+>
+      ... a las propiedades globales, o a las propiedades del
+      VirtualDomain para el cual desea tener soporte de PHP.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.compile"
+></A
+><B
+>4. </B
+>
+      Unix: Instalé PHP 3 usando RPMS, ¡pero no compila
+      con el soporte de bases de datos que necesito!
+      ¿Qué está pasando?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Debido a la forma en que se compila PHP 3, no es sencillo crear
+      un RPM de PHP flexible completo. Este problema es atendido en
+      PHP 4. Para PHP 3, actualmente le sugerimos que use el mecanismo
+      descrito en el archivo INSTALL.REDHAT en la distribución
+      de PHP. Si insiste en usar una versión RPM para PHP 3,
+      continúe leyendo...
+     </P
+><P
+>&#13;      Los empaquetadores de RPM están configurando los RPMS
+      para ser instalados sin soporte de bases de datos para
+      simplificar las instalaciones <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>y</I
+></SPAN
+> porque los
+      RPMS usan /usr/ en lugar del directorio /usr/local/
+      estándar para los archivos. Usted necesita decirle al
+      archivo spec del RPM cuáles bases de datos soportar y la
+      ubicación del nivel más alto de su servidor de
+      bases de datos.
+     </P
+><P
+>&#13;      Este ejemplo explicará el proceso de agregar soporte para
+      el popular servidor de bases de datos MySQL, usando la
+      instalación de módulo para Apache.
+     </P
+><P
+>&#13;      Por supuesto, toda esta información puede ser ajustada
+      para cualquier servidor de bases de datos soportada por
+      PHP. Asumiremos que ha instalado MySQL y Apache completamente
+      con RPMS para este ejemplo también.
+      <P
+></P
+><UL
+><LI
+><P
+>&#13;         Primero remueva mod_php3 : 
+         <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>rpm -e mod_php3</PRE
+></TD
+></TR
+></TABLE
+>
+	      </P
+></LI
+><LI
+><P
+>&#13;           Luego obtenga el rpm fuente e INSTÁLELO, NO
+           use --rebuild
+         <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>rpm -Uvh mod_php3-3.0.5-2.src.rpm</PRE
+></TD
+></TR
+></TABLE
+>
+  	    </P
+></LI
+><LI
+><P
+>&#13;	       Luego edite el
+	       archivo <TT
+CLASS="filename"
+>/usr/src/redhat/SPECS/mod_php3.spec</TT
+>
+	      </P
+><P
+>&#13;           En la sección %build agrege el soporte de bases de
+           datos que desea, y la ruta.
+	      </P
+><P
+>&#13;           Para MySQL, usted agregaría
+         <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>--with-mysql=/usr \</PRE
+></TD
+></TR
+></TABLE
+>
+         La sección %build se verá algo como:
+         <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>./configure --prefix=/usr \
+	--with-apxs=/usr/sbin/apxs \
+	--with-config-file-path=/usr/lib \
+	--enable-debug=no \
+	--enable-safe-mode \
+	--with-exec-dir=/usr/bin \
+	--with-mysql=/usr \
+	--with-system-regex</PRE
+></TD
+></TR
+></TABLE
+>
+	      </P
+></LI
+><LI
+><P
+>&#13;           Una vez está hecha esta modificación, compile
+           el rpm binario de este modo:
+         <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>rpm -bb /usr/src/redhat/SPECS/mod_php3.spec</PRE
+></TD
+></TR
+></TABLE
+>
+	      </P
+></LI
+><LI
+><P
+>&#13;	       Luego instale el rpm
+         <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>rpm -ivh /usr/src/redhat/RPMS/i386/mod_php3-3.0.5-2.i386.rpm</PRE
+></TD
+></TR
+></TABLE
+>
+	      </P
+></LI
+></UL
+>
+      Asegúrese de reiniciar Apache, y ahora tendrá PHP
+      3 con soporte para MySQL usando RPM's. Note que probablemente es
+      mucho más fácil simplemente compilar a partir del
+      tarball de distribución de PHP 3 y seguir las
+      instrucciones encontradas
+      en <TT
+CLASS="filename"
+>INSTALL.REDHAT</TT
+>.
+   	 </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.frontpage"
+></A
+><B
+>5. </B
+>
+      Unix: He aplicado el parche de extensiones FrontPage a Apache, y
+      de pronto PHP dejó de funcionar. ¿Es PHP
+      incompatible con las extensiones FrontPage de Apache?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      No, PHP trabaja bien con las extensiones FrontPage. El problema
+      es que el parche de FrontPage modifica varias estructuras de
+      Apache en las que depende PHP. Recompilar PHP (usando 'make
+      clean ; make') después de que se ha aplicado el parche FP
+      debe solucionar el problema.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.blankscreen"
+></A
+><B
+>6. </B
+>
+      Unix/Windows: He instalado PHP, pero cuando intento acceder a un
+      script PHP a través de mi navegador, recibo una pantalla
+      en blanco.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Seleccione la acción 'ver código fuente' en el
+      navegador web y probablemente encontrará el código
+      fuente de su script PHP. Esto quiere decir que el servidor web
+      no envió el script a PHP para su
+      interpretación. Algo está mal en la
+      configuración del servidor - revise cuidadosamente la
+      configuración del servidor con las instrucciones de
+      instalación de PHP.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.500error"
+></A
+><B
+>7. </B
+>
+      Unix/Windows: He instalado PHP, pero cuando intento acceder a un
+      script PHP a través de mi navegador, recibo un error 500
+      de servidor.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Algo falló cuando el servidor intentó ejecutar
+      PHP. Para poder ver un mensaje de error más útil,
+      desde la línea de comandos, vaya al directorio que
+      contiene el ejecutable PHP (<TT
+CLASS="filename"
+>php.exe</TT
+> en
+      Windows) y ejecute
+      <VAR
+CLASS="literal"
+>php -i</VAR
+>. Si PHP tiene algún problema
+      corriendo, entonces se desplegará un mensaje de error
+      apropiado, el cual le dará una pista sobre lo que debe
+      hacer a continuación. Si recibe una pantalla llena de
+      códigos HTML (la salida de la
+      función <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>) entonces PHP
+      está funcionando, y su problema puede estar relacionado
+      con la configuración de su servidor, la cual debe revisar
+      de nuevo.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.undefinedsyms"
+></A
+><B
+>8. </B
+> 
+      Algunos sistemas operativos: He instalado PHP sin errores, pero
+      cuando intento iniciar apache, recibo errores de símbolos
+      indefinidos:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>[mi_maquina:usuario /src/php4] root# apachectl configtest
+ apachectl: /usr/local/apache/bin/httpd Undefined symbols:
+  _compress
+  _uncompress</PRE
+></TD
+></TR
+></TABLE
+>
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Esto no tiene nada que ver con PHP en realidad, sino con las
+      bibliotecas de cliente de MySQL. Algunas necesitan --with-zlib,
+      otras no. Esto tema también se cubre en el FAQ sobre
+      MySQL.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.cgierror"
+></A
+><B
+>9. </B
+>
+      Windows: He instalado PHP, pero cuando intento acceder a un
+      script PHP a través de mi navegador, recibo el error:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>cgi error:
+ The specified CGI application misbehaved by not
+ returning a complete set of HTTP headers.
+ The headers it did return are:</PRE
+></TD
+></TR
+></TABLE
+>
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      El mensaje de error significa que PHP falló en su intento
+      de producir una salida. Para poder ver un mensaje de error
+      más útil, desde la línea de comandos, vaya
+      al directorio que contiene el ejecutable de PHP
+      (<TT
+CLASS="filename"
+>php.exe</TT
+> en Windows) y ejecute
+      <VAR
+CLASS="literal"
+>php -i</VAR
+>. Si PHP tiene algún problema
+      ejecutándose, entonces se desplegará un mensaje de
+      error apropiado, el cual le dará una pista sobre lo que
+      necesita hacer a continuación. Si recibe una pantalla
+      llena de códigos HTML (la salida de la
+      función <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>) entonces PHP
+      está funcionando.
+     </P
+><P
+>&#13;      Una vez PHP esté trabajando desde la línea de
+      comandos, intente acceder al script desde el navegador
+      nuevamente. Si aun falla, entonces la causa puede ser alguna de
+      las siguientes:
+     </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;        Los permisos de archivo en su script
+        PHP, <TT
+CLASS="filename"
+>php.exe</TT
+>, <TT
+CLASS="filename"
+>php4ts.dll</TT
+>,
+        <TT
+CLASS="filename"
+>php.ini</TT
+> o cualquier extensión PHP que esté
+        tratando cargar son de tal forma que el usuario anónimo
+        de internet <VAR
+CLASS="literal"
+>ISUR_&#60;nombre_maquina&#62;</VAR
+> no
+        tiene acceso a éstos recursos.
+       </P
+></LI
+><LI
+><P
+>&#13;        El archivo del script no existe (o posiblemente no se
+        encuentra en donde cree que está, relativo a su
+        directorio web raíz). Note que para IIS, puede atrapar
+        este error seleccionando la caja 'check file exists' cuando
+        esté configurando la gestión de scripts bajo
+        Internet Services Manager. Si un archivo de script no existe,
+        entonces el servidor devolverán un error 404 en su
+        lugar. También existe el beneficio adicional de que IIS
+        se encargará de cualquier autenticación
+        requerida por usted, basado en los permisos NTLanMan en su
+        archivo de script.
+       </P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.phpandiis"
+></A
+><B
+>10. </B
+>
+      Windows: He seguido todas las instrucciones, ¡pero aun no
+      logro que PHP e IIS trabajen juntos!
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      ¡Asegúrese de que cualquier usuario que necesite
+      ejecutar un script PHP tenga los permisos para
+      ejecutar <TT
+CLASS="filename"
+>php.exe</TT
+>! IIS usa un usuario
+      anónimo que es agregado al momento de instalar IIS. Este
+      usuario necesita privilegios
+      sobre <TT
+CLASS="filename"
+>php.exe</TT
+>. También, cualquier
+      usuario autenticado necesitará permisos para
+      ejecutar <TT
+CLASS="filename"
+>php.exe</TT
+>. Y para IIS4, necesita
+      decirle que PHP es un motor de scripts. Asimismo, querrá
+      leer
+      <A
+HREF="faq.installation.html#faq.installation.forceredirect"
+>este faq</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.forceredirect"
+></A
+><B
+>11. </B
+>
+      Cuando corro PHP como CGI con IIS, PWS, OmniHTTPD o Xitami,
+      recibo el siguiente error: <VAR
+CLASS="literal"
+>Security Alert! PHP CGI
+      cannot be accessed directly.</VAR
+>.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Debe definir la directiva <A
+HREF="ini.sect.path-directory.html#ini.cgi.force-redirect"
+>cgi.force_redirect</A
+>
+      como <VAR
+CLASS="literal"
+>0</VAR
+>. Su valor predeterminado
+      es <VAR
+CLASS="literal"
+>1</VAR
+>, así que asegúrese de que
+      la directiva no se encuentre comentada (con
+      un <VAR
+CLASS="literal"
+>;</VAR
+>). Como todas las directivas, ésta
+      se define en <TT
+CLASS="filename"
+>php.ini</TT
+>
+     </P
+><P
+>&#13;      Debido a que su valor predeterminado es <VAR
+CLASS="literal"
+>1</VAR
+>, es
+      importante que esté 100% seguro de que el archivo
+      <TT
+CLASS="filename"
+>php.ini</TT
+> correcto está siendo leído. Lea <A
+HREF="faq.installation.html#faq.installation.findphpini"
+>este faq</A
+> para
+      más detalles.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.installation.findphpini"
+></A
+><B
+>12. </B
+>
+      ¿Cómo se si mi <TT
+CLASS="filename"
+>php.ini</TT
+> está siendo
+      encontrado y leído? Pareciera que mis cambios no
+      están siendo implementados.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Para asegurarse de que su <TT
+CLASS="filename"
+>php.ini</TT
+> está siendo
+      leído por PHP, haga un llamado
+      a <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>, y cerca del comienzo
+      encontrará un listado llamado <VAR
+CLASS="literal"
+>Configuration File
+      (php.ini)</VAR
+>. Éste le dirá en dónde
+      está buscando PHP el archivo <TT
+CLASS="filename"
+>php.ini</TT
+> y si está
+      siendo leído o no. Si sólo existe un directorio
+      PATH, entonces no está siendo leído y debe colocar
+      su <TT
+CLASS="filename"
+>php.ini</TT
+> en ese directorio. Si <TT
+CLASS="filename"
+>php.ini</TT
+> es incluido con la
+      ruta PATH, entonces está siendo leído.
+     </P
+><P
+>&#13;      Si <TT
+CLASS="filename"
+>php.ini</TT
+> está siendo leido y está ejecutando
+      PHP como un módulo, entonces asegúrese de
+      reiniciar su navegador web después de hacer cambios a
+      <TT
+CLASS="filename"
+>php.ini</TT
+>
+     </P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="faq.databases.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.build.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Database issues</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Build Problems</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

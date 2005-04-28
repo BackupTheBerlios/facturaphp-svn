@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>fbsql_fetch_row</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FrontBase Functions"
+HREF="ref.fbsql.html"><LINK
+REL="PREVIOUS"
+TITLE="fbsql_fetch_object"
+HREF="function.fbsql-fetch-object.html"><LINK
+REL="NEXT"
+TITLE="fbsql_field_flags"
+HREF="function.fbsql-field-flags.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-fetch-object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-field-flags.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.fbsql-fetch-row"
+></A
+>fbsql_fetch_row</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN26740"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>fbsql_fetch_row&nbsp;--&nbsp;Get a result row as an enumerated array</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN26743"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>fbsql_fetch_row</B
+> ( resource result)<BR
+></BR
+><P
+> 
+     Returns: An array that corresponds to the fetched row, or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+     if there are no more rows.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>fbsql_fetch_row()</B
+> fetches one row of data from
+     the result associated with the specified result identifier.  The
+     row is returned as an array.  Each result column is stored in an
+     array offset, starting at offset 0.
+    </P
+><P
+>&#13;     Subsequent call to <B
+CLASS="function"
+>fbsql_fetch_row()</B
+> would
+     return the next row in the result set, or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if there are no
+     more rows.
+    </P
+><P
+>&#13;     See also: <A
+HREF="function.fbsql-fetch-array.html"
+><B
+CLASS="function"
+>fbsql_fetch_array()</B
+></A
+>,
+     <A
+HREF="function.fbsql-fetch-object.html"
+><B
+CLASS="function"
+>fbsql_fetch_object()</B
+></A
+>,
+     <A
+HREF="function.fbsql-data-seek.html"
+><B
+CLASS="function"
+>fbsql_data_seek()</B
+></A
+>,
+     <A
+HREF="function.fbsql-fetch-lengths.html"
+><B
+CLASS="function"
+>fbsql_fetch_lengths()</B
+></A
+>, and
+     <A
+HREF="function.fbsql-result.html"
+><B
+CLASS="function"
+>fbsql_result()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fbsql-fetch-object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.fbsql-field-flags.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fbsql_fetch_object</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>fbsql_field_flags</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

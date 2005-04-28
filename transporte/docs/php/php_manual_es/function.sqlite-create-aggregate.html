@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sqlite_create_aggregate</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SQLite"
+HREF="ref.sqlite.html"><LINK
+REL="PREVIOUS"
+TITLE="sqlite_column"
+HREF="function.sqlite-column.html"><LINK
+REL="NEXT"
+TITLE="sqlite_create_function"
+HREF="function.sqlite-create-function.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sqlite-column.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sqlite-create-function.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sqlite-create-aggregate"
+></A
+>sqlite_create_aggregate</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN98235"
+></A
+><P
+>    (PHP 5)</P
+>sqlite_create_aggregate&nbsp;--&nbsp;Register an aggregating UDF for use in SQL statements.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN98238"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>sqlite_create_aggregate</B
+> ( resource dbhandle, string function_name, mixed step_func, mixed finalize_func [, int num_args])<BR
+></BR
+><P
+>&#13;   <B
+CLASS="function"
+>sqlite_create_aggregate()</B
+> is similar to
+   <A
+HREF="function.sqlite-create-function.html"
+><B
+CLASS="function"
+>sqlite_create_function()</B
+></A
+> except that it registers
+   functions that can be used to calculate a result aggregated across all the
+   rows of a query.
+  </P
+><P
+>&#13;   The key difference between this function and
+   <A
+HREF="function.sqlite-create-function.html"
+><B
+CLASS="function"
+>sqlite_create_function()</B
+></A
+> is that two functions are
+   required to manage the aggregate; <VAR
+CLASS="parameter"
+>step_func</VAR
+> is
+   called for each row of the result set.  Your PHP function should
+   accumulate the result and store it into the aggregation context.
+   Once all the rows have been processed,
+   <VAR
+CLASS="parameter"
+>finalize_func</VAR
+> will be called and it should then
+   take the data from the aggregation context and return the result.
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN98266"
+></A
+><P
+><B
+>Ejemplo 1. max_length aggregation function example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$data </font><font color="#007700">= array(<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'one'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'two'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'three'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'four'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'five'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'six'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'seven'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'eight'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'nine'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'ten'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;);<br /></font><font color="#0000BB">$dbhandle </font><font color="#007700">= </font><font color="#0000BB">sqlite_open</font><font color="#007700">(</font><font color="#DD0000">':memory:'</font><font color="#007700">);<br /></font><font color="#0000BB">sqlite_query</font><font color="#007700">(</font><font color="#0000BB">$dbhandle</font><font color="#007700">, </font><font color="#DD0000">"CREATE TABLE strings(a)"</font><font color="#007700">);<br />foreach (</font><font color="#0000BB">$data </font><font color="#007700">as </font><font color="#0000BB">$str</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$str </font><font color="#007700">= </font><font color="#0000BB">sqlite_escape_string</font><font color="#007700">(</font><font color="#0000BB">$str</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sqlite_query</font><font color="#007700">(</font><font color="#0000BB">$dbhandle</font><font color="#007700">, </font><font color="#DD0000">"INSERT INTO strings VALUES ('$str')"</font><font color="#007700">);<br />}<br /><br />function </font><font color="#0000BB">max_len_step</font><font color="#007700">(&amp;</font><font color="#0000BB">$context</font><font color="#007700">, </font><font color="#0000BB">$string</font><font color="#007700">) <br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$string</font><font color="#007700">) &gt; </font><font color="#0000BB">$context</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$context </font><font color="#007700">= </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$string</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />function </font><font color="#0000BB">max_len_finalize</font><font color="#007700">(&amp;</font><font color="#0000BB">$context</font><font color="#007700">) <br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$context</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">sqlite_create_aggregate</font><font color="#007700">(</font><font color="#0000BB">$dbhandle</font><font color="#007700">, </font><font color="#DD0000">'max_len'</font><font color="#007700">, </font><font color="#DD0000">'max_len_step'</font><font color="#007700">, </font><font color="#DD0000">'max_len_finalize'</font><font color="#007700">);<br /><br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">sqlite_array_query</font><font color="#007700">(</font><font color="#0000BB">$dbhandle</font><font color="#007700">, </font><font color="#DD0000">'SELECT max_len(a) from strings'</font><font color="#007700">));<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   In this example, we are creating an aggregating function that will
+   calculate the length of the longest string in one of the columns of the
+   table.  For each row, the <VAR
+CLASS="literal"
+>max_len_step</VAR
+> function is
+   called and passed a <VAR
+CLASS="parameter"
+>context</VAR
+> parameter.  The context
+   parameter is just like any other PHP variable and be set to hold an array
+   or even an object value.  In this example, we are simply using it to hold
+   the maximum length we have seen so far; if the
+   <VAR
+CLASS="parameter"
+>string</VAR
+> has a length longer than the current
+   maximum, we update the context to hold this new maximum length.
+  </P
+><P
+>&#13;   After all of the rows have been processed, SQLite calls the
+   <VAR
+CLASS="literal"
+>max_len_finalize</VAR
+> function to determine the aggregate
+   result.  Here, we could perform some kind of calculation based on the
+   data found in the <VAR
+CLASS="parameter"
+>context</VAR
+>.  In our simple example
+   though, we have been calculating the result as the query progressed, so we
+   simply need to return the context value.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    The example above will not work correctly if the column contains binary
+    data.  Take a look at the manual page for
+    <A
+HREF="function.sqlite-udf-decode-binary.html"
+><B
+CLASS="function"
+>sqlite_udf_decode_binary()</B
+></A
+> for an explanation of why
+    this is so, and an example of how to make it respect the binary encoding.
+   </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>
+    It is NOT recommended for you to store a copy of the values in the context
+    and then process them at the end, as you would cause SQLite to use a lot of
+    memory to process the query - just think of how much memory you would need
+    if a million rows were stored in memory, each containing a string 32 bytes
+    in length.
+   </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>
+    You can use <A
+HREF="function.sqlite-create-function.html"
+><B
+CLASS="function"
+>sqlite_create_function()</B
+></A
+> and
+    <B
+CLASS="function"
+>sqlite_create_aggregate()</B
+> to override SQLite native
+    SQL functions.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   See also <A
+HREF="function.sqlite-create-function.html"
+><B
+CLASS="function"
+>sqlite_create_function()</B
+></A
+>,
+   <A
+HREF="function.sqlite-udf-encode-binary.html"
+><B
+CLASS="function"
+>sqlite_udf_encode_binary()</B
+></A
+> and
+   <A
+HREF="function.sqlite-udf-decode-binary.html"
+><B
+CLASS="function"
+>sqlite_udf_decode_binary()</B
+></A
+>.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sqlite-column.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sqlite-create-function.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sqlite_column</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sqlite.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sqlite_create_function</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

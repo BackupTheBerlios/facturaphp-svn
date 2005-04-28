@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sybase_deadlock_retry_count</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Sybase"
+HREF="ref.sybase.html"><LINK
+REL="PREVIOUS"
+TITLE="sybase_data_seek"
+HREF="function.sybase-data-seek.html"><LINK
+REL="NEXT"
+TITLE="sybase_fetch_array"
+HREF="function.sybase-fetch-array.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sybase-data-seek.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sybase-fetch-array.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sybase-deadlock-retry-count"
+></A
+>sybase_deadlock_retry_count</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN108656"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>sybase_deadlock_retry_count&nbsp;--&nbsp;Fija el contador de reintentos del deadlock </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN108659"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>sybase_deadlock_retry_count</B
+> ( int contador_de_reintentos)<BR
+></BR
+><P
+> 
+     Usando <B
+CLASS="function"
+>sybase_deadlock_retry_count()</B
+>, el número 
+     de reintentos puede ser definido en caso de encontrarse en deadlock. 
+     Por defecto, cada deadlock sigue intentando un número infinito
+     de veces o hasta que el proceso es destruido por Sybase, el script es 
+     finalizado (por ejemplo, por <A
+HREF="function.set-time-limit.html"
+><B
+CLASS="function"
+>set_time_limit()</B
+></A
+>)
+     ó la sentencia SQL es exitosa.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función se encuentra disponible solamente cuando se usan las bibliotecas 
+CT de Sybase y no las bibliotecas DB.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN108673"
+></A
+><P
+><B
+>Tabla 1. Valores para contador_de_reintentos</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+>-1</TD
+><TD
+>Reintenta por siempre (por defecto)</TD
+></TR
+><TR
+><TD
+>0</TD
+><TD
+>No reintenta</TD
+></TR
+><TR
+><TD
+>n</TD
+><TD
+>Reintenta n veces</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sybase-data-seek.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sybase-fetch-array.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sybase_data_seek</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sybase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sybase_fetch_array</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

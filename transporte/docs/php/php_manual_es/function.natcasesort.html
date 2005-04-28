@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>natcasesort</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="list"
+HREF="function.list.html"><LINK
+REL="NEXT"
+TITLE="natsort"
+HREF="function.natsort.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.list.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.natsort.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.natcasesort"
+></A
+>natcasesort</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN8262"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>natcasesort&nbsp;--&nbsp;
+     Ordena una matriz usando un algoritmo de "orden natural" sin
+     distinguir mayúsculas de minúsculas
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN8265"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>natcasesort</B
+> ( array matriz)<BR
+></BR
+><P
+>&#13;     Esta función implementa un algoritmo de ordenamiento que
+     ordena cadenas alfanuméricas en la forma en que un ser
+     humano lo haría, al mismo tiempo que conserva las
+     asociaciones clave/valor. Esta propiedad se conoce como
+     "ordenamiento natural".
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>natcasesort()</B
+> es una versión de
+     <A
+HREF="function.natsort.html"
+><B
+CLASS="function"
+>natsort()</B
+></A
+> que no distingue entre
+     mayúsculas y minúsculas.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN8278"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>natcasesort()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz1 </font><font color="#007700">= </font><font color="#0000BB">$matriz2 </font><font color="#007700">= array(</font><font color="#DD0000">'IMG0.png'</font><font color="#007700">, </font><font color="#DD0000">'img12.png'</font><font color="#007700">, </font><font color="#DD0000">'img10.png'</font><font color="#007700">, </font><font color="#DD0000">'img2.png'</font><font color="#007700">, </font><font color="#DD0000">'img1.png'</font><font color="#007700">, </font><font color="#DD0000">'IMG3.png'</font><font color="#007700">);<br /><br /></font><font color="#0000BB">sort</font><font color="#007700">(</font><font color="#0000BB">$matriz1</font><font color="#007700">);<br />echo </font><font color="#DD0000">"Ordenamiento est&amp;aacute;ndar\n"</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz1</font><font color="#007700">);<br /><br /></font><font color="#0000BB">natcasesort</font><font color="#007700">(</font><font color="#0000BB">$matriz2</font><font color="#007700">);<br />echo </font><font color="#DD0000">"\nOrden natural (insensible a may&amp;uacute;sculas y min&amp;uacute;sculas)\n"</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$array2</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       El código anterior generará la siguiente salida:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Ordenamiento est&#38;aacute;ndar
+Array
+(
+    [0] =&#62; IMG0.png
+    [1] =&#62; IMG3.png
+    [2] =&#62; img1.png
+    [3] =&#62; img10.png
+    [4] =&#62; img12.png
+    [5] =&#62; img2.png
+)
+
+Orden natural (insensible a may&#38;uacute;sculas y min&#38;uacute;sculas)
+Array
+(
+    [0] =&#62; IMG0.png
+    [4] =&#62; img1.png
+    [3] =&#62; img2.png
+    [5] =&#62; IMG3.png
+    [2] =&#62; img10.png
+    [1] =&#62; img12.png
+)</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;       Para más información vea: la página
+       de <A
+HREF="http://www.naturalordersort.org/"
+TARGET="_top"
+>Comparación de Cadenas
+       en Orden Natural</A
+> de Martin Pool.
+      </P
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.sort.html"
+><B
+CLASS="function"
+>sort()</B
+></A
+>,
+     <A
+HREF="function.natsort.html"
+><B
+CLASS="function"
+>natsort()</B
+></A
+>,
+     <A
+HREF="function.strnatcmp.html"
+><B
+CLASS="function"
+>strnatcmp()</B
+></A
+>, y
+     <A
+HREF="function.strnatcasecmp.html"
+><B
+CLASS="function"
+>strnatcasecmp()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.list.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.natsort.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>list</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>natsort</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

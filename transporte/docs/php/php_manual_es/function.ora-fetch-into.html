@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ora_fetch_into</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones Oracle"
+HREF="ref.oracle.html"><LINK
+REL="PREVIOUS"
+TITLE="Ora_Exec"
+HREF="function.ora-exec.html"><LINK
+REL="NEXT"
+TITLE="Ora_Fetch"
+HREF="function.ora-fetch.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ora-exec.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ora-fetch.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ora-fetch-into"
+></A
+>ora_fetch_into</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN80343"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>ora_fetch_into&nbsp;--&nbsp;Fetch a row into the specified result array</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN80346"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>ora_fetch_into</B
+> ( resource cursor, array result [, int flags])<BR
+></BR
+><P
+>&#13;     Fetches a row of data into an array. The <VAR
+CLASS="parameter"
+>flags</VAR
+>
+     has two flag values: if the <TT
+CLASS="constant"
+><B
+>ORA_FETCHINTO_NULLS</B
+></TT
+>
+     flag is set, columns with <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> values are set
+     in the array; and if the <TT
+CLASS="constant"
+><B
+>ORA_FETCHINTO_ASSOC</B
+></TT
+>
+     flag is set, an associative array is created.
+    </P
+><P
+>&#13;     Returns the number of columns fetched.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN80367"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>ora_fetch_into()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$results </font><font color="#007700">= array();<br /></font><font color="#0000BB">ora_fetch_into</font><font color="#007700">(</font><font color="#0000BB">$cursor</font><font color="#007700">, </font><font color="#0000BB">$results</font><font color="#007700">);<br />echo </font><font color="#0000BB">$results</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">];<br />echo </font><font color="#0000BB">$results</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">];<br /></font><font color="#0000BB">$results </font><font color="#007700">= array();<br /></font><font color="#0000BB">ora_fetch_into</font><font color="#007700">(</font><font color="#0000BB">$cursor</font><font color="#007700">, </font><font color="#0000BB">$results</font><font color="#007700">, </font><font color="#0000BB">ORA_FETCHINTO_NULLS</font><font color="#007700">|</font><font color="#0000BB">ORA_FETCHINTO_ASSOC</font><font color="#007700">);<br />echo </font><font color="#0000BB">$results</font><font color="#007700">[</font><font color="#DD0000">'MyColumn'</font><font color="#007700">];<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     See also <A
+HREF="function.ora-parse.html"
+><B
+CLASS="function"
+>ora_parse()</B
+></A
+>,<A
+HREF="function.ora-exec.html"
+><B
+CLASS="function"
+>ora_exec()</B
+></A
+>,
+     <A
+HREF="function.ora-fetch.html"
+><B
+CLASS="function"
+>ora_fetch()</B
+></A
+>, and <A
+HREF="function.ora-do.html"
+><B
+CLASS="function"
+>ora_do()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ora-exec.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ora-fetch.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Ora_Exec</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oracle.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Ora_Fetch</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

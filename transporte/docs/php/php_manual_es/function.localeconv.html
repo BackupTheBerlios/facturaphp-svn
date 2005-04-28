@@ -1,0 +1,514 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>localeconv</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="levenshtein"
+HREF="function.levenshtein.html"><LINK
+REL="NEXT"
+TITLE="ltrim"
+HREF="function.ltrim.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.levenshtein.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ltrim.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.localeconv"
+></A
+>localeconv</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN106152"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.5, PHP 5)</P
+>localeconv&nbsp;--&nbsp;Obtener información sobre el formato numérico</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN106155"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>localeconv</B
+> ( void )<BR
+></BR
+><P
+>&#13;Devuelve una matriz asociativa que contiene información de los
+formatos numérico y monetario, localizados.
+    </P
+><P
+>&#13;<B
+CLASS="function"
+>localeconv()</B
+> devuelve información basada en
+la localidad actual, tal y como haya sido definida
+mediante <A
+HREF="function.setlocale.html"
+><B
+CLASS="function"
+>setlocale()</B
+></A
+>. La matriz asociativa que
+devuelve contiene los siguientes campos:
+     <DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN106165"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Elemento de la matriz</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>decimal_point</TD
+><TD
+>Caracter de punto decimal</TD
+></TR
+><TR
+><TD
+>thousands_sep</TD
+><TD
+>Separador de miles</TD
+></TR
+><TR
+><TD
+>grouping</TD
+><TD
+>Matriz que contiene agrupaciones numéricas</TD
+></TR
+><TR
+><TD
+>int_curr_symbol</TD
+><TD
+>Símbolo internacional de moneda (i.e. USD)</TD
+></TR
+><TR
+><TD
+>currency_symbol</TD
+><TD
+>Símbolo local de moneda (i.e. $)</TD
+></TR
+><TR
+><TD
+>mon_decimal_point</TD
+><TD
+>Caracter de punto decimal monetario</TD
+></TR
+><TR
+><TD
+>mon_thousands_sep</TD
+><TD
+>Separador de miles monetario</TD
+></TR
+><TR
+><TD
+>mon_grouping</TD
+><TD
+>Matriz que contiene agrupaciones de moneda</TD
+></TR
+><TR
+><TD
+>positive_sign</TD
+><TD
+>Signo para valores positivos</TD
+></TR
+><TR
+><TD
+>negative_sign</TD
+><TD
+>Signo para valores negativos</TD
+></TR
+><TR
+><TD
+>int_frac_digits</TD
+><TD
+>Dígitos fraccionarios internacionales</TD
+></TR
+><TR
+><TD
+>frac_digits</TD
+><TD
+>Dígitos fraccionarios locales</TD
+></TR
+><TR
+><TD
+>p_cs_precedes</TD
+><TD
+>&#13;          <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si currency_symbol precede un valor positivo, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+          si lo sucede
+         </TD
+></TR
+><TR
+><TD
+>p_sep_by_space</TD
+><TD
+>&#13;          <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si un espacio separa currency_symbol de un valor positivo,
+          <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> de lo contrario
+         </TD
+></TR
+><TR
+><TD
+>n_cs_precedes</TD
+><TD
+>&#13;          <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si currency_symbol precede un valor negativo, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+          si lo sucede
+         </TD
+></TR
+><TR
+><TD
+>n_sep_by_space</TD
+><TD
+>&#13;          <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si un espacio separa currency_symbol de un valor
+          negativo, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> de lo contrario
+         </TD
+></TR
+><TR
+VALIGN="top"
+><TD
+>p_sign_posn</TD
+><TD
+>&#13;          <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>0</TD
+><TD
+>&#13;            Paréntesis rodean la cantidad y currency_symbol</TD
+></TR
+><TR
+><TD
+>1</TD
+><TD
+>&#13;            La cadena de signo precede la cantidad y currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>&#13;            La cadena de signo sucede la cantidad y currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>&#13;            La cadena de signo precede inmediatamente currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>4</TD
+><TD
+>&#13;            La cadena de signo sucede inmediatamente currency_symbol
+           </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+        </TD
+></TR
+><TR
+VALIGN="top"
+><TD
+>n_sign_posn</TD
+><TD
+>&#13;          <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>0</TD
+><TD
+>&#13;            Paréntesis rodean la cantidad y currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>1</TD
+><TD
+>&#13;            La cadena de signo precede la cantidad y currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>&#13;            La cadena de signo sucede la cantidad y currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>&#13;            La cadena de signo precede inmediatamente currency_symbol
+           </TD
+></TR
+><TR
+><TD
+>4</TD
+><TD
+>&#13;            La cadena de signo sucede inmediatamente currency_symbol
+           </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;Los campos de agrupamiento contienen matrices que definen el modo en
+que los números deben ser agrupados. Por ejemplo, el campo de
+agrupamiento para la localidad en_US debería contener una
+matriz de 2 elementos con los valores 3 y 3. Entre más alto sea
+el índice dentro de la matriz, lo más lejos hacia la
+izquierda se encuentra el agrupamiento. Si un elemento de la matriz es
+igual a CHAR_MAX, no se realiza ningún agrupamiento
+posterior. Si un elemento de la matriz es igual a 0, el elemento
+anterior deberá ser usado.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN106257"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>localeconv()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />setlocale</font><font color="#007700">(</font><font color="#0000BB">LC_ALL</font><font color="#007700">, </font><font color="#DD0000">"en_US"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$info_locale </font><font color="#007700">= </font><font color="#0000BB">localeconv</font><font color="#007700">();<br /><br />echo </font><font color="#DD0000">"&lt;pre&gt;\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"-------------------------------------------------\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">" Informaci&amp;oacute;n monetaria para la localidad actual:&nbsp;&nbsp;\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"-------------------------------------------------\n\n"</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">"int_curr_symbol:&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"int_curr_symbol"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"currency_symbol:&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"currency_symbol"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"mon_decimal_point: </font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"mon_decimal_point"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"mon_thousands_sep: </font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"mon_thousands_sep"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"positive_sign:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"positive_sign"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"negative_sign:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"negative_sign"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"int_frac_digits:&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"int_frac_digits"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"frac_digits:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"frac_digits"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"p_cs_precedes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"p_cs_precedes"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"p_sep_by_space:&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"p_sep_by_space"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"n_cs_precedes:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"n_cs_precedes"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"n_sep_by_space:&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"n_sep_by_space"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"p_sign_posn:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"p_sign_posn"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"n_sign_posn:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">{</font><font color="#DD0000">$info_locale</font><font color="#007700">[</font><font color="#DD0000">"n_sign_posn"</font><font color="#007700">]}\n</font><font color="#DD0000">"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"&lt;/pre&gt;\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;La constante CHAR_MAX también se define para el uso mencionado
+anteriormente.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.setlocale.html"
+><B
+CLASS="function"
+>setlocale()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.levenshtein.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ltrim.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>levenshtein</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ltrim</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

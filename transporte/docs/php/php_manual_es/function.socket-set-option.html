@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>socket_set_option</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Socket"
+HREF="ref.sockets.html"><LINK
+REL="PREVIOUS"
+TITLE="socket_set_nonblock"
+HREF="function.socket-set-nonblock.html"><LINK
+REL="NEXT"
+TITLE="socket_shutdown"
+HREF="function.socket-shutdown.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.socket-set-nonblock.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.socket-shutdown.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.socket-set-option"
+></A
+>socket_set_option</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN102341"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>socket_set_option&nbsp;--&nbsp;Sets socket options for the socket</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN102344"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>socket_set_option</B
+> ( resource socket, int level, int optname, mixed optval)<BR
+></BR
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     The <B
+CLASS="function"
+>socket_set_option()</B
+> function sets the option specified by the <VAR
+CLASS="parameter"
+>optname</VAR
+>
+     parameter, at the protocol level specified by the <VAR
+CLASS="parameter"
+>level</VAR
+> parameter, to the
+     value pointed to by the <VAR
+CLASS="parameter"
+>optval</VAR
+> parameter for the socket
+     specified by the <VAR
+CLASS="parameter"
+>socket</VAR
+> parameter. <B
+CLASS="function"
+>socket_set_option()</B
+>
+     will return <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on failure.
+    </P
+><P
+>&#13;     The <VAR
+CLASS="parameter"
+>level</VAR
+> parameter specifies the protocol level at
+     which the option resides. For example, to retrieve options at the socket level,
+     a <VAR
+CLASS="parameter"
+>level</VAR
+> parameter of SOL_SOCKET would be used. Other
+     levels, such as TCP, can be used by specifying the protocol number of that level.
+     Protocol numbers can be found by using the <A
+HREF="function.getprotobyname.html"
+><B
+CLASS="function"
+>getprotobyname()</B
+></A
+> function.
+    </P
+><P
+>&#13;     The available socket options are the same as those for the <A
+HREF="function.socket-get-option.html"
+><B
+CLASS="function"
+>socket_get_option()</B
+></A
+> function.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      This function used to be called <VAR
+CLASS="literal"
+>socket_setopt()</VAR
+> prior
+      to PHP 4.3.0
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.socket-set-nonblock.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.socket-shutdown.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>socket_set_nonblock</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>socket_shutdown</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

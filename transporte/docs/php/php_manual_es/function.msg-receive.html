@@ -1,0 +1,417 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>msg_receive</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones Semáforo y de memoria compartida"
+HREF="ref.sem.html"><LINK
+REL="PREVIOUS"
+TITLE="msg_get_queue"
+HREF="function.msg-get-queue.html"><LINK
+REL="NEXT"
+TITLE="msg_remove_queue"
+HREF="function.msg-remove-queue.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.msg-get-queue.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.msg-remove-queue.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.msg-receive"
+></A
+>msg_receive</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN94499"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>msg_receive&nbsp;--&nbsp;
+     Receive a message from a message queue
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN94502"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>msg_receive</B
+> ( resource queue, int desiredmsgtype, int msgtype, int maxsize, mixed message [, bool unserialize [, int flags [, int errorcode]]])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>msg_receive()</B
+> will receive the first message from the
+     specified <VAR
+CLASS="parameter"
+>queue</VAR
+> of the type specified by
+     <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+>.
+     The type of the message that was received will be stored in
+     <VAR
+CLASS="parameter"
+>msgtype</VAR
+>.
+     The maximum size of message to be accepted is specified by the
+     <VAR
+CLASS="parameter"
+>maxsize</VAR
+>; if the message in the queue is larger
+     than this size the function will fail (unless you set
+     <VAR
+CLASS="parameter"
+>flags</VAR
+> as described below).
+     The received message will be stored in <VAR
+CLASS="parameter"
+>message</VAR
+>,
+     unless there were errors receiving the message, in which case the
+     optional <VAR
+CLASS="parameter"
+>errorcode</VAR
+> will be set to the value of the
+     system errno variable to help you identify the cause.
+    </P
+><P
+>&#13;     If <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+> is 0, the message from the front
+     of the queue is returned. If <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+> is
+     greater than 0, then the first message of that type is returned.
+     If <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+> is less than 0, the first
+     message on the queue with the lowest type less than or equal to the
+     absolute value of <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+> will be read.
+     If no messages match the criteria, your script will wait until a suitable
+     message arrives on the queue.  You can prevent the script from blocking
+     by specifying <TT
+CLASS="constant"
+><B
+>MSG_IPC_NOWAIT</B
+></TT
+> in the 
+     <VAR
+CLASS="parameter"
+>flags</VAR
+> parameter.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>unserialize</VAR
+> defaults to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>; if it is set to
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, the message is treated as though it was serialized using the same
+     mechanism as the session module.  The message will be unserialized and
+     then returned to your script.  This allows you to easily receive arrays
+     or complex object structures from other PHP scripts, or if you are using
+     the WDDX serializer, from any WDDX compatible source.
+     If <VAR
+CLASS="parameter"
+>unserialize</VAR
+> is <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, the message will be
+     returned as a binary-safe string.
+    </P
+><P
+>&#13;     The optional <VAR
+CLASS="parameter"
+>flags</VAR
+> allows you to pass flags to the
+     low-level msgrcv system call.  It defaults to 0, but you may specify one
+     or more of the following values (by adding or ORing them together).
+     <DIV
+CLASS="table"
+><A
+NAME="AEN94555"
+></A
+><P
+><B
+>Tabla 1. Flag values for msg_receive</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>MSG_IPC_NOWAIT</B
+></TT
+></TD
+><TD
+>If there are no messages of the
+          <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+>, return immediately and do not
+          wait.  The function will fail and return an integer value
+          corresponding to ENOMSG.
+         </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>MSG_IPC_NOWAIT</B
+></TT
+></TD
+><TD
+>Using this flag in combination with a
+          <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+> greater than 0 will cause the
+          function to receive the first message that is not equal to
+          <VAR
+CLASS="parameter"
+>desiredmsgtype</VAR
+>.</TD
+></TR
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>MSG_IPC_NOWAIT</B
+></TT
+></TD
+><TD
+>&#13;          If the message is longer than <VAR
+CLASS="parameter"
+>maxsize</VAR
+>,
+          setting this flag will truncate the message to
+          <VAR
+CLASS="parameter"
+>maxsize</VAR
+> and will not signal an error.
+         </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     Upon successful completion the message queue data structure is updated as
+     follows: <VAR
+CLASS="literal"
+>msg_lrpid</VAR
+> is set to the process-ID of the
+     calling process, <VAR
+CLASS="literal"
+>msg_qnum</VAR
+> is decremented by 1 and
+     <VAR
+CLASS="literal"
+>msg_rtime</VAR
+> is set to the current time.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>msg_receive()</B
+> returns <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> on success or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on
+     failure.  If the function fails, the optional
+     <VAR
+CLASS="parameter"
+>errorcode</VAR
+> will be set to the value of the system
+     errno variable.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.msg-remove-queue.html"
+><B
+CLASS="function"
+>msg_remove_queue()</B
+></A
+>,
+     <A
+HREF="function.msg-send.html"
+><B
+CLASS="function"
+>msg_send()</B
+></A
+>,
+     <A
+HREF="function.msg-stat-queue.html"
+><B
+CLASS="function"
+>msg_stat_queue()</B
+></A
+> and
+     <A
+HREF="function.msg-set-queue.html"
+><B
+CLASS="function"
+>msg_set_queue()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.msg-get-queue.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.msg-remove-queue.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>msg_get_queue</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>msg_remove_queue</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

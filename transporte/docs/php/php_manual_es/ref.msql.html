@@ -1,0 +1,724 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones mSQL</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="udm_set_agent_param"
+HREF="function.udm-set-agent-param.html"><LINK
+REL="NEXT"
+TITLE="msql_affected_rows"
+HREF="function.msql-affected-rows.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.udm-set-agent-param.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.msql-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.msql"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXIV. Funciones mSQL</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN61474"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="msql.intro"
+>Introducción</A
+></H1
+><P
+>&#13;    Estas funciones le permiten acceder a servidores de bases de datos
+    mSQL. Puede encontrar más información sobre mSQL en
+    <A
+HREF="http://www.hughes.com.au/"
+TARGET="_top"
+>http://www.hughes.com.au/</A
+>.
+   </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="msql.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  In order to have these functions available, you must compile PHP with
+  msql support by using the
+  <VAR
+CLASS="option"
+>--with-msql[=DIR]</VAR
+> option. DIR is the mSQL
+  base install directory, defaults to <TT
+CLASS="filename"
+>/usr/local/msql3</TT
+>.
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note to Win32 Users: </B
+>
+   In order to enable this module on a Windows environment, you must copy
+   <TT
+CLASS="filename"
+>msql.dll</TT
+> from the DLL folder of the PHP/Win32
+   binary package to the SYSTEM32 folder of your windows machine. 
+   (Ex: <TT
+CLASS="filename"
+>C:\WINNT\SYSTEM32</TT
+> or 
+   <TT
+CLASS="filename"
+>C:\WINDOWS\SYSTEM32</TT
+>)
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="msql.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13; <DIV
+CLASS="table"
+><A
+NAME="AEN61495"
+></A
+><P
+><B
+>Tabla 1. mSQL configuration options</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Default</TH
+><TH
+>Changeable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>msql.allow_persistent</TD
+><TD
+>"On"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>msql.max_persistent</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>msql.max_links</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ For further details and definition of the PHP_INI_* constants see
+ <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;  <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.msql.allow-persistent"
+></A
+><VAR
+CLASS="parameter"
+>msql.allow_persistent</VAR
+>
+     <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;      Whether to allow persistent mSQL connections.
+     </P
+></DD
+><DT
+><A
+NAME="ini.msql.max-persistent"
+></A
+><VAR
+CLASS="parameter"
+>msql.max_persistent</VAR
+>
+     <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;      The maximum number of persistent mSQL connections per process.
+     </P
+></DD
+><DT
+><A
+NAME="ini.msql.max-links"
+></A
+><VAR
+CLASS="parameter"
+>msql.max_links</VAR
+>
+     <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;      The maximum number of mSQL connections per process, including
+      persistent connections.
+     </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="msql.resources"
+>Tipos de recursos</A
+></H1
+><P
+>&#13;     Existen dos tipos de recurso usados en el módulo mSQL. El
+     primero es el identificador de enlace para una conexión de
+     base de datos, el segundo es un recurso que contiene el resultado
+     de una consulta.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="msql.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>MSQL_ASSOC</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>MSQL_NUM</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>MSQL_BOTH</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="msql.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     Este sencillo ejemplo muestra el modo de crear una
+     conexión, ejecutar una consulta, imprimir las filas de
+     resultado y desconectarse de una base de datos mSQL.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN61566"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de uso de mSQL</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Conexion, seleccion de una base de datos */<br /></font><font color="#0000BB">$enlace </font><font color="#007700">= </font><font color="#0000BB">msql_connect</font><font color="#007700">(</font><font color="#DD0000">'localhost'</font><font color="#007700">, </font><font color="#DD0000">'nombre_usuario'</font><font color="#007700">, </font><font color="#DD0000">'contrasenya'</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">'No pudo crear una conexi&amp;oacute;n: ' </font><font color="#007700">. </font><font color="#0000BB">msql_error</font><font color="#007700">(</font><font color="#0000BB">$enlace</font><font color="#007700">));<br /><br /></font><font color="#0000BB">msql_select_db</font><font color="#007700">(</font><font color="#DD0000">'base_de_datos'</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">'No pudo seleccionarse la base de datos'</font><font color="#007700">, </font><font color="#0000BB">$enlace</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Realizar una consulta SQL */<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#DD0000">'SELECT * FROM mi_tabla'</font><font color="#007700">;<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">msql_query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">, </font><font color="#0000BB">$enlace</font><font color="#007700">) or die(</font><font color="#DD0000">'La consulta fall&amp;oacute;: ' </font><font color="#007700">. </font><font color="#0000BB">msql_error</font><font color="#007700">(</font><font color="#0000BB">$enlace</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* Impresion de resultados en HTML */<br /></font><font color="#007700">echo </font><font color="#DD0000">"&lt;table&gt;\n"</font><font color="#007700">;<br />while (</font><font color="#0000BB">$fila </font><font color="#007700">= </font><font color="#0000BB">msql_fetch_array</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">, </font><font color="#0000BB">MSQL_ASSOC</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"\t&lt;tr&gt;\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach (</font><font color="#0000BB">$fila </font><font color="#007700">as </font><font color="#0000BB">$valor_col</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"</font><font color="#007700">\t\t</font><font color="#DD0000">&lt;td&gt;$valor_col&lt;/td&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"\t&lt;/tr&gt;\n"</font><font color="#007700">;<br />}<br />echo </font><font color="#DD0000">"&lt;/table&gt;\n"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* Liberar el conjunto de resultados */<br /></font><font color="#0000BB">msql_free_result</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Cerrar la conexion */<br /></font><font color="#0000BB">msql_close</font><font color="#007700">(</font><font color="#0000BB">$enlace</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.msql-affected-rows.html"
+>msql_affected_rows</A
+>&nbsp;--&nbsp;devuelve el número de filas involucradas</DT
+><DT
+><A
+HREF="function.msql-close.html"
+>msql_close</A
+>&nbsp;--&nbsp;cierra una conexión mSQL</DT
+><DT
+><A
+HREF="function.msql-connect.html"
+>msql_connect</A
+>&nbsp;--&nbsp;abre una conexión mSQL</DT
+><DT
+><A
+HREF="function.msql-create-db.html"
+>msql_create_db</A
+>&nbsp;--&nbsp;crea una base de datos mSQL</DT
+><DT
+><A
+HREF="function.msql-createdb.html"
+>msql_createdb</A
+>&nbsp;--&nbsp;crea una base de datos mSQL</DT
+><DT
+><A
+HREF="function.msql-data-seek.html"
+>msql_data_seek</A
+>&nbsp;--&nbsp;desplaza el puntero interno de fila</DT
+><DT
+><A
+HREF="function.msql-db-query.html"
+>msql</A
+>&nbsp;--&nbsp;Send mSQL query</DT
+><DT
+><A
+HREF="function.msql-dbname.html"
+>msql_dbname</A
+>&nbsp;--&nbsp;obtiene el nombre de la base de datos mSQL actual</DT
+><DT
+><A
+HREF="function.msql-drop-db.html"
+>msql_drop_db</A
+>&nbsp;--&nbsp;elimina (suprime) una base de datos mSQL</DT
+><DT
+><A
+HREF="function.msql-error.html"
+>msql_error</A
+>&nbsp;--&nbsp;devuelve el mensaje de error de la última llamada msql</DT
+><DT
+><A
+HREF="function.msql-fetch-array.html"
+>msql_fetch_array</A
+>&nbsp;--&nbsp;recupera una fila como un array</DT
+><DT
+><A
+HREF="function.msql-fetch-field.html"
+>msql_fetch_field</A
+>&nbsp;--&nbsp;obtiene información de campo</DT
+><DT
+><A
+HREF="function.msql-fetch-object.html"
+>msql_fetch_object</A
+>&nbsp;--&nbsp;recupera una fila como un objeto</DT
+><DT
+><A
+HREF="function.msql-fetch-row.html"
+>msql_fetch_row</A
+>&nbsp;--&nbsp;obtiene una fila como un array enumerado</DT
+><DT
+><A
+HREF="function.msql-field-flags.html"
+>msql_field_flags</A
+>&nbsp;--&nbsp;Get field flags</DT
+><DT
+><A
+HREF="function.msql-field-len.html"
+>msql_field_len</A
+>&nbsp;--&nbsp;Get field length</DT
+><DT
+><A
+HREF="function.msql-field-name.html"
+>msql_field_name</A
+>&nbsp;--&nbsp;Get field name</DT
+><DT
+><A
+HREF="function.msql-field-seek.html"
+>msql_field_seek</A
+>&nbsp;--&nbsp;establece el desplazamiento del campo</DT
+><DT
+><A
+HREF="function.msql-field-table.html"
+>msql_field_table</A
+>&nbsp;--&nbsp;Get table name for field</DT
+><DT
+><A
+HREF="function.msql-field-type.html"
+>msql_field_type</A
+>&nbsp;--&nbsp;Get field type</DT
+><DT
+><A
+HREF="function.msql-fieldflags.html"
+>msql_fieldflags</A
+>&nbsp;--&nbsp;obtiene los flags del campo</DT
+><DT
+><A
+HREF="function.msql-fieldlen.html"
+>msql_fieldlen</A
+>&nbsp;--&nbsp;obtiene la longitud del campo</DT
+><DT
+><A
+HREF="function.msql-fieldname.html"
+>msql_fieldname</A
+>&nbsp;--&nbsp;obtiene el nombre del campo</DT
+><DT
+><A
+HREF="function.msql-fieldtable.html"
+>msql_fieldtable</A
+>&nbsp;--&nbsp;obtiene el nombre de la tabla de un campo</DT
+><DT
+><A
+HREF="function.msql-fieldtype.html"
+>msql_fieldtype</A
+>&nbsp;--&nbsp;obtiene el tipo del campo</DT
+><DT
+><A
+HREF="function.msql-free-result.html"
+>msql_free_result</A
+>&nbsp;--&nbsp;libera la memoria del resultado</DT
+><DT
+><A
+HREF="function.msql-list-dbs.html"
+>msql_list_dbs</A
+>&nbsp;--&nbsp;lista las bases de datos mSQL en el servidor</DT
+><DT
+><A
+HREF="function.msql-list-fields.html"
+>msql_list_fields</A
+>&nbsp;--&nbsp;lista los campos del resultado</DT
+><DT
+><A
+HREF="function.msql-list-tables.html"
+>msql_list_tables</A
+>&nbsp;--&nbsp;lista las tablas de una base de datos mSQL</DT
+><DT
+><A
+HREF="function.msql-num-fields.html"
+>msql_num_fields</A
+>&nbsp;--&nbsp;obtiene el número de campos de un resultado</DT
+><DT
+><A
+HREF="function.msql-num-rows.html"
+>msql_num_rows</A
+>&nbsp;--&nbsp;obtiene el número de filas de un resultado</DT
+><DT
+><A
+HREF="function.msql-numfields.html"
+>msql_numfields</A
+>&nbsp;--&nbsp;obtiene el número de campos de un resultado</DT
+><DT
+><A
+HREF="function.msql-numrows.html"
+>msql_numrows</A
+>&nbsp;--&nbsp;obtiene el número de filas en el resultado</DT
+><DT
+><A
+HREF="function.msql-pconnect.html"
+>msql_pconnect</A
+>&nbsp;--&nbsp;abre una conexión mSQL persistente</DT
+><DT
+><A
+HREF="function.msql-query.html"
+>msql_query</A
+>&nbsp;--&nbsp;envía una consulta mSQL</DT
+><DT
+><A
+HREF="function.msql-regcase.html"
+>msql_regcase</A
+>&nbsp;--&nbsp;construye una expresión regular para una búsqueda 
+    que no distinga mayúsculas/minúsculas</DT
+><DT
+><A
+HREF="function.msql-result.html"
+>msql_result</A
+>&nbsp;--&nbsp;obtiene datos resultado</DT
+><DT
+><A
+HREF="function.msql-select-db.html"
+>msql_select_db</A
+>&nbsp;--&nbsp;selecciona una base de datos mSQL</DT
+><DT
+><A
+HREF="function.msql-tablename.html"
+>msql_tablename</A
+>&nbsp;--&nbsp;obtiene el nombre de la tabla de un campo</DT
+><DT
+><A
+HREF="function.msql.html"
+>msql</A
+>&nbsp;--&nbsp;ejecuta una consulta mSQL</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.udm-set-agent-param.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.msql-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>udm_set_agent_param</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>msql_affected_rows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

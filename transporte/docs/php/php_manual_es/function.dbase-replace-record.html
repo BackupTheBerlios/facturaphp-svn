@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>dbase_replace_record</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para dBase"
+HREF="ref.dbase.html"><LINK
+REL="PREVIOUS"
+TITLE="dbase_pack"
+HREF="function.dbase-pack.html"><LINK
+REL="NEXT"
+TITLE="Funciones DBM Functions [obsoletas]"
+HREF="ref.dbm.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dbase-pack.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.dbm.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.dbase-replace-record"
+></A
+>dbase_replace_record</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN18000"
+></A
+><P
+>    (PHP 3&#62;= 3.0.11, PHP 4 , PHP 5)</P
+>dbase_replace_record&nbsp;--&nbsp;reemplaza un registro en un fichero dBase</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN18003"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>dbase_replace_record</B
+> ( int dbase_identifier, array record, int dbase_record_number)<BR
+></BR
+><P
+>&#13;	 Reemplaza los datos asociados con el registro
+	 <VAR
+CLASS="parameter"
+>record_number</VAR
+> con los datos de
+	 <VAR
+CLASS="parameter"
+>record</VAR
+> en el fichero de datos. Si el
+	 número de elementos del registro proporcionado no es igual al
+	 número de campos de la base de datos, la operación fallará y la
+	 función devolverá <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.</P
+><P
+>&#13;	 <VAR
+CLASS="parameter"
+>dbase_record_number</VAR
+> es un entero en el
+	 rango de 1 al número de registros en el fichero de datos
+	 (devuelto por la función
+	 <A
+HREF="function.dbase-numrecords.html"
+><B
+CLASS="function"
+>dbase_numrecords()</B
+></A
+>).</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dbase-pack.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.dbm.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dbase_pack</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.dbase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Funciones DBM Functions [obsoletas]</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>oci_fetch_assoc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Oracle 8"
+HREF="ref.oci8.html"><LINK
+REL="PREVIOUS"
+TITLE="oci_fetch_array"
+HREF="function.oci-fetch-array.html"><LINK
+REL="NEXT"
+TITLE="oci_fetch_object"
+HREF="function.oci-fetch-object.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.oci-fetch-array.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.oci-fetch-object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.oci-fetch-assoc"
+></A
+>oci_fetch_assoc</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN76492"
+></A
+><P
+>    (PHP 5)</P
+>oci_fetch_assoc&nbsp;--&nbsp;Returns the next row from the result data as an associative array</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN76495"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>oci_fetch_assoc</B
+> ( resource statement)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>oci_fetch_assoc()</B
+> returns the next row from the result
+     data as an associative array (identical to
+     <A
+HREF="function.oci-fetch-array.html"
+><B
+CLASS="function"
+>oci_fetch_array()</B
+></A
+> call with
+     <TT
+CLASS="constant"
+><B
+>OCI_ASSOC</B
+></TT
+> flag).
+    </P
+><P
+>&#13;     Subsequent call to <B
+CLASS="function"
+>oci_fetch_assoc()</B
+> will return 
+     next row or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if there is no more rows.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Don't forget, that Oracle returns all field names in uppercase and
+      associative indices in the result array will be uppercased too.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     See also <A
+HREF="function.oci-fetch-array.html"
+><B
+CLASS="function"
+>oci_fetch_array()</B
+></A
+>, 
+     <A
+HREF="function.oci-fetch-object.html"
+><B
+CLASS="function"
+>oci_fetch_object()</B
+></A
+>,
+     <A
+HREF="function.oci-fetch-row.html"
+><B
+CLASS="function"
+>oci_fetch_row()</B
+></A
+> and
+     <A
+HREF="function.oci-fetch-all.html"
+><B
+CLASS="function"
+>oci_fetch_all()</B
+></A
+>. 
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.oci-fetch-array.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.oci-fetch-object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>oci_fetch_array</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oci8.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>oci_fetch_object</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

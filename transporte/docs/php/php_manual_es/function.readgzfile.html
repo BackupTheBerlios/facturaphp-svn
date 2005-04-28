@@ -1,0 +1,233 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>readgzfile</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Compresión Zlib"
+HREF="ref.zlib.html"><LINK
+REL="PREVIOUS"
+TITLE="gzwrite"
+HREF="function.gzwrite.html"><LINK
+REL="NEXT"
+TITLE="zlib_get_coding_type"
+HREF="function.zlib-get-coding-type.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.gzwrite.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.zlib-get-coding-type.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.readgzfile"
+></A
+>readgzfile</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN118008"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>readgzfile&nbsp;--&nbsp;Imprimir un archivo gz</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN118011"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>readgzfile</B
+> ( string nombre_archivo [, int usar_ruta_inclusion])<BR
+></BR
+><P
+>&#13;     Lee un archivo, lo descomprime y lo escribe en la salida
+     estándar.
+    </P
+><P
+>&#13;     La función <B
+CLASS="function"
+>readgzfile()</B
+> puede ser usada
+     para leer un archivo que no se encuentra en formato gzip; en este
+     caso <B
+CLASS="function"
+>readgzfile()</B
+> leerá desde el
+     archivo directamente sin descomprimirlo.
+    </P
+><P
+> 
+     Devuelve el número de bytes (sin compresión)
+     leídos desde el archivo. Si ocurre un error, se devuelve
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> y, a menos que la función sea llamada
+     como <VAR
+CLASS="literal"
+>@readgzfile</VAR
+>, se imprime un mensaje de
+     error.
+    </P
+><P
+> 
+     El archivo <VAR
+CLASS="parameter"
+>nombre_archivo</VAR
+> será
+     abierto desde el sistema de archivos y sus contenidos
+     serán escritos en la salida estándar.
+    </P
+><P
+>&#13;     Puede usar el segundo parámetro opcional, y definirlo como
+     "1", si desea que el archivo sea buscado en <A
+HREF="ini.sect.path-directory.html#ini.include-path"
+>include_path</A
+>, también.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.gzpassthru.html"
+><B
+CLASS="function"
+>gzpassthru()</B
+></A
+>,
+     <A
+HREF="function.gzfile.html"
+><B
+CLASS="function"
+>gzfile()</B
+></A
+>, y <A
+HREF="function.gzopen.html"
+><B
+CLASS="function"
+>gzopen()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.gzwrite.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.zlib-get-coding-type.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>gzwrite</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.zlib.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>zlib_get_coding_type</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

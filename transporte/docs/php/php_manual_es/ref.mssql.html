@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Microsoft SQL Server</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="mime_content_type"
+HREF="function.mime-content-type.html"><LINK
+REL="NEXT"
+TITLE="mssql_bind"
+HREF="function.mssql-bind.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mime-content-type.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mssql-bind.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.mssql"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LX. Funciones de Microsoft SQL Server</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.mssql-bind.html"
+>mssql_bind</A
+>&nbsp;--&nbsp;
+     Adds a parameter to a stored procedure or a remote stored procedure
+    </DT
+><DT
+><A
+HREF="function.mssql-close.html"
+>mssql_close</A
+>&nbsp;--&nbsp;cierra una conexión con MS SQL Server</DT
+><DT
+><A
+HREF="function.mssql-connect.html"
+>mssql_connect</A
+>&nbsp;--&nbsp;Abrir una conexión con MS SQL
+    server</DT
+><DT
+><A
+HREF="function.mssql-data-seek.html"
+>mssql_data_seek</A
+>&nbsp;--&nbsp;mueve el puntero interno de las filas</DT
+><DT
+><A
+HREF="function.mssql-execute.html"
+>mssql_execute</A
+>&nbsp;--&nbsp;
+     Executes a stored procedure on a MS SQL server database
+    </DT
+><DT
+><A
+HREF="function.mssql-fetch-array.html"
+>mssql_fetch_array</A
+>&nbsp;--&nbsp;Captura la fila en un array</DT
+><DT
+><A
+HREF="function.mssql-fetch-assoc.html"
+>mssql_fetch_assoc</A
+>&nbsp;--&nbsp;
+     Returns an associative array of the current row in the result set specified by result_id
+    </DT
+><DT
+><A
+HREF="function.mssql-fetch-batch.html"
+>mssql_fetch_batch</A
+>&nbsp;--&nbsp;
+     Returns the next batch of records
+    </DT
+><DT
+><A
+HREF="function.mssql-fetch-field.html"
+>mssql_fetch_field</A
+>&nbsp;--&nbsp;obtiene la información de los campos</DT
+><DT
+><A
+HREF="function.mssql-fetch-object.html"
+>mssql_fetch_object</A
+>&nbsp;--&nbsp;captura la fila como un objeto</DT
+><DT
+><A
+HREF="function.mssql-fetch-row.html"
+>mssql_fetch_row</A
+>&nbsp;--&nbsp;obtiene la fila como un array numerado</DT
+><DT
+><A
+HREF="function.mssql-field-length.html"
+>mssql_field_length</A
+>&nbsp;--&nbsp;Get the length of a field</DT
+><DT
+><A
+HREF="function.mssql-field-name.html"
+>mssql_field_name</A
+>&nbsp;--&nbsp;Get the name of a field</DT
+><DT
+><A
+HREF="function.mssql-field-seek.html"
+>mssql_field_seek</A
+>&nbsp;--&nbsp;set field offset</DT
+><DT
+><A
+HREF="function.mssql-field-type.html"
+>mssql_field_type</A
+>&nbsp;--&nbsp;Gets the type of a field</DT
+><DT
+><A
+HREF="function.mssql-free-result.html"
+>mssql_free_result</A
+>&nbsp;--&nbsp;libera de la memoria el resultado de una consulta</DT
+><DT
+><A
+HREF="function.mssql-free-statement.html"
+>mssql_free_statement</A
+>&nbsp;--&nbsp;Free statement memory</DT
+><DT
+><A
+HREF="function.mssql-get-last-message.html"
+>mssql_get_last_message</A
+>&nbsp;--&nbsp;
+     Returns the last message from the server
+    </DT
+><DT
+><A
+HREF="function.mssql-guid-string.html"
+>mssql_guid_string</A
+>&nbsp;--&nbsp;
+     Converts a 16 byte binary GUID to a string
+    </DT
+><DT
+><A
+HREF="function.mssql-init.html"
+>mssql_init</A
+>&nbsp;--&nbsp;
+     Initializes a stored procedure or a remote stored procedure
+    </DT
+><DT
+><A
+HREF="function.mssql-min-error-severity.html"
+>mssql_min_error_severity</A
+>&nbsp;--&nbsp;Sets the lower error severity</DT
+><DT
+><A
+HREF="function.mssql-min-message-severity.html"
+>mssql_min_message_severity</A
+>&nbsp;--&nbsp;Sets the lower message severity</DT
+><DT
+><A
+HREF="function.mssql-next-result.html"
+>mssql_next_result</A
+>&nbsp;--&nbsp;Move the internal result pointer to the next result</DT
+><DT
+><A
+HREF="function.mssql-num-fields.html"
+>mssql_num_fields</A
+>&nbsp;--&nbsp;obtiene el número de campos de la consulta</DT
+><DT
+><A
+HREF="function.mssql-num-rows.html"
+>mssql_num_rows</A
+>&nbsp;--&nbsp;obtiene el número de filas de la consulta</DT
+><DT
+><A
+HREF="function.mssql-pconnect.html"
+>mssql_pconnect</A
+>&nbsp;--&nbsp;abre una conexión persistenete con MS SQL</DT
+><DT
+><A
+HREF="function.mssql-query.html"
+>mssql_query</A
+>&nbsp;--&nbsp;envia una consulta MS SQL</DT
+><DT
+><A
+HREF="function.mssql-result.html"
+>mssql_result</A
+>&nbsp;--&nbsp;get result data</DT
+><DT
+><A
+HREF="function.mssql-rows-affected.html"
+>mssql_rows_affected</A
+>&nbsp;--&nbsp;
+     Returns the number of records affected by the query
+    </DT
+><DT
+><A
+HREF="function.mssql-select-db.html"
+>mssql_select_db</A
+>&nbsp;--&nbsp;selecciona una base de datos MS SQL</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mime-content-type.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mssql-bind.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mime_content_type</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mssql_bind</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

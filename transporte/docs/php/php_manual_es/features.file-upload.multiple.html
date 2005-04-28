@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Envío de multiples ficheros</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Manejo de envío de archivos"
+HREF="features.file-upload.html"><LINK
+REL="PREVIOUS"
+TITLE="Errores comunes"
+HREF="features.file-upload.common-pitfalls.html"><LINK
+REL="NEXT"
+TITLE="Soporte del método PUT"
+HREF="features.file-upload.put-method.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.common-pitfalls.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 19. Manejo de envío de archivos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.put-method.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="features.file-upload.multiple"
+>Envío de multiples ficheros</A
+></H1
+><P
+>&#13;	Se pueden enviar multiples ficheros usando diferentes
+	nombres (<VAR
+CLASS="literal"
+>name</VAR
+>) para los <VAR
+CLASS="literal"
+>input</VAR
+>.
+   </P
+><P
+>&#13;	Así mismo, es posible enviar varios archivos simultaneamente y tener
+	organizada en arrays la información. Para hacer esto, se utiliza la
+	misma sintáxis que cuando tenemos multiples "selects" o "checkboxes"
+	en el formulario HTML:
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	El soporte para envío multiple de ficheros fue añadido en
+	la versión 3.0.10.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN5161"
+></A
+><P
+><B
+>Ejemplo 19-3. Envío de multiples ficheros</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;form action="file-upload.php" method="post" enctype="multipart/form-data"&#62;
+  Send these files:&#60;br&#62;
+  &#60;input name="userfile[]" type="file"&#62;&#60;br&#62;
+  &#60;input name="userfile[]" type="file"&#62;&#60;br&#62;
+  &#60;input type="submit" value="Send files"&#62;
+&#60;/form&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;	
+	Cuando el formulario del ejemplo es enviado, los arrays
+    	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']</VAR
+>,
+    	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['name']</VAR
+> y 
+    	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['size']</VAR
+> 
+	son inicializados. Así mismo pasa con $_FILES en PHP 4.1.0
+	o superiores y $HTTP_POST_VARS en PHP 3. Cuando
+    	<VAR
+CLASS="literal"
+>register_globals</VAR
+> esta activa, las 
+	variables globales para los archivos recibidos también son inicializadas.
+	Cada uno de estos arrays tendrá en los índices numericos correspondientes
+	los valores para cada fichero recibido.
+   </P
+><P
+>&#13;	Por ejemplo, si tomamos como nombres de archivo enviados
+   	<TT
+CLASS="filename"
+>/home/test/review.html</TT
+> y
+    	<TT
+CLASS="filename"
+>/home/test/xwp.out</TT
+>. Tendríamos en
+    	<VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['name'][0]</VAR
+>
+    	el valor de <TT
+CLASS="filename"
+>review.html</TT
+>, y en
+    <VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['name'][1]</VAR
+> tendríamos
+     <TT
+CLASS="filename"
+>xwp.out</TT
+>; analogamente, 
+    <VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['size'][0]</VAR
+> contendría
+    el tamaño del fichero <TT
+CLASS="filename"
+>review.html</TT
+>, y asi sucesivamente...
+   </P
+><P
+>&#13;    <VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['name'][0]</VAR
+>,
+    <VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['tmp_name'][0]</VAR
+>,
+    <VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['size'][0]</VAR
+> y
+    <VAR
+CLASS="varname"
+>$HTTP_POST_FILES['userfile']['type'][0]</VAR
+> tambien
+	son asignadas.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.file-upload.common-pitfalls.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.file-upload.put-method.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Errores comunes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Soporte del método PUT</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Ocultando PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Datos Enviados por el Usuario"
+HREF="security.variables.html"><LINK
+REL="NEXT"
+TITLE="Mantenerse al Día"
+HREF="security.current.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.variables.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.current.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.hiding"
+>Ocultando PHP</A
+></H1
+><P
+>&#13;    En general, la seguridad por oscuridad es una de las formas
+    más débiles de seguridad. Pero, en algunos casos,
+    cada pequeño elemento extra de seguridad es deseable.
+   </P
+><P
+>&#13;    Unas cuantas técnicas simples pueden ayudarle a esconder
+    PHP, posiblemente retrasando a un atacante que esté
+    intentando descubrir debilidades en su sistema. Al establecer
+    expose_php = off en su archivo <TT
+CLASS="filename"
+>php.ini</TT
+>, usted reduce la cantidad
+    de información disponible a posibles atacantes.
+   </P
+><P
+>&#13;    Otra táctica consiste en configurar los servidores web como
+    apache para que procesen diferentes tipos de archivos como scripts
+    de PHP, ya sea con una directiva <TT
+CLASS="filename"
+>.htaccess</TT
+>, o en el archivo de
+    configuración de apache mismo. En ese caso puede usar
+    extensiones de archivo que produzcan confusión:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4927"
+></A
+><P
+><B
+>Ejemplo 15-18. Ocultando PHP como otro lenguaje</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+># Hacer que el codigo PHP parezca como otro tipo de codigo
+AddType application/x-httpd-php .asp .py .pl</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+
+U ocultarlo completamente:
+
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4930"
+></A
+><P
+><B
+>Ejemplo 15-19. Uso de tipos desconocidos como extensiones para
+     PHP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+># Hacer que el codigo PHP parezca como de tipos desconocidos
+AddType application/x-httpd-php .bop .foo .133t</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    O escóndalo como código HTML, lo que tiene un
+    pequeño impacto de rendimiento ya que todos los documentos
+    HTML serán procesados por el motor de PHP:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4933"
+></A
+><P
+><B
+>Ejemplo 15-20. Uso de tipos HTML para extensiones PHP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+># Hacer que todo el codigo PHP luzca como HTML
+AddType application/x-httpd-php .htm .html</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    Para que esto funcione de manera efectiva, usted debe renombrar
+    sus archivos PHP con las extensiones anteriores. Aunque es una
+    forma de seguridad por oscuridad, representa una medida preventiva
+    menor con pocos inconvenientes.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.variables.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.current.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Datos Enviados por el Usuario</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Mantenerse al Día</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

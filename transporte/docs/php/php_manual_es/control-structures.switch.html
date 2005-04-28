@@ -1,0 +1,423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>switch</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Estructuras de Control"
+HREF="control-structures.html"><LINK
+REL="PREVIOUS"
+TITLE="continue"
+HREF="control-structures.continue.html"><LINK
+REL="NEXT"
+TITLE="declare"
+HREF="control-structures.declare.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="control-structures.continue.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 11. Estructuras de Control</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="control-structures.declare.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="control-structures.switch"
+><VAR
+CLASS="literal"
+>switch</VAR
+></A
+></H1
+><P
+>&#13;   La sentencia <VAR
+CLASS="literal"
+>switch</VAR
+> es similar a una serie de
+   sentencias IF en la misma expresión.  En muchas ocasiones,
+   se quiere comparar la misma variable (o expresión) con
+   nuchos valores diferentes, y ejecutar una parte de código
+   distinta dependiendo de a qué valor es igual.  Para ello
+   sirve la sentencia <VAR
+CLASS="literal"
+>switch</VAR
+>.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Tener en cuenta que al contrario que otros lenguajes de
+    programación, <A
+HREF="control-structures.continue.html"
+>continue</A
+> se aplica a
+    switch y funciona de manera similar a <VAR
+CLASS="literal"
+>break</VAR
+>. Si
+    teneis un switch dentro de un bucle y deseais continuar con el
+    paso siguiente en el bucle externo, usar <VAR
+CLASS="literal"
+>continue
+    2</VAR
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   Los siguientes dos ejemplos son dos modos distintos de escribir la
+   misma cosa, uno usa una serie de sentencias <VAR
+CLASS="literal"
+>if</VAR
+>,
+   y el otro usa la sentencia <VAR
+CLASS="literal"
+>switch</VAR
+>:
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3997"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">$i </font><font color="#007700">== </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i equals 0"</font><font color="#007700">;<br />} elseif (</font><font color="#0000BB">$i </font><font color="#007700">== </font><font color="#0000BB">1</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i equals 1"</font><font color="#007700">;<br />} elseif (</font><font color="#0000BB">$i </font><font color="#007700">== </font><font color="#0000BB">2</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i equals 2"</font><font color="#007700">;<br />}<br /><br />switch (</font><font color="#0000BB">$i</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">0</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i equals 0"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">1</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i equals 1"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">2</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i equals 2"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   Es importante entender cómo se ejecuta la sentencia
+   <VAR
+CLASS="literal"
+>switch</VAR
+> para evitar errores. La sentencia
+   <VAR
+CLASS="literal"
+>switch</VAR
+> ejecuta línea por línea
+   (realmente, sentencia a sentencia).  Al comienzo, no se ejecuta
+   código.  Sólo cuando se encuentra una sentencia
+   <VAR
+CLASS="literal"
+>case</VAR
+> con un valor que coincide con el valor de
+   la expresión <VAR
+CLASS="literal"
+>switch</VAR
+> PHP comienza a
+   ejecutar las sentencias.  PHP continúa ejecutando las
+   sentencias hasta el final del bloque <VAR
+CLASS="literal"
+>switch</VAR
+>, o
+   la primera vez que vea una sentencia <VAR
+CLASS="literal"
+>break</VAR
+>.  Si
+   no se escribe una sentencia <VAR
+CLASS="literal"
+>break</VAR
+> al final de
+   una lista de sentencias case, PHP seguirá ejecutando las
+   sentencias del siguiente case.  Por ejemplo:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4007"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /> </font><font color="#007700">switch (</font><font color="#0000BB">$i</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">0</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 0"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">1</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 1"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">2</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 2"</font><font color="#007700">;<br /> }<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   Aquí, si $i es igual a 0, ¡PHP ejecutaría todas las
+   sentecias print!  Si $i es igual a 1, PHP ejecutaría las
+   últimas dos sentencias print y sólo si $i es igual a
+   2, se obtendría la conducta 'esperada' y solamente se
+   mostraría 'i es igual a 2'.  Así, es importante no
+   olvidar las sentencias <VAR
+CLASS="literal"
+>break</VAR
+> (incluso aunque
+   pueda querer evitar escribirlas intencionadamente en ciertas
+   circunstancias).
+   </P
+><P
+>&#13;   En una sentencia <VAR
+CLASS="literal"
+>switch</VAR
+>, la condición se
+   evalúa sólo una vez y el resultado se compara a cada
+   sentencia <VAR
+CLASS="literal"
+>case</VAR
+>.  En una sentencia
+   <VAR
+CLASS="literal"
+>elseif</VAR
+>, la condición se evalúa
+   otra vez.  Si tu condición es más complicada que una
+   comparación simple y/o está en un bucle estrecho, un
+   <VAR
+CLASS="literal"
+>switch</VAR
+> puede ser más rápido.
+  </P
+><P
+>&#13;   La lista de sentencias de un case puede también estar
+   vacía, lo cual simplemente pasa el control a la lista de
+   sentencias del siguiente case.
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4017"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">switch (</font><font color="#0000BB">$i</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">0</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">1</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">2</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es menor que 3, pero no negativo"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">3</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es 3"</font><font color="#007700">;<br /> }<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     Un caso especial es el <VAR
+CLASS="literal"
+>default</VAR
+> case".  Este
+     "case" coincide con todo lo que no coincidan los otros case. Por
+     ejemplo:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4021"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /> </font><font color="#007700">switch (</font><font color="#0000BB">$i</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">0</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 0"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">1</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 1"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">2</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 2"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i no es igual a 0, 1 o 2"</font><font color="#007700">;<br /> }<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   La expresión <VAR
+CLASS="literal"
+>case</VAR
+> puede ser cualquier
+   expresión que se evalúe a un tipo simple, es decir,
+   números enteros o de punto flotante y cadenas de texto.  No
+   se pueden usar aquí ni arrays ni objetos a menos que se
+   conviertan a un tipo simple.
+  </P
+><P
+>&#13;   La sintaxis alternativa para las estructuras de control está
+   también soportada con switch. Para más
+   información, ver <A
+HREF="control-structures.alternative-syntax.html"
+>Sintaxis
+   alternativa para estructuras de control</A
+>.
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4027"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">switch (</font><font color="#0000BB">$i</font><font color="#007700">):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">0</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual 0"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">1</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 1"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">2</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i es igual a 2"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"i no es igual a 0, 1 o 2"</font><font color="#007700">;<br /> endswitch;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="control-structures.continue.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="control-structures.declare.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>continue</VAR
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="control-structures.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>declare</VAR
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

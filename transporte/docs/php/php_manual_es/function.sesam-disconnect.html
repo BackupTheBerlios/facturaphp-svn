@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sesam_disconnect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SESAM database functions"
+HREF="ref.sesam.html"><LINK
+REL="PREVIOUS"
+TITLE="sesam_diagnostic"
+HREF="function.sesam-diagnostic.html"><LINK
+REL="NEXT"
+TITLE="sesam_errormsg"
+HREF="function.sesam-errormsg.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sesam-diagnostic.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sesam-errormsg.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sesam-disconnect"
+></A
+>sesam_disconnect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN95306"
+></A
+><P
+>    (PHP 3 CVS only)</P
+>sesam_disconnect&nbsp;--&nbsp;Detach from SESAM connection</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN95309"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>sesam_disconnect</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Returns: always <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>sesam_disconnect()</B
+> closes the logical link to
+     a SESAM database (without actually disconnecting and unloading
+     the driver).
+    </P
+><P
+>&#13;     Note that this isn't usually necessary, as the open connection is
+     automatically closed at the end of the script's execution.
+     Uncommitted data will be discarded, because an implicit
+     <A
+HREF="function.sesam-rollback.html"
+><B
+CLASS="function"
+>sesam_rollback()</B
+></A
+> is executed.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>sesam_disconnect()</B
+> will not close the
+     persistent link, it will only invalidate the currently defined
+     <VAR
+CLASS="parameter"
+>"catalog"</VAR
+>, <VAR
+CLASS="parameter"
+>"schema"</VAR
+>
+     and <VAR
+CLASS="parameter"
+>"user"</VAR
+> triple, so that any sesam
+     function called after <B
+CLASS="function"
+>sesam_disconnect()</B
+> will
+     fail.
+    </P
+><P
+>&#13;     See also: <A
+HREF="function.sesam-connect.html"
+><B
+CLASS="function"
+>sesam_connect()</B
+></A
+>.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN95329"
+></A
+><P
+><B
+>Ejemplo 1. Closing a SESAM connection</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+if (sesam_connect ("mycatalog", "myschema", "otto")) {<br />&nbsp;&nbsp;&nbsp;&nbsp;... some queries and stuff ...<br />&nbsp;&nbsp;&nbsp;&nbsp;sesam_disconnect(); <br />}</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sesam-diagnostic.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sesam-errormsg.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sesam_diagnostic</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sesam.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sesam_errormsg</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

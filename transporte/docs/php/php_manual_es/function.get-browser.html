@@ -1,0 +1,377 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>get_browser</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Miscelánea"
+HREF="ref.misc.html"><LINK
+REL="PREVIOUS"
+TITLE="exit"
+HREF="function.exit.html"><LINK
+REL="NEXT"
+TITLE="highlight_file"
+HREF="function.highlight-file.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.exit.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.highlight-file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.get-browser"
+></A
+>get_browser</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN59788"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>get_browser&nbsp;--&nbsp;
+     Indica las capacidades del navegador del usuario
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN59791"
+></A
+><H2
+>Descripción</H2
+>object <B
+CLASS="methodname"
+>get_browser</B
+> ( [string agente_usuario])<BR
+></BR
+><P
+>&#13;	 <B
+CLASS="function"
+>get_browser()</B
+> intenta determinar las
+     capacidades del navegador del usuario. Para ello consulta el
+     archivo de información del navegador,
+     <TT
+CLASS="filename"
+>browscap.ini</TT
+>. Por defecto, se utiliza el
+     valor de <VAR
+CLASS="varname"
+>$_SERVER["HTTP_USER_AGENT"]</VAR
+>; sin
+     embargo, puede alterar este comportamiento (es decir, consultar
+     la información de otro navegador) pasando el
+     parámetro opcional <VAR
+CLASS="parameter"
+>agente_usuario</VAR
+> a
+     <B
+CLASS="function"
+>get_browser()</B
+>.
+    </P
+><P
+>&#13;     La información se devuelve en un <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+>, el
+     cual contendrá varios elementos de datos que representan,
+     por ejemplo, los números de versión mayor y menor
+     del navegador y la cadena ID; valores <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>/<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> para
+     características como los frames, JavaScript, y cookies; y
+     así sucesivamente.
+    </P
+><P
+>&#13;     Aunque <TT
+CLASS="filename"
+>browscap.ini</TT
+> contiene
+     información sobre muchos navegadores, depende de
+     actualizaciones del usuario para mantener la base de datos al
+     día. El formato del archivo es bastante auto-explicativo.
+    </P
+><P
+>&#13;     El siguiente ejemplo muestra como se puede listar toda la
+     información disponible sobre el navegador del usuario.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN59812"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>get_browser()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">'HTTP_USER_AGENT'</font><font color="#007700">] . </font><font color="#DD0000">"&lt;hr /&gt;\n"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$navegador </font><font color="#007700">= </font><font color="#0000BB">get_browser</font><font color="#007700">();<br /><br />foreach (</font><font color="#0000BB">$navegador </font><font color="#007700">as </font><font color="#0000BB">$nombre </font><font color="#007700">=&gt; </font><font color="#0000BB">$valor</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;b&gt;$nombre&lt;/b&gt; $valor &lt;br /&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       La salida del script anterior lucirá algo como:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>Mozilla/4.5 [en] (X11; U; Linux 2.2.9 i586)&#60;hr /&#62;
+&#60;b&#62;browser_name_pattern:&#60;/b&#62; Mozilla/4\.5.*&#60;br /&#62;
+&#60;b&#62;parent:&#60;/b&#62; Netscape 4.0&#60;br /&#62;
+&#60;b&#62;platform:&#60;/b&#62; Linux&#60;br /&#62;
+&#60;b&#62;majorver:&#60;/b&#62; 4&#60;br /&#62;
+&#60;b&#62;minorver:&#60;/b&#62; 5&#60;br /&#62;
+&#60;b&#62;browser:&#60;/b&#62; Netscape&#60;br /&#62;
+&#60;b&#62;version:&#60;/b&#62; 4&#60;br /&#62;
+&#60;b&#62;frames:&#60;/b&#62; 1&#60;br /&#62;
+&#60;b&#62;tables:&#60;/b&#62; 1&#60;br /&#62;
+&#60;b&#62;cookies:&#60;/b&#62; 1&#60;br /&#62;
+&#60;b&#62;backgroundsounds:&#60;/b&#62; &#60;br /&#62;
+&#60;b&#62;vbscript:&#60;/b&#62; &#60;br /&#62;
+&#60;b&#62;javascript:&#60;/b&#62; 1&#60;br /&#62;
+&#60;b&#62;javaapplets:&#60;/b&#62; 1&#60;br /&#62;
+&#60;b&#62;activexcontrols:&#60;/b&#62; &#60;br /&#62;
+&#60;b&#62;beta:&#60;/b&#62; &#60;br /&#62;
+&#60;b&#62;crawler:&#60;/b&#62; &#60;br /&#62;
+&#60;b&#62;authenticodeupdate:&#60;/b&#62; &#60;br /&#62;
+&#60;b&#62;msn:&#60;/b&#62; &#60;br /&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Para que ésto funcione, su opción de
+     configuración
+     <A
+HREF="ref.misc.html#ini.browscap"
+>browscap</A
+> en <TT
+CLASS="filename"
+>php.ini</TT
+> debe
+     apuntar a la ubicación correcta del archivo
+	 <TT
+CLASS="filename"
+>browscap.ini</TT
+> en su
+     sistema. <TT
+CLASS="filename"
+>browscap.ini</TT
+> no hace parte de la
+     distribución de PHP, pero puede encontrar un <A
+HREF="http://www.garykeith.com/browsers/downloads.asp"
+TARGET="_top"
+>archivo browscap.ini actualizado
+     aquí</A
+>. Por defecto, la directiva
+     <A
+HREF="ref.misc.html#ini.browscap"
+>browscap</A
+> se encuentra
+     comentada.
+    </P
+><P
+>&#13;     El valor <VAR
+CLASS="literal"
+>cookies</VAR
+> simplemente quiere decir que
+     el navegador mismo tiene la capacidad de aceptar cookies y no
+     quiere decir que el usuario haya habilitado el navegador para que
+     acepte cookies o no. La única manera de probar si las
+     cookies son aceptadas es definir una
+     con <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+>, recargar, y chequear el
+     valor.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      En versiones anteriores a PHP 4.0.6, tendrá que pasar el
+      agente de usuario a través del parámetro
+      opcional <VAR
+CLASS="parameter"
+>agente_usuario</VAR
+> si el valor de la
+      directiva <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>
+      es <VAR
+CLASS="literal"
+>off</VAR
+>. En este caso, debe
+      pasar <VAR
+CLASS="varname"
+>$HTTP_SERVER_VARS['HTTP_USER_AGENT']</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.exit.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.highlight-file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>exit</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.misc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>highlight_file</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

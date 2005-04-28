@@ -1,0 +1,636 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Expresiones Regulares (Compatibles con
+  Perl)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="recode"
+HREF="function.recode.html"><LINK
+REL="NEXT"
+TITLE="Modificadores de Patrón"
+HREF="pcre.pattern.modifiers.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.recode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="pcre.pattern.modifiers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.pcre"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XCII. Funciones de Expresiones Regulares (Compatibles con
+  Perl)</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN93003"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     La sintaxis para los patrones usados en éstas funciones se
+     asemeja considerablemente con la sintaxis de Perl. La
+     expresión debe estar rodeada por delimitadores, una barra
+     acostada (/), por ejemplo. Cualquier caracter puede ser usado
+     como delimitador siempre y cuando no sea alfanumérico ni
+     la barra invertida (\). Si el caracter delimitador tiene que ser
+     usado en la expresión misma, necesita ser escapado por la
+     barra invertida. A partir de PHP 4.0.4, puede usar también
+     los delimitadores de coincidencia tipo Perl (), {}, [], y
+     &#60;&#62;. Vea <A
+HREF="pcre.pattern.syntax.html"
+>Sintaxis de los
+     Patrones</A
+> para una explicación detallada.
+    </P
+><P
+>&#13;     El delimitador de cierre puede estar seguido de varios
+     modificadores que afectan las coincidencias. Vea <A
+HREF="pcre.pattern.modifiers.html"
+>Modificadores de
+     Patrón</A
+>.
+    </P
+><P
+>&#13;     PHP soporta también expresiones regulares usando una
+     sintaxis POSIX-extendida, por medio de las <A
+HREF="ref.regex.html"
+>funciones regex POSIX-extendidas</A
+>.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Es importante que conozca sobre las limitaciones de
+      PCRE. Lea <A
+HREF="http://www.pcre.org/pcre.txt"
+TARGET="_top"
+>http://www.pcre.org/pcre.txt</A
+>
+      para más información.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     El soporte de expresiones regulares es provisto por el paquete de
+     biblioteca PCRE, el cual es software de código abierto,
+     escrito por Philip Hazel, y con copyright de la Universidad de
+     Cambridge, Inglaterra. Se encuentra disponible en <A
+HREF="ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/"
+TARGET="_top"
+>ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  A partir de PHP 4.2.0, estas funciones están habilitadas por
+  defecto. Puede deshabilitar las funciones pcre con <VAR
+CLASS="option"
+>--without-pcre-regex</VAR
+>. Use <VAR
+CLASS="option"
+> --with-pcre-regex=DIR</VAR
+> para especificar la
+  ubicación de los archivos de inclusión y bibliotecas
+  de PCRE, si no desea usar la biblioteca incluida. En versiones
+  más antiguas, usted tendrá que configurar y compilar
+  PHP con <VAR
+CLASS="option"
+>--with-pcre-regex[=DIR]</VAR
+>
+  para poder hacer uso de estas funciones.
+ </P
+><P
+>La versión para Windows de
+<VAR
+CLASS="literal"
+>PHP</VAR
+> tiene soporte nativo para esta
+extensión. No se necesita cargar ninguna extensión
+adicional para usar estas funciones.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><DIV
+CLASS="table"
+><A
+NAME="AEN93037"
+></A
+><P
+><B
+>Tabla 1. constantes PREG</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>constante</TH
+><TH
+>descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>PREG_PATTERN_ORDER</TD
+><TD
+>&#13;      Ordena los resultados de modo que $coincidencias[0] sea una
+      matriz de coincidencias del patrón completo,
+      $coincidencias[1] sea una matriz de cadenas que coincidieron con
+      el primer subpatrón entre paréntesis, y así
+      sucesivamente. Esta bandera sólo es usada
+      con <A
+HREF="function.preg-match-all.html"
+><B
+CLASS="function"
+>preg_match_all()</B
+></A
+>.
+     </TD
+></TR
+><TR
+><TD
+>PREG_SET_ORDER</TD
+><TD
+>&#13;      Ordena los resultados de modo que $coincidencias[0] resulte ser
+      una matriz del primer conjunto de coincidencias, $matches[1] sea
+      una matriz del segundo conjunto de coincidencias, y así
+      sucesivamente. Esta bandera únicamente es usada con
+      <A
+HREF="function.preg-match-all.html"
+><B
+CLASS="function"
+>preg_match_all()</B
+></A
+>.
+     </TD
+></TR
+><TR
+><TD
+>PREG_OFFSET_CAPTURE</TD
+><TD
+>&#13;      Consulte la descripción de
+      <TT
+CLASS="constant"
+><B
+>PREG_SPLIT_OFFSET_CAPTURE</B
+></TT
+>. Esta bandera
+      está disponible desde <VAR
+CLASS="literal"
+>PHP</VAR
+> 4.3.0.
+     </TD
+></TR
+><TR
+><TD
+>PREG_SPLIT_NO_EMPTY</TD
+><TD
+>&#13;      Esta bandera le dice a <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+> que
+      devuelva únicamente resultados que no sean vacíos.
+     </TD
+></TR
+><TR
+><TD
+>PREG_SPLIT_DELIM_CAPTURE</TD
+><TD
+>&#13;      Esta bandera le indica a <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+> que
+      capture las expresiones entre paréntesis dentro del
+      patrón de delimitación también. Esta
+      bandera está disponible desde <VAR
+CLASS="literal"
+>PHP</VAR
+>
+      4.0.5.
+     </TD
+></TR
+><TR
+><TD
+>PREG_SPLIT_OFFSET_CAPTURE</TD
+><TD
+>&#13;      Si esta bandera está activa, la posición de
+      desplazamiento correspondiente a cada coincidencia será
+      devuelta también. Note que esto modifica el valor
+      devuelto a una matriz en la que cada elemento es también
+      una matriz que consiste de la cadena coincidente en el
+      subíndice 0 y su posición de desplazamiento al
+      interior de la cadena de asunto en el subíndice 1. Esta
+      bandera está disponible a partir de
+      <VAR
+CLASS="literal"
+>PHP</VAR
+> 4.3.0 y sólo es usada por
+      <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+>.
+     </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="pcre.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93075"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplos de patrones válidos</B
+></P
+><P
+></P
+><UL
+><LI
+><P
+><VAR
+CLASS="literal"
+>/&#60;\/\w+&#62;/</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>|(\d{3})-\d+|Sm</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>/^(?i)php[34]/</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>{^\s+(\s+)?$}</VAR
+></P
+></LI
+></UL
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93091"
+></A
+><P
+><B
+>Ejemplo 2. Ejemplos de patrones inválidos</B
+></P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;         <VAR
+CLASS="literal"
+>/href='(.*)'</VAR
+> - carece de delimitador de cierre
+        </P
+></LI
+><LI
+><P
+>&#13;         <VAR
+CLASS="literal"
+>/\w+\s*\w+/J</VAR
+> - modificador 'J' desconocido
+        </P
+></LI
+><LI
+><P
+>&#13;         <VAR
+CLASS="literal"
+>1-\d3-\d3-\d4|</VAR
+> - carece del delimitador de
+         apertura
+        </P
+></LI
+></UL
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="pcre.pattern.modifiers.html"
+>Modificadores de Patrón</A
+>&nbsp;--&nbsp;Describe los posibles modificadores en patrones de
+     expresiones regulares</DT
+><DT
+><A
+HREF="pcre.pattern.syntax.html"
+>Sintaxis de los Patrones</A
+>&nbsp;--&nbsp;Describe la sintaxis de expresiones regulares
+    PCRE</DT
+><DT
+><A
+HREF="function.preg-grep.html"
+>preg_grep</A
+>&nbsp;--&nbsp;Devuelve un array con los elementos que casen con el patrón</DT
+><DT
+><A
+HREF="function.preg-match-all.html"
+>preg_match_all</A
+>&nbsp;--&nbsp;Realizar una comparación global con una
+    expresión regular</DT
+><DT
+><A
+HREF="function.preg-match.html"
+>preg_match</A
+>&nbsp;--&nbsp;Realiza un emparejamiento dada una expresión</DT
+><DT
+><A
+HREF="function.preg-quote.html"
+>preg_quote</A
+>&nbsp;--&nbsp;Prepara los caracteres de expresiones</DT
+><DT
+><A
+HREF="function.preg-replace-callback.html"
+>preg_replace_callback</A
+>&nbsp;--&nbsp;Realizar una búsqueda con expresiones regulares
+    y generar reemplazos usando una llamada de retorno</DT
+><DT
+><A
+HREF="function.preg-replace.html"
+>preg_replace</A
+>&nbsp;--&nbsp;Lleva a cabo la búsqueda de una expresión y su sustitución</DT
+><DT
+><A
+HREF="function.preg-split.html"
+>preg_split</A
+>&nbsp;--&nbsp;Divide una cadena dada una expresión</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.recode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="pcre.pattern.modifiers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>recode</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Modificadores de Patrón</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

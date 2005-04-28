@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_set_blocking</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_select"
+HREF="function.stream-select.html"><LINK
+REL="NEXT"
+TITLE="stream_set_timeout"
+HREF="function.stream-set-timeout.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-select.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-set-timeout.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-set-blocking"
+></A
+>stream_set_blocking</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104528"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>stream_set_blocking&nbsp;--&nbsp;Establecer modo de bloqueo/no-bloqueo sobre una
+    secuencia</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104531"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>stream_set_blocking</B
+> ( resource secuencia, int modo)<BR
+></BR
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>modo</VAR
+> es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, la secuencia dada
+     será colocada en modo de no-bloqueo, y si es <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>,
+     será colocada en modo de bloqueo. Esto afecta llamadas
+     como <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+> y <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+> que
+     leen datos desde la secuencia. En modo de no-bloqueo, una llamada
+     a <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+> siempre retornará
+     inmediatamante, mientras que en modo de bloqueo esperará a
+     que hayan datos disponibles en la secuencia.
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><P
+>&#13;     Esta función era llamada
+     anteriormente <B
+CLASS="function"
+>set_socket_blocking()</B
+>, y
+     más adelante <A
+HREF="function.socket-set-blocking.html"
+><B
+CLASS="function"
+>socket_set_blocking()</B
+></A
+> pero
+     su uso bajo estos nombres se considera obsoleto.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Antes de PHP 4.3, ésta función solo trabajaba
+      sobre secuencias basadas en sockets. A partir de PHP 4.3, esta
+      función trabaja sobre cualquier secuencia que soporte el
+      modo de no-bloqueo (en la actualidad, archivos regulares y
+      secuencias de socket).
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también
+     <A
+HREF="function.stream-select.html"
+><B
+CLASS="function"
+>stream_select()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-select.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-set-timeout.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_select</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_set_timeout</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

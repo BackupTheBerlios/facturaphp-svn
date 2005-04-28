@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>preg_replace_callback</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Expresiones Regulares (Compatibles con
+  Perl)"
+HREF="ref.pcre.html"><LINK
+REL="PREVIOUS"
+TITLE="preg_quote"
+HREF="function.preg-quote.html"><LINK
+REL="NEXT"
+TITLE="preg_replace"
+HREF="function.preg-replace.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.preg-quote.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.preg-replace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.preg-replace-callback"
+></A
+>preg_replace_callback</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN93943"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.5, PHP 5)</P
+>preg_replace_callback&nbsp;--&nbsp;Realizar una búsqueda con expresiones regulares
+    y generar reemplazos usando una llamada de retorno</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN93946"
+></A
+><H2
+>Descripción</H2
+>mixed <B
+CLASS="methodname"
+>preg_replace_callback</B
+> ( mixed patron, callback llamada_de_retorno, mixed fuente [, int limite])<BR
+></BR
+><P
+>&#13;     El comportamiento de esta función es casi idéntico
+     al de <A
+HREF="function.preg-replace.html"
+><B
+CLASS="function"
+>preg_replace()</B
+></A
+>, con la excepción
+     de que en lugar del
+     parámetro <VAR
+CLASS="parameter"
+>reemplazo</VAR
+>, uno debe
+     especificar una <VAR
+CLASS="parameter"
+>llamada_de_retorno</VAR
+> que
+     será usada pasándole una matriz de los elementos
+     coincidentes en la cadena fuente. La llamada de retorno
+     debería devolver la cadena de reemplazo.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93967"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>preg_replace_callback()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;</font><font color="#FF8000">// este texto fue usado en 2002<br />&nbsp;&nbsp;// queremos actualizarlo para 2003<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$texto </font><font color="#007700">= </font><font color="#DD0000">"El d&amp;iacute;a de los inocentes es 04/01/2002\n"</font><font color="#007700">;&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">$texto</font><font color="#007700">.= </font><font color="#DD0000">"La &amp;uacute;ltima navidad fue 12/24/2001\n"</font><font color="#007700">;&nbsp;&nbsp;<br />&nbsp;&nbsp;<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">// la llamada de retorno<br /><br />&nbsp;&nbsp;</font><font color="#007700">function </font><font color="#0000BB">siguiente_anyo</font><font color="#007700">(</font><font color="#0000BB">$coincidencias</font><font color="#007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// como es usual: $coincidencias[0] es la coincidencia completa<br />&nbsp;&nbsp;&nbsp;&nbsp;// $coincidencias[1] la coincidencia para el primer subpatron<br />&nbsp;&nbsp;&nbsp;&nbsp;// ubicado entre '(...)' y asi sucesivamente<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">return </font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">].(</font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">]+</font><font color="#0000BB">1</font><font color="#007700">);<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;echo </font><font color="#0000BB">preg_replace_callback</font><font color="#007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"|(\d{2}/\d{2}/)(\d{4})|"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"siguiente_anyo"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$texto</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">// el resultado es:<br />&nbsp;&nbsp;// El d&amp;iacute;a de los inocentes es 04/01/2003<br />&nbsp;&nbsp;// La &amp;uacute;ltima navidad fue 12/24/2002<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Con frecuencia necesitará la función
+     de <VAR
+CLASS="parameter"
+>llamada de retorno</VAR
+> cuando use
+     <B
+CLASS="function"
+>preg_replace_callback()</B
+> únicamente en
+     un lugar. En este caso, usted puede
+     usar <A
+HREF="function.create-function.html"
+><B
+CLASS="function"
+>create_function()</B
+></A
+> para declarar una
+     función anónima como llamada de retorno dentro del
+     llamado a <B
+CLASS="function"
+>preg_replace_callback()</B
+>. Al hacerlo
+     de este modo, usted tendrá toda la información
+     necesaria para el llamado en un solo lugar y no abarrota su
+     espacio de nombres de funciones con nombres de llamadas de
+     retorno que no son usadas en ninguna otra parte.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93976"
+></A
+><P
+><B
+>Ejemplo 2. <B
+CLASS="function"
+>preg_replace_callback()</B
+>
+     y <A
+HREF="function.create-function.html"
+><B
+CLASS="function"
+>create_function()</B
+></A
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;</font><font color="#FF8000">/* un filtro de linea de comandos tipo Unix para convertir letras<br />&nbsp;&nbsp;&nbsp;* mayusculas al comienzo de los paragrafos a minusculas */<br /><br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#DD0000">"php://stdin"</font><font color="#007700">, </font><font color="#DD0000">"r"</font><font color="#007700">) or die(</font><font color="#DD0000">"no se puede leer stdin"</font><font color="#007700">);<br /><br />while (!</font><font color="#0000BB">feof</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$linea </font><font color="#007700">= </font><font color="#0000BB">fgets</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$linea </font><font color="#007700">= </font><font color="#0000BB">preg_replace_callback</font><font color="#007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'|&lt;p&gt;\s*\w|'</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">create_function</font><font color="#007700">(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// las comillas sencillas son cruciales aqui,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// o alternativamente escapar todos los signos $ como \$<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'$coincidencias'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'return strtolower($coincidencias[0]);'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$linea<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$linea</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Vea también <A
+HREF="function.preg-replace.html"
+><B
+CLASS="function"
+>preg_replace()</B
+></A
+> y
+     <A
+HREF="function.create-function.html"
+><B
+CLASS="function"
+>create_function()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.preg-quote.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.preg-replace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>preg_quote</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pcre.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>preg_replace</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

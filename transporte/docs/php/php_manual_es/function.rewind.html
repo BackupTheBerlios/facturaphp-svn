@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>rewind</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="rename"
+HREF="function.rename.html"><LINK
+REL="NEXT"
+TITLE="rmdir"
+HREF="function.rmdir.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.rename.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.rmdir.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.rewind"
+></A
+>rewind</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN29603"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>rewind&nbsp;--&nbsp;Retroceder la posición de un apuntador de
+    archivo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN29606"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>rewind</B
+> ( resource gestor)<BR
+></BR
+><P
+>&#13;     Define el indicador de posición de archivo para
+     <VAR
+CLASS="parameter"
+>gestor</VAR
+> como el comienzo de la secuencia de
+     archivo.
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><P
+>&#13;     El apuntador de archivo debe ser válido, y debe apuntar a
+     un archivo abierto satisfactoriamente mediante
+     <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si ha abierto el archivo en modo de adición ("a"),
+      cualquier información que escriba al archivo será
+      siempre agregada al final de éste, independientemente de
+      la posición del archivo.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.fseek.html"
+><B
+CLASS="function"
+>fseek()</B
+></A
+> y
+     <A
+HREF="function.ftell.html"
+><B
+CLASS="function"
+>ftell()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.rename.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.rmdir.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>rename</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>rmdir</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

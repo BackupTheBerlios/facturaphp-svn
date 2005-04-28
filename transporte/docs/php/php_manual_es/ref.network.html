@@ -1,0 +1,883 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Red</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="muscat_setup"
+HREF="function.muscat-setup.html"><LINK
+REL="NEXT"
+TITLE="checkdnsrr"
+HREF="function.checkdnsrr.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.muscat-setup.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.checkdnsrr.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.network"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXIX. Funciones de Red</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN69211"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="network.intro"
+>Introducción</A
+></H1
+><P
+>&#13;    
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="network.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="network.installation"
+>Instalación</A
+></H1
+><P
+>No se necesita ninguna instalación
+para usar estas funciones, son parte del núcleo de
+PHP.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="network.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN69226"
+></A
+><P
+><B
+>Tabla 1. Opciones de Configuración de Red</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>define_syslog_variables</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+Para más detalles sobre las constantes PHP_INI_* y su
+definición, vea
+<A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.define-syslog-variables"
+></A
+><VAR
+CLASS="parameter"
+>define_syslog_variables</VAR
+>
+   <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;Indica si deben definirse las diferentes variables syslog
+(p.ej. $LOG_PID, $LOG_CRON, etc.). Deshabilitar este parámetro
+es una buena idea desde el punto de vista del rendimiento. En tiempo
+de ejecución, puede definir estas variables con un llamado
+a <A
+HREF="function.define-syslog-variables.html"
+><B
+CLASS="function"
+>define_syslog_variables()</B
+></A
+>.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="network.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="network.constants"
+>Constantes predefinidas</A
+></H1
+><P
+> Las constantes listadas
+aqui están siempre disponibles a través del
+"núcleo PHP".  </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN69256"
+></A
+><P
+><B
+>Tabla 2. Opciones de <A
+HREF="function.openlog.html"
+><B
+CLASS="function"
+>openlog()</B
+></A
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>LOG_CONS</TD
+><TD
+>&#13;       si hay un error durante el envío de datos al registro
+       del sistema, escribir directamente a la consola de sistema
+      </TD
+></TR
+><TR
+><TD
+>LOG_NDELAY</TD
+><TD
+>&#13;       abrir la conexión con el registro inmediatamente
+      </TD
+></TR
+><TR
+><TD
+>LOG_ODELAY</TD
+><TD
+>&#13;       (predeterminado) retrasar la apertura de conexión hasta
+       que el primer mensaje sea registrado
+      </TD
+></TR
+><TR
+><TD
+>LOG_NOWAIT</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>LOG_PERROR</TD
+><TD
+>imprimir mensajes de registro también en
+      stderr</TD
+></TR
+><TR
+><TD
+>LOG_PID</TD
+><TD
+>incluir PID con cada mensaje</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="table"
+><A
+NAME="AEN69283"
+></A
+><P
+><B
+>Tabla 3. Facilidades de <A
+HREF="function.openlog.html"
+><B
+CLASS="function"
+>openlog()</B
+></A
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>LOG_AUTH</TD
+><TD
+>&#13;       mensajes de seguridad/autorización (usar LOG_AUTHPRIV en
+       su lugar en sistemas en donde tal constante está
+       definida)
+      </TD
+></TR
+><TR
+><TD
+>LOG_AUTHPRIV</TD
+><TD
+>mensajes de seguridad/autorización
+      (privados)</TD
+></TR
+><TR
+><TD
+>LOG_CRON</TD
+><TD
+>daemonio de reloj (cron y at)</TD
+></TR
+><TR
+><TD
+>LOG_DAEMON</TD
+><TD
+>otros daemonios de sistema</TD
+></TR
+><TR
+><TD
+>LOG_KERN</TD
+><TD
+>mensajes de kernel</TD
+></TR
+><TR
+><TD
+>LOG_LOCAL0 ... LOG_LOCAL7</TD
+><TD
+>reservadas para uso local, no están disponibles en
+      Windows</TD
+></TR
+><TR
+><TD
+>LOG_LPR</TD
+><TD
+>subsistema de impresión de línea</TD
+></TR
+><TR
+><TD
+>LOG_MAIL</TD
+><TD
+>subsistema de correo</TD
+></TR
+><TR
+><TD
+>LOG_NEWS</TD
+><TD
+>subsistema de noticias USENET</TD
+></TR
+><TR
+><TD
+>LOG_SYSLOG</TD
+><TD
+>mensajes generados internamente por syslogd</TD
+></TR
+><TR
+><TD
+>LOG_USER</TD
+><TD
+>mensajes genéricos de nivel de usuario</TD
+></TR
+><TR
+><TD
+>LOG_UUCP</TD
+><TD
+>subsistema UUCP</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="table"
+><A
+NAME="AEN69328"
+></A
+><P
+><B
+>Tabla 4. Prioridades de <A
+HREF="function.syslog.html"
+><B
+CLASS="function"
+>syslog()</B
+></A
+> (en orden descendiente)</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>LOG_EMERG</TD
+><TD
+>el sistema es inutilizable</TD
+></TR
+><TR
+><TD
+>LOG_ALERT</TD
+><TD
+>debe tomarse una acción inmediatamente</TD
+></TR
+><TR
+><TD
+>LOG_CRIT</TD
+><TD
+>condiciones críticas</TD
+></TR
+><TR
+><TD
+>LOG_ERR</TD
+><TD
+>condiciones de error</TD
+></TR
+><TR
+><TD
+>LOG_WARNING</TD
+><TD
+>condiciones de advertencia</TD
+></TR
+><TR
+><TD
+>LOG_NOTICE</TD
+><TD
+>condición normal, pero significativa</TD
+></TR
+><TR
+><TD
+>LOG_INFO</TD
+><TD
+>mensaje informativo</TD
+></TR
+><TR
+><TD
+>LOG_DEBUG</TD
+><TD
+>mensaje de nivel de depuración</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><DIV
+CLASS="table"
+><A
+NAME="AEN69361"
+></A
+><P
+><B
+>Tabla 5. Opciones de <A
+HREF="function.dns-get-record.html"
+><B
+CLASS="function"
+>dns_get_record()</B
+></A
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>DNS_A</TD
+><TD
+>Recurso de Dirección IPv4</TD
+></TR
+><TR
+><TD
+>DNS_MX</TD
+><TD
+>Recurso de Intercambio de Correo</TD
+></TR
+><TR
+><TD
+>DNS_CNAME</TD
+><TD
+>Recurso Alias (Nombre Canónico)</TD
+></TR
+><TR
+><TD
+>DNS_NS</TD
+><TD
+>Recurso de Autoridad de Servidor de Nombres</TD
+></TR
+><TR
+><TD
+>DNS_PTR</TD
+><TD
+>Recurso de Apuntador</TD
+></TR
+><TR
+><TD
+>DNS_HINFO</TD
+><TD
+>Recurso de Información de Host (Vea los <A
+HREF="http://www.iana.org/assignments/operating-system-names"
+TARGET="_top"
+>Nombres de Sistemas
+        Operativos</A
+> de IANA para consultar el significado de
+        estos valores)</TD
+></TR
+><TR
+><TD
+>DNS_SOA</TD
+><TD
+>Comienzo de Recurso de Autoridad</TD
+></TR
+><TR
+><TD
+>DNS_TXT</TD
+><TD
+>Recurso de Texto</TD
+></TR
+><TR
+><TD
+>DNS_ANY</TD
+><TD
+>Cualquier Registro de Recurso. En la mayoría de
+      sistemas, éste valor devuelve todos los registros de
+      recurso, sin embargo, no debería confiarse en él
+      para usos críticos. Pruebe con DNS_ALL en su
+      lugar.</TD
+></TR
+><TR
+><TD
+>DNS_AAAA</TD
+><TD
+>Recurso de Dirección IPv6</TD
+></TR
+><TR
+><TD
+>DNS_ALL</TD
+><TD
+>Consultar el nombre de servidor iterativamente para cada
+      tipo de registro disponible.</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.checkdnsrr.html"
+>checkdnsrr</A
+>&nbsp;--&nbsp;Comprueba registros DNS correspondientes a nombres de máquinas
+     en Internet o direcciones IP.</DT
+><DT
+><A
+HREF="function.closelog.html"
+>closelog</A
+>&nbsp;--&nbsp;cierra la conexión con el logger del sistema</DT
+><DT
+><A
+HREF="function.debugger-off.html"
+>debugger_off</A
+>&nbsp;--&nbsp;deshabilita el depurador interno de PHP</DT
+><DT
+><A
+HREF="function.debugger-on.html"
+>debugger_on</A
+>&nbsp;--&nbsp;habilita el depurador interno de PHP</DT
+><DT
+><A
+HREF="function.define-syslog-variables.html"
+>define_syslog_variables</A
+>&nbsp;--&nbsp;Inicializa todas las constantes relacionadas con
+    syslog</DT
+><DT
+><A
+HREF="function.dns-check-record.html"
+>dns_check_record</A
+>&nbsp;--&nbsp;Sinónimo
+    para <A
+HREF="function.checkdnsrr.html"
+><B
+CLASS="function"
+>checkdnsrr()</B
+></A
+></DT
+><DT
+><A
+HREF="function.dns-get-mx.html"
+>dns_get_mx</A
+>&nbsp;--&nbsp;Sinónimo para <A
+HREF="function.getmxrr.html"
+><B
+CLASS="function"
+>getmxrr()</B
+></A
+></DT
+><DT
+><A
+HREF="function.dns-get-record.html"
+>dns_get_record</A
+>&nbsp;--&nbsp;
+      Recuperar Registros de Recursos DNS asociados con un nombre de
+      servidor huésped
+     </DT
+><DT
+><A
+HREF="function.fsockopen.html"
+>fsockopen</A
+>&nbsp;--&nbsp;
+     Abrir una conexión de sockets de dominio de Internet o
+     Unix
+    </DT
+><DT
+><A
+HREF="function.gethostbyaddr.html"
+>gethostbyaddr</A
+>&nbsp;--&nbsp;Obtiene el nombre de una máquina en Internet mediante su
+    dirección IP.</DT
+><DT
+><A
+HREF="function.gethostbyname.html"
+>gethostbyname</A
+>&nbsp;--&nbsp;Obtiene la dirección IP correspondiente al nombre de una
+    máquina conectada a Internet.</DT
+><DT
+><A
+HREF="function.gethostbynamel.html"
+>gethostbynamel</A
+>&nbsp;--&nbsp;Obtiene una lista de direcciones IP correspondientea a los nombres de
+    máquinas conectadas a Internet.</DT
+><DT
+><A
+HREF="function.getmxrr.html"
+>getmxrr</A
+>&nbsp;--&nbsp;Obtiene registros MX correspondientes a una máquina
+     conectada a Internet.
+    </DT
+><DT
+><A
+HREF="function.getprotobyname.html"
+>getprotobyname</A
+>&nbsp;--&nbsp;
+     Obtener el número de protocolo asociado con el nombre de
+     protocolo
+    </DT
+><DT
+><A
+HREF="function.getprotobynumber.html"
+>getprotobynumber</A
+>&nbsp;--&nbsp;
+     Obtener el nombre de protocolo asociado con un número de
+     protocolo
+    </DT
+><DT
+><A
+HREF="function.getservbyname.html"
+>getservbyname</A
+>&nbsp;--&nbsp;obtiene el n£mero del puerto asociado al servicio Internet especificado</DT
+><DT
+><A
+HREF="function.getservbyport.html"
+>getservbyport</A
+>&nbsp;--&nbsp;obtiene el servicio Internet que correspondiente al puerto del protocolo especificado</DT
+><DT
+><A
+HREF="function.ip2long.html"
+>ip2long</A
+>&nbsp;--&nbsp;
+      Convierte una cadena que contiene una dirección con
+      puntos del Protocolo de Internet (IPv4) en una dirección
+      apropiada.
+    </DT
+><DT
+><A
+HREF="function.long2ip.html"
+>long2ip</A
+>&nbsp;--&nbsp;
+      Convierte una dirección de red Internet (IPv4) a una
+      cadena en formato estándar de Internet con puntos
+    </DT
+><DT
+><A
+HREF="function.openlog.html"
+>openlog</A
+>&nbsp;--&nbsp;abre una conexión con el logger del sistema</DT
+><DT
+><A
+HREF="function.pfsockopen.html"
+>pfsockopen</A
+>&nbsp;--&nbsp;Abre conexiones persistentes de dominio Internet o Unix.</DT
+><DT
+><A
+HREF="function.socket-get-status.html"
+>socket_get_status</A
+>&nbsp;--&nbsp;
+     Alias de <A
+HREF="function.stream-get-meta-data.html"
+><B
+CLASS="function"
+>stream_get_meta_data()</B
+></A
+>
+    </DT
+><DT
+><A
+HREF="function.socket-set-blocking.html"
+>socket_set_blocking</A
+>&nbsp;--&nbsp;Alias
+    de <A
+HREF="function.stream-set-blocking.html"
+><B
+CLASS="function"
+>stream_set_blocking()</B
+></A
+></DT
+><DT
+><A
+HREF="function.socket-set-timeout.html"
+>socket_set_timeout</A
+>&nbsp;--&nbsp;Alias
+    de <A
+HREF="function.stream-set-timeout.html"
+><B
+CLASS="function"
+>stream_set_timeout()</B
+></A
+></DT
+><DT
+><A
+HREF="function.syslog.html"
+>syslog</A
+>&nbsp;--&nbsp;genera un mensaje de sistema</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.muscat-setup.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.checkdnsrr.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>muscat_setup</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>checkdnsrr</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

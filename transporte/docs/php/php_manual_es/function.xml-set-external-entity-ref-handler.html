@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>xml_set_external_entity_ref_handler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de intérprete XML"
+HREF="ref.xml.html"><LINK
+REL="PREVIOUS"
+TITLE="xml_set_end_namespace_decl_handler"
+HREF="function.xml-set-end-namespace-decl-handler.html"><LINK
+REL="NEXT"
+TITLE="xml_set_notation_decl_handler"
+HREF="function.xml-set-notation-decl-handler.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.xml-set-end-namespace-decl-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.xml-set-notation-decl-handler.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.xml-set-external-entity-ref-handler"
+></A
+>xml_set_external_entity_ref_handler</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN114587"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>xml_set_external_entity_ref_handler&nbsp;--&nbsp;Establece gestores de referencia de entidades externas
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN114590"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>xml_set_external_entity_ref_handler</B
+> ( int parser, string handler)<BR
+></BR
+><P
+>&#13;     Establece la función gestora de declaraciones de notación
+     para el analizador XML <VAR
+CLASS="parameter"
+>parser</VAR
+>.
+     <VAR
+CLASS="parameter"
+>handler</VAR
+> es un string que contiene el nombre de
+     una función que debe existir  cuando
+     <A
+HREF="function.xml-parse.html"
+><B
+CLASS="function"
+>xml_parse()</B
+></A
+> es llamado por
+     <VAR
+CLASS="parameter"
+>parser</VAR
+>.
+    </P
+><P
+>&#13;     La función llamada por <VAR
+CLASS="parameter"
+>handler</VAR
+> 
+     debe aceptar cinco parámetros, y debería devolver
+     un valor entero. Si el valor devuelto desde el gestor (handler)
+     es falso (lo cual ocurrirá si no se devuelve un valor),
+     el analizador XML dejará de analizar y 
+     <A
+HREF="function.xml-get-error-code.html"
+><B
+CLASS="function"
+>xml_get_error_code()</B
+></A
+> devolverá <SPAN
+CLASS="systemitem"
+>XML_ERROR_EXTERNAL_ENTITY_HANDLING</SPAN
+>.
+     int <B
+CLASS="methodname"
+><VAR
+CLASS="replaceable"
+>handler</VAR
+></B
+> ( int parser, string openEntityNames, string base, string systemId, string publicId)<BR
+></BR
+>
+     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><VAR
+CLASS="parameter"
+>parser</VAR
+></DT
+><DD
+><P
+>&#13;         El primer parámetro, <VAR
+CLASS="replaceable"
+>parser</VAR
+>, es una
+         referencia al analizador XML que llama al gestor.
+	</P
+></DD
+><DT
+><VAR
+CLASS="parameter"
+>openEntityNames</VAR
+></DT
+><DD
+><P
+>&#13;	 El segundo parámetro, <VAR
+CLASS="parameter"
+>openEntityNames</VAR
+>,
+	 es una lista, separada por espacios, de los nombres de las entidades
+	 que se abren para el análisis de esta entidad (incluido el
+	 nombre de la entidad referenciada).
+	</P
+></DD
+><DT
+><VAR
+CLASS="parameter"
+>base</VAR
+></DT
+><DD
+><P
+>&#13;	 Esta es la base para resolver el identificador de sistema
+	 (<VAR
+CLASS="parameter"
+>systemid</VAR
+>) de la entidad externa.
+	 En la actualidad este parámetro es siempre la cadena
+	 vacía.
+	</P
+></DD
+><DT
+><VAR
+CLASS="parameter"
+>systemId</VAR
+></DT
+><DD
+><P
+>&#13;	 El cuarto parámetro, <VAR
+CLASS="parameter"
+>systemId</VAR
+>, es el
+	 identificador del sistema tal como se especificó
+	 en la declaración de la entidad.
+	</P
+></DD
+><DT
+><VAR
+CLASS="parameter"
+>publicId</VAR
+></DT
+><DD
+><P
+>&#13;	 El quinto parámetro, <VAR
+CLASS="parameter"
+>publicId</VAR
+>, es el
+	 identificador público como se especificó 
+	 en la declaración de la entidad, o una cadena vacía
+	 si no se especificó ninguno; el espacio en blanco en el
+	 identificador público se habrá normalizado como se
+	 requiere en las especificaciones XML.
+	</P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     Si una función gestora se establece como la cadena vacía,
+     o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, el gestor en cuestión se deshabilita.
+    </P
+><P
+>&#13;     Se devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si se estableció el gestor, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si
+     <VAR
+CLASS="parameter"
+>parser</VAR
+> no es un analizador.
+    </P
+><P
+>&#13;     En la actualidad no hay soporte para gestores objeto/método.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.xml-set-end-namespace-decl-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.xml-set-notation-decl-handler.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>xml_set_end_namespace_decl_handler</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.xml.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>xml_set_notation_decl_handler</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

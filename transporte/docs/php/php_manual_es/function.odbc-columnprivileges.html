@@ -1,0 +1,224 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>odbc_columnprivileges</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="PREVIOUS"
+TITLE="odbc_close"
+HREF="function.odbc-close.html"><LINK
+REL="NEXT"
+TITLE="odbc_columns"
+HREF="function.odbc-columns.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.odbc-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.odbc-columns.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.odbc-columnprivileges"
+></A
+>odbc_columnprivileges</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN74338"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>odbc_columnprivileges&nbsp;--&nbsp;
+     Returns a result identifier that can be used to fetch a list of
+     columns and associated privileges
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN74341"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>odbc_columnprivileges</B
+> ( resource connection_id [, string qualifier [, string owner [, string table_name [, string column_name]]]])<BR
+></BR
+><P
+>&#13;     Lists columns and associated privileges for the given table.
+     Returns an ODBC result identifier or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on
+     failure.
+    </P
+><P
+>&#13;     The result set has the following columns:
+     <P
+></P
+><UL
+><LI
+><P
+>TABLE_QUALIFIER</P
+></LI
+><LI
+><P
+>TABLE_OWNER</P
+></LI
+><LI
+><P
+>TABLE_NAME</P
+></LI
+><LI
+><P
+>GRANTOR</P
+></LI
+><LI
+><P
+>GRANTEE</P
+></LI
+><LI
+><P
+>PRIVILEGE</P
+></LI
+><LI
+><P
+>IS_GRANTABLE</P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     The result set is ordered by TABLE_QUALIFIER, TABLE_OWNER and
+     TABLE_NAME.
+    </P
+><P
+>&#13;     The <VAR
+CLASS="parameter"
+>column_name</VAR
+> argument accepts search
+     patterns ('%' to match zero or more characters and '_' to match a
+     single character).
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.odbc-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.odbc-columns.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>odbc_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>odbc_columns</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

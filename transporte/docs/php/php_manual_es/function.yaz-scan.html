@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>yaz_scan</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="YAZ"
+HREF="ref.yaz.html"><LINK
+REL="PREVIOUS"
+TITLE="yaz_scan_result"
+HREF="function.yaz-scan-result.html"><LINK
+REL="NEXT"
+TITLE="yaz_schema"
+HREF="function.yaz-schema.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.yaz-scan-result.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.yaz-schema.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.yaz-scan"
+></A
+>yaz_scan</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN116675"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.5, PHP 5)</P
+>yaz_scan&nbsp;--&nbsp;Prepares for a scan</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN116678"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>yaz_scan</B
+> ( resource id, string type, string startterm [, array flags])<BR
+></BR
+><P
+>&#13;     This function prepares for a Z39.50 Scan Request, where parameter
+     <VAR
+CLASS="parameter"
+>id</VAR
+> specifies connection. Starting term
+     point for the scan is given by <VAR
+CLASS="parameter"
+>startterm</VAR
+>.
+     The form in which the starting term is specified is given by parameter
+     <VAR
+CLASS="parameter"
+>type</VAR
+>. Currently only type <VAR
+CLASS="literal"
+>rpn</VAR
+>
+     is supported. The optional parameter <VAR
+CLASS="parameter"
+>flags</VAR
+>
+     specifies additional information to control the behaviour of the
+     scan request. Three indexes are currently read from the flags:
+     <VAR
+CLASS="literal"
+>number</VAR
+> (number of terms requested),
+     <VAR
+CLASS="literal"
+>position</VAR
+> (preferred position of term) and
+     <VAR
+CLASS="literal"
+>stepSize</VAR
+> (preferred step size).
+     To actually transfer the Scan Request to the server and receive the
+     Scan Response, <A
+HREF="function.yaz-wait.html"
+><B
+CLASS="function"
+>yaz_wait()</B
+></A
+> must be called. Upon
+     completion of <A
+HREF="function.yaz-wait.html"
+><B
+CLASS="function"
+>yaz_wait()</B
+></A
+> call
+     <A
+HREF="function.yaz-error.html"
+><B
+CLASS="function"
+>yaz_error()</B
+></A
+> and <A
+HREF="function.yaz-scan-result.html"
+><B
+CLASS="function"
+>yaz_scan_result()</B
+></A
+> to
+     handle the response.
+    </P
+><P
+>&#13;      The syntax of <VAR
+CLASS="parameter"
+>startterm</VAR
+> is similar to the
+      RPN query as described in <A
+HREF="function.yaz-search.html"
+><B
+CLASS="function"
+>yaz_search()</B
+></A
+>. The
+      startterm consists of zero or more <VAR
+CLASS="literal"
+>@attr</VAR
+>-operator 
+      specifications, then followed by exactly one token.
+    </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN116713"
+></A
+><P
+><B
+>Ejemplo 1. PHP function that scans titles</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">scan_titles</font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">, </font><font color="#0000BB">$startterm</font><font color="#007700">) <br />{<br />&nbsp;&nbsp;</font><font color="#0000BB">yaz_scan</font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">, </font><font color="#DD0000">"rpn"</font><font color="#007700">, </font><font color="#DD0000">"@attr 1=4 " </font><font color="#007700">. </font><font color="#0000BB">$startterm</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">yaz_wait</font><font color="#007700">();<br />&nbsp;&nbsp;</font><font color="#0000BB">$errno </font><font color="#007700">= </font><font color="#0000BB">yaz_errno</font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">);<br />&nbsp;&nbsp;if (</font><font color="#0000BB">$errno </font><font color="#007700">== </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$ar </font><font color="#007700">= </font><font color="#0000BB">yaz_scan_result</font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">, &amp;</font><font color="#0000BB">$options</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">'Scan ok; '</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;while (list(</font><font color="#0000BB">$key</font><font color="#007700">, </font><font color="#0000BB">$val</font><font color="#007700">) = </font><font color="#0000BB">each</font><font color="#007700">(</font><font color="#0000BB">$options</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$key = $val &amp;nbsp;"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">'&lt;br /&gt;&lt;table&gt;'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;while (list(</font><font color="#0000BB">$key</font><font color="#007700">, list(</font><font color="#0000BB">$k</font><font color="#007700">, </font><font color="#0000BB">$term</font><font color="#007700">, </font><font color="#0000BB">$tcount</font><font color="#007700">)) = </font><font color="#0000BB">each</font><font color="#007700">(</font><font color="#0000BB">$ar</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (empty(</font><font color="#0000BB">$k</font><font color="#007700">)) continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;tr&gt;&lt;td&gt;$term&lt;/td&gt;&lt;td&gt;$tcount&lt;/td&gt;&lt;/tr&gt;"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">'&lt;/table&gt;'</font><font color="#007700">;<br />&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Scan failed. Error: " </font><font color="#007700">. </font><font color="#0000BB">yaz_error</font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">) . </font><font color="#DD0000">"&lt;br /&gt;"</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.yaz-scan-result.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.yaz-schema.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>yaz_scan_result</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.yaz.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>yaz_schema</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mssql_pconnect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Microsoft SQL Server"
+HREF="ref.mssql.html"><LINK
+REL="PREVIOUS"
+TITLE="mssql_num_rows"
+HREF="function.mssql-num-rows.html"><LINK
+REL="NEXT"
+TITLE="mssql_query"
+HREF="function.mssql-query.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mssql-num-rows.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mssql-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mssql-pconnect"
+></A
+>mssql_pconnect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN56515"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mssql_pconnect&nbsp;--&nbsp;abre una conexión persistenete con MS SQL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN56518"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mssql_pconnect</B
+> ( string servername, string username, string password)<BR
+></BR
+><P
+> 
+     Devuelve: Un identificador persistente postivo si no hay error,
+     o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si se produce alguno</P
+><P
+>&#13;     mssql_pconnect() funciona de la misma forma que <A
+HREF="function.mssql-connect.html"
+><B
+CLASS="function"
+>mssql_connect()</B
+></A
+>
+     aunque con dos grandes diferencias.</P
+><P
+> 
+     La primera es que cuando intenta conectar, la función intentará encontrar un
+     enlace (persistente) que ya esté abierto en el mismo ordenador, nombre de usuario y
+     contrase¤a.  Si lo encuentra, la funcion devolverá el identificador de esta
+     en vez de abrir una nueva conexión.</P
+><P
+> 
+     Y la segunda, la conexión con el servidor no se cerrará cuando finalice 
+     la ejecución del script.  En vez de esto, el enlace permanecerá 
+     abierto para un uso futuro. (<A
+HREF="function.mssql-close.html"
+><B
+CLASS="function"
+>mssql_close()</B
+></A
+> no cerrará
+     enlaces establecidos por <VAR
+CLASS="literal"
+>mssql_pconnect()</VAR
+>).</P
+><P
+> 
+     Por consiguiente, este tipo de enlace es llamado 'persistente'.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mssql-num-rows.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mssql-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mssql_num_rows</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mssql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mssql_query</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

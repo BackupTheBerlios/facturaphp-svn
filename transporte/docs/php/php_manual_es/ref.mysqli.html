@@ -1,0 +1,2875 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Extensión mejorada de MySQL</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_unbuffered_query"
+HREF="function.mysql-unbuffered-query.html"><LINK
+REL="NEXT"
+TITLE="mysqli_affected_rows"
+HREF="function.mysqli-affected-rows.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-unbuffered-query.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.mysqli"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXVI. Extensión mejorada de MySQL</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN63790"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysqli.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     La extensión mysqli permite acceder a la funcionalidad proveida por
+     MySQL 4.1 y superior. Más información acerca del servidor de
+     base de datos MySQL puede ser encontrada en  
+     <A
+HREF="http://www.mysql.com/"
+TARGET="_top"
+>http://www.mysql.com/</A
+>
+    </P
+><P
+>&#13;     La documentación para MySQL puede ser encontrada en
+     <A
+HREF="http://dev.mysql.com/doc/"
+TARGET="_top"
+>http://dev.mysql.com/doc/</A
+>.
+    </P
+><P
+>&#13;     Partes de esta documentación ha sido incluida del manual de MySQL con
+     permiso de MySQL AB.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysqli.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Para tener estas funciones disponibles, usted debe compilar PHP con 
+     soporte para la extensión MySQLI.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La extensión mysqli está diseñada para trabajar con 
+      la versión 4.1.2 o superior de MySQL. Para versiones previas, por 
+      favor vea documentación de la extensión 
+      <A
+HREF="ref.mysql.html"
+>MySQL</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysqli.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  Para instalar la extensión de mysqli para PHP, use la opción de
+	configuración 
+  <VAR
+CLASS="option"
+>--with-mysqli=mysql_config_path/mysql_config</VAR
+>
+  donde <VAR
+CLASS="literal"
+>mysql_config_path</VAR
+> representa la ubicación del 
+	programa <VAR
+CLASS="literal"
+>mysql_config</VAR
+> que viene con MySQL en versiones 
+	superiores a 4.1.  
+ </P
+><P
+>&#13;  Si quiere instalar la extensión de mysql junto con la extensión 
+	mysqli, usted tiene que usar la mismas librerias cliente, para evitar cualquier
+	conflicto.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysqli.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN63816"
+></A
+><P
+><B
+>Tabla 1. Opciones de configuración de MySQLi</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Default</TH
+><TH
+>Cambiable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>mysqli.max_links</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>mysqli.default_port</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysqli.default_socket</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysqli.default_host</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysqli.default_user</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysqli.default_pw</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+><P
+>&#13;  Para más detalles y definiciones de las constantes PHP_INI_* anteriores, 
+	vea el capítulo sobre <A
+HREF="configuration.changes.html"
+>Cambios de 
+	configuración</A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.mysqli.max-links"
+></A
+><VAR
+CLASS="parameter"
+>mysqli.max_links</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;		 El número maximo de conexiones MySQL por proceso.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysqli.default-port"
+></A
+><VAR
+CLASS="parameter"
+>mysqli.default_port</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;		 El puerto TCP por defecto a usar cuando se conecte al servidor de base de datos 
+		 si no se ha específicado otro puerto. Si no se define el default, el 
+		 puerto será tomado de la variable de ambiente <VAR
+CLASS="literal"
+>MYSQL_TCP_PORT</VAR
+>,
+		 la entrada <VAR
+CLASS="literal"
+>mysql-tcp</VAR
+> en el archivo <TT
+CLASS="filename"
+>/etc/services</TT
+>
+		 o la constante en tiempo de ejecución <VAR
+CLASS="literal"
+>MYSQL_PORT</VAR
+>
+		 en ese orden. Win32 usará solo la constante <VAR
+CLASS="literal"
+>MYSQL_PORT</VAR
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysqli.default-socket"
+></A
+><VAR
+CLASS="parameter"
+>mysqli.default_socket</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     El nombre de socket por defecto a usar cuando se conecte a un servidor de
+     base de datos local si no se ha específicado otro nombre de socket.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysqli.default-host"
+></A
+><VAR
+CLASS="parameter"
+>mysqli.default_host</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     El servidor huésped por defecto a usar cuando se conecta al servidor 
+     de base de datos si no se ha específicado otro. No aplica en 
+     <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo seguro</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysqli.default-user"
+></A
+><VAR
+CLASS="parameter"
+>mysqli.default_user</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     El nombre de usuario por defecto a usar cuando se conecta al servidor de 
+     base de datos si no se específica otro nombre. No aplica en 
+     <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo seguro</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysqli.default-pw"
+></A
+><VAR
+CLASS="parameter"
+>mysqli.default_password</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     La contraseña a usar cuando se conecta al servidor de base de datos
+     si no se específica otra contraseña. No aplica en 
+     <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo seguro</A
+>.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysqli.classes"
+>Clases predefinidas</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="mysqli.class.mysql"
+><B
+CLASS="classname"
+>mysqli</B
+></A
+></H2
+><P
+>&#13;      Representa una conexión entres PHP y la base de datos MySQL. 
+     </P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.mysql.constructor"
+>Constructor</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-connect.html"
+>mysqli()</A
+> - Constructor de un nuevo objeto mysqli</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.mysql.methods"
+>Methods</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-autocommit.html"
+>autocommit()</A
+> - Cambia en on o off las modificaciones de auto-commiting en la base de datos</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-change-user.html"
+>change_user()</A
+> - Cambia el usuario del identificador de enlace específicado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-character-set-name.html"
+>character_set_name</A
+> - Regresa el conjunto de caracteres del identificador de enlace específicado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-close.html"
+>close</A
+> - Cierra una conexión previamente abierta</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-commit.html"
+>commit</A
+> - Completa la transacció actual</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-connect.html"
+>connect</A
+> - Abre una nueva conexión al servidor de MySQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-debug.html"
+>debug</A
+> - Realiza operaciones de rastreo</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-dump-debug-info.html"
+>dump_debug_info</A
+> - Vacía informació de rastreo</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-get-client-info.html"
+>get_client_info</A
+> - Regresa la versión del cliente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-get-host-info.html"
+>get_host_info</A
+> - Regresa el tipo de conexión usada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-get-server-info.html"
+>get_server_info</A
+> - Regresa la versión del servidor MySQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-get-server-version.html"
+>get_server_version</A
+> - Regresa la versión del servidor MySQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-init.html"
+>init</A
+> - Inicializa el objeto mysqli</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-info.html"
+>info</A
+> - Obtiene información acerca de la consulta más recientemente ejecutada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-kill.html"
+>kill</A
+> - Solicita al servidor destruir un thread de mysql</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-multi-query.html"
+>multi_query</A
+> - Realiza consultas de SQL múltiples</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-more-results.html"
+>more_results</A
+> - Checa si existen mas resultados de la consulta multiple actualmente ejecutada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-next-result.html"
+>next_result</A
+> - Lee el siguiente resultado de la consulta multiple actualmente ejecutada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-options.html"
+>options</A
+> - Fija opciones</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-ping.html"
+>ping</A
+> - Llama una conexión con el servidor o reconecta si no hay conexión</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-prepare.html"
+>prepare</A
+> - Prepara una sentencia SQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-query.html"
+>query</A
+> - Ejecuta una sentencia SQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-real-connect.html"
+>real_connect</A
+> - Intenta abrir una conexión al servidor de base de datos MySQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-real-escape-string.html"
+>escape_string</A
+> - Caracteres especiales de escape para ser usados en una sentencia SQL, tomando en cuenta el conjunto de caracteres actual de la conexión</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-rollback.html"
+>rollback</A
+> - Deshace la transacción actual</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-select-db.html"
+>select_db</A
+> - Selecciona la base de datos por defecto</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-ssl-set.html"
+>ssl_set</A
+> - Fija los parámetros SSL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stat.html"
+>stat</A
+> - Obtiene el estado actual del sistema</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-init.html"
+>stmt_init</A
+> - Inicializa una sentencia para ser usada con mysqli_stmt_prepare</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-store-result.html"
+>store_result</A
+> - Transfiere un resultado de la última consulta</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-use-result.html"
+>use_result</A
+> - Transfiere un resultado sin almacenamiento intermedio de la última consulta</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-thread-safe.html"
+>thread-safe</A
+> - Regresa si se ha dado thread_safety o no</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.mysql.properties"
+>Properties</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-affected-rows.html"
+>affected_rows</A
+> - Obtiene el número de filas afectadas en la operación MySQL previa</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-errno.html"
+>errno</A
+> - Regresa el código de error para la llamada a función más reciente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-error.html"
+>error</A
+> - Regresa la cadena de error para la llamada a función más reciente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-field-count.html"
+>field_count</A
+> - Regresa el número de columnas para la consulta más reciente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-get-host-info.html"
+>host_info</A
+> - Regresa la cadena representando el tipo de conexión usado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-info.html"
+>info</A
+> - Regresa información acerca de la consulta ejecutada más recientemente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-insert-id.html"
+>insert-id</A
+> - Regresa el identificador generado automáticamente usado en la última consulta</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-get-proto-info.html"
+>protocol_version</A
+> - Regresa la versión del protocolo usado por MySQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-sqlstate.html"
+>sqlstate</A
+> - Regresa una cadena que contiene el código de error SQLSTATE para el último error</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-thread-id.html"
+>thread_id</A
+> - Regresa el identificador del THREAD para la conexión actual</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-warning-count.html"
+>warning-count</A
+> - Regresa el número de alertas generadas durante la ejecución del enunciado SQL previo</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="mysqli.classes.stmt"
+><B
+CLASS="classname"
+>mysqli_stmt</B
+></A
+></H2
+><P
+>&#13;      Representa una sentencia preparada.
+     </P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.stmt.methods"
+>Methods</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-bind-param.html"
+>bind_param</A
+> - Enlaza variables a una sentencia preparada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-bind-result.html"
+>bind_result</A
+> - Enlaza variables a una sentencia preparada para el almacenamiento del resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-close.html"
+>close</A
+> - Cierra la sentencia preparada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-data-seek.html"
+>data-seek</A
+> - Busca a una fila arbitrariamente en el resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-execute.html"
+>execute</A
+> - ejecuta una sentencia preparada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch.html"
+>fetch</A
+> - Obtiene el resultado de la sentencia preparada en variables límite</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-free-result.html"
+>free_result</A
+> - Libera la memoria del resultado almacenado para el manejador de la sentencia dada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-result-metadata.html"
+>result_metadata</A
+> - Obtiene un resultado de la sentencia preparada para información de metadatos</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-prepare.html"
+>prepare</A
+> - Prepara una consulta SQL</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-send-long-data.html"
+>send_long_data</A
+> - Envía datos en partes</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-store-result.html"
+>store_result</A
+> - Almacena el resultado completo de la sentencia preparada</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.stmt.properties"
+>Properties</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-affected-rows.html"
+>affected_rows</A
+> - Regresa las filas afectadas de la última sentencia ejecutdada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-errno.html"
+>errno</A
+> - Regresa el código de error para la llamada a función más reciente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-error.html"
+>errno</A
+> - Regresa el mensaje de error para la llamada a función más reciente</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-param-count.html"
+>param_count</A
+> - Regresa el numero de parámetros para la sentencia preparada dada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-stmt-sqlstate.html"
+>sqlstate</A
+> - Regresa una cadena conteniendo el código de error SQLSTATE para la llamada a función más reciente</P
+></LI
+></UL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="mysqli.classes.result"
+><B
+CLASS="classname"
+>mysqli_result</B
+></A
+></H2
+><P
+>&#13;      Representa el resultado obtenido de la consulta hecha en la base de datos.
+     </P
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.result.methods"
+>Methods</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-free-result.html"
+>close</A
+> - Cierra el resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-data-seek.html"
+>data_seek</A
+> - Mueve el puntero interno del resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-field.html"
+>fetch_field</A
+> - Obtiene la información de la columna en el resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-fields.html"
+>fetch_fields</A
+> - Obtiene la información para todas las columnas del resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-field-direct.html"
+>fetch_field_direct</A
+> - Obtiene información de la columna para la columna dada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-array.html"
+>fetch_array</A
+> - Recupera una fila como una matriz asociativa, una matriz numérica, o ambos.</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-assoc.html"
+>fetch_assoc</A
+> - Obtiene una fuka como una matriz asociativa</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-object.html"
+>fetch_object</A
+> - Obtiene una fila como un objeto</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-row.html"
+>fetch_row</A
+> - Obtiene una fila como una matriz enumerada</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-free-result.html"
+>close</A
+> - Libera la memoria ocupada por el resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-field-seek.html"
+>field_seek</A
+> - Fija el apuntador del resultado a la posición específicada</P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="section"
+><H3
+CLASS="section"
+><A
+NAME="mysqli.class.result.properties"
+>Properties</A
+></H3
+><P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.mysqli-field-tell.html"
+>current_field</A
+> - Regresa la posición de puntero actual</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-field-count.html"
+>field_count</A
+> - Regresa el número de campos en el resultado</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-fetch-lengths.html"
+>lengths</A
+> - Regresa una matriz con la longitud de los campos</P
+></LI
+><LI
+><P
+><A
+HREF="function.mysqli-num-rows.html"
+>num_rows</A
+> - Regresa el número de filas en el resultado</P
+></LI
+></UL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysqli.constants"
+>Constantes predefinidas</A
+></H1
+><DIV
+CLASS="table"
+><A
+NAME="AEN64160"
+></A
+><P
+><B
+>Tabla 2. Constantes MySQLi</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_READ_DEFAULT_GROUP</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Lee las opciones del grupo llamado de `my.cnf' o la fila especificada con <VAR
+CLASS="literal"
+>MYSQLI_READ_DEFAULT_FILE</VAR
+>
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_READ_DEFAULT_FILE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Lee las opciones del archivo específicado en vez de <VAR
+CLASS="literal"
+>my.cnf</VAR
+>
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_OPT_CONNECT_TIMEOUT</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Tiempo de espera para la conexión en segundos
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_OPT_LOCAL_INFILE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Habilita el comando <VAR
+CLASS="literal"
+>LOAD LOCAL INFILE</VAR
+>
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_INIT_COMMAND</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Comando a ejecutar cuando se conecta al servidor MySQL. Será automáticamente 
+			 re-ejecutado cuando se vuelva a conectar.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_CLIENT_SSL</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Usa SSL (protocolo de encriptaci???n). Esta opción no debe ser 
+			 fijado por programas de apliación; esta es fijada internamente en 
+			 la libreria cliente de MySQL
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_CLIENT_COMPRESS</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Usa el protocolo de compresión
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_CLIENT_INTERACTIVE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Permite tiempo de espera interactivo en segundos (en vez de esperar ciertos 
+			 segundos) de inactividad antes de cerrar la conexión. La variable 
+			 wait_timeout de sesión del cliente será fijada a el valor de la 
+			 variable de sesión interactive_timeout.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_CLIENT_IGNORE_SPACE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Permite espacios después de los nombres de las funciones. Esto 
+			 hace a todas las funciones palabras reservadas.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_CLIENT_NO_SCHEMA</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 No permite la sintaxis db_name.tbl_name.col_name syntax.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_CLIENT_MULTI_QUERIES</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_STORE_RESULT</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Para usar resultados con almacenamiento intermedio
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_USE_RESULT</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Para usar resultados sin almacenamiento intermedio
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_ASSOC</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Las columnas son regresadas en una matriz que tiene el nombre del campo 
+			 como índice de la matriz.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_NUM</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Las columnas son regresadas en una matriz teniendo un índice enumerado.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_BOTH</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 Las clumnas son regresadas en una matriz teniendo ambas formas de índice 
+			 numérico y con el nombre del campo como índice asociativo. 
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_NOT_NULL_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;		  Indica que un campo es definido como <VAR
+CLASS="literal"
+>NOT NULL</VAR
+>
+     </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_PRI_KEY_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 El campo es parte de un índice primario
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_UNIQUE_KEY_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;			 El campo es parte de un índice único
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_MULTIPLE_KEY_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>&#13;		  El campo es parte de un índice.
+     </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_BLOB_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>BLOB</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_UNSIGNED_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>UNSIGNED</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_ZEROFILL_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>ZEROFILL</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_AUTO_INCREMENT_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>AUTO_INCREMENT</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TIMESTAMP_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>TIMESTAMP</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_SET_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>SET</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_NUM_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>NUMERIC</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_PART_KEY_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo es parte de un índice multiple
+		 </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_GROUP_FLAG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo es parte de <VAR
+CLASS="literal"
+>GROUP BY</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_DECIMAL</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>DECIMAL</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_TINY</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>TINYINT</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_SHORT</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>INT</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_LONG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>INT</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_FLOAT</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>FLOAT</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_DOUBLE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>DOUBLE</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_NULL</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>DEFAULT NULL</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_TIMESTAMP</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>TIMESTAMP</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_LONGLONG</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>BIGINT</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_INT24</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>MEDIUMINT</VAR
+>
+		 </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_DATE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>DATE</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_TIME</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>TIME</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_DATETIME</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>DATETIME</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_YEAR</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>YEAR</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_NEWDATE</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>DATE</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_ENUM</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>ENUM</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_SET</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>SET</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_TINY_BLOB</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>TINYBLOB</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_MEDIUM_BLOB</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>MEDIUMBLOB</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_LONG_BLOB</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>LONGBLOB</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_BLOB</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>BLOB</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_STRING</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>VARCHAR</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_CHAR</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>CHAR</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_TYPE_GEOMETRY</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>El campo está definido como <VAR
+CLASS="literal"
+>GEOMETRY</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_NEED_DATA</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>Obtiene más información para varibles enlazadas (bind)
+		 </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="constant"
+><B
+>MYSQLI_NO_DATA</B
+></TT
+>
+       (<A
+HREF="language.types.integer.html"
+>integer</A
+>)
+      </TD
+><TD
+>No obtiene más información para variables enlazadas (bind)
+		 </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="AEN64479"
+>Ejemplos</A
+></H1
+><P
+>&#13;     Todos los ejemplos en la documentación MySQLI usan la base de datos 
+     de MySQL AB. Puede ser encontrada en <A
+HREF="http://www.mysql.com/get/Downloads/Manual/world.sql.gz/from/pick"
+TARGET="_top"
+>http://www.mysql.com/get/Downloads/Manual/world.sql.gz/from/pick</A
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.mysqli-affected-rows.html"
+>mysqli_affected_rows</A
+>&nbsp;--&nbsp;Obtiene el número de filas afectadas en una operación 
+  de MySQL previa</DT
+><DT
+><A
+HREF="function.mysqli-autocommit.html"
+>mysqli_autocommit</A
+>&nbsp;--&nbsp;Activa o desactiva la modificación de auto-entrega de 
+	 la base de datos</DT
+><DT
+><A
+HREF="function.mysqli-bind-param.html"
+>mysqli_bind_param</A
+>&nbsp;--&nbsp;Alias para <A
+HREF="function.mysqli-stmt-bind-param.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_param()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-bind-result.html"
+>mysqli_bind_result</A
+>&nbsp;--&nbsp;Alias para <A
+HREF="function.mysqli-stmt-bind-result.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_result()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-change-user.html"
+>mysqli_change_user</A
+>&nbsp;--&nbsp;Cambia el usuario de la conexión a la base de datos especificada</DT
+><DT
+><A
+HREF="function.mysqli-character-set-name.html"
+>mysqli_character_set_name</A
+>&nbsp;--&nbsp;Regresa el conjunto de caracteres determinados por default para 
+	 la conexión de base de datos</DT
+><DT
+><A
+HREF="function.mysqli-client-encoding.html"
+>mysqli_client_encoding</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.mysqli-character-set-name.html"
+><B
+CLASS="function"
+>mysqli_character_set_name()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-close.html"
+>mysqli_close</A
+>&nbsp;--&nbsp;Cierra la conexión de base de datos previamente abierta</DT
+><DT
+><A
+HREF="function.mysqli-commit.html"
+>mysqli_commit</A
+>&nbsp;--&nbsp;Completa la transacción actual</DT
+><DT
+><A
+HREF="function.mysqli-connect-errno.html"
+>mysqli_connect_errno</A
+>&nbsp;--&nbsp;Regresa el código de error de la última llamada a la conexión</DT
+><DT
+><A
+HREF="function.mysqli-connect-error.html"
+>mysqli_connect_error</A
+>&nbsp;--&nbsp;Regresa una descripción del último error de la 
+	 conexión</DT
+><DT
+><A
+HREF="function.mysqli-connect.html"
+>mysqli_connect</A
+>&nbsp;--&nbsp;Abre una nueva conexión al servidor MySQL</DT
+><DT
+><A
+HREF="function.mysqli-data-seek.html"
+>mysqli_data_seek</A
+>&nbsp;--&nbsp;Ajusta el apuntador arbitrariamente a una fila en el resultado</DT
+><DT
+><A
+HREF="function.mysqli-debug.html"
+>mysqli_debug</A
+>&nbsp;--&nbsp;Realiza operaciones de rastreo de errores</DT
+><DT
+><A
+HREF="function.mysqli-disable-reads-from-master.html"
+>mysqli_disable_reads_from_master</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-disable-rpl-parse.html"
+>mysqli_disable_rpl_parse</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-dump-debug-info.html"
+>mysqli_dump_debug_info</A
+>&nbsp;--&nbsp;Vacía información de rastreo de errores en el log</DT
+><DT
+><A
+HREF="function.mysqli-embedded-connect.html"
+>mysqli_embedded_connect</A
+>&nbsp;--&nbsp;Abre una conexió a un servidor MySQL embebido.</DT
+><DT
+><A
+HREF="function.mysqli-enable-reads-from-master.html"
+>mysqli_enable_reads_from_master</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-enable-rpl-parse.html"
+>mysqli_enable_rpl_parse</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-errno.html"
+>mysqli_errno</A
+>&nbsp;--&nbsp;Regresa el código de error para la función más 
+	 recientemente llamada</DT
+><DT
+><A
+HREF="function.mysqli-error.html"
+>mysqli_error</A
+>&nbsp;--&nbsp;Regresa una cadena con la descripció del último error</DT
+><DT
+><A
+HREF="function.mysqli-escape-string.html"
+>mysqli_escape_string</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.mysqli-real-escape-string.html"
+><B
+CLASS="function"
+>mysqli_real_escape_string()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-execute.html"
+>mysqli_execute</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.mysqli-stmt-execute.html"
+><B
+CLASS="function"
+>mysqli_stmt_execute()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-fetch-array.html"
+>mysqli_fetch_array</A
+>&nbsp;--&nbsp;Obtiene una fila como una matriz asociativa, una matriz numérica o ambos.</DT
+><DT
+><A
+HREF="function.mysqli-fetch-assoc.html"
+>mysqli_fetch_assoc</A
+>&nbsp;--&nbsp;Obtiene una fila del resultado como una matriz asociativa</DT
+><DT
+><A
+HREF="function.mysqli-fetch-field-direct.html"
+>mysqli_fetch_field_direct</A
+>&nbsp;--&nbsp;
+	  Obtiene los metadatos de un campo
+    </DT
+><DT
+><A
+HREF="function.mysqli-fetch-field.html"
+>mysqli_fetch_field</A
+>&nbsp;--&nbsp;Regresa metadatos de el campo en el resultado</DT
+><DT
+><A
+HREF="function.mysqli-fetch-fields.html"
+>mysqli_fetch_fields</A
+>&nbsp;--&nbsp;Regresa una matriz de objetos representando los campos en un 
+	 resultado</DT
+><DT
+><A
+HREF="function.mysqli-fetch-lengths.html"
+>mysqli_fetch_lengths</A
+>&nbsp;--&nbsp;Regresa la longitud de las columnas de la fila actual en el 
+	 resultado</DT
+><DT
+><A
+HREF="function.mysqli-fetch-object.html"
+>mysqli_fetch_object</A
+>&nbsp;--&nbsp;Regresa la fila actual del resultado como un objeto</DT
+><DT
+><A
+HREF="function.mysqli-fetch-row.html"
+>mysqli_fetch_row</A
+>&nbsp;--&nbsp;Obtiene una fila del resultado como una matriz enumerada</DT
+><DT
+><A
+HREF="function.mysqli-fetch.html"
+>mysqli_fetch</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-field-count.html"
+>mysqli_field_count</A
+>&nbsp;--&nbsp;Regresa el número de columnas para la consulta más 
+    reciente</DT
+><DT
+><A
+HREF="function.mysqli-field-seek.html"
+>mysqli_field_seek</A
+>&nbsp;--&nbsp;
+	  Fija el apuntador del resultado a una posicion específica
+    </DT
+><DT
+><A
+HREF="function.mysqli-field-tell.html"
+>mysqli_field_tell</A
+>&nbsp;--&nbsp;
+	  Obtiene la posición de desplazamiento del apuntador de un resultado 
+    </DT
+><DT
+><A
+HREF="function.mysqli-free-result.html"
+>mysqli_free_result</A
+>&nbsp;--&nbsp;Libera la memoria asociada con el resultado</DT
+><DT
+><A
+HREF="function.mysqli-get-client-info.html"
+>mysqli_get_client_info</A
+>&nbsp;--&nbsp;Regresa en una cadena la versión del cliente de MySQL</DT
+><DT
+><A
+HREF="function.mysqli-get-client-version.html"
+>mysqli_get_client_version</A
+>&nbsp;--&nbsp;Obtiene información del cliente MySQL</DT
+><DT
+><A
+HREF="function.mysqli-get-host-info.html"
+>mysqli_get_host_info</A
+>&nbsp;--&nbsp;Regresa una cadena que representa el tipo de conexión usada</DT
+><DT
+><A
+HREF="function.mysqli-get-metadata.html"
+>mysqli_get_metadata</A
+>&nbsp;--&nbsp;Alias para <A
+HREF="function.mysqli-stmt-result-metadata.html"
+><B
+CLASS="function"
+>mysqli_stmt_result_metadata()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-get-proto-info.html"
+>mysqli_get_proto_info</A
+>&nbsp;--&nbsp;Regresa la versión del protocolo de MySQL usado</DT
+><DT
+><A
+HREF="function.mysqli-get-server-info.html"
+>mysqli_get_server_info</A
+>&nbsp;--&nbsp;Regresa la version del servidor de MySQL</DT
+><DT
+><A
+HREF="function.mysqli-get-server-version.html"
+>mysqli_get_server_version</A
+>&nbsp;--&nbsp;Regresa la versión del servidor MySQL como un entero</DT
+><DT
+><A
+HREF="function.mysqli-info.html"
+>mysqli_info</A
+>&nbsp;--&nbsp;Obtiene información acerca de la consulta más 
+    recientemente ejecutada</DT
+><DT
+><A
+HREF="function.mysqli-init.html"
+>mysqli_init</A
+>&nbsp;--&nbsp;
+     Inicializa MySQLi y regresa un objeto para ser usado con mysqli_rea_connect
+    </DT
+><DT
+><A
+HREF="function.mysqli-insert-id.html"
+>mysqli_insert_id</A
+>&nbsp;--&nbsp;Regresa el ID generado automáticamente en la última 
+    consulta</DT
+><DT
+><A
+HREF="function.mysqli-kill.html"
+>mysqli_kill</A
+>&nbsp;--&nbsp;Le pide al servidor "matar" el proceso MySQL</DT
+><DT
+><A
+HREF="function.mysqli-master-query.html"
+>mysqli_master_query</A
+>&nbsp;--&nbsp;Hace cumplir la ejecución de una consulta en el servidor 
+    en una configuración cliente/servidor.</DT
+><DT
+><A
+HREF="function.mysqli-more-results.html"
+>mysqli_more_results</A
+>&nbsp;--&nbsp;Checa si hay má resultados de consultas de una 
+     consulta múltiple.</DT
+><DT
+><A
+HREF="function.mysqli-multi-query.html"
+>mysqli_multi_query</A
+>&nbsp;--&nbsp;Ejecuta una consulta en la base de datos</DT
+><DT
+><A
+HREF="function.mysqli-next-result.html"
+>mysqli_next_result</A
+>&nbsp;--&nbsp;Prepara el siguiente resultado de una consulta múltiple.</DT
+><DT
+><A
+HREF="function.mysqli-num-fields.html"
+>mysqli_num_fields</A
+>&nbsp;--&nbsp;
+     Obtiene el número de campos en un resultado
+     Get the number of fields in a result
+    </DT
+><DT
+><A
+HREF="function.mysqli-num-rows.html"
+>mysqli_num_rows</A
+>&nbsp;--&nbsp;
+     Obtiene el número de filas en un resultado
+    </DT
+><DT
+><A
+HREF="function.mysqli-options.html"
+>mysqli_options</A
+>&nbsp;--&nbsp;Fija opciones</DT
+><DT
+><A
+HREF="function.mysqli-param-count.html"
+>mysqli_param_count</A
+>&nbsp;--&nbsp;Alias para <A
+HREF="function.mysqli-stmt-param-count.html"
+><B
+CLASS="function"
+>mysqli_stmt_param_count()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-ping.html"
+>mysqli_ping</A
+>&nbsp;--&nbsp;
+     Revisa una conexión al servidor o intenta reconectar si la conexi???n 
+     se ha perdido.
+    </DT
+><DT
+><A
+HREF="function.mysqli-prepare.html"
+>mysqli_prepare</A
+>&nbsp;--&nbsp;
+     Prepara una sentencia SQL para su ejecución
+    </DT
+><DT
+><A
+HREF="function.mysqli-query.html"
+>mysqli_query</A
+>&nbsp;--&nbsp;Ejecuta una consulta en la base de datos</DT
+><DT
+><A
+HREF="function.mysqli-real-connect.html"
+>mysqli_real_connect</A
+>&nbsp;--&nbsp;Abre una conexión a un servidor de MySQL</DT
+><DT
+><A
+HREF="function.mysqli-real-escape-string.html"
+>mysqli_real_escape_string</A
+>&nbsp;--&nbsp;
+     Protege caracteres especiales en una cadena para ser usada en una sentencia 
+     SQL, tomando en cuenta el conjunto de caracteres para la conexión
+    </DT
+><DT
+><A
+HREF="function.mysqli-real-query.html"
+>mysqli_real_query</A
+>&nbsp;--&nbsp;Ejecuta una consulta SQL</DT
+><DT
+><A
+HREF="function.mysqli-report.html"
+>mysqli_report</A
+>&nbsp;--&nbsp;Habilita o deshabilita las funciones internas de reporte</DT
+><DT
+><A
+HREF="function.mysqli-rollback.html"
+>mysqli_rollback</A
+>&nbsp;--&nbsp;Regresa/deshace la transacción actual</DT
+><DT
+><A
+HREF="function.mysqli-rpl-parse-enabled.html"
+>mysqli_rpl_parse_enabled</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-rpl-probe.html"
+>mysqli_rpl_probe</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-rpl-query-type.html"
+>mysqli_rpl_query_type</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-select-db.html"
+>mysqli_select_db</A
+>&nbsp;--&nbsp;Selecciona la base de datos por defecto para las consultas de la 
+    base de datos</DT
+><DT
+><A
+HREF="function.mysqli-send-long-data.html"
+>mysqli_send_long_data</A
+>&nbsp;--&nbsp;Alias para <A
+HREF="function.mysqli-stmt-send-long-data.html"
+><B
+CLASS="function"
+>mysqli_stmt_send_long_data()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-send-query.html"
+>mysqli_send_query</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-server-end.html"
+>mysqli_server_end</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.mysqli-server-init.html"
+>mysqli_server_init</A
+>&nbsp;--&nbsp;Inicializa un servidor embebido.</DT
+><DT
+><A
+HREF="function.mysqli-set-opt.html"
+>mysqli_set_opt</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.mysqli-options.html"
+><B
+CLASS="function"
+>mysqli_options()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mysqli-sqlstate.html"
+>mysqli_sqlstate</A
+>&nbsp;--&nbsp;Regresa el error SQLSTATE de la operación MySQL previa.</DT
+><DT
+><A
+HREF="function.mysqli-ssl-set.html"
+>mysqli_ssl_set</A
+>&nbsp;--&nbsp;Usado para establecer conexiones seguras usando SSL.</DT
+><DT
+><A
+HREF="function.mysqli-stat.html"
+>mysqli_stat</A
+>&nbsp;--&nbsp;Obtiene el estado actual del sistema</DT
+><DT
+><A
+HREF="function.mysqli-stmt-affected-rows.html"
+>mysqli_stmt_affected_rows</A
+>&nbsp;--&nbsp;Regresa el número total de filas cambiadas, borradas o
+    insertadas por la última sentencia ejecutada
+    </DT
+><DT
+><A
+HREF="function.mysqli-stmt-bind-param.html"
+>mysqli_stmt_bind_param</A
+>&nbsp;--&nbsp;Enlaza variables como parámetros a una sentencia preparada</DT
+><DT
+><A
+HREF="function.mysqli-stmt-bind-result.html"
+>mysqli_stmt_bind_result</A
+>&nbsp;--&nbsp;Enlaza variables a una sentencia preparada para el almacenamiento 
+    del resultado</DT
+><DT
+><A
+HREF="function.mysqli-stmt-close.html"
+>mysqli_stmt_close</A
+>&nbsp;--&nbsp;Cierra la sentencia preparada</DT
+><DT
+><A
+HREF="function.mysqli-stmt-data-seek.html"
+>mysqli_stmt_data_seek</A
+>&nbsp;--&nbsp;Busca una fila arbitrariamente en el resultado</DT
+><DT
+><A
+HREF="function.mysqli-stmt-errno.html"
+>mysqli_stmt_errno</A
+>&nbsp;--&nbsp;Regresa el código de error para la llamada más 
+    reciente</DT
+><DT
+><A
+HREF="function.mysqli-stmt-error.html"
+>mysqli_stmt_error</A
+>&nbsp;--&nbsp;Regresa una descipción para el último error</DT
+><DT
+><A
+HREF="function.mysqli-stmt-execute.html"
+>mysqli_stmt_execute</A
+>&nbsp;--&nbsp;Ejecuta una consulta preparada</DT
+><DT
+><A
+HREF="function.mysqli-stmt-fetch.html"
+>mysqli_stmt_fetch</A
+>&nbsp;--&nbsp;
+     Obtiene el resultado de una sentencia SQL preparada en las variables enlazadas
+    </DT
+><DT
+><A
+HREF="function.mysqli-stmt-free-result.html"
+>mysqli_stmt_free_result</A
+>&nbsp;--&nbsp;Libera la memoria donde se almacenó el resultado</DT
+><DT
+><A
+HREF="function.mysqli-stmt-init.html"
+>mysqli_stmt-init</A
+>&nbsp;--&nbsp;
+     Inicializa una sentencia y regresa un objeto para ser usado con 
+     mysqli_stmt_prepare
+    </DT
+><DT
+><A
+HREF="function.mysqli-stmt-num-rows.html"
+>mysqli_stmt_num_rows</A
+>&nbsp;--&nbsp;Regresa el número de filas en un resultado de la sentencia.</DT
+><DT
+><A
+HREF="function.mysqli-stmt-param-count.html"
+>mysqli_stmt_param_count</A
+>&nbsp;--&nbsp;Regresa el número de parámetros para la sentencia dada
+    </DT
+><DT
+><A
+HREF="function.mysqli-stmt-prepare.html"
+>mysqli_stmt_prepare</A
+>&nbsp;--&nbsp;
+     Prepara una sentencia SQL para su ejecución
+    </DT
+><DT
+><A
+HREF="function.mysqli-stmt-result-metadata.html"
+>mysqli_stmt_result_metadata</A
+>&nbsp;--&nbsp;Regresa metadatos del resultado de una sentencia preparada
+    </DT
+><DT
+><A
+HREF="function.mysqli-stmt-send-long-data.html"
+>mysqli_stmt_send_long_data</A
+>&nbsp;--&nbsp;Envía los datos en bloques</DT
+><DT
+><A
+HREF="function.mysqli-stmt-sqlstate.html"
+>mysqli_stmt_sqlstate</A
+>&nbsp;--&nbsp;Regresa el error SQLSTATE de la operación con sentencias 
+     previa</DT
+><DT
+><A
+HREF="function.mysqli-stmt-store-result.html"
+>mysqli_stmt_store_result</A
+>&nbsp;--&nbsp;Transfiere un resultado de una sentencia preparada</DT
+><DT
+><A
+HREF="function.mysqli-store-result.html"
+>mysqli_store_result</A
+>&nbsp;--&nbsp;Transfers a result set from the last query</DT
+><DT
+><A
+HREF="function.mysqli-thread-id.html"
+>mysqli_thread_id</A
+>&nbsp;--&nbsp;Regresa el identificador del THREAD para la conexión 
+    actual</DT
+><DT
+><A
+HREF="function.mysqli-thread-safe.html"
+>mysqli_thread_safe</A
+>&nbsp;--&nbsp;Regresa si se ha dado un THREAD seguro o no
+	 Returns whether thread safety is given or not</DT
+><DT
+><A
+HREF="function.mysqli-use-result.html"
+>mysqli_use_result</A
+>&nbsp;--&nbsp;Inicia una recuperación de un resultado</DT
+><DT
+><A
+HREF="function.mysqli-warning-count.html"
+>mysqli_warning_count</A
+>&nbsp;--&nbsp;Regresa el número de alertas de la última 
+     consulta para el identificador de enlace dado</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-unbuffered-query.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_unbuffered_query</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_affected_rows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

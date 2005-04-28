@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>fbsql_insert_id</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FrontBase Functions"
+HREF="ref.fbsql.html"><LINK
+REL="PREVIOUS"
+TITLE="fbsql_hostname"
+HREF="function.fbsql-hostname.html"><LINK
+REL="NEXT"
+TITLE="fbsql_list_dbs"
+HREF="function.fbsql-list-dbs.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-hostname.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-list-dbs.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.fbsql-insert-id"
+></A
+>fbsql_insert_id</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN26939"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>fbsql_insert_id&nbsp;--&nbsp;
+     Get the id generated from the previous INSERT operation
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN26942"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>fbsql_insert_id</B
+> ( [resource link_identifier])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>fbsql_insert_id()</B
+> returns the ID generated for
+     an column defined as DEFAULT UNIQUE by the previous INSERT query
+     using the given <VAR
+CLASS="parameter"
+>link_identifier</VAR
+>.  If
+     <VAR
+CLASS="parameter"
+>link_identifier</VAR
+> isn't specified, the last
+     opened link is assumed.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>fbsql_insert_id()</B
+> returns 0 if the previous
+     query does not generate an DEFAULT UNIQUE value. If you need to
+     save the value for later, be sure to call fbsql_insert_id()
+     immediately after the query that generates the value.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      The value of the FrontBase SQL function
+      <B
+CLASS="function"
+>fbsql_insert_id()</B
+> always contains the most
+      recently generated DEFAULT UNIQUE value, and is not reset
+      between queries.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fbsql-hostname.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.fbsql-list-dbs.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fbsql_hostname</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>fbsql_list_dbs</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

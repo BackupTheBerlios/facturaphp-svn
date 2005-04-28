@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_query</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_put_line"
+HREF="function.pg-put-line.html"><LINK
+REL="NEXT"
+TITLE="pg_result_error"
+HREF="function.pg-result-error.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-put-line.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-result-error.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-query"
+></A
+>pg_query</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN89623"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>pg_query&nbsp;--&nbsp;Execute a query</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN89626"
+></A
+><H2
+>Description</H2
+>resource <B
+CLASS="methodname"
+>pg_query</B
+> ( resource connection, string query)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pg_query()</B
+> returns a query result resource if
+     query could be executed.  It returns <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on failure or if
+     connection is not a valid connection. Details about the error can
+     be retrieved using the <A
+HREF="function.pg-last-error.html"
+><B
+CLASS="function"
+>pg_last_error()</B
+></A
+>
+     function if connection is valid.
+     <B
+CLASS="function"
+>pg_query()</B
+> sends an SQL statement to
+     the PostgreSQL database specified by the
+     <VAR
+CLASS="parameter"
+>connection</VAR
+> resource. The
+     <VAR
+CLASS="parameter"
+>connection</VAR
+> must be a valid connection that
+     was returned by <A
+HREF="function.pg-connect.html"
+><B
+CLASS="function"
+>pg_connect()</B
+></A
+> or
+     <A
+HREF="function.pg-pconnect.html"
+><B
+CLASS="function"
+>pg_pconnect()</B
+></A
+>. The return value of this
+     function is an query result resource to be used to access the
+     results from other PostgreSQL functions such as
+     <A
+HREF="function.pg-fetch-array.html"
+><B
+CLASS="function"
+>pg_fetch_array()</B
+></A
+>.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       <VAR
+CLASS="parameter"
+>connection</VAR
+> is an optional parameter for
+       <B
+CLASS="function"
+>pg_query()</B
+>. If
+       <VAR
+CLASS="parameter"
+>connection</VAR
+> is not set, default
+       connection is used. Default connection is the last connection
+       made by <A
+HREF="function.pg-connect.html"
+><B
+CLASS="function"
+>pg_connect()</B
+></A
+> or
+       <A
+HREF="function.pg-pconnect.html"
+><B
+CLASS="function"
+>pg_pconnect()</B
+></A
+>.
+      </P
+><P
+>&#13;       Although <VAR
+CLASS="parameter"
+>connection</VAR
+> can be omitted, it
+       is not recommended, since it could be a cause of hard to find
+       bug in script.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      This function used to be called <VAR
+CLASS="literal"
+>pg_exec()</VAR
+>.
+      <VAR
+CLASS="literal"
+>pg_exec()</VAR
+> is still available for compatibility
+      reasons but users are encouraged to use the newer name.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     See also <A
+HREF="function.pg-connect.html"
+><B
+CLASS="function"
+>pg_connect()</B
+></A
+>,
+     <A
+HREF="function.pg-pconnect.html"
+><B
+CLASS="function"
+>pg_pconnect()</B
+></A
+>,
+     <A
+HREF="function.pg-fetch-array.html"
+><B
+CLASS="function"
+>pg_fetch_array()</B
+></A
+>,
+     <A
+HREF="function.pg-fetch-object.html"
+><B
+CLASS="function"
+>pg_fetch_object()</B
+></A
+>,
+     <A
+HREF="function.pg-num-rows.html"
+><B
+CLASS="function"
+>pg_num_rows()</B
+></A
+> and
+     <A
+HREF="function.pg-affected-rows.html"
+><B
+CLASS="function"
+>pg_affected_rows()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-put-line.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-result-error.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_put_line</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_result_error</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

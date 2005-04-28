@@ -1,0 +1,287 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>LZF Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="ldap_unbind"
+HREF="function.ldap-unbind.html"><LINK
+REL="NEXT"
+TITLE="lzf_compress"
+HREF="function.lzf-compress.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ldap-unbind.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.lzf-compress.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.lzf"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>L. LZF Functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN46684"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="lzf.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     LZF is a very fast compression algorithm, ideal for saving space with
+     only slight speed cost. It can be optimized for speed or space at the
+     time of compilation.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="lzf.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  LZF is currently available through PECL
+  <A
+HREF="http://pecl.php.net/package/lzf"
+TARGET="_top"
+>http://pecl.php.net/package/lzf</A
+>.
+ </P
+><P
+>&#13;  If <A
+HREF="http://pear.php.net/"
+TARGET="_top"
+>PEAR</A
+> is available on your *nix-like
+  system you can use the pear installer to install the LZF extension, by the
+  following command: <B
+CLASS="command"
+>pear -v install lzf</B
+>.
+ </P
+><P
+>&#13;  You can always download the tar.gz package and install LZF by hand:
+  <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN46696"
+></A
+><P
+><B
+>Ejemplo 1. LZF install by hand</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>gunzip lzf-xxx.tgz
+tar -xvf lzf-xxx.tar
+cd lzf-xxx
+phpize
+./configure &#38;&#38; make &#38;&#38; make install</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+ </P
+><P
+>&#13;  You can pass <VAR
+CLASS="option"
+>--enable-lzf-better-compression
+  </VAR
+> to optimize LZF for space rather then speed.
+ </P
+><P
+>&#13;  Windows users can download the extension dll <TT
+CLASS="filename"
+>php_lzf.dll</TT
+>
+  from <A
+HREF="http://snaps.php.net/win32/PECL_STABLE/"
+TARGET="_top"
+>http://snaps.php.net/win32/PECL_STABLE/</A
+>.
+ </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.lzf-compress.html"
+>lzf_compress</A
+>&nbsp;--&nbsp;
+     LZF compression.
+    </DT
+><DT
+><A
+HREF="function.lzf-decompress.html"
+>lzf_decompress</A
+>&nbsp;--&nbsp;
+     LZF decompression.
+    </DT
+><DT
+><A
+HREF="function.lzf-optimized-for.html"
+>lzf_optimized_for</A
+>&nbsp;--&nbsp;
+     Determines what LZF extension was optimized for.
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ldap-unbind.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.lzf-compress.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ldap_unbind</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>lzf_compress</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

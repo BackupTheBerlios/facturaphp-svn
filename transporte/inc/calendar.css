@@ -1,0 +1,113 @@
+table.calendar {
+    width: 100%;
+}
+table.calendar2 {
+    width: 100%;
+}
+
+table.calendar td {
+    text-align: center;
+}
+
+table.calendar td a {
+    display: block;
+}
+
+
+
+table.calendar td a:link{
+	text-decoration:none;
+	font-family:arial;
+	font-size:12px;
+	color:#000000;
+}
+
+table.calendar td a:visited{
+	text-decoration:none;
+	font-family:arial;
+	font-size:12px;
+	color:#000000;
+}
+
+table.calendar2 th a:link{
+	text-decoration:none;
+	font-family:arial;
+	font-size:12px;
+	color:#FFFFFF;
+}
+
+table.calendar2 th a:visited{
+	text-decoration:none;
+	font-family:arial;
+	font-size:12px;
+	color:#FFFFFF;
+}
+
+table.calendar2 th a:link{
+	text-decoration:underline;
+	font-family:arial;
+	font-size:12px;
+	color:#FFFFFF;
+}
+
+table.calendar td a:hover {	
+	background-image:url(../pics/fondoCamposVistas.gif);
+    background-color: #ACFF9B;    
+	text-decoration:underline;
+	font-family:arial;
+	font-size:12px;
+	color:#000000;
+}
+
+table.calendar th {
+	background-image:url(../pics/fondoCabeceraMenu.gif);
+	color:#FFFFFF;
+	font-size:12px;
+    background-color: #000000;
+}
+
+table.calendar2 th {
+	color:#FFFFFF;
+	font-size:12px;
+    background-color: #000000;
+}
+
+table.calendar td.selected {
+	background-image:url(../pics/fondoCabeceraMenu.gif);
+    background-color: #13A703;
+}
+
+img.calendar {
+    border:none;
+}
+
+form.clock {
+    text-align: center;
+}
+
+.nowrap {
+    white-space: nowrap;
+}
+
+div.nowrap {
+    margin: 0px;
+    padding: 0px;
+}
+
+li {
+    padding-bottom: 1em;
+}
+
+li form {
+    display: inline;
+}
+
+HTML{
+	background-image:url(../pics/fond.gif);
+}
+
+ul.main {
+    margin: 0px;
+    padding-left:2em;
+    padding-right:2em;
+}

@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_select</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_result_status"
+HREF="function.pg-result-status.html"><LINK
+REL="NEXT"
+TITLE="pg_send_query"
+HREF="function.pg-send-query.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-result-status.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-send-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-select"
+></A
+>pg_select</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN89730"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>pg_select&nbsp;--&nbsp;
+     Select records.
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN89733"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>pg_select</B
+> ( resource connection, string table_name, array assoc_array [, int options])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pg_select()</B
+> selects records specified by
+     <VAR
+CLASS="literal"
+>assoc_array</VAR
+> which has
+     <VAR
+CLASS="literal"
+>field=&#62;value</VAR
+>. For successful query, it returns
+     array contains all records and fields that match the condition
+     specified by <VAR
+CLASS="literal"
+>assoc_array</VAR
+>. If
+     <VAR
+CLASS="literal"
+>options</VAR
+> is specified,
+     <A
+HREF="function.pg-convert.html"
+><B
+CLASS="function"
+>pg_convert()</B
+></A
+> is applied to
+     <VAR
+CLASS="literal"
+>assoc_array</VAR
+> with specified option.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN89759"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>pg_select()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php <br />&nbsp;&nbsp;&nbsp;&nbsp;$db </font><font color="#007700">= </font><font color="#0000BB">pg_connect</font><font color="#007700">(</font><font color="#DD0000">'dbname=foo'</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// This is safe, since $_POST is converted automatically<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$rec </font><font color="#007700">= </font><font color="#0000BB">pg_select</font><font color="#007700">(</font><font color="#0000BB">$db</font><font color="#007700">, </font><font color="#DD0000">'post_log'</font><font color="#007700">, </font><font color="#0000BB">$_POST</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$rec</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Records selected\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$rec</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"User must have sent wrong inputs\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     See also <A
+HREF="function.pg-convert.html"
+><B
+CLASS="function"
+>pg_convert()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-result-status.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-send-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_result_status</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_send_query</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

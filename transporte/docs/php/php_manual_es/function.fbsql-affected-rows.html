@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>fbsql_affected_rows</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FrontBase Functions"
+HREF="ref.fbsql.html"><LINK
+REL="PREVIOUS"
+TITLE="FrontBase Functions"
+HREF="ref.fbsql.html"><LINK
+REL="NEXT"
+TITLE="fbsql_autocommit"
+HREF="function.fbsql-autocommit.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-autocommit.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.fbsql-affected-rows"
+></A
+>fbsql_affected_rows</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN26106"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>fbsql_affected_rows&nbsp;--&nbsp;
+     Get number of affected rows in previous FrontBase operation
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN26109"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>fbsql_affected_rows</B
+> ( [resource link_identifier])<BR
+></BR
+><P
+> 
+     <B
+CLASS="function"
+>fbsql_affected_rows()</B
+> returns the number
+     of rows affected by the last INSERT, UPDATE or DELETE query
+     associated with <VAR
+CLASS="parameter"
+>link_identifier</VAR
+>.  If the
+     link identifier isn't specified, the last link opened by
+     <A
+HREF="function.fbsql-connect.html"
+><B
+CLASS="function"
+>fbsql_connect()</B
+></A
+> is assumed.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      If you are using transactions, you need to call
+      <B
+CLASS="function"
+>fbsql_affected_rows()</B
+> after your INSERT,
+      UPDATE, or DELETE query, not after the commit.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     If the last query was a DELETE query with no WHERE clause, all of
+     the records will have been deleted from the table but this
+     function will return zero.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      When using UPDATE, FrontBase will not update columns where the
+      new value is the same as the old value.  This creates the
+      possibility that <B
+CLASS="function"
+>fbsql_affected_rows()</B
+> may not
+      actually equal the number of rows matched, only the number of
+      rows that were literally affected by the query.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     If the last query failed, this function will return -1.
+    </P
+><P
+>&#13;     See also: <A
+HREF="function.fbsql-num-rows.html"
+><B
+CLASS="function"
+>fbsql_num_rows()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.fbsql-autocommit.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FrontBase Functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>fbsql_autocommit</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

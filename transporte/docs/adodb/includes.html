@@ -1,0 +1,216 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>ADOdb MySQL Tutorial</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="/templates/dtecno/estilos.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h2>ADOdb MySQL Tutorial</h2>
+<p>PHP est&aacute; especialmente dise&ntilde;ado para la creaci&oacute;n de sitios webs din&aacute;micos.
+  Para crear estos sitios  normalmente se utiliza alg&uacute;n tipo de base
+  de datos desde donde obtenemos la informaci&oacute;n que queremos mostrar, ya sean
+  noticias, preguntas y respuestas de un foro u otro tipo de informaci&oacute;n din&aacute;mica.
+  Si usamos php normalmente usaremos MySQL como base de datos para iniciar nuestro
+  sitio, el problema aparece cuando nuestro proyecto crece tanto que necesita
+  hacer uso de otro tipo de base de datos m&aacute;s robusta.</p>
+<p>Desafortunadamente el acceso en PHP cada base de datos es muy diferente. Para
+  conectarnos a mysql, debemos usar mysql_connect(); cuando decida cambiar a
+   Oracle o Microsoft SQL Server, debe usar ocilogon() o mssql_connect() respectivamente.
+  Lo peor es que tambi&eacute;n los par&aacute;metros de cada funci&oacute;n
+  son diferentes.</p>
+<p>Una librer&iacute;a de abstracci&oacute;n de los datos como ADODB es lo que Ud. necesita
+  si desea asegurar en gran medida la portabilidad de su aplicaci&oacute;n. Provee una
+  serie de funci&oacute;nes comunes para comunicarse con las distintas bases de datos. </p>
+<p>ADODB viene de &quot; Active Data Objects DataBase&quot; (no muy original pero efectivo).
+  ADODB actualmente soporta  MySQL, PostgreSQL, Oracle, Interbase, Microsoft
+  SQL Server,
+  Access,
+  FoxPro,
+  Sybase, ODBC y ADO. Puede obtener ADODB en <a href="http://php.weblogs.com/adodb" target="_blank">http://php.weblogs.com/adodb</a>.<br>
+</p>
+<h4>Ejemplo MySQL</h4>
+<p>  La base de datos usada con m&aacute;s frecuencia en PHP es MySQL, entonces
+  es posible que le resulte familiar el siguiente c&oacute;digo. Conectamos al
+  server MySQL en localhost, a la base de datos mydb, y ejecutamos una sentencia
+  SQL. El resultado
+    es impreso en pantalla, una l&iacute;nea por cada fila obtenida.</p>
+<p> <font color="#666666">$db = mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;password&quot;);<br>
+  mysql_select_db(&quot;mydb&quot;,$db);</font><br>
+  <font color="#FF0000">$result = mysql_query(&quot;SELECT * FROM employees&quot;,$db);<br>
+  if ($result === false) die(&quot;failed&quot;); </font><br>
+  <font color="#000000">while ($fields = mysql_fetch_row($result)) {<br>
+  for ($i=0, $max=sizeof($fields); $i &lt; $max; $i++) {<br>
+  print $fields[$i].' ';<br>
+  }</font><br>
+  print &quot;&lt;br&gt;n&quot;;<br>
+</p>
+<p>} </p>
+<p>El código superior est&aacute; coloreado por secci&oacute;n. La primer seccion
+  es la conexi&oacute;n
+  a la base de datos. La segunda secci&oacute;n es la ejecuci&oacute;n de la
+  sentencia SQL, y la &uacute;ltima es la impresi&oacute;n del resultado. El
+  loop while recorre todo las filas hasta el final .</p>
+<h4> Aqu&iacute; su equivalente en ADODB</h4>
+<p> include(&quot;adodb.inc.php&quot;);<br>
+  $db = NewADOConnection('mysql');<br>
+  $db-&gt;Connect(&quot;localhost&quot;, &quot;root&quot;, &quot;password&quot;, &quot;mydb&quot;);<br>
+  $result = $db-&gt;Execute(&quot;SELECT * FROM employees&quot;);<br>
+  if ($result === false) die(&quot;failed&quot;); <br>
+  while (!$result-&gt;EOF) {<br>
+  for ($i=0, $max=$result-&gt;FieldCount(); $i &lt; $max; $i++)<br>
+  print $result-&gt;fields[$i].' ';<br>
+  $result-&gt;MoveNext();<br>
+  print &quot;&lt;br&gt;n&quot;;<br>
+  } </p>
+<p>Ahora portarlo a Oracle es tan simple como cambiar la segunda linea a NewADOConnection('oracle').
+Vamos a mirar cada parte del c&oacute;digo.</p>
+<h4>Conectando a la base de datos</h4>
+<p>include(&quot;adodb.inc.php&quot;);<br>
+  $db = NewADOConnection('mysql');<br>
+  $db-&gt;Connect(&quot;localhost&quot;, &quot;root&quot;, &quot;password&quot;, &quot;mydb&quot;);</p>
+<p>La conexi&oacute;n puede parecer algo m&aacute;s complicada que en MySQL pero
+  se explica en que ADODB es totalmente orientado a objectos. Si no est&aacute; familiarizado
+  con la programaci&oacute;n orientada a objetos no se preocupe porque todo queda
+  oculto en la funci&oacute;n NewADOConnection()  .</p>
+<p>Para ahorrar memoria solo se carga las funci&oacute;nes espec&iacute;ficas de la
+  base de datos que vamos a utilizar. Cada driver tiene un archivo distinto que
+  se carga
+  mediante un include autom&aacute;ticamente.</p>
+<p>Una vez cargado el driver que vamos a utilizar mediante la funci&oacute;n NewADOConnection()
+  nos conectamos a la base de datos usando $db-&gt;Connect().<br>
+</p>
+<h4>Ejecutando SQL</h4>
+<p>$result = $db-&gt;Execute(&quot;SELECT * FROM employees&quot;);<br>
+  if ($result === false) die(&quot;failed&quot;);</p>
+<p>Para enviar una sentencia sql al motor de base de datos se utiliza la funci&oacute;n
+  Execute(). Esta funci&oacute;n devueve un objeto &quot;recordset&quot; si la ejecuci&oacute;n fue correcta
+  o un &quot;false&quot; si huvo algun error.</p>
+<p>Existen dos objetos principales en ADODB. El objeto connection y el objeto
+  recordset. Cuando usar cada uno? </p>
+<p>El objeto connection ($db) es responsable de la conexi&oacute;n a la base
+  de datos, formateo de las SQL y las consultas al servidor. El objeto recordset
+  ($result)
+  es responsable de la obtenci&oacute;n de los resultados y el formateo de los
+  resultados.</p>
+<h4>Obteniendo datos</h4>
+<p>while (!$result-&gt;EOF) {<br>
+  for ($i=0, $max=$result-&gt;FieldCount(); $i &lt; $max; $i++)<br>
+  print $result-&gt;fields[$i].' ';<br>
+  $result-&gt;MoveNext();<br>
+  print &quot;&lt;br&gt;n&quot;;<br>
+  }</p>
+<p>El proceso para obtener datos es como el proceso para leer desde un fichero.
+  Para cada linea observamos si hemos llegado al final del fichero (EOF). Mientras
+  no lleguemos al final del fichero seguimos leyendo y movi&eacute;ndonos a la siguiente
+  l&iacute;nea (movenext). </p>
+<p>El array $result-&gt;fields[] es generaro por ADODB ante cada peticion de
+  movenext(). Podemos obtener array asociativos o indexados por el n&uacute;mero del
+  campo. </p>
+<p>$ADODB_FETCH_MODE = ADODB_FETCH_NUM;<br>
+  $rs1 = $db-&gt;Execute('select * from table');<br>
+  $ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;<br>
+  $rs2 = $db-&gt;Execute('select * from table');<br>
+  print_r($rs1-&gt;fields); // muestra array([0]=&gt;'v0',[1] =&gt;'v1')<br>
+  print_r($rs2-&gt;fields); // muestra array(['col1']=&gt;'v0',['col2'] =&gt;'v1')</p>
+<p>Como se ve en el ejemplo, los dos recorsets usan diferentes m&eacute;todos para
+  almacenar los datos recuperados de la consulta usando $ADODB_FETCH_MODE (el
+  cambio de $ADODB_FETCH_MODE debe ser previo a Execute()).</p>
+<h3>ADOConnection</h3>
+<p>El objeto que realiza la conexi&oacute;n a la base de datos, ejecuta las sentencias
+  SQL y tiene otro set de funci&oacute;nes para estandarizar el formato de sentencias
+  SQL como la concatenaci&oacute;n de cadenas o formatos de fechas.</p>
+<h4>Otras funci&oacute;nes especiales</h4>
+<p>$recordset-&gt;Move($pos) mueve el recordset a una fila en particular.  ADODB
+  soporta avance de filas en todas las bases de datos. Algunas bases de datos
+  no soportan retroceso en el recordset. Puede de todas maneras simular este
+  comportamiento usando un cach&eacute;.</p>
+<p> $recordset-&gt;RecordCount() retorna el total de filas obtenidas en el recordset.
+  Algunas bases de datos no soportan esto y se devuelven un -1.</p>
+<p>$recordset-&gt;GetArray() coloca el resultado del recordset en un array.</p>
+<p>rs2html($recordset) esta funci&oacute;n genera una tabla HTML con el resultado del
+  recordset.</p>
+<p> include('adodb.inc.php'); <br>
+  include('tohtml.inc.php'); /* includes the rs2html function */<br>
+  $conn = &amp;ADONewConnection('mysql'); <br>
+  $conn-&gt;PConnect('localhost','userid','password','database');<br>
+  $rs = $conn-&gt;Execute('select * from table');<br>
+  rs2html($rs); /* recordset to html table */ </p>
+<p>M&aacute;s funci&oacute;nes &uacute;tiles pueden ser encontradas en http://php.weblogs.com/adodb_manual.<br>
+</p>
+<h3>Temas avanzados<br>
+Inserts y Updates</h3>
+<p>Imagine que tenemos los siguientes datos para guardar en una base de datos.</p>
+<p>ID = 3<br>
+  TheDate=mktime(0,0,0,8,31,2001) /* 31st August 2001 */<br>
+  Note= sugar why don't we call it off</p>
+<p>Cuando cambie de base de dato este formato de datos puede no funci&oacute;nar.</p>
+<p>El primer problema es que cada base de datos usa las fechas en un formato
+  distinto. .
+  MySQL espera YYYY-MM-DD como formato, otras bases de datos requierien otros
+  formatos. ADODB tiene una funci&oacute;n que puede ayudarnos DBDate() que convierte
+  una fecha en el formato correcto para realizar updates o inserts.</p>
+<p>La comilla simple del campo Note tambi&eacute;n es un problema. La funci&oacute;n qstr()
+  nos puede ayudar en esto.</p>
+<p>Entonces como usamos estas funci&oacute;nes ? </p>
+<p>$sql = &quot;INSERT INTO table (id, thedate,note) values (&quot; <br>
+  . $ID . ','<br>
+  . $db-&gt;DBDate($TheDate) .','<br>
+  . $db-&gt;qstr($Note).&quot;)&quot;;<br>
+$db-&gt;Execute($sql);</p>
+<p>ADODB tiene tambien dos funci&oacute;nes que ayudan a reconocer si un insert update
+  o delete han sido correctos. <br>
+  $connection-&gt;Affected_Rows() (devuelve el total de filas afectadas por un
+  insert o un delete ) y $recordset-&gt;Insert_ID()
+  (devuelve el &uacute;ltimo valor generado por un campo autoincrement
+en un insert). No todas las bases de datos soportan estas funci&oacute;nes (vea la documentaci&oacute;n).</p>
+<h4>MetaTypes</h4>
+<p>Existen funci&oacute;nes para recuperar informaci&oacute;n de cada campo, el m&eacute;todo FetchField($fieldoffset).
+  Esto devuelve un objeto con tres propiedades  name, type y max_length. Si max_length
+  es desconocido o no se puede obtener es = a -1.</p>
+<p>Por Ejemplo.</p>
+<p>$recordset = $conn-&gt;Execute(&quot;select adate from table&quot;);<br>
+  $f0 = $recordset-&gt;FetchField(0);</p>
+<p>$f0-&gt;name contiene 'adata', $f0-&gt;type contiene 'date'.</p>
+<p>Cada base de datos define sus columnas de una manera particular, ADODB tiene
+  una funci&oacute;n especial para estandarizar los tipos de datos, MetaType($type,
+  $max_length).</p>
+<p>C: character and varchar types<br>
+  X: text or long character (eg. more than 255 bytes wide).<br>
+  B: blob or binary image<br>
+  D: date<br>
+  T: timestamp<br>
+  L: logical (boolean)<br>
+  I: integer<br>
+N: numeric (float, double, money)</p>
+<p>En el ejemplo de arriba.</p>
+<p>$recordset = $conn-&gt;Execute(&quot;select adate from table&quot;);<br>
+  $f0 = $recordset-&gt;FetchField(0);<br>
+  $type = $recordset-&gt;MetaType($f0-&gt;type, $f0-&gt;max_length);<br>
+  print $type; /* debe imprimir 'D' por fecha*/</p>
+<p>&nbsp;</p>
+<h3>Limites de selecci&oacute;n en una SQL</h3>
+<p>ADODB tiene una funci&oacute;n que asegura la portabilidad de una sql en el tema
+  de los l&iacute;mites de un recordset,  $connection-&gt;SelectLimit($sql,$nrows,$offset),
+  en el caso de los productos Microsoft se usar&aacute; SELECT TOP, en mysql, postgresql
+  se usar&aacute; LIMIT y en otras bases de datos que no lo soporten se emula. </p>
+<h3>Cacheo de consultas</h3>
+<p>ADODB permite cachear los resultados de las consultas SQL en funci&oacute;n de un
+  tiempo definido. Las consultas deben entonces realizarse con connection-&gt;CacheExecute($secs2cache,$sql)
+  y $connection-&gt;CacheSelectLimit($secs2cache,$sql,$nrows,$offset). n.trad.
+  Los resultados se almacenan en un directorio que debe tener los permisos apropiados.</p>
+<h4>Soporte de sesiones PHP4</h4>
+<p>ADODB soporta sesiones PHP. Puede guardar variables de sesiones en una base
+  de datos para asegurar escalabilidad. Para m&aacute;s informaci&oacute;n visite http://php.weblogs.com/adodb-sessions</p>
+<p>Si est&aacute; pensando en escribir software comercial en PHP y desea distribuirlo,
+  debe considerar ADODB. Est&aacute; siendo usado con &eacute;xito, es LGPL, que significa
+  que puede ser distribuido con aplicaciones comerciales, dejando a su c&oacute;digo
+  propietario.</p>
+<h3>Conclusi&oacute;n</h3>
+<p>ADODB es lo suficientemente robusto y completo para casi cualquier aplicaci&oacute;n.
+  Est&aacute; siendo actualizado permanentemente y tiene muchos seguidores por lo que
+  es una muy buena opci&oacute;n.</p>
+<p>traducci&oacute;n al espa&ntilde;ol por Horacio Degiorgi (<a href="http://codigophp.com">codigophp.com</a>)</p>
+</body>
+</html>

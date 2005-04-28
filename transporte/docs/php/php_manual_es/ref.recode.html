@@ -1,0 +1,422 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones GNU Recode</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="readline"
+HREF="function.readline.html"><LINK
+REL="NEXT"
+TITLE="recode_file"
+HREF="function.recode-file.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.readline.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.recode-file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.recode"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XCI. Funciones GNU Recode</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN92898"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="recode.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Este módulo contiene una interfaz con la biblioteca GNU
+     Recode. La biblioteca GNU Recode convierte archivos entre varios
+     juegos de caracteres codificados y codificaciones de
+     superficie. Cuando esto no puede conseguirse con exactitud, puede
+     que se deshaga de los caracteres problemáticos o recurra a
+     aproximaciones. La biblioteca reconoce o produce cerca de 150
+     juegos de caracteres diferentes y es capaz de convertir archivos
+     entre casi cualquier par de ellos. La mayoría de juegos de
+     caracteres del documento <A
+HREF="http://www.faqs.org/rfcs/rfc1345"
+TARGET="_top"
+>RFC
+     1345</A
+> se encuentran soportados.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta
+extensión no está disponible en plataformas
+Windows</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="recode.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Usted debe tener instalado GNU Recode 3.5 o superior en su
+     sistema. Puede descargar el paquete desde <A
+HREF="http://www.gnu.org/directory/All_GNU_Packages/recode.html"
+TARGET="_top"
+>http://www.gnu.org/directory/All_GNU_Packages/recode.html</A
+>.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      La versión 3.6 de la biblioteca Recode agrega caracteres
+      extraños detrás de cadenas convertidas bajo
+      ciertas circunstancias. Por lo tanto es más seguro usar
+      Recode v3.5 o alguna de las alternativas disponibles, como las
+      extensiones <A
+HREF="ref.iconv.html"
+>iconv</A
+> o <A
+HREF="ref.mbstring.html"
+>mbstring</A
+>.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="recode.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  To be able to use the functions defined in this
+  module you must compile your PHP interpreter using the
+  <VAR
+CLASS="option"
+>--with-recode[=DIR]</VAR
+>
+  option.
+ </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;   Crashes and startup problems of <VAR
+CLASS="literal"
+>PHP</VAR
+> may be encountered
+   when loading the recode as extension <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>after</B
+></SPAN
+> loading any extension of <A
+HREF="ref.mysql.html"
+>mysql</A
+> or <A
+HREF="ref.imap.html"
+>imap</A
+>. Loading the recode before those
+   extension has proved to fix the problem.  This is due a technical problem
+   that both the c-client library used by imap and recode have their own
+   <VAR
+CLASS="literal"
+>hash_lookup()</VAR
+> function and both mysql and recode have
+   their own <VAR
+CLASS="literal"
+>hash_insert</VAR
+> function.
+  </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>La extensión
+<A
+HREF="ref.imap.html"
+>IMAP</A
+> no puede ser usada junto con las
+extensiones <A
+HREF="ref.recode.html"
+>recode</A
+> ó <A
+HREF="ref.yaz.html"
+>YAZ</A
+>. Esto es debido a que las dos utilizan el
+mismo símbolo interno</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="recode.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="recode.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="recode.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.recode-file.html"
+>recode_file</A
+>&nbsp;--&nbsp;
+     Recodificar de un archivo a otro de acuerdo a la petición
+     de recodificación
+    </DT
+><DT
+><A
+HREF="function.recode-string.html"
+>recode_string</A
+>&nbsp;--&nbsp;Recodifica una cadena literal segun una peticion de recodificacion.</DT
+><DT
+><A
+HREF="function.recode.html"
+>recode</A
+>&nbsp;--&nbsp;Alias of <A
+HREF="function.recode-string.html"
+><B
+CLASS="function"
+>recode_string()</B
+></A
+></DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.readline.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.recode-file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>readline</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>recode_file</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

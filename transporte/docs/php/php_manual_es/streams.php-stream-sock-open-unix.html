@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_sock_open_unix</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de API de Sockets de Secuencia"
+HREF="streams.socket-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_sock_open_host"
+HREF="streams.php-stream-sock-open-host.html"><LINK
+REL="NEXT"
+TITLE="Estructuras de Secuencia"
+HREF="streams.structs.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-sock-open-host.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.structs.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-sock-open-unix"
+></A
+>php_stream_sock_open_unix</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN121461"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_sock_open_unix&nbsp;--&nbsp;Abrir un socket de dominio Unix y convertirlo en una
+    secuencia</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN121464"
+></A
+><H2
+>Descripción</H2
+>php_stream * <B
+CLASS="methodname"
+>php_stream_sock_open_unix</B
+> ( const char * ruta, int long_ruta, int persistente, struct timeval * tiempo_espera)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_sock_open_unix()</B
+> intenta abrir el
+     socket de dominio Unix especificado por
+     <VAR
+CLASS="parameter"
+>ruta</VAR
+>. <VAR
+CLASS="parameter"
+>long_ruta</VAR
+>
+     especifica la longitud de <VAR
+CLASS="parameter"
+>ruta</VAR
+>. Si
+     <VAR
+CLASS="parameter"
+>tiempo_espera</VAR
+> es diferente a NULL,
+     éste valor indica un periodo de tiempo máximo de
+     espera para el intento de
+     conexión. <VAR
+CLASS="parameter"
+>persistente</VAR
+> indica si la
+     secuencia debería ser abierta como una secuencia
+     persistente. Por lo general, éste parámetro
+     será 0 en la mayoría de casos.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Esta función no funcionará bajo Windows, en donde
+       no se implementan sockets de dominio Unix. Una posible
+       excepción a esta regla ocurre si su binario de PHP fue
+       compilado usando cygwin. Es recomendable que considere este
+       aspecto de la portabilidad de su extensión antes de su
+       lanzamiento.
+      </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Esta función trata <VAR
+CLASS="parameter"
+>ruta</VAR
+> en una
+       manera segura con material binario, que es apropiada en
+       sistemas con un espacio de nombres abstracto (como Linux), en
+       donde el primer caracter de una ruta es un caracter NUL.
+      </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-sock-open-host.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.structs.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_sock_open_host</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="streams.socket-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Estructuras de Secuencia</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

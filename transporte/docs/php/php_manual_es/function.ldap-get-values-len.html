@@ -1,0 +1,190 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ldap_get_values_len</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones LDAP"
+HREF="ref.ldap.html"><LINK
+REL="PREVIOUS"
+TITLE="ldap_get_option"
+HREF="function.ldap-get-option.html"><LINK
+REL="NEXT"
+TITLE="ldap_get_values"
+HREF="function.ldap-get-values.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ldap-get-option.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ldap-get-values.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ldap-get-values-len"
+></A
+>ldap_get_values_len</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN46124"
+></A
+><P
+>    (PHP 3&#62;= 3.0.13, PHP 4 , PHP 5)</P
+>ldap_get_values_len&nbsp;--&nbsp;Obtiene todos los valores binarios de un atributo de una entrada</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN46127"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>ldap_get_values_len</B
+> ( int indentificador_de_conexion, int indentificador_de_entrada_de_resultado, string atributo)<BR
+></BR
+><P
+>&#13;     Devuelve un array de valores del atributo o falso en caso de error.</P
+><P
+>  
+     La función <B
+CLASS="function"
+>ldap_get_values_len()</B
+> se utiliza
+     para obtener todos los valores de un atributo de una entrada de
+     un resultado de búsqueda. La entrada es especificada por el 
+     <VAR
+CLASS="parameter"
+>indentificador_de_entrada_de_resultado</VAR
+>.
+     El número de valores se almacena en el índice "count" del array
+     devuelto. Los valores individuales se almacenan con índices enteros
+     en el array.  El primer índice es 0.</P
+><P
+>&#13;     Esta función se utiliza exactamente como
+     <A
+HREF="function.ldap-get-values.html"
+><B
+CLASS="function"
+>ldap_get_values()</B
+></A
+> salvo que permite manejar
+     datos binarios y no cadenas de caracteres.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ldap-get-option.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ldap-get-values.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ldap_get_option</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ldap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ldap_get_values</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

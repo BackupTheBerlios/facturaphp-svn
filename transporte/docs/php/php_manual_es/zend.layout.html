@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Source Layout</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Zend API"
+HREF="zend.html"><LINK
+REL="PREVIOUS"
+TITLE="The Zend Engine"
+HREF="zend.possibilities.engine.html"><LINK
+REL="NEXT"
+TITLE="Macros"
+HREF="zend.layout.macros.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.possibilities.engine.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.layout.macros.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="zend.layout"
+>Capítulo 27. Source Layout</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="zend.layout.html#zend.layout.conventions"
+>Extension Conventions</A
+></DT
+><DT
+><A
+HREF="zend.layout.macros.html"
+>Macros</A
+></DT
+><DT
+><A
+HREF="zend.layout.memory-management.html"
+>Memory Management</A
+></DT
+><DT
+><A
+HREF="zend.layout.dir-and-file.html"
+>Directory and File Functions</A
+></DT
+><DT
+><A
+HREF="zend.layout.string-handling.html"
+>String Handling</A
+></DT
+><DT
+><A
+HREF="zend.layout.complex-types.html"
+>Complex Types</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Prior to working through the rest of this chapter, you should retrieve
+    clean, unmodified source trees of your favorite Web server. We're working with
+    Apache (available at 
+    <A
+HREF="http://www.apache.org/"
+TARGET="_top"
+>http://www.apache.org/</A
+>)
+    and, of course, with PHP (available at 
+    <A
+HREF="http://www.php.net/"
+TARGET="_top"
+>http://www.php.net/</A
+> - does
+    it need to be said?).
+   </P
+><P
+>&#13;    Make sure that you can compile a working PHP environment by
+    yourself! We won't go into this issue here, however, as you should
+    already have this most basic ability when studying this chapter.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   Before we start discussing code issues, you should familiarize
+   yourself with the source tree to be able to quickly navigate
+   through PHP's files. This is a must-have ability to implement and
+   debug extensions.
+  </P
+><P
+>&#13;   The following table describes the contents of the major directories.
+  </P
+><DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN118146"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+TITLE="col1"><COL
+WIDTH="3.74*"
+TITLE="col2"><TBODY
+><TR
+><TD
+>Directory</TD
+><TD
+>Contents</TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4</TT
+></TD
+><TD
+>&#13;       Main PHP source files and main header files; here you'll find
+       all of PHP's API definitions, macros, etc. (important). 
+       Everything else is below this directory.
+      </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4/ext</TT
+></TD
+><TD
+>&#13;       Repository for dynamic and built-in modules; by default, these
+       are the "official" PHP modules that have been integrated into
+       the main source tree. From PHP 4.0, it's possible to compile
+       these standard extensions as dynamic loadable modules (at
+       least, those that support it).
+      </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4/main</TT
+></TD
+><TD
+>&#13;       This directory contains the main php macros and definitions. (important)
+      </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4/pear</TT
+></TD
+><TD
+>&#13;       Directory for the PHP Extension and Application Repository. This directory contains
+       core PEAR files.
+      </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4/sapi</TT
+></TD
+><TD
+>&#13;       Contains the code for the different server abstraction layers.
+      </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4/TSRM</TT
+></TD
+><TD
+>&#13;       Location of the "Thread Safe Resource Manager" (TSRM) for Zend
+       and PHP.
+      </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="filename"
+>php4/Zend</TT
+></TD
+><TD
+>&#13;       Location of the Zend Engine files; here you'll
+       find all of Zend's API definitions, macros, etc. (important).
+      </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;   Discussing all the files included in the PHP package is beyond the
+   scope of this chapter. However, you should take a close look at the
+   following files:<P
+></P
+><UL
+><LI
+><P
+>&#13;      <TT
+CLASS="filename"
+>php4/main/php.h</TT
+>, located in the main PHP directory.
+      This file contains most of PHP's macro and API definitions.
+     </P
+></LI
+><LI
+><P
+>&#13;      <TT
+CLASS="filename"
+>php4/Zend/zend.h</TT
+>, located in the main Zend directory.
+      This file contains most of Zend's macros and definitions.
+     </P
+></LI
+><LI
+><P
+>&#13;      <TT
+CLASS="filename"
+>php4/Zend/zend_API.h</TT
+>, also located in the Zend
+      directory, which defines Zend's API.
+     </P
+></LI
+></UL
+> You should also follow some sub-inclusions from
+   these files; for example, the ones relating to the Zend executor,
+   the PHP initialization file support, and such. After reading these
+   files, take the time to navigate around the package a little to see
+   the interdependencies of all files and modules - how they relate to
+   each other and especially how they make use of each other. This
+   also helps you to adapt to the coding style in which PHP is
+   authored. To extend PHP, you should quickly adapt to this style.
+  </P
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.layout.conventions"
+>Extension Conventions</A
+></H1
+><P
+>&#13;    Zend is built using certain conventions; to avoid breaking its
+    standards, you should follow the rules described in the following
+    sections.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.possibilities.engine.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.layout.macros.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>The Zend Engine</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Macros</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

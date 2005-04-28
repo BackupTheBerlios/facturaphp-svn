@@ -1,0 +1,619 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Integración de Java y PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="ircg_whois"
+HREF="function.ircg-whois.html"><LINK
+REL="NEXT"
+TITLE="java_last_exception_clear"
+HREF="function.java-last-exception-clear.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ircg-whois.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.java-last-exception-clear.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.java"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XLVIII. Integración de Java y PHP</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN45306"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Existen dos formas diferentes de integrar Java y PHP: en primer lugar, 
+     <A
+HREF="ref.java.html#java.servlet"
+>se puede integrar PHP dentro de un entorno
+     de ejecución de servlets de Java</A
+>, que en estos momentos es una solución mas estable y mas eficiente. La segunda opción es la de integrar Java dentro de PHP. La primera forma de integración se realiza a traves de un modulo SAPI que actua como interfaz del servidor de servlets. La segunda forma se realiza mediante esta extensión de Java.
+    </P
+><P
+>&#13;     Esta extensión de Java proporciona de forma sencilla los medios necesarios para crear e invocar métodos sobre objetos de Java desde PHP. La JVM se crea utilizando JNI y todo se ejecuta en un unico proceso.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta extensión es
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta extensión, los nombre de sus funciones y
+en definitiva TODO lo documentado sobre esta extensión, puede
+cambiar en una futura versión de PHP SIN AVISO. La advertencia
+queda hecha, y utilizar esta extensión queda bajo su propia
+responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Para utilizar esta extensión es necesario disponer de una
+     máquina virtual java (JVM) instalada en el sistema.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  Para incluir el soporte de Java en PHP, es necesario añadir el
+  parámetro <VAR
+CLASS="option"
+>--with-java[=DIR]</VAR
+> a las opciones de configuración de PHP. Ademas, es necesario indicarle a traves de la opción DIR, el lugar donde se encuentra el directorio base de la instalación del JDK. Esta extensión solamente puede ser construida como un modulo compartido. En el archivo <TT
+CLASS="filename"
+>php4/ext/java/README</TT
+> se incluye mas información sobre como construir esta extensión.
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota para los usuarios de Windows: </B
+> 
+   Para poder trabajar con este modulo en un entorno Windows con una versión de PHP &#60;= 4.0.6,
+   se debe copiar el archivo <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>jvm.dll</I
+></SPAN
+> que se encuentra en el subdirectorio DLL del directorio PHP/Win32 de la distribución binaria de PHP, en el directorio SYSTEM32 de Windows (Normalmente es C:\WINNT\SYSTEM32 o C:\WINDOWS\SYSTEM32). Para versiones de PHP &#62; 4.0.6 no es necesario realizar esta operación.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13; <DIV
+CLASS="table"
+><A
+NAME="AEN45332"
+></A
+><P
+><B
+>Tabla 1. Opciones de configuraci??? de Java</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Valor por defecto</TH
+><TH
+>Donde se cambia</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>java.class.path</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>java.home</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>java.library.path</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>java.library</TD
+><TD
+>JAVALIB</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ Para conocer todos los detalles y las definiciones de las constantes de PHP_INI_* se debe consultar la función <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN45367"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de Java</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;</font><font color="#FF8000">// se obtiene la instancia de la clase de Java java.lang.System desde PHP<br />&nbsp;&nbsp;</font><font color="#0000BB">$system </font><font color="#007700">= new </font><font color="#0000BB">Java</font><font color="#007700">(</font><font color="#DD0000">'java.lang.System'</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">// se muestran las propiedades del acceso que se realiza a Java<br />&nbsp;&nbsp;</font><font color="#007700">print </font><font color="#DD0000">'Version de Java='</font><font color="#007700">.</font><font color="#0000BB">$system</font><font color="#007700">-&gt;</font><font color="#0000BB">getProperty</font><font color="#007700">(</font><font color="#DD0000">'java.version'</font><font color="#007700">).</font><font color="#DD0000">' &lt;br&gt;'</font><font color="#007700">;<br />&nbsp;&nbsp;print </font><font color="#DD0000">'Desarrollador de la JVM=' </font><font color="#007700">.</font><font color="#0000BB">$system</font><font color="#007700">-&gt;</font><font color="#0000BB">getProperty</font><font color="#007700">(</font><font color="#DD0000">'java.vendor'</font><font color="#007700">).</font><font color="#DD0000">' &lt;br&gt;'</font><font color="#007700">;<br />&nbsp;&nbsp;print </font><font color="#DD0000">'Sistema Operativo='</font><font color="#007700">.</font><font color="#0000BB">$system</font><font color="#007700">-&gt;</font><font color="#0000BB">getProperty</font><font color="#007700">(</font><font color="#DD0000">'os.name'</font><font color="#007700">).</font><font color="#DD0000">' '</font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$system</font><font color="#007700">-&gt;</font><font color="#0000BB">getProperty</font><font color="#007700">(</font><font color="#DD0000">'os.version'</font><font color="#007700">).</font><font color="#DD0000">' on '</font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$system</font><font color="#007700">-&gt;</font><font color="#0000BB">getProperty</font><font color="#007700">(</font><font color="#DD0000">'os.arch'</font><font color="#007700">).</font><font color="#DD0000">' &lt;br&gt;'</font><font color="#007700">;<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">// ejemplo de java.util.Date<br />&nbsp;&nbsp;</font><font color="#0000BB">$formatter </font><font color="#007700">= new </font><font color="#0000BB">Java</font><font color="#007700">(</font><font color="#DD0000">'java.text.SimpleDateFormat'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"EEEE, MMMM dd, yyyy 'at' h:mm:ss a zzzz"</font><font color="#007700">);<br /><br />&nbsp;&nbsp;print </font><font color="#0000BB">$formatter</font><font color="#007700">-&gt;</font><font color="#0000BB">format</font><font color="#007700">(new </font><font color="#0000BB">Java</font><font color="#007700">(</font><font color="#DD0000">'java.util.Date'</font><font color="#007700">));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN45370"
+></A
+><P
+><B
+>Ejemplo 2. Ejemplo de AWT</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;</font><font color="#FF8000">// Este ejemplo solo puede ser ejecutado como CGI.<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$frame&nbsp;&nbsp;</font><font color="#007700">= new </font><font color="#0000BB">Java</font><font color="#007700">(</font><font color="#DD0000">'java.awt.Frame'</font><font color="#007700">, </font><font color="#DD0000">'PHP'</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">$button </font><font color="#007700">= new </font><font color="#0000BB">Java</font><font color="#007700">(</font><font color="#DD0000">'java.awt.Button'</font><font color="#007700">, </font><font color="#DD0000">'Hola Mundo de Java!'</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$frame</font><font color="#007700">-&gt;</font><font color="#0000BB">add</font><font color="#007700">(</font><font color="#DD0000">'North'</font><font color="#007700">, </font><font color="#0000BB">$button</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">$frame</font><font color="#007700">-&gt;</font><font color="#0000BB">validate</font><font color="#007700">();<br />&nbsp;&nbsp;</font><font color="#0000BB">$frame</font><font color="#007700">-&gt;</font><font color="#0000BB">pack</font><font color="#007700">();<br />&nbsp;&nbsp;</font><font color="#0000BB">$frame</font><font color="#007700">-&gt;</font><font color="#0000BB">visible </font><font color="#007700">= </font><font color="#0000BB">True</font><font color="#007700">;<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$thread </font><font color="#007700">= new </font><font color="#0000BB">Java</font><font color="#007700">(</font><font color="#DD0000">'java.lang.Thread'</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">$thread</font><font color="#007700">-&gt;</font><font color="#0000BB">sleep</font><font color="#007700">(</font><font color="#0000BB">10000</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$frame</font><font color="#007700">-&gt;</font><font color="#0000BB">dispose</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+
+     Notas:
+
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        <VAR
+CLASS="literal"
+>new Java()</VAR
+> crea una nueva instancia de una clase
+        solamente si existe un constructor adecuado. Si no se le pasan parámetros y existe un constructor por defecto adecuado (como por ejemplo en el caso de <VAR
+CLASS="literal"
+>java.lang.System</VAR
+>) se podrá acceder a la mayor parte de sus metodos, ya que son estáticos.
+       </P
+></LI
+><LI
+><P
+>&#13;        Al acceder a los miembros de una instancia, en primer lugar se
+        buscarán las propiedades del bean y en segundo lugar los
+        miembros publicos. En otras palabras, <VAR
+CLASS="literal"
+>print $date.time</VAR
+> se intentara resolver en primer lugar como <VAR
+CLASS="literal"
+>$date.getTime()</VAR
+> y posteriormente como <VAR
+CLASS="literal"
+>$date.time</VAR
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        Tanto los miembros estaticos como los miembros de una instancia de un
+        objeto pueden ser accedidos utilizando la misma sintaxis. Ademas, si el objeto es de tipo <VAR
+CLASS="literal"
+>java.lang.Class</VAR
+>, entonces se puede acceder a los miembros estaticos de la clase (tanto los atributos como los metodos).
+       </P
+></LI
+><LI
+><P
+>&#13;        Las excepciones que se lanzan durante la ejecución se
+        transforman en avisos de tipo "warning" de PHP y en resultados de tipo <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>. Los avisos de tipo "warning" se pueden eliminar añadiendo el prefijo "@" a la llamada del metodo. Las siguientes funciones de la API se pueden utilizar para obtener y borrar el ultimo error surgido
+        <P
+></P
+><UL
+><LI
+><P
+><A
+HREF="function.java-last-exception-get.html"
+><B
+CLASS="function"
+>java_last_exception_get()</B
+></A
+></P
+></LI
+><LI
+><P
+><A
+HREF="function.java-last-exception-clear.html"
+><B
+CLASS="function"
+>java_last_exception_clear()</B
+></A
+></P
+></LI
+></UL
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        La resolución de la sobrecarga es uno de los problemas mas
+        dificiles de resolver dadas las grandes diferencias entre PHP y Java
+        en el tema del "tipado" de las variables. Esta extensión utiliza un metodo simple pero muy efectivo para determinar cual es la mejor decisión a tomar cuando se produce la sobrecarga.
+       </P
+><P
+>&#13;        Ademas, los nombres de los metodos en PHP no distinguen entre
+        mayusculas y minusculas, por lo que se aumenta la probabilidad de que
+        se produzcan situaciones de sobrecarga.
+       </P
+><P
+>&#13;        Una vez seleccionado el metodo, los parámetros se transforman
+        si es necesario, incluso con la posibilidad de perder datos (por ejemplo, los numeros de tipo "double" se transforman en tipo boolean) (Nota del traductor: esta conversion parece totalmente absurda, asi que puede tratarse de un fallo de la documentacion de la version original).
+        
+       </P
+></LI
+><LI
+><P
+>&#13;        Las variables de tipo "array" y "hashtable" pueden ser utilizadas de
+        forma indistinta. En PHP, las hashtables solo pueden incluir en las
+        claves variables de tipo integer o string. Ademas, en Java los arrays cuyas variables son de algun tipo primitivo, no pueden contener huecos. Por ultimo, se debe recordar que este tipo de variables se pasan por valor, por lo que pueden llegar a consumir una cantidad apreciable de memoria y de tiempo.
+       </P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="java.servlet"
+>SAPI de los servlets Java</A
+></H1
+><P
+>&#13;     Basandose en el mismo mecanismo que la extension de Java de PHP, la SAPI de los servlets Java permite ejecutar PHP como un servlet de Java. La ventaja mas significativa de esta forma de actuar es que se aprovechan las caracteristicas de "pooling" y de reutilizacion implementadas por la mayoria de servidores que permiten ejecutar servlets. El archivo <TT
+CLASS="filename"
+>php4/sapi/README</TT
+> contiene las instrucciones necesarias para compilar el modulo SAPI para los servlets Java.
+
+     Notas:
+
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        Aunque, en principio, este codigo podria ser ejecutado en cualquier
+        servidor que permita la ejecucion de servlets, solo se ha probado en
+        el servidor Jakarta/Tomcat desarrollado por la fundacion Apache. Por
+        ese motivo, cualquier informacion sobre la forma de ejecutarlo en
+        otros servidores, los errores encontrados, las soluciones planteadas,
+        etc...sera una informacion muy apreciada y que animamos a que los
+        desarrolladores envien a los responsables del desarrollo del proyecto
+        PHP.
+       </P
+></LI
+><LI
+><P
+>&#13;        Se pueden producir conflictos entre PHP y SAPI con respecto al
+        directorio de trabajo. Mientras PHP se esta ejecutando, el servidor de
+        servlets no podra cargar ninguna clase que se encuentre en el
+        CLASSPATH si su ruta se especifica de forma relativa y tampoco podra
+        encontrar el directorio de trabajo utilizado para las tareas de
+        administracion y compilacion de JSP.
+       </P
+></LI
+></UL
+> 
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.java-last-exception-clear.html"
+>java_last_exception_clear</A
+>&nbsp;--&nbsp;Borra la última excepción de Java</DT
+><DT
+><A
+HREF="function.java-last-exception-get.html"
+>java_last_exception_get</A
+>&nbsp;--&nbsp;Obtiene la última excepción de Java</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ircg-whois.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.java-last-exception-clear.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ircg_whois</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>java_last_exception_clear</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_key_exists</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_intersect"
+HREF="function.array-intersect.html"><LINK
+REL="NEXT"
+TITLE="array_keys"
+HREF="function.array-keys.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-intersect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-keys.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-key-exists"
+></A
+>array_key_exists</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6893"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>array_key_exists&nbsp;--&nbsp;Comprueba si el índice o clave dada existe en
+    la matriz</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6896"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>array_key_exists</B
+> ( mixed clave, array fuente)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_key_exists()</B
+> devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si la
+     <VAR
+CLASS="parameter"
+>clave</VAR
+> dada existe en la matriz. La
+     <VAR
+CLASS="parameter"
+>clave</VAR
+> puede ser cualquier valor
+     válido como índice de una matriz.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN6913"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>array_key_exists()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz_a_buscar </font><font color="#007700">= array(</font><font color="#DD0000">"primero" </font><font color="#007700">=&gt; </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#DD0000">"segundo" </font><font color="#007700">=&gt; </font><font color="#0000BB">4</font><font color="#007700">);<br />if (</font><font color="#0000BB">array_key_exists</font><font color="#007700">(</font><font color="#DD0000">"primero"</font><font color="#007700">, </font><font color="#0000BB">$matriz_a_buscar</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"El elemento 'primero' se encuentra en la matriz"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El nombre de esta función
+      es <B
+CLASS="function"
+>key_exists()</B
+> en PHP 4.0.6.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.isset.html"
+><B
+CLASS="function"
+>isset()</B
+></A
+>,
+     <A
+HREF="function.array-keys.html"
+><B
+CLASS="function"
+>array_keys()</B
+></A
+>, y
+     <A
+HREF="function.in-array.html"
+><B
+CLASS="function"
+>in_array()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-intersect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-keys.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_intersect</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_keys</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,562 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación como un binario CGI</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Consideraciones generales"
+HREF="security.general.html"><LINK
+REL="NEXT"
+TITLE="Instalación como módulo de Apache"
+HREF="security.apache.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.general.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.apache.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.cgi-bin"
+>Instalación como un binario CGI</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.cgi-bin.attacks"
+>Posibles ataques</A
+></H2
+><P
+>&#13;     El uso de PHP como un binario <ACRONYM
+CLASS="acronym"
+>CGI</ACRONYM
+> es una
+     opción para el tipo de situaciones en las que por alguna
+     razón no se desea integrar PHP como módulo de
+     algún software de servidor web (como Apache), o en donde
+     se espera usar PHP con diferentes tipos de capas que envuelven el
+     entorno CGI para crear ambientes chroot y setuid seguros para la
+     ejecución de scripts. Esta configuración usualmente
+     involucra la instalación de un binario ejecutable del
+     intérprete PHP en el directorio cgi-bin del servidor
+     web. El aviso de seguridad de CERT <A
+HREF="http://www.cert.org/advisories/CA-1996-11.html"
+TARGET="_top"
+>CA-96.11</A
+> recomienda que se evite la
+     colocación de cualquier intérprete bajo
+     cgi-bin. Incluso si el binario PHP puede ser usado como un
+     intérprete independiente, PHP está diseñado
+     para prevenir el tipo de ataques que esta configuración
+     hace posible:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;       Acceso a archivos del sistema: <TT
+CLASS="filename"
+>http://mi.servidor/cgi-bin/php?/etc/passwd</TT
+>
+      </P
+><P
+>&#13;       La información del query en una URL, la cual viene
+       después del signo de interrogación (?), es pasada
+       como argumentos de línea de comandos al
+       intérprete por la interfaz CGI. Usualmente los
+       intérpretes abren y ejecutan el archivo especificado
+       como primer argumento de la línea de comandos.
+      </P
+><P
+>&#13;       Cuando es invocado como un binario CGI, PHP se rehúsa a
+       interpretar los argumentos de la línea de comandos.
+      </P
+></LI
+><LI
+><P
+>&#13;       Acceso a cualquier documento web en el servidor: <TT
+CLASS="filename"
+>http://mi.servidor/cgi-bin/php/zona_secreta/doc.html</TT
+>
+      </P
+><P
+>&#13;       El segmento de la URL que sigue al nombre del binario de PHP,
+       que contiene la información sobre la ruta <TT
+CLASS="filename"
+>/zona_secreta/doc.html</TT
+> es usada
+       convencionalmente para especificar el nombre de un archivo que
+       ha de ser abierto e interpretado por el programa
+       <ACRONYM
+CLASS="acronym"
+>CGI</ACRONYM
+>. Usualmente, algunas directivas de
+       configuración del servidor web (Apache: Action) son
+       usadas para redireccionar peticiones de documentos
+       como <TT
+CLASS="filename"
+>http://mi.servidor/zona_secreta/script.php</TT
+>
+       al intérprete de PHP. Bajo este modelo, el servidor web
+       revisa primero los permisos de acceso al directorio <TT
+CLASS="filename"
+>/zona_secreta</TT
+>, y después de eso
+       crea la petición de redireccionamiento a <TT
+CLASS="filename"
+>http://mi.servidor/cgi-bin/php/zona_secreta/script.php</TT
+>.
+       Desafortunadamente, si la petición se hace originalmente
+       en esta forma, no se realizan chequeos de acceso por parte del
+       servidor web para el archivo <TT
+CLASS="filename"
+>/zona_secreta/script.php</TT
+>,
+       únicamente para el archivo <TT
+CLASS="filename"
+>/cgi-bin/php</TT
+>. De este modo, cualquier
+       usuario capaz de acceder a <TT
+CLASS="filename"
+>/cgi-bin/php</TT
+> es capaz también de
+       acceder a cualquier documento protegido en el servidor web.
+      </P
+><P
+>&#13;       En PHP, la configuración de tiempo de compilación
+       <A
+HREF="configure.html#configure.enable-force-cgi-redirect"
+>--enable-force-cgi-redirect</A
+>
+       y las directivas de configuración en tiempo de
+       ejecución <A
+HREF="ini.sect.path-directory.html#ini.doc-root"
+>doc_root</A
+> y
+       <A
+HREF="ini.sect.path-directory.html#ini.user-dir"
+>user_dir</A
+> pueden ser usadas
+       para prevenir este tipo de ataques, si el árbol de
+       documentos del servidor llegara a tener directorio alguno con
+       restricciones de acceso. Consulte las siguientes secciones para
+       una explicación detallada de las diferentes
+       combinaciones.
+      </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.cgi-bin.default"
+>Caso 1: sólo se sirven archivos
+    públicos</A
+></H2
+><P
+>&#13;     Si su servidor no tiene contenido alguno que no esté
+     restringido por contraseñas o control de acceso basado en
+     direcciones ip, no hay ninguna necesidad de recurrir a estas
+     opciones de configuración. Si su servidor web no le
+     permite hacer redireccionamientos, o el servidor no tiene una
+     forma de comunicarle al binario PHP que la petición de
+     redireccionamiento es segura, puede especificar la opción
+     <A
+HREF="configure.html#configure.enable-force-cgi-redirect"
+>--enable-force-cgi-redirect</A
+>
+     en el script de configuración. Aun así debe
+     asegurarse de que sus scripts PHP no dependan de alguna forma
+     especial de hacer llamados al script, ya sea directamente
+     mediante <TT
+CLASS="filename"
+>http://mi.servidor/cgi-bin/php/dir/script.php</TT
+>
+     ni por la redirección <TT
+CLASS="filename"
+>http://mi.servidor/dir/script.php</TT
+>.
+    </P
+><P
+>&#13;     Los redireccionamientos pueden ser configurados en Apache
+     mediante el uso de directivas AddHandler y Action (vea más
+     adelante).
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.cgi-bin.force-redirect"
+>Caso 2: uso de --enable-force-cgi-redirect</A
+></H2
+><P
+>&#13;     Esta opción en tiempo de compilación previene que
+     cualquier persona haga llamados a PHP directamente mediante una
+     URL como <TT
+CLASS="filename"
+>http://mi.servidor/cgi-bin/php/directorio_secreto/script.php</TT
+>.
+     En lugar de esto, PHP analizará documentos de esta forma
+     únicamente si han pasado por una regla de
+     redirección del servidor web.
+    </P
+><P
+>&#13;     Por lo general, el redireccionamiento en la configuración
+     de Apache es realizada con alguna de las siguientes directivas:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+>Action php-script /cgi-bin/php
+AddHandler php-script .php</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Esta opción ha sido probada únicamente con el
+     servidor web Apache, y depende de que Apache defina la variable
+     de entorno no-estándar <VAR
+CLASS="envar"
+>REDIRECT_STATUS</VAR
+> a la
+     hora de gestionar peticiones redirigidas. Si su servidor web no
+     dispone de modo alguno de comunicar si la petición es
+     directa o redirigida, no puede usar esta opción y debe
+     recurrir a alguna de las otras formas documentadas aquí de
+     ejecutar la versión CGI.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.cgi-bin.doc-root"
+>Caso 3: configuración de doc_root o user_dir</A
+></H2
+><P
+>&#13;     Incluir contenido activo en los directorios de documentos del
+     servidor web, como scripts y ejecutables, es considerada en
+     ocasiones una práctica insegura. Si, por algún
+     fallo de configuración, los scripts no llegaran a ser
+     ejecutados sino desplegados como documentos HTML normales, esto
+     podría resultar en la revelación de
+     información crítica como trabajos cubiertos por
+     normas de propiedad intelectual o datos de seguridad como
+     contraseñas. Por lo tanto muchos administradores de
+     sistemas preferirán la configuración de otra
+     estructura de directorios para los scripts que sean asequibles
+     únicamente a través del CGI PHP, y por lo tanto
+     deben ser interpretados siempre y no desplegados directamente.
+    </P
+><P
+>&#13;     Así mismo, si el método para asegurarse de que las
+     peticiones no son redireccionadas, tal y como se describió
+     en la sección anterior, no está disponible, es
+     necesario entonces configurar un directorio raíz
+     (doc_root) de scripts que sea diferente al directorio raíz
+     de documentos web.
+    </P
+><P
+>&#13;     Puede definir el directorio raíz para scripts de PHP
+     mediante la directiva de configuración <A
+HREF="ini.sect.path-directory.html#ini.doc-root"
+>doc_root</A
+> en el <A
+HREF="configuration.html#configuration.file"
+>archivo de
+     configuración</A
+>, o puede darle un valor a la variable
+     de entorno
+     <VAR
+CLASS="envar"
+>PHP_DOCUMENT_ROOT</VAR
+>. Si ésta está
+     definida, la versión CGI de PHP construirá siempre
+     el nombre del archivo a abrir con
+     este <VAR
+CLASS="parameter"
+>doc_root</VAR
+> y la información de
+     la ruta dada en la petición, de modo que puede estar
+     seguro de que ningún script será ejecutado por
+     fuera de este directorio (excepto por aquellos indicados en
+     <VAR
+CLASS="parameter"
+>user_dir</VAR
+>, como se verá a
+     continuación).
+    </P
+><P
+>&#13;     Otra opción que puede ser usada en este caso es <A
+HREF="ini.sect.path-directory.html#ini.user-dir"
+>user_dir</A
+>. Cuando user_dir no
+     está definida, lo único que controla la apretura de
+     archivos es
+     <VAR
+CLASS="parameter"
+>doc_root</VAR
+>. Abrir una URL como <TT
+CLASS="filename"
+>http://mi.servidor/~usuario/doc.php</TT
+> no
+     resulta en la apertura de un archivo bajo el directorio personal
+     del usuario, sino de un archivo llamado <TT
+CLASS="filename"
+>~usuario/doc.php</TT
+> bajo la ruta doc_root
+     (así es, un directorio cuyo nombre comienza por el
+     caracter de equivalencia [<VAR
+CLASS="literal"
+>~</VAR
+>]).
+    </P
+><P
+>&#13;     Si user_dir está definido como, por ejemplo, <TT
+CLASS="filename"
+>public_php</TT
+>, una petición
+     como <TT
+CLASS="filename"
+>http://mi.servidor/~usuario/doc.php</TT
+>
+     abrirá un archivo llamado <TT
+CLASS="filename"
+>doc.php</TT
+>
+     bajo el directorio con el nombre <TT
+CLASS="filename"
+>public_php</TT
+> ubicado en el directorio
+     personal del usuario. Si el directorio personal del usuario
+     es <TT
+CLASS="filename"
+>/home/usuario</TT
+>, el archivo
+     ejecutado es
+     <TT
+CLASS="filename"
+>/home/usuario/public_php/doc.php</TT
+>.
+    </P
+><P
+>&#13;     La expansión del valor de <VAR
+CLASS="parameter"
+>user_dir</VAR
+>
+     ocurre independientemente del parámetro
+     <VAR
+CLASS="parameter"
+>doc_root</VAR
+>, de modo que es posible controlar
+     el directorio raíz de los documentos y el acceso a los
+     directorios de los usuarios en forma separada.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.cgi-bin.shell"
+>Caso 4: intérprete PHP por fuera del árbol
+    web</A
+></H2
+><P
+>&#13;     Una opción bastante segura es colocar el intérprete
+     binario de PHP en alguna parte por fuera del árbol de
+     archivos web. En <TT
+CLASS="filename"
+>/usr/local/bin</TT
+>,
+     por ejemplo. El único inconveniente real con esta
+     alternativa es que ahora usted tendrá que colocar una
+     línea como esta:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4683"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>#!/usr/local/bin/php</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     al comienzo de cualquier archivo que contenga etiquetas
+     PHP. También tendrá que hacer cada archivo
+     ejecutable. Esto quiere decir que debe tratarlo exactamente igual
+     a como trataría cualquier otro script CGI escrito en Perl
+     o sh o cualquier otro lenguaje de scripting común que
+     usara el mecanismo de escape-shell <VAR
+CLASS="literal"
+>#!</VAR
+> para el
+     lanzamiento del intérprete.
+    </P
+><P
+>&#13;     Para lograr que PHP gestione correctamente la información
+     de <VAR
+CLASS="envar"
+>PATH_INFO</VAR
+> y <VAR
+CLASS="envar"
+>PATH_TRANSLATED</VAR
+> con
+     este tipo de configuración, el intérprete PHP debe
+     haber sido compilado con la opción de configuración
+     <A
+HREF="configure.html#configure.enable-discard-path"
+>--enable-discard-path</A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.general.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.apache.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Consideraciones generales</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalación como módulo de Apache</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

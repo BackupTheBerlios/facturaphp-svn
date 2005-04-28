@@ -1,0 +1,394 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>glob</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="fwrite"
+HREF="function.fwrite.html"><LINK
+REL="NEXT"
+TITLE="is_dir"
+HREF="function.is-dir.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fwrite.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.is-dir.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.glob"
+></A
+>glob</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN28950"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>glob&nbsp;--&nbsp;Encontrar nombres de ruta coincidentes con un
+    patrón</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN28953"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>glob</B
+> ( string patrón [, int banderas])<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>glob()</B
+> realiza una
+     búsqueda por todos los nombres de ruta que coincidan
+     con <VAR
+CLASS="parameter"
+>patrón</VAR
+> de acuerdo a las reglas
+     usadas por el intérprete de comandos. No se realiza
+     expansión de tildes o parámetros.
+    </P
+><P
+>&#13;     Devuelve una matriz que contiene los archivos/directorios
+     coincidentes, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ocurre un error.
+    </P
+><P
+>&#13;    Banderas válidas:
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       <TT
+CLASS="constant"
+><B
+>GLOB_MARK</B
+></TT
+> - Agrega una barra a cada
+       elemento devuelto
+      </P
+></LI
+><LI
+><P
+>&#13;       <TT
+CLASS="constant"
+><B
+>GLOB_NOSORT</B
+></TT
+> - Devuelve los archivos como
+       aparecen en el directorio (sin ordenar)
+      </P
+></LI
+><LI
+><P
+>&#13;       <TT
+CLASS="constant"
+><B
+>GLOB_NOCHECK</B
+></TT
+> - Devuelve el patrón de
+       búsqueda si no se han encontrado archivos coincidentes
+      </P
+></LI
+><LI
+><P
+>&#13;       <TT
+CLASS="constant"
+><B
+>GLOB_NOESCAPE</B
+></TT
+> - Las barras invertidas no
+       indican metacaracteres
+      </P
+></LI
+><LI
+><P
+>&#13;       <TT
+CLASS="constant"
+><B
+>GLOB_BRACE</B
+></TT
+> - Expande {a,b,c} para que
+       coincida con 'a', 'b', o 'c'
+      </P
+></LI
+><LI
+><P
+>&#13;       <TT
+CLASS="constant"
+><B
+>GLOB_ONLYDIR</B
+></TT
+> - Devuelve únicamente
+       entradas de directorios que coinciden con el patrón
+      </P
+></LI
+></UL
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Antes de PHP 4.3.3 <TT
+CLASS="constant"
+><B
+>GLOB_ONLYDIR</B
+></TT
+> <SPAN
+CLASS="strong"
+><B
+CLASS="emphasis"
+>no</B
+></SPAN
+> estaba disponible en windows y otros
+      sistemas que no usan la biblioteca de C GNU.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN28994"
+></A
+><P
+><B
+>Ejemplo 1. 
+       Modo conveniente de reemplazar <A
+HREF="function.opendir.html"
+><B
+CLASS="function"
+>opendir()</B
+></A
+> y
+       amigos con <B
+CLASS="function"
+>glob()</B
+>.
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">foreach (</font><font color="#0000BB">glob</font><font color="#007700">(</font><font color="#DD0000">"*.txt"</font><font color="#007700">) as </font><font color="#0000BB">$nombre_archivo</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$nombre_archivo tam " </font><font color="#007700">. </font><font color="#0000BB">filesize</font><font color="#007700">(</font><font color="#0000BB">$nombre_archivo</font><font color="#007700">) . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       La salida se verá algo como:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>funclist.txt size 44686
+funcsummary.txt size 267625
+quickref.txt size 137820</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función no
+funcionará con <A
+HREF="features.remote-files.html"
+>archivos
+remotos</A
+> ya que el archivo a examinar debe estar disponible
+vía el sistema de archivos del servidor</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.opendir.html"
+><B
+CLASS="function"
+>opendir()</B
+></A
+>,
+     <A
+HREF="function.readdir.html"
+><B
+CLASS="function"
+>readdir()</B
+></A
+>,
+     <A
+HREF="function.closedir.html"
+><B
+CLASS="function"
+>closedir()</B
+></A
+>, y <A
+HREF="function.fnmatch.html"
+><B
+CLASS="function"
+>fnmatch()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fwrite.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.is-dir.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fwrite</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>is_dir</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

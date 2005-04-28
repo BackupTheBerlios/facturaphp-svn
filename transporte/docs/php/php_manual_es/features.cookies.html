@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Cookies</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Características"
+HREF="features.html"><LINK
+REL="PREVIOUS"
+TITLE="Autentificación HTTP con PHP"
+HREF="features.http-auth.html"><LINK
+REL="NEXT"
+TITLE="Manejo de XForms"
+HREF="features.xforms.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.http-auth.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.xforms.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="features.cookies"
+>Capítulo 17. Cookies</A
+></H1
+><P
+>&#13;  PHP soporta transparentemente cookies HTTP. Las Cookies son un
+  mecanismo que sirve para almacenar datos en el navegador del usuario
+  remoto, para así poder identificar al usuario cuando
+  vuelva. Se pueden poner cookies usando la función
+  <B
+CLASS="function"
+>setcookies()</B
+>. Las Cookies son parte de la
+  cabecera HTTP, por tanto la función
+  <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+> debe ser llamada antes de que se
+  produzca cualquier salida al navegador. Esta limitación es la
+  misma a la de la función <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+>.  Se
+  pueden usar las <A
+HREF="ref.outcontrol.html"
+>funciones de
+   almacenamiento intermedio del resultado</A
+> para retrasar el
+  resultado del script hasta que hayas decidido mandar o no una cookie
+  o cabecera.
+ </P
+><P
+>&#13;  Cualquier cookie enviada a ti desde el cliente,
+  automáticamente se convertirá en una variable PHP
+  igual como ocurre con los métodos de datos GET y POST,
+  dependiendo de las variables de configuración
+  <VAR
+CLASS="literal"
+>register_globals</VAR
+> y
+  <VAR
+CLASS="literal"
+>variables_order</VAR
+>. Si deseas asignar multiples
+  valores a una cookie simple, añade simplemente
+  <VAR
+CLASS="literal"
+>[]</VAR
+> a el nombre de la cookie.
+ </P
+><P
+>&#13;  En PHP 4.1.0 y posteriores, la matriz auto-global
+  <VAR
+CLASS="varname"
+>$_COOKIE</VAR
+> será siempre actualizada con
+  cualquier cookie mandada por el
+  cliente. <VAR
+CLASS="varname"
+>$HTTP_COOKIE_VARS</VAR
+> es tambien actualizada
+  en versiones anteriores de PHP cuando la variable de
+  configuración <VAR
+CLASS="literal"
+>track_vars</VAR
+> esté
+  activada. (Siempre activada a partir de PHP 4.0.3.)
+ </P
+><P
+>&#13;  Para más detalles ver la función
+  <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+>.
+ </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.http-auth.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.xforms.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Autentificación HTTP con PHP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Manejo de XForms</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

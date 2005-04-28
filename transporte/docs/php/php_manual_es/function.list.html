@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>list</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="ksort"
+HREF="function.ksort.html"><LINK
+REL="NEXT"
+TITLE="natcasesort"
+HREF="function.natcasesort.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ksort.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.natcasesort.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.list"
+></A
+>list</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN8240"
+></A
+><P
+>    (PHP 3, PHP 4, PHP 5 )</P
+>list&nbsp;--&nbsp;
+     Asigna variables como si fueran una matriz
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN8243"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>list</B
+> ( mixed ...)<BR
+></BR
+><P
+>&#13;     Como <A
+HREF="function.array.html"
+><B
+CLASS="function"
+>array()</B
+></A
+>, esta no es realmente una función,
+     sino una construcción del lenguaje. <B
+CLASS="function"
+>list()</B
+> se 
+     usa para asignar una lista de variables en una sola operación.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN8254"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>list()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;table&gt;<br /> &lt;tr&gt;<br />&nbsp;&nbsp;&lt;th&gt;Nombre empleado&lt;/th&gt;<br />&nbsp;&nbsp;&lt;th&gt;Sueldo&lt;/th&gt;<br /> &lt;/tr&gt;<br /><br /><font color="#0000BB">&lt;?php<br /><br />$resultado </font><font color="#007700">= </font><font color="#0000BB">mysql</font><font color="#007700">(</font><font color="#0000BB">$conn</font><font color="#007700">, </font><font color="#DD0000">"SELECT id, nombre, salario FROM empleados"</font><font color="#007700">);<br />while (list(</font><font color="#0000BB">$id</font><font color="#007700">, </font><font color="#0000BB">$nombre</font><font color="#007700">, </font><font color="#0000BB">$salario</font><font color="#007700">) = </font><font color="#0000BB">mysql_fetch_row</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;print(</font><font color="#DD0000">" &lt;tr&gt;\n"</font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"&nbsp;&nbsp;&lt;td&gt;&lt;a href=</font><font color="#007700">\"</font><font color="#DD0000">info.php3?id=$id</font><font color="#007700">\"</font><font color="#DD0000">&gt;$nombre&lt;/a&gt;&lt;/td&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"&nbsp;&nbsp;&lt;td&gt;$salario&lt;/td&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">" &lt;/tr&gt;\n"</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">?&gt;<br /></font><br />&lt;/table&gt;</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también: <A
+HREF="function.each.html"
+><B
+CLASS="function"
+>each()</B
+></A
+>, <A
+HREF="function.array.html"
+><B
+CLASS="function"
+>array()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ksort.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.natcasesort.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ksort</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>natcasesort</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

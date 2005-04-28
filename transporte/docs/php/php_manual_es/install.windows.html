@@ -1,0 +1,2547 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación en sistemas Windows</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación en sistemas Unix"
+HREF="install.unix.html"><LINK
+REL="NEXT"
+TITLE="Servidores-CGI/Linea de comandos"
+HREF="install.commandline.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.unix.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.commandline.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.windows"
+>Instalación en sistemas Windows</A
+></H1
+><P
+>&#13;    Esta sección contiene informació para instalar en los sistemas
+    operativos  Windows 98/Me y Windows NT/2000/XP.  PHP 
+    no trabajará en plataformas de 16 bit tales como Windows 3.1 y a
+    veces nos referimos a plataformas Windows soportadas como Win32.
+    Windows 95 is no longer supported as of PHP 4.3.0.
+   </P
+><P
+>&#13;    There are two main ways to install PHP for Windows: either
+    <A
+HREF="install.windows.html#install.windows.manual"
+>manually</A
+>
+    or by using the <A
+HREF="install.windows.html#install.windows.installer"
+>InstallShield</A
+>
+    installer.
+   </P
+><P
+>&#13;    If you have Microsoft Visual Studio, you can also 
+    <A
+HREF="install.windows.html#install.windows.build"
+>build</A
+>
+    PHP from the original source code.
+   </P
+><P
+>&#13;    Once you have PHP installed on your Windows system, you may also
+    want to <A
+HREF="install.windows.html#install.windows.extensions"
+>load various extensions</A
+>
+    for added functionality.
+   </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.windows.installer"
+>Windows InstallShield</A
+></H2
+><P
+>&#13;     The Windows PHP installer is  available from the downloads page at
+     <A
+HREF="http://www.php.net/downloads.php"
+TARGET="_top"
+>http://www.php.net/downloads.php</A
+>. This
+     installs the <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>CGI version</I
+></SPAN
+> of <VAR
+CLASS="literal"
+>PHP</VAR
+>
+     and, for IIS, PWS, and Xitami, configures the web server as well.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      While the InstallShield installer is an easy way to make
+      <VAR
+CLASS="literal"
+>PHP</VAR
+> work, it is restricted in many aspects, as
+      automatic setup of extensions for example is not supported. The whole set
+      of supported extensions is only available by downloading the zip binary
+      distribution.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Install your selected <ACRONYM
+CLASS="acronym"
+>HTTP</ACRONYM
+> server on your system and
+     make sure that it works.
+    </P
+><P
+>&#13;     Run the executable installer and follow the instructions provided by the
+     installation wizard. Two types of installation are supported - standard,
+     which provides sensible defaults for all the settings it can, and advanced,
+     which asks questions as it goes along.
+    </P
+><P
+>&#13;     The installation wizard gathers enough information to set up the <TT
+CLASS="filename"
+>php.ini</TT
+>
+     file and configure the web server to use PHP. For IIS and also PWS on NT
+     Workstation, a list of all the nodes on the server with script map settings
+     is displayed, and you can choose those nodes to which you wish to add the
+     PHP script mappings.
+    </P
+><P
+>&#13;     Once the installation has completed the installer will inform you if you
+     need to restart your system, restart the server, or just start using PHP.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Be aware, that this setup of PHP is not secure. If you would like to have
+      a secure PHP setup, you'd better go on the manual way, and set every
+      option carefully. This automatically working setup gives you an instantly
+      working PHP installation, but it is not meant to be used on online servers.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.windows.manual"
+>Manual Installation Steps</A
+></H2
+><P
+>&#13;     This install guide will help you manually install and configure PHP on your
+     Windows webserver. The original version of this guide was compiled by
+     <A
+HREF="mailto:bob_silva@mail.umesd.k12.or.us"
+TARGET="_top"
+>Bob Silva</A
+>, and can be found at
+     <A
+HREF="http://www.umesd.k12.or.us/php/win32install.html"
+TARGET="_top"
+>http://www.umesd.k12.or.us/php/win32install.html</A
+>.
+     You need to download the zip binary distribution from the downloads page at 
+     <A
+HREF="http://www.php.net/downloads.php"
+TARGET="_top"
+>http://www.php.net/downloads.php</A
+>. 
+    </P
+><P
+>&#13;     PHP 4 for Windows comes in three flavours - a CGI executable (php.exe), a
+     CLI executable (sapi/php.exe) and some other SAPI modules:
+     <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>&#13;       <TT
+CLASS="filename"
+>php4apache.dll</TT
+> - Apache 1.3.x module
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="filename"
+>php4apache2.dll</TT
+> - Apache 2.0.x module
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="filename"
+>php4isapi.dll</TT
+> - ISAPI Module for ISAPI compliant
+       webservers like IIS 4.0/PWS 4.0 or newer.
+      </TD
+></TR
+><TR
+><TD
+>&#13;       <TT
+CLASS="filename"
+>php4nsapi.dll</TT
+> - Netscape/iPlanet module
+      </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+     The latter form is new to PHP 4, and provides significantly improved
+     performance and some new functionality. The CLI version is designed to use
+     PHP for command line scripting. More information about CLI is available in
+     the chapter about
+     <A
+HREF="features.commandline.html"
+>using PHP from the command line</A
+>
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      The SAPI modules have been significantly improved in the 4.1 release, 
+      however, you may find that you encounter possible server errors or 
+      other server modules such as ASP failing, in older systems.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>DCOM and MDAC requirements: </B
+>
+       If you choose one of the SAPI modules and use
+       <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Windows 95</I
+></SPAN
+>, be sure to download and install the DCOM
+       update from the <A
+HREF="http://download.microsoft.com/msdownload/dcom/95/x86/en/dcom95.exe"
+TARGET="_top"
+>Microsoft DCOM pages</A
+>.
+       If you use Microsoft <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Windows 9x/NT4</I
+></SPAN
+> download the
+       latest version of the Microsoft Data Access Components (MDAC) for your
+       platform. MDAC is available at <A
+HREF="http://msdn.microsoft.com/data/"
+TARGET="_top"
+>http://msdn.microsoft.com/data/</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     The following steps should be performed on all installations before any
+     server specific instructions.
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        Extract the distribution file to a directory of your choice,
+        <TT
+CLASS="filename"
+>c:\</TT
+> is a good start. The zip package expands to a
+        foldername like <TT
+CLASS="filename"
+>php-4.3.1-Win32</TT
+> which is assumed to
+        be renamed to <TT
+CLASS="filename"
+>php</TT
+>. For the sake of convenience and
+        to be version independent the following steps assume your extracted
+        version of PHP lives in <TT
+CLASS="filename"
+>c:\php</TT
+>. You might choose
+        any other location but you probably do not want to use a path in which
+        spaces are included (for example:
+        <TT
+CLASS="filename"
+>C:\Program Files\PHP</TT
+> is not a good idea). Some web
+        servers will crash if you do. The structure of your directory you
+        extracted the zip file will look like:
+       </P
+></LI
+></UL
+>
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN629"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>c:\php
+   |
+   +--cli
+   |  |
+   |  |-php.exe           -- CLI executable - ONLY for commandline scripting
+   |
+   |
+   +--dlls                -- support dlls for extensions --&#62; Windows system directory
+   |  |
+   |  |-expat.dll
+   |  |
+   |  |-fdftk.dll
+   |  |
+   |  |-...
+   |
+   +--extensions          -- extension dlls for PHP
+   |  |
+   |  |-php_bz2.dll
+   |  |
+   |  |-php_cpdf.dll
+   |  |
+   |  |-..
+   |
+   +--mibs                -- support files for SNMP
+   |
+   |
+   +--openssl             -- support files for Openssl
+   |
+   |
+   +--pdf-related         -- support files for PDF
+   |
+   |
+   +--sapi                -- SAPI dlls
+   |  |
+   |  |-php4apache.dll
+   |  |
+   |  |-php4apache2.dll
+   |  |
+   |  |-php4isapi.dll
+   |  |
+   |  |-..
+   |
+   |-install.txt
+   |
+   |-..
+   |
+   |-php.exe              -- CGI executable
+   |
+   |-..
+   |
+   |-php.ini-dist
+   |
+   |-php.ini-recommended
+   | 
+   |-php4ts.dll           -- main dll --&#62; Windows system directory
+   | 
+   |-...</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+> 
+    </P
+><P
+>&#13;     The  CGI binary - <TT
+CLASS="filename"
+>c:\php\php.exe</TT
+> -, the CLI binary
+     - <TT
+CLASS="filename"
+>c:\php\cli\php.exe</TT
+> -, and the SAPI modules
+     - <TT
+CLASS="filename"
+>c:\php\sapi\*.dll</TT
+> -  rely on the main dll
+     <TT
+CLASS="filename"
+>c:\php\php4ts.dll</TT
+>. You have to make sure, that this
+     dll can be found by your PHP installation. The search order for this dll
+     is as follows:
+     <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>&#13;       The same directory from where <TT
+CLASS="filename"
+>php.exe</TT
+> is called.
+       In case you use a SAPI module the same directory from where your 
+       webserver loads the dll (e.g. <TT
+CLASS="filename"
+>php4apache.dll</TT
+>).
+      </TD
+></TR
+><TR
+><TD
+>&#13;       Any directory in your Windows PATH environment variable.
+      </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        The best bet is to make <TT
+CLASS="filename"
+>php4ts.dll</TT
+> available,
+        regardless which interface (CGI or SAPI module) you plan to use. To do so,
+        you have to copy this dll to a directory on your Windows path. The best
+        place is your Windows system directory:
+        <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>&#13;          <TT
+CLASS="filename"
+>C:\Windows\System</TT
+> for Windows 9x/ME
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <TT
+CLASS="filename"
+>C:\WINNT\System32</TT
+> for Windows NT/2000 or
+          <TT
+CLASS="filename"
+>C:\WINNT40\System32</TT
+> for NT/2000 server
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <TT
+CLASS="filename"
+>C:\Windows\System32</TT
+> for Windows XP
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+        If you plan to use a SAPI module from <TT
+CLASS="filename"
+>c:\php\sapi</TT
+>
+        and do not like to copy dlls to your Windows system directory, you have
+        the alternative choice to simply copy <TT
+CLASS="filename"
+>php4ts.dll</TT
+> to
+        the sapi folder of your extracted zip package,
+        <TT
+CLASS="filename"
+>c:\php\sapi</TT
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        The next step is to set up a valid configuration file for PHP, <TT
+CLASS="filename"
+>php.ini</TT
+>.
+        There are two ini files distributed in the zip file,
+        <TT
+CLASS="filename"
+>php.ini-dist</TT
+> and
+        <TT
+CLASS="filename"
+>php.ini-recommended</TT
+>. We advise you to use
+        <TT
+CLASS="filename"
+>php.ini-recommended</TT
+>, because we optimized the
+        default settings in this file for performance, and security. Read this
+        well documented file carefully and in addition study the
+        <A
+HREF="configuration.html#configuration.file"
+>ini settings</A
+> and set every
+        element manually yourself. If you would like to achieve the best
+        security, then this is the way for you, although PHP works fine with
+        these default ini files. Copy your chosen ini-file to a directory where
+        PHP is able to find and rename it to <TT
+CLASS="filename"
+>php.ini</TT
+>. By default PHP searches
+        <TT
+CLASS="filename"
+>php.ini</TT
+> in your Windows directory:
+        <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>&#13;          On Windows 9x/ME/XP copy your chosen ini file to your
+         <TT
+CLASS="filename"
+> %WINDIR%</TT
+>, which is typically
+         <TT
+CLASS="filename"
+>C:\Windows</TT
+>.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          On Windows NT/2000 copy your chosen ini file to your
+          <TT
+CLASS="filename"
+>%WINDIR%</TT
+> or <TT
+CLASS="filename"
+>%SYSTEMROOT%</TT
+>,
+          which is typically <TT
+CLASS="filename"
+>C:\WINNT</TT
+> or
+         <TT
+CLASS="filename"
+>C:\WINNT40</TT
+> for NT/2000 servers.
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>   
+       </P
+></LI
+><LI
+><P
+>&#13;        If you're using NTFS on Windows NT, 2000 or XP, make sure that
+        the user running the webserver has read permissions to your
+        <TT
+CLASS="filename"
+>php.ini</TT
+> (e.g. make it readable by Everyone).
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     The following steps are optional.
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        Edit your new <TT
+CLASS="filename"
+>php.ini</TT
+> file.       
+        If you plan to use <A
+HREF="install.omnihttpd.html"
+>OmniHTTPd</A
+>,
+        do not follow the next step. Set the
+        <A
+HREF="ini.sect.path-directory.html#ini.doc-root"
+>doc_root</A
+> to point to your webservers
+        document_root. For example:
+        <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN684"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>doc_root = c:\inetpub        // for IIS/PWS
+
+doc_root = c:\apache\htdocs // for Apache</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        Choose which extensions you would like to load when PHP starts. See
+        the section about
+        <A
+HREF="install.windows.html#install.windows.extensions"
+>Windows extensions</A
+>,
+        about how to set up one, and what is already built in. Note that on
+        a new installation it is advisable to first get PHP working and tested
+        without any extensions before enabling them in <TT
+CLASS="filename"
+>php.ini</TT
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        On PWS and IIS, you can set the
+        <A
+HREF="ref.misc.html#ini.browscap"
+>browscap</A
+> configuration setting
+        to point to:
+        <TT
+CLASS="filename"
+>c:\windows\system\inetsrv\browscap.ini</TT
+> on
+        Windows 9x/Me,
+        <TT
+CLASS="filename"
+>c:\winnt\system32\inetsrv\browscap.ini</TT
+> on
+        NT/2000, and
+        <TT
+CLASS="filename"
+>c:\windows\system32\inetsrv\browscap.ini</TT
+>
+        on XP.
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     Following this instructions you are done with the basic steps to setup PHP
+     on Windows. The next step is to choose a webserver and enable it to run
+     PHP. Installation instructions for the following webservers are available:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        .. the <A
+HREF="install.iis.html"
+>Windows server family</A
+>, Personal
+        Web server (PWS) 3 and 4 or newer;  Internet Information Server (IIS) 3
+        and 4 or newer.
+       </P
+></LI
+><LI
+><P
+>&#13;        .. the Apache servers
+        <A
+HREF="install.apache.html#install.apache.windows"
+>Apache 1.3.x</A
+>, and
+        <A
+HREF="install.apache2.html#install.apache2.windows"
+>Apache 2.x</A
+>.        
+       </P
+></LI
+><LI
+><P
+>&#13;        .. the
+        <A
+HREF="install.netscape-enterprise.html#install.netscape.windows"
+>Netscape/iPlanet</A
+> servers.      
+       </P
+></LI
+><LI
+><P
+>&#13;        .. the <A
+HREF="install.omnihttpd.html"
+>OmniHTTPd</A
+> server.
+       </P
+></LI
+><LI
+><P
+>&#13;        .. the <A
+HREF="missing-stuff.html#install.oreilly"
+>Oreilly Website Pro</A
+> server.
+       </P
+></LI
+><LI
+><P
+>&#13;        .. the <A
+HREF="install.sambar.html"
+>Sambar</A
+> server.
+       </P
+></LI
+><LI
+><P
+>&#13;        .. the <A
+HREF="install.xitami.html"
+>Xitami</A
+> server.
+       </P
+></LI
+></UL
+>
+   </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.windows.build"
+>Building from source</A
+></H2
+><P
+>&#13;     Before getting started, it is worthwhile answering the question:
+     "Why is building on Windows so hard?" Two reasons come to mind:
+    </P
+><P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;       Windows does not (yet) enjoy a large community of developers
+       who are willing to freely share their source. As a direct
+       result, the necessary investment in infrastructure required
+       to support such development hasn't been made. By and large,
+       what is available has been made possible by the porting of
+       necessary utilities from Unix. Don't be surprised if some of
+       this heritage shows through from time to time.
+      </P
+></LI
+><LI
+><P
+>&#13;       Pretty much all of the instructions that follow are of the
+       "set and forget" variety. So sit back and try follow the
+       instructions below as faithfully as you can.
+      </P
+></LI
+></OL
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="install.windows.build.requirement"
+>Requerimientos</A
+></H3
+><P
+>&#13;      To compile and build <VAR
+CLASS="literal"
+>PHP</VAR
+> you need a Microsoft
+      Development Environment. Microsoft Visual C++ 6.0 is recommended.
+      To extract the downloaded files you need a extraction utility
+      (e.g.: Winzip). If you don't already have an unzip utility, you
+      can get a free version from <A
+HREF="http://www.info-zip.org/pub/infozip/"
+TARGET="_top"
+>InfoZip</A
+>.
+     </P
+><P
+>&#13;      Before you get started, you have to download...
+     </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;        ..the win32 buildtools from the <VAR
+CLASS="literal"
+>PHP</VAR
+> site
+        at <A
+HREF="http://www.php.net/extra/win32build.zip"
+TARGET="_top"
+>http://www.php.net/extra/win32build.zip</A
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        ..the source code for the DNS name resolver used by <VAR
+CLASS="literal"
+>PHP
+        </VAR
+> from <A
+HREF="http://www.php.net/extra/bindlib_w32.zip"
+TARGET="_top"
+>&#13;        http://www.php.net/extra/bindlib_w32.zip</A
+>. This is a replacement for the 
+        <TT
+CLASS="filename"
+>resolv.lib</TT
+> library included in <TT
+CLASS="filename"
+>&#13;        win32build.zip</TT
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        If you plan to compile <VAR
+CLASS="literal"
+>PHP</VAR
+> as a Apache
+        module you will also need the <A
+HREF="http://www.apache.org/dist/httpd/"
+TARGET="_top"
+>Apache
+        sources</A
+>.
+       </P
+></LI
+></UL
+><P
+>&#13;      Finally, you are going to need the source to PHP 4 itself. You can get
+      the latest development version using <A
+HREF="http://www.php.net/anoncvs.php"
+TARGET="_top"
+>&#13;      anonymous CVS</A
+>, a <A
+HREF="http://snaps.php.net/"
+TARGET="_top"
+>&#13;      snapshot</A
+> or the most recent released <A
+HREF="http://www.php.net/downloads.php"
+TARGET="_top"
+>&#13;      source</A
+> tarball.
+     </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="install.windows.build.install"
+>Putting it all together</A
+></H3
+><P
+>&#13;      After downloading the required packages you have to extract them in a
+      proper place.
+      <P
+></P
+><UL
+><LI
+><P
+>&#13;         Create a working directory where all files end up after extracting, e.g:
+         <TT
+CLASS="filename"
+>C:\work</TT
+>.
+        </P
+></LI
+><LI
+><P
+>&#13;         Create the directory <TT
+CLASS="filename"
+>win32build</TT
+> under your
+         working directory (<TT
+CLASS="filename"
+>C:\work</TT
+>) and unzip <TT
+CLASS="filename"
+>&#13;         win32build.zip</TT
+> into it.
+        </P
+></LI
+><LI
+><P
+>&#13;         Create the directory <TT
+CLASS="filename"
+>bindlib_w32</TT
+> under your
+         working directory (<TT
+CLASS="filename"
+>C:\work</TT
+>) and unzip <TT
+CLASS="filename"
+>&#13;         bindlib_w32.zip</TT
+> into it.
+        </P
+></LI
+><LI
+><P
+>&#13;         Extract the downloaded PHP source code into your working directory
+         (<TT
+CLASS="filename"
+>C:\work</TT
+>).
+        </P
+></LI
+></UL
+>
+      Following this steps your directory structure looks like this:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN773"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>+--c:\work
+|  |
+|  +--bindlib_w32
+|  |  |
+|  |  +--arpa
+|  |  |
+|  |  +--conf
+|  |  |
+|  |  +--...
+|  |
+|  +--php-4.x.x
+|  |  |
+|  |  +--build
+|  |  |
+|  |  +--...
+|  |  |
+|  |  +--win32
+|  |  |
+|  |  +--...
+|  |
+|  +--win32build
+|  |  |
+|  |  +--bin
+|  |  |
+|  |  +--include
+|  |  |
+|  |  +--lib</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      Create the directories <TT
+CLASS="filename"
+>c:\usr\local\lib</TT
+>. Copy
+      <TT
+CLASS="filename"
+>bison.simple</TT
+> from <TT
+CLASS="filename"
+>c:\work\win32build\bin
+      </TT
+> to <TT
+CLASS="filename"
+>c:\usr\local\lib</TT
+>.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       <A
+HREF="http://www.cygwin.com/"
+TARGET="_top"
+>Cygwin</A
+> users may omit the last
+       step. A properly installed Cygwin environment provides the mandatory
+       files <TT
+CLASS="filename"
+>bison.simple</TT
+> and
+       <TT
+CLASS="filename"
+>bison.exe</TT
+>.
+      </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="install.windows.build.configure"
+>Configure MVC ++</A
+></H3
+><P
+>&#13;       The next step is to configure MVC ++ to prepare for compiling.
+       Launch Microsoft Visual C++, and from the menu select
+       Tools =&#62; Options. In the dialog, select the
+       directories tab. Sequentially change the dropdown
+       to Executables, Includes, and Library files. Your entries should look
+       like this:
+       <P
+></P
+><UL
+><LI
+><P
+>&#13;          Executable files: <TT
+CLASS="filename"
+>c:\work\win32build\bin</TT
+>,
+          Cygwin users: <TT
+CLASS="filename"
+>cygwin\bin</TT
+>
+         </P
+></LI
+><LI
+><P
+>&#13;          Include files: <TT
+CLASS="filename"
+>c:\work\win32build\include</TT
+>
+         </P
+></LI
+><LI
+><P
+>&#13;          Library files: <TT
+CLASS="filename"
+>c:\work\win32build\lib</TT
+>
+         </P
+></LI
+></UL
+>
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="install.windows.build.resolvlib"
+>Build resolv.lib</A
+></H3
+><P
+>&#13;       You must build the <TT
+CLASS="filename"
+>resolv.lib</TT
+> library.
+       Decide whether you want to have debug symbols available
+       (bindlib - Win32 Debug) or not (bindlib - Win32 Release).
+       Build the appropriate configuration: 
+       <P
+></P
+><UL
+><LI
+><P
+>&#13;          For GUI users, launch VC++, and then select File =&#62; Open
+          Workspace, navigate to <TT
+CLASS="filename"
+>c:\work\bindlib_w32</TT
+> and
+          select <TT
+CLASS="filename"
+>bindlib.dsw</TT
+>. Then select Build=&#62;Set
+          Active Configuration and select the desired configuration.
+          Finally select Build=&#62;Rebuild All.
+         </P
+></LI
+><LI
+><P
+>&#13;          For command line users, make sure that you either have the C++
+          environment variables registered, or have run
+          <B
+CLASS="command"
+>vcvars.bat</B
+>, and then execute one of the following
+          commands:
+         </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;            <KBD
+CLASS="userinput"
+>msdev bindlib.dsp /MAKE "bindlib - Win32 Debug"</KBD
+>
+           </P
+></LI
+><LI
+><P
+>&#13;            <KBD
+CLASS="userinput"
+>msdev bindlib.dsp /MAKE "bindlib - Win32 Release"</KBD
+>
+           </P
+></LI
+></UL
+></LI
+></UL
+>
+       At this point, you should have a usable <TT
+CLASS="filename"
+>resolv.lib</TT
+>
+       in either your <TT
+CLASS="filename"
+>c:\work\bindlib_w32\Debug</TT
+> or
+       <TT
+CLASS="filename"
+>Release</TT
+> subdirectories. Copy this file into your
+       <TT
+CLASS="filename"
+>c:\work\win32build\lib</TT
+> directory over the file
+       by the same name found in there.
+      </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="install.windows.build.compile"
+>Compiling</A
+></H3
+><P
+>&#13;      The best way to get started is to build the CGI version.
+     </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;        For GUI users, launch VC++, and then select File =&#62; Open
+        Workspace and select <TT
+CLASS="filename"
+>c:\work\php-4.x.x\win32\php4ts.dsw
+        </TT
+>. Then select Build=&#62;Set Active
+        Configuration and select the desired configuration, either
+        <VAR
+CLASS="literal"
+>php4ts - Win32 Debug_TS</VAR
+> or
+        <VAR
+CLASS="literal"
+>php4ts - Win32 Release_TS</VAR
+>. Finally select
+        Build=&#62;Rebuild All.
+       </P
+></LI
+><LI
+><P
+>&#13;        For command line users, make sure that you either have
+        the C++ environment variables registered, or have run
+        <B
+CLASS="command"
+>vcvars.bat</B
+>, and then execute one of the
+        following commands from the <TT
+CLASS="filename"
+>c:\work\php-4.x.x\win32
+        </TT
+> directory:
+       </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;          <KBD
+CLASS="userinput"
+>msdev php4ts.dsp /MAKE "php4ts - Win32 Debug_TS"</KBD
+>
+         </P
+></LI
+><LI
+><P
+>&#13;          <KBD
+CLASS="userinput"
+>msdev php4ts.dsp /MAKE "php4ts - Win32 Release_TS"</KBD
+>
+         </P
+></LI
+><LI
+><P
+>&#13;          At this point, you should have a usable <TT
+CLASS="filename"
+>php.exe</TT
+>
+          in either your <TT
+CLASS="filename"
+>c:\work\php-4.x.x.\Debug_TS</TT
+> or
+          <TT
+CLASS="filename"
+>Release_TS</TT
+> subdirectories.
+         </P
+></LI
+></UL
+></LI
+></UL
+><P
+>&#13;      It is possible to do minor customization to the build process by editing
+      the <TT
+CLASS="filename"
+>main/config.win32.h</TT
+> file. For example you can
+      change the default location of <TT
+CLASS="filename"
+>php.ini</TT
+>, the built-in extensions, and the
+      default location for your extensions.
+     </P
+><P
+>&#13;      Next you may want to build the CLI version which is designed to use
+      <A
+HREF="features.commandline.html"
+>PHP from the command line</A
+>.
+      The steps are the same as for building the CGI version, except you have
+      to select the <VAR
+CLASS="literal"
+>php4ts_cli - Win32 Debug_TS</VAR
+> or
+      <VAR
+CLASS="literal"
+>php4ts_cli - Win32 Release_TS</VAR
+> project file. After a
+      successful compiling run you will find the <TT
+CLASS="filename"
+>php.exe</TT
+>
+      in either the directory <TT
+CLASS="filename"
+>Release_TS\cli\</TT
+> or
+      <TT
+CLASS="filename"
+>Debug_TS\cli\</TT
+>.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       If you want to use PEAR and the comfortable command line installer,
+       the CLI-SAPI is mandatory. For more information about PEAR and the
+       installer read the documentation at the <A
+HREF="http://pear.php.net/manual/"
+TARGET="_top"
+>&#13;       PEAR</A
+> website.
+      </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;      In order to build the SAPI module (<TT
+CLASS="filename"
+>php4isapi.dll</TT
+>)
+      for integrating PHP with Microsoft IIS, set your active configuration to
+      <TT
+CLASS="filename"
+>php4isapi-whatever-config</TT
+> and build the desired dll.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.windows.extensions"
+>Installation of Windows extensions</A
+></H2
+><P
+>&#13;     After installing PHP and a webserver on Windows, you will probably want to
+     install some extensions for added functionality. You can choose which
+     extensions you would like to load when PHP starts by modifying your
+     <TT
+CLASS="filename"
+>php.ini</TT
+>. You can also load a module dynamically in your script using
+     <A
+HREF="function.dl.html"
+><B
+CLASS="function"
+>dl()</B
+></A
+>.
+    </P
+><P
+>&#13;     The DLLs for PHP extensions are prefixed with 'php_' in PHP 4 (and 
+     'php3_' in PHP 3). This prevents confusion between PHP extensions 
+     and their supporting libraries. 
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      In PHP 4.3.1 BCMath, Calendar, COM, Ctype, FTP, MySQL, ODBC, Overload,
+      PCRE, Session, Tokenizer, WDDX, XML and Zlib support is
+      <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>built in</I
+></SPAN
+>. You don't need to load any additional
+      extensions in order to use these functions. See your distributions
+      <TT
+CLASS="filename"
+>README.txt</TT
+> or <TT
+CLASS="filename"
+>install.txt</TT
+>
+      or <A
+HREF="install.windows.html#install.extensions.overview"
+>this table</A
+>
+      for a list of built in modules.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     The default location <VAR
+CLASS="literal"
+>PHP</VAR
+> searches for extensions is
+     <TT
+CLASS="filename"
+>c:\php4\extensions</TT
+>. To change this setting to reflect
+     your setup of <VAR
+CLASS="literal"
+>PHP</VAR
+> edit your <TT
+CLASS="filename"
+>php.ini</TT
+> file:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        You will need to change the
+        <A
+HREF="ini.sect.path-directory.html#ini.extension-dir"
+>extension_dir</A
+> setting to
+        point to the directory where your extensions lives, or where you have
+        placed your <TT
+CLASS="filename"
+>php_*.dll</TT
+> files. Please do not
+        forget the last backslash. For example:
+        <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN884"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>extension_dir = c:/php/extensions/</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+       </P
+></LI
+><LI
+><P
+>&#13;       Enable the extension(s) in <TT
+CLASS="filename"
+>php.ini</TT
+> you want to use by uncommenting the
+       <VAR
+CLASS="literal"
+>extension=php_*.dll</VAR
+> lines in <TT
+CLASS="filename"
+>php.ini</TT
+>. This is done
+       by deleting the leading ; form the extension you want to load. 
+       <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN891"
+></A
+><P
+><B
+>Ejemplo 3-4. Enable <A
+HREF="ref.bzip2.html"
+>Bzip2</A
+> extension for PHP-Windows</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>// change the following line from ...
+;extension=php_bz2.dll
+
+// ... to
+extension=php_bz2.dll</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>      
+       </P
+></LI
+><LI
+><P
+>&#13;        Some of the extensions need extra DLLs to work. Couple of them can be
+        found in the distribution package, in the
+        <TT
+CLASS="filename"
+>c:\php\dlls\</TT
+> folder but some, for example Oracle
+        (<TT
+CLASS="filename"
+>php_oci8.dll</TT
+>) require DLLs which are not bundled
+        with the distribution package. Copy the bundled DLLs from
+        <TT
+CLASS="filename"
+>c:\php\dlls</TT
+> folder to your Windows PATH, safe
+        places are:
+        <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>c:\windows\system for Windows 9x/Me</TD
+></TR
+><TR
+><TD
+>c:\winnt\system32 for Windows NT/2000</TD
+></TR
+><TR
+><TD
+>c:\windows\system32 for Windows XP</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>       
+        If you have them already installed on your system, overwrite them only
+        if something doesn't work correctly (Before overwriting them, it is a
+        good idea to make a backup of them, or move them to another folder -
+        just in case something goes wrong).
+       </P
+></LI
+></UL
+>
+   <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     If you are running a server module version of <VAR
+CLASS="literal"
+>PHP</VAR
+>
+     remember to restart your webserver to reflect your changes to <TT
+CLASS="filename"
+>php.ini</TT
+>.
+    </P
+></BLOCKQUOTE
+></DIV
+>
+   </P
+><P
+>&#13;    The following table describes some of the extensions available and required
+    additional dlls.   
+    <DIV
+CLASS="table"
+><A
+NAME="install.extensions.overview"
+></A
+><P
+><B
+>Tabla 3-1. PHP Extensions</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Extension</TH
+><TH
+>Description</TH
+><TH
+>Notes</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>php_bz2.dll</TD
+><TD
+><A
+HREF="ref.bzip2.html"
+>bzip2</A
+> compression functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_calendar.dll</TD
+><TD
+><A
+HREF="ref.calendar.html"
+>Calendar</A
+> conversion functions</TD
+><TD
+>Built in since PHP 4.0.3</TD
+></TR
+><TR
+><TD
+>php_cpdf.dll</TD
+><TD
+><A
+HREF="ref.cpdf.html"
+>ClibPDF</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_crack.dll</TD
+><TD
+><A
+HREF="ref.crack.html"
+>Crack</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php3_crypt.dll</TD
+><TD
+>Crypt functions</TD
+><TD
+>unknown</TD
+></TR
+><TR
+><TD
+>php_ctype.dll</TD
+><TD
+><A
+HREF="ref.ctype.html"
+>ctype</A
+> family functions</TD
+><TD
+>Built in since PHP 4.3.0</TD
+></TR
+><TR
+><TD
+>php_curl.dll</TD
+><TD
+><A
+HREF="ref.curl.html"
+>CURL</A
+>, Client URL library functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>libeay32.dll</TT
+>, 
+   <TT
+CLASS="filename"
+>ssleay32.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_cybercash.dll</TD
+><TD
+><A
+HREF="ref.cybercash.html"
+>Cybercash</A
+> payment functions</TD
+><TD
+>PHP &#60;= 4.2.0</TD
+></TR
+><TR
+><TD
+>php_db.dll</TD
+><TD
+><A
+HREF="ref.dbm.html"
+>DBM</A
+> functions</TD
+><TD
+>Deprecated. Use DBA instead (<TT
+CLASS="filename"
+>php_dba.dll</TT
+>)</TD
+></TR
+><TR
+><TD
+>php_dba.dll</TD
+><TD
+><A
+HREF="ref.dba.html"
+>DBA</A
+>: DataBase (dbm-style) 
+   Abstraction layer functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_dbase.dll</TD
+><TD
+><A
+HREF="ref.dbase.html"
+>dBase</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php3_dbm.dll</TD
+><TD
+>Berkeley DB2 library</TD
+><TD
+>unknown</TD
+></TR
+><TR
+><TD
+>php_dbx.dll</TD
+><TD
+><A
+HREF="ref.dbx.html"
+>dbx</A
+> functions</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>php_domxml.dll</TD
+><TD
+><A
+HREF="ref.domxml.html"
+>DOM XML</A
+> functions</TD
+><TD
+>&#13;    PHP &#60;= 4.2.0 requires: <TT
+CLASS="filename"
+>libxml2.dll</TT
+> (bundled)
+    PHP &#62;= 4.3.0 requires: <TT
+CLASS="filename"
+>iconv.dll</TT
+> (bundled)
+   </TD
+></TR
+><TR
+><TD
+>php_dotnet.dll</TD
+><TD
+><A
+HREF="ref.dotnet.html"
+>.NET</A
+> functions</TD
+><TD
+>PHP &#60;= 4.1.1</TD
+></TR
+><TR
+><TD
+>php_exif.dll</TD
+><TD
+><A
+HREF="function.read-exif-data.html"
+>Read EXIF</A
+> headers from JPEG</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_fbsql.dll</TD
+><TD
+><A
+HREF="ref.fbsql.html"
+>FrontBase</A
+> functions</TD
+><TD
+>PHP &#60;= 4.2.0</TD
+></TR
+><TR
+><TD
+>php_fdf.dll</TD
+><TD
+><A
+HREF="ref.fdf.html"
+>FDF</A
+>: Forms Data Format functions.</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>fdftk.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_filepro.dll</TD
+><TD
+><A
+HREF="ref.filepro.html"
+>filePro</A
+> functions</TD
+><TD
+>Read-only access</TD
+></TR
+><TR
+><TD
+>php_ftp.dll</TD
+><TD
+><A
+HREF="ref.ftp.html"
+>FTP</A
+> functions</TD
+><TD
+>Built-in since PHP 4.0.3</TD
+></TR
+><TR
+><TD
+>php_gd.dll</TD
+><TD
+><A
+HREF="ref.image.html"
+>GD</A
+> library image functions</TD
+><TD
+>&#13;    Removed in PHP 4.3.2.  Also note that truecolor functions are not
+    available in GD1, instead, use <TT
+CLASS="filename"
+>php_gd2.dll</TT
+>.
+   </TD
+></TR
+><TR
+><TD
+>php_gd2.dll</TD
+><TD
+><A
+HREF="ref.image.html"
+>GD</A
+> library image functions</TD
+><TD
+>GD2</TD
+></TR
+><TR
+><TD
+>php_gettext.dll</TD
+><TD
+><A
+HREF="ref.gettext.html"
+>Gettext</A
+> functions</TD
+><TD
+>&#13;    PHP &#60;= 4.2.0 requires <TT
+CLASS="filename"
+>gnu_gettext.dll</TT
+> (bundled), 
+    PHP &#62;= 4.2.3 requires <TT
+CLASS="filename"
+>libintl-1.dll</TT
+>,
+    <TT
+CLASS="filename"
+>iconv.dll</TT
+> (bundled).
+   </TD
+></TR
+><TR
+><TD
+>php_hyperwave.dll</TD
+><TD
+><A
+HREF="missing-stuff.html#ref.hw"
+>HyperWave</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_iconv.dll</TD
+><TD
+><A
+HREF="ref.iconv.html"
+>ICONV</A
+> characterset conversion</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>iconv-1.3.dll</TT
+> (bundled), 
+   PHP &#62;=4.2.1 <TT
+CLASS="filename"
+>iconv.dll</TT
+></TD
+></TR
+><TR
+><TD
+>php_ifx.dll</TD
+><TD
+><A
+HREF="ref.ifx.html"
+>Informix</A
+> functions</TD
+><TD
+>Requires: Informix libraries</TD
+></TR
+><TR
+><TD
+>php_iisfunc.dll</TD
+><TD
+>IIS management functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_imap.dll</TD
+><TD
+><A
+HREF="ref.imap.html"
+>IMAP</A
+> POP3 and NNTP functions</TD
+><TD
+>PHP 3: <TT
+CLASS="filename"
+>php3_imap4r1.dll</TT
+></TD
+></TR
+><TR
+><TD
+>php_ingres.dll</TD
+><TD
+><A
+HREF="ref.ingres.html"
+>Ingres II</A
+> functions</TD
+><TD
+>Requires: Ingres II libraries</TD
+></TR
+><TR
+><TD
+>php_interbase.dll</TD
+><TD
+><A
+HREF="ref.ibase.html"
+>InterBase</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>gds32.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_java.dll</TD
+><TD
+><A
+HREF="ref.java.html"
+>Java</A
+> functions</TD
+><TD
+>PHP &#60;= 4.0.6 requires: <TT
+CLASS="filename"
+>jvm.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_ldap.dll</TD
+><TD
+><A
+HREF="ref.ldap.html"
+>LDAP</A
+> functions</TD
+><TD
+>&#13;    PHP &#60;= 4.2.0 requires <TT
+CLASS="filename"
+>libsasl.dll</TT
+> (bundled), 
+    PHP &#62;= 4.3.0 requires <TT
+CLASS="filename"
+>libeay32.dll</TT
+>, 
+    <TT
+CLASS="filename"
+>ssleay32.dll</TT
+> (bundled)
+   </TD
+></TR
+><TR
+><TD
+>php_mbstring.dll</TD
+><TD
+><A
+HREF="ref.mbstring.html"
+>Multi-Byte String</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_mcrypt.dll</TD
+><TD
+><A
+HREF="ref.mcrypt.html"
+>Mcrypt Encryption</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>libmcrypt.dll</TT
+></TD
+></TR
+><TR
+><TD
+>php_mhash.dll</TD
+><TD
+><A
+HREF="ref.mhash.html"
+>Mhash</A
+> functions</TD
+><TD
+>PHP &#62;= 4.3.0 requires: <TT
+CLASS="filename"
+>libmhash.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_mime_magic.dll</TD
+><TD
+><A
+HREF="ref.mime-magic.html"
+>Mimetype</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>magic.mime</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_ming.dll</TD
+><TD
+><A
+HREF="ref.ming.html"
+>Ming</A
+> functions for Flash</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_msql.dll</TD
+><TD
+><A
+HREF="ref.msql.html"
+>mSQL</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>msql.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php3_msql1.dll</TD
+><TD
+>mSQL 1 client</TD
+><TD
+>unknown</TD
+></TR
+><TR
+><TD
+>php3_msql2.dll</TD
+><TD
+>mSQL 2 client</TD
+><TD
+>unknown</TD
+></TR
+><TR
+><TD
+>php_mssql.dll</TD
+><TD
+><A
+HREF="ref.mssql.html"
+>MSSQL</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>ntwdblib.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php3_mysql.dll</TD
+><TD
+><A
+HREF="ref.mysql.html"
+>MySQL</A
+> functions</TD
+><TD
+>Built-in in PHP 4</TD
+></TR
+><TR
+><TD
+>php3_nsmail.dll</TD
+><TD
+>Netscape mail functions</TD
+><TD
+>unknown</TD
+></TR
+><TR
+><TD
+>php3_oci73.dll</TD
+><TD
+>Oracle functions</TD
+><TD
+>unknown</TD
+></TR
+><TR
+><TD
+>php_oci8.dll</TD
+><TD
+><A
+HREF="ref.oci8.html"
+>Oracle 8</A
+> functions</TD
+><TD
+>Requires: Oracle 8.1+ client libraries</TD
+></TR
+><TR
+><TD
+>php_openssl.dll</TD
+><TD
+><A
+HREF="ref.openssl.html"
+>OpenSSL</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>libeay32.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_oracle.dll</TD
+><TD
+><A
+HREF="ref.oracle.html"
+>Oracle</A
+> functions</TD
+><TD
+>Requires: Oracle 7 client libraries</TD
+></TR
+><TR
+><TD
+>php_overload.dll</TD
+><TD
+><A
+HREF="ref.overload.html"
+>Object overloading</A
+> functions</TD
+><TD
+>Built in since PHP 4.3.0</TD
+></TR
+><TR
+><TD
+>php_pdf.dll</TD
+><TD
+><A
+HREF="ref.pdf.html"
+>PDF</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_pgsql.dll</TD
+><TD
+><A
+HREF="ref.pgsql.html"
+>PostgreSQL</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_printer.dll</TD
+><TD
+><A
+HREF="ref.printer.html"
+>Printer</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_shmop.dll</TD
+><TD
+><A
+HREF="ref.shmop.html"
+>Shared Memory</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_snmp.dll</TD
+><TD
+><A
+HREF="ref.snmp.html"
+>SNMP</A
+> get and walk functions</TD
+><TD
+>NT only!</TD
+></TR
+><TR
+><TD
+>php_sockets.dll</TD
+><TD
+><A
+HREF="ref.sockets.html"
+>Socket</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_sybase_ct.dll</TD
+><TD
+><A
+HREF="ref.sybase.html"
+>Sybase</A
+> functions</TD
+><TD
+>Requires: Sybase client libraries</TD
+></TR
+><TR
+><TD
+>php_tokenizer.dll</TD
+><TD
+><A
+HREF="ref.tokenizer.html"
+>Tokenizer</A
+> functions</TD
+><TD
+>Built in since PHP 4.3.0</TD
+></TR
+><TR
+><TD
+>php_w32api.dll</TD
+><TD
+><A
+HREF="ref.w32api.html"
+>W32api</A
+> functions</TD
+><TD
+>None</TD
+></TR
+><TR
+><TD
+>php_xmlrpc.dll</TD
+><TD
+><A
+HREF="ref.xmlrpc.html"
+>XML-RPC</A
+> functions</TD
+><TD
+>PHP &#62;= 4.2.1 requires: <TT
+CLASS="filename"
+>iconv.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_xslt.dll</TD
+><TD
+><A
+HREF="ref.xslt.html"
+>XSLT</A
+> functions</TD
+><TD
+>&#13;    PHP &#60;= 4.2.0 requires <TT
+CLASS="filename"
+>sablot.dll</TT
+>,
+    <TT
+CLASS="filename"
+>expat.dll</TT
+> (bundled). PHP &#62;= 4.2.1 requires
+    <TT
+CLASS="filename"
+>sablot.dll</TT
+>, <TT
+CLASS="filename"
+>expat.dll</TT
+>,
+    <TT
+CLASS="filename"
+>iconv.dll</TT
+> (bundled).
+   </TD
+></TR
+><TR
+><TD
+>php_yaz.dll</TD
+><TD
+><A
+HREF="ref.yaz.html"
+>YAZ</A
+> functions</TD
+><TD
+>Requires: <TT
+CLASS="filename"
+>yaz.dll</TT
+> (bundled)</TD
+></TR
+><TR
+><TD
+>php_zip.dll</TD
+><TD
+><A
+HREF="ref.zip.html"
+>Zip File</A
+> functions</TD
+><TD
+>Read only access</TD
+></TR
+><TR
+><TD
+>php_zlib.dll</TD
+><TD
+><A
+HREF="ref.zlib.html"
+>ZLib</A
+> compression functions</TD
+><TD
+>Built in since PHP 4.3.0</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.unix.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.commandline.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación en sistemas Unix</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-CGI/Linea de comandos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

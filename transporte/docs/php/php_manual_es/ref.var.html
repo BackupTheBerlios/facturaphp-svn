@@ -1,0 +1,543 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="urlencode"
+HREF="function.urlencode.html"><LINK
+REL="NEXT"
+TITLE="doubleval"
+HREF="function.doubleval.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.urlencode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.doubleval.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.var"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXIII. Funciones de Variables</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN112048"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="var.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Para más información sobre el modo en que se
+     comportan las variables, vea la entrada <A
+HREF="language.variables.html"
+>Variables</A
+> en la
+     sección <A
+HREF="langref.html"
+>Referencia del
+     Lenguaje</A
+> del manual.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="var.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="var.installation"
+>Instalación</A
+></H1
+><P
+>No se necesita ninguna instalación
+para usar estas funciones, son parte del núcleo de
+PHP.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="var.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN112065"
+></A
+><P
+><B
+>Tabla 1. Opciones de Configuración de Variables</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Por defecto</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>unserialize_callback_func</TD
+><TD
+>""</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  Para más detalles y la definición de las constantes
+  PHP_INI_* vea <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;  <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="unserialize-callback-func"
+></A
+><VAR
+CLASS="parameter"
+>unserialize_callback_func</VAR
+>
+     <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;      La llamada de retorno <A
+HREF="function.unserialize.html"
+><B
+CLASS="function"
+>unserialize()</B
+></A
+>
+      será llamada (con el nombre de la clase no definida como
+      parámetro), si el proceso de revertir la seriación
+      encuentra una clase no definida que debería ser
+      instanciada. Una advertencia aparecerá si la
+      función especificada no está definida, o si la
+      función no incluye o implementa la clase
+      faltante. Así que únicamente defina esta entrada
+      si de veras desea implementar tal función de retorno.
+     </P
+><P
+>&#13;      Vea también <A
+HREF="function.unserialize.html"
+><B
+CLASS="function"
+>unserialize()</B
+></A
+>.
+     </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="var.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="var.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.doubleval.html"
+>doubleval</A
+>&nbsp;--&nbsp;Obtiene el valor double (decimal) de una variable.</DT
+><DT
+><A
+HREF="function.empty.html"
+>empty</A
+>&nbsp;--&nbsp;Determina si una variable está definida</DT
+><DT
+><A
+HREF="function.floatval.html"
+>floatval</A
+>&nbsp;--&nbsp;Obtener el valor flotante de una variable</DT
+><DT
+><A
+HREF="function.get-defined-vars.html"
+>get_defined_vars</A
+>&nbsp;--&nbsp;
+     Devuelve una matriz con todas la variables definidas
+    </DT
+><DT
+><A
+HREF="function.get-resource-type.html"
+>get_resource_type</A
+>&nbsp;--&nbsp;
+     Devuelve el tipo de recurso
+    </DT
+><DT
+><A
+HREF="function.gettype.html"
+>gettype</A
+>&nbsp;--&nbsp;Obtiene el tipo de una variable.</DT
+><DT
+><A
+HREF="function.import-request-variables.html"
+>import_request_variables</A
+>&nbsp;--&nbsp;Importar variables GET/POST/Cookie en el contexto global</DT
+><DT
+><A
+HREF="function.intval.html"
+>intval</A
+>&nbsp;--&nbsp;Obtiene el valor entero de una variable.</DT
+><DT
+><A
+HREF="function.is-array.html"
+>is_array</A
+>&nbsp;--&nbsp;Averigua si una variable es un array.</DT
+><DT
+><A
+HREF="function.is-bool.html"
+>is_bool</A
+>&nbsp;--&nbsp;
+Encuentra si una variable es de tipo booleana      
+     </DT
+><DT
+><A
+HREF="function.is-callable.html"
+>is_callable</A
+>&nbsp;--&nbsp;
+     Verifica que los contenidos de una variable puedan ser llamados
+     como una función
+    </DT
+><DT
+><A
+HREF="function.is-double.html"
+>is_double</A
+>&nbsp;--&nbsp;Averigua si una variable es un valor double (número decimal).</DT
+><DT
+><A
+HREF="function.is-float.html"
+>is_float</A
+>&nbsp;--&nbsp;Averigua si una variable es un flotante.</DT
+><DT
+><A
+HREF="function.is-int.html"
+>is_int</A
+>&nbsp;--&nbsp;Averigua si una variable es un valor entero.</DT
+><DT
+><A
+HREF="function.is-integer.html"
+>is_integer</A
+>&nbsp;--&nbsp;Averigua si una variable es un valor entero.</DT
+><DT
+><A
+HREF="function.is-long.html"
+>is_long</A
+>&nbsp;--&nbsp;Averigua si una varible es un valor entero.</DT
+><DT
+><A
+HREF="function.is-null.html"
+>is_null</A
+>&nbsp;--&nbsp;
+     Encuentra si una variable es <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>
+    </DT
+><DT
+><A
+HREF="function.is-numeric.html"
+>is_numeric</A
+>&nbsp;--&nbsp;
+     Encuentra si una variable es un número o una cadena numérica
+    </DT
+><DT
+><A
+HREF="function.is-object.html"
+>is_object</A
+>&nbsp;--&nbsp;Averigua si una varible es un objeto.</DT
+><DT
+><A
+HREF="function.is-real.html"
+>is_real</A
+>&nbsp;--&nbsp;Averigua si una varible es un número real.</DT
+><DT
+><A
+HREF="function.is-resource.html"
+>is_resource</A
+>&nbsp;--&nbsp;
+     Encuentra si una variable es un recurso
+    </DT
+><DT
+><A
+HREF="function.is-scalar.html"
+>is_scalar</A
+>&nbsp;--&nbsp;
+     Encuentra si una variable es un escalar
+    </DT
+><DT
+><A
+HREF="function.is-string.html"
+>is_string</A
+>&nbsp;--&nbsp;Averigua si una varible es una cadena de caracteres (string).</DT
+><DT
+><A
+HREF="function.isset.html"
+>isset</A
+>&nbsp;--&nbsp;Determina si una varible está definida</DT
+><DT
+><A
+HREF="function.print-r.html"
+>print_r</A
+>&nbsp;--&nbsp;
+     Imprime información legible para humanos sobre una variable
+    </DT
+><DT
+><A
+HREF="function.serialize.html"
+>serialize</A
+>&nbsp;--&nbsp;
+Genera una representación apta para almacenamiento de un valor
+    </DT
+><DT
+><A
+HREF="function.settype.html"
+>settype</A
+>&nbsp;--&nbsp;Establece el tipo de una variable.</DT
+><DT
+><A
+HREF="function.strval.html"
+>strval</A
+>&nbsp;--&nbsp;Obtiene una cadena de caracteres a partir de una variable.</DT
+><DT
+><A
+HREF="function.unserialize.html"
+>unserialize</A
+>&nbsp;--&nbsp;
+      Crea un valor PHP a partir de una representación
+      almacenada
+    </DT
+><DT
+><A
+HREF="function.unset.html"
+>unset</A
+>&nbsp;--&nbsp;Destruye una variable dada</DT
+><DT
+><A
+HREF="function.var-dump.html"
+>var_dump</A
+>&nbsp;--&nbsp;Vuelca información sobre una variable</DT
+><DT
+><A
+HREF="function.var-export.html"
+>var_export</A
+>&nbsp;--&nbsp;Imprime o devuelve una representación de cadena,
+    apta para su procesamiento, de una variable</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.urlencode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.doubleval.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>urlencode</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>doubleval</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

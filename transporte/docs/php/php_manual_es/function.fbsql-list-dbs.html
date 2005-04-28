@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>fbsql_list_dbs</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FrontBase Functions"
+HREF="ref.fbsql.html"><LINK
+REL="PREVIOUS"
+TITLE="fbsql_insert_id"
+HREF="function.fbsql-insert-id.html"><LINK
+REL="NEXT"
+TITLE="fbsql_list_fields"
+HREF="function.fbsql-list-fields.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-insert-id.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-list-fields.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.fbsql-list-dbs"
+></A
+>fbsql_list_dbs</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN26960"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>fbsql_list_dbs&nbsp;--&nbsp;
+     List databases available on a FrontBase server
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN26963"
+></A
+><H2
+>Description</H2
+>resource <B
+CLASS="methodname"
+>fbsql_list_dbs</B
+> ( [resource link_identifier])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>fbsql_list_dbs()</B
+> will return a result pointer
+     containing the databases available from the current fbsql
+     daemon. Use the <A
+HREF="function.fbsql-tablename.html"
+><B
+CLASS="function"
+>fbsql_tablename()</B
+></A
+> function to
+     traverse this result pointer.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN26975"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>fbsql_list_dbs()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$link = fbsql_connect('localhost', 'myname', 'secret');<br />$db_list = fbsql_list_dbs($link);<br /><br />while ($row = fbsql_fetch_object($db_list)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo $row-&gt;Database . "\n";<br />}</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       The above example would produce the following output:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>database1
+database2
+database3
+...</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      The above code would just as easily work with
+      <A
+HREF="function.fbsql-fetch-row.html"
+><B
+CLASS="function"
+>fbsql_fetch_row()</B
+></A
+> or other similar functions.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fbsql-insert-id.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.fbsql-list-fields.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fbsql_insert_id</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>fbsql_list_fields</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

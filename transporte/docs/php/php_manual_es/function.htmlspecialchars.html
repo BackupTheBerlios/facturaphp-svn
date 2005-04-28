@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>htmlspecialchars</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="htmlentities"
+HREF="function.htmlentities.html"><LINK
+REL="NEXT"
+TITLE="implode"
+HREF="function.implode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.htmlentities.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.implode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.htmlspecialchars"
+></A
+>htmlspecialchars</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN106047"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>htmlspecialchars&nbsp;--&nbsp;
+     Convierte caracteres especiales a entidades HTML
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN106050"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>htmlspecialchars</B
+> ( string cadena)<BR
+></BR
+><P
+>&#13;     Ciertos caracteres tienen significados especiales en HTML, y deben
+     ser representados por entidades HTML si se desea preservar su
+     significado. Esta función devuelve una cadena con dichas conversiones
+     realizadas.
+    </P
+><P
+>&#13;     Esta función es útil para evitar que el texo entrado por el usuario
+     contenga marcas HTML, como ocurre en aplicaciones de foros o
+     libros de visita.
+    </P
+><P
+>&#13;     Actualmente, las traducciones hechas son:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        '&#38;' (ampersand) se convierte en '&#38;amp;'
+       </P
+></LI
+><LI
+><P
+>&#13;        '"' (doble comilla) se convierte en '&#38;quot;'
+       </P
+></LI
+><LI
+><P
+>&#13;        '&#60;' (menor que) se convierte en '&#38;lt;'
+       </P
+></LI
+><LI
+><P
+>&#13;        '&#62;' (mayor que) se convierte en '&#38;gt;'
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     Nótese que esta función no traduce nada más que lo mostrado
+     más arriba. Para una traducción de entidades completa, vea
+     <A
+HREF="function.htmlentities.html"
+><B
+CLASS="function"
+>htmlentities()</B
+></A
+>.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.htmlentities.html"
+><B
+CLASS="function"
+>htmlentities()</B
+></A
+> y
+     <A
+HREF="function.nl2br.html"
+><B
+CLASS="function"
+>nl2br()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.htmlentities.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.implode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>htmlentities</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>implode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

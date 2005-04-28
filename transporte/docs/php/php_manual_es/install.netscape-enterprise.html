@@ -1,0 +1,631 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Servidores-Netscape e iPlanet</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Servidores-IIS/PWS"
+HREF="install.iis.html"><LINK
+REL="NEXT"
+TITLE="Servidores-Servidor OmniHTTPd"
+HREF="install.omnihttpd.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.iis.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.omnihttpd.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.netscape-enterprise"
+>Servidores-Netscape e iPlanet</A
+></H1
+><P
+>&#13;  Esta sección contiene información específica
+  sobre la instalación de <VAR
+CLASS="literal"
+>PHP</VAR
+> con Netscape e
+  iPlanet, tanto en <A
+HREF="install.netscape-enterprise.html#install.netscape.sun"
+>Sun
+   Solaris</A
+> como en <A
+HREF="install.netscape-enterprise.html#install.netscape.windows"
+>Windows</A
+>.
+ </P
+><P
+>&#13;  Podeis encontrar más información sobre como instalar PHP con
+  "Netscape Enterprise Server" aqui: <A
+HREF="http://benoit.noss.free.fr/php/install-php4.html"
+TARGET="_top"
+>http://benoit.noss.free.fr/php/install-php4.html</A
+>
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.netscape.sun"
+>Instalando PHP con Netscape en Sun Solaris</A
+></H2
+><P
+>&#13;   Para compilar PHP para que funcione con los servidores web NES ó
+   iPlanet, definir la localización correcta en la opción <A
+HREF="missing-stuff.html#install.configure.with-nsapi"
+>--with-nsapi</A
+> =
+   <VAR
+CLASS="replaceable"
+>DIR</VAR
+>. La localización por defecto es
+   normalmente <TT
+CLASS="filename"
+>/opt/netscape/suitespot/</TT
+>. Leer
+   <TT
+CLASS="filename"
+>/php-xxx-version/sapi/nsapi/nsapi-readme.txt</TT
+>
+   para más información.
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="install.netscape-enterprise.solaris"
+></A
+><P
+><B
+>Ejemplo 3-11. Ejemplo de instalación con Netscape Enterprise en
+    Solaris</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Instrucciones para Sun Solaris 2.6 con Netscape Enterprise Server 3.6
+From: bhager@invacare.com
+
+1. Instalar los siguientes paquetes (se pueden bajar de
+   www.sunfreeware.com u otra servidor)
+
+    flex-2_5_4a-sol26-sparc-local 
+    gcc-2_95_2-sol26-sparc-local 
+    gzip-1.2.4-sol26-sparc-local 
+    perl-5_005_03-sol26-sparc-local 
+    bison-1_25-sol26-sparc-local 
+    make-3_76_1-sol26-sparc-local 
+    m4-1_4-sol26-sparc-local 
+    autoconf-2.13 
+    automake-1.4 
+    mysql-3.23.24-beta (si quereis soporte para MySQL) 
+    tar-1.13 (GNU tar) 
+
+2. Asegurarse que la variable PATH incluye los siguientes directorios:
+    PATH=.:/usr/local/bin:/usr/sbin:/usr/bin:/usr/ccs/bin 
+    export PATH 
+
+3. gunzip php-x.x.x.tar.gz 
+4. tar xvf php-x.x.x.tar 
+5. cd ../php-x.x.x 
+
+6. Asegurarse que /opt/netscape/suitespot/ es el directorio donde
+   teneis instalado vuestro servidor netscape, si no, cambiarlo por el
+   directorio correcto:
+    /configure --with-mysql=/usr/local/mysql --with-nsapi=/opt/netscape/suitespot/ --enable-track-vars --enable-libgcc 
+7. make 
+8. make install</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   Despues de terminar la instalación base y de leer el fichero readme
+   apropiado, quizas necesiteis realizar unos cuantos ajustes en la
+   configuración.
+  </P
+><P
+>&#13;   Para comenzar, quizas necesiteis añadir algunas
+   localizaciones a la variable de entorno LD_LIBRARY_PATH, para que
+   Netscape pueda encontrar todas las bibliotecas compartidas. Esto se
+   puede hacer en el script de arranque del servidor
+   Netscape. Usuarios de Windows pueden probablemente saltarse este
+   paso. El script de arranque suele estar localizado en: <TT
+CLASS="filename"
+>/path/to/server/https-servername/start</TT
+>
+  </P
+><P
+>&#13;   Tambien puede que tengais que editar los ficheros de configuración
+   localizados en: <TT
+CLASS="filename"
+>/path/to/server/https-servername/config/</TT
+>.
+  </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="install.netscape-enterprise.configure"
+></A
+><P
+><B
+>Ejemplo 3-12. 
+    Ejemplo de configuración para Netscape Enterprise
+   </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Instrucciones de configuraci&#38;oacute;n para Netscape Enterprise Server
+From: bhager@invacare.com
+
+1. A&#38;ntilde;adir la siguiente linea al fichero mime.types:
+
+    type=magnus-internal/x-httpd-php exts=php
+
+2. A&#38;ntilde;adir la siguiente linea al fichero obj.conf, shlib
+   depender&#38;aacute; de vuestro SO, en Unix es:
+
+    /opt/netscape/suitespot/bin/libphp4.so.
+
+    Las siguientes lineas se deben a&#38;ntilde;dir despues de las lineas
+    que inicializan "mime types".
+
+    Init fn="load-modules" funcs="php4_init,php4_close,php4_execute,php4_auth_trans" shlib="/php4/nsapiPHP4.dll"
+    Init fn=php4_init errorString="Failed to initialize PHP!"
+
+    &#60;object name="default"&#62;
+    . 
+    . 
+    . 
+    .#NOTA Esta linea debe de a&#38;ntilde;adirse despues de todas las
+     lineas 'ObjectType' y antes de las lineas 'AddLog'.
+
+    Service fn="php4_execute" type="magnus-internal/x-httpd-php" 
+    . 
+    . 
+    &#60;/Object&#62;
+
+
+    &#60;Object name="x-httpd-php"&#62; 
+    ObjectType fn="force-type" type="magnus-internal/x-httpd-php" 
+    Service fn=php4_execute 
+    &#60;/Object&#62; 
+
+
+    Configuraci&#38;oacute;n de la autentificaci&#38;oacute;n
+
+    Para configurar autentificaci&#38;oacute;n PHP en todo el servidor,
+    a&#38;ntilde;adir la siguiente linea:
+
+    &#60;Object name="default"&#62; 
+    AuthTrans fn=php4_auth_trans 
+    . 
+    . 
+    . 
+    . 
+    &#60;/Object&#62; 
+
+    Para configurar autentificaci&#38;oacute;n PHP en una localizaci&#38;oacute;n,
+    a&#38;ntilde;adir lo siguiente:
+
+    &#60;Object ppath="d:\path\to\authenticated\dir\*"&#62; 
+    AuthTrans fn=php4_auth_trans 
+    &#60;/Object&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;   Si estais usando Netscape Enterprise 4.x, debereis hacer lo
+   siguiente:
+  </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1703"
+></A
+><P
+><B
+>Ejemplo 3-13. Ejemplo de configuración para Netscape Enterprise
+   4.x</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>A&#38;ntilde;adir estas lineas despues de la secci&#38;oacute;n que
+inicializa "mime types", lo dem&#38;aacute;s es similar al ejemplo anterior:
+From: Graeme Hoose (GraemeHoose@BrightStation.com)
+
+Init fn="load-modules" shlib="/path/to/server4/bin/libphp4.so" funcs="php4_init,php4_close,php4_execute,php4_auth_trans"
+Init fn="php4_init" LateInit="yes"</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.netscape.windows"
+>Instalando PHP con Netscape en Windows</A
+></H2
+><P
+>&#13;   Para instalar PHP como binario CGI (con  Netscape Enterprise Server,
+      iPlanet y quizás Fastrack), hacer lo siguiente:
+  </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;     Copiar  <TT
+CLASS="filename"
+>php4ts.dll</TT
+> al directorio donde
+     instalasteis Windows.
+    </P
+></LI
+><LI
+><P
+>&#13;     Crear un fichero asociado desde la linea de comandos. Escribir lo
+     siguiente:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>assoc .php=PHPScript
+ftype PHPScript=c:\php\php.exe %1 %*</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     En el servidor de administracion de "Netscape Enterprise", crear
+     un directorio shellcgi señuelo y borrarlo (esto crea 5
+     lineas importantes en obj.conf y permite al servidor web manejar
+     scripts shellcgi)
+    </P
+></LI
+><LI
+><P
+>&#13;     En el servidor de administracion de "Netscape Enterprise", crear
+     un nuevo tipo mime (Categoria: type, Content-Type:
+     magnus-internal/shellcgi, File Suffix:php).
+    </P
+></LI
+><LI
+><P
+>&#13;     Hacerlo con todas las instancias del servidor web con las que
+     quereis utilizar php.
+    </P
+></LI
+></UL
+><P
+>&#13;   Se pueden encontrar más detalles sobre como configurar PHP como
+   binario CGI, aqui: <A
+HREF="http://benoit.noss.free.fr/php/install-php.html"
+TARGET="_top"
+>http://benoit.noss.free.fr/php/install-php.html</A
+>
+  </P
+><P
+>&#13;   Para instalar PHP como NSAPI (con Netscape Enterprise Server,
+   iPlanet y quizás Fastrack), hacer lo siguiente:
+  </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;     Copiar  <TT
+CLASS="filename"
+>php4ts.dll</TT
+> al directorio donde
+     instalasteis Windows.
+    </P
+></LI
+><LI
+><P
+>&#13;     Crear un fichero asociado desde la linea de
+     comandos. Escribir lo siguiente:
+       <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>assoc .php=PHPScript
+ftype PHPScript=c:\php\php.exe %1 %*</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     En el servidor de administracion de "Netscape Enterprise", crear
+     un nuevo tipo mime (Categoria: type, Content-Type:
+     magnus-internal/x-httpd-php, File Suffix:php).
+    </P
+></LI
+><LI
+><P
+>&#13;     Parar vuestro servidor web y editar
+     <TT
+CLASS="filename"
+>obj.conf</TT
+>. Al final de la sección de
+     inicialización, añadir estas dos lineas (despues de la
+     sección mime type):
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>Init fn="load-modules" funcs="php4_init,php4_close,php4_execute,php4_auth_trans" shlib="c:/php/sapi/php4nsapi.dll"
+Init fn="php4_init" errorString="Failed to initialise PHP!"</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     En la sección <VAR
+CLASS="literal"
+>&#60; Object name="default" &#62;</VAR
+>
+     añadir lo siguiente despues de todas las lineas
+     'ObjectType' y antes de las lineas 'AddLog':
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>Service fn="php4_execute" type="magnus-internal/x-httpd-php"</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     Al final del fichero, crear un nuevo objeto llamado
+     <VAR
+CLASS="literal"
+>x-httpd-php</VAR
+>, insertando estas lineas:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;Object name="x-httpd-php"&#62;
+ObjectType fn="force-type" type="magnus-internal/x-httpd-php"
+Service fn=php4_execute
+&#60;/Object&#62;</PRE
+></TD
+></TR
+></TABLE
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     Rearrancar vuestro servidor web:
+    </P
+></LI
+><LI
+><P
+>&#13;     Hacerlo con todas las instancias del servidor web con las que
+     quereis utilizar php.
+    </P
+></LI
+></UL
+><P
+>&#13;   Se pueden encontrar más detalles sobre como configurar PHP como un
+   filtro NSAPI , aqui: <A
+HREF="http://benoit.noss.free.fr/php/install-php4.html"
+TARGET="_top"
+>http://benoit.noss.free.fr/php/install-php4.html</A
+>
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.iis.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.omnihttpd.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Servidores-IIS/PWS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-Servidor OmniHTTPd</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

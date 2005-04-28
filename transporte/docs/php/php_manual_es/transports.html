@@ -1,0 +1,633 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Lista de Transportes de Sockets Soportados</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Apéndices"
+HREF="appendixes.html"><LINK
+REL="PREVIOUS"
+TITLE="Compression Filters"
+HREF="filters.compression.html"><LINK
+REL="NEXT"
+TITLE="Dominio Unix: Unix y UDG"
+HREF="transports.unix.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="appendix"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="filters.compression.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="transports.unix.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="appendix"
+><H1
+><A
+NAME="transports"
+>Apéndice N. Lista de Transportes de Sockets Soportados</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="transports.html#transports.inet"
+>Dominio de Internet: TCP, UDP, SSL, y TLS</A
+></DT
+><DT
+><A
+HREF="transports.unix.html"
+>Dominio Unix: Unix y UDG</A
+></DT
+></DL
+></DIV
+><P
+>&#13;  La siguiente es una lista de los varios transportes de socket estilo
+  URL que PHP tiene integrados para su uso con funciones de sockets
+  basados en secuencias, tales como <A
+HREF="function.fsockopen.html"
+><B
+CLASS="function"
+>fsockopen()</B
+></A
+>, y
+  <A
+HREF="function.stream-socket-client.html"
+><B
+CLASS="function"
+>stream_socket_client()</B
+></A
+>. Estos transportes
+  <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> se aplican a la <A
+HREF="ref.sockets.html"
+>Extensión de Sockets</A
+>.
+ </P
+><P
+>&#13;  Para una lista de transportes instalados con su versión de
+  <VAR
+CLASS="literal"
+>PHP</VAR
+> use
+  <A
+HREF="function.stream-get-transports.html"
+><B
+CLASS="function"
+>stream_get_transports()</B
+></A
+>.
+ </P
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="transports.inet"
+>Dominio de Internet: TCP, UDP, SSL, y TLS</A
+></H1
+><P
+>PHP 3, PHP 4, PHP 5. <VAR
+CLASS="literal"
+>ssl://</VAR
+> &#38;
+  <VAR
+CLASS="literal"
+>tls://</VAR
+> a partir de PHP 4.3</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Si no se especifica un transporte, se
+    asumirá <VAR
+CLASS="literal"
+>tcp://</VAR
+>
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+></P
+><UL
+><LI
+><P
+><VAR
+CLASS="literal"
+>127.0.0.1</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>fe80::1</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>www.example.com</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>tcp://127.0.0.1</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>tcp://fe80::1</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>tcp://www.example.com</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>udp://www.example.com</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>ssl://www.example.com</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>tls://www.example.com</VAR
+></P
+></LI
+></UL
+><P
+>&#13;   Los sockets del Dominio de Internet esperan un número de
+   puerto junto con una dirección de destino. En el caso de
+   <A
+HREF="function.fsockopen.html"
+><B
+CLASS="function"
+>fsockopen()</B
+></A
+>, éste es especificado en un
+   segundo parámetro y por lo tanto no tiene impacto sobre el
+   formato de la URL de transporte. Sin embargo, en el caso de
+   <A
+HREF="function.stream-socket-client.html"
+><B
+CLASS="function"
+>stream_socket_client()</B
+></A
+> y funciones relacionadas,
+   así como ocurre con URLs tradicionales, el número de
+   puerto se especifica como un sufijo del URL de transporte
+   delimitado con el signo dos puntos.
+  </P
+><P
+></P
+><UL
+><LI
+><P
+><VAR
+CLASS="literal"
+>tcp://127.0.0.1:80</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>tcp://[fe80::1]:80</VAR
+></P
+></LI
+><LI
+><P
+><VAR
+CLASS="literal"
+>tcp://www.example.com:80</VAR
+></P
+></LI
+></UL
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Direcciones IPv6 numéricas con números de
+   puerto: </B
+>
+    En el segundo ejemplo anterior, mientras que los ejemplos IPv4 y
+    con nombre de dominio fueron modificados solo ligeramente con la
+    adición de sus dos puntos y número de puerto, la
+    dirección IPv6 es rodeada por corchetes cuadrados:
+    <VAR
+CLASS="literal"
+>[fe80::1]</VAR
+>. Esto es para poder distinguir entre
+    los dos puntos usados en una dirección IPv6 y aquellos
+    usados para delimitar el número de puerto.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   Los transportes <VAR
+CLASS="literal"
+>ssl://</VAR
+> y
+   <VAR
+CLASS="literal"
+>tls://</VAR
+> (disponibles únicamente cuando se
+   compila el soporte para openssl con PHP) son extensiones del
+   transporte <VAR
+CLASS="literal"
+>tcp://</VAR
+> el cual incluye
+   encripción SSL. A partir de <VAR
+CLASS="literal"
+>PHP 4.3.0</VAR
+> el
+   soporte OpenSSL debe ser compilado estáticamente con
+   <VAR
+CLASS="literal"
+>PHP</VAR
+>, a partir de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>
+   puede ser compilado como módulo o estáticamente.
+  </P
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN131722"
+></A
+><P
+><B
+>Tabla N-1. 
+     Opciones de contexto para los
+     transportes <VAR
+CLASS="literal"
+>ssl://</VAR
+> y <VAR
+CLASS="literal"
+>tls://</VAR
+>
+     (a partir de <VAR
+CLASS="literal"
+>PHP 4.3.2</VAR
+>)
+    </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Uso</TH
+><TH
+>Predeterminado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>verify_peer</VAR
+></TD
+><TD
+>&#13;        <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+        Requerir verificación del certificado SSL usado.
+       </TD
+><TD
+><TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>allow_self_signed</VAR
+></TD
+><TD
+>&#13;        <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+        Permitir certificados firmados por uno mismo.
+       </TD
+><TD
+><TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+></TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>cafile</VAR
+></TD
+><TD
+>&#13;        Ubicación del archivo de Autoridad de Certificado en un
+        sistema de archivos local, el cual debe ser usado con la
+        opción de contexto <VAR
+CLASS="literal"
+>verify_peer</VAR
+> para
+        verificar la identidad del conector remoto.
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>capath</VAR
+></TD
+><TD
+>&#13;        Si no se especifica <VAR
+CLASS="literal"
+>cafile</VAR
+> o el certificado
+        no se encuentra allí, el directorio apuntado
+        por <VAR
+CLASS="literal"
+>capath</VAR
+> es usado para buscar un
+        certificado apropiado. <VAR
+CLASS="literal"
+>capath</VAR
+> debe ser un
+        directorio de certificados correctamente habilitado mediante
+        resumen criptográfico.
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>local_cert</VAR
+></TD
+><TD
+>&#13;        Ruta al archivo de certificado local en el sistema de
+        archivos. Debe ser un archivo codificado mediante PEM, el cual
+        contenga su certificado y llave privada. Opcionalmente, puede
+        contener la cadena de expendedores del certificado.
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>passphrase</VAR
+></TD
+><TD
+>&#13;        La contraseña con la que el
+        archivo <VAR
+CLASS="literal"
+>local_cert</VAR
+> fue codificado.
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>CN_match</VAR
+></TD
+><TD
+>&#13;        El nombre común (Common Name) que estamos
+        esperando. PHP realizará comparaciones limitadas de
+        comodines. Si el nombre común no produce coincidencias,
+        el intento de conexión fallará.
+       </TD
+><TD
+>&nbsp;</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Debido a que <VAR
+CLASS="literal"
+>ssl://</VAR
+> es el transporte base para
+   las envolturas <A
+HREF="wrappers.http.html"
+><VAR
+CLASS="literal"
+>https://</VAR
+></A
+> y <A
+HREF="wrappers.ftp.html"
+><VAR
+CLASS="literal"
+>ftps://</VAR
+></A
+>, cualquier
+   opción de contexto que se aplique
+   a <VAR
+CLASS="literal"
+>ssl://</VAR
+> también se aplica a
+   <VAR
+CLASS="literal"
+>https://</VAR
+> y <VAR
+CLASS="literal"
+>ftps://</VAR
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="filters.compression.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="transports.unix.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Compression Filters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="appendixes.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Dominio Unix: Unix y UDG</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,1597 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>New Object Model</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Migrating from PHP 4 to PHP 5"
+HREF="migration5.html"><LINK
+REL="PREVIOUS"
+TITLE="Databases"
+HREF="migration5.databases.html"><LINK
+REL="NEXT"
+TITLE="Error Reporting"
+HREF="migrating5.errorrep.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration5.databases.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice B. Migrating from PHP 4 to PHP 5</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="migrating5.errorrep.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration5.oop"
+>New Object Model</A
+></H1
+><P
+>&#13;    In PHP 5 there is a new Object Model. PHP's handling of objects has been
+    completely rewritten, allowing for better performance and more features.
+    In previous versions of PHP, objects were handled like primitive types
+    (for instance integers and strings). The drawback of this method was that
+    semantically the whole object was copied when a variable was assigned, or
+    pass as a parameter to a method. In the new approach, objects are
+    referenced by handle, and not by value (one can think of a handle as an
+    object's identifier).
+   </P
+><P
+>&#13;    Many PHP programmers aren't even aware of the copying quirks of the old
+    object model and, therefore, the majority of PHP applications will work
+    out of the box, or with very few modifications.
+   </P
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration.oop.members"
+>Private and Protected Members</A
+></H2
+><P
+>&#13;     PHP 5 introduces private and protected member variables, they allow you
+     to define the visibility of class properties.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123196"
+></A
+><P
+><B
+>Ejemplo B-4. Private and Protected Members accesibility</B
+></P
+><P
+>&#13;      Protected member variables can be accessed in classes extending the
+      class they are declared in, whereas private member variables can only be
+      accessed by the class they belong to.
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">MyClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">private $Hello </font><font color="#007700">= </font><font color="#DD0000">"Hello, World!\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">protected $Bar </font><font color="#007700">= </font><font color="#DD0000">"Hello, Foo!\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">protected $Foo </font><font color="#007700">= </font><font color="#DD0000">"Hello, Bar!\n"</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">printHello</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"MyClass::printHello() " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">Hello</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"MyClass::printHello() " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"MyClass::printHello() " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">Foo</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class </font><font color="#0000BB">MyClass2 </font><font color="#007700">extends </font><font color="#0000BB">MyClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">protected $Foo</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">printHello</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">MyClass</font><font color="#007700">::</font><font color="#0000BB">printHello</font><font color="#007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Should print */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">print </font><font color="#DD0000">"MyClass2::printHello() " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">Hello</font><font color="#007700">; </font><font color="#FF8000">/* Shouldn't print out anything */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">print </font><font color="#DD0000">"MyClass2::printHello() " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print (not declared)*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">print </font><font color="#DD0000">"MyClass2::printHello() " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">Foo</font><font color="#007700">;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Should print */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">MyClass</font><font color="#007700">();<br />print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">Hello</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print out anything */<br /></font><font color="#007700">print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print out anything */<br /></font><font color="#007700">print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">Foo</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print out anything */<br /></font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">printHello</font><font color="#007700">(); </font><font color="#FF8000">/* Should print */<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">MyClass2</font><font color="#007700">();<br />print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">Hello</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print out anything */<br /></font><font color="#007700">print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">Bar</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print out anything */<br /></font><font color="#007700">print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">Foo</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Shouldn't print out anything */<br /></font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">printHello</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration.oop.methods"
+>Private and Protected Methods</A
+></H2
+><P
+>&#13;     With PHP 5, private and protected methods are also introduced.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123203"
+></A
+><P
+><B
+>Ejemplo B-5. Protected methods example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">private </font><font color="#007700">function </font><font color="#0000BB">aPrivateMethod</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Foo::aPrivateMethod() called.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">protected </font><font color="#007700">function </font><font color="#0000BB">aProtectedMethod</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Foo::aProtectedMethod() called.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">aPrivateMethod</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class </font><font color="#0000BB">Bar </font><font color="#007700">extends </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public </font><font color="#007700">function </font><font color="#0000BB">aPublicMethod</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Bar::aPublicMethod() called.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">aProtectedMethod</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$o </font><font color="#007700">= new </font><font color="#0000BB">Bar</font><font color="#007700">;<br /></font><font color="#0000BB">$o</font><font color="#007700">-&gt;</font><font color="#0000BB">aPublicMethod</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Old code that has no user-defined classes or functions named 
+     "public", "protected" or "private" should
+     run without modifications.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration.oop.abstract"
+>Abstract Classes and Methods</A
+></H2
+><P
+>&#13;     PHP 5 also introduces abstract classes and methods. An abstract method
+     only declares the method's signature and does not provide an
+     implementation. A class that contains abstract methods needs to be
+     declared abstract.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123210"
+></A
+><P
+><B
+>Ejemplo B-6. Abstract class example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />abstract </font><font color="#007700">class </font><font color="#0000BB">AbstractClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">abstract public </font><font color="#007700">function </font><font color="#0000BB">test</font><font color="#007700">();<br />}<br /><br />class </font><font color="#0000BB">ImplementedClass </font><font color="#007700">extends </font><font color="#0000BB">AbstractClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public </font><font color="#007700">function </font><font color="#0000BB">test</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"ImplementedClass::test() called.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$o </font><font color="#007700">= new </font><font color="#0000BB">ImplementedClass</font><font color="#007700">;<br /></font><font color="#0000BB">$o</font><font color="#007700">-&gt;</font><font color="#0000BB">test</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Abstract classes cannot be instantiated. Old code that has no
+     user-defined classes or functions named 'abstract' should run without
+     modifications.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration.oop.interfaces"
+>Interfaces</A
+></H2
+><P
+>&#13;     PHP 5 introduces interfaces. A class may implement an arbitrary list of
+     interfaces.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123217"
+></A
+><P
+><B
+>Ejemplo B-7. Interface example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />interface Throwable </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public </font><font color="#007700">function </font><font color="#0000BB">getMessage</font><font color="#007700">();<br />}<br /><br />class </font><font color="#0000BB">MyException implements Throwable </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public </font><font color="#007700">function </font><font color="#0000BB">getMessage</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ...<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Old code that has no user-defined classes or functions named 'interface'
+     or 'implements' should run without modifications. 
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration.oop.typehints"
+>Class Type Hints</A
+></H2
+><P
+>&#13;     While remaining loosely typed PHP 5 introduces the ability to use class
+     type hints to declare the expected class of objects that are passed as
+     parameters to a method.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123224"
+></A
+><P
+><B
+>Ejemplo B-8. Class type hinting example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />interface Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">a</font><font color="#007700">(</font><font color="#0000BB">Foo $foo</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">interface Bar </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">b</font><font color="#007700">(</font><font color="#0000BB">Bar $bar</font><font color="#007700">);<br />}<br /><br />class </font><font color="#0000BB">FooBar implements Foo</font><font color="#007700">, </font><font color="#0000BB">Bar </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">a</font><font color="#007700">(</font><font color="#0000BB">Foo $foo</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ...<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">b</font><font color="#007700">(</font><font color="#0000BB">Bar $bar</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ...<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br />}<br /><br /></font><font color="#0000BB">$a </font><font color="#007700">= new </font><font color="#0000BB">FooBar</font><font color="#007700">;<br /></font><font color="#0000BB">$b </font><font color="#007700">= new </font><font color="#0000BB">FooBar</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$a</font><font color="#007700">-&gt;</font><font color="#0000BB">a</font><font color="#007700">(</font><font color="#0000BB">$b</font><font color="#007700">);<br /></font><font color="#0000BB">$a</font><font color="#007700">-&gt;</font><font color="#0000BB">b</font><font color="#007700">(</font><font color="#0000BB">$b</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     These class type hints are not checked upon compilation, as would be the
+     case in a typed language, but during runtime. This means that: 
+    </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN123228"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">foo</font><font color="#007700">(</font><font color="#0000BB">ClassName $object</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ...<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>is equivalent to:</P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN123231"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">foo</font><font color="#007700">(</font><font color="#0000BB">$object</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if (!(</font><font color="#0000BB">$object instanceof ClassName</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(</font><font color="#DD0000">"Argument 1 must be an instance of ClassName"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.final"
+>final</A
+></H2
+><P
+>&#13;     PHP 5 introduces the "final" keyword to declare final members and
+     methods. Methods and members declared final cannot be overridden by
+     sub-classes.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123236"
+></A
+><P
+><B
+>Ejemplo B-9. final method</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">final </font><font color="#007700">function </font><font color="#0000BB">bar</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ...<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     It is furthermore possible to make a class final. Doing this prevents a
+     class from being specialized (it cannot be inherited by another class).
+     There's no need to declare the methods of a final class themselves as
+     final.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123240"
+></A
+><P
+><B
+>Ejemplo B-10. final class</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />final </font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// class definition<br /></font><font color="#007700">}<br /><br /></font><font color="#FF8000">// the next line is impossible<br />// class Bork extends Foo {}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Properties can not be final.
+    </P
+><P
+>&#13;     Old code that has no user-defined classes or functions named 'final'
+     should run without modifications.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.cloning"
+>Objects Cloning</A
+></H2
+><P
+>&#13;     PHP 4 offered no way a user could decide what copy constructor to run
+     when an object is duplicated. During duplication, PHP 4 did a bit for bit
+     copy making an identical replica of all the object's properties.
+    </P
+><P
+>&#13;     Creating a copy of an object with fully replicated properties is not
+     always the wanted behavior. A good example of the need for copy
+     constructors, is if you have an object which represents a GTK window and
+     the object holds the resource of this GTK window, when you create a
+     duplicate you might want to create a new window with the same properties
+     and have the new object hold the resource of the new window. Another
+     example is if your object holds a reference to another object which it
+     uses and when you replicate the parent object you want to create a new
+     instance of this other object so that the replica has its own separate
+     copy.
+    </P
+><P
+>&#13;     An object copy is created by using the clone keyword (which calls the
+     object's <B
+CLASS="function"
+>__clone()</B
+> method if possible). An object's 
+     <B
+CLASS="function"
+>__clone()</B
+>  method cannot be called directly. 
+    </P
+><P
+>&#13;     When the developer asks to create a new copy of an object, PHP 5 will
+     check if a <B
+CLASS="function"
+>__clone()</B
+> method has been defined or not. 
+     If not, it will call a default __clone() which will copy all of the object's
+     properties. If a <B
+CLASS="function"
+>__clone()</B
+> method is defined, then it
+     will be responsible to set the necessary properties in the created object.
+     For convenience, the engine will supply a function that imports all of the
+     properties from the source object, so that they can start with a by-value
+     replica of the source object, and only override properties that need to be
+     changed.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123255"
+></A
+><P
+><B
+>Ejemplo B-11. Objects cloning</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">MyCloneable </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;static </font><font color="#0000BB">$id </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">MyCloneable</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">id </font><font color="#007700">= </font><font color="#0000BB">self</font><font color="#007700">::</font><font color="#0000BB">$id</font><font color="#007700">++;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__clone</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">address </font><font color="#007700">= </font><font color="#DD0000">"New York"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">id </font><font color="#007700">= </font><font color="#0000BB">self</font><font color="#007700">::</font><font color="#0000BB">$id</font><font color="#007700">++;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">MyCloneable</font><font color="#007700">();<br /><br /></font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">name </font><font color="#007700">= </font><font color="#DD0000">"Hello"</font><font color="#007700">;<br /></font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">address </font><font color="#007700">= </font><font color="#DD0000">"Tel-Aviv"</font><font color="#007700">;<br /><br />print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">id </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$obj_cloned </font><font color="#007700">= </font><font color="#0000BB">clone $obj</font><font color="#007700">;<br /><br />print </font><font color="#0000BB">$obj_cloned</font><font color="#007700">-&gt;</font><font color="#0000BB">id </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />print </font><font color="#0000BB">$obj_cloned</font><font color="#007700">-&gt;</font><font color="#0000BB">name </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />print </font><font color="#0000BB">$obj_cloned</font><font color="#007700">-&gt;</font><font color="#0000BB">address </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.constructors"
+>Constructors</A
+></H2
+><P
+>&#13;     PHP 5 allows developers to declare constructor methods for classes.
+     Classes which have a constructor method call this method on each
+     newly-created object, so it is suitable for any initialization that the
+     object may need before it is used.
+    </P
+><P
+>&#13;     With PHP 4, constructor methods were class methods that had the same name
+     as the class itself. Since it is very common to call parent constructors
+     from derived classes, the way PHP 4 worked made it a bit cumbersome to
+     move classes around in a large class hierarchy. If a class is moved to
+     reside under a different parent, the constructor name of that parent
+     changes as well, and the code in the derived class that calls the parent
+     constructor has to be modified.
+    </P
+><P
+>&#13;     PHP 5 introduces a standard way of declaring constructor methods by
+     calling them by the name <B
+CLASS="function"
+>__construct()</B
+>.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123264"
+></A
+><P
+><B
+>Ejemplo B-12. using new unified constructors</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">BaseClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__construct</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"In BaseClass constructor\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class </font><font color="#0000BB">SubClass </font><font color="#007700">extends </font><font color="#0000BB">BaseClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__construct</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">parent</font><font color="#007700">::</font><font color="#0000BB">__construct</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"In SubClass constructor\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">BaseClass</font><font color="#007700">();<br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">SubClass</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     For backwards compatibility, if PHP 5 cannot find a 
+     <B
+CLASS="function"
+>__construct()</B
+> function for a given class, it will
+     search for the old-style constructor function, by the name of the class.
+     Effectively, it means that the only case that would have compatibility
+     issues is if the class had a method named 
+     <B
+CLASS="function"
+>__construct()</B
+> which was used for different semantics.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.destructors"
+>Destructors</A
+></H2
+><P
+>&#13;     Having the ability to define destructors for objects can be very useful.
+     Destructors can log messages for debugging, close database connections
+     and do other clean-up work. No mechanism for object destructors existed
+     in PHP 4, although PHP had already support for registering functions
+     which should be run on request shutdown.
+    </P
+><P
+>&#13;     PHP 5 introduces a destructor concept similar to that of other
+     object-oriented languages, such as Java: When the last reference to an
+     object is destroyed the object's destructor, which is a class method
+     named <B
+CLASS="function"
+>__destruct()</B
+>  that receives no parameters, is
+     called before the object is freed from memory.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123275"
+></A
+><P
+><B
+>Ejemplo B-13. Destructor</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">MyDestructableClass </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__construct</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"In constructor\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">name </font><font color="#007700">= </font><font color="#DD0000">"MyDestructableClass"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__destruct</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Destroying " </font><font color="#007700">. </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">name </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">MyDestructableClass</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Like constructors, parent destructors will not be called implicitly by
+     the engine. In order to run a parent destructor, one would have to
+     explicitly call <B
+CLASS="function"
+>parent::__destruct()</B
+> in the destructor
+     body.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.constants"
+>Constants</A
+></H2
+><P
+>&#13;     PHP 5 introduces per-class constants:
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123283"
+></A
+><P
+><B
+>Ejemplo B-14. Class constant example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;const </font><font color="#0000BB">constant </font><font color="#007700">= </font><font color="#DD0000">"constant"</font><font color="#007700">;<br />}<br /><br />echo </font><font color="#DD0000">"Foo::constant = " </font><font color="#007700">. </font><font color="#0000BB">Foo</font><font color="#007700">::</font><font color="#0000BB">constant </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Old code that has no user-defined classes or functions named 'const'
+     will run without modifications.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.exceptions"
+>Exceptions</A
+></H2
+><P
+>&#13;     PHP 4 had no exception handling. PHP 5 introduces a exception model
+     similar to that of other programming languages. Note that there is
+     support for "catch all" but not for the "finally" clause.
+    </P
+><P
+>&#13;     Exceptions can be rethrown in catch blocks. Also it is possible to have
+     multiple catch blocks. In that case the caught exception is compared with
+     the classtype of each catch block from top to bottom and the first block
+     that has an 'instanceof' match gets executed. When the catch block
+     finishes, execution continues at the end of the last catch block. If no
+     catch block has an 'instanceof' match then the next try/catch block is
+     searched until no more try/catch blocks are available. In that case the
+     exception is an uncaught exception and the program terminates with
+     showing the exception.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123291"
+></A
+><P
+><B
+>Ejemplo B-15. Exception creation example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />try </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">throw </font><font color="#007700">new </font><font color="#0000BB">Exception</font><font color="#007700">(</font><font color="#DD0000">'Hello'</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">catch </font><font color="#007700">(</font><font color="#0000BB">Exception $exception</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$exception</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Old code that has no user-defined classes or functions 'catch', 'throw'
+     and 'try' will run without modifications.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.dereferencing"
+>Dereferencing objects returned from functions</A
+></H2
+><P
+>&#13;     In PHP 4 it wasn't possible to dereference objects returned by functions
+     and make further method calls on those objects. With PHP 5, the following
+     is now possible:
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123298"
+></A
+><P
+><B
+>Ejemplo B-16. Dereferencing example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Circle </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">draw</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Circle\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />class </font><font color="#0000BB">Square </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">draw</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Square\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />function </font><font color="#0000BB">ShapeFactoryMethod</font><font color="#007700">(</font><font color="#0000BB">$shape</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;switch (</font><font color="#0000BB">$shape</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#DD0000">"Circle"</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new </font><font color="#0000BB">Circle</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#DD0000">"Square"</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new </font><font color="#0000BB">Square</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">ShapeFactoryMethod</font><font color="#007700">(</font><font color="#DD0000">"Circle"</font><font color="#007700">)-&gt;</font><font color="#0000BB">draw</font><font color="#007700">();<br /></font><font color="#0000BB">ShapeFactoryMethod</font><font color="#007700">(</font><font color="#DD0000">"Square"</font><font color="#007700">)-&gt;</font><font color="#0000BB">draw</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.staticinit"
+>Static member variables initialization</A
+></H2
+><P
+>&#13;     Static member variables of static classes can now be initialized.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123304"
+></A
+><P
+><B
+>Ejemplo B-17. Static variable initialization example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;static </font><font color="#0000BB">$my_static </font><font color="#007700">= </font><font color="#0000BB">5</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $my_prop </font><font color="#007700">= </font><font color="#DD0000">'bla'</font><font color="#007700">;<br />}<br /><br />print </font><font color="#0000BB">foo</font><font color="#007700">::</font><font color="#0000BB">$my_static</font><font color="#007700">;<br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">foo</font><font color="#007700">;<br />print </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">my_prop</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.staticmethods"
+>Static Methods</A
+></H2
+><P
+>&#13;     PHP 5 introduces the 'static' keyword to declare a method static, thus
+     callable from outside the object context.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123310"
+></A
+><P
+><B
+>Ejemplo B-18.  Static Methods example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public </font><font color="#007700">static function </font><font color="#0000BB">aStaticMethod</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// ...<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br />}<br /><br /></font><font color="#0000BB">Foo</font><font color="#007700">::</font><font color="#0000BB">aStaticMethod</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     The pseudo variable $this is not available inside a method that has been
+     declared static.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.instanceof"
+>instanceof</A
+></H2
+><P
+>&#13;     PHP 5 introduces the <VAR
+CLASS="literal"
+>instanceof</VAR
+> keyword, that 
+     allows you to ascertain whether or not an object is an instance of
+     a class, or extends a class, or implements an interface.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123318"
+></A
+><P
+><B
+>Ejemplo B-19. <VAR
+CLASS="literal"
+>instanceof</VAR
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">baseClass </font><font color="#007700">{ }<br /><br /></font><font color="#0000BB">$a </font><font color="#007700">= new </font><font color="#0000BB">baseClass</font><font color="#007700">;<br /><br />if (</font><font color="#0000BB">$a instanceof baseClass</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Hello World"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.staticvars"
+>Static function variables</A
+></H2
+><P
+>&#13;     Statics are now treated at compile-time which allows developers to
+     assign variables to statics by reference. This change also greatly
+     improves their performance but means that indirect references to statics
+     will not work anymore.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.refparams"
+>Parameters passed by reference</A
+></H2
+><P
+>&#13;     Parameters that are passed by reference to a function may now have
+     default values
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123328"
+></A
+><P
+><B
+>Ejemplo B-20. </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">my_function</font><font color="#007700">(&amp;</font><font color="#0000BB">$var </font><font color="#007700">= </font><font color="#0000BB">null</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$var </font><font color="#007700">=== </font><font color="#0000BB">null</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(</font><font color="#DD0000">"$var needs to have a value"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.autoload"
+><B
+CLASS="function"
+>__autoload()</B
+></A
+></H2
+><P
+>&#13;     The <B
+CLASS="function"
+>__autoload()</B
+> interceptor function will be 
+     automatically called when an undeclared class is to be instantiated. 
+     The name of that class will be passed to the <B
+CLASS="function"
+>__autoload()</B
+>
+     interceptor function as its only argument.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123337"
+></A
+><P
+><B
+>Ejemplo B-21. <B
+CLASS="function"
+>__autoload()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">__autoload</font><font color="#007700">(</font><font color="#0000BB">$className</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;include_once </font><font color="#0000BB">$className </font><font color="#007700">. </font><font color="#DD0000">".php"</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">$object </font><font color="#007700">= new </font><font color="#0000BB">ClassName</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.overload"
+>Overloadable Method calls and Property accesses</A
+></H2
+><P
+>&#13;      Both method calls and property accesses can be overloaded via the
+      <B
+CLASS="function"
+>__call()</B
+>, <B
+CLASS="function"
+>__get()</B
+> and
+      <B
+CLASS="function"
+>__set()</B
+> methods. 
+     </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123347"
+></A
+><P
+><B
+>Ejemplo B-22. 
+       <B
+CLASS="function"
+>__get()</B
+> and
+       <B
+CLASS="function"
+>__set()</B
+>
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Setter </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $n</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $x </font><font color="#007700">= array(</font><font color="#DD0000">"a" </font><font color="#007700">=&gt; </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#DD0000">"b" </font><font color="#007700">=&gt; </font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#DD0000">"c" </font><font color="#007700">=&gt; </font><font color="#0000BB">3</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__get</font><font color="#007700">(</font><font color="#0000BB">$nm</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Getting </font><font color="#007700">[</font><font color="#DD0000">$nm</font><font color="#007700">]\n</font><font color="#DD0000">"</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (isset(</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x</font><font color="#007700">[</font><font color="#0000BB">$nm</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$r </font><font color="#007700">= </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x</font><font color="#007700">[</font><font color="#0000BB">$nm</font><font color="#007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Returning: $r</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$r</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Nothing!\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__set</font><font color="#007700">(</font><font color="#0000BB">$nm</font><font color="#007700">, </font><font color="#0000BB">$val</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Setting </font><font color="#007700">[</font><font color="#DD0000">$nm</font><font color="#007700">]</font><font color="#DD0000"> to $val</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (isset(</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x</font><font color="#007700">[</font><font color="#0000BB">$nm</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x</font><font color="#007700">[</font><font color="#0000BB">$nm</font><font color="#007700">] = </font><font color="#0000BB">$val</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"OK!\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Not OK!\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /><br /></font><font color="#0000BB">$foo </font><font color="#007700">= new </font><font color="#0000BB">Setter</font><font color="#007700">();<br /></font><font color="#0000BB">$foo</font><font color="#007700">-&gt;</font><font color="#0000BB">n </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br /></font><font color="#0000BB">$foo</font><font color="#007700">-&gt;</font><font color="#0000BB">a </font><font color="#007700">= </font><font color="#0000BB">100</font><font color="#007700">;<br /></font><font color="#0000BB">$foo</font><font color="#007700">-&gt;</font><font color="#0000BB">a</font><font color="#007700">++;<br /></font><font color="#0000BB">$foo</font><font color="#007700">-&gt;</font><font color="#0000BB">z</font><font color="#007700">++;<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$foo</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123352"
+></A
+><P
+><B
+>Ejemplo B-23. <B
+CLASS="function"
+>__get()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Caller </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">private $x </font><font color="#007700">= array(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__call</font><font color="#007700">(</font><font color="#0000BB">$m</font><font color="#007700">, </font><font color="#0000BB">$a</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Method $m called:</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$foo </font><font color="#007700">= new </font><font color="#0000BB">Caller</font><font color="#007700">();<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">$foo</font><font color="#007700">-&gt;</font><font color="#0000BB">test</font><font color="#007700">(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#DD0000">"2"</font><font color="#007700">, </font><font color="#0000BB">3.4</font><font color="#007700">, </font><font color="#0000BB">true</font><font color="#007700">);<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration5.oop.iteration"
+>Iteration</A
+></H2
+><P
+>&#13;     Objects may be iterated in an overloaded way when used with foreach. The
+     default behavior is to iterate over all properties.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123359"
+></A
+><P
+><B
+>Ejemplo B-24. Object iteration example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $x </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $y </font><font color="#007700">= </font><font color="#0000BB">2</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">Foo</font><font color="#007700">;<br /><br />foreach (</font><font color="#0000BB">$obj </font><font color="#007700">as </font><font color="#0000BB">$prp_name </font><font color="#007700">=&gt; </font><font color="#0000BB">$prop_value</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// using the property<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Each class whose instances can be iterated with foreach should implement
+     the empty interface <VAR
+CLASS="literal"
+>Traversable</VAR
+>. Hence any object that
+     says it implements <VAR
+CLASS="literal"
+>Traversable</VAR
+> can be used with foreach. 
+    </P
+><P
+>&#13;     The interfaces <VAR
+CLASS="literal"
+>IteratorAggregate</VAR
+> and <VAR
+CLASS="literal"
+>Iterator</VAR
+>
+     allows you to specify how class objects are iterated in PHP code. The first
+     of them simply has a method <B
+CLASS="function"
+>getIterator()</B
+> which must
+     return an array or an object that either implements the interface 
+     <VAR
+CLASS="literal"
+>Iterator</VAR
+>  or is instantiated from an internal
+     class that can be iterated
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123370"
+></A
+><P
+><B
+>Ejemplo B-25. Iterator creation example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">ObjectIterator implements Iterator </font><font color="#007700">{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">private $obj</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">private $num</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__construct</font><font color="#007700">(</font><font color="#0000BB">$obj</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">obj </font><font color="#007700">= </font><font color="#0000BB">$obj</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">rewind</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">num </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">valid</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">num </font><font color="#007700">&lt; </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">obj</font><font color="#007700">-&gt;</font><font color="#0000BB">max</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">key</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">num</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">current</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">num</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">0</font><font color="#007700">: return </font><font color="#DD0000">"1st"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">1</font><font color="#007700">: return </font><font color="#DD0000">"2nd"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">2</font><font color="#007700">: return </font><font color="#DD0000">"3rd"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default: return </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">num</font><font color="#007700">.</font><font color="#DD0000">"th"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">next</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">num</font><font color="#007700">++;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class </font><font color="#0000BB">Object implements IteratorAggregate </font><font color="#007700">{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $max </font><font color="#007700">= </font><font color="#0000BB">3</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">getIterator</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new </font><font color="#0000BB">ObjectIterator</font><font color="#007700">(</font><font color="#0000BB">$this</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">Object</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// this foreach ...<br /></font><font color="#007700">foreach(</font><font color="#0000BB">$obj </font><font color="#007700">as </font><font color="#0000BB">$key </font><font color="#007700">=&gt; </font><font color="#0000BB">$val</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$key = $val</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// matches the following 7 lines with the for directive.<br /></font><font color="#0000BB">$it </font><font color="#007700">= </font><font color="#0000BB">$obj</font><font color="#007700">-&gt;</font><font color="#0000BB">getIterator</font><font color="#007700">();<br />for(</font><font color="#0000BB">$it</font><font color="#007700">-&gt;</font><font color="#0000BB">rewind</font><font color="#007700">(); </font><font color="#0000BB">$it</font><font color="#007700">-&gt;</font><font color="#0000BB">valid</font><font color="#007700">(); </font><font color="#0000BB">$it</font><font color="#007700">-&gt;</font><font color="#0000BB">next</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$key </font><font color="#007700">= </font><font color="#0000BB">$it</font><font color="#007700">-&gt;</font><font color="#0000BB">current</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$val </font><font color="#007700">= </font><font color="#0000BB">$it</font><font color="#007700">-&gt;</font><font color="#0000BB">key</font><font color="#007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$key = $val</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br />unset(</font><font color="#0000BB">$it</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migrating5.oop.methodconst"
+><VAR
+CLASS="literal"
+>__METHOD__</VAR
+> constant</A
+></H2
+><P
+>&#13;     The new <VAR
+CLASS="literal"
+>__METHOD__</VAR
+> pseudo constant shows the current
+     class and method when used inside a method and the function when used outside
+     of a class.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123378"
+></A
+><P
+><B
+>Ejemplo B-26. <VAR
+CLASS="literal"
+>__METHOD__</VAR
+> use example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">show</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">__METHOD__</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />class </font><font color="#0000BB">Bar </font><font color="#007700">extends </font><font color="#0000BB">Foo </font><font color="#007700">{<br />}<br /><br /></font><font color="#0000BB">Foo</font><font color="#007700">::</font><font color="#0000BB">show</font><font color="#007700">(); </font><font color="#FF8000">// outputs Foo::show<br /></font><font color="#0000BB">Bar</font><font color="#007700">::</font><font color="#0000BB">show</font><font color="#007700">(); </font><font color="#FF8000">// outputs Foo::show either since __METHOD__ is<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// compile-time evaluated token<br /><br /></font><font color="#007700">function </font><font color="#0000BB">test</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">__METHOD__</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">test</font><font color="#007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// outputs test<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migrating5.oop.tostring"
+><B
+CLASS="function"
+>__toString()</B
+> method</A
+></H2
+><P
+>&#13;     The new <B
+CLASS="function"
+>__toString()</B
+> magic method allows you to
+     overload the object to string conversion.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123387"
+></A
+><P
+><B
+>Ejemplo B-27. <B
+CLASS="function"
+>__toString()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">__toString</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#DD0000">"What ever"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">Foo</font><font color="#007700">;<br /><br />echo </font><font color="#0000BB">$obj</font><font color="#007700">; </font><font color="#FF8000">// call __toString()<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migrating5.oop.reflection"
+>Reflection API</A
+></H2
+><P
+>&#13;     PHP 5 comes with a complete reflection API that adds the ability to
+     reverse-engineer classes, interfaces, functions and methods as well as
+     extensions.
+    </P
+><P
+>&#13;     The reflection API also offers ways of getting doc comments for
+     functions, classes and methods. 
+    </P
+><P
+>&#13;     Nearly all aspects of object oriented code can be reflected by using the
+     reflection API which is 
+     <A
+HREF="http://sitten-polizei.de/php/reflection_api/docs/language.reflection.html"
+TARGET="_top"
+>&#13;     documented separately</A
+>.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123397"
+></A
+><P
+><B
+>Ejemplo B-28. Reflection API use example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Foo </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">public $prop</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">Func</font><font color="#007700">(</font><font color="#0000BB">$name</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Hello $name"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">reflectionClass</font><font color="#007700">::</font><font color="#0000BB">export</font><font color="#007700">(</font><font color="#DD0000">'Foo'</font><font color="#007700">);<br /></font><font color="#0000BB">reflectionObject</font><font color="#007700">::</font><font color="#0000BB">export</font><font color="#007700">(new </font><font color="#0000BB">Foo</font><font color="#007700">);<br /></font><font color="#0000BB">reflectionMethod</font><font color="#007700">::</font><font color="#0000BB">export</font><font color="#007700">(</font><font color="#DD0000">'Foo'</font><font color="#007700">, </font><font color="#DD0000">'func'</font><font color="#007700">);<br /></font><font color="#0000BB">reflectionProperty</font><font color="#007700">::</font><font color="#0000BB">export</font><font color="#007700">(</font><font color="#DD0000">'Foo'</font><font color="#007700">, </font><font color="#DD0000">'prop'</font><font color="#007700">);<br /></font><font color="#0000BB">reflectionExtension</font><font color="#007700">::</font><font color="#0000BB">export</font><font color="#007700">(</font><font color="#DD0000">'standard'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration5.databases.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="migrating5.errorrep.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Databases</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="migration5.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Error Reporting</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

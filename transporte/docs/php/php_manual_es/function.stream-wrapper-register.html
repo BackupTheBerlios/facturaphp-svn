@@ -1,0 +1,1107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_wrapper_register</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_socket_server"
+HREF="function.stream-socket-server.html"><LINK
+REL="NEXT"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-server.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-wrapper-register"
+></A
+>stream_wrapper_register</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104946"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.2, PHP 5)</P
+>stream_wrapper_register&nbsp;--&nbsp;Registrar una envoltura URL implementada como una
+    clase PHP</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104949"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>stream_wrapper_register</B
+> ( string protocolo, string nombre_clase)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>stream_wrapper_register()</B
+> le permite
+     implementar sus propios gestores y secuencias de protocolo para
+     su uso con todas las funciones de sistema de archivos (tales como
+     <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>, <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+> etc.).
+    </P
+><P
+>&#13;     Para implementar una envoltura, necesita definir una clase con un
+     número de funciones miembro, tal y como se define
+     más adelante. Cuando alguien abre su secuencia mediante
+     fopen, PHP creará una instancia de
+     <VAR
+CLASS="parameter"
+>nombre_clase</VAR
+> y luego llamará
+     algunos métodos en esa instancia. Debe implementar los
+     métodos exactamente como se describe a continuación
+     - de no ser así, producirá comportamientos
+     indefinidos.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      A partir de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>, la instancia de
+      <VAR
+CLASS="parameter"
+>nombre_clase</VAR
+> será poblada con una
+      propiedad <VAR
+CLASS="parameter"
+>contexto</VAR
+> que hace referencia a
+      un <VAR
+CLASS="literal"
+>Recurso de Contexto</VAR
+>, el cual puede
+      obtenerse con
+      <A
+HREF="function.stream-context-get-options.html"
+><B
+CLASS="function"
+>stream_context_get_options()</B
+></A
+>. Si no se ha
+      pasado ningún contexto a la función de
+      creación de secuencia, <VAR
+CLASS="parameter"
+>contexto</VAR
+>
+      será definido como <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <B
+CLASS="function"
+>stream_wrapper_register()</B
+> devolverá
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si el <VAR
+CLASS="parameter"
+>protocolo</VAR
+> ya tiene un
+     gestor.
+    </P
+>bool <B
+CLASS="methodname"
+>stream_open</B
+> ( string ruta, string modo, int opciones, string ruta_abierta)<BR
+></BR
+><P
+>&#13;     Este método es llamado inmediatamente después de
+     que su objeto de secuencia es creado. <VAR
+CLASS="parameter"
+>ruta</VAR
+>
+     especifica la URL pasada a <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> y que
+     éste objeto supuestamente debe recuperar. Puede
+     usar <A
+HREF="function.parse-url.html"
+><B
+CLASS="function"
+>parse_url()</B
+></A
+> para separar la ruta.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>modo</VAR
+> es el modo usado para abrir el
+     archivo, tal y como se proporciona
+     en <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>. Usted es responsable por el
+     chequeo de la validez del <VAR
+CLASS="parameter"
+>modo</VAR
+> para
+     la <VAR
+CLASS="parameter"
+>ruta</VAR
+> solicitada.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>opciones</VAR
+> contiene banderas adicionales
+     definidas por la interfaz de programación de las
+     secuencias. Puede contener uno o más de los siguientes
+     valores, unidos mediante la operación lógica OR.
+     <DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN105005"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Bandera</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>STREAM_USE_PATH</TD
+><TD
+>&#13;         Si <VAR
+CLASS="parameter"
+>ruta</VAR
+> es relativa, buscar por el
+         recurso usando include_path.
+         </TD
+></TR
+><TR
+><TD
+>STREAM_REPORT_ERRORS</TD
+><TD
+>&#13;          Si esta bandera está activa, usted se hace
+          responsable por la generación de errores
+          usando <A
+HREF="function.trigger-error.html"
+><B
+CLASS="function"
+>trigger_error()</B
+></A
+> durante la
+          apertura de la secuencia. Si esta bandera no está
+          definida, no debe generar ningún error.
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     Si la <VAR
+CLASS="parameter"
+>ruta</VAR
+> es abierta satisfactoriamente,
+     y STREAM_USE_PATH es definida en <VAR
+CLASS="parameter"
+>opciones</VAR
+>,
+     usted debe definir <VAR
+CLASS="parameter"
+>ruta_abierta</VAR
+> como la
+     ruta completa hacia el archivo/recurso que fue abierto en
+     realidad.
+    </P
+><P
+>&#13;     Si el recurso solicitado fue abierto satisfactoriamente, debe
+     devolver <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> de lo contrario.
+    </P
+>void <B
+CLASS="methodname"
+>stream_close</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado cuando la secuencia es cerrada,
+     usando
+     <A
+HREF="function.fclose.html"
+><B
+CLASS="function"
+>fclose()</B
+></A
+>. Debe liberar cualquier recurso que
+     haya sido bloqueado o reservado por la secuencia.
+    </P
+>string <B
+CLASS="methodname"
+>stream_read</B
+> ( int conteo)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+> y <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+> en la
+     secuencia. Usted debe devolver
+     hasta <VAR
+CLASS="parameter"
+>conteo</VAR
+> bytes de datos desde su
+     posición actual de lectura/escritura como una cadena. Si
+     hay menos de <VAR
+CLASS="parameter"
+>conteo</VAR
+> bytes disponibles,
+     devuelva tantos como pueda. Si no hay más datos
+     disponibles, devuelva <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> o una cadena
+     vacía. También debe actualizar la posición
+     de lectura/escritura de la secuencia en el número de bytes
+     que fueron leídos con éxito.
+    </P
+>int <B
+CLASS="methodname"
+>stream_write</B
+> ( string datos)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+> en el sistema. Debe
+     guardar <VAR
+CLASS="parameter"
+>datos</VAR
+> en el modelo de
+     almacenamiento base usado por su secuencia. Si no hay suficiente
+     espacio disponible, intente almacenar tantos bytes como le sea
+     posible. Debe devolver el número de bytes que fueron
+     almacenados satisfactoriamente en la secuencia, o 0 si no fue
+     posible almacenar ninguno. También debe actualizar la
+     posición de lectura/escritura de la secuencia en el
+     número de bytes que fueron escritos con éxito.
+    </P
+>bool <B
+CLASS="methodname"
+>stream_eof</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamados
+     de <A
+HREF="function.feof.html"
+><B
+CLASS="function"
+>feof()</B
+></A
+> en la secuencia. Debe devolver
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si la posición de lectura/escritura se encuentra al
+     final de la secuencia y no hay más datos disponibles para
+     su lectura, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> de lo contrario.
+    </P
+>int <B
+CLASS="methodname"
+>stream_tell</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamados
+     de <A
+HREF="function.ftell.html"
+><B
+CLASS="function"
+>ftell()</B
+></A
+> en la secuencia. Debe devolver la
+     posición actual de lectura/escritura en la secuencia.
+    </P
+>bool <B
+CLASS="methodname"
+>stream_seek</B
+> ( int desplazamiento, int punto_partida)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.fseek.html"
+><B
+CLASS="function"
+>fseek()</B
+></A
+> en la secuencia. Debe actualizar la
+     posición de lectura/escritua en la secuencia de acuerdo
+     a <VAR
+CLASS="parameter"
+>desplazamiento</VAR
+>
+     y <VAR
+CLASS="parameter"
+>punto_partida</VAR
+>. Vea <A
+HREF="function.fseek.html"
+><B
+CLASS="function"
+>fseek()</B
+></A
+>
+     para más información sobre éstos
+     parámetros. Devuelva <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si la posición fue
+     actualizada, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> de lo contrario.
+    </P
+>bool <B
+CLASS="methodname"
+>stream_flush</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.fflush.html"
+><B
+CLASS="function"
+>fflush()</B
+></A
+> en la secuencia. Si ha usado un
+     caché con los datos de su secuencia, pero no los ha
+     guardado aun en el modelo de almacenamiento base, debe hacerlo
+     ahora. Devuelva <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si los datos en caché fueron
+     almacenados satisfactoriamente (o si no habían datos a
+     almacenar), o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si los datos no pudieron ser almacenados.
+    </P
+>array <B
+CLASS="methodname"
+>stream_stat</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.fstat.html"
+><B
+CLASS="function"
+>fstat()</B
+></A
+> en la secuencia y debe devolver una
+     matriz que contenga los mismos valores que sean apropiados para
+     la secuencia.
+    </P
+>bool <B
+CLASS="methodname"
+>unlink</B
+> ( string ruta)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.unlink.html"
+><B
+CLASS="function"
+>unlink()</B
+></A
+> sobre rutas URL asociadas con la
+     envoltura y debe intentar la eliminación del item
+     especificado por <VAR
+CLASS="parameter"
+>ruta</VAR
+>. Debe devolver
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> de tener éxito o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de fallo. Para
+     asegurarse de que el mensaje de error correcto sea devuelto, no
+     defina éste método si su envoltura no soporta
+     eliminaciones.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El método de envoltura en espacio de usuario unlink no es
+      soportado antes de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+>bool <B
+CLASS="methodname"
+>rename</B
+> ( string ruta_fuente, string ruta_destino)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.rename.html"
+><B
+CLASS="function"
+>rename()</B
+></A
+> en rutas URL asociadas con la
+     envoltura y debe intentar renombrar el item especificado
+     por <VAR
+CLASS="parameter"
+>ruta_fuente</VAR
+> a la cadena dada
+     por <VAR
+CLASS="parameter"
+>ruta_destino</VAR
+>. Debe devolver <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> en
+     caso de éxito o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de fallo. Para asegurarse
+     de que el mensaje de error correcto sea devuelto, no defina
+     éste método si su envoltura no soporta el
+     renombramiento de rutas.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El método de envoltura en espacio de usuario rename no es
+      soportado antes de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+>bool <B
+CLASS="methodname"
+>mkdir</B
+> ( string ruta, int modo, int opciones)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.mkdir.html"
+><B
+CLASS="function"
+>mkdir()</B
+></A
+> en rutas URL asociadas con la
+     envoltura y debe intentar crear el directorio especificado
+     por <VAR
+CLASS="parameter"
+>ruta</VAR
+>. Debe devolver <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> de tener
+     éxito o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de fallo. Para asegurarse de que
+     el mensaje de error correcto sea devuelto, no defina éste
+     método si su envoltura no soporta la creación de
+     directorios. Valores posibles
+     para <VAR
+CLASS="parameter"
+>opciones</VAR
+>
+     incluyen <TT
+CLASS="constant"
+><B
+>STREAM_REPORT_ERRORS</B
+></TT
+>
+     y <TT
+CLASS="constant"
+><B
+>STREAM_MKDIR_RECURSIVE</B
+></TT
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El método de envoltura en espacio de usuario mkdir no es
+      soportado antes de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+>bool <B
+CLASS="methodname"
+>rmdir</B
+> ( string ruta, int opciones)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.rmdir.html"
+><B
+CLASS="function"
+>rmdir()</B
+></A
+> sobre rutas URL asociadas con la
+     envoltura y debería intentar eliminar el directorio
+     especificado por <VAR
+CLASS="parameter"
+>ruta</VAR
+>. Debe devolver
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> de tener éxito o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de fallo. Para
+     asegurarse de que el mensaje de error correcto sea devuelto, no
+     defina éste método si su envoltura no soporta la
+     eliminación de directorios. Posibles valores
+     para <VAR
+CLASS="parameter"
+>opciones</VAR
+>
+     incluyen <TT
+CLASS="constant"
+><B
+>STREAM_REPORT_ERRORS</B
+></TT
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El método de envoltura en espacio de usuario rmdir no es
+      soportado antes de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+>bool <B
+CLASS="methodname"
+>dir_opendir</B
+> ( string ruta, int opciones)<BR
+></BR
+><P
+>&#13;     Este método es llamado inmediatamente cuando su objeto de
+     secuencia es creado para examinar contenidos de directorio
+     con <A
+HREF="function.opendir.html"
+><B
+CLASS="function"
+>opendir()</B
+></A
+>. <VAR
+CLASS="parameter"
+>ruta</VAR
+>
+     especifica la URL que fue pasada a <A
+HREF="function.opendir.html"
+><B
+CLASS="function"
+>opendir()</B
+></A
+> y
+     que éste objeto supuestamente va a explorar. Puede
+     usar <A
+HREF="function.parse-url.html"
+><B
+CLASS="function"
+>parse_url()</B
+></A
+> para separar ésta
+     ruta.
+    </P
+>array <B
+CLASS="methodname"
+>url_stat</B
+> ( string ruta, int banderas)<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta a llamadas
+     de <A
+HREF="function.stat.html"
+><B
+CLASS="function"
+>stat()</B
+></A
+> en rutas URL asociadas con la
+     envoltura y debe devolver tantos elementos en común con la
+     función del sistema como sea posible. Los valores
+     desconocidos o no disponibles deben definirse con valores
+     razonables (usualmente <TT
+CLASS="constant"
+><B
+>0</B
+></TT
+>).
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>banderas</VAR
+> contiene banderas adicionales
+     definidas por la interfaz de programación de
+     secuencias. Puede contener uno o más de los siguientes
+     valores, unidos mediante la operación lógica OR.
+     <DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN105200"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Bandera</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>STREAM_URL_STAT_LINK</TD
+><TD
+>&#13;          Para recursos con la habilidad de mantener un enlace con
+          otro recurso (tales como una redirección HTTP
+          Location:, o un enlace simbólico en el sistema de
+          archivos). Esta bandera indica que solo se devolverá
+          información sobre el enlace mismo, no sobre el
+          recurso apuntado por el enlace. Esta bandera es definida en
+          respuesta a llamadas
+          de <A
+HREF="function.lstat.html"
+><B
+CLASS="function"
+>lstat()</B
+></A
+>, <A
+HREF="function.is-link.html"
+><B
+CLASS="function"
+>is_link()</B
+></A
+>,
+          o <A
+HREF="function.filetype.html"
+><B
+CLASS="function"
+>filetype()</B
+></A
+>.
+         </TD
+></TR
+><TR
+><TD
+>STREAM_URL_STAT_QUIET</TD
+><TD
+>&#13;          Si ésta bandera es definida, su envoltura no debe
+          generar error alguno. Si esta bandera no está
+          definida, usted es responsable por el reporte de errores
+          usando la función <A
+HREF="function.trigger-error.html"
+><B
+CLASS="function"
+>trigger_error()</B
+></A
+>
+          durante la ejecución del proceso stat en la ruta.
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+>string <B
+CLASS="methodname"
+>dir_readdir</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta
+     a <A
+HREF="function.readdir.html"
+><B
+CLASS="function"
+>readdir()</B
+></A
+> y debe devolver una cadena que
+     represente el siguiente nombre de archivo en la ubicación
+     abierta por <B
+CLASS="function"
+>dir_opendir()</B
+>.
+    </P
+>bool <B
+CLASS="methodname"
+>dir_rewinddir</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta
+     a <A
+HREF="function.rewinddir.html"
+><B
+CLASS="function"
+>rewinddir()</B
+></A
+> y debe restablecer la salida
+     generada por <B
+CLASS="function"
+>dir_readdir()</B
+>. Esto quiere decir,
+     la siguiente llamada a <B
+CLASS="function"
+>dir_readdir()</B
+> debe
+     devolver la primera entrada en la ubicación devuelta
+     por <B
+CLASS="function"
+>dir_opendir()</B
+>.
+    </P
+>bool <B
+CLASS="methodname"
+>dir_closedir</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado en respuesta
+     a <A
+HREF="function.closedir.html"
+><B
+CLASS="function"
+>closedir()</B
+></A
+>. Debe liberar cualquier recurso
+     que haya sido bloqueado o reservado durante la apertura y uso de
+     la secuencia de directorio.
+    </P
+><P
+>&#13;     El siguiente ejemplo implementa un gestor del protocolo var://
+     que permite el acceso para lectura/escritura a una variable
+     global con nombre, usando las funciones de secuencia de sistema
+     de archivos, como <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+>. El protocolo var://
+     implementado a continuación leerá/escribirá
+     datos desde/hacia $GLOBALS["foo"] dada la URL "var://foo".
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN105241"
+></A
+><P
+><B
+>Ejemplo 1. Una Secuencia para la lectura/escritura de variables
+      globales</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#007700">class </font><font color="#0000BB">SecuenciaVariable </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;var </font><font color="#0000BB">$posicion</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;var </font><font color="#0000BB">$nombre_var</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">stream_open</font><font color="#007700">(</font><font color="#0000BB">$ruta</font><font color="#007700">, </font><font color="#0000BB">$modo</font><font color="#007700">, </font><font color="#0000BB">$opciones</font><font color="#007700">, &amp;</font><font color="#0000BB">$ruta_abierta</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$url </font><font color="#007700">= </font><font color="#0000BB">parse_url</font><font color="#007700">(</font><font color="#0000BB">$ruta</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var </font><font color="#007700">= </font><font color="#0000BB">$url</font><font color="#007700">[</font><font color="#DD0000">"host"</font><font color="#007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">true</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">stream_read</font><font color="#007700">(</font><font color="#0000BB">$conteo</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$ret </font><font color="#007700">= </font><font color="#0000BB">substr</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">], </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion</font><font color="#007700">, </font><font color="#0000BB">$conteo</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">+= </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$ret</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$ret</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">stream_write</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$izq </font><font color="#007700">= </font><font color="#0000BB">substr</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">], </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$der </font><font color="#007700">= </font><font color="#0000BB">substr</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">], </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">+ </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">] = </font><font color="#0000BB">$izq </font><font color="#007700">. </font><font color="#0000BB">$datos </font><font color="#007700">. </font><font color="#0000BB">$der</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">+= </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$datos</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">stream_tell</font><font color="#007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">stream_eof</font><font color="#007700">()<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">&gt;= </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">stream_seek</font><font color="#007700">(</font><font color="#0000BB">$desplazamiento</font><font color="#007700">, </font><font color="#0000BB">$partida</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch (</font><font color="#0000BB">$partida</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">SEEK_SET</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$desplazamiento </font><font color="#007700">&lt; </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">]) &amp;&amp; </font><font color="#0000BB">$desplazamiento </font><font color="#007700">&gt;= </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">= </font><font color="#0000BB">$desplazamiento</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">true</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">false</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">SEEK_CUR</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$desplazamiento </font><font color="#007700">&gt;= </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">+= </font><font color="#0000BB">$desplazamiento</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">true</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">false</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">SEEK_END</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">]) + </font><font color="#0000BB">$desplazamiento </font><font color="#007700">&gt;= </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">posicion </font><font color="#007700">= </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$GLOBALS</font><font color="#007700">[</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">nombre_var</font><font color="#007700">]) + </font><font color="#0000BB">$desplazamiento</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">true</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">false</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">false</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#0000BB">stream_wrapper_register</font><font color="#007700">(</font><font color="#DD0000">"var"</font><font color="#007700">, </font><font color="#DD0000">"SecuenciaVariable"</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">"Fall&amp;oacute; el registro del protocolo"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$mi_var </font><font color="#007700">= </font><font color="#DD0000">""</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#DD0000">"var://mi_var"</font><font color="#007700">, </font><font color="#DD0000">"r+"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"linea1\n"</font><font color="#007700">);<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"linea2\n"</font><font color="#007700">);<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"linea3\n"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">rewind</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br />while (!</font><font color="#0000BB">feof</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">fgets</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$mi_var</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-socket-server.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_socket_server</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Funciones de Cadenas</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

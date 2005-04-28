@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>scandir</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Directorio"
+HREF="ref.dir.html"><LINK
+REL="PREVIOUS"
+TITLE="rewinddir"
+HREF="function.rewinddir.html"><LINK
+REL="NEXT"
+TITLE="DOM Functions"
+HREF="ref.dom.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.rewinddir.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.dom.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.scandir"
+></A
+>scandir</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN20787"
+></A
+><P
+>    (PHP 5)</P
+>scandir&nbsp;--&nbsp;
+    Lista los archivos y directorios ubicados en la ruta especificada
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN20790"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>scandir</B
+> ( string directorio [, int sentido_de_ordenamiento [, resource contexto]])<BR
+></BR
+><P
+>&#13;     Devuelve un <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+> de archivos y directorios que se
+     encuentran bajo <VAR
+CLASS="parameter"
+>directorio</VAR
+>. Si
+     <VAR
+CLASS="parameter"
+>directorio</VAR
+> no es un directorio, entonces
+     el valor booleano <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> es retornado, y se genera un error de
+     nivel <TT
+CLASS="constant"
+><B
+>E_WARNING</B
+></TT
+>.
+    </P
+><P
+>&#13;     Por defecto, el sentido del ordenamiento es ascendente. Si es
+     usado el parámetro opcional
+     <VAR
+CLASS="parameter"
+>sentido_de_ordenamiento</VAR
+> (definido como 1),
+     entonces el sentido será descendente.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN20813"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo simple de <B
+CLASS="function"
+>scandir()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$dir&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">'/tmp'</font><font color="#007700">;<br /></font><font color="#0000BB">$archivos1 </font><font color="#007700">= </font><font color="#0000BB">scandir</font><font color="#007700">(</font><font color="#0000BB">$dir</font><font color="#007700">);<br /></font><font color="#0000BB">$archivos2 </font><font color="#007700">= </font><font color="#0000BB">scandir</font><font color="#007700">(</font><font color="#0000BB">$dir</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">);<br /><br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$archivos1</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$archivos2</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Genera una salida como:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; .
+    [1] =&#62; ..
+    [2] =&#62; bar.php
+    [3] =&#62; directorio_cualquiera
+    [4] =&#62; foo.txt
+)
+Array
+(
+    [0] =&#62; foo.txt
+    [1] =&#62; directorio_cualquiera
+    [2] =&#62; bar.php
+    [3] =&#62; ..
+    [4] =&#62; .
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN20820"
+></A
+><P
+><B
+>Ejemplo 2. Alternativas a <B
+CLASS="function"
+>scandir()</B
+> con PHP 4</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$dir </font><font color="#007700">= </font><font color="#DD0000">"/tmp"</font><font color="#007700">;<br /></font><font color="#0000BB">$dh&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">opendir</font><font color="#007700">(</font><font color="#0000BB">$dir</font><font color="#007700">);<br />while (</font><font color="#0000BB">false </font><font color="#007700">!== (</font><font color="#0000BB">$nombre_archivo </font><font color="#007700">= </font><font color="#0000BB">readdir</font><font color="#007700">(</font><font color="#0000BB">$dh</font><font color="#007700">))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$archivos</font><font color="#007700">[] = </font><font color="#0000BB">$nombre_archivo</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">sort</font><font color="#007700">(</font><font color="#0000BB">$archivos</font><font color="#007700">);<br /><br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$archivos</font><font color="#007700">);<br /><br /></font><font color="#0000BB">rsort</font><font color="#007700">(</font><font color="#0000BB">$archivos</font><font color="#007700">);<br /><br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$archivos</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Genera una salida como:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; .
+    [1] =&#62; ..
+    [2] =&#62; bar.php
+    [3] =&#62; directorio_cualquiera
+    [4] =&#62; foo.txt
+)
+Array
+(
+    [0] =&#62; foo.txt
+    [1] =&#62; directorio_cualquiera
+    [2] =&#62; bar.php
+    [3] =&#62; ..
+    [4] =&#62; .
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>Puede usar una URL como
+nombre de archivo con esta función si los <A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>fopen wrappers</A
+> han sido
+activados.  Consulte <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> para más
+detalles sobre cómo especificar el nombre de fichero y <A
+HREF="wrappers.html"
+>Apéndice L</A
+> una lista de protocolos URL
+soportados</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.opendir.html"
+><B
+CLASS="function"
+>opendir()</B
+></A
+>,
+     <A
+HREF="function.readdir.html"
+><B
+CLASS="function"
+>readdir()</B
+></A
+>,
+     <A
+HREF="function.glob.html"
+><B
+CLASS="function"
+>glob()</B
+></A
+>, 
+     <A
+HREF="function.is-dir.html"
+><B
+CLASS="function"
+>is_dir()</B
+></A
+>, y
+     <A
+HREF="function.sort.html"
+><B
+CLASS="function"
+>sort()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.rewinddir.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.dom.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>rewinddir</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.dir.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DOM Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

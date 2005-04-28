@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Including Output in phpinfo</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Printing Information"
+HREF="zend.printing.html"><LINK
+REL="PREVIOUS"
+TITLE="zend_error"
+HREF="zend.printing.zend-error.html"><LINK
+REL="NEXT"
+TITLE="Execution Information"
+HREF="zend.printing.execution.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.printing.zend-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 37. Printing Information</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.printing.execution.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.printing.phpinfo"
+>Including Output in <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+></A
+></H1
+><P
+>&#13;    After creating a real module, you'll  want to show information
+    about the module in <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+> (in addition to the
+    module name, which appears in the module list by default). PHP allows
+    you to create your own section in the <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+> output with the <VAR
+CLASS="literal"
+>ZEND_MINFO()</VAR
+> function. This function
+    should be placed in the module descriptor block (discussed earlier) and is
+    always called whenever a script calls <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>.
+   </P
+><P
+>&#13;    PHP automatically prints a section
+    in <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+> for you if you specify the <VAR
+CLASS="literal"
+>ZEND_MINFO</VAR
+>
+    function, including the module name in the heading. Everything else must be
+    formatted and printed by you.
+   </P
+><P
+>&#13;    Typically, you can print an HTML table header
+    using <B
+CLASS="function"
+>php_info_print_table_start()</B
+> and then use the standard
+    functions <B
+CLASS="function"
+>php_info_print_table_header()</B
+>
+    and <B
+CLASS="function"
+>php_info_print_table_row()</B
+>. As arguments, both take the number of
+    columns (as integers) and the column contents (as strings). <A
+HREF="zend.printing.phpinfo.html#example.phpinfo"
+>Ejemplo 37-1</A
+> shows a source example and its output. To print the table footer, use <B
+CLASS="function"
+>php_info_print_table_end()</B
+>.
+   </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="example.phpinfo"
+></A
+><P
+><B
+>Ejemplo 37-1. 
+     Source code and screenshot for output in <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>.
+    </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>php_info_print_table_start();
+php_info_print_table_header(2, "First column", "Second column");
+php_info_print_table_row(2, "Entry in first row", "Another entry");
+php_info_print_table_row(2, "Just to fill", "another row here");
+php_info_print_table_end();</PRE
+></TD
+></TR
+></TABLE
+><P
+><IMG
+SRC="figures/Extending_Zend_8_phpinfo_output.png"></P
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.printing.zend-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.printing.execution.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><B
+CLASS="function"
+>zend_error()</B
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.printing.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Execution Information</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

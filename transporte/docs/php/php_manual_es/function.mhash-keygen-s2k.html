@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mhash_keygen_s2k</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones Mhash"
+HREF="ref.mhash.html"><LINK
+REL="PREVIOUS"
+TITLE="mhash_get_hash_name"
+HREF="function.mhash-get-hash-name.html"><LINK
+REL="NEXT"
+TITLE="mhash"
+HREF="function.mhash.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mhash-get-hash-name.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mhash.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mhash-keygen-s2k"
+></A
+>mhash_keygen_s2k</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN55878"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.4, PHP 5)</P
+>mhash_keygen_s2k&nbsp;--&nbsp;Genera una llave</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN55881"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>mhash_keygen_s2k</B
+> ( int hash, string contrasenya, string sal, int bytes)<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>mhash_keygen_s2k()</B
+> genera una llave con una
+longitud indicada por <VAR
+CLASS="parameter"
+>bytes</VAR
+>, a partir de una
+contraseña entregada por el usuario. Este es el algoritmo con
+sal S2K, tal y como se encuentra especificado en el documento OpenPGP
+(RFC 2440). Ese algoritmo usará el
+algoritmo <VAR
+CLASS="parameter"
+>hash</VAR
+> especificado para crear la
+llave. La <VAR
+CLASS="parameter"
+>sal</VAR
+> debe ser diferente y
+suficientemente aleatoria para cada llave que genere para crear
+diferentes llaves. La sal debe conocerse cuando chequee las llaves, de
+modo que es una buena idea adicionarle la llave al final. La sal tiene
+un tamaño fijo de 8 bytes y será rellenada con ceros si
+usted suple menos bytes.
+    </P
+><P
+>&#13;Tenga en mente que las contraseñas entregadas por el usuario no
+son realmente apropiadas para ser usadas como llaves en algoritmos
+criptográficos, ya que los usuarios normalmente eligen llaves
+que pueden escribir con el teclado. Estas contreseñas usan solo
+6 o 7 bits por caracter (o menos). Es bastante recomendable usar
+algún tipo de transformación (como esta función)
+sobre la llave entregada por el usuario.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mhash-get-hash-name.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mhash.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mhash_get_hash_name</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mhash.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mhash</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

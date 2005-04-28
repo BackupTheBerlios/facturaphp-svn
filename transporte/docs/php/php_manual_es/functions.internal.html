@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones internas (incorporadas)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones"
+HREF="functions.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones variables"
+HREF="functions.variable-functions.html"><LINK
+REL="NEXT"
+TITLE="Clases y Objetos"
+HREF="language.oop.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="functions.variable-functions.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 12. Funciones</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.oop.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="functions.internal"
+>Funciones internas (incorporadas)</A
+></H1
+><P
+>&#13;   PHP tiene incorporadas muchas funciones y construcciones. Existen
+   también funciones que requieren extensiones específicas de PHP para
+   que no fallen con un error fatal del tipo "undefined function". Por
+   ejemplo, para usar funciones <A
+HREF="ref.image.html"
+>image</A
+>, tal como
+   <A
+HREF="function.imagecreatetruecolor.html"
+><B
+CLASS="function"
+>imagecreatetruecolor()</B
+></A
+>, se necesita compilar PHP
+   con soporte para GD. O para usar <A
+HREF="function.mysql-connect.html"
+><B
+CLASS="function"
+>mysql_connect()</B
+></A
+>
+   se necesita compilar PHP con soporte para <A
+HREF="ref.mysql.html"
+>MySQL</A
+>. Existen muchas funciones en el
+   núcleo de PHP que se incluyen en cada version de PHP, como las
+   funciones <A
+HREF="ref.strings.html"
+>string</A
+> y <A
+HREF="missing-stuff.html#ref.variables"
+>variable</A
+>. Una llamada a la función
+   <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+> ó
+   <A
+HREF="function.get-loaded-extensions.html"
+><B
+CLASS="function"
+>get_loaded_extensions()</B
+></A
+> mostrará que extensiones
+   están cargadas en tu versión de PHP. Tener tambien en cuenta que
+   muchas extensiones se encuentran activadas por defecto y que el
+   manual de PHP se encuentra dividido en partes, según estas
+   extensiones. Vea los capítulos <A
+HREF="configuration.html"
+>configuración</A
+>, <A
+HREF="installation.html"
+>instalación</A
+> y los capitulos sobre
+   cada extensión, para obtener información sobre como configurar
+   vuestro PHP
+  </P
+><P
+>&#13;   La explicación de como leer e intrerpretar un prototipo de función
+   se encuentra en la sección del manual titulada <A
+HREF="about.prototypes.html"
+>como leer la definición de una
+   función</A
+>.  Es importante entender que devuelve una función ó
+   si la función trabaja directamente en el valor entregado a la
+   misma. Por ejemplo, <A
+HREF="function.str-replace.html"
+><B
+CLASS="function"
+>str_replace()</B
+></A
+> devuelve una
+   cadena modificada mientras que <A
+HREF="function.usort.html"
+><B
+CLASS="function"
+>usort()</B
+></A
+> trabaja
+   directamente en el valor entregado a la misma. Cada página del
+   manual contiene información específica sobre las diferentes
+   funciones existentes, parametros que utilizan, valores devueltos,
+   cambios de comportamiento, etc. Es importante conocer estas
+   diferencias para poder escribir correctamente código PHP.
+  </P
+><P
+>&#13;   Vea también <A
+HREF="function.function-exists.html"
+><B
+CLASS="function"
+>function_exists()</B
+></A
+>, <A
+HREF="funcref.html"
+>referencias de funciones</A
+>,
+    <A
+HREF="function.get-extension-funcs.html"
+><B
+CLASS="function"
+>get_extension_funcs()</B
+></A
+> y
+    <A
+HREF="function.dl.html"
+><B
+CLASS="function"
+>dl()</B
+></A
+>.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="functions.variable-functions.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.oop.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones variables</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="functions.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Clases y Objetos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

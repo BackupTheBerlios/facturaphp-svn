@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>posix_kill</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones POSIX"
+HREF="ref.posix.html"><LINK
+REL="PREVIOUS"
+TITLE="posix_isatty"
+HREF="function.posix-isatty.html"><LINK
+REL="NEXT"
+TITLE="posix_mkfifo"
+HREF="function.posix-mkfifo.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.posix-isatty.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.posix-mkfifo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.posix-kill"
+></A
+>posix_kill</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN87512"
+></A
+><P
+>    (PHP 3&#62;= 3.0.13, PHP 4 , PHP 5)</P
+>posix_kill&nbsp;--&nbsp;Manda una señal a un proceso</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN87515"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>posix_kill</B
+> ( int pid, int sig)<BR
+></BR
+><P
+>&#13;     Manda la señal <VAR
+CLASS="parameter"
+>sig</VAR
+> al proceso
+     con el identificador de proceso <VAR
+CLASS="parameter"
+>pid</VAR
+>.
+     Devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, si no puede enviar la señal.Si sí la envia devuelve 
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> .</P
+><P
+>&#13;     Vea también la página de manual kill(2) de su sistema POSIX, la cual
+     contiene información adicional sobre los identificadores de proceso
+     negativos, el pid especial 0, el pid especial -1, y la señal numero
+     0.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.posix-isatty.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.posix-mkfifo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>posix_isatty</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.posix.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>posix_mkfifo</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

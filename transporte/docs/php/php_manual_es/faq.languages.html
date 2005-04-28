@@ -1,0 +1,352 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>PHP y otros lenguajes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQ: Preguntas frecuentes"
+HREF="faq.html"><LINK
+REL="PREVIOUS"
+TITLE="PHP and COM"
+HREF="faq.com.html"><LINK
+REL="NEXT"
+TITLE="Migración de PHP 2 a PHP 3"
+HREF="faq.migration.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="faq.com.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.migration.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="faq.languages"
+>Capítulo 54. PHP y otros lenguajes</A
+></H1
+><P
+>&#13;PHP es el mejor lenguaje para programación web, ¿pero
+qué hay de los otros lenguajes?
+  </P
+><DIV
+CLASS="qandaset"
+><DL
+><DT
+>1. <A
+HREF="faq.languages.html#faq.languages.asp"
+>¿PHP vs. ASP?</A
+></DT
+><DT
+>2. <A
+HREF="faq.languages.html#faq.languages.aspconverter"
+>¿Existe software de conversión de ASP a
+     PHP?</A
+></DT
+><DT
+>3. <A
+HREF="faq.languages.html#faq.languages.coldfusion"
+>¿PHP vs. Cold Fusion?</A
+></DT
+><DT
+>4. <A
+HREF="faq.languages.html#faq.languages.perl"
+>¿PHP vs. Perl?</A
+></DT
+></DL
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.languages.asp"
+></A
+><B
+>1. </B
+>¿PHP vs. ASP?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+ASP no es realmente un lenguaje como tal, es el acrónimo de
+Active Server Pages, el lenguaje usado en realidad para programar ASP
+es Visual Basic Script o JScript. El mayor inconveniente de ASP es que
+se trata de un sistema propietario que es usado nativamente
+sólo por Microsoft Internet Information Server (IIS). Esto
+limita su disponibilidad a servidores basados en Win32. Existe un par
+de proyectos en desarrollo que permiten que ASP corra en otros
+entornos y servidores web:
+<A
+HREF="http://www.stryon.com/products.asp?s=1"
+TARGET="_top"
+>InstantASP</A
+> de <A
+HREF="http://www.halcyonsoft.com/"
+TARGET="_top"
+>Halcyon</A
+> (comercial), Chili!Soft ASP de 
+<A
+HREF="http://www.chilisoft.com/"
+TARGET="_top"
+>Chili!Soft</A
+> (comercial). Se dice
+que ASP es un lenguaje más lento y pesado que PHP, y
+también menos estable. Algunas de las ventajas de ASP consisten
+en que debido a que usa principalmente VBScript, es relativamente simple
+tratar con el lenguaje si usted ya conoce cómo programar en
+Visual Basic. El soporte de ASP también se encuentra habilitado
+por defecto en el servidor IIS, facilitando su instalación y
+ejecución. Los componentes integrados en ASP son bastante
+limitados, de modo que si necesita usar características
+"avanzadas", como interactuar con servidores FTP, necesita comprar
+componentes adicionales.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.languages.aspconverter"
+></A
+><B
+>2. </B
+>¿Existe software de conversión de ASP a
+     PHP?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+Si, la herramienta de lado del servidor <A
+HREF="http://asp2php.naken.cc/"
+TARGET="_top"
+>asp2php</A
+> es una de las más
+conocidas, así como <A
+HREF="http://www.design215.com/toolbox/translator/"
+TARGET="_top"
+>ésta opción de lado del
+cliente</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.languages.coldfusion"
+></A
+><B
+>3. </B
+>¿PHP vs. Cold Fusion?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+Comúnmente se dice que PHP es más rápido y
+eficiente para tareas complejas de programación y cuando se
+desea probar ideas nuevas. Asimismo, PHP se considera por lo general
+más estable y menos intensivo en el uso de recursos. Cold
+Fusion posee un mejor gestor de errores, asi como abstracciones de
+bases de datos y procesamiente de fechas, aunque la abstracción
+de bases de datos es parte de PHP 4. Otra de las cosas que se lista
+como una de las fortalezas de Cold Fusion es su excelente motor de
+búsqueda, pero se ha dicho que un motor de búsqueda no
+es algo que deba ser incluido en un lenguaje de scripting orientado a
+web. PHP corre en casi cualquier plataforma que existe; Cold Fusion
+sólo se encuentra disponible en Win32, Solaris, Linux y HP/UX.
+Cold Fusion posee un buen entorno integrado de desarrollo, y es
+generalmente más sencillo para principiantes, mientras que PHP
+requiere inicialmente de un mayor conocimiento de
+programación. Cold Fusion está diseñado hacia
+personas sin experiencia en programación, mientras que PHP se
+concentra en los programadores.
+     </P
+><P
+>&#13;Un excelente resumen sobre este tema, escrito por Michael J Sheldon,
+ha sido publicado en la lista de correo de PHP. Puede encontrarse una
+copia en <A
+HREF="http://marc.theaimsgroup.com/?l=php-general&m=95602167412542&w=1"
+TARGET="_top"
+>http://marc.theaimsgroup.com/?l=php-general&#38;m=95602167412542&#38;w=1</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.languages.perl"
+></A
+><B
+>4. </B
+>¿PHP vs. Perl?</P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+La mayor ventaja de PHP sobre Perl es que PHP fue diseñado para
+desarrollo de scripts orientados a web, mientras que Perl fue
+diseñado para hacer muchas más cosas y debido a esto, se
+hace muy complicado. La flexibilidad / complejidad de Perl facilitan
+la escritura de código que otro autor / programador puede
+encontrar muy difícil de entender. PHP posee un formato menos
+confuso y más estricto, sin perder flexibilidad. Con PHP es
+más fácil la integración con HTML que con
+Perl. PHP cuenta con prácticamente toda la funcionalidad
+'buena' de Perl: construcciones del lenguaje, sintaxis y demás,
+sin hacerlo tan complicado como Perl puede llegar a ser. Perl es un
+lenguaje muy usado y auténtico, ha estado vigente desde finales
+de los ochentas, pero PHP está madurando muy
+rápidamente.
+     </P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="faq.com.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.migration.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PHP and COM</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Migración de PHP 2 a PHP 3</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

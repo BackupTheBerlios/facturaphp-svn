@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Use de código antiguo con nuevas versiones de
+   PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Una explicación sencilla"
+HREF="tutorial.html"><LINK
+REL="PREVIOUS"
+TITLE="Uso de Formularios HTML"
+HREF="tutorial.forms.html"><LINK
+REL="NEXT"
+TITLE="¿Y ahora qué?"
+HREF="tutorial.whatsnext.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tutorial.forms.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 2. Una explicación sencilla</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tutorial.whatsnext.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="tutorial.oldcode"
+>Use de código antiguo con nuevas versiones de
+   PHP</A
+></H1
+><P
+>&#13;    Ahora que PHP ha crecido y se ha convertido en un lenguaje
+    popular, hay muchos más recursos que contienen
+    código que puede reusar en sus propios programas. Por lo
+    general, las personas que se encargan del desarrollo de PHP tratan
+    de que el lenguaje sea compatible con versiones anteriores, para
+    que los programas escritos con versiones antiguas continúen
+    funcionando cuando instale una nueva versión de PHP. En un
+    mundo perfecto, nunca necesitaría modificar su
+    código para hacerlo funcionar con versiones nuevas del
+    lenguaje; pero, como todos sabemos, este no es un mundo perfecto,
+    y usualmente son necesarios los cambios en su código.
+   </P
+><P
+>&#13;    Dos de los cambios mas importantes que afectan el código
+    viejo son:
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       La desaparición de las
+       matrices <VAR
+CLASS="varname"
+>$HTTP_*_VARS</VAR
+> (que usualmente son
+       usadas como globales al interior de una función o
+       método). Las siguientes <A
+HREF="language.variables.predefined.html#language.variables.superglobals"
+>matrices
+       autoglobales</A
+> fueron introducidas en la
+       versión <A
+HREF="http://www.php.net/release_4_1_0.php"
+TARGET="_top"
+>4.1.0</A
+> de PHP. Estas son:
+       <VAR
+CLASS="varname"
+>$_GET</VAR
+>, <VAR
+CLASS="varname"
+>$_POST</VAR
+>, 
+       <VAR
+CLASS="varname"
+>$_COOKIE</VAR
+>, <VAR
+CLASS="varname"
+>$_SERVER</VAR
+>,
+       <VAR
+CLASS="varname"
+>$_FILES</VAR
+>, <VAR
+CLASS="varname"
+>$_ENV</VAR
+>, <VAR
+CLASS="varname"
+>$_REQUEST</VAR
+>,
+       y
+       <VAR
+CLASS="varname"
+>$_SESSION</VAR
+>. Las
+       antiguas <VAR
+CLASS="varname"
+>$HTTP_*_VARS</VAR
+>, como $HTTP_POST_VARS,
+       todavía existen, y han existido desde PHP 3.
+      
+      </P
+></LI
+><LI
+><P
+>&#13;       Las variables externas que ya no son registradas
+       automáticamente. En otras palabras, a partir de
+       PHP <A
+HREF="http://www.php.net/release_4_2_0.php"
+TARGET="_top"
+>4.2.0</A
+>, la
+       directiva PHP <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>
+       está <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>deshabilitada</I
+></SPAN
+> (su valor es
+       off) en <TT
+CLASS="filename"
+>php.ini</TT
+>. El método preferido para obtener
+       acceso a éstos valores es por medio de las "matrices
+       autoglobales" mencionados anteriormente. Los scripts, libros y
+       tutoriales antiguos pueden asumir que ésta directiva es
+       definida automáticamente como "on". Si es así,
+       puede usar, por ejemplo,
+       <VAR
+CLASS="varname"
+>$id</VAR
+> desde la URL 
+       <VAR
+CLASS="literal"
+>http://www.example.com/foo.php?id=42</VAR
+>. Por
+       otra parte, no importa si el valor de la directiva es "on" u
+       "off", <VAR
+CLASS="varname"
+>$_GET['id']</VAR
+> está siempre disponible.
+      </P
+></LI
+></UL
+>
+     Para más detalles relacionados con estos cambios, puede ver la
+     sección sobre
+     <A
+HREF="language.variables.predefined.html"
+>variables
+     predefinidas</A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tutorial.forms.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tutorial.whatsnext.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Uso de Formularios HTML</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>¿Y ahora qué?</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,266 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>xslt_set_error_handler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="XSLT functions"
+HREF="ref.xslt.html"><LINK
+REL="PREVIOUS"
+TITLE="xslt_set_encoding"
+HREF="function.xslt-set-encoding.html"><LINK
+REL="NEXT"
+TITLE="xslt_set_log"
+HREF="function.xslt-set-log.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.xslt-set-encoding.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.xslt-set-log.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.xslt-set-error-handler"
+></A
+>xslt_set_error_handler</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN116140"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.4)</P
+>xslt_set_error_handler&nbsp;--&nbsp;Set an error handler for a XSLT processor</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN116143"
+></A
+><H2
+>Description</H2
+>void <B
+CLASS="methodname"
+>xslt_set_error_handler</B
+> ( resource xh, mixed handler)<BR
+></BR
+><P
+>&#13;     Set an error handler function for the XSLT processor given by 
+     <VAR
+CLASS="parameter"
+>xh</VAR
+>, this function will be called whenever an 
+     error occurs in the XSLT transformation (this function is also called
+     for notices).
+    </P
+><P
+>&#13;     The user function needs to accept four parameters: the XSLT processor,
+     the error level, the error code and an array of messages. The function 
+     can be shown as:
+     <B
+CLASS="methodname"
+><VAR
+CLASS="replaceable"
+>error_handler</VAR
+></B
+> ( resource xh, int error_level, int error_code, array messages)<BR
+></BR
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN116173"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>xslt_set_error_handler()</B
+> Example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// Our XSLT error handler<br /></font><font color="#007700">function </font><font color="#0000BB">xslt_error_handler</font><font color="#007700">(</font><font color="#0000BB">$handler</font><font color="#007700">, </font><font color="#0000BB">$errno</font><font color="#007700">, </font><font color="#0000BB">$level</font><font color="#007700">, </font><font color="#0000BB">$info</font><font color="#007700">) <br />{<br />&nbsp;&nbsp;</font><font color="#FF8000">// for now, let's just see the arguments<br />&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">func_get_args</font><font color="#007700">());<br />}<br /><br /></font><font color="#FF8000">// XML content :<br /></font><font color="#0000BB">$xml</font><font color="#007700">=</font><font color="#DD0000">'&lt;?xml version="1.0"?&gt;<br />&lt;para&gt;<br /> oops, I misspelled the closing tag<br />&lt;/pata&gt;'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// XSL content :<br /></font><font color="#0000BB">$xsl</font><font color="#007700">=</font><font color="#DD0000">'&lt;?xml version="1.0"?&gt;<br />&lt;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&gt;<br />&lt;xsl:template match="/"&gt;<br />&nbsp;&nbsp;&nbsp;&lt;strong&gt;&lt;xsl:value-of select="para"/&gt;&lt;/strong&gt;<br />&lt;/xsl:template&gt;<br />&lt;/xsl:stylesheet&gt;'</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$xh </font><font color="#007700">= </font><font color="#0000BB">xslt_create</font><font color="#007700">();<br /><br /></font><font color="#0000BB">xslt_set_error_handler</font><font color="#007700">(</font><font color="#0000BB">$xh</font><font color="#007700">, </font><font color="#DD0000">"xslt_error_handler"</font><font color="#007700">);<br /><br />echo </font><font color="#0000BB">xslt_process</font><font color="#007700">(</font><font color="#0000BB">$xh</font><font color="#007700">, </font><font color="#DD0000">'arg:/_xml'</font><font color="#007700">, </font><font color="#DD0000">'arg:/_xsl'</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">NULL</font><font color="#007700">, array(</font><font color="#DD0000">"/_xml" </font><font color="#007700">=&gt; </font><font color="#0000BB">$xml</font><font color="#007700">, </font><font color="#DD0000">"/_xsl" </font><font color="#007700">=&gt; </font><font color="#0000BB">$xsl</font><font color="#007700">));<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       This example will output something similar to:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>array(4) {
+  [0]=&#62;
+  resource(1) of type (XSLT Processor)
+  [1]=&#62;
+  int(3)
+  [2]=&#62;
+  int(0)
+  [3]=&#62;
+  array(6) {
+    ["msgtype"]=&#62;
+    string(5) "error"
+    ["code"]=&#62;
+    string(1) "2"
+    ["module"]=&#62;
+    string(9) "Sablotron"
+    ["URI"]=&#62;
+    string(9) "arg:/_xml"
+    ["line"]=&#62;
+    string(1) "4"
+    ["msg"]=&#62;
+    string(34) "XML parser error 7: mismatched tag"
+  }
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Instead of a function name, an array containing an object reference and
+     a method name can also be supplied. 
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.xslt-set-encoding.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.xslt-set-log.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>xslt_set_encoding</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.xslt.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>xslt_set_log</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

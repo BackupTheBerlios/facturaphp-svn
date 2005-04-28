@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Servidores-Servidor OmniHTTPd</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Servidores-Netscape e iPlanet"
+HREF="install.netscape-enterprise.html"><LINK
+REL="NEXT"
+TITLE="Servidores-Sambar"
+HREF="install.sambar.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.netscape-enterprise.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.sambar.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.omnihttpd"
+>Servidores-Servidor OmniHTTPd</A
+></H1
+><P
+>&#13;   Esta sección contiene información específica
+  sobre la instalación de <VAR
+CLASS="literal"
+>PHP</VAR
+> con OmniHTTPd.
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.omnihttpd.windows"
+>OmniHTTPd 2.0b1 y posteriores en Windows</A
+></H2
+><P
+>&#13;   Los siguientes pasos se tienen que completar para que PHP funcione
+   con OmniHTTPd. Nos referimos a la instalación de PHP como
+   ejecutable CGI. SAPI es soportado por OmniHTTPd, pero diferentes
+   comprobaciones han demostrado que PHP como módulo ISAPI no es
+   estable.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Importante para usuarios de la versión CGI: </B
+>
+    Leer la <A
+HREF="faq.installation.html#faq.installation.forceredirect"
+>faq sobre
+     cgi.force_redirect</A
+> para más detalles. Esta directiva debe
+    de tener el valor <VAR
+CLASS="literal"
+>0</VAR
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Paso 1: Instalar el servidor OmniHTTPd.
+     </P
+></LI
+><LI
+><P
+>&#13;      Paso 2: Pulsar con el botón derecho del ratón en el icono azul
+      de OmniHTTPd en la bandeja del sistema y seleccionar
+      <VAR
+CLASS="literal"
+>Propiedades</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Paso 3: Pulsar en <VAR
+CLASS="literal"
+>Configuración global del servidor
+       web</VAR
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      Paso 4: En la pestaña 'Externo', escribir:
+      <VAR
+CLASS="literal"
+>virtual = .php | actual =
+      c:\path-to-php-dir\php.exe</VAR
+> y pulsar el botón
+      "añadir".
+     </P
+></LI
+><LI
+><P
+>&#13;      Paso 5: en la pestaña <VAR
+CLASS="literal"
+>Mime</VAR
+>, escribir:
+      <VAR
+CLASS="literal"
+>virtual = wwwserver/stdcgi | actual = .php</VAR
+> y
+      pulsar el botón "añadir".
+     </P
+></LI
+><LI
+><P
+>&#13;      Paso 6: Pulsar <VAR
+CLASS="literal"
+>OK</VAR
+>
+     </P
+></LI
+></UL
+>
+  </P
+><P
+>&#13;   Repetir los pasos 2-6 por cada extensión que querais asociar con
+   PHP.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Algunos paquetes OmniHTTPd vienen con soporte para PHP. Podeis
+    elegirlos para crear una configuración a medida y no utilizar el
+    componente PHP. Recomendamos que useis los últimos binarios
+    disponibles. Algunos servidores OmniHTTPd vienen con la versión
+    beta de PHP 4, asi que no debeis de elegir esta versión e instalar
+    mejor vuestra propia versión. Si el servidor está instalado en
+    vuestra máquina, usar el botón "Cambiar" en los pasos 4 y 5 para
+    configurar la información correcta.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.netscape-enterprise.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.sambar.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Servidores-Netscape e iPlanet</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-Sambar</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

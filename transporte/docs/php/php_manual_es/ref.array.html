@@ -1,0 +1,1139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de matrices</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="virtual"
+HREF="function.virtual.html"><LINK
+REL="NEXT"
+TITLE="array_change_key_case"
+HREF="function.array-change-key-case.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.virtual.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-change-key-case.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.array"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>II. Funciones de matrices</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN6323"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.intro"
+>Introducción</A
+></H1
+><P
+>&#13;    Estas funciones permiten trabajar y manipular matrices (arrays) de
+    diferentes maneras. Las matrices se utilizan para guardar, manejar
+    y operar grupos de variables.
+   </P
+><P
+>&#13;    Matrices simples y multi-dimensionales están soportadas y 
+    pueden ser creadas por el usuario u otras funciones. Existen 
+    funciones específicas de manejo de bases de datos que
+    actualizan matrices con el resultado devuelto por la base de datos, 
+    numerosas otras funciones devuelven matrices como resultado.
+   </P
+><P
+>&#13;    Consultar la sección del manual <A
+HREF="language.types.array.html"
+>Matrices</A
+> si quereis una
+    explicación detallada de como las matrices están
+    implementadas en PHP.
+   </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.installation"
+>Instalación</A
+></H1
+><P
+>No se necesita ninguna instalación
+para usar estas funciones, son parte del núcleo de
+PHP.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.constants"
+>Constantes predefinidas</A
+></H1
+><P
+> Las constantes listadas
+aqui están siempre disponibles a través del
+"núcleo PHP".  </P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>CASE_LOWER</B
+></TT
+>
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>CASE_LOWER</B
+></TT
+> se utiliza con 
+     <A
+HREF="function.array-change-key-case.html"
+><B
+CLASS="function"
+>array_change_key_case()</B
+></A
+> y se utiliza para convertir 
+     las claves de una matriz a minúsculas. Este es el valor por defecto de 
+     <A
+HREF="function.array-change-key-case.html"
+><B
+CLASS="function"
+>array_change_key_case()</B
+></A
+>.
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CASE_UPPER</B
+></TT
+>
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>CASE_UPPER</B
+></TT
+> se utiliza con
+     <A
+HREF="function.array-change-key-case.html"
+><B
+CLASS="function"
+>array_change_key_case()</B
+></A
+> para convertir claves de matriz a 
+     mayúsculas.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+><P
+> Flags de ordenación:
+ <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>SORT_ASC</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>SORT_ASC</B
+></TT
+> se utiliza con
+     <A
+HREF="function.array-multisort.html"
+><B
+CLASS="function"
+>array_multisort()</B
+></A
+> para ordenar en sentido ascendente.
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>SORT_DESC</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>SORT_DESC</B
+></TT
+> se utiliza con
+     <A
+HREF="function.array-multisort.html"
+><B
+CLASS="function"
+>array_multisort()</B
+></A
+> para ordenar en sentido descendente.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+><P
+> Flags de tipo ordenación: utilizadas por varias funciones ordenación
+ <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>SORT_REGULAR</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>SORT_REGULAR</B
+></TT
+> se utiliza para comparar elementos de forma normal.
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>SORT_NUMERIC</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;     <TT
+CLASS="constant"
+><B
+>SORT_NUMERIC</B
+></TT
+> se utiliza para comparar elementos de forma numérica.
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>SORT_STRING</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+>integer</A
+>)</DT
+><DD
+><P
+>&#13;    <TT
+CLASS="constant"
+><B
+>SORT_STRING</B
+></TT
+> se utiliza para comparar elementos como cadenas.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>COUNT_NORMAL</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>COUNT_RECURSIVE</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_OVERWRITE</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_SKIP</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_PREFIX_SAME</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_PREFIX_ALL</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_PREFIX_INVALID</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_PREFIX_IF_EXISTS</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_IF_EXISTS</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>EXTR_REFS</B
+></TT
+>
+     (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="array.seealso"
+>Ver también</A
+></H1
+><P
+>&#13;    Ver tambien <A
+HREF="function.is-array.html"
+><B
+CLASS="function"
+>is_array()</B
+></A
+>,
+    <A
+HREF="function.explode.html"
+><B
+CLASS="function"
+>explode()</B
+></A
+>, <A
+HREF="function.implode.html"
+><B
+CLASS="function"
+>implode()</B
+></A
+>,
+    <A
+HREF="function.split.html"
+><B
+CLASS="function"
+>split()</B
+></A
+>, <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+> y
+    <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+>.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.array-change-key-case.html"
+>array_change_key_case</A
+>&nbsp;--&nbsp;Devuelve una matriz con todas las claves de las cadenas convertidas a mayúsculas o minúsculas</DT
+><DT
+><A
+HREF="function.array-chunk.html"
+>array_chunk</A
+>&nbsp;--&nbsp;Divide una matriz en segmentos</DT
+><DT
+><A
+HREF="function.array-combine.html"
+>array_combine</A
+>&nbsp;--&nbsp;
+    Crea una nueva matriz, usando una matriz para las claves y otra
+    para sus valores
+    </DT
+><DT
+><A
+HREF="function.array-count-values.html"
+>array_count_values</A
+>&nbsp;--&nbsp;Cuenta todos los valores de una matriz</DT
+><DT
+><A
+HREF="function.array-diff-assoc.html"
+>array_diff_assoc</A
+>&nbsp;--&nbsp;Comprueba las diferencias entre matrices teniendo en cuenta los índices</DT
+><DT
+><A
+HREF="function.array-diff-uassoc.html"
+>array_diff_uassoc</A
+>&nbsp;--&nbsp;
+     Computa la diferencia entre matrices con un chequeo adicional de
+     índices, el cual es realizado por una llamada de retorno
+     entregada por el usuario
+    </DT
+><DT
+><A
+HREF="function.array-diff.html"
+>array_diff</A
+>&nbsp;--&nbsp;Comprueba las diferencias entre matrices</DT
+><DT
+><A
+HREF="function.array-fill.html"
+>array_fill</A
+>&nbsp;--&nbsp;Llena una matriz con valores</DT
+><DT
+><A
+HREF="function.array-filter.html"
+>array_filter</A
+>&nbsp;--&nbsp;
+     Filtra elementos de una matriz mediante una función "callback"
+    </DT
+><DT
+><A
+HREF="function.array-flip.html"
+>array_flip</A
+>&nbsp;--&nbsp;Intercambia los valores de una matriz</DT
+><DT
+><A
+HREF="function.array-intersect-assoc.html"
+>array_intersect_assoc</A
+>&nbsp;--&nbsp;Computes the intersection of arrays with additional index check</DT
+><DT
+><A
+HREF="function.array-intersect.html"
+>array_intersect</A
+>&nbsp;--&nbsp;Computes the intersection of arrays</DT
+><DT
+><A
+HREF="function.array-key-exists.html"
+>array_key_exists</A
+>&nbsp;--&nbsp;Comprueba si el índice o clave dada existe en
+    la matriz</DT
+><DT
+><A
+HREF="function.array-keys.html"
+>array_keys</A
+>&nbsp;--&nbsp;Devuelve todas las claves de una matriz</DT
+><DT
+><A
+HREF="function.array-map.html"
+>array_map</A
+>&nbsp;--&nbsp;
+     Aplica la llamada de retorno especificada a los elementos de las
+     matrices dadas
+    </DT
+><DT
+><A
+HREF="function.array-merge-recursive.html"
+>array_merge_recursive</A
+>&nbsp;--&nbsp;Une dos o más matrices recursivamente</DT
+><DT
+><A
+HREF="function.array-merge.html"
+>array_merge</A
+>&nbsp;--&nbsp;Combina dos o más matrices</DT
+><DT
+><A
+HREF="function.array-multisort.html"
+>array_multisort</A
+>&nbsp;--&nbsp;Ordena múltiples matrices, o matrices
+    multi-dimensionales</DT
+><DT
+><A
+HREF="function.array-pad.html"
+>array_pad</A
+>&nbsp;--&nbsp;
+     Rellena una matriz con un valor hasta el tamaño especificado
+    </DT
+><DT
+><A
+HREF="function.array-pop.html"
+>array_pop</A
+>&nbsp;--&nbsp;Extrae el último elemento de la matriz</DT
+><DT
+><A
+HREF="function.array-push.html"
+>array_push</A
+>&nbsp;--&nbsp;
+     Inserta uno o más elementos al final de la matriz
+    </DT
+><DT
+><A
+HREF="function.array-rand.html"
+>array_rand</A
+>&nbsp;--&nbsp;
+    Selecciona una o más entradas aleatorias de una matriz
+    </DT
+><DT
+><A
+HREF="function.array-reduce.html"
+>array_reduce</A
+>&nbsp;--&nbsp;
+    Reduce iterativamente una matriz a un solo valor usando una
+    función llamada de retorno
+    </DT
+><DT
+><A
+HREF="function.array-reverse.html"
+>array_reverse</A
+>&nbsp;--&nbsp;
+     Devuelve una matriz con los elementos en orden inverso
+    </DT
+><DT
+><A
+HREF="function.array-search.html"
+>array_search</A
+>&nbsp;--&nbsp;
+    Busca un valor determinado en una matriz y devuelve la clave
+    correspondiente en caso de éxito
+    </DT
+><DT
+><A
+HREF="function.array-shift.html"
+>array_shift</A
+>&nbsp;--&nbsp;
+     Extrae un elemento del comienzo de la matriz
+    </DT
+><DT
+><A
+HREF="function.array-slice.html"
+>array_slice</A
+>&nbsp;--&nbsp;Extrae una porción de la matriz</DT
+><DT
+><A
+HREF="function.array-splice.html"
+>array_splice</A
+>&nbsp;--&nbsp;
+     Suprime una porción de la matriz y la sustituye por otra cosa
+    </DT
+><DT
+><A
+HREF="function.array-sum.html"
+>array_sum</A
+>&nbsp;--&nbsp;
+    Calcula la suma de los valores en una matriz
+    </DT
+><DT
+><A
+HREF="function.array-udiff-assoc.html"
+>array_udiff_assoc</A
+>&nbsp;--&nbsp;Computa la diferencia entre matrices con un chequeo de
+    índices adicional. Los datos son comparados usando una
+    llamada de retorno.</DT
+><DT
+><A
+HREF="function.array-udiff-uassoc.html"
+>array_udiff_uassoc</A
+>&nbsp;--&nbsp;Computa la diferencia entre matrices con un chequeo de
+    índices adicional. Los datos son comparados usando una
+    llamada de retorno. El chequeo de índice es realizado por
+    una llamada de retorno también.</DT
+><DT
+><A
+HREF="function.array-udiff.html"
+>array_udiff</A
+>&nbsp;--&nbsp;Computa la diferencia entre matrices, usando una
+    llamada de retorno para la comparación de
+    datos.</DT
+><DT
+><A
+HREF="function.array-unique.html"
+>array_unique</A
+>&nbsp;--&nbsp;Remueve valores duplicados de una matriz</DT
+><DT
+><A
+HREF="function.array-unshift.html"
+>array_unshift</A
+>&nbsp;--&nbsp;Introduce uno o más elementos al principio
+     de la matriz</DT
+><DT
+><A
+HREF="function.array-values.html"
+>array_values</A
+>&nbsp;--&nbsp;Devuelve todos los valores de una matriz</DT
+><DT
+><A
+HREF="function.array-walk-recursive.html"
+>array_walk_recursive</A
+>&nbsp;--&nbsp;
+     Aplicar una función de usuario recursivamente a cada
+     miembro de una matriz
+    </DT
+><DT
+><A
+HREF="function.array-walk.html"
+>array_walk</A
+>&nbsp;--&nbsp;
+     Aplica una función del usuario a cada elemento de una matriz.
+    </DT
+><DT
+><A
+HREF="function.array.html"
+>array</A
+>&nbsp;--&nbsp;
+     Crear una matriz
+    </DT
+><DT
+><A
+HREF="function.arsort.html"
+>arsort</A
+>&nbsp;--&nbsp;
+     Ordena una matriz en orden inverso y mantiene la asociación de índices
+    </DT
+><DT
+><A
+HREF="function.asort.html"
+>asort</A
+>&nbsp;--&nbsp;Ordena una matriz y mantiene la asociación de índices</DT
+><DT
+><A
+HREF="function.compact.html"
+>compact</A
+>&nbsp;--&nbsp;
+     Crea una matriz que contiene variables y sus valores
+    </DT
+><DT
+><A
+HREF="function.count.html"
+>count</A
+>&nbsp;--&nbsp;Cuenta los elementos de una variable</DT
+><DT
+><A
+HREF="function.current.html"
+>current</A
+>&nbsp;--&nbsp;Devuelve el elemento actual de una matriz</DT
+><DT
+><A
+HREF="function.each.html"
+>each</A
+>&nbsp;--&nbsp;
+     Devuelve el siguiente par clave/valor de una matriz
+    </DT
+><DT
+><A
+HREF="function.end.html"
+>end</A
+>&nbsp;--&nbsp;
+     Mueve el puntero interno de una tabla al último elemento
+    </DT
+><DT
+><A
+HREF="function.extract.html"
+>extract</A
+>&nbsp;--&nbsp;
+     Importa variables a la tabla de símbolos desde una matriz
+    </DT
+><DT
+><A
+HREF="function.in-array.html"
+>in_array</A
+>&nbsp;--&nbsp;Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si un valor está en una matriz</DT
+><DT
+><A
+HREF="function.key.html"
+>key</A
+>&nbsp;--&nbsp;Obtiene una clave de una matriz asociativa</DT
+><DT
+><A
+HREF="function.krsort.html"
+>krsort</A
+>&nbsp;--&nbsp;Ordena una matriz por clave en orden inverso</DT
+><DT
+><A
+HREF="function.ksort.html"
+>ksort</A
+>&nbsp;--&nbsp;Ordena una matriz por clave</DT
+><DT
+><A
+HREF="function.list.html"
+>list</A
+>&nbsp;--&nbsp;
+     Asigna variables como si fueran una matriz
+    </DT
+><DT
+><A
+HREF="function.natcasesort.html"
+>natcasesort</A
+>&nbsp;--&nbsp;
+     Ordena una matriz usando un algoritmo de "orden natural" sin
+     distinguir mayúsculas de minúsculas
+    </DT
+><DT
+><A
+HREF="function.natsort.html"
+>natsort</A
+>&nbsp;--&nbsp;
+     Ordena una matriz usando un algoritmo de "orden natural"
+    </DT
+><DT
+><A
+HREF="function.next.html"
+>next</A
+>&nbsp;--&nbsp;
+     Avanza el puntero interno de una matriz
+    </DT
+><DT
+><A
+HREF="function.pos.html"
+>pos</A
+>&nbsp;--&nbsp;Obtiene el elemento actual de una matriz</DT
+><DT
+><A
+HREF="function.prev.html"
+>prev</A
+>&nbsp;--&nbsp;Rebobina el puntero interno de una matriz</DT
+><DT
+><A
+HREF="function.range.html"
+>range</A
+>&nbsp;--&nbsp;
+     Crea una matriz que contiene un rango de elementos
+    </DT
+><DT
+><A
+HREF="function.reset.html"
+>reset</A
+>&nbsp;--&nbsp;
+     Fija el puntero interno de una matriz a su primer elemento
+    </DT
+><DT
+><A
+HREF="function.rsort.html"
+>rsort</A
+>&nbsp;--&nbsp;Ordena una matriz en orden inverso</DT
+><DT
+><A
+HREF="function.shuffle.html"
+>shuffle</A
+>&nbsp;--&nbsp;Mezcla una matriz</DT
+><DT
+><A
+HREF="function.sizeof.html"
+>sizeof</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.count.html"
+><B
+CLASS="function"
+>count()</B
+></A
+></DT
+><DT
+><A
+HREF="function.sort.html"
+>sort</A
+>&nbsp;--&nbsp;Ordena una matriz</DT
+><DT
+><A
+HREF="function.uasort.html"
+>uasort</A
+>&nbsp;--&nbsp;
+     Ordena una matriz mediante una función de comparación 
+     definida por el usuario y mantiene la asociación de índices
+    </DT
+><DT
+><A
+HREF="function.uksort.html"
+>uksort</A
+>&nbsp;--&nbsp;
+     Ordena una matriz por claves mediante una función definida por el usuario
+    </DT
+><DT
+><A
+HREF="function.usort.html"
+>usort</A
+>&nbsp;--&nbsp;
+     Ordena una matriz por sus valores usando una función de
+     comparación definida por el usuario
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.virtual.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-change-key-case.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>virtual</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_change_key_case</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

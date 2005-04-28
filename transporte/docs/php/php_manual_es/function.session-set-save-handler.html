@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>session_set_save_handler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para el manejo de sesiones"
+HREF="ref.session.html"><LINK
+REL="PREVIOUS"
+TITLE="session_set_cookie_params"
+HREF="function.session-set-cookie-params.html"><LINK
+REL="NEXT"
+TITLE="session_start"
+HREF="function.session-start.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.session-set-cookie-params.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.session-start.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.session-set-save-handler"
+></A
+>session_set_save_handler</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN96512"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>session_set_save_handler&nbsp;--&nbsp;
+     Establece unas funciones para el almacenamiento de los datos de la sesión a nivel de usuario
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN96515"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>session_set_save_handler</B
+> ( string abrir, string cerrar, string leer, string escribir, string destruir, string gc)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>session_set_save_handler()</B
+> establece las
+	 funciones que se utilizan a nivel de usuario para el
+	 almacenamiento y recuperación de los datos asociados a
+	 una sesión. Es lo más útil cuando se
+	 prefiere utilizar otro método de almacenamiento distinto
+	 del proporcionaddo por las sesiones de PHP. p.ej. Almacenar
+	 los datos de la sesión en una base de datos local.
+     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Debe cambiar la opción
+      <VAR
+CLASS="parameter"
+>session.save_handler</VAR
+> en la
+	  configuración a <VAR
+CLASS="parameter"
+>user</VAR
+> en su
+	  archivo <TT
+CLASS="filename"
+>php.ini</TT
+> para que
+	  <B
+CLASS="function"
+>session_set_save_handler()</B
+> tenga efecto.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El manejador "escribir" no se ejecuta hasta que se cierra la
+	  salida. Por ello, la salida de las sentencias que coloquemos
+	  en el manejador "escribir" para el depurado nunca será
+	  enviadas al navegador. Si se necesita producir una salida para
+	  el depurado, se sugiere que la salida se produzca en un archivo.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     El siguiente ejemplo proporciona almacenamiento de las sesiones
+	 basado en archivos de forma similar al manejador de sesiones
+	 por defecto de PHP <VAR
+CLASS="parameter"
+>files</VAR
+>. Este ejemplo
+	 puede ser extendido fácilmente para cubrir el almacenamiento
+	 en bases de datos usando su motor de soporte de bases de datos
+	 de PHP favorito.
+    </P
+><P
+>&#13;     La función de lectura debe devolver siempre una cadena
+	 para que el manejador de escritura funcione como se espera.
+     Devuelva una cadena vacía si no hay ningún dato
+	 a leer. Los valores devueltos de otros manejadores son
+	 convertidos a una expresión booleana. TRUE si todo ha
+	 ido correctamente, FALSE si ha habido algún problema.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96554"
+></A
+><P
+><B
+>Ejemplo 1. 
+       Ejemplo de <B
+CLASS="function"
+>session_set_save_handler()</B
+>
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">abrir </font><font color="#007700">(</font><font color="#0000BB">$save_path</font><font color="#007700">, </font><font color="#0000BB">$session_name</font><font color="#007700">) {<br />&nbsp;&nbsp;global </font><font color="#0000BB">$sess_save_path</font><font color="#007700">, </font><font color="#0000BB">$sess_session_name</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">$sess_save_path </font><font color="#007700">= </font><font color="#0000BB">$save_path</font><font color="#007700">;<br />&nbsp;&nbsp;</font><font color="#0000BB">$sess_session_name </font><font color="#007700">= </font><font color="#0000BB">$session_name</font><font color="#007700">;<br />&nbsp;&nbsp;return(</font><font color="#0000BB">true</font><font color="#007700">);<br />}<br /><br />function </font><font color="#0000BB">cerrar</font><font color="#007700">() {<br />&nbsp;&nbsp;return(</font><font color="#0000BB">true</font><font color="#007700">);<br />}<br /><br />function </font><font color="#0000BB">leer </font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">) {<br />&nbsp;&nbsp;global </font><font color="#0000BB">$sess_save_path</font><font color="#007700">, </font><font color="#0000BB">$sess_session_name</font><font color="#007700">;<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$sess_file </font><font color="#007700">= </font><font color="#DD0000">"$sess_save_path/sess_$id"</font><font color="#007700">;<br />&nbsp;&nbsp;if (</font><font color="#0000BB">$fp </font><font color="#007700">= @</font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#0000BB">$sess_file</font><font color="#007700">, </font><font color="#DD0000">"r"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$sess_data </font><font color="#007700">= </font><font color="#0000BB">fread</font><font color="#007700">(</font><font color="#0000BB">$fp</font><font color="#007700">, </font><font color="#0000BB">filesize</font><font color="#007700">(</font><font color="#0000BB">$sess_file</font><font color="#007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;return(</font><font color="#0000BB">$sess_data</font><font color="#007700">);<br />&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;return(</font><font color="#DD0000">""</font><font color="#007700">); </font><font color="#FF8000">// Debe devolver "" aqu&amp;iacute;.<br />&nbsp;&nbsp;</font><font color="#007700">}<br /><br />}<br /><br />function </font><font color="#0000BB">escribir </font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">, </font><font color="#0000BB">$sess_data</font><font color="#007700">) {<br />&nbsp;&nbsp;global </font><font color="#0000BB">$sess_save_path</font><font color="#007700">, </font><font color="#0000BB">$sess_session_name</font><font color="#007700">;<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$sess_file </font><font color="#007700">= </font><font color="#DD0000">"$sess_save_path/sess_$id"</font><font color="#007700">;<br />&nbsp;&nbsp;if (</font><font color="#0000BB">$fp </font><font color="#007700">= @</font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#0000BB">$sess_file</font><font color="#007700">, </font><font color="#DD0000">"w"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;return(</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$fp</font><font color="#007700">, </font><font color="#0000BB">$sess_data</font><font color="#007700">));<br />&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;return(</font><font color="#0000BB">false</font><font color="#007700">);<br />&nbsp;&nbsp;}<br /><br />}<br /><br />function </font><font color="#0000BB">destruir </font><font color="#007700">(</font><font color="#0000BB">$id</font><font color="#007700">) {<br />&nbsp;&nbsp;global </font><font color="#0000BB">$sess_save_path</font><font color="#007700">, </font><font color="#0000BB">$sess_session_name</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">$sess_file </font><font color="#007700">= </font><font color="#DD0000">"$sess_save_path/sess_$id"</font><font color="#007700">;<br />&nbsp;&nbsp;return(@</font><font color="#0000BB">unlink</font><font color="#007700">(</font><font color="#0000BB">$sess_file</font><font color="#007700">));<br />}<br /><br /></font><font color="#FF8000">/***********************************************<br /> * ATENCI&amp;Oacute;N - Necesitar&amp;aacute; implementar alg&amp;uacute;n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br /> * tipo de rutinas recolectoras de basura aqu&amp;iacute; *<br /> ***********************************************/<br /></font><font color="#007700">function </font><font color="#0000BB">rb </font><font color="#007700">(</font><font color="#0000BB">$maxlifetime</font><font color="#007700">) {<br />&nbsp;&nbsp;return </font><font color="#0000BB">true</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">session_set_save_handler </font><font color="#007700">(</font><font color="#DD0000">"abrir"</font><font color="#007700">, </font><font color="#DD0000">"cerrar"</font><font color="#007700">, </font><font color="#DD0000">"leer"</font><font color="#007700">, </font><font color="#DD0000">"escribir"</font><font color="#007700">, </font><font color="#DD0000">"destruir"</font><font color="#007700">, </font><font color="#DD0000">"rb"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">session_start</font><font color="#007700">();<br /><br /></font><font color="#FF8000">// proceed to use sessions normally<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.session-set-cookie-params.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.session-start.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>session_set_cookie_params</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.session.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>session_start</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

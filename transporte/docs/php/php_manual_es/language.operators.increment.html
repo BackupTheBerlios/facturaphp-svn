@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Operadores de Incremento/Decremento</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Operadores"
+HREF="language.operators.html"><LINK
+REL="PREVIOUS"
+TITLE="Operadores de ejecución"
+HREF="language.operators.execution.html"><LINK
+REL="NEXT"
+TITLE="Operadores de Lógica"
+HREF="language.operators.logical.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.operators.execution.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 10. Operadores</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.operators.logical.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.operators.increment"
+>Operadores de Incremento/Decremento</A
+></H1
+><P
+>&#13;    PHP ofrece soporte de operadores de pre- y post-incremento y
+    decremento, estilo-C.
+   </P
+><DIV
+CLASS="table"
+><A
+NAME="AEN3553"
+></A
+><P
+><B
+>Tabla 10-5. Operadores de Incremento/decremento</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Ejemplo</TH
+><TH
+>Nombre</TH
+><TH
+>Efecto</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>++$a</TD
+><TD
+>Pre-incremento</TD
+><TD
+>Incrementa $a en uno, y luego devuelve $a.</TD
+></TR
+><TR
+><TD
+>$a++</TD
+><TD
+>Post-incremento</TD
+><TD
+>Devuelve $a, y luego incrementa $a en uno.</TD
+></TR
+><TR
+><TD
+>--$a</TD
+><TD
+>Pre-decremento</TD
+><TD
+>Decrementa $a en uno, luego devuelve $a.</TD
+></TR
+><TR
+><TD
+>$a--</TD
+><TD
+>Post-decremento</TD
+><TD
+>Devuelve $a, luego decrementa $a en uno.</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;    Aquí hay un script sencillo de ejemplo:
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3579"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#DD0000">"&lt;h3&gt;Postincremento&lt;/h3&gt;"</font><font color="#007700">;<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">5</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 5: " </font><font color="#007700">. </font><font color="#0000BB">$a</font><font color="#007700">++ . </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 6: " </font><font color="#007700">. </font><font color="#0000BB">$a </font><font color="#007700">. </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">"&lt;h3&gt;Preincremento&lt;/h3&gt;"</font><font color="#007700">;<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">5</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 6: " </font><font color="#007700">. ++</font><font color="#0000BB">$a </font><font color="#007700">. </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 6: " </font><font color="#007700">. </font><font color="#0000BB">$a </font><font color="#007700">. </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">"&lt;h3&gt;Postdecremento&lt;/h3&gt;"</font><font color="#007700">;<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">5</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 5: " </font><font color="#007700">. </font><font color="#0000BB">$a</font><font color="#007700">-- . </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 4: " </font><font color="#007700">. </font><font color="#0000BB">$a </font><font color="#007700">. </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">"&lt;h3&gt;Predecremento&lt;/h3&gt;"</font><font color="#007700">;<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">5</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 4: " </font><font color="#007700">. --</font><font color="#0000BB">$a </font><font color="#007700">. </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Debe ser 4: " </font><font color="#007700">. </font><font color="#0000BB">$a </font><font color="#007700">. </font><font color="#DD0000">"&lt;br /&gt;\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><P
+>&#13;    PHP sigue la convención de Perl cuando trabaja con
+    operaciones aritméticas sobre variables de caracter, y no
+    la convención de C. Por ejemplo, en Perl 'Z'+1 se convierte
+    en 'AA', mientras que en C 'Z'+1 se convierte en '[' ( ord('Z') ==
+    90, ord('[') == 91 ). Note que las variables de caracter pueden
+    ser incrementadas pero no decrementadas.
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN3582"
+></A
+><P
+><B
+>Ejemplo 10-1. Operaciones Aritméticas sobre Variables de
+     Caracter</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$i </font><font color="#007700">= </font><font color="#DD0000">'W'</font><font color="#007700">;<br />for(</font><font color="#0000BB">$n</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$n</font><font color="#007700">&lt;</font><font color="#0000BB">6</font><font color="#007700">; </font><font color="#0000BB">$n</font><font color="#007700">++)<br />&nbsp;&nbsp;echo ++</font><font color="#0000BB">$i </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/*<br />&nbsp;&nbsp;Produce una salida similar a la siguiente:<br /><br />X<br />Y<br />Z<br />AA<br />AB<br />AC<br /><br />*/<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.operators.execution.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.operators.logical.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Operadores de ejecución</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.operators.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Operadores de Lógica</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

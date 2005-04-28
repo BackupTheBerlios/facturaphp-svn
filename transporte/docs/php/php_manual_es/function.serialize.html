@@ -1,0 +1,305 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>serialize</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Variables"
+HREF="ref.var.html"><LINK
+REL="PREVIOUS"
+TITLE="print_r"
+HREF="function.print-r.html"><LINK
+REL="NEXT"
+TITLE="settype"
+HREF="function.settype.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.print-r.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.settype.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.serialize"
+></A
+>serialize</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN112773"
+></A
+><P
+>    (PHP 3&#62;= 3.0.5, PHP 4 , PHP 5)</P
+>serialize&nbsp;--&nbsp;
+Genera una representación apta para almacenamiento de un valor
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN112776"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>serialize</B
+> ( mixed valor)<BR
+></BR
+><P
+>&#13;
+<B
+CLASS="function"
+>serialize()</B
+> devuelve una cadena que contiene una
+representación de flujo de bytes
+del <VAR
+CLASS="parameter"
+>valor</VAR
+> que puede ser almacenada en cualquier
+parte.
+    </P
+><P
+>&#13;Esto es útil para el almacenamiento de valores en PHP sin
+perder su tipo y estructura.
+    </P
+><P
+>&#13;Para recuperar el valor PHP a partir de la cadena seriada,
+use <A
+HREF="function.unserialize.html"
+><B
+CLASS="function"
+>unserialize()</B
+></A
+>. <B
+CLASS="function"
+>serialize()</B
+>
+maneja todos los tipos, excepto <A
+HREF="language.types.resource.html"
+><B
+CLASS="type"
+>resource</B
+></A
+>. Usted puede
+incluso usar <B
+CLASS="function"
+>serialize()</B
+> sobre matrices que
+contienen referencias a ellas mismas. Las referencias encontradas en
+la matriz/objeto que procede a seriar
+con <B
+CLASS="function"
+>serialize()</B
+> también serán
+almacenadas.
+   </P
+><P
+>&#13;Cuando seria objetos, PHP intentará llamar la función
+miembro <B
+CLASS="function"
+>__sleep()</B
+> antes de la
+seriación. Esto permite que el objeto efectúe limpiezas
+de último minuto, etc. antes de ser seriado. De forma
+semejante, cuando un objeto es recuperado
+usando <A
+HREF="function.unserialize.html"
+><B
+CLASS="function"
+>unserialize()</B
+></A
+>, la función
+miembro <B
+CLASS="function"
+>__wakeup()</B
+> es llamada.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+En PHP 3, las propiedades de los objetos serán seriados, pero
+los métodos se pierden. PHP 4 elimina esa limitación y
+recupera tanto propiedades como métodos. Por favor consulte la
+sección <A
+HREF="missing-stuff.html#language.oop.serialization"
+>Seriación de
+Objetos</A
+> de <A
+HREF="language.oop.html"
+>Clases y Objetos</A
+>
+para más información.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN112803"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>serialize()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// $datos_sesion contiene una matriz multi-dimensional con<br />// informacion del usuario actual. Usamos serialize() para<br />// almacenarla en una base de datos al final de la peticion.<br /><br /><br /></font><font color="#0000BB">$con&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">odbc_connect</font><font color="#007700">(</font><font color="#DD0000">"bd_web"</font><font color="#007700">, </font><font color="#DD0000">"php"</font><font color="#007700">, </font><font color="#DD0000">"gallina"</font><font color="#007700">);<br /></font><font color="#0000BB">$sent </font><font color="#007700">= </font><font color="#0000BB">odbc_prepare</font><font color="#007700">(</font><font color="#0000BB">$con</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"UPDATE sesiones SET datos = ? WHERE id = ?"</font><font color="#007700">);<br /></font><font color="#0000BB">$datos_sql </font><font color="#007700">= array (</font><font color="#0000BB">serialize</font><font color="#007700">(</font><font color="#0000BB">$datos_sesion</font><font color="#007700">), </font><font color="#0000BB">$PHP_AUTH_USER</font><font color="#007700">);<br /><br />if (!</font><font color="#0000BB">odbc_execute</font><font color="#007700">(</font><font color="#0000BB">$sent</font><font color="#007700">, &amp;</font><font color="#0000BB">$datos_sql</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$sent </font><font color="#007700">= </font><font color="#0000BB">odbc_prepare</font><font color="#007700">(</font><font color="#0000BB">$con</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"INSERT INTO sesiones (id, datos) VALUES(?, ?)"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000BB">odbc_execute</font><font color="#007700">(</font><font color="#0000BB">$sent</font><font color="#007700">, &amp;</font><font color="#0000BB">$datos_sql</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Algo ha fallado.. */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;    Vea También: <A
+HREF="function.unserialize.html"
+><B
+CLASS="function"
+>unserialize()</B
+></A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.print-r.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.settype.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>print_r</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.var.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>settype</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workbench version="2.0">
+<window maximized="true" x="128" y="0" width="1024" height="768">
+<fastViewData fastViewLocation="1024"/>
+<perspectiveBar>
+<itemSize x="642"/>
+</perspectiveBar>
+<coolbarLayout locked="0">
+<coolItem id="group.file" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="96" y="26"/>
+<coolItem id="additions" itemType="typeGroupMarker"/>
+<coolItem id="net.sf.eclipsetidy.ActionSet" itemType="typeToolBarContribution" x="62" y="26"/>
+<coolItem id="net.sourceforge.phpeclipse.PHPActionSet" itemType="typeToolBarContribution" x="114" y="26"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="44" y="26"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="36" y="26"/>
+<coolItem id="org.eclipse.team.cvs.ui.CVSActionSet" itemType="typeToolBarContribution" x="36" y="26"/>
+<coolItem id="org.eclipse.team.ui.actionSet" itemType="typeToolBarContribution" x="44" y="26"/>
+<coolItem id="group.nav" itemType="typeGroupMarker"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="104" y="26"/>
+<coolItem id="group.editor" itemType="typeGroupMarker"/>
+<coolItem id="net.sourceforge.phpeclipse.PHPUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
+<coolItem id="org.eclipse.ui.DefaultTextEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+<coolItem id="org.trustudio.php.ui.PHPEditor" itemType="typePlaceholder" x="-1" y="-1"/>
+</coolbarLayout>
+<page label="Workspace - Resource" focus="true">
+<editors>
+<editorArea activeWorkbook="DefaultEditorWorkbook">
+<info part="DefaultEditorWorkbook">
+<folder expanded="2" appearance="1">
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</editorArea>
+<editor title="index.inc.php" name="index.inc.php" id="net.sourceforge.phpeclipse.PHPUnitEditor" tooltip="transporte/inc/index.inc.php" partName="index.inc.php" workbook="DefaultEditorWorkbook" path="/var/www/proyectos/transporte/inc/index.inc.php">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/transporte/inc/index.inc.php"/>
+</editor>
+<editor title="config.inc.php" name="config.inc.php" id="net.sourceforge.phpeclipse.PHPUnitEditor" tooltip="transporte/inc/config.inc.php" partName="config.inc.php" workbook="DefaultEditorWorkbook" activePart="true" focus="true" path="/var/www/proyectos/transporte/inc/config.inc.php">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/transporte/inc/config.inc.php"/>
+</editor>
+</editors>
+<views>
+<view id="org.eclipse.team.sync.views.SynchronizeView" partName="Synchronize">
+<viewState/>
+</view>
+<view id="net.sourceforge.phpeclipse.webbrowser.views" partName="PHP Browser">
+<viewState/>
+</view>
+<view id="org.tigris.subversion.subclipse.ui.history.HistoryView" partName="SVN Resource History">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState columnWidth0="19" columnWidth1="19" columnWidth2="121" columnWidth3="46" columnWidth4="90" columnWidth5="163" verticalPosition="0" horizontalPosition="0">
+<selection/>
+</viewState>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.tigris.subversion.subclipse.ui.annotations.AnnotateView" partName="SVN Annotate"/>
+<view id="org.tigris.subversion.subclipse.ui.repository.RepositoriesView" partName="SVN Repository">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ProblemView" partName="Problems"/>
+<view id="net.sourceforge.phpeclipse.js.ui.views.JSClassesView" partName="JavaScript Classes">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ResourceNavigator" partName="Navigator">
+<viewState sorter="1" LINK_NAVIGATOR_TO_EDITOR="0">
+<filters>
+<filter element="*.class" isEnabled="false"/>
+<filter element=".*" isEnabled="false"/>
+</filters>
+<expanded>
+<element path="/transporte"/>
+<element path="/transporte/inc"/>
+</expanded>
+<selection>
+<element path="/transporte/inc/config.inc.php"/>
+</selection>
+</viewState>
+</view>
+</views>
+<perspectives activePerspective="org.eclipse.ui.resourcePerspective" activePart="net.sourceforge.phpeclipse.PHPUnitEditor">
+<perspective version="0.016" editorAreaVisible="1" fixed="0">
+<descriptor id="org.eclipse.ui.resourcePerspective" label="Resource" class="org.eclipse.ui.internal.ide.ResourcePerspective"/>
+<actionSet id="net.sf.eclipsetidy.ActionSet"/>
+<actionSet id="net.sourceforge.phpeclipse.PHPActionSet"/>
+<actionSet id="net.sourceforge.phpdt.externaltools.ExternalToolsSet"/>
+<actionSet id="org.eclipse.search.searchActionSet"/>
+<actionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<actionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<actionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<actionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<actionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<actionSet id="org.eclipse.ui.NavigateActionSet"/>
+<actionSet id="net.sourceforge.phpeclipse.ui.CodingActionSet"/>
+<alwaysOnActionSet id="net.sf.eclipsetidy.ActionSet"/>
+<alwaysOnActionSet id="net.sourceforge.phpeclipse.PHPActionSet"/>
+<alwaysOnActionSet id="net.sourceforge.phpdt.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.BookmarkView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.PropertySheet"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<perspective_action id="org.eclipse.team.cvs.ui.cvsPerspective"/>
+<perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
+<view id="org.eclipse.ui.views.ResourceNavigator"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="net.sourceforge.phpeclipse.js.ui.views.JSClassesView"/>
+<view id="net.sourceforge.phpeclipse.webbrowser.views"/>
+<layout>
+<mainWindow>
+<info part="topLeft" folder="true">
+<folder activePageID="org.eclipse.ui.views.ResourceNavigator" expanded="2" appearance="2">
+<page label="Navigator" content="org.eclipse.ui.views.ResourceNavigator"/>
+<page label="LabelNotFound" content="org.eclipse.ui.views.BookmarkView"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.RepositoriesView"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.AnnotateView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="stickyFolderRight" relative="topLeft" relationship="2" ratioLeft="947" ratioRight="316" ratio="0.74980205" folder="true">
+<folder expanded="2" appearance="2">
+<page label="LabelNotFound" content="org.eclipse.ui.cheatsheets.views.CheatSheetView"/>
+<page label="LabelNotFound" content="org.eclipse.ui.internal.introview"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" relative="topLeft" relationship="2" ratioLeft="328" ratioRight="935" ratio="0.25969914"/>
+<info part="org.eclipse.ui.internal.ViewStack@1a02097" relative="org.eclipse.ui.editorss" relationship="4" ratioLeft="565" ratioRight="292" ratio="0.65927655" folder="true">
+<folder activePageID="org.eclipse.ui.views.TaskList" expanded="2" appearance="2">
+<page label="Tasks" content="org.eclipse.ui.views.TaskList"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.console"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.HistoryView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.internal.ViewStack@1bbc779" relative="org.eclipse.ui.internal.ViewStack@1a02097" relationship="2" ratioLeft="467" ratioRight="468" ratio="0.49946523" folder="true">
+<folder activePageID="net.sourceforge.phpeclipse.webbrowser.views" expanded="2" appearance="2">
+<page label="JavaScript Classes" content="net.sourceforge.phpeclipse.js.ui.views.JSClassesView"/>
+<page label="PHP Browser" content="net.sourceforge.phpeclipse.webbrowser.views"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="bottomLeft" relative="topLeft" relationship="4" ratioLeft="428" ratioRight="429" ratio="0.49941656" folder="true">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" expanded="2" appearance="2">
+<page label="Outline" content="org.eclipse.ui.views.ContentOutline"/>
+<page label="LabelNotFound" content="org.eclipse.ant.ui.views.AntView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective version="0.016" editorAreaVisible="1" fixed="0">
+<descriptor id="org.eclipse.team.ui.TeamSynchronizingPerspective" label="Team Synchronizing" class="org.eclipse.team.internal.ui.synchronize.TeamSynchronizingPerspective"/>
+<actionSet id="net.sf.eclipsetidy.ActionSet"/>
+<actionSet id="net.sourceforge.phpeclipse.PHPActionSet"/>
+<actionSet id="net.sourceforge.phpdt.externaltools.ExternalToolsSet"/>
+<actionSet id="org.eclipse.search.searchActionSet"/>
+<actionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<actionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<actionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<actionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<actionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<actionSet id="org.eclipse.team.ui.actionSet"/>
+<alwaysOnActionSet id="net.sf.eclipsetidy.ActionSet"/>
+<alwaysOnActionSet id="net.sourceforge.phpeclipse.PHPActionSet"/>
+<alwaysOnActionSet id="net.sourceforge.phpdt.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="org.eclipse.team.ui.actionSet"/>
+<show_view_action id="org.eclipse.team.sync.views.SynchronizeView"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.project"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<perspective_action id="org.eclipse.ui.resourcePerspective"/>
+<perspective_action id="org.eclipse.team.cvs.ui.cvsPerspective"/>
+<perspective_action id="org.tigris.subversion.subclipse.ui.svnPerspective"/>
+<view id="org.eclipse.team.sync.views.SynchronizeView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<layout>
+<mainWindow>
+<info part="top" folder="true">
+<folder activePageID="org.eclipse.team.sync.views.SynchronizeView" expanded="2" appearance="2">
+<page label="Synchronize" content="org.eclipse.team.sync.views.SynchronizeView"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.RepositoriesView"/>
+<page label="LabelNotFound" content="org.tigris.subversion.subclipse.ui.repository.RepositoriesView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info part="stickyFolderRight" relative="top" relationship="2" ratioLeft="947" ratioRight="316" ratio="0.74980205" folder="true">
+<folder expanded="2" appearance="2">
+<page label="LabelNotFound" content="org.eclipse.ui.cheatsheets.views.CheatSheetView"/>
+<page label="LabelNotFound" content="org.eclipse.ui.internal.introview"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" relative="top" relationship="2" ratioLeft="315" ratioRight="948" ratio="0.24940617"/>
+<info part="top2" relative="org.eclipse.ui.editorss" relationship="4" ratioLeft="685" ratioRight="172" ratio="0.7992999" folder="true">
+<folder activePageID="org.eclipse.ui.views.TaskList" expanded="2" appearance="2">
+<page label="Tasks" content="org.eclipse.ui.views.TaskList"/>
+<page label="Problems" content="org.eclipse.ui.views.ProblemView"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.console"/>
+<page label="LabelNotFound" content="org.eclipse.team.ccvs.ui.HistoryView"/>
+<page label="LabelNotFound" content="org.tigris.subversion.subclipse.ui.history.HistoryView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+<perspective version="0.016" editorAreaVisible="1" fixed="0">
+<descriptor id="org.tigris.subversion.subclipse.ui.svnPerspective" label="SVN Repository Exploring" class="org.tigris.subversion.subclipse.ui.SVNPerspective"/>
+<actionSet id="net.sf.eclipsetidy.ActionSet"/>
+<actionSet id="net.sourceforge.phpeclipse.PHPActionSet"/>
+<actionSet id="net.sourceforge.phpdt.externaltools.ExternalToolsSet"/>
+<actionSet id="org.eclipse.search.searchActionSet"/>
+<actionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<actionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<actionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<actionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<actionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<alwaysOnActionSet id="net.sf.eclipsetidy.ActionSet"/>
+<alwaysOnActionSet id="net.sourceforge.phpeclipse.PHPActionSet"/>
+<alwaysOnActionSet id="net.sourceforge.phpdt.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.openExternalFile"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.update.ui.softwareUpdates"/>
+<show_view_action id="org.eclipse.ui.views.ResourceNavigator"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.tigris.subversion.subclipse.ui.history.HistoryView"/>
+<show_view_action id="org.tigris.subversion.subclipse.ui.repository.RepositoriesView"/>
+<show_view_action id="org.eclipse.team.sync.views.SynchronizeView"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.project"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.folder"/>
+<new_wizard_action id="org.eclipse.ui.wizards.new.file"/>
+<perspective_action id="org.eclipse.ui.resourcePerspective"/>
+<perspective_action id="org.eclipse.team.ui.TeamSynchronizingPerspective"/>
+<view id="org.tigris.subversion.subclipse.ui.repository.RepositoriesView"/>
+<view id="org.tigris.subversion.subclipse.ui.annotations.AnnotateView"/>
+<view id="org.tigris.subversion.subclipse.ui.history.HistoryView"/>
+<layout>
+<mainWindow>
+<info part="top" folder="true">
+<folder activePageID="org.tigris.subversion.subclipse.ui.repository.RepositoriesView" expanded="2" appearance="2">
+<page label="SVN Repository" content="org.tigris.subversion.subclipse.ui.repository.RepositoriesView"/>
+<page label="SVN Annotate" content="org.tigris.subversion.subclipse.ui.annotations.AnnotateView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info part="stickyFolderRight" relative="top" relationship="2" ratioLeft="947" ratioRight="316" ratio="0.74980205" folder="true">
+<folder expanded="2" appearance="2">
+<page label="LabelNotFound" content="org.eclipse.ui.cheatsheets.views.CheatSheetView"/>
+<page label="LabelNotFound" content="org.eclipse.ui.internal.introview"/>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" relative="top" relationship="2" ratioLeft="505" ratioRight="758" ratio="0.39984164"/>
+<info part="org.eclipse.ui.internal.ViewStack@863941" relative="org.eclipse.ui.editorss" relationship="4" ratioLeft="599" ratioRight="258" ratio="0.6989498" folder="true">
+<folder activePageID="org.tigris.subversion.subclipse.ui.history.HistoryView" expanded="2" appearance="2">
+<page label="SVN Resource History" content="org.tigris.subversion.subclipse.ui.history.HistoryView"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
+</perspectives>
+<navigationHistory>
+<editors>
+<editor id="net.sourceforge.phpeclipse.PHPUnitEditor" factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/transporte/inc/index.inc.php"/>
+<editor id="net.sourceforge.phpeclipse.PHPUnitEditor" factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/transporte/inc/config.inc.php"/>
+</editors>
+<item historyLabel="index.inc.php" index="0">
+<position/>
+</item>
+<item historyLabel="config.inc.php" index="1">
+<position x="948" y="0" info="not_deleted"/>
+</item>
+<item historyLabel="config.inc.php" index="1">
+<position x="1203" y="0" info="not_deleted"/>
+</item>
+<item historyLabel="config.inc.php" index="1">
+<position x="1774" y="0" info="not_deleted"/>
+</item>
+<item historyLabel="config.inc.php" index="1">
+<position x="1542" y="0" info="not_deleted"/>
+</item>
+<item historyLabel="config.inc.php" index="1">
+<position x="1462" y="0" info="not_deleted"/>
+</item>
+<item active="true" historyLabel="config.inc.php" index="1">
+<position x="1417" y="0" info="not_deleted"/>
+</item>
+</navigationHistory>
+<input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
+</page>
+</window>
+<mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="net.sourceforge.phpeclipse.PHPUnitEditor" name="config.inc.php" tooltip="transporte/inc/config.inc.php">
+<persistable path="/transporte/inc/config.inc.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="net.sourceforge.phpeclipse.PHPUnitEditor" name="index.inc.php" tooltip="transporte/inc/index.inc.php">
+<persistable path="/transporte/inc/index.inc.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="wellcome.tpl" tooltip="transporte/templates/wellcome.tpl">
+<persistable path="/transporte/templates/wellcome.tpl"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="error.tpl" tooltip="transporte/templates/error.tpl">
+<persistable path="/transporte/templates/error.tpl"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.ui.DefaultTextEditor" name="corps_list.tpl" tooltip="transporte/templates/corps_list.tpl">
+<persistable path="/transporte/templates/corps_list.tpl"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="sessions.class.php" tooltip="transporte/inc/sessions.class.php">
+<persistable path="/transporte/inc/sessions.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="log_sessions.class.php" tooltip="transporte/inc/log_sessions.class.php">
+<persistable path="/transporte/inc/log_sessions.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="rel_servs_cats.class.php" tooltip="transporte/inc/rel_servs_cats.class.php">
+<persistable path="/transporte/inc/rel_servs_cats.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="rel_emps_cats.class.php" tooltip="transporte/inc/rel_emps_cats.class.php">
+<persistable path="/transporte/inc/rel_emps_cats.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="rel_prods_cats.class.php" tooltip="transporte/inc/rel_prods_cats.class.php">
+<persistable path="/transporte/inc/rel_prods_cats.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="per_user_modules.class.php" tooltip="transporte/inc/per_user_modules.class.php">
+<persistable path="/transporte/inc/per_user_modules.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="per_group_modules.class.php" tooltip="transporte/inc/per_group_modules.class.php">
+<persistable path="/transporte/inc/per_group_modules.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="per_user_methods.class.php" tooltip="transporte/inc/per_user_methods.class.php">
+<persistable path="/transporte/inc/per_user_methods.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="per_group_methods.class.php" tooltip="transporte/inc/per_group_methods.class.php">
+<persistable path="/transporte/inc/per_group_methods.class.php"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.trustudio.php.ui.PHPEditor" name="cat_vehicles.class.php" tooltip="transporte/inc/cat_vehicles.class.php">
+<persistable path="/transporte/inc/cat_vehicles.class.php"/>
+</file>
+</mruList>
+</workbench>

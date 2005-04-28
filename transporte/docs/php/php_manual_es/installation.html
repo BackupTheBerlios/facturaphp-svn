@@ -1,0 +1,355 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Conceptos Básicos"
+HREF="getting-started.html"><LINK
+REL="PREVIOUS"
+TITLE="¿Y ahora qué?"
+HREF="tutorial.whatsnext.html"><LINK
+REL="NEXT"
+TITLE="Instalación en Unix/HP-UX"
+HREF="install.hpux.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tutorial.whatsnext.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.hpux.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="installation"
+>Capítulo 3. Instalación</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="installation.html#install.general"
+>Consideraciones generales de instalación</A
+></DT
+><DT
+><A
+HREF="install.hpux.html"
+>Instalación en Unix/HP-UX</A
+></DT
+><DT
+><A
+HREF="install.linux.html"
+>Instalación en Unix/Linux</A
+></DT
+><DT
+><A
+HREF="install.macosx.html"
+>Instalación en Unix/Mac OS X</A
+></DT
+><DT
+><A
+HREF="install.openbsd.html"
+>Instalación en Unix/OpenBSD</A
+></DT
+><DT
+><A
+HREF="install.solaris.html"
+>Instalación en Unix/Solaris</A
+></DT
+><DT
+><A
+HREF="install.unix.html"
+>Instalación en sistemas Unix</A
+></DT
+><DT
+><A
+HREF="install.windows.html"
+>Instalación en sistemas Windows</A
+></DT
+><DT
+><A
+HREF="install.commandline.html"
+>Servidores-CGI/Linea de comandos</A
+></DT
+><DT
+><A
+HREF="install.apache.html"
+>Servidores-Apache</A
+></DT
+><DT
+><A
+HREF="install.apache2.html"
+>Servidores-Apache 2.0</A
+></DT
+><DT
+><A
+HREF="install.caudium.html"
+>Servidores-Caudium</A
+></DT
+><DT
+><A
+HREF="install.fhttpd.html"
+>Servidores-fhttpd</A
+></DT
+><DT
+><A
+HREF="install.iis.html"
+>Servidores-IIS/PWS</A
+></DT
+><DT
+><A
+HREF="install.netscape-enterprise.html"
+>Servidores-Netscape e iPlanet</A
+></DT
+><DT
+><A
+HREF="install.omnihttpd.html"
+>Servidores-Servidor OmniHTTPd</A
+></DT
+><DT
+><A
+HREF="install.sambar.html"
+>Servidores-Sambar</A
+></DT
+><DT
+><A
+HREF="install.xitami.html"
+>Servidores-Xitami</A
+></DT
+><DT
+><A
+HREF="install.otherhttpd.html"
+>Servidores-Otros servidores web</A
+></DT
+><DT
+><A
+HREF="install.problems.html"
+>Problemas?</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.general"
+>Consideraciones generales de instalación</A
+></H1
+><P
+>&#13;  Antes de instalar PHP, necesitais saber porque quereis
+  utilizarlo. Existen tres campos principales en donde PHP es usado,
+  tal y como se describe en la sección <A
+HREF="intro-whatcando.html"
+>Qué se puede hacer con PHP?</A
+>:
+  <P
+></P
+><UL
+><LI
+><P
+>Scripts en la parte del servidor</P
+></LI
+><LI
+><P
+>Scripts en linea de comandos</P
+></LI
+><LI
+><P
+>Aplicaciones gráficas clientes</P
+></LI
+></UL
+>
+ </P
+><P
+>&#13;  Este es el campo más tradicional y el principal campo de trabajo. Se
+  necesitan tres cosas para que esto funcione. El analizador PHP (CGI
+  ó módulo), un servidor web y un navegador. Dependiendo de la versión
+  de sistema operativo que utiliceis, probablemente tengais un
+  servidor web (p.ej: Apache en Linux ó IIS en Windows). Tambien se
+  puede alquilar espacio web en una empresa que ofrezca este
+  servicio. De esta manera no se necesita instalar nada, solamente
+  escribir los scripts PHP, subirlos al espacio alquilado y ver el
+  resultado en vuestro navegador.
+ </P
+><P
+>&#13;  Teneis dos maneras de utilizar PHP, si instalais vosotros el
+  servidor y PHP. Existen modulos directos (también llamados SAPI)
+  para muchos servidores web, como Apache, Microsoft Internet
+  Information Server, Netscape e iPlanet. Muchos otros servidores
+  soportan ISAPI, (p.ej.:OmniHTTPd). Si PHP no soporta un módulo para
+  tu servidor web, siempre se puede usar como binario CGI. Esto
+  significa que el servidor se configura para usar el ejecutable para
+  linea de comandos de PHP <TT
+CLASS="filename"
+>php.exe</TT
+> en Windows) en
+  el procesado de peticiones de ficheros PHP.
+ </P
+><P
+>&#13;  Si estais interesados en usar PHP desde la linea de comandos (p.ej.:
+  para generar imagenes offline ó precesar ficheros de textos,
+  etc) necesitais el ejecutable para linea de comandos. Para
+  más información, lea la sección <A
+HREF="features.commandline.html"
+>Usando PHP desde la línea de
+  comandos</A
+>. en este caso no se necesita ni servidor web, ni
+  navegador.
+ </P
+><P
+>&#13;  Con PHP tambien se puede escribir aplicaciones gráficas usando la
+  extensión PHP-GTK. Esta es una forma totalmente distinta de utilizar
+  PHP que cuando se utiliza para escribir páginas web, ya que no se
+  genera código HTML sino que se trabaja con ventanas y objetos dentro
+  de las mismas. Para más información sobre PHP-GTK, visitar <A
+HREF="http://gtk.php.net/"
+TARGET="_top"
+>las páginas dedicadas a esta
+  extensión</A
+>. PHP-GTK no se incluye en la distribución oficial
+  de PHP.
+ </P
+><P
+>&#13;  A partir de ahora, esta sección tratará sobre la configuración de
+  PHP con servidores web, en Unix y Windows, tanto como módulo, como
+  binario CGI.
+ </P
+><P
+>&#13;  PHP, el código fuente y distribuciones binarias para Windows se
+  pueden encontrar en <A
+HREF="http://www.php.net/"
+TARGET="_top"
+>http://www.php.net/</A
+>. Recomendamos utilizar un <A
+HREF="http://www.php.net/mirrors.php"
+TARGET="_top"
+>servidor espejo</A
+> cerca de donde esteis
+  para bajaros la versión de PHP que querais.
+ </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tutorial.whatsnext.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.hpux.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>¿Y ahora qué?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="getting-started.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalación en Unix/HP-UX</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

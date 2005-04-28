@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sybase_unbuffered_query</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Sybase"
+HREF="ref.sybase.html"><LINK
+REL="PREVIOUS"
+TITLE="sybase_set_message_handler"
+HREF="function.sybase-set-message-handler.html"><LINK
+REL="NEXT"
+TITLE="TCP Wrappers Functions"
+HREF="ref.tcpwrap.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sybase-set-message-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.tcpwrap.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sybase-unbuffered-query"
+></A
+>sybase_unbuffered_query</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN109103"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>sybase_unbuffered_query&nbsp;--&nbsp;Envía una sentencia SQL a Sybase sin bloquear
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN109106"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>sybase_unbuffered_query</B
+> ( string setencia, int identificador_de_enlace [, int almacena_resultado])<BR
+></BR
+><P
+>&#13;     Devuelve un identificador de resultado Sybase positivo en caso exitoso, o 
+    <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> ante un error.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función se encuentra disponible solamente cuando se usan las bibliotecas 
+CT de Sybase y no las bibliotecas DB.</P
+></BLOCKQUOTE
+></DIV
+><P
+> 
+     <B
+CLASS="function"
+>sybase_unbuffered_query()</B
+> envía una consulta a la
+     actual base de datos activa en el servidor que está asociada con el 
+     identificador de enlace especificado. Si no se especifica un 
+     identificador de enlace, se asume el último enlace abierto. Si no hay un 
+     enlace abierto, la función intentará establecer un enlace como si  
+	 <A
+HREF="function.sybase-connect.html"
+><B
+CLASS="function"
+>sybase_connect()</B
+></A
+> fuese llamada, y lo usará. 
+    </P
+><P
+>&#13;     A diferencia de <A
+HREF="function.sybase-query.html"
+><B
+CLASS="function"
+>sybase_query()</B
+></A
+>,
+     <B
+CLASS="function"
+>sybase_unbuffered_query()</B
+> leerá sólo la 
+     primera fila del resultado asociado. <A
+HREF="function.sybase-fetch-array.html"
+><B
+CLASS="function"
+>sybase_fetch_array()</B
+></A
+> 
+     una función similar leerá mas filas según necesite. 
+     <A
+HREF="function.sybase-data-seek.html"
+><B
+CLASS="function"
+>sybase_data_seek()</B
+></A
+> lee hasta la fila solicitada.  Este 
+     comportamiento puede producir un mejor desempeño en resultados asociados 
+     muy grandes.
+    </P
+><P
+>&#13;     <A
+HREF="function.sybase-num-rows.html"
+><B
+CLASS="function"
+>sybase_num_rows()</B
+></A
+> Sólo regresará el 
+     número de filas del resultado asociado que ha sido leido. 
+     Para Sybase, el número de filas en un resultado es desconocido, 
+     por lo tanto debe ser calculado por una implementación del cliente.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Si no ha utilizado todos los resultados asociados antes de
+     ejecutar una nueva sentencia, PHP generará una advertencia y 
+     cancelará todos los resultados pendientes.  Para evitar esto,
+     use <A
+HREF="function.sybase-free-result.html"
+><B
+CLASS="function"
+>sybase_free_result()</B
+></A
+> el cual cancelará
+     los resultados pendientes de una sentencia sin almacenamiento 
+     intermedio.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     El parámetro opcional <VAR
+CLASS="parameter"
+>almacena_resultado</VAR
+> 
+     puede estar en <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> para indicar que el resultado asociado no debe ser 
+     traido a la memoria, y así minimiza el uso de la memoria, 
+     lo cuál es particularmente interesante con gran cantidad de 
+     filas en un resultado asociado.
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.sybase-query.html"
+><B
+CLASS="function"
+>sybase_query()</B
+></A
+> 
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN109143"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo <B
+CLASS="function"
+>sybase_unbuffered_query()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$dbh</font><font color="#007700">= </font><font color="#0000BB">sybase_connect</font><font color="#007700">(</font><font color="#DD0000">'SYBASE'</font><font color="#007700">, </font><font color="#DD0000">''</font><font color="#007700">, </font><font color="#DD0000">''</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$q</font><font color="#007700">= </font><font color="#0000BB">sybase_unbuffered_query</font><font color="#007700">(</font><font color="#DD0000">'select firstname, lastname from huge_table'</font><font color="#007700">, </font><font color="#0000BB">$dbh</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sybase_data_seek</font><font color="#007700">(</font><font color="#0000BB">$q</font><font color="#007700">, </font><font color="#0000BB">10000</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$i</font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;while (</font><font color="#0000BB">$row</font><font color="#007700">= </font><font color="#0000BB">sybase_fetch_row</font><font color="#007700">(</font><font color="#0000BB">$q</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">' ' </font><font color="#007700">. </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$i</font><font color="#007700">++ &gt; </font><font color="#0000BB">40000</font><font color="#007700">) break;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sybase_free_result</font><font color="#007700">(</font><font color="#0000BB">$q</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">sybase_close</font><font color="#007700">(</font><font color="#0000BB">$dbh</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sybase-set-message-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.tcpwrap.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sybase_set_message_handler</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sybase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>TCP Wrappers Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

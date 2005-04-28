@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>escapeshellcmd</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Ejecución de Programas"
+HREF="ref.exec.html"><LINK
+REL="PREVIOUS"
+TITLE="escapeshellarg"
+HREF="function.escapeshellarg.html"><LINK
+REL="NEXT"
+TITLE="exec"
+HREF="function.exec.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.escapeshellarg.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.exec.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.escapeshellcmd"
+></A
+>escapeshellcmd</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN90765"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>escapeshellcmd&nbsp;--&nbsp;enmascara los metacaracteres del intérprete de ordenes
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN90768"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>escapeshellcmd</B
+> ( string command)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>EscapeShellCmd()</B
+> enmascara cualquier carácter en una
+     cadena de caracteres que pueda usarse para introducir fraudulentamente
+     una orden al intérprete de órdenes para que éste ejecute instrucciones
+     arbitrarias. Esta función se debería usar para asegurarse que
+     cualquier dato que venga del usuario se enmascare antes de que éste se le
+     pase a las funciones <A
+HREF="function.exec.html"
+><B
+CLASS="function"
+>exec()</B
+></A
+> o
+     <A
+HREF="function.system.html"
+><B
+CLASS="function"
+>system()</B
+></A
+>, o al <A
+HREF="language.operators.execution.html"
+>operador ` (apóstrofe invertido)
+     </A
+>. Un uso habitual podría ser:</P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN90782"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>system(EscapeShellCmd($cmd))</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+	</P
+><P
+>&#13;	 Véase también <A
+HREF="function.exec.html"
+><B
+CLASS="function"
+>exec()</B
+></A
+>, <A
+HREF="function.popen.html"
+><B
+CLASS="function"
+>popen()</B
+></A
+>,
+	 <A
+HREF="function.system.html"
+><B
+CLASS="function"
+>system()</B
+></A
+>, y el <A
+HREF="language.operators.execution.html"
+>operador ` (apóstrofe
+         invertido)</A
+>.
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.escapeshellarg.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.exec.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>escapeshellarg</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.exec.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>exec</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

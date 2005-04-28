@@ -1,0 +1,244 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Datos Enviados por el Usuario</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Uso de Register Globals"
+HREF="security.globals.html"><LINK
+REL="NEXT"
+TITLE="Ocultando PHP"
+HREF="security.hiding.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.globals.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.hiding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.variables"
+>Datos Enviados por el Usuario</A
+></H1
+><P
+>&#13;    Las mayores debilidades de muchos programas PHP no son inherentes
+    al lenguaje mismo, sino simplemente un problema generado cuando se
+    escribe código sin pensar en la seguridad. Por esta
+    razón, usted debería tomarse siempre el tiempo para
+    considerar las implicaciones de cada pedazo de código, para
+    averiguar el posible peligro involucrado cuando una variable
+    inesperada es enviada.
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4905"
+></A
+><P
+><B
+>Ejemplo 15-17. Uso Peligroso de Variables</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// eliminar un archivo del directorio personal del usuario .. o<br />// quizas de alguien mas?<br /><br /></font><font color="#0000BB">unlink </font><font color="#007700">(</font><font color="#0000BB">$variable_malvada</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Imprimir el registro del acceso... o quizas una entrada de /etc/passwd?<br /></font><font color="#0000BB">fwrite </font><font color="#007700">(</font><font color="#0000BB">$desc_archivo</font><font color="#007700">, </font><font color="#0000BB">$variable_malvada</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Ejecutar algo trivial.. o rm -rf *?<br /></font><font color="#0000BB">system </font><font color="#007700">(</font><font color="#0000BB">$variable_malvada</font><font color="#007700">);<br /></font><font color="#0000BB">exec </font><font color="#007700">(</font><font color="#0000BB">$variable_malvada</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    Usted debería examinar siempre, y cuidadosamente su
+    código para asegurarse de que cualquier variable siendo
+    enviada desde un navegador web sea chequeada apropiadamente, y
+    preguntarse a sí mismo:
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       ¿Este script afectará únicamente los
+       archivos que se pretende?
+      </P
+></LI
+><LI
+><P
+>&#13;       ¿Puede tomarse acción sobre datos inusuales o
+       indeseados?
+      </P
+></LI
+><LI
+><P
+>&#13;      ¿Puede ser usado este script en formas malintencionadas?
+      </P
+></LI
+><LI
+><P
+>&#13;       ¿Puede ser usado en conjunto con otros scripts en forma
+       negativa?
+      </P
+></LI
+><LI
+><P
+>&#13;       ¿Serán adecuadamente registradas las
+       transacciones?
+      </P
+></LI
+></UL
+>
+    Al preguntarse adecuadamente estas preguntas mientras escribe su
+    script, en lugar de hacerlo posteriormente, usted previene una
+    desafortunada re-implementación del programa cuando desee
+    incrementar el nivel de seguridad. Al comenzar con esta
+    mentalidad, no garantizará la seguridad de su sistema, pero
+    puede ayudar a mejorarla.
+   </P
+><P
+>&#13;    Puede que también desee considerar la
+    deshabilitación de register_globals, magic_quotes, u otros
+    parámetros convenientes que pueden causar confusión
+    sobre la validez, fuente o valor de una determinada
+    variable. Trabajar con PHP en modo error_reporting(E_ALL)
+    también puede ayudarle a advertir variables que
+    están siendo usadas antes de ser chequeadas o inicializadas
+    (de modo que puede prevenir que datos inusuales produzcan
+    operaciones inadvertidas).
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.globals.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.hiding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Uso de Register Globals</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Ocultando PHP</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

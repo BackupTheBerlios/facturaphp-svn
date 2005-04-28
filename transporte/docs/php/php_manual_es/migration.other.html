@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Otras incompatibilidades</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Migración desde PHP/FI 2 hacia PHP 3"
+HREF="migration.html"><LINK
+REL="PREVIOUS"
+TITLE="Valores de retorno de función TRUE/FALSE"
+HREF="migration.truefalse.html"><LINK
+REL="NEXT"
+TITLE="Depuración en PHP"
+HREF="debugger.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration.truefalse.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice D. Migración desde PHP/FI 2 hacia PHP 3</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="debugger.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration.other"
+>Otras incompatibilidades</A
+></H1
+><P
+></P
+><UL
+><LI
+><P
+>&#13;     El módulo Apache de PHP 3.0 no soporta más
+     versiones de Apache anteriores a la 1.2. Se requiere Apache 1.2 o
+     superior.
+    </P
+></LI
+><LI
+><P
+>&#13;     <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+> no soporta más una cadena de
+     formato. Use la función <A
+HREF="function.printf.html"
+><B
+CLASS="function"
+>printf()</B
+></A
+> en su
+     lugar.
+    </P
+></LI
+><LI
+><P
+>&#13;     En PHP/FI 2.0, un efecto colateral de implementación
+     causaba que
+     <VAR
+CLASS="literal"
+>$foo[0]</VAR
+> tuviera el mismo efecto
+     que <VAR
+CLASS="literal"
+>$foo</VAR
+>. Esto no ocurre en PHP 3.0.
+    </P
+></LI
+><LI
+><P
+>&#13;     La lectura de matrices con <VAR
+CLASS="literal"
+>$matriz[]</VAR
+> ya no es
+     soportada.
+    </P
+><P
+>&#13;     Esto quiere decir que no puede recorrer una matriz mediante un
+     ciclo que realice <VAR
+CLASS="literal"
+>$datos = $matriz[]</VAR
+>. Use
+     <A
+HREF="function.current.html"
+><B
+CLASS="function"
+>current()</B
+></A
+> y <A
+HREF="function.next.html"
+><B
+CLASS="function"
+>next()</B
+></A
+>
+     en su lugar.
+    </P
+><P
+>&#13;     Así mismo, <VAR
+CLASS="literal"
+>$matriz1[] = $matriz2</VAR
+> no
+     adiciona los valores de <VAR
+CLASS="literal"
+>$matriz2</VAR
+>
+     a <VAR
+CLASS="literal"
+>$matriz1</VAR
+>, sino que
+     adiciona <VAR
+CLASS="literal"
+>$matriz2</VAR
+> como la última
+     entrada de <VAR
+CLASS="literal"
+>$matriz1</VAR
+>. Consulte también
+     el soporte de matrices multidimensionales.
+    </P
+></LI
+><LI
+><P
+>&#13;     <VAR
+CLASS="literal"
+>"+"</VAR
+> ya no es sobrecargado como un operador de
+     concatenación de cadenas, sino que convierte sus
+     argumentos a números y realiza una suma
+     numérica. Use <VAR
+CLASS="literal"
+>"."</VAR
+> en su lugar.
+    </P
+></LI
+></UL
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123700"
+></A
+><P
+><B
+>Ejemplo D-11. Migración desde 2.0: concatenación para
+   cadenas</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+echo "1" + "1";</font>
+</code></TD
+></TR
+></TABLE
+><P
+> 
+    En PHP 2.0 esto mostraría 11, en PHP 3.0 imprimiría
+    2. En su lugar use:
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+echo "1"."1";</font>
+</code></TD
+></TR
+></TABLE
+>
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a = 1;<br />$b = 1;<br />echo $a + $b;</font>
+</code></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Esto imprimiría 2 tanto en PHP 2.0 como en 3.0.
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a = 1;<br />$b = 1;<br />echo $a.$b;</font>
+</code></TD
+></TR
+></TABLE
+>
+    Esto imprimirá 11 en PHP 3.0.
+   </P
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration.truefalse.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="debugger.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Valores de retorno de función <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>/<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="migration.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Depuración en PHP</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

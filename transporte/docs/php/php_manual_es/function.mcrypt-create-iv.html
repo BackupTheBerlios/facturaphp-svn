@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mcrypt_create_iv</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cifrado Mcrypt"
+HREF="ref.mcrypt.html"><LINK
+REL="PREVIOUS"
+TITLE="mcrypt_cfb"
+HREF="function.mcrypt-cfb.html"><LINK
+REL="NEXT"
+TITLE="mcrypt_decrypt"
+HREF="function.mcrypt-decrypt.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mcrypt-cfb.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mcrypt-decrypt.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mcrypt-create-iv"
+></A
+>mcrypt_create_iv</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN51912"
+></A
+><P
+>    (PHP 3&#62;= 3.0.8, PHP 4 , PHP 5)</P
+>mcrypt_create_iv&nbsp;--&nbsp;Crea un vector de inicialización (IV) a partir de una fuente aleatoria</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN51915"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>mcrypt_create_iv</B
+> ( int size, int source)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>mcrypt_create_iv()</B
+> se usa para crear un IV.</P
+><P
+>&#13;     <B
+CLASS="function"
+>mcrypt_create_iv()</B
+> toma dos argumentos,
+     <VAR
+CLASS="parameter"
+>size</VAR
+> determina el tamaño del IV,
+     <VAR
+CLASS="parameter"
+>source</VAR
+> especifica la fuente del IV.</P
+><P
+>&#13;     La fuente puede ser MCRYPT_RAND (generador de números aleatorios del sistema),
+     MCRYPT_DEV_RANDOM (que lee datos de /dev/random) y MCRYPT_DEV_URANDOM
+     (que lee datos de /dev/urandom). Si usas MCRYPT_RAND, asegurate de llamar
+     antes a srand() para inicializar el generador de números aleatorios.</P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN51934"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de mcrypt_create_iv</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+$cipher = MCRYPT_TripleDES;
+$block_size = mcrypt_get_block_size($cipher);
+$iv = mcrypt_create_iv($block_size, MCRYPT_DEV_RANDOM);
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mcrypt-cfb.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mcrypt-decrypt.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mcrypt_cfb</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mcrypt.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mcrypt_decrypt</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

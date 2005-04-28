@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imap_open</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones IMAP"
+HREF="ref.imap.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_num_recent"
+HREF="function.imap-num-recent.html"><LINK
+REL="NEXT"
+TITLE="imap_ping"
+HREF="function.imap-ping.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-num-recent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-ping.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imap-open"
+></A
+>imap_open</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN41417"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>imap_open&nbsp;--&nbsp;Abre una sesión IMAP</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN41420"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>imap_open</B
+> ( string mailbox, string username, string password, int flags)<BR
+></BR
+><P
+>&#13;     Devuleve la sesion IMAP si no hay error y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso contrario. Esta
+     función también puede ser usada para abrir sesiones con servidores
+     POP3 y NNTP.  Para conectarse a un servidor IMAP escuchando por el puerto
+     143 en una máquina local, haga lo siguiente:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN41439"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$mbox = imap_open("{localhost:143}INBOX","user_id","password");</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+
+     Para conectarse a un servidor POP3 escuchando por el puerto 110, use:
+
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN41441"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$mbox = imap_open("{localhost/pop3:110}INBOX","user_id","password");</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+
+     Para conectarse a un servidor NNTP escuchando por el puerto 119, use:
+     
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN41443"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$nntp = imap_open("{localhost/nntp:119}comp.test","","");</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+
+     Para conectarse a un servidor remoto sustituya "localhost", por el nombre
+     o dirección IP del servidor al cual quiere conectarse.
+    </P
+><P
+>&#13;     Las opciones son una máscara de bit con una o más de los siguientes:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;   OP_READONLY - Abre el buzón en modo de sólo lectura
+       </P
+></LI
+><LI
+><P
+>&#13;   OP_ANONYMOUS - No usa o actualiza un .newsrc para las noticias
+       </P
+></LI
+><LI
+><P
+>&#13;   OP_HALFOPEN - Para nombres IMAP y NNTP, abre una conexión pero no abre
+   un buzón
+       </P
+></LI
+><LI
+><P
+>&#13;   CL_EXPUNGE - Purga automaticamente el buzón antes de cerrar la sesión
+       </P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-num-recent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-ping.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_num_recent</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.imap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_ping</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

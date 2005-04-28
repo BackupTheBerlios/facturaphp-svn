@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Uso de Formularios HTML</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Una explicación sencilla"
+HREF="tutorial.html"><LINK
+REL="PREVIOUS"
+TITLE="Algo útil"
+HREF="tutorial.useful.html"><LINK
+REL="NEXT"
+TITLE="Use de código antiguo con nuevas versiones de
+   PHP"
+HREF="tutorial.oldcode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tutorial.useful.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 2. Una explicación sencilla</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tutorial.oldcode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="tutorial.forms"
+>Uso de Formularios HTML</A
+></H1
+><P
+>&#13;    Otra de las características de PHP es que gestiona
+    formularios de HTML. El concepto básico que es importante
+    entender es que cualquier elemento de los formularios
+    estará disponible automáticamente en su
+    código PHP. Por favor refiérase a la sección
+    titulada <A
+HREF="language.variables.external.html"
+>Variables
+    fuera de PHP</A
+> en el manual para más
+    información y ejemplos sobre cómo usar formularios
+    HTML con PHP. Observemos un ejemplo:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN289"
+></A
+><P
+><B
+>Ejemplo 2-6. Un formulario HTML sencillo</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;form action="accion.php" method="POST"&#62;
+ Su nombre: &#60;input type="text" name="nombre" /&#62;
+ Su edad: &#60;input type="text" name="edad" /&#62;
+ &#60;input type="submit"&#62;
+&#60;/form&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    No hay nada especial en este formularo, es HTML limpio sin ninguna
+    clase de etiquetas desconocidas. Cuando el cliente llena
+    éste formulario y oprime el botón etiquetado
+    "Submit", una página
+    titulada <TT
+CLASS="filename"
+>accion.php</TT
+> es llamada. En este
+    archivo encontrará algo así:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN295"
+></A
+><P
+><B
+>Ejemplo 2-7. Procesamiento de información de nuestro formulario
+     HTML</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+Hola <font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">"nombre"</font><font color="#007700">]; </font><font color="#0000BB">?&gt;</font>.<br />Tiene <font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">"edad"</font><font color="#007700">]; </font><font color="#0000BB">?&gt;</font> a&amp;ntilde;os</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      Un ejemplo del resultado de este script podría ser:
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>Hola José.
+Tiene 22 años</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Es aparentemente obvio lo que hace. No hay mucho más que
+    decir al respecto. Las
+    variables <VAR
+CLASS="varname"
+>$_POST["nombre"]</VAR
+>
+    y <VAR
+CLASS="varname"
+>$_POST["edad"]</VAR
+> son definidas
+    automáticamente por PHP. Hace un momento usamos la variable
+    autoglobal <VAR
+CLASS="varname"
+>$_SERVER</VAR
+>, ahora hemos introducido
+    autoglobal <A
+HREF="reserved.variables.html#reserved.variables.post"
+>$_POST</A
+>,
+    que contiene toda la información enviada por el
+    método POST. Fíjese en el
+    atributo <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>method</I
+></SPAN
+> en nuestro formulario; es
+    POST. Si hubiéramos usado <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>GET</I
+></SPAN
+>,
+    entonces nuestra información estaría en la variable
+    autoglobal <A
+HREF="reserved.variables.html#reserved.variables.get"
+>$_GET</A
+>. También
+    puede utilizar la autoglobal <A
+HREF="reserved.variables.html#reserved.variables.request"
+>$_REQUEST</A
+> si no le
+    importa el origen de la petición. Ésta variable
+    contiene una mezcla de información GET, POST y
+    COOKIE. También puede ver la función
+    <A
+HREF="function.import-request-variables.html"
+><B
+CLASS="function"
+>import_request_variables()</B
+></A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tutorial.useful.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tutorial.oldcode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Algo útil</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Use de código antiguo con nuevas versiones de
+   PHP</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

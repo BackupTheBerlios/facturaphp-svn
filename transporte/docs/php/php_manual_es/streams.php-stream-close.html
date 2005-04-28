@@ -1,0 +1,197 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_close</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_gets"
+HREF="streams.php-stream-gets.html"><LINK
+REL="NEXT"
+TITLE="php_stream_flush"
+HREF="streams.php-stream-flush.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-gets.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-flush.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-close"
+></A
+>php_stream_close</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN120714"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_close&nbsp;--&nbsp;Cerrar una secuencia</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN120717"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>php_stream_close</B
+> ( php_stream * secuencia)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_close()</B
+> cierra de forma segura
+     la <VAR
+CLASS="parameter"
+>secuencia</VAR
+> y libera los recursos
+     asociados con ella. Luego de que
+     la <VAR
+CLASS="parameter"
+>secuencia</VAR
+> ha sido cerrada, su valor es
+     indefinido y no debe ser usado.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_close()</B
+> devuelve 0 si la secuencia
+     fue cerrada, o <TT
+CLASS="constant"
+><B
+>EOF</B
+></TT
+> para indicar un
+     error. Independientemente del éxito de la llamada,
+     <VAR
+CLASS="parameter"
+>secuencia</VAR
+> se hace indefinida y no debe
+     ser usada después de una llamada a esta función.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-gets.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-flush.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_gets</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_flush</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

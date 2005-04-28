@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_fetch_result</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_Fetch_Object"
+HREF="function.pg-fetch-object.html"><LINK
+REL="NEXT"
+TITLE="pg_Fetch_Row"
+HREF="function.pg-fetch-row.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-fetch-object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-fetch-row.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-fetch-result"
+></A
+>pg_fetch_result</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN88667"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>pg_fetch_result&nbsp;--&nbsp;Returns values from a result resource</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN88670"
+></A
+><H2
+>Description</H2
+>mixed <B
+CLASS="methodname"
+>pg_fetch_result</B
+> ( resource result, int row, mixed field)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pg_fetch_result()</B
+> returns values from a
+     <VAR
+CLASS="parameter"
+>result</VAR
+> resource returned by
+     <A
+HREF="function.pg-query.html"
+><B
+CLASS="function"
+>pg_query()</B
+></A
+>. <VAR
+CLASS="parameter"
+>row</VAR
+>
+     is integer.  <VAR
+CLASS="parameter"
+>field</VAR
+> is field name (string)
+     or field index (integer). The <VAR
+CLASS="parameter"
+>row</VAR
+>
+     and <VAR
+CLASS="parameter"
+>field</VAR
+> specify what cell in the table
+     of results to return.  Row numbering starts from 0.  Instead of
+     naming the field, you may use the field index as an unquoted
+     number.  Field indices start from 0.
+    </P
+><P
+>&#13;     PostgreSQL has many built in types and only the basic ones are
+     directly supported here.  All forms of <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> 
+     
+     types are returned as <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> values.  All forms of
+     float, and real types are returned as <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+> values.
+     Boolean is returned as "t" or "f".  All
+     other types, including arrays are returned as strings formatted
+     in the same default PostgreSQL manner that you would see in the
+     <B
+CLASS="command"
+>psql</B
+> program.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-fetch-object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-fetch-row.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_Fetch_Object</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_Fetch_Row</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

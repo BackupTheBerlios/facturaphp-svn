@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Seguridad del sistema de archivos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación como módulo de Apache"
+HREF="security.apache.html"><LINK
+REL="NEXT"
+TITLE="Seguridad de Bases de Datos"
+HREF="security.database.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.apache.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.database.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.filesystem"
+>Seguridad del sistema de archivos</A
+></H1
+><P
+>&#13;    PHP está sujeto a la seguridad misma de la mayoría
+    de sistemas de servidores en lo que a permisos sobre archivos y
+    directorios se refiere. Esto le permite controlar cuáles
+    archivos en el sistema de archivos pueden ser leídos. Debe
+    tenerse cuidado con aquellos archivos que tengan permisos de
+    lectura globales, para asegurarse de que su contenido es seguro y
+    no represente peligro el que pueda ser leído por todos los
+    usuarios con acceso al sistema de archivos.
+   </P
+><P
+>&#13;    Ya que PHP fue diseñado para permitir acceso al nivel de
+    usuarios al sistema de archivos, es completamente posible escribir
+    un script PHP que le permita leer archivos del sistema como
+    /etc/passwd, modificar sus conexiones tipo ethernet, enviar
+    trabajos de impresión masivos, etc. Esto tiene algunas
+    implicaciones obvias, en el sentido en que usted tiene que
+    asegurarse de que los archivos desde lo que lee y hacia los que
+    escribe datos, sean los correctos.
+   </P
+><P
+>&#13;    Considere el siguiente script, en donde un usuario indica que
+    quisiera eliminar un archivo ubicado en su directorio
+    personal. Este caso asume que se trata de una situación en
+    donde se usa normalmente una interfaz web que se vale de PHP para
+    la gestión de archivos, así que el usuario de Apache
+    tiene permitido eliminar archivos en los directorios personales de
+    los usuarios.
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4705"
+></A
+><P
+><B
+>Ejemplo 15-1. Un chequeo pobre de variables nos lleva a...</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// eliminar un archivo del directorio personal del usuario<br /><br /></font><font color="#0000BB">$nombre_usuario </font><font color="#007700">= </font><font color="#0000BB">$_POST</font><font color="#007700">[</font><font color="#DD0000">'nombre_enviado_por_el_usuario'</font><font color="#007700">];<br /></font><font color="#0000BB">$directorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"/home/$nombre_usuario"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$archivo_a_eliminar </font><font color="#007700">= </font><font color="#DD0000">"$archivo_de_usuario"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">unlink </font><font color="#007700">(</font><font color="#DD0000">"$directorio/$archivo_de_usuario"</font><font color="#007700">);<br /><br />echo </font><font color="#DD0000">"&amp;iexcl;El archivo $archivo_a_eliminar ha sido eliminado!"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    Ya que el nombre de usuario es enviado desde un formulario de
+    usuario, cualquiera puede enviar un nombre de usuario y archivo
+    propiedad de otra persona, y eliminar archivos. En este caso,
+    usted querrá usar otro método de
+    autenticación. Considere lo que sucede si las variables
+    enviadas son "../etc/" y "passwd". El código entonces se
+    ejecutaría efectivamente como:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4708"
+></A
+><P
+><B
+>Ejemplo 15-2. ... un ataque al sistema de archivos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// elimina un archivo de cualquier parte del disco duro al que el<br />// usuario de PHP tiene acceso. Si PHP tiene acceso de root:<br /><br /></font><font color="#0000BB">$nombre_usuario </font><font color="#007700">= </font><font color="#DD0000">"../etc/"</font><font color="#007700">;<br /></font><font color="#0000BB">$directorio&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"/home/../etc/"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$archivo_a_eliminar </font><font color="#007700">= </font><font color="#DD0000">"passwd"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">unlink </font><font color="#007700">(</font><font color="#DD0000">"/home/../etc/passwd"</font><font color="#007700">);<br /><br />echo </font><font color="#DD0000">"&amp;iexcl;El archivo /home/../etc/passwd ha sido eliminado!"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    Hay dos importantes medidas que usted debe tomar para prevenir
+    estas situaciones.
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       Otorgarle únicamente permisos limitados al usuario web
+       del binario PHP.
+      </P
+></LI
+><LI
+><P
+>&#13;       Chequear todas las variables que son enviadas por usuarios.
+      </P
+></LI
+></UL
+>
+    Aquí hay una versión mejorada del script:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4716"
+></A
+><P
+><B
+>Ejemplo 15-3. Un chequeo de nombres de archivos más
+     seguro</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// elimina un archivo de cualquier parte del disco duro al que el<br />// usuario de PHP tiene acceso.<br /><br /></font><font color="#0000BB">$nombre_usuario </font><font color="#007700">= </font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">'REMOTE_USER'</font><font color="#007700">]; </font><font color="#FF8000">// uso de un mecanismo de<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// autenticacion<br /><br /></font><font color="#0000BB">$directorio </font><font color="#007700">= </font><font color="#DD0000">"/home/$nombre_usuario"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$archivo_a_eliminar </font><font color="#007700">= </font><font color="#0000BB">basename</font><font color="#007700">(</font><font color="#DD0000">"$archivo_de_usuario"</font><font color="#007700">); </font><font color="#FF8000">// remover rutas<br /></font><font color="#0000BB">unlink </font><font color="#007700">(</font><font color="#0000BB">$directorio</font><font color="#007700">/</font><font color="#0000BB">$archivo_a_eliminar</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$fp </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#DD0000">"/home/registros/eliminacion.log"</font><font color="#007700">,</font><font color="#DD0000">"+a"</font><font color="#007700">); </font><font color="#FF8000">// registrar el proceso<br /><br /></font><font color="#0000BB">$cadena_de_registro </font><font color="#007700">= </font><font color="#DD0000">"$nombre_usuario $directorio $archivo_a_eliminar"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">fwrite </font><font color="#007700">(</font><font color="#0000BB">$fp</font><font color="#007700">, </font><font color="#0000BB">$cadena_de_registro</font><font color="#007700">);<br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$fp</font><font color="#007700">);<br /><br />echo </font><font color="#DD0000">"&amp;iexcl;El archivo $archivo_a_eliminar ha sido eliminado!"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    Sin embargo, incluso este caso no está libre de
+    problemas. Si su sistema de autenticación le ha permitido a
+    los usuarios la creación de sus propios nombres en el
+    sistema, y un usuario elige "../etc/", el sistema se encuenrta
+    nuevamente expuesto. Por esta razón, puede que uster
+    prefiera escribir un chequeo más personalizado:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4719"
+></A
+><P
+><B
+>Ejemplo 15-4. Chequeo de nombres de archivos aun más
+     seguro</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$nombre_usuario </font><font color="#007700">= </font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">'REMOTE_USER'</font><font color="#007700">]; </font><font color="#FF8000">// uso de un mecanismo de<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// autenticacion<br /><br /></font><font color="#0000BB">$directorio </font><font color="#007700">= </font><font color="#DD0000">"/home/$nombre_usuario"</font><font color="#007700">;<br /><br />if (!</font><font color="#0000BB">ereg</font><font color="#007700">(</font><font color="#DD0000">'^[^./][^/]*$'</font><font color="#007700">, </font><font color="#0000BB">$archivo_de_usuario</font><font color="#007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(</font><font color="#DD0000">'nombre de archivo inv&amp;aacute;lido'</font><font color="#007700">); </font><font color="#FF8000">// finalizar,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// no ejecutar el proceso<br /><br /></font><font color="#007700">if (!</font><font color="#0000BB">ereg</font><font color="#007700">(</font><font color="#DD0000">'^[^./][^/]*$'</font><font color="#007700">, </font><font color="#0000BB">$nombre_usuario</font><font color="#007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;die(</font><font color="#DD0000">'nombre de archivo inv&amp;aacute;lido'</font><font color="#007700">); </font><font color="#FF8000">// finalizar,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// no ejecutar el proceso<br /><br />//etc...<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Dependiendo de su sistema operativo, existe una amplia variedad de
+    archivos sobre los que usted debería estar atento,
+    incluyendo las entradas de dispositivos (/dev/ o COM1), archivos
+    de configuración (archivos /etc/ y los archivos .ini),
+    areas conocidas de almacenamiento de datos (/home/, Mis
+    Documentos), etc. Por esta razón, usualmente es más
+    sencillo crear una política en donde se prohíba toda
+    transacción excepto por aquellas que usted permita
+    explícitamente.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.apache.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.database.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación como módulo de Apache</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Seguridad de Bases de Datos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

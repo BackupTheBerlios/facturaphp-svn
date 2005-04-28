@@ -1,0 +1,267 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_filter</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_fill"
+HREF="function.array-fill.html"><LINK
+REL="NEXT"
+TITLE="array_flip"
+HREF="function.array-flip.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-fill.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-flip.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-filter"
+></A
+>array_filter</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6760"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>array_filter&nbsp;--&nbsp;
+     Filtra elementos de una matriz mediante una función "callback"
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6763"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>array_filter</B
+> ( array input [, callback function])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_filter()</B
+> repasa cada valor en la matriz
+     <VAR
+CLASS="parameter"
+>input</VAR
+> y lo pasa a la función 
+     <VAR
+CLASS="parameter"
+>callback</VAR
+>. Si la función <VAR
+CLASS="parameter"
+>&#13;     callback</VAR
+> devuelve verdadero, el valor es devuelto a la matriz
+     resultado. Los índices de la matriz se mantienen.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN6780"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>array_filter()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">impar</font><font color="#007700">(</font><font color="#0000BB">$var</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;return (</font><font color="#0000BB">$var </font><font color="#007700">% </font><font color="#0000BB">2 </font><font color="#007700">== </font><font color="#0000BB">1</font><font color="#007700">);<br />}<br /><br />function </font><font color="#0000BB">par</font><font color="#007700">(</font><font color="#0000BB">$var</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;return (</font><font color="#0000BB">$var </font><font color="#007700">% </font><font color="#0000BB">2 </font><font color="#007700">== </font><font color="#0000BB">0</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">$array1 </font><font color="#007700">= array (</font><font color="#DD0000">"a"</font><font color="#007700">=&gt;</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#DD0000">"b"</font><font color="#007700">=&gt;</font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#DD0000">"c"</font><font color="#007700">=&gt;</font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#DD0000">"d"</font><font color="#007700">=&gt;</font><font color="#0000BB">4</font><font color="#007700">, </font><font color="#DD0000">"e"</font><font color="#007700">=&gt;</font><font color="#0000BB">5</font><font color="#007700">);<br /></font><font color="#0000BB">$array2 </font><font color="#007700">= array (</font><font color="#0000BB">6</font><font color="#007700">, </font><font color="#0000BB">7</font><font color="#007700">, </font><font color="#0000BB">8</font><font color="#007700">, </font><font color="#0000BB">9</font><font color="#007700">, </font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">11</font><font color="#007700">, </font><font color="#0000BB">12</font><font color="#007700">);<br /><br />echo </font><font color="#DD0000">"Impares :\n"</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">array_filter</font><font color="#007700">(</font><font color="#0000BB">$array1</font><font color="#007700">, </font><font color="#DD0000">"impar"</font><font color="#007700">));<br />echo </font><font color="#DD0000">"Pares:\n"</font><font color="#007700">;<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">array_filter</font><font color="#007700">(</font><font color="#0000BB">$array2</font><font color="#007700">, </font><font color="#DD0000">"par"</font><font color="#007700">));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       La salida en pantalla del programa anterior será:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+Impares :<br />Array<br />(<br />&nbsp;&nbsp;&nbsp;&nbsp;[a] =&gt; 1<br />&nbsp;&nbsp;&nbsp;&nbsp;[c] =&gt; 3<br />&nbsp;&nbsp;&nbsp;&nbsp;[e] =&gt; 5<br />)<br />Pares:<br />Array<br />(<br />&nbsp;&nbsp;&nbsp;&nbsp;[0] =&gt; 6<br />&nbsp;&nbsp;&nbsp;&nbsp;[2] =&gt; 8<br />&nbsp;&nbsp;&nbsp;&nbsp;[4] =&gt; 10<br />&nbsp;&nbsp;&nbsp;&nbsp;[6] =&gt; 12<br />)</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     No se debe modificar la matriz a la que <B
+CLASS="function"
+>array_filter()</B
+> 
+     se aplica desde la función "callback", como p. ej. añadir o 
+     eliminar un elemento, o realizar un "unset()". Si la matriz es modificada
+     el comportamiento de esta función no está definido.
+    </P
+><P
+>&#13;     Ver también <A
+HREF="function.array-map.html"
+><B
+CLASS="function"
+>array_map()</B
+></A
+>,
+     <A
+HREF="function.array-reduce.html"
+><B
+CLASS="function"
+>array_reduce()</B
+></A
+>, y <A
+HREF="function.array-walk.html"
+><B
+CLASS="function"
+>array_walk()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-fill.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-flip.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_fill</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_flip</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

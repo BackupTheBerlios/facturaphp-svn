@@ -1,0 +1,706 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Variables externas a PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Variables"
+HREF="language.variables.html"><LINK
+REL="PREVIOUS"
+TITLE="Variables variables"
+HREF="language.variables.variable.html"><LINK
+REL="NEXT"
+TITLE="Constantes"
+HREF="language.constants.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.variables.variable.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 7. Variables</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.constants.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.variables.external"
+>Variables externas a PHP</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.variables.external.form"
+>Formularios HTML (GET y POST)</A
+></H2
+><P
+>&#13;    Cuando se envía un formulario a un script PHP, las
+    variables de dicho formulario pasan a estar automáticamente
+    disponibles en el script gracias a PHP. Por ejemplo, consideremos
+    el siguiente formulario:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN3097"
+></A
+><P
+><B
+>Ejemplo 7-1. Variables de formulario simples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;form action="foo.php" method="POST"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Name:&nbsp;&nbsp;&lt;input type="text" name="username"&gt;&lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Email: &lt;input type="text" name="email"&gt;&lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" name="submit" value="Submit me!"&gt;<br />&lt;/form&gt;</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Dependiendo de tu configuración y preferencias personales, existen
+    muchas maneras de acceder a los datos de tus formularios
+    HTML. Algunos ejemplos:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN3102"
+></A
+><P
+><B
+>Ejemplo 7-2. Accediendo datos de un formulario simple HTML POST</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;?php 
+// Available since PHP 4.1.0
+
+   print $_POST['username'];
+   print $_REQUEST['username'];
+
+   import_request_variables('p', 'p_');
+   print $p_username;
+
+// Available since PHP 3.  As of PHP 5.0.0, these long predefined
+// variables can be disabled with the register_long_arrays directive.
+
+   print $HTTP_POST_VARS['username'];
+
+// Available if the PHP directive register_globals = on.  As of 
+// PHP 4.2.0 the default value of register_globals = off.
+// Using/relying on this method is not preferred.
+
+   print $username;
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Usando un formulario GET es similar excepto en el uso de variables
+    predefinidas, que en este caso serán del tipo GET. GET también se
+    usa con QUERY_STRING (la información despues del símbolo '?' en
+    una URL). Por ejemplo
+    <VAR
+CLASS="literal"
+>http://www.example.com/test.php?id=3</VAR
+> contiene
+    datos GET que son accesibles con
+    <VAR
+CLASS="varname"
+>$_GET['id']</VAR
+>. Vea también <A
+HREF="reserved.variables.html#reserved.variables.request"
+>$_REQUEST</A
+> y
+    <A
+HREF="function.import-request-variables.html"
+><B
+CLASS="function"
+>import_request_variables()</B
+></A
+>.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     <A
+HREF="language.variables.predefined.html#language.variables.superglobals"
+>Matrices
+     superglobales</A
+>, como <VAR
+CLASS="varname"
+>$_POST</VAR
+>
+     y<VAR
+CLASS="varname"
+>$_GET</VAR
+>, están disponibles desde PHP 4.1.0.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Como hemos dicho, antes de PHP 4.2.0, el valor por defecto de
+     <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+> era
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>on</I
+></SPAN
+> (activado). Y, en PHP 3 estba siempre
+     activado. La comunidad PHP anima a no confiar en esta directiva
+     ya que es preferible asumir que tiene el valor
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>off</I
+></SPAN
+> (desactivada) y programar teniendo en
+    cuenta esto.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     La directiva de configuración <A
+HREF="ref.info.html#ini.magic-quotes-gpc"
+>magic_quotes_gpc</A
+> afecta a
+     valores Get, Post y Cookie, Si esta activada (on) el valor (It's
+     "PHP!") sera convertido automaticamente a (It\'s
+     \"PHP!\"). "Escaping" es necesario en inserciones a bases de
+     datos. Vea también <A
+HREF="function.addslashes.html"
+><B
+CLASS="function"
+>addslashes()</B
+></A
+>,
+     <A
+HREF="function.stripslashes.html"
+><B
+CLASS="function"
+>stripslashes()</B
+></A
+> y <A
+HREF="missing-stuff.html#ini.magic-quotes-sybase"
+>magic_quotes_sybase</A
+>.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    PHP tambien entiende matrices en el contexto de variables de
+    formularios. (vea la <A
+HREF="faq.html.html"
+>faq
+    relacionada</A
+>). Se puede, por ejemplo, agrupar juntas
+    variables relacionadas ó usar esta característica para obtener
+    valores de una entrada "select2 múltiple. Por ejemplo, vamos a
+    mandar un formulario asi mismo y a presentar los datos cuando se
+    reciban:
+    </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN3128"
+></A
+><P
+><B
+>Ejemplo 7-3. Variables de formulario más complejas</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">$HTTP_POST_VARS</font><font color="#007700">[</font><font color="#DD0000">'action'</font><font color="#007700">] == </font><font color="#DD0000">'submitted'</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">'&lt;pre&gt;'</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$HTTP_POST_VARS</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">'&lt;a href="'</font><font color="#007700">. </font><font color="#0000BB">$HTTP_SERVER_VARS</font><font color="#007700">[</font><font color="#DD0000">'PHP_SELF'</font><font color="#007700">] .</font><font color="#DD0000">'"&gt;Please try again&lt;/a&gt;'</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">'&lt;/pre&gt;'</font><font color="#007700">;<br />} else {<br /></font><font color="#0000BB">?&gt;<br /></font>&lt;form action="<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$HTTP_SERVER_VARS</font><font color="#007700">[</font><font color="#DD0000">'PHP_SELF'</font><font color="#007700">]; </font><font color="#0000BB">?&gt;</font>" method="POST"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Name:&nbsp;&nbsp;&lt;input type="text" name="personal[name]"&gt;&lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Email: &lt;input type="text" name="personal[email]"&gt;&lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;Beer: &lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;select multiple name="beer[]"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="warthog"&gt;Warthog&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="guinness"&gt;Guinness&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="stuttgarter"&gt;Stuttgarter Schwabenbräu&lt;/option&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;&lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="hidden" name="action" value="submitted"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" name="submit" value="submit me!"&gt;<br />&lt;/form&gt;<br /><font color="#0000BB">&lt;?php<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    en PHP 3, el uso de matrices de variables de formularios está
+    limitado a matrices unidimensionales. En PHP 4, no existe esta
+    restricción.
+   </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.variables.external.form.submit"
+>IMAGE SUBMIT variable names</A
+></H3
+><P
+>&#13;     Cuando mandamos un formulario, es posible usar una imagen en vez
+     del botón estandar de "mandar":
+    </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3135"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;input type="image" src="image.gif" name="sub"&#62;</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;     Cuando el usuario hace click en cualquier parte de la imagen, el
+     formulario que la acompaña se transmitirá al
+     servidor con dos variables adicionales, sub_x y sub_y. Estas
+     contienen las coordenadas del click del usuario dentro de la
+     imagen.  Los más experimentados puede notar que los
+     nombres de variable enviados por el navegador contienen un
+     guión en vez de un subrayado (guión bajo), pero PHP
+     convierte el guión en subrayado automáticamente.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.variables.external.cookies"
+>Cookies HTTP</A
+></H2
+><P
+>&#13;    PHP soporta cookies de HTTP de forma transparente tal y como
+    están definidas en en las <A
+HREF="http://www.netscape.com/newsref/std/cookie_spec.html"
+TARGET="_top"
+>Netscape's Spec</A
+>.  Las cookies son un
+    mecanismo para almacenar datos en el navegador y así
+    rastrear o identificar a usuarios que vuelven.  Se pueden crear
+    cookies usando la función <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>SetCookie()</B
+></A
+>.
+    Las cookies son parte de la cabecera HTTP, así que se debe
+    llamar a la función SetCookie antes de que se envíe
+    cualquier salida al navegador.  Es la misma restricción que
+    para la función <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+>. Los datos de
+    una cookie estan disponibles en la matriz con datos de cookies
+    apropiada, tal como <VAR
+CLASS="varname"
+>$_COOKIE</VAR
+>,
+    <VAR
+CLASS="varname"
+>$HTTP_COOKIE_VARS</VAR
+> y también en
+    <VAR
+CLASS="varname"
+>$_REQUEST</VAR
+>. vea la función
+    <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+> para más detalles y ejemplos.
+   </P
+><P
+>&#13;    Si se quieren asignar múltiples valores a una sola cookie,
+    basta con añadir <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>[]</I
+></SPAN
+> al nombre de la
+    cookie para definirla como una matriz. Por ejemplo:
+   </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3150"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;setcookie</font><font color="#007700">(</font><font color="#DD0000">"MyCookie[foo]"</font><font color="#007700">, </font><font color="#DD0000">"Testing 1"</font><font color="#007700">, </font><font color="#0000BB">time</font><font color="#007700">()+</font><font color="#0000BB">3600</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">setcookie</font><font color="#007700">(</font><font color="#DD0000">"MyCookie[bar]"</font><font color="#007700">, </font><font color="#DD0000">"Testing 2"</font><font color="#007700">, </font><font color="#0000BB">time</font><font color="#007700">()+</font><font color="#0000BB">3600</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;    Esto creara dos cookies separadas aunque MyCookie será una matriz
+    simple en el script. Si se quiere definir una sola cookie con
+    valores multiples, considerar primero el uso de la función
+    <A
+HREF="function.serialize.html"
+><B
+CLASS="function"
+>serialize()</B
+></A
+> ó <A
+HREF="function.explode.html"
+><B
+CLASS="function"
+>explode()</B
+></A
+> en
+    el valor.
+   </P
+><P
+>&#13;    Nótese que una cookie reemplazará a una cookie
+    anterior que tuviese el mismo nombre en el navegador a menos que
+    el camino (path) o el dominio fuesen diferentes.  Así, para
+    una aplicación de carro de la compra se podría
+    querer mantener un contador e ir pasándolo. P.ej.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN3156"
+></A
+><P
+><B
+>Ejemplo 7-4. Ejemplo SetCookie</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$count</font><font color="#007700">++;<br /></font><font color="#0000BB">setcookie</font><font color="#007700">(</font><font color="#DD0000">"count"</font><font color="#007700">, </font><font color="#0000BB">$count</font><font color="#007700">, </font><font color="#0000BB">time</font><font color="#007700">()+</font><font color="#0000BB">3600</font><font color="#007700">);<br /></font><font color="#0000BB">setcookie</font><font color="#007700">(</font><font color="#DD0000">"Cart</font><font color="#007700">[</font><font color="#DD0000">$count</font><font color="#007700">]</font><font color="#DD0000">"</font><font color="#007700">, </font><font color="#0000BB">$item</font><font color="#007700">, </font><font color="#0000BB">time</font><font color="#007700">()+</font><font color="#0000BB">3600</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.variables.external.dot-in-names"
+>Puntos en los nombres de variables de entrada</A
+></H2
+><P
+>&#13;    Típicamente, PHP no altera los nombres de las variables
+    cuando se pasan a un script. De todas formas, hay que notar que el
+    punto no es un carácter válido en el nombre de una
+    variable PHP.  Por esta razón:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$varname</font><font color="#007700">.</font><font color="#0000BB">ext</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">/* nombre de variable invalido */<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+    Lo que el intérprete ve es el nombre de una variable
+    $varname, seguido por el operador de concatenación, y
+    seguido por la prueba (es decir, una cadena sin entrecomillar que
+    no coincide con ninguna palabra clave o reservada conocida)
+    'ext'. Obviamente, no se pretendía que fuese este el
+    resultado.
+   </P
+><P
+>&#13;    Por esta razón, es importante hacer notar que PHP
+    reemplazará automáticamente cualquier punto en los
+    nombres de variables de entrada por guiones bajos (subrayados).
+   </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.variables.determining-type-of"
+>Determinando los tipos de variables</A
+></H2
+><P
+>&#13;    Dado que PHP determina los tipos de las variables y los convierte
+    (generalmente) según lo necesita, no siempre resulta obvio
+    de qué tipo es una variable dada en un momento concreto.
+    PHP incluye varias funciones que descubren de qué tipo es
+    una variable: <A
+HREF="function.gettype.html"
+><B
+CLASS="function"
+>gettype()</B
+></A
+>,
+    <A
+HREF="function.is-array.html"
+><B
+CLASS="function"
+>is_array()</B
+></A
+>, <A
+HREF="function.is-float.html"
+><B
+CLASS="function"
+>is_float()</B
+></A
+>,
+    <A
+HREF="function.is-int.html"
+><B
+CLASS="function"
+>is_int()</B
+></A
+>, <A
+HREF="function.is-object.html"
+><B
+CLASS="function"
+>is_object()</B
+></A
+>, y
+    <A
+HREF="function.is-string.html"
+><B
+CLASS="function"
+>is_string()</B
+></A
+>.  Vea también el capítulo sobre <A
+HREF="language.types.html"
+>Tipos</A
+>.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.variables.variable.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.constants.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Variables variables</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.variables.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Constantes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

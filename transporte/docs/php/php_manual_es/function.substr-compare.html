@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>substr_compare</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="strtr"
+HREF="function.strtr.html"><LINK
+REL="NEXT"
+TITLE="substr_count"
+HREF="function.substr-count.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.strtr.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.substr-count.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.substr-compare"
+></A
+>substr_compare</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN108233"
+></A
+><P
+>    (PHP 5)</P
+>substr_compare&nbsp;--&nbsp;
+     Comparación de 2 cadenas, segura con material binario,
+     opcionalmente insensible a mayúsculas y minúsculas,
+     a partir de un desplazamiento, y hasta un número
+     límite de caracteres
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN108236"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>substr_compare</B
+> ( string cadena_principal, string cadena, int desplazamiento [, int longitud [, bool sensibilidad_mayusculas]])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>substr_compare()</B
+> compara
+     <VAR
+CLASS="parameter"
+>cadena_principal</VAR
+> desde la posición
+     <VAR
+CLASS="parameter"
+>desplazamiento</VAR
+> con
+     <VAR
+CLASS="parameter"
+>cadena</VAR
+> hasta tantos caracteres como el
+     valor de <VAR
+CLASS="parameter"
+>longitud</VAR
+>.
+    </P
+><P
+>&#13;     Devuelve &#60; 0 si <VAR
+CLASS="parameter"
+>cadena_principal</VAR
+> desde
+     la posición <VAR
+CLASS="parameter"
+>desplazamiento</VAR
+> es menor
+     que <VAR
+CLASS="parameter"
+>cadena</VAR
+>, &#62; 0 si es mayor que
+     <VAR
+CLASS="parameter"
+>cadena</VAR
+>, y 0 si son iguales. Si
+     <VAR
+CLASS="parameter"
+>longitud</VAR
+> es igual o mayor que la longitud
+     de <VAR
+CLASS="parameter"
+>cadena_principal</VAR
+> y
+     <VAR
+CLASS="parameter"
+>longitud</VAR
+> se define,
+     <B
+CLASS="function"
+>substr_compare()</B
+> imprime una advertencia y
+     devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>sensibilidad_mayusculas</VAR
+> es <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, la
+     comparación distingue entre mayúsculas y
+     minúsculas.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN108276"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo de <B
+CLASS="function"
+>substr_compare()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#0000BB">substr_compare</font><font color="#007700">(</font><font color="#DD0000">"abcde"</font><font color="#007700">, </font><font color="#DD0000">"bc"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">); </font><font color="#FF8000">// 0<br /></font><font color="#007700">echo </font><font color="#0000BB">substr_compare</font><font color="#007700">(</font><font color="#DD0000">"abcde"</font><font color="#007700">, </font><font color="#DD0000">"bcg"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">); </font><font color="#FF8000">// 0<br /></font><font color="#007700">echo </font><font color="#0000BB">substr_compare</font><font color="#007700">(</font><font color="#DD0000">"abcde"</font><font color="#007700">, </font><font color="#DD0000">"BC"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">true</font><font color="#007700">); </font><font color="#FF8000">// 0<br /></font><font color="#007700">echo </font><font color="#0000BB">substr_compare</font><font color="#007700">(</font><font color="#DD0000">"abcde"</font><font color="#007700">, </font><font color="#DD0000">"bc"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">); </font><font color="#FF8000">// 1<br /></font><font color="#007700">echo </font><font color="#0000BB">substr_compare</font><font color="#007700">(</font><font color="#DD0000">"abcde"</font><font color="#007700">, </font><font color="#DD0000">"cd"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">); </font><font color="#FF8000">// -1<br /></font><font color="#007700">echo </font><font color="#0000BB">substr_compare</font><font color="#007700">(</font><font color="#DD0000">"abcde"</font><font color="#007700">, </font><font color="#DD0000">"abc"</font><font color="#007700">, </font><font color="#0000BB">5</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">); </font><font color="#FF8000">// advertencia<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.strtr.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.substr-count.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>strtr</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>substr_count</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

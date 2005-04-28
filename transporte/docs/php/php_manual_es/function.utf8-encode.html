@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>utf8_encode</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de intérprete XML"
+HREF="ref.xml.html"><LINK
+REL="PREVIOUS"
+TITLE="utf8_decode"
+HREF="function.utf8-decode.html"><LINK
+REL="NEXT"
+TITLE="xml_error_string"
+HREF="function.xml-error-string.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.utf8-decode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.xml-error-string.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.utf8-encode"
+></A
+>utf8_encode</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN113938"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>utf8_encode&nbsp;--&nbsp;codifica una cadena ISO-8859-1 a UTF-8</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN113941"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>utf8_encode</B
+> ( string data)<BR
+></BR
+><P
+>&#13;     Esta función codifica la cadena <VAR
+CLASS="parameter"
+>data</VAR
+> a
+     <VAR
+CLASS="literal"
+>UTF-8</VAR
+>, y devuelve la versión codificada.
+     <VAR
+CLASS="literal"
+>UTF-8</VAR
+> es un mecanismo estándar usado por
+     <ACRONYM
+CLASS="acronym"
+>Unicode</ACRONYM
+>para codificar valores de <I
+CLASS="glossterm"
+>&#13;     caracteres amplios</I
+> en un chorro de bytes.
+     <VAR
+CLASS="literal"
+>UTF-8</VAR
+> es transparente a caracteres de
+     <ABBR
+CLASS="abbrev"
+>ASCII</ABBR
+> plano, es auto-sincronizado (significa
+     que es posible para un programa averiguar dónde comienzan los
+     caracteres en el chorro de bytes) y se puede usar con funciones de
+     comparación de cadenas normales para ordenar y otros fines.
+     PHP codifica caracteres <VAR
+CLASS="literal"
+>UTF-8</VAR
+> en hasta cuatro bytes,
+     como esto:
+     <DIV
+CLASS="table"
+><A
+NAME="AEN113958"
+></A
+><P
+><B
+>Tabla 1. Codificación UTF-8</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>bytes</TH
+><TH
+>bits</TH
+><TH
+>representación</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>1</TD
+><TD
+>7</TD
+><TD
+>0bbbbbbb</TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>11</TD
+><TD
+>110bbbbb 10bbbbbb</TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>16</TD
+><TD
+>1110bbbb 10bbbbbb 10bbbbbb</TD
+></TR
+><TR
+><TD
+>4</TD
+><TD
+>21</TD
+><TD
+>11110bbb 10bbbbbb 10bbbbbb 10bbbbbb</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+     Cada <VAR
+CLASS="replaceable"
+>b</VAR
+> representa un bit que puede ser
+     usado para almacenar datos de caracteres.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.utf8-decode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.xml-error-string.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>utf8_decode</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.xml.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>xml_error_string</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

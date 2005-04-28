@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>dio_fcntl</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de acceso directo a E/S"
+HREF="ref.dio.html"><LINK
+REL="PREVIOUS"
+TITLE="dio_close"
+HREF="function.dio-close.html"><LINK
+REL="NEXT"
+TITLE="dio_open"
+HREF="function.dio-open.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dio-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.dio-open.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.dio-fcntl"
+></A
+>dio_fcntl</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN20296"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>dio_fcntl&nbsp;--&nbsp;Realiza una operación del tipo fcntl de la
+    libería de C sobre el descriptor de archivo indicado por el
+    parámetro fd</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN20299"
+></A
+><H2
+>Descripción</H2
+>mixed <B
+CLASS="methodname"
+>dio_fcntl</B
+> ( resource fd, int cmd [, mixed arg])<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>dio_fcntl()</B
+> realiza la
+     operación indicada por el parámetro <VAR
+CLASS="parameter"
+>cmd</VAR
+> sobre el descriptor de archivo <VAR
+CLASS="parameter"
+>fd</VAR
+>. Algunas operaciones requieren argumentos adicionales introducidos a traves del parámetro <VAR
+CLASS="parameter"
+>args</VAR
+>.
+    </P
+><P
+> 
+     <VAR
+CLASS="parameter"
+>arg</VAR
+> es un array de tipo asociativo siempre que <VAR
+CLASS="parameter"
+>cmd</VAR
+> es F_SETLK o F_SETLLW. En ese caso, las claves del array son las siguientes:
+     <P
+></P
+><UL
+><LI
+><P
+> 
+        "start" - lugar donde comienza el bloqueo (lock)
+       </P
+></LI
+><LI
+><P
+>&#13;        "length" - tamaño del area bloqueada. Un valor igual a 0 (cero) indica un bloqueo hasta el final del archivo
+       </P
+></LI
+><LI
+><P
+>&#13;        "wenth" - Lugar desde donde se empieza a contar el tamaño l_start. Puede ser SEEK_SET, SEEK_END y SEEK_CUR
+       </P
+></LI
+><LI
+><P
+>&#13;        "type" - tipo de bloqueo. Puede ser F_RDLCK (bloqueo de lectura), F_WRLCK (bloqueo de escritura) o F_UNLCK (desbloqueo)
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>cmd</VAR
+> puede ser cualquiera de las siguientes
+     operaciones:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        F_SETLK - Activa o desactiva el bloqueo. Si alguien lo ha bloqueado
+        anteriormente, la función <B
+CLASS="function"
+>dio_fcntl()</B
+> devuelve -1.
+       </P
+></LI
+><LI
+><P
+>&#13;        F_SETLKW - Es similar a F_SETLK, salvo que en esta ocasión la
+        función <B
+CLASS="function"
+>dio_fcntl()</B
+> espera a que se libere
+        el bloqueo en caso de que alguien lo haya bloqueado anteriormente.
+       </P
+></LI
+><LI
+><P
+>&#13;        F_GETLK - La función <B
+CLASS="function"
+>dio_fcntl()</B
+> devuelve un
+        array asociativo como el descrito previamente si existe alguien que
+        impide realizar un bloqueo. Si no existe un bloqueo anterior, la clave "type" se pondra a F_UNLCK.
+       </P
+></LI
+><LI
+><P
+>&#13;        F_DUPFD - Busca el descriptor de archivo disponible con el
+        número mas bajo y que sea mayor o igual que <VAR
+CLASS="parameter"
+>arg</VAR
+> y lo convierte en una copia de <VAR
+CLASS="parameter"
+>fd</VAR
+> y devuelve los dos descriptores.
+       </P
+></LI
+><LI
+><P
+>&#13;        F_SETFL - Establece el valor de las opciones de los descriptores de
+        archivos a los valores especificados en el parámetro <VAR
+CLASS="parameter"
+>arg</VAR
+>. Las opciones pueden ser O_APPEND,O_NONBLOCK o O_ASYNC. Para poder utilizar la opción O_ASYNC es necesario utilizar la extensión <A
+HREF="ref.pcntl.html"
+>PCNTL</A
+>.
+       </P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dio-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.dio-open.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dio_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.dio.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>dio_open</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

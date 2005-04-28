@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>printer_create_brush</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Printer Functions"
+HREF="ref.printer.html"><LINK
+REL="PREVIOUS"
+TITLE="printer_close"
+HREF="function.printer-close.html"><LINK
+REL="NEXT"
+TITLE="printer_create_dc"
+HREF="function.printer-create-dc.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.printer-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.printer-create-dc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.printer-create-brush"
+></A
+>printer_create_brush</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN91196"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>printer_create_brush&nbsp;--&nbsp;Create a new brush</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN91199"
+></A
+><H2
+>Description</H2
+>mixed <B
+CLASS="methodname"
+>printer_create_brush</B
+> ( int style, string color)<BR
+></BR
+><P
+>&#13;      The function creates a new brush and returns a handle to it. A brush 
+      is used to fill shapes. For an example see 
+      <A
+HREF="function.printer-select-brush.html"
+><B
+CLASS="function"
+>printer_select_brush()</B
+></A
+>. <VAR
+CLASS="parameter"
+>color</VAR
+> 
+      must be a color in RGB hex format, i.e. "000000" for black,  
+      <VAR
+CLASS="parameter"
+>style</VAR
+> must be one of the following constants:
+       <P
+></P
+><UL
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_SOLID</VAR
+>:
+            creates a brush with a solid color.
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_DIAGONAL</VAR
+>:
+            creates a brush with a 45-degree upward left-to-right hatch ( / ).
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_CROSS</VAR
+>:
+            creates a brush with a cross hatch ( + ). 
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_DIAGCROSS</VAR
+>:
+            creates a brush with a 45 cross hatch ( x ).          
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_FDIAGONAL</VAR
+>:
+            creates a brush with a 45-degree downward left-to-right hatch ( \ ).
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_HORIZONTAL</VAR
+>:
+            creates a brush with a horizontal hatch ( - ).
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_VERTICAL</VAR
+>:
+            creates a brush with a vertical hatch ( | ).
+          </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_BRUSH_CUSTOM</VAR
+>:
+            creates a custom brush from an BMP file. The second parameter 
+            is used to specify the BMP instead of the RGB color code.
+         </P
+></LI
+></UL
+>
+      </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.printer-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.printer-create-dc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>printer_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.printer.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>printer_create_dc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

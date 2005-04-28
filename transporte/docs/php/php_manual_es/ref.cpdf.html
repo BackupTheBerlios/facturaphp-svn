@@ -1,0 +1,979 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones ClibPDF</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="method_exists"
+HREF="function.method-exists.html"><LINK
+REL="NEXT"
+TITLE="cpdf_add_annotation"
+HREF="function.cpdf-add-annotation.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.method-exists.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.cpdf-add-annotation.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.cpdf"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>X. Funciones ClibPDF</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN12787"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     ClibPDF le permite crear documentos PDF con PHP. La funcionalidad
+     y la interfaz de programación de ClibPDF son similares a
+     <A
+HREF="ref.pdf.html"
+>PDFlib</A
+>. Esta documentación
+     debería ser leído junto con el manual de ClibPDF,
+     ya que éste explica la biblioteca con mucho mayor detalle.
+    </P
+><P
+>&#13;     Muchas funciones en la biblioteca ClibPDF nativa y el
+     módulo PHP, así como en <A
+HREF="ref.pdf.html"
+>PDFlib</A
+>, tienen el mismo nombre. Todas
+     las funciones excepto por <A
+HREF="function.cpdf-open.html"
+><B
+CLASS="function"
+>cpdf_open()</B
+></A
+> reciben
+     el gestor del documento como su primer parámetro.
+    </P
+><P
+>&#13;     Actualmente este gestor no es usado internamente ya que ClibPDF
+     no soporta la creación de varios documentos PDF a la
+     vez. De hecho, no debería intentarlo siquiera, los
+     resultados son impredecibles. Es difícil hacerse una idea
+     de las consecuencias que representaría en un entorno
+     multi-hilos. De acuerdo al autor de ClibPDF, esto cambiará
+     en uno de los lanzamientos siguientes (la versión actual
+     cuando se escribieron éstas líneas es 1.10). Si
+     necesita esta funcionalidad, use el módulo pdflib.
+    </P
+><P
+>&#13;     Una característica interesante de ClibPDF (y <A
+HREF="ref.pdf.html"
+>PDFlib</A
+>) es la habilidad de crear el
+     documento pdf completamente en memoria sin usar archivos
+     temporales. También provee la habilidad de pasar
+     coordenadas en una unidad de longitud predefinida. (Esta
+     característica puede ser simulada también
+     por <A
+HREF="function.pdf-translate.html"
+><B
+CLASS="function"
+>pdf_translate()</B
+></A
+> cuando se usan las
+     funciones <A
+HREF="ref.pdf.html"
+>PDFlib</A
+>.)
+    </P
+><P
+>&#13;     Otra característica interesante de ClibPDF es el hecho de
+     que cualquier página puede ser modificada en cualquier
+     momento, incluso si una nueva página ya ha sido
+     abierta. La función
+     <A
+HREF="function.cpdf-set-current-page.html"
+><B
+CLASS="function"
+>cpdf_set_current_page()</B
+></A
+> permite abandonar la
+     página actual y posiblemente modificar otra página.
+    </P
+><P
+>&#13;     La mayoría de funciones son razonablemente fáciles
+     de usar. La parte más difícil es probablemente la
+     creación misma de un documento PDF muy sencillo. El
+     ejemplo presentado a continuación debería ayudarlo
+     a iniciar. En éste se crea un documento con una
+     página. La página contiene el texto "Times-Roman"
+     en una fuente tipográfica de borde exterior y 30pt. El
+     texto es subrayado.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si está interesado en generadores de PDF gratuitos
+      alternativos que no usen bibliotecas PDF externas, vea <A
+HREF="faq.using.html#faq.using.freepdf"
+>este FAQ relacionado</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Para poder usar las funciones ClibPDF necesita instalar el
+     paquete ClibPDF. Éste se encuentra disponible para su
+     descarga en <A
+HREF="http://www.fastio.com/"
+TARGET="_top"
+>FastIO</A
+>, pero
+     requiere que compre una licencia para su uso comercial. PHP
+     requiere que usted use cpdflib &#62;= 2.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  To get these functions to work, you have to compile PHP with
+  <VAR
+CLASS="option"
+>--with-cpdflib[=DIR]</VAR
+>. DIR is the cpdflib
+  install directory, defaults to <TT
+CLASS="filename"
+>/usr</TT
+>. In addition you
+  can specify the jpeg library and the tiff library for ClibPDF to use. To do
+  so add to your configure line the options
+  <VAR
+CLASS="option"
+>--with-jpeg-dir[=DIR]</VAR
+>
+  <VAR
+CLASS="option"
+>--with-tiff-dir[=DIR]</VAR
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PM_NONE</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PM_OUTLINES</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PM_THUMBS</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PM_FULLSCREEN</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PL_SINGLE</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PL_1COLUMN</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PL_2LCOLUMN</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CPDF_PL_2RCOLUMN</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.examples"
+>Ejemplos</A
+></H1
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN12875"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo Simple de ClibPDF</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$cpdf </font><font color="#007700">= </font><font color="#0000BB">cpdf_open</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_page_init</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">595</font><font color="#007700">, </font><font color="#0000BB">842</font><font color="#007700">, </font><font color="#0000BB">1.0</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_add_outline</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#DD0000">"Pag. 1"</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_begin_text</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_set_font</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#DD0000">"Times-Roman"</font><font color="#007700">, </font><font color="#0000BB">30</font><font color="#007700">, </font><font color="#DD0000">"WinAnsiEncoding"</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_set_text_rendering</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_text</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#DD0000">"Times Roman outlined"</font><font color="#007700">, </font><font color="#0000BB">50</font><font color="#007700">, </font><font color="#0000BB">750</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_end_text</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_moveto</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#0000BB">50</font><font color="#007700">, </font><font color="#0000BB">740</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">, </font><font color="#0000BB">330</font><font color="#007700">, </font><font color="#0000BB">740</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_stroke</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_finalize</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">);<br /></font><font color="#0000BB">Header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: application/pdf"</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_output_buffer</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_close</font><font color="#007700">(</font><font color="#0000BB">$cpdf</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     La distribución de pdflib contiene un ejemplo más
+     complejo que genera una serie de páginas con un reloj
+     análogo. Aquí está ese ejemplo convertido a
+     PHP usando la extensión ClibPDF:
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN12879"
+></A
+><P
+><B
+>Ejemplo 2. Ejemplo pdfclock tomado de la distribución de
+     pdflib 2.0</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$radio </font><font color="#007700">= </font><font color="#0000BB">200</font><font color="#007700">;<br /></font><font color="#0000BB">$margen </font><font color="#007700">= </font><font color="#0000BB">20</font><font color="#007700">;<br /></font><font color="#0000BB">$conteo_paginas </font><font color="#007700">= </font><font color="#0000BB">40</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$pdf </font><font color="#007700">= </font><font color="#0000BB">cpdf_open</font><font color="#007700">(</font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_set_creator</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#DD0000">"pdf_clock.php"</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_set_title</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#DD0000">"Reloj An&amp;aacute;logo"</font><font color="#007700">);<br />&nbsp;&nbsp;<br />while (</font><font color="#0000BB">$conteo_paginas</font><font color="#007700">-- &gt; </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_page_init</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$conteo_paginas</font><font color="#007700">+</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">2 </font><font color="#007700">* (</font><font color="#0000BB">$radio </font><font color="#007700">+ </font><font color="#0000BB">$margen</font><font color="#007700">), </font><font color="#0000BB">2 </font><font color="#007700">* (</font><font color="#0000BB">$radio </font><font color="#007700">+ </font><font color="#0000BB">$margen</font><font color="#007700">), </font><font color="#0000BB">1.0</font><font color="#007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_set_page_animation</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">4</font><font color="#007700">, </font><font color="#0000BB">0.5</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);&nbsp;&nbsp;</font><font color="#FF8000">/* limpiar */<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_translate</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio </font><font color="#007700">+ </font><font color="#0000BB">$margen</font><font color="#007700">, </font><font color="#0000BB">$radio </font><font color="#007700">+ </font><font color="#0000BB">$margen</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_save</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_setrgbcolor</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">, </font><font color="#0000BB">1.0</font><font color="#007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#FF8000">/* trazos de los minutos */<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_setlinewidth</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">2.0</font><font color="#007700">);<br />&nbsp;&nbsp;for (</font><font color="#0000BB">$alpha </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$alpha </font><font color="#007700">&lt; </font><font color="#0000BB">360</font><font color="#007700">; </font><font color="#0000BB">$alpha </font><font color="#007700">+= </font><font color="#0000BB">6</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_rotate</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">6.0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_moveto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">-</font><font color="#0000BB">$margen</font><font color="#007700">/</font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_stroke</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_restore</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_save</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /> <br />&nbsp;&nbsp;</font><font color="#FF8000">/* trazos de 5 minutos */<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_setlinewidth</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">3.0</font><font color="#007700">);<br />&nbsp;&nbsp;for (</font><font color="#0000BB">$alpha </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$alpha </font><font color="#007700">&lt; </font><font color="#0000BB">360</font><font color="#007700">; </font><font color="#0000BB">$alpha </font><font color="#007700">+= </font><font color="#0000BB">30</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_rotate</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">30.0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_moveto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">-</font><font color="#0000BB">$margen</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">cpdf_stroke</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">$ltime </font><font color="#007700">= </font><font color="#0000BB">getdate</font><font color="#007700">();<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">/* dibujar nuestra mano */<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_save</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_rotate</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -((</font><font color="#0000BB">$ltime</font><font color="#007700">[</font><font color="#DD0000">'minutes'</font><font color="#007700">]/</font><font color="#0000BB">60.0</font><font color="#007700">) + </font><font color="#0000BB">$ltime</font><font color="#007700">[</font><font color="#DD0000">'hours'</font><font color="#007700">] - </font><font color="#0000BB">3.0</font><font color="#007700">) * </font><font color="#0000BB">30.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_moveto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">10</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">20</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">20</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_closepath</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_fill</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_restore</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">/* dibujar la mano de minutos */<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_save</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_rotate</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -((</font><font color="#0000BB">$ltime</font><font color="#007700">[</font><font color="#DD0000">'seconds'</font><font color="#007700">]/</font><font color="#0000BB">60.0</font><font color="#007700">) + </font><font color="#0000BB">$ltime</font><font color="#007700">[</font><font color="#DD0000">'minutes'</font><font color="#007700">] - </font><font color="#0000BB">15.0</font><font color="#007700">) * </font><font color="#0000BB">6.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_moveto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">10</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">20</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio </font><font color="#007700">* </font><font color="#0000BB">0.8</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">20</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_closepath</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_fill</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_restore</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">/* dibujar la mano de segundos */<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_setrgbcolor</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">1.0</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_setlinewidth</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_save</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_rotate</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -((</font><font color="#0000BB">$ltime</font><font color="#007700">[</font><font color="#DD0000">'seconds'</font><font color="#007700">] - </font><font color="#0000BB">15.0</font><font color="#007700">) * </font><font color="#0000BB">6.0</font><font color="#007700">));<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_moveto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, -</font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">5</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_lineto</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">, </font><font color="#0000BB">0.0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_stroke</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_restore</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#FF8000">/* dibujar un pequenyo circulo en el centro */<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_circle</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">$radio</font><font color="#007700">/</font><font color="#0000BB">30</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_fill</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_restore</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /><br />&nbsp;&nbsp;</font><font color="#0000BB">cpdf_finalize_page</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">, </font><font color="#0000BB">$conteo_paginas</font><font color="#007700">+</font><font color="#0000BB">1</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">cpdf_finalize</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /></font><font color="#0000BB">Header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: application/pdf"</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_output_buffer</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /></font><font color="#0000BB">cpdf_close</font><font color="#007700">(</font><font color="#0000BB">$pdf</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="cpdf.seealso"
+>Ver también</A
+></H1
+><P
+>&#13;     Vea también la documentación de la
+     extensión <A
+HREF="ref.pdf.html"
+>PDFlib</A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.cpdf-add-annotation.html"
+>cpdf_add_annotation</A
+>&nbsp;--&nbsp;Añade una anotación</DT
+><DT
+><A
+HREF="function.cpdf-add-outline.html"
+>cpdf_add_outline</A
+>&nbsp;--&nbsp;Añade una marca en la página actual</DT
+><DT
+><A
+HREF="function.cpdf-arc.html"
+>cpdf_arc</A
+>&nbsp;--&nbsp;Dibuja un arco</DT
+><DT
+><A
+HREF="function.cpdf-begin-text.html"
+>cpdf_begin_text</A
+>&nbsp;--&nbsp;Inicializa una sección de texto</DT
+><DT
+><A
+HREF="function.cpdf-circle.html"
+>cpdf_circle</A
+>&nbsp;--&nbsp;Dibuja un círculo</DT
+><DT
+><A
+HREF="function.cpdf-clip.html"
+>cpdf_clip</A
+>&nbsp;--&nbsp;Ajusta al camino actual</DT
+><DT
+><A
+HREF="function.cpdf-close.html"
+>cpdf_close</A
+>&nbsp;--&nbsp;Cierra un documento PDF</DT
+><DT
+><A
+HREF="function.cpdf-closepath-fill-stroke.html"
+>cpdf_closepath_fill_stroke</A
+>&nbsp;--&nbsp;Cierra, llena y traza el camino actual</DT
+><DT
+><A
+HREF="function.cpdf-closepath-stroke.html"
+>cpdf_closepath_stroke</A
+>&nbsp;--&nbsp;Cierra el camino y dibuja una línea a lo largo del camino</DT
+><DT
+><A
+HREF="function.cpdf-closepath.html"
+>cpdf_closepath</A
+>&nbsp;--&nbsp;Cierra el camino</DT
+><DT
+><A
+HREF="function.cpdf-continue-text.html"
+>cpdf_continue_text</A
+>&nbsp;--&nbsp;Pone texto en la línea siguiente</DT
+><DT
+><A
+HREF="function.cpdf-curveto.html"
+>cpdf_curveto</A
+>&nbsp;--&nbsp;Dibuja una curva</DT
+><DT
+><A
+HREF="function.cpdf-end-text.html"
+>cpdf_end_text</A
+>&nbsp;--&nbsp;Finaliza una sección de texto</DT
+><DT
+><A
+HREF="function.cpdf-fill-stroke.html"
+>cpdf_fill_stroke</A
+>&nbsp;--&nbsp;LLena y traza el camino actual</DT
+><DT
+><A
+HREF="function.cpdf-fill.html"
+>cpdf_fill</A
+>&nbsp;--&nbsp;LLena el camino actual</DT
+><DT
+><A
+HREF="function.cpdf-finalize-page.html"
+>cpdf_finalize_page</A
+>&nbsp;--&nbsp;Finaliza una página</DT
+><DT
+><A
+HREF="function.cpdf-finalize.html"
+>cpdf_finalize</A
+>&nbsp;--&nbsp;Finaliza un documento</DT
+><DT
+><A
+HREF="function.cpdf-global-set-document-limits.html"
+>cpdf_global_set_document_limits</A
+>&nbsp;--&nbsp;Sets document limits for any pdf document</DT
+><DT
+><A
+HREF="function.cpdf-import-jpeg.html"
+>cpdf_import_jpeg</A
+>&nbsp;--&nbsp;Abre una imagen JPEG</DT
+><DT
+><A
+HREF="function.cpdf-lineto.html"
+>cpdf_lineto</A
+>&nbsp;--&nbsp;Dibuja una línea</DT
+><DT
+><A
+HREF="function.cpdf-moveto.html"
+>cpdf_moveto</A
+>&nbsp;--&nbsp;Define el punto actual</DT
+><DT
+><A
+HREF="function.cpdf-newpath.html"
+>cpdf_newpath</A
+>&nbsp;--&nbsp;Starts a new path</DT
+><DT
+><A
+HREF="function.cpdf-open.html"
+>cpdf_open</A
+>&nbsp;--&nbsp;Abre un nuevo documento pdf</DT
+><DT
+><A
+HREF="function.cpdf-output-buffer.html"
+>cpdf_output_buffer</A
+>&nbsp;--&nbsp;Pone el documento PDF en el buffer de memoria</DT
+><DT
+><A
+HREF="function.cpdf-page-init.html"
+>cpdf_page_init</A
+>&nbsp;--&nbsp;Comienza una nueva página</DT
+><DT
+><A
+HREF="function.cpdf-place-inline-image.html"
+>cpdf_place_inline_image</A
+>&nbsp;--&nbsp;Situa una imagen en la página</DT
+><DT
+><A
+HREF="function.cpdf-rect.html"
+>cpdf_rect</A
+>&nbsp;--&nbsp;Dibuja un rectángulo</DT
+><DT
+><A
+HREF="function.cpdf-restore.html"
+>cpdf_restore</A
+>&nbsp;--&nbsp;Restaura un entorno formalmente salvado</DT
+><DT
+><A
+HREF="function.cpdf-rlineto.html"
+>cpdf_rlineto</A
+>&nbsp;--&nbsp;Dibuja una línea</DT
+><DT
+><A
+HREF="function.cpdf-rmoveto.html"
+>cpdf_rmoveto</A
+>&nbsp;--&nbsp;Define el punto actual</DT
+><DT
+><A
+HREF="function.cpdf-rotate-text.html"
+>cpdf_rotate_text</A
+>&nbsp;--&nbsp;
+     Sets text rotation angle
+    </DT
+><DT
+><A
+HREF="function.cpdf-rotate.html"
+>cpdf_rotate</A
+>&nbsp;--&nbsp;Define la rotación</DT
+><DT
+><A
+HREF="function.cpdf-save-to-file.html"
+>cpdf_save_to_file</A
+>&nbsp;--&nbsp;Escribe el documento PDF en un fichero</DT
+><DT
+><A
+HREF="function.cpdf-save.html"
+>cpdf_save</A
+>&nbsp;--&nbsp;Salva el entorno actual</DT
+><DT
+><A
+HREF="function.cpdf-scale.html"
+>cpdf_scale</A
+>&nbsp;--&nbsp;Define la escala</DT
+><DT
+><A
+HREF="function.cpdf-set-action-url.html"
+>cpdf_set_action_url</A
+>&nbsp;--&nbsp;
+     Sets hyperlink
+    </DT
+><DT
+><A
+HREF="function.cpdf-set-char-spacing.html"
+>cpdf_set_char_spacing</A
+>&nbsp;--&nbsp;Determina el espacio entre caracteres</DT
+><DT
+><A
+HREF="function.cpdf-set-creator.html"
+>cpdf_set_creator</A
+>&nbsp;--&nbsp;Define el campo creator en el documento PDF</DT
+><DT
+><A
+HREF="function.cpdf-set-current-page.html"
+>cpdf_set_current_page</A
+>&nbsp;--&nbsp;Define la página actual</DT
+><DT
+><A
+HREF="function.cpdf-set-font-directories.html"
+>cpdf_set_font_directories</A
+>&nbsp;--&nbsp;
+     Sets directories to search when using external fonts
+    </DT
+><DT
+><A
+HREF="function.cpdf-set-font-map-file.html"
+>cpdf_set_font_map_file</A
+>&nbsp;--&nbsp;
+     Sets fontname to filename translation map when using external fonts
+    </DT
+><DT
+><A
+HREF="function.cpdf-set-font.html"
+>cpdf_set_font</A
+>&nbsp;--&nbsp;Selecciona la fuente y el tamaño actual</DT
+><DT
+><A
+HREF="function.cpdf-set-horiz-scaling.html"
+>cpdf_set_horiz_scaling</A
+>&nbsp;--&nbsp;Define la escala horizontal del texto</DT
+><DT
+><A
+HREF="function.cpdf-set-keywords.html"
+>cpdf_set_keywords</A
+>&nbsp;--&nbsp;Pone el valor del campo 'keywords'(palabras clave) de un 
+    documento PDF</DT
+><DT
+><A
+HREF="function.cpdf-set-leading.html"
+>cpdf_set_leading</A
+>&nbsp;--&nbsp;Define la distancias entre las líneas de texto</DT
+><DT
+><A
+HREF="function.cpdf-set-page-animation.html"
+>cpdf_set_page_animation</A
+>&nbsp;--&nbsp;Define la separación entre páginas</DT
+><DT
+><A
+HREF="function.cpdf-set-subject.html"
+>cpdf_set_subject</A
+>&nbsp;--&nbsp;Define el valor del campo subjet de un documento PDF</DT
+><DT
+><A
+HREF="function.cpdf-set-text-matrix.html"
+>cpdf_set_text_matrix</A
+>&nbsp;--&nbsp;Define la matriz de texto</DT
+><DT
+><A
+HREF="function.cpdf-set-text-pos.html"
+>cpdf_set_text_pos</A
+>&nbsp;--&nbsp;Define la posición del texto</DT
+><DT
+><A
+HREF="function.cpdf-set-text-rendering.html"
+>cpdf_set_text_rendering</A
+>&nbsp;--&nbsp;Determina cómo es presentado el texto</DT
+><DT
+><A
+HREF="function.cpdf-set-text-rise.html"
+>cpdf_set_text_rise</A
+>&nbsp;--&nbsp;Define la elevación del texto</DT
+><DT
+><A
+HREF="function.cpdf-set-title.html"
+>cpdf_set_title</A
+>&nbsp;--&nbsp;Define el campo title de un documento PDF</DT
+><DT
+><A
+HREF="function.cpdf-set-viewer-preferences.html"
+>cpdf_set_viewer_preferences</A
+>&nbsp;--&nbsp;
+     How to show the document in the viewer
+    </DT
+><DT
+><A
+HREF="function.cpdf-set-word-spacing.html"
+>cpdf_set_word_spacing</A
+>&nbsp;--&nbsp;Define el espacio entre palabras</DT
+><DT
+><A
+HREF="function.cpdf-setdash.html"
+>cpdf_setdash</A
+>&nbsp;--&nbsp;Defina el patrón de la raya</DT
+><DT
+><A
+HREF="function.cpdf-setflat.html"
+>cpdf_setflat</A
+>&nbsp;--&nbsp;Define la monotonía</DT
+><DT
+><A
+HREF="function.cpdf-setgray-fill.html"
+>cpdf_setgray_fill</A
+>&nbsp;--&nbsp;Pone el color de relleno al valor gris</DT
+><DT
+><A
+HREF="function.cpdf-setgray-stroke.html"
+>cpdf_setgray_stroke</A
+>&nbsp;--&nbsp;Define el color para dibujar al valor gris</DT
+><DT
+><A
+HREF="function.cpdf-setgray.html"
+>cpdf_setgray</A
+>&nbsp;--&nbsp;Pone el color de relleno y dibujo a gris</DT
+><DT
+><A
+HREF="function.cpdf-setlinecap.html"
+>cpdf_setlinecap</A
+>&nbsp;--&nbsp;Define el parámetro linecap</DT
+><DT
+><A
+HREF="function.cpdf-setlinejoin.html"
+>cpdf_setlinejoin</A
+>&nbsp;--&nbsp;Define el parámetro linejoin</DT
+><DT
+><A
+HREF="function.cpdf-setlinewidth.html"
+>cpdf_setlinewidth</A
+>&nbsp;--&nbsp;Define la profundidad de la línea</DT
+><DT
+><A
+HREF="function.cpdf-setmiterlimit.html"
+>cpdf_setmiterlimit</A
+>&nbsp;--&nbsp;Define el límite del inglete</DT
+><DT
+><A
+HREF="function.cpdf-setrgbcolor-fill.html"
+>cpdf_setrgbcolor_fill</A
+>&nbsp;--&nbsp;Pone el color de relleno a l valor de clor rgb</DT
+><DT
+><A
+HREF="function.cpdf-setrgbcolor-stroke.html"
+>cpdf_setrgbcolor_stroke</A
+>&nbsp;--&nbsp;Pone el color de dibujo al valor de color rgb</DT
+><DT
+><A
+HREF="function.cpdf-setrgbcolor.html"
+>cpdf_setrgbcolor</A
+>&nbsp;--&nbsp;Pone el color de relleno y dibujo al valor de color rgb</DT
+><DT
+><A
+HREF="function.cpdf-show-xy.html"
+>cpdf_show_xy</A
+>&nbsp;--&nbsp;Muestra texto en la posición</DT
+><DT
+><A
+HREF="function.cpdf-show.html"
+>cpdf_show</A
+>&nbsp;--&nbsp;Muestra el texto en la posición actual</DT
+><DT
+><A
+HREF="function.cpdf-stringwidth.html"
+>cpdf_stringwidth</A
+>&nbsp;--&nbsp;Devuelve la anchura del texto en la fuente actual</DT
+><DT
+><A
+HREF="function.cpdf-stroke.html"
+>cpdf_stroke</A
+>&nbsp;--&nbsp;Dibuja una línea a lo largo del camino</DT
+><DT
+><A
+HREF="function.cpdf-text.html"
+>cpdf_text</A
+>&nbsp;--&nbsp;Muestra texto conparámetros</DT
+><DT
+><A
+HREF="function.cpdf-translate.html"
+>cpdf_translate</A
+>&nbsp;--&nbsp;Define el sistema de origen de coordenadas</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.method-exists.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.cpdf-add-annotation.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>method_exists</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>cpdf_add_annotation</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

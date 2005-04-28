@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mktime</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Fecha y Hora"
+HREF="ref.datetime.html"><LINK
+REL="PREVIOUS"
+TITLE="microtime"
+HREF="function.microtime.html"><LINK
+REL="NEXT"
+TITLE="strftime"
+HREF="function.strftime.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.microtime.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.strftime.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mktime"
+></A
+>mktime</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN17582"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mktime&nbsp;--&nbsp;obtiene el timestamp UNIX de una fecha</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN17585"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mktime</B
+> ( int hour, int minute, int second, int month, int day, int year [, int is_dst])<BR
+></BR
+><P
+>&#13;	 <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Advertencia:</I
+></SPAN
+> Véase el extraño orden de los
+	 argumentos, que se diferencia del orden de argumentos en una
+	 llamada mktime() de UNIX y que no permite eliminar parámetros de
+	 derecha a izquierda (ver abajo). Es un error común mezclar estos
+	 valores en un script.</P
+><P
+>&#13;	 Devuelve el valor timestamp Unix correspondiente a los argumentos
+	 dados. El timestamp es un entero de tipo long que contiene el
+	 número de segundos entre el valor Unix Epoch (1 de enero de 1970)
+	 y la hora especificada.
+    </P
+><P
+>&#13;	 Se pueden eliminar argumentos en orden de derecha a izquierda;
+	 en los argumentos omitidos se toma el valor de la fecha y hora
+	 locales.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>is_dst</VAR
+> puede ponerse a 1 si la hora
+	 corresponde a horario de verano, 0 si no, o -1 (valor por
+	 omisión) si no se sabe.
+	 </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+><VAR
+CLASS="parameter"
+>is_dst</VAR
+> se añadió en la versión 3.0.10.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;	 <B
+CLASS="function"
+>mktime()</B
+> es útil para realizar cálculos y
+	 validaciones con fechas, ya que calcula automáticamente el valor
+	 correcto para una entrada fuera de rango. Por ejemplo, cada una
+	 de las líneas siguientes produce la cadena "Jan-01-1998".
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN17622"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>mktime()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>echo date( "M-d-Y", mktime(0,0,0,12,32,1997) );
+echo date( "M-d-Y", mktime(0,0,0,13,1,1997) );
+echo date( "M-d-Y", mktime(0,0,0,1,1,1998) );</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;	 El último día de cada mes se puede expresar como el día "0" del
+	 mes siguiente, no el día -1. Los dos ejemplos siguientes producen
+	 la cadena "The last day in Feb 2000 is: 29".
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN17627"
+></A
+><P
+><B
+>Ejemplo 2. El último día del próximo mes</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$lastday=mktime(0,0,0,3,0,2000);
+echo strftime("Last day in Feb 2000 is: %d",$lastday);
+     
+$lastday=mktime(0,0,0,4,-31,2000);
+echo strftime("Last day in Feb 2000 is: %d",$lastday);</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;	 Ver también <A
+HREF="function.date.html"
+><B
+CLASS="function"
+>date()</B
+></A
+> y
+	 <A
+HREF="function.time.html"
+><B
+CLASS="function"
+>time()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.microtime.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.strftime.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>microtime</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.datetime.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>strftime</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

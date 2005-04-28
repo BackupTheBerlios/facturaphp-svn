@@ -1,0 +1,1018 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Seguridad de Bases de Datos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Seguridad del sistema de archivos"
+HREF="security.filesystem.html"><LINK
+REL="NEXT"
+TITLE="Reporte de Errores"
+HREF="security.errors.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.filesystem.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.errors.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.database"
+>Seguridad de Bases de Datos</A
+></H1
+><P
+>&#13;    Hoy en día, las bases de datos son componentes cardinales
+    de cualquier aplicación basada en web, permitiendo que los
+    sitios web provean contenido dinámico. Debido a que
+    información considerablemente sensible o secreta puede ser
+    almacenada en una base de datos, usted debe considerar seriamente
+    la protección de sus bases de datos.
+   </P
+><P
+>&#13;    Para recuperar o almacenar cualquier información necesita
+    conectarse a la base de datos, enviar una consulta válida,
+    recoger el resultado y cerrar la conexión. Hoy en
+    día, el lenguaje de consultas usado comúnmente en
+    estas interacciones es el Lenguaje de Consultas Estructurado (SQL
+    por sus siglas en Inglés). Puede apreciar cómo un
+    atacante puede
+    <A
+HREF="security.database.html#security.database.sql-injection"
+>intentar
+    acometidas con una consulta SQL</A
+>.
+   </P
+><P
+>&#13;    Como puede suponer, PHP no puede proteger su base de datos por
+    sí solo. Las siguientes secciones están dirigidas a
+    servir de introducción a los conceptos básicos de
+    cómo acceder y manipular bases de datos desde scripts PHP.
+   </P
+><P
+>&#13;    Mantenga en mente esta simple regla: protección en
+    profundidad. Entre más acciones tome para incrementar la
+    protección de su base de datos, menor será la
+    probabilidad de que un atacante tenga éxito exponiendo o
+    abusando de cualquier información almacenada. Un buen
+    diseño del esquema de la base de datos y de la
+    aplicación basta para lidiar con sus mayores temores.
+   </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.database.design"
+>Diseño de Bases de Datos</A
+></H2
+><P
+>&#13;      El primer paso siempre es crear la base de datos, a menos que
+      desee usar una creada por alguien más. Cuando una base de
+      datos es creada, ésta es asignada a un dueño,
+      quien ejecutó la sentencia de
+      creación. Usualmente, únicamente el dueño
+      (o un super-usuario) puede hacer cualquier cosa con los objetos
+      de esa base de datos, y para que otros usuarios puedan usarla,
+      deben otorgarse privilegios.
+     </P
+><P
+>&#13;      Las aplicaciones nunca deberían conectarse a la base de
+      datos bajo el usuario correspondiente a su dueño, o como
+      un super-usuario, ya que éstos usuarios pueden, por
+      ejemplo, ejecutar cualquier consulta a su antojo, modificando el
+      esquema (p. ej. eliminando tablas) o borrando su contenido
+      completo.
+     </P
+><P
+>&#13;      Usted puede crear diferentes usuarios de la base de datos para
+      cada aspecto de su aplicación con derechos muy limitados
+      sobre los objetos de la base de datos. Tan solo deben otorgarse
+      los privilegios estrictamente necesarios, y evitar que el mismo
+      usuario pueda interactuar con la base de datos en diferentes
+      casos de uso. Esto quiere decir que si un intruso gana acceso a
+      su base de datos usando las credenciales de sus aplicaciones,
+      él solo puede efectuar tantos cambios como su
+      aplicación se lo permita.
+     </P
+><P
+>&#13;      Es buena idea que no implemente toda la lógica del asunto
+      en la aplicación web (es decir, en su script); en su
+      lugar, hágalo en el esquema de la base de datos usando
+      vistas, disparadores o reglas. Si el sistema evoluciona, se
+      espera que nuevos puertos sean abiertos a la aplicación,
+      y tendrá que re-implementar la lógica para cada
+      cliente de la base de datos. Por sobre todo, los disparadores
+      pueden ser usados para gestionar de forma transparente todos los
+      campos automáticamente, lo cual con frecuencia provee
+      información útil cuando se depuren problemas de su
+      aplicación, o se realicen rastreos sobre transacciones
+      particulares.
+     </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.database.connection"
+>Conexión con la Base de Datos</A
+></H2
+><P
+>&#13;     Puede que desee establecer las conexiones sobre SSL para
+     encriptar las comunicaciones cliente/servidor, incrementando el
+     nivel de seguridad, o puede hacer uso de ssh para encriptar la
+     conexión de red entre los clientes y el servidor de la
+     base de datos. Si cualquiera de estos recursos es usado, entonces
+     monitorear su tráfico y adquirir información sobre
+     su base de datos será difícil para un atacante
+     potencial.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.database.storage"
+>Modelo de Almacenamiento Encriptado</A
+></H2
+><P
+>&#13;     SSL/SSH protege los datos que viajan desde el cliente al
+     servidor, SSL/SSH no protege los datos persistentes almacenados
+     en la base de datos. SSL es un protocolo sobre-el-cable.
+    </P
+><P
+>&#13;     Una vez el atacante adquiere acceso directo a su base de datos
+     (evitando el paso por el servidor web), los datos críticos
+     almacenados pueden estar expuestos o malutilizados, a menos que
+     la información esté protegida en la base de datos
+     misma. La encriptación de datos es una buena forma de
+     mitigar esta amenaza, pero muy pocas bases de datos ofrecen este
+     tipo de mecanismo de encriptación de datos.
+    </P
+><P
+>&#13;     La forma más sencilla de evitar este problema es crear
+     primero su propio paquete de encriptación, y luego
+     utilizarlo desde sus scripts de PHP. PHP puede ayudarle en este
+     sentido con varias extensiones, como <A
+HREF="ref.mcrypt.html"
+>Mcrypt</A
+> y <A
+HREF="ref.mhash.html"
+>Mhash</A
+>, las cuales cubren una amplia
+     variedad de algoritmos de encriptación. El script encripta
+     los datos antes de insertarlos en la base de datos, y los
+     decripta cuando los recupera. Vea las referencias para consultar
+     más ejemplos de cómo opera la encriptación.
+    </P
+><P
+>&#13;     En el caso de datos realmente escondidos, si su
+     representación original no se necesita (es decir, no debe
+     ser desplegada), los resúmenes criptográficos
+     pueden llegar a considerarse también. El ejemplo
+     clásico de gestión de resúmenes
+     criptográficos es el almacenamiento de secuencias MD5 de
+     una contraseña en una base de datos, en lugar de la
+     contraseña misma. Vea
+     también <A
+HREF="function.crypt.html"
+><B
+CLASS="function"
+>crypt()</B
+></A
+>
+     y <A
+HREF="function.md5.html"
+><B
+CLASS="function"
+>md5()</B
+></A
+>.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4749"
+></A
+><P
+><B
+>Ejemplo 15-5. Uso de un campo de contraseñas encriptado</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// almacenamiento de resumen criptografico de la contrasenya<br /><br /></font><font color="#0000BB">$consulta&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">sprintf</font><font color="#007700">(</font><font color="#DD0000">"INSERT INTO usuarios(nombre,contr) VALUES('%s','%s');"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">addslashes</font><font color="#007700">(</font><font color="#0000BB">$nombre_usuario</font><font color="#007700">), </font><font color="#0000BB">md5</font><font color="#007700">(</font><font color="#0000BB">$contrasenya</font><font color="#007700">));<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">pg_exec</font><font color="#007700">(</font><font color="#0000BB">$conexion</font><font color="#007700">, </font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br /><br /></font><font color="#FF8000">// consulta de verificacion de la contrasenya enviada<br /><br /></font><font color="#0000BB">$consulta&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">sprintf</font><font color="#007700">(</font><font color="#DD0000">"SELECT 1 FROM usuarios WHERE nombre='%s' AND contr='%s';"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">addslashes</font><font color="#007700">(</font><font color="#0000BB">$nombre_usuario</font><font color="#007700">), </font><font color="#0000BB">md5</font><font color="#007700">(</font><font color="#0000BB">$contrasenya</font><font color="#007700">));<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">pg_exec</font><font color="#007700">(</font><font color="#0000BB">$conexion</font><font color="#007700">, </font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br />if (</font><font color="#0000BB">pg_numrows</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">) &gt; </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&amp;iexcl;Bienvenido, $nombre_usuario!"</font><font color="#007700">;<br />}<br />else {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"No pudo autenticarse a $nombre_usuario."</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="security.database.sql-injection"
+>Inyección de SQL</A
+></H2
+><P
+>&#13;     Muchos desarrolladores web no son conscientes de cómo
+     pueden manipularse las consultas SQL, y asumen que una consulta
+     SQL es un comando confiable. Esto representa que las consultas
+     SQL pueden burlar los controles de acceso, y de este modo evitar
+     los chequeos estándares de autenticación y
+     autorización, y a veces las consultas SQL pueden incluso
+     permitir acceso a comandos al nivel del sistema operativo de la
+     máquina huésped.
+    </P
+><P
+>&#13;     La Inyección Directa de Comandos SQL es una técnica
+     en la cual un atacante crea o altera comandos SQL existentes para
+     exponer datos escondidos, o sobrescribir datos críticos, o
+     incluso ejecutar comandos del sistema peligrosos en la
+     máquina en donde se encuentra la base de datos. Esto se
+     consigue cuando la aplicación toma información de
+     entrada del usuario y la combina con parámetros
+     estáticos para construir una consulta SQL. Los siguientes
+     ejemplos, desafortunadamente, están basados en historias
+     reales.
+    </P
+><P
+>&#13;     Debido a la falta de validación de la información
+     de entrada y el establecimiento de conexiones con la base de
+     datos desde un super-usuario o aquel que puede crear usuarios, el
+     atacante podría crear un super-usuario en su base de
+     datos.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4757"
+></A
+><P
+><B
+>Ejemplo 15-6. 
+       Paginación del conjunto de resultados ... y
+       creación de super-usuarios (PostgreSQL y MySQL)
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$offset&nbsp;&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">argv</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]; </font><font color="#FF8000">// atencion, no se valida la entrada!<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#DD0000">"SELECT id, nombre FROM productos ORDER BY nombre LIMIT 20 " </font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"OFFSET $offset;"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// con PostgreSQL <br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">pg_exec</font><font color="#007700">(</font><font color="#0000BB">$conexion</font><font color="#007700">, </font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// con MySQL<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">mysql_query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Los usuarios normales pulsan sobre los enlaces 'siguiente' y
+     'anterior', en donde el desplazamiento
+     (<VAR
+CLASS="varname"
+>$offset</VAR
+>) se encuentra codificado en la
+     URL. El script espera que el valor
+     entrante <VAR
+CLASS="varname"
+>$offset</VAR
+> sea un número decimal.
+     Sin embargo, qué sucede si alguien intenta un ataque
+     añadiendo una forma codificada
+     (<A
+HREF="function.urlencode.html"
+><B
+CLASS="function"
+>urlencode()</B
+></A
+>) de lo siguiente en la URL
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4763"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="sql"
+>// en el caso de PostgreSQL
+0;
+insert into pg_shadow(usename,usesysid,usesuper,usecatupd,passwd)
+    select 'crack', usesysid, 't','t','crack'
+    from pg_shadow where usename='postgres';
+--
+
+// en el caso de MySQL
+0;
+UPDATE user SET Password=PASSWORD('crack') WHERE user='root';
+FLUSH PRIVILEGES;</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     Si esto ocurriera, entonces el script le presentaría un
+     acceso de superusuario al atacante. Note
+     que <VAR
+CLASS="literal"
+>0;</VAR
+> es usado para ofrecer un desplazamiento
+     válido a la consulta original y finalizarla.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Es una técnica común obligar al analizador
+      sintáctico de SQL a que ignore el resto de la consulta
+      escrita por el desarrollador mediante
+      <VAR
+CLASS="literal"
+>--</VAR
+>, el cual es el signo de comentarios en
+      SQL.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Una forma viable de adquirir contraseñas es jugar con las
+     páginas de resultados de búsquedas. Lo único
+     que necesita el atacante es ver si existen variables enviadas por
+     el usuario que sean usadas en sentencias SQL, y que no sean
+     tratadas apropiadamente. Estos filtros pueden ubicarse por lo
+     general previos a cláusulas <VAR
+CLASS="literal"
+>WHERE, ORDER BY,
+     LIMIT</VAR
+> y <VAR
+CLASS="literal"
+>OFFSET</VAR
+> en sentencias
+     <VAR
+CLASS="literal"
+>SELECT</VAR
+> para personalizar la
+     instrucción. Si su base de datos soporta la
+     construcción <VAR
+CLASS="literal"
+>UNION</VAR
+>, el atacante puede
+     intentar añadir una consulta completa a la consulta
+     original para generar una lista de contraseñas desde una
+     tabla cualquiera. El uso de campos encriptados de
+     contraseñas es altamente recomendable.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4774"
+></A
+><P
+><B
+>Ejemplo 15-7. 
+       Listado de artículos ... y algunas contraseñas
+       (en cualquier base de datos)
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$consulta&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"SELECT id, nombre, insertado, tam FROM productos<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE tam = '$tam'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ORDER BY $orden LIMIT $limite, $offset;"</font><font color="#007700">;<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">odbc_exec</font><font color="#007700">(</font><font color="#0000BB">$conexion</font><font color="#007700">, </font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     La parte estática de la consulta puede combinarse con otra
+     sentencia <VAR
+CLASS="literal"
+>SELECT</VAR
+> la cual revela todas las
+     contraseñas:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4778"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="sql"
+>'
+union select '1', concat(uname||'-'||passwd) as name, '1971-01-01', '0' from usertable;
+--</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     Si esta consulta (la cual juega con <VAR
+CLASS="literal"
+>'</VAR
+> y
+     <VAR
+CLASS="literal"
+>--</VAR
+>) fuera asignada a una de las variables
+     usadas en <VAR
+CLASS="varname"
+>$consulta</VAR
+>, la bestia de la consulta
+     habrá despertado.
+    </P
+><P
+>&#13;     Las sentencias UPDATE de SQL son también susceptibles a
+     ataque. Éstas consultas también se encuentran
+     amenazadas por un posible acotamiento y adición de una
+     consulta completamente nueva. Pero en este caso el atacante puede
+     amañar la información de una
+     cláusula <VAR
+CLASS="literal"
+>SET</VAR
+>. En este caso se requiere
+     contar con cierta información sobre el esquema de la base
+     de datos para poder manipular la consulta
+     satisfactoriamente. Esta información puede ser adquirida
+     mediante el estudio de los nombres de variables de los
+     formularios, o simplemente por fuerza bruta. No existen
+     demasiadas convenciones para nombrar campos de contraseñas
+     o nombres de usuario.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4785"
+></A
+><P
+><B
+>Ejemplo 15-8. 
+      De restablecer una contraseña ... a adquirir más
+      privilegios (con cualquier servidor de base de datos)
+     </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$consulta </font><font color="#007700">= </font><font color="#DD0000">"UPDATE usertable SET pwd='$pwd' WHERE uid='$uid';"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Pero un usuario malicioso envía el valor <VAR
+CLASS="literal"
+>' or uid
+     like'%admin%'; --</VAR
+> como <VAR
+CLASS="varname"
+>$uid</VAR
+> para
+     cambiar la contraseña del administrador, o simplemente
+     establece
+     <VAR
+CLASS="varname"
+>$pwd</VAR
+> a <VAR
+CLASS="literal"
+>"hehehe', admin='yes',
+     trusted=100 "</VAR
+> (con un espacio al inicio) para adquirir
+     más privilegios. En tal caso, la consulta sería
+     manipulada:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4792"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// $uid == ' or uid like'%admin%'; --<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#DD0000">"UPDATE usertable SET pwd='...' WHERE uid='' or uid like '%admin%'; --"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// $pwd == "hehehe', admin='yes', trusted=100 "<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#DD0000">"UPDATE usertable SET pwd='hehehe', admin='yes', trusted=100 WHERE ...;"<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     Un horrible ejemplo de cómo puede accederse a comandos del
+     nivel del sistema operativo en algunas máquinas
+     anfitrionas de bases de datos.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4795"
+></A
+><P
+><B
+>Ejemplo 15-9. Ataque al sistema operativo de la máquina
+     anfitriona de la base de datos (MSSQL Server)</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$consulta&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"SELECT * FROM productos WHERE id LIKE '%$prod%'"</font><font color="#007700">;<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">mssql_query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Si el atacante envía el valor <VAR
+CLASS="literal"
+>a%' exec
+     master..xp_cmdshell 'net user test testpass /ADD' --</VAR
+> a
+     <VAR
+CLASS="varname"
+>$prod</VAR
+>, entones la <VAR
+CLASS="varname"
+>$consulta</VAR
+>
+     será:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4801"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$consulta&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"SELECT * FROM productos<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE id LIKE '%a%'<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exec master..xp_cmdshell 'net user test testpass /ADD'--"</font><font color="#007700">;<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">mssql_query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     MSSQL Server ejecuta sentencias SQL en el lote, incluyendo un
+     comando para agregar un nuevo usuario a la base de datos de
+     cuentas locales. Si esta aplicación estuviera corriendo
+     como
+     <VAR
+CLASS="literal"
+>sa</VAR
+> y el servicio MSSQLSERVER está
+     corriendo con los privilegios suficientes, el atacante
+     tendría ahora una cuenta con la que puede acceder a esta
+     máquina.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Algunos de los ejemplos anteriores están atados a un
+      servidor de base de datos específico. Esto no quiere
+      decir que un ataque similar sea imposible con otros
+      productos. Su base de datos puede ser vulnerable de forma
+      semejante, en alguna otra manera.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="security.database.avoiding"
+>Técnicas de protección</A
+></H3
+><P
+>&#13;      Usted puede argumentar con justa razón que el atacante
+      debe poseer cierta cantidad de información sobre el
+      esquema de la base de datos en la mayoría de ejemplos que
+      hemos visto. Tiene razón, pero usted nunca sabe
+      cuándo y cómo puede filtrarse esta
+      información, y si ocurre, su base de datos estará
+      expuesta. Si está usando un paquete de gestión de
+      bases de datos de código abierto, o cuyo código
+      fuente está disponible públicamente, el cual puede
+      pertenecer a algún sistema de administración de
+      contenido o foro, los intrusos pueden producir fácilmente
+      una copia de un trozo de su código. También puede
+      ser un riesgo de seguridad si es un segmento de código
+      pobremente diseñado.
+     </P
+><P
+>&#13;      Estos ataques se basan principalmente en la explotación
+      del código que no ha sido escrito pensando en la
+      seguridad. Nunca confíe en ningún tipo de
+      información de entrada, especialmente aquella que
+      proviene del lado del cliente, aun si lo hace desde una caja de
+      selección, un campo de entrada hidden o una cookie. El
+      primer ejemplo le muestra que una consulta así de
+      descuidada puede causar desastres.
+     </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;        Nunca se conecte a la base de datos como un super-usuario o
+        como el dueño de la base de datos. Use siempre usuarios
+        personalizados con privilegios muy limitados.
+       </P
+></LI
+><LI
+><P
+>&#13;        Revise si la entrada recibida es del tipo apropiado. PHP posee
+        un amplio rango de funciones de validación de datos,
+        desde los más simples encontrados en <A
+HREF="ref.var.html"
+>Funciones sobre variables</A
+> y
+        en <A
+HREF="ref.ctype.html"
+>Funciones de tipo de
+        caracter</A
+> (p. ej. <A
+HREF="function.is-numeric.html"
+><B
+CLASS="function"
+>is_numeric()</B
+></A
+>,
+        <A
+HREF="function.ctype-digit.html"
+><B
+CLASS="function"
+>ctype_digit()</B
+></A
+> respectivamente) hasta el
+        soporte para <A
+HREF="ref.pcre.html"
+>Expresiones Regulares
+        compatibles con Perl</A
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        Si la aplicación espera alguna entrada numérica,
+        considere la verificación de información
+        con <A
+HREF="function.is-numeric.html"
+><B
+CLASS="function"
+>is_numeric()</B
+></A
+>, o modifique
+        silenciosamente su tipo usando <A
+HREF="function.settype.html"
+><B
+CLASS="function"
+>settype()</B
+></A
+>, o
+        utilice su representación numérica, dada por
+        <A
+HREF="function.sprintf.html"
+><B
+CLASS="function"
+>sprintf()</B
+></A
+>.
+        <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4825"
+></A
+><P
+><B
+>Ejemplo 15-10. 
+          Una forma más segura de generar una consulta para
+          paginado
+         </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />settype</font><font color="#007700">(</font><font color="#0000BB">$offset</font><font color="#007700">, </font><font color="#DD0000">'integer'</font><font color="#007700">);<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#DD0000">"SELECT id, nombre FROM productos ORDER BY nombre " </font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"LIMIT 20 OFFSET $offset;"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// note el simbolo %d en la cadena de formato, usar %s no tendria sentido<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#0000BB">sprintf</font><font color="#007700">(</font><font color="#DD0000">"SELECT id, nombre FROM productos ORDER BY nombre" </font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"LIMIT 20 OFFSET %d;"</font><font color="#007700">, </font><font color="#0000BB">$offset</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        Ubique cada entrada del usuario no-numérica que sea
+        pasada a la base de datos entre comillas
+        con <A
+HREF="function.addslashes.html"
+><B
+CLASS="function"
+>addslashes()</B
+></A
+> o
+        <A
+HREF="function.addcslashes.html"
+><B
+CLASS="function"
+>addcslashes()</B
+></A
+>. Vea <A
+HREF="security.database.html#security.database.storage"
+>el primer
+        ejemplo</A
+>. Como se ve allí, las comillas colocadas
+        en la parte estática de la consulta no son suficientes,
+        y pueden ser manipuladas fácilmente.
+       </P
+></LI
+><LI
+><P
+>&#13;        No imprima ninguna información específica sobre
+        la base de datos, especialmente sobre su esquema, ya sea por
+        razones justas o por equivocaciones. Vea también <A
+HREF="security.errors.html"
+>Reporte de Errores</A
+> y <A
+HREF="ref.errorfunc.html"
+>Gestión de Errores y Funciones
+        de Registro</A
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        Puede usar procedimientos almacenados y cursores previamente
+        definidos para abstraer el acceso a las bases de datos, de
+        modo que los usuarios no tengan acceso directo a las tablas o
+        vistas, aunque esta solución tiene otros impactos.
+       </P
+></LI
+></UL
+><P
+>&#13;      Además de estas acciones, usted puede beneficiarse del
+      registro explícito de las consultas realizadas, ya sea
+      desde su script o por la base de datos misma, si ésta
+      soporta la gestión de registros. Por supuesto, el
+      registro de acciones no puede prevenir cualquier intento
+      peligroso, pero puede ser útil para rastrear
+      cuáles aplicaciones han sido usadas para violar la
+      seguridad. El registro en sí no es útil; lo es la
+      información que contiene. Por lo general, es mejor contar
+      con más detalles que con menos.
+     </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.filesystem.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.errors.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Seguridad del sistema de archivos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Reporte de Errores</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

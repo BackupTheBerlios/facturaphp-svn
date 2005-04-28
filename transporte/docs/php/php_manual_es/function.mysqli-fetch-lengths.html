@@ -1,0 +1,332 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_fetch_lengths</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_fetch_fields"
+HREF="function.mysqli-fetch-fields.html"><LINK
+REL="NEXT"
+TITLE="mysqli_fetch_object"
+HREF="function.mysqli-fetch-object.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-fetch-fields.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-fetch-object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-fetch-lengths"
+></A
+>mysqli_fetch_lengths</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN65662"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_fetch_lengths<P
+>    (no version information, might be only in CVS)</P
+>result-&#62;lengths&nbsp;--&nbsp;Regresa la longitud de las columnas de la fila actual en el 
+	 resultado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN65666"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>mixto <B
+CLASS="methodname"
+>mysqli_fetch_lengths</B
+> ( objeto resultado)<BR
+></BR
+><P
+>Estilo orientado a objetos(propiedad):</P
+>class <B
+CLASS="classname"
+>resultado</B
+> { <BR
+></BR
+>mixto lengths<BR
+></BR
+>}<P
+>&#13;	  La función <B
+CLASS="function"
+>mysqli_fetch_lengths()</B
+> regresa una matriz 
+	  conteniendo la longitud de cada columna de la fila actual en el resultado 
+	  representado por el parámetro <VAR
+CLASS="parameter"
+>result</VAR
+>. Si hay 
+	  información regresa una matriz numéricamente ordenada representando 
+	  la longitud de cada columna o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si falla.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN65686"
+></A
+><H2
+>Valores regresados</H2
+><P
+>&#13;	  Una matriz de enteros representando el tamaño de cada columna (sin incluir 
+	  el caracter NULL al final de la columna). <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ocurre un error.
+    </P
+><P
+>&#13;     <A
+HREF="function.mysql-fetch-lengths.html"
+><B
+CLASS="function"
+>mysql_fetch_lengths()</B
+></A
+>Es valida solo para la fila actual 
+	  en el resultado. Regresa <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si se llama antes de ejecutar 
+	  mysql_fetch_row/array/object o después de obtener todas las filas 
+	  en el resultado.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN65693"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN65695"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"SELECT * from Country ORDER BY Code LIMIT 1"</font><font color="#007700">;<br /><br />if (</font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#0000BB">$query</font><font color="#007700">)) {<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">fetch_row</font><font color="#007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* display column lengths */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">lengths</font><font color="#007700">); </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Field %2d has Length %2d\n"</font><font color="#007700">, </font><font color="#0000BB">$i</font><font color="#007700">+</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">lengths</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br />}<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN65698"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"SELECT * from Country ORDER BY Code LIMIT 1"</font><font color="#007700">;<br /><br />if (</font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#0000BB">$query</font><font color="#007700">)) {<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">mysqli_fetch_row</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* display column lengths */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$lengths </font><font color="#007700">= </font><font color="#0000BB">mysqli_fetch_lengths</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$lengths</font><font color="#007700">); </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Field %2d has Length %2d\n"</font><font color="#007700">, </font><font color="#0000BB">$i</font><font color="#007700">+</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">$lengths</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_free_result</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">);<br />}<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;	  Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Field  1 has Length  3
+Field  2 has Length  5
+Field  3 has Length 13
+Field  4 has Length  9
+Field  5 has Length  6
+Field  6 has Length  1
+Field  7 has Length  6
+Field  8 has Length  4
+Field  9 has Length  6
+Field 10 has Length  6
+Field 11 has Length  5
+Field 12 has Length 44
+Field 13 has Length  7
+Field 14 has Length  3
+Field 15 has Length  2</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-fetch-fields.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-fetch-object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_fetch_fields</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_fetch_object</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

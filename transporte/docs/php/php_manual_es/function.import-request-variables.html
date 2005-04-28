@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>import_request_variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Variables"
+HREF="ref.var.html"><LINK
+REL="PREVIOUS"
+TITLE="gettype"
+HREF="function.gettype.html"><LINK
+REL="NEXT"
+TITLE="intval"
+HREF="function.intval.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.gettype.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.intval.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.import-request-variables"
+></A
+>import_request_variables</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN112229"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>import_request_variables&nbsp;--&nbsp;Importar variables GET/POST/Cookie en el contexto global</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN112232"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>import_request_variables</B
+> ( string tipos [, string prefijo])<BR
+></BR
+><P
+>&#13;Importa las variables GET/POST/Cookie en el contexto global. Es
+útil si usted ha deshabilitado <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>, pero desea ver
+algunas variables en el contexto global.
+    </P
+><P
+>&#13;Usando el parámetro <VAR
+CLASS="parameter"
+>tipos</VAR
+>, es posible
+indicar cuáles variables de petición deben
+importarse. Puede usar los caracteres 'G', 'P' y 'C' respectivamente
+para indicar GET, POST y Cookie. Estos caracteres no son sensibles a
+mayúsculas o minúsculas, así que puede usar
+cualquier combinación de 'g', 'p' y 'c'. POST incluye la
+información de archivos cargados mediante POST. Note que el
+orden de las letras tiene importancia, ya que cuando usa "gp", las
+variables POST sobrescribirán las variables GET con el mismo
+nombre. Cualquier otra letra diferente a GPC es descartada.
+    </P
+><P
+>&#13;El parámetro <VAR
+CLASS="parameter"
+>prefijo</VAR
+> es usado como
+prefijo para nombres de variables, que es colocado antes de todos los
+nombres de variables importados en el contexto global. De modo que si
+tiene un valor GET llamado "userid", y usa el prefijo "pref_",
+entonces obtendrá una variable global llamada $pref_userid.
+    </P
+><P
+>&#13;Si está interesado en importar otras variables en el contexto
+global, como SERVER, considere el uso de <A
+HREF="function.extract.html"
+><B
+CLASS="function"
+>extract()</B
+></A
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Aunque el parámetro <VAR
+CLASS="parameter"
+>prefijo</VAR
+> es opcional,
+recibirá un error de nivel <A
+HREF="phpdevel-errors.html#internal.e-notice"
+>E_NOTICE</A
+> si no especifica el
+prefijo, o indica una cadena vacía como el prefijo. Este es un
+riesgo potencial de seguridad. Los errores de nivel de noticia no son
+mostrados usando el nivel de <A
+HREF="ref.errorfunc.html#ini.error-reporting"
+>reporte de errores</A
+>
+predeterminado.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN112256"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Esto importara las variables GET y POST con el prefijo "rvar_"<br /><br /></font><font color="#0000BB">import_request_variables</font><font color="#007700">(</font><font color="#DD0000">"gP"</font><font color="#007700">, </font><font color="#DD0000">"rvar_"</font><font color="#007700">);<br /><br />echo </font><font color="#0000BB">$rvar_foo</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="reserved.variables.html#reserved.variables.request"
+>$_REQUEST</A
+>, 
+     <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>,
+     <A
+HREF="language.variables.predefined.html"
+>Variables Predefinidas</A
+>, 
+     y <A
+HREF="function.extract.html"
+><B
+CLASS="function"
+>extract()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.gettype.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.intval.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>gettype</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.var.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>intval</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

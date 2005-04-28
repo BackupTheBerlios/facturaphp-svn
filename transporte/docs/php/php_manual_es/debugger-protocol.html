@@ -1,0 +1,570 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Protocolo del Depurador</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Depuración en PHP"
+HREF="debugger.html"><LINK
+REL="PREVIOUS"
+TITLE="Uso del Depurador"
+HREF="debugger-using.html"><LINK
+REL="NEXT"
+TITLE="Extensión de PHP 3"
+HREF="phpdevel.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="debugger-using.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice E. Depuración en PHP</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="phpdevel.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="debugger-protocol"
+>Protocolo del Depurador</A
+></H1
+><P
+>&#13;    El protocolo del depurador de PHP 3 es basado en
+    líneas. Cada línea tiene un
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>tipo</I
+></SPAN
+>, y varias líneas componen un
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>mensaje</I
+></SPAN
+>. Cada mensaje comienza con una
+    línea del tipo <VAR
+CLASS="literal"
+>start</VAR
+> y termina con una
+    línea del tipo <VAR
+CLASS="literal"
+>end</VAR
+>. PHP 3 puede enviar
+    líneas para diferentes mensajes simultáneamente.
+   </P
+><P
+>&#13;    Una línea tiene este formato:
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN123748"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>fecha hora host(pid) tipo: datos-mensaje</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><P
+>&#13;    <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><VAR
+CLASS="replaceable"
+>fecha</VAR
+></DT
+><DD
+><P
+>&#13;        Fecha en formato ISO 8601
+        (<VAR
+CLASS="replaceable"
+>aaaa</VAR
+>-<VAR
+CLASS="replaceable"
+>mm</VAR
+>-<VAR
+CLASS="replaceable"
+>dd</VAR
+>)
+       </P
+></DD
+><DT
+><VAR
+CLASS="replaceable"
+>hora</VAR
+></DT
+><DD
+><P
+>Hora, incluyendo microsegundos:
+        <VAR
+CLASS="replaceable"
+>hh</VAR
+>:<VAR
+CLASS="replaceable"
+>mm</VAR
+>:<VAR
+CLASS="replaceable"
+>uuuuuu</VAR
+>
+       </P
+></DD
+><DT
+><VAR
+CLASS="replaceable"
+>host</VAR
+></DT
+><DD
+><P
+>&#13;        Nombre DNS o dirección IP del host en donde se
+        generó el error de script.
+       </P
+></DD
+><DT
+><VAR
+CLASS="replaceable"
+>pid</VAR
+></DT
+><DD
+><P
+>&#13;        PID (id de proceso) en <VAR
+CLASS="replaceable"
+>host</VAR
+> del
+        proceso que contenía el script de PHP 3 que
+        generó este error.
+       </P
+></DD
+><DT
+><VAR
+CLASS="replaceable"
+>tipo</VAR
+></DT
+><DD
+><P
+>&#13;        Tipo de línea. Le dice al programa receptor sobre el
+        modo en que debería tratar los datos a
+        continuación:
+        <DIV
+CLASS="table"
+><A
+NAME="AEN123784"
+></A
+><P
+><B
+>Tabla E-1. Tipos de Línea del Depurador</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>start</VAR
+></TD
+><TD
+>&#13;             Le dice el programa receptor que un mensaje de depurador
+             comienza aquí. Los contenidos
+             de <VAR
+CLASS="replaceable"
+>datos</VAR
+> serán el tipo
+             de mensaje de error, listados más adelante.
+            </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>message</VAR
+></TD
+><TD
+>El mensaje de error PHP 3.</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>location</VAR
+></TD
+><TD
+>&#13;             Nombre de archivo y número de línea en
+             donde ocurrió el error. La primera línea
+             <VAR
+CLASS="literal"
+>location</VAR
+> contendrá siempre la
+             ubicación de nivel más
+             alto. <VAR
+CLASS="replaceable"
+>datos</VAR
+> contendrá
+             <VAR
+CLASS="literal"
+><VAR
+CLASS="replaceable"
+>archivo</VAR
+>:<VAR
+CLASS="replaceable"
+>línea</VAR
+></VAR
+>.Siempre
+             habrá una línea <VAR
+CLASS="literal"
+>location</VAR
+>
+             después de <VAR
+CLASS="literal"
+>message</VAR
+> y
+             después de cada <VAR
+CLASS="literal"
+>function</VAR
+>.
+            </TD
+></TR
+><TR
+><TD
+>&#13;             <VAR
+CLASS="literal"
+>frames</VAR
+>
+            </TD
+><TD
+>&#13;             Número de marcos en el siguiente volcado de
+             pila. Si hay cuatro marcos, espere información
+             sobre cuatro niveles de llamados a función. Si no
+             se entrega una línea "frames", se asumirá
+             que la profundidad es 0 (el error ocurrió en el
+             contexto de más alto nivel).
+            </TD
+></TR
+><TR
+><TD
+>&#13;             <VAR
+CLASS="literal"
+>function</VAR
+></TD
+><TD
+>&#13;             Nombre de la función en donde ocurrió el
+             error. Será repetido una vez por cada nivel en la
+             pila de llamados a funciones.
+            </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>end</VAR
+></TD
+><TD
+>&#13;             Le indica al programa receptor que el mensaje de
+             depurador termina aquí.
+            </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+       </P
+></DD
+><DT
+><VAR
+CLASS="replaceable"
+>datos</VAR
+></DT
+><DD
+><P
+>Datos de la línea.</P
+></DD
+></DL
+></DIV
+>
+
+    <DIV
+CLASS="table"
+><A
+NAME="AEN123830"
+></A
+><P
+><B
+>Tabla E-2. Tipos de Error del Depurador</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Depurador</TH
+><TH
+>Interno de PHP 3</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>warning</SPAN
+></TD
+><TD
+><SPAN
+CLASS="errortype"
+>E_WARNING</SPAN
+></TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>error</SPAN
+></TD
+><TD
+><SPAN
+CLASS="errortype"
+>E_ERROR</SPAN
+></TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>parse</SPAN
+></TD
+><TD
+><SPAN
+CLASS="errortype"
+>E_PARSE</SPAN
+></TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>notice</SPAN
+></TD
+><TD
+><SPAN
+CLASS="errortype"
+>E_NOTICE</SPAN
+></TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>core-error</SPAN
+></TD
+><TD
+><SPAN
+CLASS="errortype"
+>E_CORE_ERROR</SPAN
+></TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>core-warning</SPAN
+></TD
+><TD
+><SPAN
+CLASS="errortype"
+>E_CORE_WARNING</SPAN
+></TD
+></TR
+><TR
+><TD
+><SPAN
+CLASS="errortype"
+>unknown</SPAN
+></TD
+><TD
+>(cualquier otro)</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN123872"
+></A
+><P
+><B
+>Ejemplo E-1. Mensaje de Depurador de Ejemplo</B
+></P
+><P
+CLASS="literallayout"
+><br>
+<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;start:&nbsp;notice<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;message:&nbsp;Uninitialized&nbsp;variable<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;location:&nbsp;(null):7<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;frames:&nbsp;1<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;function:&nbsp;display<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;location:&nbsp;/home/ssb/public_html/test.php3:10<br>
+1998-04-05&nbsp;23:27:400966&nbsp;lucifer.guardian.no(20481)&nbsp;end:&nbsp;notice<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</P
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="debugger-using.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="phpdevel.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Uso del Depurador</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="debugger.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Extensión de PHP 3</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

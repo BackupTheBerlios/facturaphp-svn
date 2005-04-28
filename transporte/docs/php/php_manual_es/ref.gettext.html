@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Gettext</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="unregister_tick_function"
+HREF="function.unregister-tick-function.html"><LINK
+REL="NEXT"
+TITLE="bind_textdomain_codeset"
+HREF="function.bind-textdomain-codeset.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.unregister-tick-function.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.bind-textdomain-codeset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.gettext"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XXXVI. Gettext</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN32420"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="gettext.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Las funciones gettext implementan una interfaz de
+     programación de Soporte de Lenguaje Nativo (NLS por sus
+     siglas en Inglés) que puede ser usada para
+     internacionalizar sus aplicaciones PHP. Por favor
+     refiérase a la documentación de gettext en su
+     sistema para una explicación detallada de éstas
+     funciones, o consulte los documentos en
+     <A
+HREF="http://www.gnu.org/software/gettext/manual/gettext.html"
+TARGET="_top"
+>http://www.gnu.org/software/gettext/manual/gettext.html</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="gettext.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Para usar éstas funciones, debe descargar e instalar el
+     paquete GNU gettext desde <A
+HREF="http://www.gnu.org/software/gettext/gettext.html"
+TARGET="_top"
+>http://www.gnu.org/software/gettext/gettext.html</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="gettext.installation"
+>Instalación</A
+></H1
+><P
+>&#13;Para incluir soporte para GNU gettext en su instalación de PHP,
+debe agregar la opción <VAR
+CLASS="option"
+>--with-gettext[=DIR]</VAR
+> donde DIR es el
+directorio de instalación de gettext, por
+defecto <TT
+CLASS="filename"
+>/usr/local</TT
+>.
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota para Usuarios de Win32: </B
+>
+Para habilitar este módulo en un entorno Windows, debe copiar
+<TT
+CLASS="filename"
+>gnu_gettext.dll</TT
+> desde el directorio DLL del
+paquete binario de PHP/Win32 a la carpeta SYSTEM32 de su
+máquina windows. (Ej: <TT
+CLASS="filename"
+>C:\WINNT\SYSTEM32</TT
+> o <TT
+CLASS="filename"
+>C:\WINDOWS\SYSTEM32</TT
+>). A partir de PHP
+4.2.3 el nombre cambió a <TT
+CLASS="filename"
+>libintl-1.dll</TT
+>,
+esto requiere que <TT
+CLASS="filename"
+>iconv.dll</TT
+> también sea
+copiado.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="gettext.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="gettext.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="gettext.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.bind-textdomain-codeset.html"
+>bind_textdomain_codeset</A
+>&nbsp;--&nbsp;
+     Especificar la codificación de caracteres con la que
+     serán devueltos los mensajes del catálogo DOMINIO
+    </DT
+><DT
+><A
+HREF="function.bindtextdomain.html"
+>bindtextdomain</A
+>&nbsp;--&nbsp;Establece la ruta para un dominio</DT
+><DT
+><A
+HREF="function.dcgettext.html"
+>dcgettext</A
+>&nbsp;--&nbsp;Sobrescribe el dominio para una búsqueda
+    única</DT
+><DT
+><A
+HREF="function.dcngettext.html"
+>dcngettext</A
+>&nbsp;--&nbsp;Versión plural de dcgettext</DT
+><DT
+><A
+HREF="function.dgettext.html"
+>dgettext</A
+>&nbsp;--&nbsp;Omite el dominio actual</DT
+><DT
+><A
+HREF="function.dngettext.html"
+>dngettext</A
+>&nbsp;--&nbsp;Versión plural de dgettext</DT
+><DT
+><A
+HREF="function.gettext.html"
+>gettext</A
+>&nbsp;--&nbsp;Realiza una busqueda del mensaje en el dominio actual</DT
+><DT
+><A
+HREF="function.ngettext.html"
+>ngettext</A
+>&nbsp;--&nbsp;Versión plural de gettext</DT
+><DT
+><A
+HREF="function.textdomain.html"
+>textdomain</A
+>&nbsp;--&nbsp;Establece el dominio actual</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.unregister-tick-function.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.bind-textdomain-codeset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>unregister_tick_function</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>bind_textdomain_codeset</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

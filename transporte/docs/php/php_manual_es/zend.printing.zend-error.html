@@ -1,0 +1,309 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>zend_error</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Printing Information"
+HREF="zend.printing.html"><LINK
+REL="PREVIOUS"
+TITLE="Printing Information"
+HREF="zend.printing.html"><LINK
+REL="NEXT"
+TITLE="Including Output in phpinfo"
+HREF="zend.printing.phpinfo.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.printing.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 37. Printing Information</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.printing.phpinfo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.printing.zend-error"
+><B
+CLASS="function"
+>zend_error()</B
+></A
+></H1
+><P
+>&#13;    <B
+CLASS="function"
+>zend_error()</B
+> can be used to generate error messages.
+    This function accepts two arguments; the first is the error type (see
+    <TT
+CLASS="filename"
+>zend_errors.h</TT
+>), and the second is the error message. 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zend_error(E_WARNING, "This function has been called with empty arguments");</PRE
+></TD
+></TR
+></TABLE
+><A
+HREF="zend.printing.zend-error.html#tab.error-messages"
+>Tabla 37-1</A
+> shows a list of possible values (see <A
+HREF="zend.printing.zend-error.html#fig.warning-messages"
+>Figura 37-1</A
+>). These
+    values are also referred to in <TT
+CLASS="filename"
+>php.ini</TT
+>. Depending on
+    which error type you choose, your messages will be logged. 
+    <DIV
+CLASS="table"
+><A
+NAME="tab.error-messages"
+></A
+><P
+><B
+>Tabla 37-1. Zend's Predefined Error Messages.</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+TITLE="col1"><COL
+WIDTH="1.36*"
+TITLE="col2"><TBODY
+><TR
+><TD
+>Error</TD
+><TD
+>Description</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_ERROR</VAR
+></TD
+><TD
+>&#13;          Signals an error and terminates execution of the script
+          immediately
+          .</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_WARNING</VAR
+></TD
+><TD
+>&#13;          Signals a generic warning. Execution continues.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_PARSE</VAR
+></TD
+><TD
+>&#13;          Signals a parser error. Execution continues.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_NOTICE</VAR
+></TD
+><TD
+>&#13;          Signals a notice. Execution continues. Note that by
+          default the display of this type of error messages is turned off in
+          <TT
+CLASS="filename"
+>php.ini</TT
+>.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_CORE_ERROR</VAR
+></TD
+><TD
+>&#13;          Internal error by the core; shouldn't be used by
+          user-written modules.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_COMPILE_ERROR</VAR
+></TD
+><TD
+>&#13;          Internal error by the compiler; shouldn't be used by
+          user-written modules.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>E_COMPILE_WARNING</VAR
+></TD
+><TD
+>&#13;          Internal warning by the compiler; shouldn't be used by
+          user-written modules.
+         </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+> 
+    <DIV
+CLASS="figure"
+><A
+NAME="fig.warning-messages"
+></A
+><P
+><B
+>Figura 37-1. Display of warning messages in the browser.</B
+></P
+><P
+><IMG
+SRC="figures/Extending_Zend_7_warning_messages.png"></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.printing.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.printing.phpinfo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Printing Information</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.printing.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Including Output in <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

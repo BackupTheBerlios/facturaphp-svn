@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>PDF_show_boxed</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PDF"
+HREF="ref.pdf.html"><LINK
+REL="PREVIOUS"
+TITLE="PDF_setrgbcolor"
+HREF="function.pdf-setrgbcolor.html"><LINK
+REL="NEXT"
+TITLE="PDF_show_xy"
+HREF="function.pdf-show-xy.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pdf-setrgbcolor.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pdf-show-xy.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pdf-show-boxed"
+></A
+>PDF_show_boxed</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN84284"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>PDF_show_boxed&nbsp;--&nbsp;Output text in a box</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN84287"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>pdf_show_boxed</B
+> ( int pdf document, string text, double x-coor, double y-coor, double width, double height, string mode)<BR
+></BR
+><P
+>&#13;     The <B
+CLASS="function"
+>PDF_show_boxed()</B
+> function outputs the
+     string <VAR
+CLASS="parameter"
+>text</VAR
+> in a box with its lower left position
+     at (<VAR
+CLASS="parameter"
+>x-coor</VAR
+>, <VAR
+CLASS="parameter"
+>y-coor</VAR
+>).
+     The boxes dimension is <VAR
+CLASS="parameter"
+>height</VAR
+> by 
+     <VAR
+CLASS="parameter"
+>width</VAR
+>. The parameter <VAR
+CLASS="parameter"
+>mode</VAR
+>
+     determines how the text is type set. If <VAR
+CLASS="parameter"
+>width</VAR
+>
+     and <VAR
+CLASS="parameter"
+>height</VAR
+> are zero, the
+     <VAR
+CLASS="parameter"
+>mode</VAR
+> can be "left", "right" or "center".
+     If <VAR
+CLASS="parameter"
+>width</VAR
+> or <VAR
+CLASS="parameter"
+>height</VAR
+> is
+     unequal zero it can also be "justify" and "fulljustify".
+    </P
+><P
+>Returns the number of characters that could not be processed because
+     they did not fit into the box.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.pdf-show.html"
+><B
+CLASS="function"
+>PDF_show()</B
+></A
+>,
+     <A
+HREF="function.pdf-show-xy.html"
+><B
+CLASS="function"
+>PDF_show_xy()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pdf-setrgbcolor.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pdf-show-xy.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PDF_setrgbcolor</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pdf.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>PDF_show_xy</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

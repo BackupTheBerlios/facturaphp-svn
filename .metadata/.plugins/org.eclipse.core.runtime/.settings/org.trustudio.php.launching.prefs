@@ -1,0 +1,3 @@
+#Tue Apr 26 16:23:45 CEST 2005
+org.trustudio.debug.core.Runtimes=<?xml version\="1.0" encoding\="UTF-8"?>\n<runtimeSettings defaultRuntime\="38,org.trustudio.php.launching.PHPCLIType13,1114525416315">\n<runtimeInstall type\="org.trustudio.php.launching.PHPCLIType" id\="1114525416315">\n<stringAttribute key\="iniPath" value\="/etc/php4/apache2/php.ini"/>\n<stringAttribute key\="phpVersion" value\="4.3.10-12"/>\n<stringAttribute key\="exePath" value\="/usr/bin/php4"/>\n<stringAttribute key\="name" value\="PHP 4.3.10-12"/>\n</runtimeInstall>\n</runtimeSettings>\n
+eclipse.preferences.version=1

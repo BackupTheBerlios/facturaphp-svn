@@ -1,0 +1,422 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ncurses_mousemask</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Control de Pantalla con Terminal Ncurses"
+HREF="ref.ncurses.html"><LINK
+REL="PREVIOUS"
+TITLE="ncurses_mouseinterval"
+HREF="function.ncurses-mouseinterval.html"><LINK
+REL="NEXT"
+TITLE="ncurses_move_panel"
+HREF="function.ncurses-move-panel.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ncurses-mouseinterval.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ncurses-move-panel.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ncurses-mousemask"
+></A
+>ncurses_mousemask</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN71881"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>ncurses_mousemask&nbsp;--&nbsp;Establece opciones del mouse</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN71884"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ncurses_mousemask</B
+> ( int nueva_mascara, int vieja_mascara)<BR
+></BR
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     La función <B
+CLASS="function"
+>ncurses_mousemask()</B
+>
+     establecerá los eventos del mouse a ser reportados. Por
+     defecto, ningún evento del mouse será reportado. La
+     función <B
+CLASS="function"
+>ncurses_mousemask()</B
+>
+     devolverá una máscara para indicar cúales de
+     los eventos especificados en el parámetro
+     <VAR
+CLASS="parameter"
+>nueva_mascara</VAR
+> pueden ser reportados. En
+     caso de un total fracaso, devuelve 0. En el
+     parámetro <VAR
+CLASS="parameter"
+>vieja_mascara</VAR
+>, el cual es
+     pasado por referencia, <B
+CLASS="function"
+>ncurses_mousemask()</B
+>
+     devuelve el valor previo de la máscara de eventos del mouse.
+
+     Los eventos del mouse son representados por NCURSES_KEY_MOUSE en
+     la secuencia de entrada <A
+HREF="function.ncurses-wgetch.html"
+><B
+CLASS="function"
+>ncurses_wgetch()</B
+></A
+>. Para
+     leer los datos del evento y recuperar el evento de la cola, llame
+     a <A
+HREF="function.ncurses-getmouse.html"
+><B
+CLASS="function"
+>ncurses_getmouse()</B
+></A
+>.
+    </P
+><P
+>&#13;     Como efecto secundario, definir una máscara del mouse como
+     0 en
+     <VAR
+CLASS="parameter"
+>nueva_mascara</VAR
+> deshabilita el puntero del
+     mouse. Definir un valor distinto de cero habilita el puntero del
+     mouse.
+    </P
+><P
+>&#13;     Las opciones de máscara del mouse pueden definirse con las
+     siguientes constantes predefinidas:
+     <P
+></P
+><UL
+><LI
+><P
+>NCURSES_BUTTON1_PRESSED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON1_RELEASED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON1_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON1_DOUBLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON1_TRIPLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON2_PRESSED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON2_RELEASED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON2_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON2_DOUBLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON2_TRIPLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON3_PRESSED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON3_RELEASED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON3_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON3_DOUBLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON3_TRIPLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON4_PRESSED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON4_RELEASED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON4_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON4_DOUBLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON4_TRIPLE_CLICKED</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON_SHIFT&#62;</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON_CTRL</P
+></LI
+><LI
+><P
+>NCURSES_BUTTON_ALT</P
+></LI
+><LI
+><P
+>NCURSES_ALL_MOUSE_EVENTS</P
+></LI
+><LI
+><P
+>NCURSES_REPORT_MOUSE_POSITION</P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN71961"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>ncurses_mousemask()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$nueva_mascara </font><font color="#007700">= </font><font color="#0000BB">NCURSES_BUTTON1_CLICKED </font><font color="#007700">+ </font><font color="#0000BB">NCURSES_BUTTON1_RELEASED</font><font color="#007700">;<br /></font><font color="#0000BB">$mascara </font><font color="#007700">= </font><font color="#0000BB">ncurses_mousemask</font><font color="#007700">(</font><font color="#0000BB">$nueva_mascara</font><font color="#007700">, &amp;</font><font color="#0000BB">$vieja_mascara</font><font color="#007700">);<br />if (</font><font color="#0000BB">$mascara </font><font color="#007700">&amp; </font><font color="#0000BB">$nueva_mascara</font><font color="#007700">){<br />&nbsp;&nbsp;</font><font color="#0000BB">printf </font><font color="#007700">(</font><font color="#DD0000">"Todas las opciones del mouse especificadas ser&amp;aacute;n soportadas\n"</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>    
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.ncurses-getmouse.html"
+><B
+CLASS="function"
+>ncurses_getmouse()</B
+></A
+>,
+     <A
+HREF="function.ncurses-ungetmouse.html"
+><B
+CLASS="function"
+>ncurses_ungetmouse()</B
+></A
+> y
+     <B
+CLASS="function"
+>ncurese_getch()</B
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ncurses-mouseinterval.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ncurses-move-panel.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ncurses_mouseinterval</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ncurses.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ncurses_move_panel</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

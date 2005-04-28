@@ -1,0 +1,620 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>iconv Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="hw_api->userlist"
+HREF="function.hwapi-userlist.html"><LINK
+REL="NEXT"
+TITLE="iconv_get_encoding"
+HREF="function.iconv-get-encoding.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.hwapi-userlist.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.iconv-get-encoding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.iconv"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XLI. iconv Functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN36190"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     This module contains an interface to iconv character set conversion
+     facility. With this module, you can turn a string represented by a local
+     character set into the one represented by another character set,
+     which may be the Unicode charcter set. Supported character sets
+     depend on the iconv implementation of your system.
+     Note that the iconv function on some systems may not work
+     as you expect. In such case, it'd be a good idea to install the
+     <A
+HREF="http://www.gnu.org/software/libiconv/"
+TARGET="_top"
+>GNU libiconv</A
+> library. It will most
+     likely end up with more consistent results.
+    </P
+><P
+>&#13;     Since <SPAN
+CLASS="application"
+>PHP</SPAN
+> 5.0.0, this extension comes with
+     various utility functions that help you to write multilingual
+     scripts. Let's have a look at the following sections to explore the new
+     features.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     You will need nothing if the system you are using is one of the recent
+     POSIX-compliant systems because standard C libraries that are supplied in
+     them must provide iconv facility. Otherwise, you have to get the
+     <A
+HREF="http://www.gnu.org/software/libiconv/"
+TARGET="_top"
+>libiconv</A
+> library installed in
+     your system.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  To use functions provided by this module, the
+  <SPAN
+CLASS="application"
+>PHP</SPAN
+> binary must be built with
+  the following configure line:
+  <VAR
+CLASS="option"
+>--with-iconv[=DIR]</VAR
+>.
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Note to Windows® Users: </B
+>
+   In order to enable this module on a Windows® environment, you need to put
+   a DLL file named <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>iconv.dll</I
+></SPAN
+> or
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>iconv-1.3.dll</I
+></SPAN
+> (prior to 4.2.1)
+   which is bundled with the PHP/Win32 binary package into a directory
+   specified by the <VAR
+CLASS="literal"
+>PATH</VAR
+> environment variable
+   or one of the system directories of your Windows® installation.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13; <DIV
+CLASS="table"
+><A
+NAME="AEN36217"
+></A
+><P
+><B
+>Tabla 1. Iconv configuration options</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Default</TH
+><TH
+>Changeable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>iconv.input_encoding</TD
+><TD
+>ICONV_INPUT_ENCODING</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>iconv.output_encoding</TD
+><TD
+>ICONV_OUTPUT_ENCODING</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>iconv.internal_encoding</TD
+><TD
+>ICONV_INTERNAL_ENCODING</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ For further details and definition of the PHP_INI_* constants see
+ <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>&#13;  Since <SPAN
+CLASS="application"
+>PHP</SPAN
+> 4.3.0 it is possible to identify at
+  runtime which <VAR
+CLASS="literal"
+>iconv</VAR
+> implementation is adopted by this extension.
+  <DIV
+CLASS="table"
+><A
+NAME="AEN36247"
+></A
+><P
+><B
+>Tabla 2. <VAR
+CLASS="literal"
+>iconv</VAR
+> constants</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Type</TH
+><TH
+>Description</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ICONV_IMPL</TD
+><TD
+><A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></TD
+><TD
+>The implementation name</TD
+></TR
+><TR
+><TD
+>ICONV_VERSION</TD
+><TD
+><A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></TD
+><TD
+>The implementation version</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Writing implementation-dependent scripts with these constants is strongly
+   discouraged.
+  </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;  Since <SPAN
+CLASS="application"
+>PHP</SPAN
+> 5.0.0, the following constants are
+  also available:
+  <DIV
+CLASS="table"
+><A
+NAME="AEN36271"
+></A
+><P
+><B
+>Tabla 3. <VAR
+CLASS="literal"
+>iconv</VAR
+> constants available since PHP 5.0.0</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Type</TH
+><TH
+>Description</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ICONV_MIME_DECODE_STRICT</TD
+><TD
+><A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></TD
+><TD
+>A bitmask used for <A
+HREF="function.iconv-mime-decode.html"
+><B
+CLASS="function"
+>iconv_mime_decode()</B
+></A
+></TD
+></TR
+><TR
+><TD
+>ICONV_MIME_DECODE_CONTINUE_ON_ERROR</TD
+><TD
+><A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></TD
+><TD
+>A bitmask used for <A
+HREF="function.iconv-mime-decode.html"
+><B
+CLASS="function"
+>iconv_mime_decode()</B
+></A
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="iconv.seealso"
+>Ver también</A
+></H1
+><P
+>&#13;     See also <A
+HREF="ref.recode.html"
+>GNU Recode functions</A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.iconv-get-encoding.html"
+>iconv_get_encoding</A
+>&nbsp;--&nbsp;Retrieve internal configuration variables of iconv extension</DT
+><DT
+><A
+HREF="function.iconv-mime-decode-headers.html"
+>iconv_mime_decode_headers</A
+>&nbsp;--&nbsp;
+     Decodes multiple <VAR
+CLASS="literal"
+>MIME</VAR
+> header fields at once
+    </DT
+><DT
+><A
+HREF="function.iconv-mime-decode.html"
+>iconv_mime_decode</A
+>&nbsp;--&nbsp;
+     Decodes a <VAR
+CLASS="literal"
+>MIME</VAR
+> header field
+    </DT
+><DT
+><A
+HREF="function.iconv-mime-encode.html"
+>iconv_mime_encode</A
+>&nbsp;--&nbsp;
+     Composes a <VAR
+CLASS="literal"
+>MIME</VAR
+> header field
+    </DT
+><DT
+><A
+HREF="function.iconv-set-encoding.html"
+>iconv_set_encoding</A
+>&nbsp;--&nbsp;Set current setting for character encoding conversion</DT
+><DT
+><A
+HREF="function.iconv-strlen.html"
+>iconv_strlen</A
+>&nbsp;--&nbsp;
+     Returns the character count of string
+    </DT
+><DT
+><A
+HREF="function.iconv-strpos.html"
+>iconv_strpos</A
+>&nbsp;--&nbsp;
+     Finds position of first occurrence of a needle within a haystack.
+    </DT
+><DT
+><A
+HREF="function.iconv-strrpos.html"
+>iconv_strrpos</A
+>&nbsp;--&nbsp;
+     Finds the last occurrence of a needle within the specified range of haystack.
+    </DT
+><DT
+><A
+HREF="function.iconv-substr.html"
+>iconv_substr</A
+>&nbsp;--&nbsp;
+     Cut out part of a string
+    </DT
+><DT
+><A
+HREF="function.iconv.html"
+>iconv</A
+>&nbsp;--&nbsp;Convert string to requested character encoding</DT
+><DT
+><A
+HREF="function.ob-iconv-handler.html"
+>ob_iconv_handler</A
+>&nbsp;--&nbsp;Convert character encoding as output buffer handler</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.hwapi-userlist.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.iconv-get-encoding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>hw_api-&#62;userlist</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>iconv_get_encoding</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

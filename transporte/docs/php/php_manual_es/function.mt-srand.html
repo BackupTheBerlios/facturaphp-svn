@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mt_srand</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones matemáticas"
+HREF="ref.math.html"><LINK
+REL="PREVIOUS"
+TITLE="mt_rand"
+HREF="function.mt-rand.html"><LINK
+REL="NEXT"
+TITLE="OctDec"
+HREF="function.octdec.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mt-rand.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.octdec.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mt-srand"
+></A
+>mt_srand</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN47999"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>mt_srand&nbsp;--&nbsp;Introduce la semilla del generador de números aleatorios mejorado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN48002"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>mt_srand</B
+> ( int seed)<BR
+></BR
+><P
+>&#13;    Introduce la semilla <VAR
+CLASS="parameter"
+>seed</VAR
+> en el generador de números 
+    aleatorios mejorado.
+
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN48012"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>// seed son los microsegundos desde el último segundo "entero"
+mt_srand((double)microtime()*1000000);
+$randval = mt_rand();</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+><P
+>&#13;     Vea también <A
+HREF="function.mt-rand.html"
+><B
+CLASS="function"
+>mt_rand()</B
+></A
+>,
+     <A
+HREF="function.mt-getrandmax.html"
+><B
+CLASS="function"
+>mt_getrandmax()</B
+></A
+>,
+     <A
+HREF="function.srand.html"
+><B
+CLASS="function"
+>srand()</B
+></A
+>,
+     <A
+HREF="function.rand.html"
+><B
+CLASS="function"
+>rand()</B
+></A
+> y
+     <A
+HREF="function.getrandmax.html"
+><B
+CLASS="function"
+>getrandmax()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mt-rand.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.octdec.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mt_rand</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.math.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>OctDec</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

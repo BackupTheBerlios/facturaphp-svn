@@ -1,0 +1,300 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>session_unregister</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para el manejo de sesiones"
+HREF="ref.session.html"><LINK
+REL="PREVIOUS"
+TITLE="session_start"
+HREF="function.session-start.html"><LINK
+REL="NEXT"
+TITLE="session_unset"
+HREF="function.session-unset.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.session-start.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.session-unset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.session-unregister"
+></A
+>session_unregister</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN96589"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>session_unregister&nbsp;--&nbsp;
+     Desregistrar una variable de la sesión actual
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN96592"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>session_unregister</B
+> ( string nombre)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>session_unregister()</B
+> desregistra (olvida)
+     la variable global llamada <VAR
+CLASS="parameter"
+>nombre</VAR
+> de la
+     sesión actual.
+    </P
+><P
+>&#13;     Esta función devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> cuando la variable es
+     eliminada de la sesión correctamente.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si utiliza <VAR
+CLASS="varname"
+>$_SESSION</VAR
+> (o
+      <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+> con PHP 4.0.6 o inferior),
+      use <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+> para eliminar una variable de
+      la sesión actual.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="caution"
+><P
+></P
+><TABLE
+CLASS="caution"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Atención</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Esta función no borra la variable global correspondiente a
+      <VAR
+CLASS="parameter"
+>nombre</VAR
+>, sólo evita que la variable sea
+      guardada como parte de la sesión. Debe llamar a
+	  <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+> para eliminar la variable global
+	  correspondiente.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="caution"
+><P
+></P
+><TABLE
+CLASS="caution"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Atención</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Si está trabajando con
+      <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>/<VAR
+CLASS="varname"
+>$_SESSION</VAR
+>,
+      no utilice <A
+HREF="function.session-register.html"
+><B
+CLASS="function"
+>session_register()</B
+></A
+>,
+      <A
+HREF="function.session-is-registered.html"
+><B
+CLASS="function"
+>session_is_registered()</B
+></A
+> ni
+      <B
+CLASS="function"
+>session_unregister()</B
+>.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.session-start.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.session-unset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>session_start</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.session.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>session_unset</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

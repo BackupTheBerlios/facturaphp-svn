@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ftp_ssl_connect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones FTP"
+HREF="ref.ftp.html"><LINK
+REL="PREVIOUS"
+TITLE="ftp_size"
+HREF="function.ftp-size.html"><LINK
+REL="NEXT"
+TITLE="ftp_systype"
+HREF="function.ftp-systype.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ftp-size.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ftp-systype.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ftp-ssl-connect"
+></A
+>ftp_ssl_connect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN32077"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>ftp_ssl_connect&nbsp;--&nbsp;Abre una conexión segura SSL-FTP</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN32080"
+></A
+><H2
+>Descripción</H2
+>resource <B
+CLASS="methodname"
+>ftp_ssl_connect</B
+> ( string host [, int puerto [, int tiempo_espera]])<BR
+></BR
+><P
+>&#13;Devuelve una secuencia SSL-FTP en caso de éxito, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si
+ocurre un fallo.
+    </P
+><P
+>&#13;<B
+CLASS="function"
+>ftp_ssl_connect()</B
+> abre una conexión SSL-FTP
+con el <VAR
+CLASS="parameter"
+>host</VAR
+> especificado. El
+parámetro <VAR
+CLASS="parameter"
+>puerto</VAR
+> especifica un puerto
+alternativo para realizar la conexión. Si es omitido o definido
+como cero, entonces será usado el puerto FTP predeterminado, 21.
+    </P
+><P
+>&#13;El parámetro <VAR
+CLASS="parameter"
+>tiempo_espera</VAR
+> especifica el
+tiempo máximo de espera para todas las operaciones de red
+subsecuentes. Si se omite, el valor predeterminado es 90 segundos. El
+tiempo de espera puede ser modificado y consultado en cualquier
+momento con <A
+HREF="function.ftp-set-option.html"
+><B
+CLASS="function"
+>ftp_set_option()</B
+></A
+> y
+<A
+HREF="function.ftp-get-option.html"
+><B
+CLASS="function"
+>ftp_get_option()</B
+></A
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN32105"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>ftp_ssl_connect()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// establecer una conexion ssl basica<br /></font><font color="#0000BB">$id_con </font><font color="#007700">= </font><font color="#0000BB">ftp_ssl_connect</font><font color="#007700">(</font><font color="#0000BB">$servidor_ftp</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// iniciar sesion con nombre de usuario y contrasenya<br /></font><font color="#0000BB">$resultado_login </font><font color="#007700">= </font><font color="#0000BB">ftp_login</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">, </font><font color="#0000BB">$nombre_usuario_ftp</font><font color="#007700">, </font><font color="#0000BB">$contrasenya_ftp</font><font color="#007700">);<br /><br />echo </font><font color="#0000BB">ftp_pwd</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">); </font><font color="#FF8000">// /<br /><br />// cerrar la conexion ssl<br /></font><font color="#0000BB">ftp_close</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Porqué esta función puede no existir: </B
+>
+<B
+CLASS="function"
+>ftp_ssl_connect()</B
+> se encuentra disponible
+únicamente si el soporte para <A
+HREF="ref.openssl.html"
+>OpenSSL</A
+> está habilitado en su
+versión de PHP. Si no está definida y ha compilado el
+soporte para FTP, entonces ésta es la causa.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.ftp-connect.html"
+><B
+CLASS="function"
+>ftp_connect()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ftp-size.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ftp-systype.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ftp_size</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ftp.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ftp_systype</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

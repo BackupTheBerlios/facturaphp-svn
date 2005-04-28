@@ -1,0 +1,710 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Compresión Zlib</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="zip_read"
+HREF="function.zip-read.html"><LINK
+REL="NEXT"
+TITLE="gzclose"
+HREF="function.gzclose.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.zip-read.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.gzclose.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.zlib"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXXV. Funciones de Compresión Zlib</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN117430"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Este módulo le permite leer y escribir de forma
+     transparente sobre archivos gzip (.gz) comprimidos, a
+     través de algunas versiones de la mayoría de
+     funciones del <A
+HREF="ref.filesystem.html"
+>sistema de
+     archivos</A
+> que trabajen con archivos comprimidos-gzip (y
+     archivos sin comprimir también, pero no con sockets).
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La versión 4.0.4 introdujo una envoltura fopen para
+      archivos-.gz, de modo que puede usar una URL especial 'zlib:'
+      para acceder a archivos comprimidos de forma transparente usando
+      las funciones de acceso normales f*() si precede el nombre o
+      ruta de archivo con un prefijo 'zlib:' al llamar a
+      <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>.
+     </P
+><P
+>&#13;      En la versión 4.3.0, este prefijo especial ha cambiado a
+      'zlib://' para prevenir ambigüedades con nombres de archivo
+      que contengan ':'.
+     </P
+><P
+>&#13;      Esta característica requiere una biblioteca C de tiempo
+      de ejecución que provee la función
+      <VAR
+CLASS="literal"
+>fopencookie()</VAR
+>. Hasta donde se conoce, la
+      biblioteca de C GNU es la única que ofrece esta
+      característica.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Este módulo usa las funciones de <A
+HREF="http://www.gzip.org/zlib/"
+TARGET="_top"
+>zlib</A
+>, por Jean-loup Gailly y Mark
+     Adler. Debe usar una versión de zlib &#62;= 1.0.9 con
+     éste módulo.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  Zlib support in PHP is not enabled by default. You will need to
+  configure PHP <VAR
+CLASS="option"
+>--with-zlib[=DIR]</VAR
+>
+ </P
+><P
+>La versión para Windows de
+<VAR
+CLASS="literal"
+>PHP</VAR
+> tiene soporte nativo para esta
+extensión. No se necesita cargar ninguna extensión
+adicional para usar estas funciones.</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Builtin support for zlib on Windows is available with PHP 4.3.0.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  The zlib extension offers the option to transparently compress
+  your pages on-the-fly, if the requesting browser supports
+  this. Therefore there are three options in the <A
+HREF="configuration.html#configuration.file"
+>configuration file</A
+> <TT
+CLASS="filename"
+>php.ini</TT
+>.
+   <DIV
+CLASS="table"
+><A
+NAME="AEN117460"
+></A
+><P
+><B
+>Tabla 1. Zlib Configuration Options</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Default</TH
+><TH
+>Changeable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>zlib.output_compression</TD
+><TD
+>"Off"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>zlib.output_compression_level</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>zlib.output_handler</TD
+><TD
+>""</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+   For further details and definition of the PHP_INI_* constants see
+  <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+</P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.zlib.output-compression"
+></A
+><VAR
+CLASS="parameter"
+>zlib.output_compression</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+>/<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;     Whether to transparently compress pages. If this option is set
+     to "On" in <TT
+CLASS="filename"
+>php.ini</TT
+> or the Apache configuration, pages are
+     compressed if the browser sends an "Accept-Encoding: gzip" or
+     "deflate" header. "Content-Encoding: gzip" (respectively
+     "deflate") and "Vary: Accept-Encoding" headers are added to
+     the output.
+    </P
+><P
+>&#13;     This option also accepts integer values instead of boolean
+     "On"/"Off", using this you can set the output buffer size
+     (default is 4KB).
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      <A
+HREF="ref.outcontrol.html#ini.output-handler"
+>output_handler</A
+> must be 
+      empty if this is set 'On' ! Instead you must use zlib.output_handler.
+     </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.zlib.output-compression-level"
+></A
+><VAR
+CLASS="parameter"
+>zlib.output_compression_level</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;     Compression level used for transparent output compression.
+    </P
+></DD
+><DT
+><A
+NAME="ini.zlib.output-handler"
+></A
+><VAR
+CLASS="parameter"
+>zlib.output_handler</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     You cannot specify additional output handlers if zlib.output_compression
+     is activated here. This setting does the same as <A
+HREF="ref.outcontrol.html#ini.output-handler"
+>&#13;     output_handler</A
+> but in a different order.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>FORCE_GZIP</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FORCE_DEFLATE</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zlib.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     Este ejemplo abre un archivo temporal y escribe una cadena de
+     prueba en él, luego imprime el contenido de este archivo
+     dos veces.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN117532"
+></A
+><P
+><B
+>Ejemplo 1. Pequeño Ejemplo de Zlib</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$nombre_archivo </font><font color="#007700">= </font><font color="#0000BB">tempnam</font><font color="#007700">(</font><font color="#DD0000">'/tmp'</font><font color="#007700">, </font><font color="#DD0000">'zlibtest'</font><font color="#007700">) . </font><font color="#DD0000">'.gz'</font><font color="#007700">;<br />echo </font><font color="#DD0000">"&lt;html&gt;\n&lt;head&gt;&lt;/head&gt;\n&lt;body&gt;\n&lt;pre&gt;\n"</font><font color="#007700">;<br /></font><font color="#0000BB">$s </font><font color="#007700">= </font><font color="#DD0000">"&amp;iexcl;Tan solo una prueba, prueba, prueba, prueba, prueba, prueba!\n"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// abrir el archivo para escritura con maxima compresion<br /></font><font color="#0000BB">$zp </font><font color="#007700">= </font><font color="#0000BB">gzopen</font><font color="#007700">(</font><font color="#0000BB">$nombre_archivo</font><font color="#007700">, </font><font color="#DD0000">"w9"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// escribir la cadena en el archivo<br /></font><font color="#0000BB">gzwrite</font><font color="#007700">(</font><font color="#0000BB">$zp</font><font color="#007700">, </font><font color="#0000BB">$s</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// cerrar el archivo<br /></font><font color="#0000BB">gzclose</font><font color="#007700">(</font><font color="#0000BB">$zp</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// abrir el archivo para lectura<br /></font><font color="#0000BB">$zp </font><font color="#007700">= </font><font color="#0000BB">gzopen</font><font color="#007700">(</font><font color="#0000BB">$nombre_archivo</font><font color="#007700">, </font><font color="#DD0000">"r"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// leer 3 caracteres<br /></font><font color="#007700">echo </font><font color="#0000BB">gzread</font><font color="#007700">(</font><font color="#0000BB">$zp</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// mostrar la salida hasta el final de archivo y cerrarlo.<br /></font><font color="#0000BB">gzpassthru</font><font color="#007700">(</font><font color="#0000BB">$zp</font><font color="#007700">);<br /></font><font color="#0000BB">gzclose</font><font color="#007700">(</font><font color="#0000BB">$zp</font><font color="#007700">);<br /><br />echo </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// abrir el archivo e imprimir su contenido (por segunda vez).<br /></font><font color="#007700">if (</font><font color="#0000BB">readgzfile</font><font color="#007700">(</font><font color="#0000BB">$nombre_archivo</font><font color="#007700">) != </font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$s</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&amp;iexcl;Error con las funciones zlib!"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">unlink</font><font color="#007700">(</font><font color="#0000BB">$nombre_archivo</font><font color="#007700">);<br />echo </font><font color="#DD0000">"&lt;/pre&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.gzclose.html"
+>gzclose</A
+>&nbsp;--&nbsp;cierra un puntero a archivo-gz abierto</DT
+><DT
+><A
+HREF="function.gzcompress.html"
+>gzcompress</A
+>&nbsp;--&nbsp;Compress a string</DT
+><DT
+><A
+HREF="function.gzdeflate.html"
+>gzdeflate</A
+>&nbsp;--&nbsp;Deflate a string</DT
+><DT
+><A
+HREF="function.gzencode.html"
+>gzencode</A
+>&nbsp;--&nbsp;Create a gzip compressed string</DT
+><DT
+><A
+HREF="function.gzeof.html"
+>gzeof</A
+>&nbsp;--&nbsp;prueba el fin-de-archivo de un puntero de archivo-gz</DT
+><DT
+><A
+HREF="function.gzfile.html"
+>gzfile</A
+>&nbsp;--&nbsp;Lee un archivo gz completo en una matriz</DT
+><DT
+><A
+HREF="function.gzgetc.html"
+>gzgetc</A
+>&nbsp;--&nbsp;toma caracteres de un archivo-gz</DT
+><DT
+><A
+HREF="function.gzgets.html"
+>gzgets</A
+>&nbsp;--&nbsp;toma una linea del archivo apuntado</DT
+><DT
+><A
+HREF="function.gzgetss.html"
+>gzgetss</A
+>&nbsp;--&nbsp;toma una linea del archivo-gz apuntado y le quita los tags HTML</DT
+><DT
+><A
+HREF="function.gzinflate.html"
+>gzinflate</A
+>&nbsp;--&nbsp;Inflate a deflated string</DT
+><DT
+><A
+HREF="function.gzopen.html"
+>gzopen</A
+>&nbsp;--&nbsp;Abrir un archivo gz</DT
+><DT
+><A
+HREF="function.gzpassthru.html"
+>gzpassthru</A
+>&nbsp;--&nbsp;
+     Imprimir todos los datos que restan en un apuntador a archivo gz
+    </DT
+><DT
+><A
+HREF="function.gzputs.html"
+>gzputs</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.gzwrite.html"
+><B
+CLASS="function"
+>gzwrite()</B
+></A
+></DT
+><DT
+><A
+HREF="function.gzread.html"
+>gzread</A
+>&nbsp;--&nbsp;Lee archivos-gz en modo Binario</DT
+><DT
+><A
+HREF="function.gzrewind.html"
+>gzrewind</A
+>&nbsp;--&nbsp;Reposiciona al puntero de archivo-gz, al inicio de aquel</DT
+><DT
+><A
+HREF="function.gzseek.html"
+>gzseek</A
+>&nbsp;--&nbsp;Posiciona el puntero del archivo-gz</DT
+><DT
+><A
+HREF="function.gztell.html"
+>gztell</A
+>&nbsp;--&nbsp;Indica la posición de lectura/escritura del
+    apuntador a archivo gz</DT
+><DT
+><A
+HREF="function.gzuncompress.html"
+>gzuncompress</A
+>&nbsp;--&nbsp;Uncompress a deflated string</DT
+><DT
+><A
+HREF="function.gzwrite.html"
+>gzwrite</A
+>&nbsp;--&nbsp;Escritura en un archivo gz, segura con material
+    binario</DT
+><DT
+><A
+HREF="function.readgzfile.html"
+>readgzfile</A
+>&nbsp;--&nbsp;Imprimir un archivo gz</DT
+><DT
+><A
+HREF="function.zlib-get-coding-type.html"
+>zlib_get_coding_type</A
+>&nbsp;--&nbsp;Returns the coding type used for output compression</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.zip-read.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.gzclose.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>zip_read</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>gzclose</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

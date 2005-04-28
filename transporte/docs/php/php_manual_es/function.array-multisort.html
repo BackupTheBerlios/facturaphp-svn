@@ -1,0 +1,371 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_multisort</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_merge"
+HREF="function.array-merge.html"><LINK
+REL="NEXT"
+TITLE="array_pad"
+HREF="function.array-pad.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-merge.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-pad.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-multisort"
+></A
+>array_multisort</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN7067"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>array_multisort&nbsp;--&nbsp;Ordena múltiples matrices, o matrices
+    multi-dimensionales</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN7070"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>array_multisort</B
+> ( array matriz1 [, mixed arg [, mixed ... [, array ...]]])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_multisort()</B
+> puede usarse para ordenar
+     varias matrices al tiempo o una matriz multi-dimensional de
+     acuerdo a una de sus varias dimensiones. Las llaves asociativas
+     (tipo cadena) son conservadas, mientras que las llaves
+     numéricas son re-indexadas.
+    </P
+><P
+>&#13;     Las matrices de entrada son tratadas como columnas de una tabla
+     que deberá ser ordenada por filas - de forma similar a la
+     funcionalidad de una sentencia SQL ORDER BY. La primera matriz es
+     considerada la primaria para el ordenamiento. Las filas (valores)
+     en esa matriz que sean comparadas como iguales son ordenadas por
+     la siguiente matriz de entrada, y así sucesivamente.
+    </P
+><P
+>&#13;     La estructura de argumentos de esta función es un poco
+     inusual, pero flexible. El primer argumento de todos debe ser una
+     matriz. Subsecuentemente, cada argumento puede ser o una matriz o
+     una bandera de ordenamiento de las siguientes.
+    </P
+><P
+>&#13;     Banderas de orientación del ordenamiento:
+     <P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="constant"
+><B
+>SORT_ASC</B
+></TT
+> - ordenar ascendentemente</P
+></LI
+><LI
+><P
+><TT
+CLASS="constant"
+><B
+>SORT_DESC</B
+></TT
+> - ordenar descendentemente</P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     Banderas de tipo de ordenamiento
+     <P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="constant"
+><B
+>SORT_REGULAR</B
+></TT
+> - comparar elementos
+       normalmente</P
+></LI
+><LI
+><P
+><TT
+CLASS="constant"
+><B
+>SORT_NUMERIC</B
+></TT
+> - comparar elementos
+       numéricamente</P
+></LI
+><LI
+><P
+><TT
+CLASS="constant"
+><B
+>SORT_STRING</B
+></TT
+> - comparar elementos como
+       cadenas</P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     No pueden especificarse dos banderas de ordenamiento del mismo
+     tipo luego de cada matriz. Las banderas de ordenamiento
+     especificadas a continuación de un argumento matriz se
+     aplican sólo a esa matriz - estos valores son
+     restablecidos de vuelta a <TT
+CLASS="constant"
+><B
+>SORT_ASC</B
+></TT
+> y
+     <TT
+CLASS="constant"
+><B
+>SORT_REGULAR</B
+></TT
+> antes de cada nuevo argumento
+     matriz.
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN7117"
+></A
+><P
+><B
+>Ejemplo 1. Ordenamiento de varias matrices</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz1 </font><font color="#007700">= array(</font><font color="#DD0000">"10"</font><font color="#007700">, </font><font color="#0000BB">100</font><font color="#007700">, </font><font color="#0000BB">100</font><font color="#007700">, </font><font color="#DD0000">"a"</font><font color="#007700">);<br /></font><font color="#0000BB">$matriz2 </font><font color="#007700">= array(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#DD0000">"2"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">);<br /></font><font color="#0000BB">array_multisort</font><font color="#007700">(</font><font color="#0000BB">$matriz1</font><font color="#007700">, </font><font color="#0000BB">$matriz2</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     En este ejemplo, después del ordenamiento, la primera
+     matriz contendrá los valores 10, "a", 100, 100. La segunda
+     matriz contendrá 1, 1, "2", 3. Las entradas en la segunda
+     matriz que correspondían a las entradas idénticas
+     de la primera matriz (100 y 100) fueron ordenadas también.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN7122"
+></A
+><P
+><B
+>Ejemplo 2. Ordenamiento de una matriz multi-dimensional</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$matriz </font><font color="#007700">= array(array(</font><font color="#DD0000">"10"</font><font color="#007700">, </font><font color="#0000BB">100</font><font color="#007700">, </font><font color="#0000BB">100</font><font color="#007700">, </font><font color="#DD0000">"a"</font><font color="#007700">), array(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#DD0000">"2"</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">));<br /></font><font color="#0000BB">array_multisort</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">], </font><font color="#0000BB">SORT_ASC</font><font color="#007700">, </font><font color="#0000BB">SORT_STRING</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">], </font><font color="#0000BB">SORT_NUMERIC</font><font color="#007700">, </font><font color="#0000BB">SORT_DESC</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     En este ejemplo, después del ordenamiento, la primera
+     matriz contendrá 10, 100, 100, "a" (fue ordenada como
+     cadenas en orden ascendente), y la segunda tendrá 1, 3,
+     "2", 1 (ordenada como números, en orden descendiente).
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-merge.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-pad.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_merge</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_pad</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

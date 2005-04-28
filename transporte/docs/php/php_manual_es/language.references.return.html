@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Retorno por Referencia</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Explicando las Referencias"
+HREF="language.references.html"><LINK
+REL="PREVIOUS"
+TITLE="Paso de variables por Referencia"
+HREF="language.references.pass.html"><LINK
+REL="NEXT"
+TITLE="Borrando Referencias"
+HREF="language.references.unset.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.references.pass.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 14. Explicando las Referencias</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.references.unset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.references.return"
+>Retorno por Referencia</A
+></H1
+><P
+>&#13;		Devolver por Referencia es muy útil cuando se quiere utilizar una función
+		para averiguar a que variable debe estar una referencia ligada. Cuando
+		se devuelve por referencia, se debe utilizar esta sintáxis:
+	<DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4559"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+function &amp;encontrar_var ($param)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;...codigo...<br />&nbsp;&nbsp;&nbsp;&nbsp;return $var_encontrada;<br />}<br /><br />$foo =&amp; encontrar_var ($bar);<br />$foo-&gt;x = 2;</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+	En este ejemplo, el atributo del objeto devuelto por la función
+	<VAR
+CLASS="varname"
+>encontrar_var</VAR
+> fue asignado, no ya en 
+	la copia, como habría sucedido si no se utilizaba la sintáxis de 
+	referencias.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	A diferencia del paso de parámetros, aquí se debe utilizar
+	<VAR
+CLASS="literal"
+>&#38;</VAR
+> en ambos lugares - para indicar que
+	se pretende devolver por referencia ( y no una copia, como
+	usualmente sucede) y que además esa referencia sea
+	'ligada' a una variable, y no solo asignada.
+    </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.references.pass.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.references.unset.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Paso de variables por Referencia</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.references.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Borrando Referencias</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

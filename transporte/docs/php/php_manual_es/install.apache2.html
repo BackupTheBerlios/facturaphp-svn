@@ -1,0 +1,734 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Servidores-Apache 2.0</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Servidores-Apache"
+HREF="install.apache.html"><LINK
+REL="NEXT"
+TITLE="Servidores-Caudium"
+HREF="install.caudium.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.apache.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.caudium.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.apache2"
+>Servidores-Apache 2.0</A
+></H1
+><P
+>&#13;  Esta sección contiene información específica
+  sobre la instalación de <VAR
+CLASS="literal"
+>PHP</VAR
+> con Apache
+  2.0, tanto para la versión <A
+HREF="install.apache.html#install.apache.unix"
+>Unix</A
+> como <A
+HREF="install.apache.html#install.apache.windows"
+>Windows</A
+>.
+ </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;   No utilizar Apache 2.0 y <VAR
+CLASS="literal"
+>PHP</VAR
+> en sistemas que
+   esten en producción, tanto en Unix como en Windows.
+  </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;  Animamos a que consulteis la <A
+HREF="http://httpd.apache.org/docs-2.0/"
+TARGET="_top"
+>Documentación de Apache</A
+> para que
+  tengais un conocimento básico sobre el servidor Apache 2.0.
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="compat.apache2"
+>Notas de compatibilidad entre PHP y Apache 2.0</A
+></H2
+><P
+>&#13;   Las siguientes versiones de PHP funcionan con las últimas versiones
+   de Apache 2.0:
+   <P
+></P
+><UL
+COMPACT="COMPACT"
+><LI
+><SPAN
+>&#13;      PHP 4.3.0 ó posterior, se pueden encontrar en:
+      <A
+HREF="http://www.php.net/downloads.php"
+TARGET="_top"
+>http://www.php.net/downloads.php</A
+>.
+     </SPAN
+></LI
+><LI
+><SPAN
+>&#13;      la última versión estable de desarrollo. El código fuente se
+      puede conseguir aqui <A
+HREF="http://snaps.php.net/php4-latest.tar.gz"
+TARGET="_top"
+>&#13;       http://snaps.php.net/php4-latest.tar.gz</A
+> ó los binarios
+      para Windows aquí <A
+HREF="http://snaps.php.net/win32/php4-win32-latest.zip"
+TARGET="_top"
+>&#13;       http://snaps.php.net/win32/php4-win32-latest.zip</A
+>.
+     </SPAN
+></LI
+><LI
+><SPAN
+>&#13;      una versión de prelanzamiento, se puede bajar de <A
+HREF="http://qa.php.net/"
+TARGET="_top"
+>http://qa.php.net/</A
+>.
+     </SPAN
+></LI
+><LI
+><SPAN
+>&#13;      siempre está disponible la opción de obtener
+      <VAR
+CLASS="literal"
+>PHP</VAR
+> via <A
+HREF="http://www.php.net/anoncvs.php"
+TARGET="_top"
+>CVS
+       anónimo</A
+>.
+     </SPAN
+></LI
+></UL
+>
+   Estas versiones de <VAR
+CLASS="literal"
+>PHP</VAR
+> son compatibles con
+   Apache 2.0.40 y posteriores.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    El soporte para <VAR
+CLASS="literal"
+>SAPI</VAR
+> en Apache 2.0 empezó con
+    PHP 4.2.0. PHP 4.2.3 funciona con Apache 2.0.39, no usar otra
+    versión de apache con PHP 4.2.3. De todas maneras, la instalación
+    recomendada es PHP 4.3.0 ó posterios con la versión más reciente
+    de Apache2.
+   </P
+><P
+>&#13;    Todas las versiones de <VAR
+CLASS="literal"
+>PHP</VAR
+> mencionadas, tambien
+    trabajan con Apache 1.3.x.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.apache2.unix"
+>PHP y Apache 2 en Linux</A
+></H2
+><P
+>&#13;   Bajarse la versión más reciente de <A
+HREF="http://www.apache.org/"
+TARGET="_top"
+>&#13;    Apache 2.0</A
+> y una versión de PHP de uno de los sitios antes
+   mencionados. Esta guia rápida cubre solamente lo básico para poder
+   empezar a usar Apache 2.0 y <VAR
+CLASS="literal"
+>PHP</VAR
+>. Para más
+   información, consultar la <A
+HREF="http://httpd.apache.org/docs-2.0/"
+TARGET="_top"
+>documentación de Apache</A
+>.  Los
+   números de versiones han sido omitidos aqui para asegurarse
+   que las instrucciones no son incorrectas, debeis cambiar 'NN' con
+    los valores correctos de vuestros ficheros.
+  </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1456"
+></A
+><P
+><B
+>Ejemplo 3-7. 
+    Instrucciones de instalación (Apache 2 versión como módulo
+    compartido)
+   </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>1.  gzip -d httpd-2_0_NN.tar.gz
+2.  tar xvf httpd-2_0_NN.tar
+3.  gunzip php-NN.tar.gz
+4.  tar -xvf php-NN.tar
+5.  cd httpd-2_0_NN
+6.  ./configure --enable-so
+7.  make
+8.  make install
+
+    Ahora teneis Apache 2.0.NN disponible en /usr/local/apache2,
+    configurado con soporte para m&#38;oacute;dulos y el estandar "MPM prefork".
+    Para comprobar que la instalaci&#38;oacute;n funciona, podeis usar el
+    procedimiento usado normalmente para arrancar el servidor Apache,
+    p.ej.: /usr/local/apache2/bin/apachectl start , para configurar
+    PHP parar el servidor: /usr/local/apache2/bin/apachectl stop.
+
+9.  cd ../php4-NN
+10. ./configure --with-apxs2=/usr/local/apache2/bin/apxs
+11. make
+12. make install
+13. cp php.ini-dist /usr/local/lib/php.ini
+
+    Se puede editar el fichero php.ini para configurar como PHP
+    funciona. Si quereis tener este fichero en otra
+    localizaci&#38;oacute;n, podeis usar --with-config-file-path=/path en
+    el paso 10.
+
+14. Editar el fichero  httpd.conf y comprobar que estas
+    lineas existen y no est&#38;aacute;n comentadas:
+
+   LoadModule php4_module        libexec/libphp4.so
+   AddType application/x-httpd-php .php
+ 
+    Podeis elegir la extension que querais aqui, .php es simplemente
+    una sugerencia.
+
+    El "path" a la derecha de LoadModule debe de coincidir con el
+    "path" del m&#38;oacute;dulo PHP en vuestro sistema. Si habeis seguido
+    los pasos desde el punto 1. no necesitais alterar nada.
+
+15. Utilizar el procedimiento habitual que utiliceis para arrancar
+    Apache. P.ej.: /usr/local/apache2/bin/apachectl start</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;   Si habeis seguido los pasos de más arriba, deberiais tener un
+   instalación funcionando de Apache 2.0 con soporte para
+   <VAR
+CLASS="literal"
+>PHP</VAR
+> como módulo <VAR
+CLASS="literal"
+>SAPI</VAR
+>. Por
+   supuesto que existen muchas más opciones de configuración
+   disponibles tanto para Apache como <VAR
+CLASS="literal"
+>PHP</VAR
+>. Para más
+   información use <B
+CLASS="command"
+>./configure --help</B
+> en el
+   directorio correspondiente con el código fuente. En el caso que
+   querais crear una versión "multihilos" (multithreaded) de apache
+   2.0, debeis sobreescribir el módulo estandar MPM
+   <TT
+CLASS="filename"
+>prefork</TT
+> con ó <TT
+CLASS="filename"
+>worker</TT
+> ó
+   <TT
+CLASS="filename"
+>perchild</TT
+>. Para hacer esto añadir a la
+   linea con "configure" en el paso 6 de más arriba, ó bien <VAR
+CLASS="option"
+>--with-mpm=worker</VAR
+> ó <VAR
+CLASS="option"
+>--with-mpm=perchild</VAR
+>. Tener cuidado con
+   las consecuencias y entender que estais haciendo. Para más
+   información, leer la documentación de Apache sobre <A
+HREF="http://httpd.apache.org/docs-2.0/mpm.html"
+TARGET="_top"
+> Módulos MPM</A
+>.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Para crear una version multihilos de Apache, vuestro sistema debe
+    de tener soporte para hilos (threads). Esto supone que
+    <VAR
+CLASS="literal"
+>PHP</VAR
+> se debe compilar con "Zend Thread Safety
+    (ZTS)", el cual está en fase de experimentación. Por esto mismo,
+    no todas las extensiones pueden estar disponibles. La
+    configuración recomendada es compilar Apache con el módulo
+    estandar MPM <TT
+CLASS="filename"
+>prefork</TT
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.apache2.windows"
+>PHP y Apache 2.0 en Windows</A
+></H2
+><P
+>&#13;   Se recomienda leer las <A
+HREF="http://httpd.apache.org/docs-2.0/platform/windows.html"
+TARGET="_top"
+>notas
+    específicas sobre Windows</A
+> y apache 2.0
+  </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;    Apache 2.0 está designado para ejecutarse con Windows NT 4.0,
+    Windows 2000 ó Windows XP. Por el momento, el soporte para
+    Windows9x es incompleto y Apache 2.0 no funcionará en estas
+    plataformas.
+   </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;   Bajarse la versión más reciente de <A
+HREF="http://www.apache.org/"
+TARGET="_top"
+>&#13;    Apache 2.0</A
+> y una versión de PHP de uno de los sitios antes
+    mencionados. Seguir las instrucciones del <A
+HREF="install.windows.html#install.windows.manual"
+>Manual de instalación</A
+> y
+    volver aqui para seguir con la integración de
+    <VAR
+CLASS="literal"
+>PHP</VAR
+> y Apache.
+  </P
+><P
+>&#13;   Existen dos maneras de instalar <VAR
+CLASS="literal"
+>PHP</VAR
+> para que
+   funcione con Apache 2.0 en Windows. Una, es usar el binario CGI y
+   la otra, usar el módulo DLL de Apache. En ambos casos debeis de
+   parar el servidor Apache y editar vuestro fichero <TT
+CLASS="filename"
+>httpd.conf</TT
+> para
+   configurar Apache con <VAR
+CLASS="literal"
+>PHP</VAR
+>.
+  </P
+><P
+>&#13;   Debeis de insertar estas tres lineas en el fichero de
+   configuración de Apache <TT
+CLASS="filename"
+>httpd.conf</TT
+> para utilizar el
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>binario CGI </I
+></SPAN
+>:
+   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1491"
+></A
+><P
+><B
+>Ejemplo 3-8. PHP y Apache 2.0, como binario CGI</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache"
+>ScriptAlias /php/ "c:/php/"
+AddType application/x-httpd-php .php
+Action application/x-httpd-php "/php/php.exe"</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;   Si quereis utilizar <VAR
+CLASS="literal"
+>PHP</VAR
+> como módulo de
+   Apache 2.0, asegurarse de mover <TT
+CLASS="filename"
+>php4ts.dll</TT
+> a
+   <TT
+CLASS="filename"
+>winnt/system32</TT
+> (para Windows NT/2000) ó
+   <TT
+CLASS="filename"
+>windows/system32</TT
+> (para Windows XP),
+   sobreescribiendo cualquier fichero anterior.  Debeis de insertar
+   estas dos lineas en el fichero de configuración de Apache
+   <TT
+CLASS="filename"
+>httpd.conf</TT
+> para configurar <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>PHP como
+   módulo</I
+></SPAN
+> en Apache 2.0:
+   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1501"
+></A
+><P
+><B
+>Ejemplo 3-9. PHP y Apache 2.0, como módulo</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache"
+>LoadModule php4_module "c:/php/sapi/php4apache2.dll"
+AddType application/x-httpd-php .php</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Recordar que en los ejemplos anteriores, teneis que sustituir
+    <TT
+CLASS="filename"
+>c:/php/</TT
+> con vuestro "path" al directorio
+    donde hayais instalado <VAR
+CLASS="literal"
+>PHP</VAR
+>. Usar
+    <TT
+CLASS="filename"
+>php4apache2.dll</TT
+> y
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+><TT
+CLASS="filename"
+>php4apche.dll</TT
+> con
+    vuestra directiva LoadModule. La última de las mencionadas está
+    diseñada para funcionar solo con Apache 1.3.x.
+   </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;    No mezclar en vuestra instalación, ficheros dll de
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>diferentes versiones de PHP</I
+></SPAN
+> si quereis que
+    PHP funcione.
+   </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.apache.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.caudium.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Servidores-Apache</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-Caudium</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

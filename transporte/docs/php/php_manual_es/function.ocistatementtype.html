@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>OCIStatementType</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Oracle 8"
+HREF="ref.oci8.html"><LINK
+REL="PREVIOUS"
+TITLE="ocisetprefetch"
+HREF="function.ocisetprefetch.html"><LINK
+REL="NEXT"
+TITLE="ociwritelobtofile"
+HREF="function.ociwritelobtofile.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ocisetprefetch.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ociwritelobtofile.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ocistatementtype"
+></A
+>OCIStatementType</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN78683"
+></A
+><P
+>    (PHP 3&#62;= 3.0.5, PHP 4 , PHP 5)</P
+>OCIStatementType&nbsp;--&nbsp;Devuelve el tipo de una sentencia OCI.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN78686"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>OCIStatementType</B
+> ( int stmt)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>OCIStatementType()</B
+> devuelve uno de los siguiente valores:
+     <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>           "SELECT"</P
+></LI
+><LI
+><P
+>           "UPDATE"</P
+></LI
+><LI
+><P
+>           "DELETE"</P
+></LI
+><LI
+><P
+>           "INSERT"</P
+></LI
+><LI
+><P
+>           "CREATE"</P
+></LI
+><LI
+><P
+>           "DROP"</P
+></LI
+><LI
+><P
+>           "ALTER"</P
+></LI
+><LI
+><P
+>           "BEGIN"</P
+></LI
+><LI
+><P
+>           "DECLARE"</P
+></LI
+><LI
+><P
+>           "UNKNOWN"</P
+></LI
+></OL
+></P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN78718"
+></A
+><P
+><B
+>Ejemplo 1. Code examples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+    print "&#60;HTML&#62;&#60;PRE&#62;";
+    $conn = OCILogon("scott","tiger");
+    $sql  = "delete from emp where deptno = 10";
+   
+    $stmt = OCIParse($conn,$sql);
+    if ( OCIStatementType($stmt) == "DELETE" ) {
+        die "You are not allowed to delete from this table&#60;BR&#62;";
+    }
+   
+    OCILogoff($conn);
+    print "&#60;/PRE&#62;&#60;/HTML&#62;";
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ocisetprefetch.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ociwritelobtofile.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ocisetprefetch</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oci8.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ociwritelobtofile</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

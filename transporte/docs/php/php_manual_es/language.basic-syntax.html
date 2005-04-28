@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Sintaxis básica</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="PREVIOUS"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="NEXT"
+TITLE="Separación de instrucciones"
+HREF="language.basic-syntax.instruction-separation.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="langref.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.basic-syntax.instruction-separation.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="language.basic-syntax"
+>Capítulo 5. Sintaxis básica</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="language.basic-syntax.html#language.basic-syntax.phpmode"
+>Saliendo de HTML</A
+></DT
+><DT
+><A
+HREF="language.basic-syntax.instruction-separation.html"
+>Separación de instrucciones</A
+></DT
+><DT
+><A
+HREF="language.basic-syntax.comments.html"
+>Comentarios</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.basic-syntax.phpmode"
+>Saliendo de HTML</A
+></H1
+><P
+>&#13;    Para interpretar un archivo, php símplemente interpreta el texto
+    del archivo hasta que encuentra uno de los carácteres especiales
+    que delimitan el inicio de código PHP. El intérprete ejecuta
+    entonces todo el código que encuentra, hasta que encuentra una etiqueta
+    de fin de código, que le dice al intérprete que siga ignorando el código
+    siguiente. Este mecanismo permite embeber código PHP dentro de HTML: todo lo que está
+    fuera de las etiquetas PHP se deja tal como está, mientras que el resto se interpreta
+    como código.
+   </P
+><P
+>&#13;    Hay cuatro conjuntos de etiquetas que pueden ser usadas para denotar
+    bloques de código PHP. De estas cuatro, sólo 2 (&#60;?php. . .?&#62; y
+    &#60;script language="php"&#62;. . .&#60;/script&#62;) están siempre disponibles;
+    el resto pueden ser configuradas en el fichero de <TT
+CLASS="filename"
+>php.ini</TT
+> para ser
+    o no aceptadas por el intérprete. Mientras que el formato corto de etiquetas (short-form tags) y
+    el estilo ASP (ASP-style tags) pueden ser convenientes, no son portables
+    como la versión de formato largo de etiquetas. Además, si se pretende
+    embeber código PHP en XML o XHTML, será obligatorio el uso del formato
+    &#60;?php. . .?&#62; para la compatibilidad con XML.
+   </P
+><P
+>&#13;    Las etiquetas soportadas por PHP son:
+   </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1990"
+></A
+><P
+><B
+>Ejemplo 5-1. Formas de escapar de HTML</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+1.&nbsp;&nbsp;<font color="#0000BB">&lt;?php </font><font color="#007700">echo(</font><font color="#DD0000">"si quieres servir documentos XHTML o XML, haz como aqu&amp;iacute;\n"</font><font color="#007700">); </font><font color="#0000BB">?&gt;<br /></font><br />2.&nbsp;&nbsp;<font color="#0000BB">&lt;? </font><font color="#007700">echo (</font><font color="#DD0000">"esta es la m&amp;aacute;s simple, una instrucci&amp;oacute;n de procesado SGML \n"</font><font color="#007700">); </font><font color="#0000BB">?&gt;<br /></font>&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000BB">&lt;?= expression ?&gt;</font> Esto es una abreviatura de "<font color="#0000BB">&lt;? </font><font color="#007700">echo </font><font color="#0000BB">expression ?&gt;</font>"<br /><br />3.&nbsp;&nbsp;<font color="#0000BB">&lt;script language="php"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">echo (</font><font color="#DD0000">"muchos editores (como FrontPage) no<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aceptan instrucciones de procesado"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">&lt;/script&gt;<br /></font><br />4.&nbsp;&nbsp;&lt;% echo ("Opcionalmente, puedes usar las etiquetas ASP"); %&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;%= $variable; # Esto es una abreviatura de "&lt;% echo . . ." %&gt;</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;    El método primero, &#60;?php. . .?&#62;, es el más conveniente, ya que
+    permite el uso de PHP en código XML como XHTML.
+   </P
+><P
+>&#13;    El método segundo no siempre está disponible. El formato corto
+    de etiquetas está disponible con la función <B
+CLASS="function"
+>short_tags()</B
+>
+    (sólo PHP 3), activando el parámetro del fichero de configuración de PHP
+    <A
+HREF="ini.sect.language-options.html#ini.short-open-tag"
+>short_open_tag</A
+>, o compilando
+    PHP con la opción --enable-short-tags del comando <B
+CLASS="command"
+>configure</B
+>.
+    Aunque esté activa por defecto en php.ini-dist, se desaconseja
+    el uso del formato de etiquetas corto.
+   </P
+><P
+>&#13;    El método cuarto sólo está disponible si se han activado las
+    etiquetas ASP en el fichero de configuración: <A
+HREF="ini.sect.language-options.html#ini.asp-tags"
+>asp_tags</A
+>.
+    <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>El soporte de etiquetas ASP se añadió en la versión 3.0.4.</P
+></BLOCKQUOTE
+></DIV
+>
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     No se debe usar el formato corto de etiquetas cuando se
+     desarrollen aplicaciones o bibliotecas con intención de
+     redistribuirlas, o cuando se desarrolle para servidores que no
+     están bajo nuestro control, porque puede ser que el
+     formato corto de etiquetas no esté soportado en el
+     servidor. Para generar código portable y
+     redistribuíble, asegúrate de no usar el formato
+     corto de etiquetas.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    La etiqueta de fin de bloque incluirá tras ella la siguiente
+    línea si hay alguna presente. Además, la etiqueta de fin de bloque
+    lleva implícito el punto y coma; no necesitas por lo tanto añadir
+    el punto y coma final de la última línea del bloque PHP.
+   </P
+><P
+>&#13;    PHP permite estructurar bloques como:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2006"
+></A
+><P
+><B
+>Ejemplo 5-2. Métodos avanzados de escape</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">$expression</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;<br /></font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;This is true.&lt;/strong&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000BB">&lt;?php<br /></font><font color="#007700">} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;<br /></font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;strong&gt;This is false.&lt;/strong&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;<font color="#0000BB">&lt;?php<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    Este ejemplo realiza lo esperado, ya que cuando PHP encuentra las etiquetas
+    ?&#62; de fin de bloque, empieza a escribir lo que encuentra tal cual hasta que
+    encuentra otra etiqueta de inicio de bloque. El ejemplo anterior es, por supuesto,
+    inventado. Para escribir bloques grandes de texto generamente es más eficiente
+    separalos del código PHP que enviar todo el texto mediante las funciones
+    <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>, <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+> o similares.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.basic-syntax.instruction-separation.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Referencia del Lenguaje</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Separación de instrucciones</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

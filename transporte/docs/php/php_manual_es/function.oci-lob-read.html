@@ -1,0 +1,214 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>lob-&#62;read</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Oracle 8"
+HREF="ref.oci8.html"><LINK
+REL="PREVIOUS"
+TITLE="lob->load"
+HREF="function.oci-lob-load.html"><LINK
+REL="NEXT"
+TITLE="lob->rewind"
+HREF="function.oci-lob-rewind.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.oci-lob-load.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.oci-lob-rewind.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.oci-lob-read"
+></A
+>lob-&#62;read</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN77055"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>lob-&#62;read&nbsp;--&nbsp;Reads part of large object</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN77058"
+></A
+><H2
+>Description</H2
+>string <B
+CLASS="methodname"
+>lob-&#62;read</B
+> ( int length)<BR
+></BR
+><P
+>&#13;     Reads <VAR
+CLASS="parameter"
+>length</VAR
+> bytes from the current position of
+     LOB's internal pointer. Reading stops when <VAR
+CLASS="parameter"
+>length</VAR
+>
+     bytes have been read or end of large object is reached.
+     Internal pointer of large object will be shifted on the amount of bytes
+     read.
+    </P
+><P
+>&#13;     Returns <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> in case of error.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.oci-lob-eof.html"
+><B
+CLASS="function"
+>oci_lob_eof()</B
+></A
+>, 
+     <A
+HREF="function.oci-lob-seek.html"
+><B
+CLASS="function"
+>oci_lob_seek()</B
+></A
+>, 
+     <A
+HREF="function.oci-lob-tell.html"
+><B
+CLASS="function"
+>oci_lob_tell()</B
+></A
+> and
+     <A
+HREF="function.oci-lob-write.html"
+><B
+CLASS="function"
+>oci_lob_write()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.oci-lob-load.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.oci-lob-rewind.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>lob-&#62;load</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oci8.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>lob-&#62;rewind</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

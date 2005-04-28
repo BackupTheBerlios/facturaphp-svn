@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_socket_sendto</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_socket_recvfrom"
+HREF="function.stream-socket-recvfrom.html"><LINK
+REL="NEXT"
+TITLE="stream_socket_server"
+HREF="function.stream-socket-server.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-recvfrom.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-server.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-socket-sendto"
+></A
+>stream_socket_sendto</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104825"
+></A
+><P
+>    (PHP 5)</P
+>stream_socket_sendto&nbsp;--&nbsp;Envía un mensaje a un socket, sin importar si
+    está conectado o no</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104828"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>stream_socket_sendto</B
+> ( resource socket, string datos [, int banderas [, string direccion]])<BR
+></BR
+><P
+>&#13;La función <B
+CLASS="function"
+>stream_socket_sendto()</B
+>
+envía los datos especificados por <VAR
+CLASS="parameter"
+>datos</VAR
+>
+a través del socket especificado
+por <VAR
+CLASS="parameter"
+>socket</VAR
+>. Será usada la
+dirección especificada cuando la secuencia de socket fue
+creada, a menos que una dirección alternativa sea especificada
+en <VAR
+CLASS="parameter"
+>direccion</VAR
+>.
+    </P
+><P
+>&#13;El valor de <VAR
+CLASS="parameter"
+>banderas</VAR
+> puede ser cualquier
+combinación de los siguientes:
+     <DIV
+CLASS="table"
+><A
+NAME="AEN104852"
+></A
+><P
+><B
+>Tabla 1. valores posibles para <VAR
+CLASS="parameter"
+>banderas</VAR
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>STREAM_OOB</B
+></TT
+></TD
+><TD
+>&#13;          Procesar datos OOB (out-of-band).
+         </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN104861"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>stream_socket_sendto()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Abrir un socket en el puerto 1234 en localhost */<br /></font><font color="#0000BB">$socket </font><font color="#007700">= </font><font color="#0000BB">stream_socket_client</font><font color="#007700">(</font><font color="#DD0000">'tcp://127.0.0.1:1234'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Enviar datos ordinarios mediante los canales ordinarios. */<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$socket</font><font color="#007700">, </font><font color="#DD0000">"Transmision normal de datos."</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Enviar mas datos fuera de banda. */<br /></font><font color="#0000BB">stream_socket_sendto</font><font color="#007700">(</font><font color="#0000BB">$socket</font><font color="#007700">, </font><font color="#DD0000">"Datos Out of Band."</font><font color="#007700">, </font><font color="#0000BB">STREAM_OOB</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Cerrarlo */<br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$socket</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Vea también 
+     <A
+HREF="function.stream-socket-recvfrom.html"
+><B
+CLASS="function"
+>stream_socket_recvfrom()</B
+></A
+>,
+     <A
+HREF="function.stream-socket-client.html"
+><B
+CLASS="function"
+>stream_socket_client()</B
+></A
+>, y
+     <A
+HREF="function.stream-socket-server.html"
+><B
+CLASS="function"
+>stream_socket_server()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-socket-recvfrom.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-socket-server.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_socket_recvfrom</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_socket_server</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

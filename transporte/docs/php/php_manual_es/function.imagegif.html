@@ -1,0 +1,373 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imagegif</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para imágenes"
+HREF="ref.image.html"><LINK
+REL="PREVIOUS"
+TITLE="imagegd"
+HREF="function.imagegd.html"><LINK
+REL="NEXT"
+TITLE="ImageInterlace"
+HREF="function.imageinterlace.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imagegd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imageinterlace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imagegif"
+></A
+>imagegif</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN39062"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>imagegif&nbsp;--&nbsp;Producir la salida de una imagen al navegador o a un
+    archivo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN39065"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>imagegif</B
+> ( resource imagen [, string nombre_archivo])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>imagegif()</B
+> crea el
+     archivo <ACRONYM
+CLASS="acronym"
+>GIF</ACRONYM
+> indicado por nombre_archivo desde
+     la imagen <VAR
+CLASS="parameter"
+>imagen</VAR
+>. El parámetro
+     <VAR
+CLASS="parameter"
+>imagen</VAR
+> es el valor de retorno de la
+     función <A
+HREF="function.imagecreate.html"
+><B
+CLASS="function"
+>imagecreate()</B
+></A
+>.
+    </P
+><P
+>&#13;     El formato de la imagen será <ACRONYM
+CLASS="acronym"
+>GIF87a</ACRONYM
+> a
+     menos que la imagen haya sido convertida a transparente con
+     <A
+HREF="function.imagecolortransparent.html"
+><B
+CLASS="function"
+>imagecolortransparent()</B
+></A
+>, en cuyo caso el
+     formato de la imagen será <ACRONYM
+CLASS="acronym"
+>GIF89a</ACRONYM
+>.
+    </P
+><P
+>&#13;     El argumento nombre_archivo es opcional, y si se omite, la
+     secuencia cruda de la imagen será dirigida a la salida
+     estándar directamente. Al enviar un valor content-type
+     image/gif mediante <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+>, puede crear un
+     script PHP que genere imágenes <ACRONYM
+CLASS="acronym"
+>GIF</ACRONYM
+>
+     directamente.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Dado que el soporte <ACRONYM
+CLASS="acronym"
+>GIF</ACRONYM
+> fue retirado por
+       completo de la biblioteca <ACRONYM
+CLASS="acronym"
+>GD</ACRONYM
+> en la
+       versión 1.6, ésta función no se encuentra
+       disponible si está usando tal versión de la
+       biblioteca GD. Se espera que el soporte para esta
+       característica regrese en una versión posterior
+       al relanzamiento del soporte <ACRONYM
+CLASS="acronym"
+>GIF</ACRONYM
+> en la
+       biblioteca GD a mediados de 2004. Para más
+       información, consulte el sitio web del <A
+HREF="http://www.boutell.com/gd/"
+TARGET="_top"
+>Proyecto GD</A
+>.
+      </P
+><P
+>&#13;       El siguiente segmento de código le permite escribir
+       aplicaciones PHP más portables al detectar
+       automáticamente el tipo de soporte GD que se encuentra
+       disponible. Reemplace la secuencia <VAR
+CLASS="literal"
+>header
+       ("Content-type: image/gif"); imagegif ($im);</VAR
+> por la
+       secuencia más flexible:
+       <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN39097"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">function_exists</font><font color="#007700">(</font><font color="#DD0000">"imagegif"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: image/gif"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagegif</font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">);<br />} elseif (</font><font color="#0000BB">function_exists</font><font color="#007700">(</font><font color="#DD0000">"imagejpeg"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: image/jpeg"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagejpeg</font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#0000BB">0.5</font><font color="#007700">);<br />} elseif (</font><font color="#0000BB">function_exists</font><font color="#007700">(</font><font color="#DD0000">"imagepng"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: image/png"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagepng</font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">);<br />} elseif (</font><font color="#0000BB">function_exists</font><font color="#007700">(</font><font color="#DD0000">"imagewbmp"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: image/vnd.wap.wbmp"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagewbmp</font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">);<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;die(</font><font color="#DD0000">"No hay soporte de im&amp;aacute;genes en este servidor PHP"</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      </P
+></BLOCKQUOTE
+></DIV
+>
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       A partir de la versión 3.0.18 y 4.0.2 puede usar la
+       función
+       <A
+HREF="function.imagetypes.html"
+><B
+CLASS="function"
+>imagetypes()</B
+></A
+> en lugar de
+       <A
+HREF="function.function-exists.html"
+><B
+CLASS="function"
+>function_exists()</B
+></A
+> para chequear por la
+       presencia de los varios formatos de imagen soportados:
+       <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN39103"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">imagetypes</font><font color="#007700">() &amp; </font><font color="#0000BB">IMG_GIF</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">header </font><font color="#007700">(</font><font color="#DD0000">"Content-type: image/gif"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagegif </font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">);<br />} elseif (</font><font color="#0000BB">imagetypes</font><font color="#007700">() &amp; </font><font color="#0000BB">IMG_JPG</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* ... etc. */<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.imagepng.html"
+><B
+CLASS="function"
+>imagepng()</B
+></A
+>,
+     <A
+HREF="function.imagewbmp.html"
+><B
+CLASS="function"
+>imagewbmp()</B
+></A
+>,
+     <A
+HREF="function.imagejpeg.html"
+><B
+CLASS="function"
+>imagejpeg()</B
+></A
+> y <A
+HREF="function.imagetypes.html"
+><B
+CLASS="function"
+>imagetypes()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imagegd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imageinterlace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imagegd</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.image.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ImageInterlace</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

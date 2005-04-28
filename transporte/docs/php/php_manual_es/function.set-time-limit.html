@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>set_time_limit</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="set_magic_quotes_runtime"
+HREF="function.set-magic-quotes-runtime.html"><LINK
+REL="NEXT"
+TITLE="version_compare"
+HREF="function.version-compare.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.set-magic-quotes-runtime.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.version-compare.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.set-time-limit"
+></A
+>set_time_limit</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN87029"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>set_time_limit&nbsp;--&nbsp;limita el tiempo máximo de ejecución</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN87032"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>set_time_limit</B
+> ( int seconds)<BR
+></BR
+><P
+>&#13;     Establece el número de segundos que se le permite a un script
+     ejecutarse. Si éste es alcanzado, el script devuelve un error de tipo 
+     fatal. El límite por defecto es 30 segundos o, si existe, el valor
+     <VAR
+CLASS="literal"
+>max_execution_time</VAR
+> definido en el <TT
+CLASS="filename"
+>php.ini</TT
+>. 
+     Si seconds (segundos) se establece a cero, no se impone 
+     ningún límite.</P
+><P
+>&#13;     Cuando se llama, <B
+CLASS="function"
+>set_time_limit()</B
+> reinicia 
+     el contador del timeout a cero. En otras palabras, si el timeout 
+     es el de por defecto de 30 segundos, y después de 25 segundos de
+     ejecución del script se realiza una llamada 
+     set_time_limit(20), el script se ejecutará durante un total de 45
+     segundos antes de alcanzar su límite.</P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;         Advierta que <B
+CLASS="function"
+>set_time_limit()</B
+> no tiene efecto
+         cuando PHP se ejecuta en <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+> (modo seguro). No hay 
+         otra opción que que desactivar el modo seguro o cambiar el
+         límite de tiempo en el <TT
+CLASS="filename"
+>php.ini</TT
+>. 
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La función <B
+CLASS="function"
+>set_time_limit()</B
+> y la directiva
+      de configuración <A
+HREF="ref.info.html#ini.max-execution-time"
+>max_execution_time</A
+> sólo 
+      afecta al tiempo de ejecución del script en sí. Cualquier
+      tiempo consumido en una actividad que ocurre fuera de la
+      ejecución del script así como llamadas al sistema utilizando
+      la función <A
+HREF="function.system.html"
+><B
+CLASS="function"
+>system()</B
+></A
+>, la función
+      <A
+HREF="function.sleep.html"
+><B
+CLASS="function"
+>sleep()</B
+></A
+>, consultas de base de datos, etc. no
+      se incluye para determinar el tiempo máximo que lleva el
+      script ejecutándose.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.set-magic-quotes-runtime.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.version-compare.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>set_magic_quotes_runtime</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>version_compare</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

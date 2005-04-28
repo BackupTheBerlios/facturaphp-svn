@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Opciones de apertura de secuencia</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Constantes de Secuencias"
+HREF="streams.constants.html"><LINK
+REL="PREVIOUS"
+TITLE="Constantes de Secuencias"
+HREF="streams.constants.html"><LINK
+REL="NEXT"
+TITLE="FAQ: Preguntas frecuentes"
+HREF="faq.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.constants.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.options"
+></A
+>Opciones de apertura de secuencia</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN121557"
+></A
+>Opciones de apertura de secuencia&nbsp;--&nbsp;Afecta la operación de las funciones de
+    fábrica de secuencias</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN121560"
+></A
+><H2
+>Descripción</H2
+><P
+>&#13;     Uno o más de éstos valores pueden ser combinados
+     usando el operador OR.
+     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>IGNORE_PATH</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Esta es la opción predeterminada para las secuencias;
+         solicita que include_path no sea usado en busca del archivo
+         requerido.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>USE_PATH</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Solicita que include_path sea usado en busca del archivo
+         requerido.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>IGNORE_URL</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Solicita que las envolturas de URL registradas sean ignoradas
+         cuando se abra la secuencia. Otras envolturas que no sean de
+         URL serán tomadas en cuenta cuando se decodifique la
+         ruta. No hay un valor opuesto para ésta bandera; la
+         API de secuencias usa todas las envolturas registradas por
+         defecto.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>IGNORE_URL_WIN</B
+></TT
+></DT
+><DD
+><P
+>&#13;         En sistemas windows, éste es el equivalente a
+         IGNORE_URL. En todos los otros sistemas, ésta bandera
+         no tiene efecto alguno.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>ENFORCE_SAFE_MODE</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Solicita que la implementación interna de secuencia
+         realice chequeos de safe_mode sobre el archivo antes de
+         abrirlo. Al omitir ésta bandera se evitarán los
+         chequeos de safe_mode y permite abrir cualquier archivo sobre
+         el que el proceso de PHP tengo privilegios de acceso.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>REPORT_ERRORS</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Si ésta bandera se encuentra activa, y hubo un error
+         durante la apertura del archivo o URL, la API de secuencias
+         llamará la función php_error por usted. Esto es
+         útil ya que la ruta puede contener información
+         sobre nombres de usuario/contraseñas que no
+         debería ser desplegada en la salida del navegador
+         (cosa que sería un riesgo de seguridad). Cuando la API
+         de secuencias genera un error, primero retira cualquier
+         información de nombres de usuario/contraseñas
+         de la ruta, haciendo que sea seguro mostrar el mensaje de
+         error en el navegador.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>STREAM_MUST_SEEK</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Esta bandera es útil cuando su extensión
+         realmente debe ser capaz de hacer búsquedas aleatorias
+         en una secuencia. Algunas secuencias pueden no ser
+         reubicables en su forma nativa, así que ésta
+         bandera le pide a la API de secuencias que chequee si la
+         secuencia soporta la reubicación. Si no lo hace,
+         copiará la secuencia en un almacenamiento temporal
+         (que puede tratarse de un archivo temporal o una secuencia en
+         memoria) que sí soporte búsquedas. Por favor
+         note que ésta bandera no es útil cuando usted
+         quiere hacer búsquedas en la secuencia y escribir
+         sobre ella, ya que la secuencia con la que trabaja puede no
+         estar asociada con el recurso real que usted solicitó.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          Si el recurso solicitado es basado en red, ésta
+          bandera causará que el proceso de apertura bloquee
+          hasta que el contenido completo haya sido descargado.
+          </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>STREAM_WILL_CAST</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Si su extensión usa una biblioteca externa que espera
+         un descriptor de archivo FILE*, puede usar esta bandera para
+         solicitar a la API de secuencias que abra el recurso pero que
+         evite el uso de búferes. Puede usar entonces
+         <B
+CLASS="function"
+>php_stream_cast()</B
+> para recuperar el
+         apuntador FILE* o descriptor de archivo que la biblioteca
+         requiere.
+        </P
+><P
+>&#13;         Esto es particularmente útil cuando accede a URLs HTTP
+         en donde el inicio de los datos reales de la secuencia se
+         encuentra después de un desplazamiento indeterminado
+         al interior de la secuencia.
+        </P
+><P
+>&#13;         Ya que esta opción deshabilita el uso de
+         búferes en el nivel del API de secuencias, usted puede
+         experimentar un rendimiento inferior cuando usa funciones de
+         secuencias sobre ella; esto es considerado aceptable ya que
+         usted le ha indicado a la API que estará usando las
+         funciones para adaptar la implementación interna de
+         secuencias. Use esta opción únicamente cuando
+         esté seguro de que la necesita.
+        </P
+></DD
+></DL
+></DIV
+>    
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.constants.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Constantes de Secuencias</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="streams.constants.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>FAQ: Preguntas frecuentes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

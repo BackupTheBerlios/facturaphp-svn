@@ -1,0 +1,1187 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones MySQL</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="msql"
+HREF="function.msql.html"><LINK
+REL="NEXT"
+TITLE="mysql_affected_rows"
+HREF="function.mysql-affected-rows.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.msql.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.mysql"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXV. Funciones MySQL</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN62357"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Estas funciones le permiten acceder a servidores de bases de
+     datos MySQL. Puede encontrar más información sobre
+     MySQL en <A
+HREF="http://www.mysql.com/"
+TARGET="_top"
+>http://www.mysql.com/</A
+>.
+    </P
+><P
+>&#13;     La documentación de MySQL puede encontrarse en <A
+HREF="http://dev.mysql.com/doc/"
+TARGET="_top"
+>http://dev.mysql.com/doc/</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Para contar con éstas funciones, debe compilar PHP con
+     soporte MySQL.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  Al usar la opción de configuración <VAR
+CLASS="option"
+>--with-mysql[=DIR]</VAR
+>, usted habilita a
+  <VAR
+CLASS="literal"
+>PHP</VAR
+> para que acceda a bases de datos MySQL.
+ </P
+><P
+>&#13;  En PHP 4, la opción <VAR
+CLASS="option"
+>--with-mysql</VAR
+> está habilitada por
+  defecto. Para desactivar este comportamiento prestablecido, usted
+  puede usar la opción de configuración <VAR
+CLASS="option"
+>--without-mysql</VAR
+>. También, en PHP 4,
+  si se habilita MySQL sin especificar el directorio de
+  instalación de MySQL, <VAR
+CLASS="literal"
+>PHP</VAR
+> usará las
+  bibliotecas de cliente de MySQL incorporadas. En Windows no existe
+  DLL, simplemente es parte de PHP 4. Los usuarios que ejecutan otras
+  aplicaciones que usan MySQL (auth-mysql, por ejemplo) no
+  deberían usar la biblioteca incorporada, en su lugar deben
+  especificar la ruta al directorio de instalación de MySQL, de
+  este modo: <VAR
+CLASS="option"
+>--with-mysql=/path/to/mysql</VAR
+>. Esto
+  obligará a <VAR
+CLASS="literal"
+>PHP</VAR
+> a usar las bibliotecas de
+  cliente instaladas por MySQL, para así evitar cualquier
+  conflicto.
+ </P
+><P
+>&#13;  En PHP 5, el soporte para MySQL no se encuentra habilitado por
+  defecto, ni lo está la biblioteca incorporada con PHP. Lea
+  este <A
+HREF="missing-stuff.html#faq.databases.mysql.php5"
+>FAQ</A
+> para
+  conocer los detalles del porqué.
+ </P
+><P
+>&#13;  Esta extensión de MySQL no soporta la funcionalidad completa
+  de versiones de MySQL superiores a 4.1.0. Para ellas, use <A
+HREF="ref.mysqli.html"
+>MySQLi</A
+>.
+ </P
+><P
+>&#13;  Si quisiera instalar la extensión mysql junto con la
+  extensión mysqli, debe usar la misma biblioteca de cliente
+  para evitar cualquier conflicto.
+ </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;   Pueden encontrarse problemas de inicialización y bloqueos de
+   <VAR
+CLASS="literal"
+>PHP</VAR
+> cuando esta extensión es cargada en
+   conjunto con la extensión recode. Consulte sobre la
+   extensión <A
+HREF="ref.recode.html"
+>recode</A
+> para
+   más información.
+  </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Si necesita juegos de caracteres diferentes a
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>latin</I
+></SPAN
+> (el juego por defecto), tendrá
+   que instalar una biblioteca de mysql externa (no incorporada) que
+   haya sido compilada con soporte para los juegos de caracteres.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN62395"
+></A
+><P
+><B
+>Tabla 1. Opciones de Configuración MySQL</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Por defecto</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>mysql.allow_persistent</TD
+><TD
+>"On"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>mysql.max_persistent</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>mysql.max_links</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>mysql.default_port</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysql.default_socket</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysql.default_host</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysql.default_user</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysql.default_password</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>mysql.connect_timeout</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  Para más detalles sobre las constantes PHP_INI_* y sus
+  definiciones, vea <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+</P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.mysql.allow-persistent"
+></A
+><VAR
+CLASS="parameter"
+>mysql.allow_persistent</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;Indica si se permiten <A
+HREF="features.persistent-connections.html"
+>conexiones
+persistentes</A
+> con MySQL.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.max-persistent"
+></A
+><VAR
+CLASS="parameter"
+>mysql.max_persistent</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;El número máximo de conexiones persistentes con MySQL
+por proceso.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.max-links"
+></A
+><VAR
+CLASS="parameter"
+>mysql.max_links</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;El número máximo de conexiones con MySQL por proceso,
+incluyendo conexiones persistentes.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.default-port"
+></A
+><VAR
+CLASS="parameter"
+>mysql.default_port</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;El número de puerto TCP predeterminado para usar cuando se
+conecta con el servidor de bases de datos, si no se indica otro. Si no
+se indica un valor predeterminado, el puerto se obtendrá de la
+variable de entorno <VAR
+CLASS="literal"
+>MYSQL_TCP_PORT</VAR
+>, la entrada
+<VAR
+CLASS="literal"
+>mysql-tcp</VAR
+> en <TT
+CLASS="filename"
+>/etc/services</TT
+> o
+la constante de tiempo de compilación
+<VAR
+CLASS="literal"
+>MYSQL_PORT</VAR
+>, en ese orden. En Win32 sólo se
+usa la constante <VAR
+CLASS="literal"
+>MYSQL_PORT</VAR
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.default-socket"
+></A
+><VAR
+CLASS="parameter"
+>mysql.default_socket</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;El nombre de socket predeterminado a ser usado cuando se realicen
+conexiones con un servidor de base de datos local, si no se indica
+algún otro.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.default-host"
+></A
+><VAR
+CLASS="parameter"
+>mysql.default_host</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;La máquina anfitriona predeterminada a ser usada cuando se
+realicen conexiones con un servidor de bases de datos, si no se indica
+otro valor. No es aplicable en <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo
+seguro</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.default-user"
+></A
+><VAR
+CLASS="parameter"
+>mysql.default_user</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;El nombre de usuario prodeterminado para conectarse al servidor de
+bases de datos si no se indica otro. No es aplicable bajo <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo seguro</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.default-password"
+></A
+><VAR
+CLASS="parameter"
+>mysql.default_password</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;La contraseña predeterminada a usar cuando se realicen
+conexiones con el servidor de bases de datos, si no se indica otro
+valor. No es aplicable en <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo
+seguro</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.mysql.connect-timeout"
+></A
+><VAR
+CLASS="parameter"
+>mysql.connect_timeout</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;Tiempo de espera máximo de conexión, en segundos. Bajo
+Linux este tiempo de espera es usado también cuando se espera
+la primera respuesta del servidor.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.resources"
+>Tipos de recursos</A
+></H1
+><P
+>&#13;     Hay dos tipos de recursos usados en el módulo MySQL. El
+     primero es el identificador de enlace para una conexión de
+     base de datos, el segundo es un recurso que almacena el resultado
+     de una consulta.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><P
+>&#13;A partir de PHP 4.3.0, es posible especificar banderas de cliente
+adicionales para las funciones <A
+HREF="function.mysql-connect.html"
+><B
+CLASS="function"
+>mysql_connect()</B
+></A
+> y
+<A
+HREF="function.mysql-pconnect.html"
+><B
+CLASS="function"
+>mysql_pconnect()</B
+></A
+>. Las siguientes constantes
+están definidas:
+  <DIV
+CLASS="table"
+><A
+NAME="AEN62516"
+></A
+><P
+><B
+>Tabla 2. Constantes de cliente MySQL</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>MYSQL_CLIENT_COMPRESS</TD
+><TD
+>Usar protocolo de compresión</TD
+></TR
+><TR
+><TD
+>MYSQL_CLIENT_IGNORE_SPACE</TD
+><TD
+>Permitir espacios después de nombres de funciones</TD
+></TR
+><TR
+><TD
+>MYSQL_CLIENT_INTERACTIVE</TD
+><TD
+>Permitir tantos segundos de inactividad como indique
+   interactive_timeout (en lugar de wait_timeout) antes de cerrar la
+   conexión</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+><P
+>&#13;La función <A
+HREF="function.mysql-fetch-array.html"
+><B
+CLASS="function"
+>mysql_fetch_array()</B
+></A
+> usa una
+constante para los diferentes tipos de matrices de resultado. Las
+siguientes constantes están definidas:
+  <DIV
+CLASS="table"
+><A
+NAME="AEN62535"
+></A
+><P
+><B
+>Tabla 3. Constantes MySQL-fetch</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>MYSQL_ASSOC</TD
+><TD
+>&#13;Las columnas son devueltas en la matriz usando el nombre del campo
+como índice.
+      </TD
+></TR
+><TR
+><TD
+>MYSQL_BOTH</TD
+><TD
+>&#13;Las columnas son devueltas en la matriz teniendo tanto un
+índice numérico como un índice correspondiente al
+nombre del campo.
+      </TD
+></TR
+><TR
+><TD
+>MYSQL_NUM</TD
+><TD
+>&#13;Las columnas son devueltas en la matriz teniendo un índice
+numérico a los campos. Este índice comienza en 0, el
+primer campo del resultado.
+      </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mysql.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     Este sencillo ejemplo muestra cómo conectarse, ejecutar
+     una consulta, imprimir las filas resultantes y desconectarse de
+     una base de datos MySQL.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN62555"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo general de la extensión MySQL</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Conexion, seleccion de base de datos */<br /></font><font color="#0000BB">$enlace </font><font color="#007700">= </font><font color="#0000BB">mysql_connect</font><font color="#007700">(</font><font color="#DD0000">"host_mysql"</font><font color="#007700">, </font><font color="#DD0000">"usuario_mysql"</font><font color="#007700">, </font><font color="#DD0000">"contrasenya_mysql"</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">"No pudo conectarse : " </font><font color="#007700">. </font><font color="#0000BB">mysql_error</font><font color="#007700">());<br />echo </font><font color="#DD0000">"Conexi&amp;oacute;n exitosa"</font><font color="#007700">;<br /></font><font color="#0000BB">mysql_select_db</font><font color="#007700">(</font><font color="#DD0000">"mi_base_de_datos"</font><font color="#007700">) or die(</font><font color="#DD0000">"No pudo seleccionarse la BD."</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Realizar una consulta SQL */<br /></font><font color="#0000BB">$consulta&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"SELECT * FROM mi_tabla"</font><font color="#007700">;<br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">mysql_query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">) or die(</font><font color="#DD0000">"La consulta fall&amp;oacute;: " </font><font color="#007700">. </font><font color="#0000BB">mysql_error</font><font color="#007700">());<br /><br /></font><font color="#FF8000">/* Impresion de resultados en HTML */<br /></font><font color="#007700">echo </font><font color="#DD0000">"&lt;table&gt;\n"</font><font color="#007700">;<br />while (</font><font color="#0000BB">$linea </font><font color="#007700">= </font><font color="#0000BB">mysql_fetch_array</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">, </font><font color="#0000BB">MYSQL_ASSOC</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"\t&lt;tr&gt;\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach (</font><font color="#0000BB">$linea </font><font color="#007700">as </font><font color="#0000BB">$valor_col</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"</font><font color="#007700">\t\t</font><font color="#DD0000">&lt;td&gt;$valor_col&lt;/td&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"\t&lt;/tr&gt;\n"</font><font color="#007700">;<br />}<br />echo </font><font color="#DD0000">"&lt;/table&gt;\n"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* Liberar conjunto de resultados */<br /></font><font color="#0000BB">mysql_free_result</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Cerrar la conexion */<br /></font><font color="#0000BB">mysql_close</font><font color="#007700">(</font><font color="#0000BB">$enlace</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.mysql-affected-rows.html"
+>mysql_affected_rows</A
+>&nbsp;--&nbsp;Devuelve el número de filas afectadas de la última
+     operación MySQL
+     </DT
+><DT
+><A
+HREF="function.mysql-change-user.html"
+>mysql_change_user</A
+>&nbsp;--&nbsp;
+     Cambia el usuario conectado en la conexión activa
+    </DT
+><DT
+><A
+HREF="function.mysql-client-encoding.html"
+>mysql_client_encoding</A
+>&nbsp;--&nbsp;Devuelve el nombre del juego de caracteres</DT
+><DT
+><A
+HREF="function.mysql-close.html"
+>mysql_close</A
+>&nbsp;--&nbsp;cierra el enlace con MySQL</DT
+><DT
+><A
+HREF="function.mysql-connect.html"
+>mysql_connect</A
+>&nbsp;--&nbsp;Abre una conexión a un servidor MySQL</DT
+><DT
+><A
+HREF="function.mysql-create-db.html"
+>mysql_create_db</A
+>&nbsp;--&nbsp;Crea una base MySQL</DT
+><DT
+><A
+HREF="function.mysql-data-seek.html"
+>mysql_data_seek</A
+>&nbsp;--&nbsp;Mueve el puntero interno</DT
+><DT
+><A
+HREF="function.mysql-db-name.html"
+>mysql_db_name</A
+>&nbsp;--&nbsp;Obtener datos de resultado</DT
+><DT
+><A
+HREF="function.mysql-db-query.html"
+>mysql_db_query</A
+>&nbsp;--&nbsp;Envia una sentencia MySQL al servidor</DT
+><DT
+><A
+HREF="function.mysql-drop-db.html"
+>mysql_drop_db</A
+>&nbsp;--&nbsp;Borra una base de datos MySQL</DT
+><DT
+><A
+HREF="function.mysql-errno.html"
+>mysql_errno</A
+>&nbsp;--&nbsp;Deuelve el número del mensaje de error de la 
+     última operación MySQL</DT
+><DT
+><A
+HREF="function.mysql-error.html"
+>mysql_error</A
+>&nbsp;--&nbsp;Devuelve el texto del mensaje de error de la última
+     operación MySQL</DT
+><DT
+><A
+HREF="function.mysql-escape-string.html"
+>mysql_escape_string</A
+>&nbsp;--&nbsp;
+      Escapa una cadena para su uso en mysql_query.
+    </DT
+><DT
+><A
+HREF="function.mysql-fetch-array.html"
+>mysql_fetch_array</A
+>&nbsp;--&nbsp;
+     Extrae la fila de resultado como una matriz asociativa
+    </DT
+><DT
+><A
+HREF="function.mysql-fetch-assoc.html"
+>mysql_fetch_assoc</A
+>&nbsp;--&nbsp;
+     Recupera una fila de resultado como una matriz asociativa
+    </DT
+><DT
+><A
+HREF="function.mysql-fetch-field.html"
+>mysql_fetch_field</A
+>&nbsp;--&nbsp;
+     Extrae la información de una columna y la devuelve como un objeto.
+    </DT
+><DT
+><A
+HREF="function.mysql-fetch-lengths.html"
+>mysql_fetch_lengths</A
+>&nbsp;--&nbsp;
+     Devuelve la longitud de cada salida en un resultado
+    </DT
+><DT
+><A
+HREF="function.mysql-fetch-object.html"
+>mysql_fetch_object</A
+>&nbsp;--&nbsp;Extrae una fila de resultado como un objeto</DT
+><DT
+><A
+HREF="function.mysql-fetch-row.html"
+>mysql_fetch_row</A
+>&nbsp;--&nbsp;Devuelve una fila de resultado como matriz</DT
+><DT
+><A
+HREF="function.mysql-field-flags.html"
+>mysql_field_flags</A
+>&nbsp;--&nbsp;
+     Devuelve los flags asociados con el campo especificado en un resultado
+    </DT
+><DT
+><A
+HREF="function.mysql-field-len.html"
+>mysql_field_len</A
+>&nbsp;--&nbsp;
+     Devuelve la longitud del campo especificado
+    </DT
+><DT
+><A
+HREF="function.mysql-field-name.html"
+>mysql_field_name</A
+>&nbsp;--&nbsp;
+     Devuelve el nombre del campo especificado en un resultado
+    </DT
+><DT
+><A
+HREF="function.mysql-field-seek.html"
+>mysql_field_seek</A
+>&nbsp;--&nbsp;
+     Asigna el puntero del resultado al offset del campo especificado
+    </DT
+><DT
+><A
+HREF="function.mysql-field-table.html"
+>mysql_field_table</A
+>&nbsp;--&nbsp;
+     Devuelve el nombre de la tabla donde esta el campo especificado
+    </DT
+><DT
+><A
+HREF="function.mysql-field-type.html"
+>mysql_field_type</A
+>&nbsp;--&nbsp;
+     Devuelve el tipo del campo especificado en un resultado
+    </DT
+><DT
+><A
+HREF="function.mysql-free-result.html"
+>mysql_free_result</A
+>&nbsp;--&nbsp;Libera la memoria del resultado</DT
+><DT
+><A
+HREF="function.mysql-get-client-info.html"
+>mysql_get_client_info</A
+>&nbsp;--&nbsp;Obtener información del cliente MySQL</DT
+><DT
+><A
+HREF="function.mysql-get-host-info.html"
+>mysql_get_host_info</A
+>&nbsp;--&nbsp;Obtener información de la máquina
+    anfitriona MySQL</DT
+><DT
+><A
+HREF="function.mysql-get-proto-info.html"
+>mysql_get_proto_info</A
+>&nbsp;--&nbsp;Obtener información del protocolo
+    MySQL</DT
+><DT
+><A
+HREF="function.mysql-get-server-info.html"
+>mysql_get_server_info</A
+>&nbsp;--&nbsp;Obtener información del servidor
+    MySQL</DT
+><DT
+><A
+HREF="function.mysql-info.html"
+>mysql_info</A
+>&nbsp;--&nbsp;
+Obtiene información sobre la consulta más reciente
+    </DT
+><DT
+><A
+HREF="function.mysql-insert-id.html"
+>mysql_insert_id</A
+>&nbsp;--&nbsp;
+     Devuelve el identificador generado en la última llamada a INSERT
+    </DT
+><DT
+><A
+HREF="function.mysql-list-dbs.html"
+>mysql_list_dbs</A
+>&nbsp;--&nbsp;
+     Lista las bases de datos disponibles en el servidor MySQL
+    </DT
+><DT
+><A
+HREF="function.mysql-list-fields.html"
+>mysql_list_fields</A
+>&nbsp;--&nbsp;Lista los campos del resultado de MySQL</DT
+><DT
+><A
+HREF="function.mysql-list-processes.html"
+>mysql_list_processes</A
+>&nbsp;--&nbsp;Lista los procesos MySQL</DT
+><DT
+><A
+HREF="function.mysql-list-tables.html"
+>mysql_list_tables</A
+>&nbsp;--&nbsp;Lista las tablas en una base de datos MySQL</DT
+><DT
+><A
+HREF="function.mysql-num-fields.html"
+>mysql_num_fields</A
+>&nbsp;--&nbsp;devuelve el numero de campos de un resultado</DT
+><DT
+><A
+HREF="function.mysql-num-rows.html"
+>mysql_num_rows</A
+>&nbsp;--&nbsp;Devuelve el numero de filas de un resultado</DT
+><DT
+><A
+HREF="function.mysql-pconnect.html"
+>mysql_pconnect</A
+>&nbsp;--&nbsp;
+     Abre una conexión persistente al servidor MySQL
+    </DT
+><DT
+><A
+HREF="function.mysql-ping.html"
+>mysql_ping</A
+>&nbsp;--&nbsp;Efectuar un chequeo de respuesta (ping) sobre una
+    conexión de servidor o reconectarse si no hay conexión</DT
+><DT
+><A
+HREF="function.mysql-query.html"
+>mysql_query</A
+>&nbsp;--&nbsp;Envia una sentencia SQL a MySQL</DT
+><DT
+><A
+HREF="function.mysql-real-escape-string.html"
+>mysql_real_escape_string</A
+>&nbsp;--&nbsp;
+     Escapa caracteres especiales de una cadena para su uso en una
+     sentencia SQL, tomando en cuanto el juego de caracteres actual de
+     la conexión.
+    </DT
+><DT
+><A
+HREF="function.mysql-result.html"
+>mysql_result</A
+>&nbsp;--&nbsp;Devuelve datos de un resultado</DT
+><DT
+><A
+HREF="function.mysql-select-db.html"
+>mysql_select_db</A
+>&nbsp;--&nbsp;Selecciona un base de datos MySQL</DT
+><DT
+><A
+HREF="function.mysql-stat.html"
+>mysql_stat</A
+>&nbsp;--&nbsp;Obtener el status actual del sistema</DT
+><DT
+><A
+HREF="function.mysql-tablename.html"
+>mysql_tablename</A
+>&nbsp;--&nbsp;Devuelve el nombre de la tabla de un campo</DT
+><DT
+><A
+HREF="function.mysql-thread-id.html"
+>mysql_thread_id</A
+>&nbsp;--&nbsp;Devuelve el ID del hilo actual</DT
+><DT
+><A
+HREF="function.mysql-unbuffered-query.html"
+>mysql_unbuffered_query</A
+>&nbsp;--&nbsp;
+Envía una consulta SQL a MySQL, sin recuperar ni colocar en
+búfer las filas de resultado
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.msql.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>msql</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_affected_rows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

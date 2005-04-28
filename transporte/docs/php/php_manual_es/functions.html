@@ -1,0 +1,390 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="PREVIOUS"
+TITLE="include_once"
+HREF="function.include-once.html"><LINK
+REL="NEXT"
+TITLE="Parámetros de las funciones"
+HREF="functions.arguments.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.include-once.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="functions.arguments.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="functions"
+>Capítulo 12. Funciones</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="functions.html#functions.user-defined"
+>Funciones definidas por el usuario</A
+></DT
+><DT
+><A
+HREF="functions.arguments.html"
+>Parámetros de las funciones</A
+></DT
+><DT
+><A
+HREF="functions.returning-values.html"
+>Devolviendo valores</A
+></DT
+><DT
+><A
+HREF="functions.variable-functions.html"
+>Funciones variables</A
+></DT
+><DT
+><A
+HREF="functions.internal.html"
+>Funciones internas (incorporadas)</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="functions.user-defined"
+>Funciones definidas por el usuario</A
+></H1
+><P
+>&#13;   Una función se puede definir con la siguiente sintaxis:
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4301"
+></A
+><P
+><B
+>Ejemplo 12-1. Psuedo código para demostrar el uso de
+    funciones</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">foo </font><font color="#007700">(</font><font color="#0000BB">$arg_1</font><font color="#007700">, </font><font color="#0000BB">$arg_2</font><font color="#007700">, ..., </font><font color="#0000BB">$arg_n</font><font color="#007700">) <br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Funci&amp;oacute;n de ejemplo.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$retval</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Cualquier instrucción válida de PHP puede aparecer en
+   el cuerpo de la función, incluso otras funiones y
+   definiciones de <A
+HREF="language.oop.html#keyword.class"
+>clases</A
+>.
+  </P
+><P
+>&#13;   En PHP3, las funciones deben definirse antes de que se referencien.
+   En PHP4 no existe tal requerimiento.<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Excepto</I
+></SPAN
+>
+   cuando una función es definida condicionalmente como en los
+   ejemplos siguientes.
+  </P
+><P
+>&#13;   Cuando una función es definida condicionalmente como se
+   puede ver en estos dos ejemplos, su definición debe ser
+   procesada <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>antes</I
+></SPAN
+> que sea llamada.
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4311"
+></A
+><P
+><B
+>Ejemplo 12-2. Funciones Condicionales</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$makefoo </font><font color="#007700">= </font><font color="#0000BB">true</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* We can't call foo() from here <br />&nbsp;&nbsp;&nbsp;since it doesn't exist yet,<br />&nbsp;&nbsp;&nbsp;but we can call bar() */<br /><br /></font><font color="#0000BB">bar</font><font color="#007700">();<br /><br />if (</font><font color="#0000BB">$makefoo</font><font color="#007700">) {<br />&nbsp;&nbsp;function </font><font color="#0000BB">foo </font><font color="#007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"I don't exist until program execution reaches me.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#FF8000">/* Now we can safely call foo()<br />&nbsp;&nbsp;&nbsp;since $makefoo evaluated to true */<br /><br /></font><font color="#007700">if (</font><font color="#0000BB">$makefoo</font><font color="#007700">) </font><font color="#0000BB">foo</font><font color="#007700">();<br /><br />function </font><font color="#0000BB">bar</font><font color="#007700">() <br />{<br />&nbsp;&nbsp;echo </font><font color="#DD0000">"I exist immediately upon program start.\n"</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4315"
+></A
+><P
+><B
+>Ejemplo 12-3. Funciones dentro de funciones</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">foo</font><font color="#007700">() <br />{<br />&nbsp;&nbsp;function </font><font color="#0000BB">bar</font><font color="#007700">() <br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"I don't exist until foo() is called.\n"</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#FF8000">/* We can't call bar() yet<br />&nbsp;&nbsp;&nbsp;since it doesn't exist. */<br /><br /></font><font color="#0000BB">foo</font><font color="#007700">();<br /><br /></font><font color="#FF8000">/* Now we can call bar(),<br />&nbsp;&nbsp;&nbsp;foo()'s processesing has<br />&nbsp;&nbsp;&nbsp;made it accessible. */<br /><br /></font><font color="#0000BB">bar</font><font color="#007700">();<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   PHP no soporta la redefinición de funciones previamente
+   declaradas.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Los nombres de funciones se pueden llamar con mayusculas o
+    minusculas, aunque es una buena costumbre el llamar a las
+    funciones tal y como aparecen en su definición.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   PHP3 no soporta un número variable de parámetros,
+   aunque sí soporta parámetros por defecto (ver <A
+HREF="functions.arguments.html#functions.arguments.default"
+>Valores por defecto de de los
+   parámetros</A
+> para más información). PHP4
+   soporta ambos: ver <A
+HREF="functions.arguments.html#functions.variable-arg-list"
+>Listas de longitud variable
+   de parámetros</A
+> y las referencias de las funciones
+   <A
+HREF="function.func-num-args.html"
+><B
+CLASS="function"
+>func_num_args()</B
+></A
+>,
+   <A
+HREF="function.func-get-arg.html"
+><B
+CLASS="function"
+>func_get_arg()</B
+></A
+>, y
+   <A
+HREF="function.func-get-args.html"
+><B
+CLASS="function"
+>func_get_args()</B
+></A
+> para más
+   información.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.include-once.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="functions.arguments.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.include-once.html"
+><B
+CLASS="function"
+>include_once()</B
+></A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Parámetros de las funciones</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

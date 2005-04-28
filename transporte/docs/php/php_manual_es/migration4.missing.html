@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones faltantes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Migración de PHP 3 a PHP 4"
+HREF="migration4.html"><LINK
+REL="PREVIOUS"
+TITLE='empty("0")'
+HREF="migration4.empty.html"><LINK
+REL="NEXT"
+TITLE="Extensiones PHP 3"
+HREF="migration4.extensions.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration4.empty.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice C. Migración de PHP 3 a PHP 4</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="migration4.extensions.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration4.missing"
+>Funciones faltantes</A
+></H1
+><P
+>&#13;    Aunque PHP 4 viene con una gran cantidad de
+    características, funciones y extensiones nuevas, puede que
+    aun encuentre funciones de la versión 3 que hacen falta. Un
+    número pequeño de funciones centrales han
+    desaparecido ya que no funcionan con el nuevo esquema de
+    separación de análisis sintáctico y
+    ejecución que se introdujo en PHP 4 con el motor
+    Zend. Otras funciones, e incluso extensiones completas, se han
+    marcado obsoletas a medida que nuevas funciones y extensiones
+    cubren las mismas tareas y en ocasiones en una forma más
+    general. Algunas funciones simplemente no han sido portadas aun y
+    finalmente algunas funciones o extensiones pueden faltar debido a
+    conflictos de licencias.
+   </P
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration4.missing.concept"
+>Funciones faltantes debido a cambios conceptuales</A
+></H2
+><P
+>&#13;     Dado que PHP 4 separa ahora el análisis sintáctico
+     de la ejecución, ya no es posible modificar el
+     comportamiente del analizador sintáctico (embebido ahora
+     en el motor Zend) en tiempo de ejecución, dado que el
+     análisis ya ha ocurrido para entonces. De modo que la
+     función <B
+CLASS="function"
+>short_tags()</B
+> ya no existe. Aun
+     puede modificar el comportamiento del analizador
+     sintánctico definiendo los valores apropiados en el
+     archivo <TT
+CLASS="filename"
+>php.ini</TT
+>.
+    </P
+><P
+>&#13;     Otra característica de PHP 3 que no es parte de PHP 4 es
+     la interfaz de depuración integrada. Existen adiciones de
+     terceros para el motor Zend que añaden funcionalidades
+     similares.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration4.deprecate"
+>Funciones y extensiones deprecadas</A
+></H2
+><P
+>&#13;     Las extensiones de bases de datos Adabas y Solid ya no
+     existen. Larga vida a la extensión unificada ODBC en su
+     lugar.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration4.unset"
+>Status modificado para <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+></A
+></H2
+><P
+>&#13;     <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+>, aun cuando sigue estando disponible,
+     es implementada ahora como una construcción del lenguaje
+     en lugar de una función.
+    </P
+><P
+>&#13;     Esto no tiene consecuencia alguna en el comportamiento
+     de <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+>, pero realizar una prueba con
+     "unset" usando <A
+HREF="function.function-exists.html"
+><B
+CLASS="function"
+>function_exists()</B
+></A
+>
+     devolverá <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> del mismo modo que ocurriría con
+     otras construcciones del lenguaje que tienen apariencia de
+     funciones, como <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>.
+    </P
+><P
+>&#13;     Otro cambio más práctico es que ya no es posible
+     llamar <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+> indirectamente, esto
+     es, <VAR
+CLASS="literal"
+>$func="unset"; $func($alguna_variable)</VAR
+> no
+     funcionará más.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration4.empty.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="migration4.extensions.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>empty("0")</VAR
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="migration4.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Extensiones PHP 3</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

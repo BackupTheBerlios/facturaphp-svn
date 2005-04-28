@@ -1,0 +1,252 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysql_stat</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones MySQL"
+HREF="ref.mysql.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_select_db"
+HREF="function.mysql-select-db.html"><LINK
+REL="NEXT"
+TITLE="mysql_tablename"
+HREF="function.mysql-tablename.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-select-db.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-tablename.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysql-stat"
+></A
+>mysql_stat</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN63688"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>mysql_stat&nbsp;--&nbsp;Obtener el status actual del sistema</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN63691"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>mysql_stat</B
+> ( [resource id_enlace])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>mysql_stat()</B
+> devuelve el status actual del servidor.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Por el momento, <B
+CLASS="function"
+>mysql_stat()</B
+> devuelve
+únicamente el status de uptime, hilos, consultas, tablas
+abiertas, tablas de vaciado y consultas por segundo. Para una lista
+completa de variables de status, usted tendrá que usar el
+comando SQL 'SHOW STATUS'.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN63705"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>mysql_stat()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$enlace </font><font color="#007700">= </font><font color="#0000BB">mysql_connect</font><font color="#007700">(</font><font color="#DD0000">'localhost'</font><font color="#007700">, </font><font color="#DD0000">"mysql_user"</font><font color="#007700">, </font><font color="#DD0000">"mysql_password"</font><font color="#007700">);<br /></font><font color="#0000BB">$status </font><font color="#007700">= </font><font color="#0000BB">explode</font><font color="#007700">(</font><font color="#DD0000">'&nbsp;&nbsp;'</font><font color="#007700">, </font><font color="#0000BB">mysql_stat</font><font color="#007700">(</font><font color="#0000BB">$enlace</font><font color="#007700">));<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$status</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;El anterior ejemplo produciría la siguiente salida:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; Uptime: 5380
+    [1] =&#62; Threads: 2
+    [2] =&#62; Questions: 1321299
+    [3] =&#62; Slow queries: 0
+    [4] =&#62; Opens: 26
+    [5] =&#62; Flush tables: 1
+    [6] =&#62; Open tables: 17
+    [7] =&#62; Queries per second avg: 245.595
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-select-db.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-tablename.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_select_db</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_tablename</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

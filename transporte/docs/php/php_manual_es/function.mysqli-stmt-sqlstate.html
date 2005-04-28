@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_stmt_sqlstate</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_stmt_send_long_data"
+HREF="function.mysqli-stmt-send-long-data.html"><LINK
+REL="NEXT"
+TITLE="mysqli_stmt_store_result"
+HREF="function.mysqli-stmt-store-result.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-send-long-data.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-store-result.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-stmt-sqlstate"
+></A
+>mysqli_stmt_sqlstate</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN68425"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_stmt_sqlstate&nbsp;--&nbsp;Regresa el error SQLSTATE de la operación con sentencias 
+     previa</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68428"
+></A
+><H2
+>Descripción</H2
+>cadena <B
+CLASS="methodname"
+>mysqli_stmt_sqlstate</B
+> ( objeto stmt)<BR
+></BR
+><P
+>&#13;     Regresa una cadena conteniendo el código de error SQLSTATE para la 
+     sentencia preparada más recientemente invocada que pudo ser exitosa 
+     o fallar. El código de error consiste de cinco caracteres. 
+     <VAR
+CLASS="literal"
+>'00000'</VAR
+> significa que no hubo error. Los valores son 
+     específicados por ANSI SQL y ODBC. Para una lista de los posibles 
+     valores vea 
+     <A
+HREF="http://dev.mysql.com/doc/mysql/en/Error-returns.html"
+TARGET="_top"
+>http://dev.mysql.com/doc/mysql/en/Error-returns.html</A
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Note que no todos los errores de MySQL tienen un correspondiente en SQLSTATE. 
+      El valor <VAR
+CLASS="literal"
+>HY000</VAR
+> (error general) es usado para errores 
+      que no tienen ese correspondiente.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68442"
+></A
+><H2
+>Valores regresados</H2
+><P
+>&#13;     Regresa una candena conteniendo el código de error SQLSTATE para 
+     el último error. El código de error consiste de cinco caracteres.
+     <VAR
+CLASS="literal"
+>'00000'</VAR
+> significa que no hubo error.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68446"
+></A
+><H2
+>Vea también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-stmt-errno.html"
+><B
+CLASS="function"
+>mysqli_stmt_errno()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-error.html"
+><B
+CLASS="function"
+>mysqli_stmt_error()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68451"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN68453"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Open a connection */<br /></font><font color="#0000BB">$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */ <br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"CREATE TABLE myCountry LIKE Country"</font><font color="#007700">);<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"INSERT INTO myCountry SELECT * FROM Country"</font><font color="#007700">);<br /><br /><br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"SELECT Name, Code FROM myCountry ORDER BY Name"</font><font color="#007700">;<br />if (</font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">prepare</font><font color="#007700">(</font><font color="#0000BB">$query</font><font color="#007700">)) {<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* drop table */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"DROP TABLE myCountry"</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* execute query */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">execute</font><font color="#007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Error: %s.\n"</font><font color="#007700">, </font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">sqlstate</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* close statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br />}<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN68456"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Open a connection */<br /></font><font color="#0000BB">$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */ <br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"CREATE TABLE myCountry LIKE Country"</font><font color="#007700">);<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"INSERT INTO myCountry SELECT * FROM Country"</font><font color="#007700">);<br /><br /><br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"SELECT Name, Code FROM myCountry ORDER BY Name"</font><font color="#007700">;<br />if (</font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">mysqli_prepare</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#0000BB">$query</font><font color="#007700">)) {<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* drop table */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"DROP TABLE myCountry"</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* execute query */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_execute</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Error: %s.\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_stmt_sqlstate</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">));<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* close statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_close</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br />}<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Error: 42S02.</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-send-long-data.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-store-result.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_stmt_send_long_data</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_stmt_store_result</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

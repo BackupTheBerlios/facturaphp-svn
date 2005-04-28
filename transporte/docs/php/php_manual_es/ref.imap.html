@@ -1,0 +1,629 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones IMAP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="read_exif_data"
+HREF="function.read-exif-data.html"><LINK
+REL="NEXT"
+TITLE="imap_8bit"
+HREF="function.imap-8bit.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.read-exif-data.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-8bit.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.imap"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XLIII. Funciones IMAP</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN40279"
+></A
+><P
+>&#13;    Para hacer funcionar estas funciones, debe compilar PHP con
+    <VAR
+CLASS="option"
+>--with-imap</VAR
+>. Esto requiere que 
+    la libreria c-client esté instalada. Obtenga la última versión de
+    <A
+HREF="ftp://ftp.cac.washington.edu/imap/"
+TARGET="_top"
+>ftp://ftp.cac.washington.edu/imap/</A
+> y compílela. Luego
+    copie <TT
+CLASS="filename"
+>c-client/c-client.a</TT
+> al directorio
+    <TT
+CLASS="filename"
+>/usr/local/lib</TT
+> o a cualquier otro directorio 
+    de su LINK path y copie <TT
+CLASS="filename"
+>c-client/rfc822.h</TT
+>,
+    <TT
+CLASS="filename"
+>mail.h</TT
+> y <TT
+CLASS="filename"
+>linkage.h</TT
+> al directorio
+    <TT
+CLASS="filename"
+>/usr/local/include</TT
+> o a cualquier otro de su INCLUDE
+    path.
+   </P
+><P
+>&#13;    Decir que estas funciones no están limitadas al protocolo
+    <ACRONYM
+CLASS="acronym"
+>IMAP</ACRONYM
+>, a pesar de sus nombres.  La librería subyacente
+    c-client también soporta <ACRONYM
+CLASS="acronym"
+>NNTP</ACRONYM
+>, <ACRONYM
+CLASS="acronym"
+>POP3</ACRONYM
+>
+    y métodos de acceso local a buzones de correo.  Vea <A
+HREF="function.imap-open.html"
+><B
+CLASS="function"
+>imap_open()</B
+></A
+>
+    para una mayor información.
+   </P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.imap-8bit.html"
+>imap_8bit</A
+>&nbsp;--&nbsp;
+     Convierte una cadena de 8bit a una cadena quoted-printable
+    </DT
+><DT
+><A
+HREF="function.imap-alerts.html"
+>imap_alerts</A
+>&nbsp;--&nbsp;
+     Esta función devuelve todos los mensajes de alerta IMAP (si hubo) que han 
+     ocurrido durante la petición de la pagina o desde que la pila de alertas fue
+     inicializada.
+    </DT
+><DT
+><A
+HREF="function.imap-append.html"
+>imap_append</A
+>&nbsp;--&nbsp;
+     Agrega una cadena de mensaje al buzón especificado
+    </DT
+><DT
+><A
+HREF="function.imap-base64.html"
+>imap_base64</A
+>&nbsp;--&nbsp;Decodifica texto codificado en BASE64</DT
+><DT
+><A
+HREF="function.imap-binary.html"
+>imap_binary</A
+>&nbsp;--&nbsp;
+     Convierte una cadena de 8bit a una cadena base64 
+    </DT
+><DT
+><A
+HREF="function.imap-body.html"
+>imap_body</A
+>&nbsp;--&nbsp;Lee el cuerpo del mensaje</DT
+><DT
+><A
+HREF="function.imap-bodystruct.html"
+>imap_bodystruct</A
+>&nbsp;--&nbsp;
+     Read the structure of a specified body section of a specific message
+    </DT
+><DT
+><A
+HREF="function.imap-check.html"
+>imap_check</A
+>&nbsp;--&nbsp;Comprueba el estado del buzón actual</DT
+><DT
+><A
+HREF="function.imap-clearflag-full.html"
+>imap_clearflag_full</A
+>&nbsp;--&nbsp;Limpia los flags de los mensajes</DT
+><DT
+><A
+HREF="function.imap-close.html"
+>imap_close</A
+>&nbsp;--&nbsp;Cierra una sesión IMAP</DT
+><DT
+><A
+HREF="function.imap-createmailbox.html"
+>imap_createmailbox</A
+>&nbsp;--&nbsp;Crea un buzón nuevo</DT
+><DT
+><A
+HREF="function.imap-delete.html"
+>imap_delete</A
+>&nbsp;--&nbsp;
+     Marca un mensaje para ser borrado en el buzón actual
+    </DT
+><DT
+><A
+HREF="function.imap-deletemailbox.html"
+>imap_deletemailbox</A
+>&nbsp;--&nbsp;Elimina un buzón</DT
+><DT
+><A
+HREF="function.imap-errors.html"
+>imap_errors</A
+>&nbsp;--&nbsp;
+     Esta función devuelve todos los errores IMAP (si hubo) que han 
+     occurrido durante la petición de la página o desde que la pila de errores
+     se inicializó.
+    </DT
+><DT
+><A
+HREF="function.imap-expunge.html"
+>imap_expunge</A
+>&nbsp;--&nbsp;Elimina todos los mensajes marcados como borrados</DT
+><DT
+><A
+HREF="function.imap-fetch-overview.html"
+>imap_fetch_overview</A
+>&nbsp;--&nbsp;
+     Read an overview of the information in the headers of the given message
+    </DT
+><DT
+><A
+HREF="function.imap-fetchbody.html"
+>imap_fetchbody</A
+>&nbsp;--&nbsp;Localiza una sección particular en el cuerpo del mensaje</DT
+><DT
+><A
+HREF="function.imap-fetchheader.html"
+>imap_fetchheader</A
+>&nbsp;--&nbsp;Devuelve la cabecera de un mensaje</DT
+><DT
+><A
+HREF="function.imap-fetchstructure.html"
+>imap_fetchstructure</A
+>&nbsp;--&nbsp;
+     Lee la estructuta de un mensaje concreto
+    </DT
+><DT
+><A
+HREF="function.imap-get-quota.html"
+>imap_get_quota</A
+>&nbsp;--&nbsp;
+     Retrieve the quota level settings, and usage statics per mailbox
+    </DT
+><DT
+><A
+HREF="function.imap-get-quotaroot.html"
+>imap_get_quotaroot</A
+>&nbsp;--&nbsp;
+     Retrieve the quota settings per user
+    </DT
+><DT
+><A
+HREF="function.imap-getacl.html"
+>imap_getacl</A
+>&nbsp;--&nbsp;
+     Gets the ACL for a given mailbox
+    </DT
+><DT
+><A
+HREF="function.imap-getmailboxes.html"
+>imap_getmailboxes</A
+>&nbsp;--&nbsp;
+     Lee la lista de buzones, devolviendo informacón detallada de cada uno
+    </DT
+><DT
+><A
+HREF="function.imap-getsubscribed.html"
+>imap_getsubscribed</A
+>&nbsp;--&nbsp;Lista todos los buzones subscritos</DT
+><DT
+><A
+HREF="function.imap-header.html"
+>imap_header</A
+>&nbsp;--&nbsp;Lee la cabecera del mensaje</DT
+><DT
+><A
+HREF="function.imap-headerinfo.html"
+>imap_headerinfo</A
+>&nbsp;--&nbsp;Read the header of the message</DT
+><DT
+><A
+HREF="function.imap-headers.html"
+>imap_headers</A
+>&nbsp;--&nbsp;
+     Returns headers for all messages in a mailbox
+    </DT
+><DT
+><A
+HREF="function.imap-last-error.html"
+>imap_last_error</A
+>&nbsp;--&nbsp;
+     Esta función devuelve el último error IMAP (si se produjo) que ocurrió
+     durante la petición de esta página.
+    </DT
+><DT
+><A
+HREF="function.imap-list.html"
+>imap_list</A
+>&nbsp;--&nbsp;Read the list of mailboxes</DT
+><DT
+><A
+HREF="function.imap-listmailbox.html"
+>imap_listmailbox</A
+>&nbsp;--&nbsp;Lee la lista de buzones</DT
+><DT
+><A
+HREF="function.imap-listscan.html"
+>imap_listscan</A
+>&nbsp;--&nbsp;
+     Read the list of mailboxes, takes a string to search for in the
+     text of the mailbox
+    </DT
+><DT
+><A
+HREF="function.imap-listsubscribed.html"
+>imap_listsubscribed</A
+>&nbsp;--&nbsp;Lista todos los buzones subscritos</DT
+><DT
+><A
+HREF="function.imap-lsub.html"
+>imap_lsub</A
+>&nbsp;--&nbsp;List all the subscribed mailboxes</DT
+><DT
+><A
+HREF="function.imap-mail-compose.html"
+>imap_mail_compose</A
+>&nbsp;--&nbsp;
+     Create a MIME message based on given envelope and body sections 
+    </DT
+><DT
+><A
+HREF="function.imap-mail-copy.html"
+>imap_mail_copy</A
+>&nbsp;--&nbsp;Copia los mensajes especificados a un buzón</DT
+><DT
+><A
+HREF="function.imap-mail-move.html"
+>imap_mail_move</A
+>&nbsp;--&nbsp;Mueve los mensajes especificados a un buzón</DT
+><DT
+><A
+HREF="function.imap-mail.html"
+>imap_mail</A
+>&nbsp;--&nbsp;
+     Send an email message
+    </DT
+><DT
+><A
+HREF="function.imap-mailboxmsginfo.html"
+>imap_mailboxmsginfo</A
+>&nbsp;--&nbsp;Obtiene información acerca del buzón actual</DT
+><DT
+><A
+HREF="function.imap-mime-header-decode.html"
+>imap_mime_header_decode</A
+>&nbsp;--&nbsp;Decode MIME header elements</DT
+><DT
+><A
+HREF="function.imap-msgno.html"
+>imap_msgno</A
+>&nbsp;--&nbsp;
+     Esta función devuelve el número de secuencia del mensaje para el UID dado.
+    </DT
+><DT
+><A
+HREF="function.imap-num-msg.html"
+>imap_num_msg</A
+>&nbsp;--&nbsp;
+     Informa del número de mensajes en el buzón actual
+    </DT
+><DT
+><A
+HREF="function.imap-num-recent.html"
+>imap_num_recent</A
+>&nbsp;--&nbsp;Informa el número de mensajes recientes en el buzón 
+    actual</DT
+><DT
+><A
+HREF="function.imap-open.html"
+>imap_open</A
+>&nbsp;--&nbsp;Abre una sesión IMAP</DT
+><DT
+><A
+HREF="function.imap-ping.html"
+>imap_ping</A
+>&nbsp;--&nbsp;Comprueba si la sesión IMAP está aún activa</DT
+><DT
+><A
+HREF="function.imap-qprint.html"
+>imap_qprint</A
+>&nbsp;--&nbsp;Convierte una cadena quoted-printable a una cadena de 8 bit
+    </DT
+><DT
+><A
+HREF="function.imap-renamemailbox.html"
+>imap_renamemailbox</A
+>&nbsp;--&nbsp;Renombra un buzón</DT
+><DT
+><A
+HREF="function.imap-reopen.html"
+>imap_reopen</A
+>&nbsp;--&nbsp;Reabre una sesión IMAP a un nuevo buzón</DT
+><DT
+><A
+HREF="function.imap-rfc822-parse-adrlist.html"
+>imap_rfc822_parse_adrlist</A
+>&nbsp;--&nbsp;Examina la cadena dirección</DT
+><DT
+><A
+HREF="function.imap-rfc822-parse-headers.html"
+>imap_rfc822_parse_headers</A
+>&nbsp;--&nbsp;Parse mail headers from a string</DT
+><DT
+><A
+HREF="function.imap-rfc822-write-address.html"
+>imap_rfc822_write_address</A
+>&nbsp;--&nbsp;
+     Devuleve una dirección de correo correctamente formateada dado el buzón,
+     host, e información personal.
+    </DT
+><DT
+><A
+HREF="function.imap-scanmailbox.html"
+>imap_scanmailbox</A
+>&nbsp;--&nbsp;
+     Lee la lista de buzones y toma una cadena para buscar en el 
+     texto del buzón
+    </DT
+><DT
+><A
+HREF="function.imap-search.html"
+>imap_search</A
+>&nbsp;--&nbsp;
+     Esta función devuelve un array de mensajes que coinciden con el
+     criterio de busqueda dado.
+    </DT
+><DT
+><A
+HREF="function.imap-set-quota.html"
+>imap_set_quota</A
+>&nbsp;--&nbsp;Sets a quota for a given mailbox</DT
+><DT
+><A
+HREF="function.imap-setacl.html"
+>imap_setacl</A
+>&nbsp;--&nbsp;
+     Sets the ACL for a giving mailbox
+    </DT
+><DT
+><A
+HREF="function.imap-setflag-full.html"
+>imap_setflag_full</A
+>&nbsp;--&nbsp;Activa flags en los mensajes</DT
+><DT
+><A
+HREF="function.imap-sort.html"
+>imap_sort</A
+>&nbsp;--&nbsp;Ordena un array de cabeceras de mensajes</DT
+><DT
+><A
+HREF="function.imap-status.html"
+>imap_status</A
+>&nbsp;--&nbsp;
+     Esta función devuelve el información de estado de otro buzón distinto
+     al actual.
+    </DT
+><DT
+><A
+HREF="function.imap-subscribe.html"
+>imap_subscribe</A
+>&nbsp;--&nbsp;Subscribe to a mailbox</DT
+><DT
+><A
+HREF="function.imap-thread.html"
+>imap_thread</A
+>&nbsp;--&nbsp;
+     Return threaded by REFERENCES tree
+    </DT
+><DT
+><A
+HREF="function.imap-timeout.html"
+>imap_timeout</A
+>&nbsp;--&nbsp;
+     Set or fetch imap timeout
+    </DT
+><DT
+><A
+HREF="function.imap-uid.html"
+>imap_uid</A
+>&nbsp;--&nbsp;
+     Esta función devuelve el UID del número de secuencia del mensaje dado
+    </DT
+><DT
+><A
+HREF="function.imap-undelete.html"
+>imap_undelete</A
+>&nbsp;--&nbsp;
+     Desmarca los mensajes que están marcados como borrados
+    </DT
+><DT
+><A
+HREF="function.imap-unsubscribe.html"
+>imap_unsubscribe</A
+>&nbsp;--&nbsp;Unsubscribe from a mailbox</DT
+><DT
+><A
+HREF="function.imap-utf7-decode.html"
+>imap_utf7_decode</A
+>&nbsp;--&nbsp;
+     Decodes a modified UTF-7 encoded string.
+    </DT
+><DT
+><A
+HREF="function.imap-utf7-encode.html"
+>imap_utf7_encode</A
+>&nbsp;--&nbsp;
+     Converts ISO-8859-1 string to modified UTF-7 text.
+    </DT
+><DT
+><A
+HREF="function.imap-utf8.html"
+>imap_utf8</A
+>&nbsp;--&nbsp;
+     Converts MIME-encoded text to UTF-8
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.read-exif-data.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-8bit.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>read_exif_data</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_8bit</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

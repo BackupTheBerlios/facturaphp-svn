@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sybase_fetch_field</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Sybase"
+HREF="ref.sybase.html"><LINK
+REL="PREVIOUS"
+TITLE="sybase_fetch_assoc"
+HREF="function.sybase-fetch-assoc.html"><LINK
+REL="NEXT"
+TITLE="sybase_fetch_object"
+HREF="function.sybase-fetch-object.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sybase-fetch-assoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sybase-fetch-object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sybase-fetch-field"
+></A
+>sybase_fetch_field</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN108732"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>sybase_fetch_field&nbsp;--&nbsp;obtiene la información del campo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN108735"
+></A
+><H2
+>Descripción</H2
+>object <B
+CLASS="methodname"
+>sybase_fetch_field</B
+> ( int result, int field_offset)<BR
+></BR
+><P
+>&#13;     Devuelve un objeto conteniendo la información del campo
+    </P
+><P
+>&#13;     sybase_fetch_field() puede usarse para obtener información sobre
+     los campos de una consulta determinada. Si no se especifica el 
+     offset del campo, el siguiente campo que aún no halla sido tomado
+     por sybase_fetch_field() es el que se obtiene.
+    </P
+><P
+>&#13;     Las propiedades del objeto son:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;	name - column name.  si la columna es el resultado de una función, esta propiedad
+	se establece a computed#N, donde #N es un número de serie.
+       </P
+></LI
+><LI
+><P
+>&#13;	column_source - la tabla de la cual se ha cogido la columna
+       </P
+></LI
+><LI
+><P
+>&#13;	max_length - máxima longitud de la columna
+       </P
+></LI
+><LI
+><P
+>&#13;	numeric - 1 si la columna es numérica
+       </P
+></LI
+></UL
+><P
+>&#13;     Vea también <A
+HREF="function.sybase-field-seek.html"
+><B
+CLASS="function"
+>sybase_field_seek()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sybase-fetch-assoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sybase-fetch-object.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sybase_fetch_assoc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sybase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sybase_fetch_object</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

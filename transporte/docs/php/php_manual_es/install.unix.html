@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación en sistemas Unix</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación en Unix/Solaris"
+HREF="install.solaris.html"><LINK
+REL="NEXT"
+TITLE="Instalación en sistemas Windows"
+HREF="install.windows.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.solaris.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.windows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.unix"
+>Instalación en sistemas Unix</A
+></H1
+><P
+>&#13;  Esta sección os guiará en el proceso de configuración e instalación
+  de PHP de manera general en sistemas Unix. Consultar la sección
+  específica de vuestra plataforma ó servidor web.
+ </P
+><P
+>&#13;  Conocimientos y software necesarios:
+  <P
+></P
+><UL
+><LI
+><P
+>&#13;     Conocimientos básicos de Unix (ser capaz de usar "make" y un
+     compilador de C, si vais a compilar).
+    </P
+></LI
+><LI
+><P
+>&#13;     Un compilador ANSI C (si vais a compilar).
+    </P
+></LI
+><LI
+><P
+>&#13;     flex (si vais a compilar).
+    </P
+></LI
+><LI
+><P
+>&#13;     bison (si vais a compilar).
+    </P
+></LI
+><LI
+><P
+>&#13;     Un servidor web
+    </P
+></LI
+><LI
+><P
+>&#13;     Cualquier componente necesario por los modulos (p.ej: gd, pdf
+     libs, etc.)
+    </P
+></LI
+></UL
+>
+ </P
+><P
+>&#13;  Existen diferentes maneras de instalar PHP en la plataforma Unix,
+  bien por el método de compilar y configurar manualmente ó por medio
+  de una serie de paquetes listos para instalar. Esta documentación se
+  centra en el método de compilación y configuración manual.
+ </P
+><P
+>&#13;  El proceso inicial de configuración de PHP está controlado por las
+  opciones en linea de comandos del script
+  <TT
+CLASS="filename"
+>configure</TT
+>. Esta página muestra el uso de
+  algunas de ellas, pero existen otras muchas. Consultar la <A
+HREF="missing-stuff.html#install.configure"
+>lista completa de opciones con
+   configure</A
+>. Existen diferentes maneras de instalar PHP:
+  <P
+></P
+><UL
+><LI
+><P
+>&#13;     Como <A
+HREF="install.apache.html"
+>módulo de Apache 1.x </A
+> ó
+     como <A
+HREF="install.apache2.html"
+>módulo de Apache 2.x</A
+>.
+    </P
+></LI
+><LI
+><P
+>&#13;     Como un <A
+HREF="install.caudium.html"
+>módulo Pike para
+      Caudium</A
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     Para usarlo con <A
+HREF="install.otherhttpd.html"
+>AOLServer,
+      NSAPI, phttpd, Pi3Web, Roxen, thttpd, ó Zeus.</A
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     Como un <A
+HREF="install.commandline.html"
+>binario CGI</A
+>
+    </P
+></LI
+></UL
+>
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.unix.apache-module"
+>Referencia rápida como módulo de Apache</A
+></H2
+><P
+>&#13;   PHP se puede compilar de numerosas maneras, pero una de las más
+   populares es como módulo de Apache. A continuación teneis una
+   descripción de la instalación rápida
+  </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="install.unix.apache-module.quick"
+></A
+><P
+><B
+>Ejemplo 3-3. 
+    Instrucciones para una instalación rápida de PHP 4 (Como módulo de
+    Apache)
+   </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="shell"
+>1.  gunzip apache_1.3.x.tar.gz
+2.  tar xvf apache_1.3.x.tar
+3.  gunzip php-x.x.x.tar.gz
+4.  tar xvf php-x.x.x.tar
+5.  cd apache_1.3.x
+6.  ./configure --prefix=/www
+7.  cd ../php-x.x.x
+8.  ./configure --with-mysql --with-apache=../apache_1.3.x --enable-ftp
+9.  make
+10. make install
+11. cd ../apache_1.3.x
+12. ./configure --activate-module=src/modules/php4/libphp4.a
+13. make
+14. make install
+15. cd ../php-x.x.x
+16. cp php.ini-dist /usr/local/lib/php.ini
+17. Editar vuestro fichero httpd.conf &#38;oacute; srm.conf file y a&#38;ntilde;adir: 
+      AddType application/x-httpd-php .php
+
+18. Rearrancar vuestro servidor Apache de la manera habitual (Debeis
+    de parar y arrancar el servidor, no vale usar una se&#38;ntilde;al HUP o USR1)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.building"
+>Crear</A
+></H2
+><P
+>&#13;   Cuando PHP esté configurado, se puede crear el binario CGI. El
+   comando <B
+CLASS="command"
+>make</B
+> se encarga de esto. si esto falla y
+   no sabeis como solucionarlo, pasaros por la <A
+HREF="install.problems.html"
+>sección sobre problemas</A
+>.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.solaris.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.windows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación en Unix/Solaris</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalación en sistemas Windows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

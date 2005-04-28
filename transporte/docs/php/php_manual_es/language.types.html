@@ -1,0 +1,490 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Tipos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="PREVIOUS"
+TITLE="Comentarios"
+HREF="language.basic-syntax.comments.html"><LINK
+REL="NEXT"
+TITLE="Booleanos"
+HREF="language.types.boolean.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.basic-syntax.comments.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.boolean.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="language.types"
+>Capítulo 6. Tipos</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="language.types.html#language.types.intro"
+>Introducción</A
+></DT
+><DT
+><A
+HREF="language.types.boolean.html"
+>Booleanos</A
+></DT
+><DT
+><A
+HREF="language.types.integer.html"
+>Enteros</A
+></DT
+><DT
+><A
+HREF="language.types.float.html"
+>Números de punto flotante</A
+></DT
+><DT
+><A
+HREF="language.types.string.html"
+>Cadenas</A
+></DT
+><DT
+><A
+HREF="language.types.array.html"
+>Matrices</A
+></DT
+><DT
+><A
+HREF="language.types.object.html"
+>Objetos</A
+></DT
+><DT
+><A
+HREF="language.types.resource.html"
+>Recurso</A
+></DT
+><DT
+><A
+HREF="language.types.null.html"
+>NULL</A
+></DT
+><DT
+><A
+HREF="language.pseudo-types.html"
+>Pseudo-tipos usados en esta documentación</A
+></DT
+><DT
+><A
+HREF="language.types.type-juggling.html"
+>Manipulación de Tipos</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.types.intro"
+>Introducción</A
+></H1
+><P
+>&#13;   PHP soporta ocho tipos primitivos.
+  </P
+><P
+>&#13;   Cuatro tipos escalares:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+> (número de punto-flotante,
+      también conocido como '<A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>double</B
+></A
+>')
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>
+     </P
+></LI
+></UL
+>
+   Dos tipos compuestos:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+>
+     </P
+></LI
+></UL
+>
+   Y finalmente dos tipos especiales:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      <A
+HREF="language.types.resource.html"
+><B
+CLASS="type"
+>resource</B
+></A
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.types.null.html"
+><B
+CLASS="type"
+>NULL</B
+></A
+>
+     </P
+></LI
+></UL
+>
+   Este manual introduce también algunos <A
+HREF="language.pseudo-types.html"
+>pseudo-tipos</A
+> por razones de
+   legibilidad:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      <A
+HREF="language.pseudo-types.html#language.types.mixed"
+>mixed</A
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.pseudo-types.html#language.types.number"
+>number</A
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      <A
+HREF="language.pseudo-types.html#language.types.mixed"
+>callback</A
+>
+     </P
+></LI
+></UL
+>
+   También puede encontrar algunas referencias al tipo
+   "double". Considere al tipo double como el mismo que float, los dos
+   nombres existen solo por razones históricas.
+  </P
+><P
+>&#13;    El tipo de una variable usualmente no es declarado por el
+    programador; en cambio, es decidido en tiempo de
+    compilación por PHP dependiendo del contexto en el que es
+    usado la variable.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Si desea chequear el tipo y valor de una cierta <A
+HREF="language.expressions.html"
+>expresión</A
+>, use
+     <A
+HREF="function.var-dump.html"
+><B
+CLASS="function"
+>var_dump()</B
+></A
+>.
+    </P
+><P
+><B
+>Nota: </B
+>
+     Si tan solo desea una representación legible para humanos
+     del tipo para propósitos de depuración, use
+     <A
+HREF="function.gettype.html"
+><B
+CLASS="function"
+>gettype()</B
+></A
+>. Para chequear por un cierto tipo,
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> use <A
+HREF="function.gettype.html"
+><B
+CLASS="function"
+>gettype()</B
+></A
+>; en su
+     lugar utilice las funciones
+     <VAR
+CLASS="literal"
+>is_<VAR
+CLASS="replaceable"
+>tipo</VAR
+></VAR
+>. Algunos
+     ejemplos:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2085"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$bool </font><font color="#007700">= </font><font color="#0000BB">TRUE</font><font color="#007700">;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// un valor booleano<br /></font><font color="#0000BB">$str&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"foo"</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">// una cadena<br /></font><font color="#0000BB">$int&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">12</font><font color="#007700">;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// un entero<br /><br /></font><font color="#007700">echo </font><font color="#0000BB">gettype</font><font color="#007700">(</font><font color="#0000BB">$bool</font><font color="#007700">); </font><font color="#FF8000">// imprime "boolean"<br /></font><font color="#007700">echo </font><font color="#0000BB">gettype</font><font color="#007700">(</font><font color="#0000BB">$str</font><font color="#007700">);&nbsp;&nbsp;</font><font color="#FF8000">// imprime "string"<br /><br />// Si este valor es un entere, incrementarlo en cuatro<br /></font><font color="#007700">if (</font><font color="#0000BB">is_int</font><font color="#007700">(</font><font color="#0000BB">$int</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$int </font><font color="#007700">+= </font><font color="#0000BB">4</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// Si $bool es una cadena, imprimirla<br />// (no imprime nada)<br /></font><font color="#007700">if (</font><font color="#0000BB">is_string</font><font color="#007700">(</font><font color="#0000BB">$bool</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Cadena: $bool"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Si quisiera forzar la conversión de una variable a cierto
+    tipo, puede <A
+HREF="language.types.type-juggling.html#language.types.typecasting"
+>moldear</A
+> la variable, o
+    usar la función <A
+HREF="function.settype.html"
+><B
+CLASS="function"
+>settype()</B
+></A
+> sobre ella.
+   </P
+><P
+>&#13;    Note que una variable puede ser evaluada con valores diferentes en
+    ciertas situaciones, dependiendo del tipo que posee en cada
+    momento. Para más información, vea la sección
+    sobre <A
+HREF="language.types.type-juggling.html"
+>Manipulación de
+    Tipos</A
+>. Asimismo, puede encontrarse interesado en consultar
+    las <A
+HREF="types.comparisons.html"
+>tablas de comparación
+    de tipos</A
+>, ya que éstas muestran ejemplos de las
+    varias comparaciones relacionadas con tipos.
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.basic-syntax.comments.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.boolean.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Comentarios</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Booleanos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

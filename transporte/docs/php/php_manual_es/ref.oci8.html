@@ -1,0 +1,791 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Oracle 8</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="deaggregate"
+HREF="function.deaggregate.html"><LINK
+REL="NEXT"
+TITLE="oci_bind_by_name"
+HREF="function.oci-bind-by-name.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.deaggregate.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.oci-bind-by-name.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.oci8"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXXV. Funciones de Oracle 8</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN75921"
+></A
+><P
+>&#13;    Estas funciones permiten acceder a bases de datos Oracle8 y Oracle7. Estas
+    usan la Oracle8 Call-Interface (OCI8). Necesitará las librerías clientes de Oracle8
+    para usar esta extensión.
+   </P
+><P
+>&#13;    Esta extensión es más flexible que las estándar de Oracle.
+    Soporta el enlace de variables locales y globales de PHP con 
+    placeholders de Oracle, tiene soporte completo para LOB, FILE y ROWID
+    y le permiten usar las variables definidas por el usuario.
+   </P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.oci-bind-by-name.html"
+>oci_bind_by_name</A
+>&nbsp;--&nbsp;
+     Binds the PHP variable to the Oracle placeholder
+    </DT
+><DT
+><A
+HREF="function.oci-cancel.html"
+>oci_cancel</A
+>&nbsp;--&nbsp;Cancels reading from cursor</DT
+><DT
+><A
+HREF="function.oci-close.html"
+>oci_close</A
+>&nbsp;--&nbsp;Closes Oracle connection</DT
+><DT
+><A
+HREF="function.oci-collection-append.html"
+>collection-&#62;append</A
+>&nbsp;--&nbsp;Appends an object to the collection</DT
+><DT
+><A
+HREF="function.oci-collection-assign.html"
+>collection-&#62;assign</A
+>&nbsp;--&nbsp;Assigns a value to the collection from another existing collection</DT
+><DT
+><A
+HREF="function.oci-collection-element-assign.html"
+>collection-&#62;assignElem</A
+>&nbsp;--&nbsp;Assigns a value to the element of the collection</DT
+><DT
+><A
+HREF="function.oci-collection-element-get.html"
+>collection-&#62;getElem</A
+>&nbsp;--&nbsp;Returns value of the element</DT
+><DT
+><A
+HREF="function.oci-collection-max.html"
+>collection-&#62;max</A
+>&nbsp;--&nbsp;Gets the maximum number of elements in the collection</DT
+><DT
+><A
+HREF="function.oci-collection-size.html"
+>collection-&#62;size</A
+>&nbsp;--&nbsp;Returns size of the collection</DT
+><DT
+><A
+HREF="function.oci-collection-trim.html"
+>collection-&#62;trim</A
+>&nbsp;--&nbsp;Trims elements from the end of the collection</DT
+><DT
+><A
+HREF="function.oci-commit.html"
+>oci_commit</A
+>&nbsp;--&nbsp;Commits outstanding statements</DT
+><DT
+><A
+HREF="function.oci-connect.html"
+>oci_connect</A
+>&nbsp;--&nbsp;Establishes a connection to Oracle server</DT
+><DT
+><A
+HREF="function.oci-define-by-name.html"
+>oci_define_by_name</A
+>&nbsp;--&nbsp;
+     Uses a PHP variable for the define-step during a SELECT
+    </DT
+><DT
+><A
+HREF="function.oci-error.html"
+>oci_error</A
+>&nbsp;--&nbsp;Returns the last error found</DT
+><DT
+><A
+HREF="function.oci-execute.html"
+>oci_execute</A
+>&nbsp;--&nbsp;Executes a statement</DT
+><DT
+><A
+HREF="function.oci-fetch-all.html"
+>oci_fetch_all</A
+>&nbsp;--&nbsp;Fetches all rows of result data into an array</DT
+><DT
+><A
+HREF="function.oci-fetch-array.html"
+>oci_fetch_array</A
+>&nbsp;--&nbsp;Returns the next row from the result data as an associative or
+     numeric array, or both
+    </DT
+><DT
+><A
+HREF="function.oci-fetch-assoc.html"
+>oci_fetch_assoc</A
+>&nbsp;--&nbsp;Returns the next row from the result data as an associative array</DT
+><DT
+><A
+HREF="function.oci-fetch-object.html"
+>oci_fetch_object</A
+>&nbsp;--&nbsp;Returns the next row from the result data as an object</DT
+><DT
+><A
+HREF="function.oci-fetch-row.html"
+>oci_fetch_row</A
+>&nbsp;--&nbsp;Returns the next row from the result data as a numeric array</DT
+><DT
+><A
+HREF="function.oci-fetch.html"
+>oci_fetch</A
+>&nbsp;--&nbsp;Fetches the next row into result-buffer</DT
+><DT
+><A
+HREF="function.oci-field-is-null.html"
+>oci_field_is_null</A
+>&nbsp;--&nbsp;Checks if the field is <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+></DT
+><DT
+><A
+HREF="function.oci-field-name.html"
+>oci_field_name</A
+>&nbsp;--&nbsp;Returns the name of a field from the statement</DT
+><DT
+><A
+HREF="function.oci-field-precision.html"
+>oci_field_precision</A
+>&nbsp;--&nbsp;Tell the precision of a field</DT
+><DT
+><A
+HREF="function.oci-field-scale.html"
+>oci_field_scale</A
+>&nbsp;--&nbsp;Tell the scale of the field</DT
+><DT
+><A
+HREF="function.oci-field-size.html"
+>oci_field_size</A
+>&nbsp;--&nbsp;Returns field's size</DT
+><DT
+><A
+HREF="function.oci-field-type-raw.html"
+>oci_field_type_raw</A
+>&nbsp;--&nbsp;Tell the raw Oracle data type of the field</DT
+><DT
+><A
+HREF="function.oci-field-type.html"
+>oci_field_type</A
+>&nbsp;--&nbsp;Returns field's data type</DT
+><DT
+><A
+HREF="function.oci-free-collection.html"
+>collection-&#62;free</A
+>&nbsp;--&nbsp;Frees resources associated with collection object</DT
+><DT
+><A
+HREF="function.oci-free-descriptor.html"
+>descriptor-&#62;free</A
+>&nbsp;--&nbsp;Frees resources associated with descriptor</DT
+><DT
+><A
+HREF="function.oci-free-statement.html"
+>oci_free_statement</A
+>&nbsp;--&nbsp;
+     Frees all resources associated with statement or cursor
+    </DT
+><DT
+><A
+HREF="function.oci-internal-debug.html"
+>oci_internal_debug</A
+>&nbsp;--&nbsp;Enables or disables internal debug output</DT
+><DT
+><A
+HREF="function.oci-lob-append.html"
+>lob-&#62;append</A
+>&nbsp;--&nbsp;Appends data from the large object to another large object</DT
+><DT
+><A
+HREF="function.oci-lob-close.html"
+>lob-&#62;close</A
+>&nbsp;--&nbsp;Closes LOB descriptor</DT
+><DT
+><A
+HREF="function.oci-lob-copy.html"
+>oci_lob_copy</A
+>&nbsp;--&nbsp;Copies large object</DT
+><DT
+><A
+HREF="function.oci-lob-eof.html"
+>lob-&#62;eof</A
+>&nbsp;--&nbsp;Tests for end-of-file on a large object's descriptor</DT
+><DT
+><A
+HREF="function.oci-lob-erase.html"
+>lob-&#62;erase</A
+>&nbsp;--&nbsp;Erases a specified portion of the internal LOB data</DT
+><DT
+><A
+HREF="function.oci-lob-export.html"
+>lob-&#62;export</A
+>&nbsp;--&nbsp;Exports LOB's contents to a file</DT
+><DT
+><A
+HREF="function.oci-lob-flush.html"
+>lob-&#62;flush</A
+>&nbsp;--&nbsp;Flushes/writes buffer of the LOB to the server</DT
+><DT
+><A
+HREF="function.oci-lob-import.html"
+>lob-&#62;import</A
+>&nbsp;--&nbsp;Imports file data to the LOB</DT
+><DT
+><A
+HREF="function.oci-lob-is-equal.html"
+>oci_lob_is_equal</A
+>&nbsp;--&nbsp;Compares two LOB/FILE locators for equality</DT
+><DT
+><A
+HREF="function.oci-lob-load.html"
+>lob-&#62;load</A
+>&nbsp;--&nbsp;Returns large object's contents</DT
+><DT
+><A
+HREF="function.oci-lob-read.html"
+>lob-&#62;read</A
+>&nbsp;--&nbsp;Reads part of large object</DT
+><DT
+><A
+HREF="function.oci-lob-rewind.html"
+>lob-&#62;rewind</A
+>&nbsp;--&nbsp;Moves the internal pointer to the beginning of the large object</DT
+><DT
+><A
+HREF="function.oci-lob-save.html"
+>lob-&#62;save</A
+>&nbsp;--&nbsp;Saves data to the large object</DT
+><DT
+><A
+HREF="function.oci-lob-seek.html"
+>lob-&#62;seek</A
+>&nbsp;--&nbsp;Sets the internal pointer of the large object</DT
+><DT
+><A
+HREF="function.oci-lob-size.html"
+>lob-&#62;size</A
+>&nbsp;--&nbsp;Returns size of large object</DT
+><DT
+><A
+HREF="function.oci-lob-tell.html"
+>lob-&#62;tell</A
+>&nbsp;--&nbsp;Returns current position of internal pointer of large object</DT
+><DT
+><A
+HREF="function.oci-lob-truncate.html"
+>lob-&#62;truncate</A
+>&nbsp;--&nbsp;Truncates large object</DT
+><DT
+><A
+HREF="function.oci-lob-write-temporary.html"
+>lob-&#62;writeTemporary</A
+>&nbsp;--&nbsp;Writes temporary large object</DT
+><DT
+><A
+HREF="function.oci-lob-write.html"
+>lob-&#62;write</A
+>&nbsp;--&nbsp;Writes data to the large object</DT
+><DT
+><A
+HREF="function.oci-new-collection.html"
+>oci_new_collection</A
+>&nbsp;--&nbsp;Allocates new collection object</DT
+><DT
+><A
+HREF="function.oci-new-connect.html"
+>oci_new_connect</A
+>&nbsp;--&nbsp;Establishes a new connection to the Oracle server</DT
+><DT
+><A
+HREF="function.oci-new-cursor.html"
+>oci_new_cursor</A
+>&nbsp;--&nbsp;Allocates and returns a new cursor (statement handle)</DT
+><DT
+><A
+HREF="function.oci-new-descriptor.html"
+>oci_new_descriptor</A
+>&nbsp;--&nbsp;Initializes a new empty LOB or FILE descriptor</DT
+><DT
+><A
+HREF="function.oci-num-fields.html"
+>oci_num_fields</A
+>&nbsp;--&nbsp;
+     Returns the number of result columns in a statement
+    </DT
+><DT
+><A
+HREF="function.oci-num-rows.html"
+>oci_num_rows</A
+>&nbsp;--&nbsp;Returns number of rows affected during statement execution</DT
+><DT
+><A
+HREF="function.oci-parse.html"
+>oci_parse</A
+>&nbsp;--&nbsp;Prepares Oracle statement for execution</DT
+><DT
+><A
+HREF="function.oci-password-change.html"
+>oci_password_change</A
+>&nbsp;--&nbsp;Changes password of Oracle's user</DT
+><DT
+><A
+HREF="function.oci-pconnect.html"
+>oci_pconnect</A
+>&nbsp;--&nbsp;Connect to an Oracle database using a persistent connection</DT
+><DT
+><A
+HREF="function.oci-result.html"
+>oci_result</A
+>&nbsp;--&nbsp;Returns field's value from the fetched row</DT
+><DT
+><A
+HREF="function.oci-rollback.html"
+>oci_rollback</A
+>&nbsp;--&nbsp;Rolls back outstanding transaction</DT
+><DT
+><A
+HREF="function.oci-server-version.html"
+>oci_server_version</A
+>&nbsp;--&nbsp;Returns server version</DT
+><DT
+><A
+HREF="function.oci-set-prefetch.html"
+>oci_set_prefetch</A
+>&nbsp;--&nbsp;Sets number of rows to be prefetched</DT
+><DT
+><A
+HREF="function.oci-statement-type.html"
+>oci_statement_type</A
+>&nbsp;--&nbsp;Returns the type of an OCI statement</DT
+><DT
+><A
+HREF="function.ocibindbyname.html"
+>OCIBindByName</A
+>&nbsp;--&nbsp;Enlaza una variable PHP a un Placeholder de Oracle</DT
+><DT
+><A
+HREF="function.ocicancel.html"
+>ocicancel</A
+>&nbsp;--&nbsp;Cancel reading from cursor</DT
+><DT
+><A
+HREF="function.ocicloselob.html"
+>ocicloselob</A
+>&nbsp;--&nbsp;Closes lob descriptor</DT
+><DT
+><A
+HREF="function.ocicollappend.html"
+>ocicollappend</A
+>&nbsp;--&nbsp;Append an object to the collection</DT
+><DT
+><A
+HREF="function.ocicollassign.html"
+>ocicollassign</A
+>&nbsp;--&nbsp;Assign a collection from another existing collection</DT
+><DT
+><A
+HREF="function.ocicollassignelem.html"
+>ocicollassignelem</A
+>&nbsp;--&nbsp;Assign element val to collection at index ndx</DT
+><DT
+><A
+HREF="function.ocicollgetelem.html"
+>ocicollgetelem</A
+>&nbsp;--&nbsp;Retrieve the value at collection index ndx</DT
+><DT
+><A
+HREF="function.ocicollmax.html"
+>ocicollmax</A
+>&nbsp;--&nbsp;
+     Return the max value of a collection.  
+     For a varray this is the maximum length of the array
+    </DT
+><DT
+><A
+HREF="function.ocicollsize.html"
+>ocicollsize</A
+>&nbsp;--&nbsp;Return the size of a collection</DT
+><DT
+><A
+HREF="function.ocicolltrim.html"
+>ocicolltrim</A
+>&nbsp;--&nbsp;Trim num elements from the end of a collection</DT
+><DT
+><A
+HREF="function.ocicolumnisnull.html"
+>OCIColumnIsNULL</A
+>&nbsp;--&nbsp;comprueba si una una columna es <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+></DT
+><DT
+><A
+HREF="function.ocicolumnname.html"
+>OCIColumnName</A
+>&nbsp;--&nbsp;Devuelve el nombre de una columna.</DT
+><DT
+><A
+HREF="function.ocicolumnprecision.html"
+>ocicolumnprecision</A
+>&nbsp;--&nbsp;Tell the precision of a column</DT
+><DT
+><A
+HREF="function.ocicolumnscale.html"
+>ocicolumnscale</A
+>&nbsp;--&nbsp;Tell the scale of a column</DT
+><DT
+><A
+HREF="function.ocicolumnsize.html"
+>OCIColumnSize</A
+>&nbsp;--&nbsp;devuelve el tamaño de la columna</DT
+><DT
+><A
+HREF="function.ocicolumntype.html"
+>OCIColumnType</A
+>&nbsp;--&nbsp;Devuelve el tipo de dato de una columna.</DT
+><DT
+><A
+HREF="function.ocicolumntyperaw.html"
+>ocicolumntyperaw</A
+>&nbsp;--&nbsp;Tell the raw oracle data type of a column</DT
+><DT
+><A
+HREF="function.ocicommit.html"
+>OCICommit</A
+>&nbsp;--&nbsp;Confirma transacciones pendientes</DT
+><DT
+><A
+HREF="function.ocidefinebyname.html"
+>OCIDefineByName</A
+>&nbsp;--&nbsp;
+     Usa una variable de PHP para el define-step durante una sentencia SELECT
+    </DT
+><DT
+><A
+HREF="function.ocierror.html"
+>OCIError</A
+>&nbsp;--&nbsp;Devuelve el último error de stmt|conn|global. 
+     Si no ocurre ningún error devuelve falso.
+    </DT
+><DT
+><A
+HREF="function.ociexecute.html"
+>OCIExecute</A
+>&nbsp;--&nbsp;Ejecuta una sentencia</DT
+><DT
+><A
+HREF="function.ocifetch.html"
+>OCIFetch</A
+>&nbsp;--&nbsp;Busca la siguiente fila en el result-buffer</DT
+><DT
+><A
+HREF="function.ocifetchinto.html"
+>OCIFetchInto</A
+>&nbsp;--&nbsp;Busca la siguiente fila dentro del result-array</DT
+><DT
+><A
+HREF="function.ocifetchstatement.html"
+>OCIFetchStatement</A
+>&nbsp;--&nbsp;Busca todas la filas de un resultset dentro de un array.</DT
+><DT
+><A
+HREF="function.ocifreecollection.html"
+>ocifreecollection</A
+>&nbsp;--&nbsp;Deletes collection object</DT
+><DT
+><A
+HREF="function.ocifreecursor.html"
+>OCIFreeCursor</A
+>&nbsp;--&nbsp;Libera todos los recursos asociados con cursor.</DT
+><DT
+><A
+HREF="function.ocifreedesc.html"
+>ocifreedesc</A
+>&nbsp;--&nbsp;Deletes a large object descriptor</DT
+><DT
+><A
+HREF="function.ocifreestatement.html"
+>OCIFreeStatement</A
+>&nbsp;--&nbsp;Libera todos los recursos asociados con una sentencia.</DT
+><DT
+><A
+HREF="function.ocigetbufferinglob.html"
+>lob-&#62;getBuffering</A
+>&nbsp;--&nbsp;Returns current state of buffering for large object</DT
+><DT
+><A
+HREF="function.ociinternaldebug.html"
+>OCIInternalDebug</A
+>&nbsp;--&nbsp;
+     Habilita o deshabilita la salida del depurador interno.  Por defecto este está
+     deshabiltado
+    </DT
+><DT
+><A
+HREF="function.ociloadlob.html"
+>ociloadlob</A
+>&nbsp;--&nbsp;Loads a large object</DT
+><DT
+><A
+HREF="function.ocilogoff.html"
+>OCILogOff</A
+>&nbsp;--&nbsp;Termina la conexion con Oracle</DT
+><DT
+><A
+HREF="function.ocilogon.html"
+>ocilogon</A
+>&nbsp;--&nbsp;Establece una conexión con Oracle</DT
+><DT
+><A
+HREF="function.ocinewcollection.html"
+>ocinewcollection</A
+>&nbsp;--&nbsp;Initialize a new collection</DT
+><DT
+><A
+HREF="function.ocinewcursor.html"
+>OCINewCursor</A
+>&nbsp;--&nbsp;devuelve un cursor nuevo (Statement-Handle) - use esto para enlazar
+    ref-cursors!</DT
+><DT
+><A
+HREF="function.ocinewdescriptor.html"
+>OCINewDescriptor</A
+>&nbsp;--&nbsp;Inicializa un nuevo descriptor vacío LOB/FILE (LOB por defecto)</DT
+><DT
+><A
+HREF="function.ocinlogon.html"
+>ocinlogon</A
+>&nbsp;--&nbsp;Establece una nueva conexión con
+    Oracle</DT
+><DT
+><A
+HREF="function.ocinumcols.html"
+>OCINumCols</A
+>&nbsp;--&nbsp;Devuelve el número de columnas resultantes en una sentencia</DT
+><DT
+><A
+HREF="function.ociparse.html"
+>OCIParse</A
+>&nbsp;--&nbsp;Analiza una consulta y devuelve una sentencia</DT
+><DT
+><A
+HREF="function.ociplogon.html"
+>ociplogon</A
+>&nbsp;--&nbsp;
+     Conectarse con una base de datos Oracle usando una
+     conexión persistente
+    </DT
+><DT
+><A
+HREF="function.ociresult.html"
+>OCIResult</A
+>&nbsp;--&nbsp;Devuelve el valor de una columna en la fila buscada</DT
+><DT
+><A
+HREF="function.ocirollback.html"
+>OCIRollback</A
+>&nbsp;--&nbsp;Restablece todas las transaciones sin confirmar</DT
+><DT
+><A
+HREF="function.ocirowcount.html"
+>OCIRowCount</A
+>&nbsp;--&nbsp;Obtiene el número de filas afectadas</DT
+><DT
+><A
+HREF="function.ocisavelob.html"
+>ocisavelob</A
+>&nbsp;--&nbsp;Saves a large object </DT
+><DT
+><A
+HREF="function.ocisavelobfile.html"
+>ocisavelobfile</A
+>&nbsp;--&nbsp;Saves a large object file</DT
+><DT
+><A
+HREF="function.ociserverversion.html"
+>OCIServerVersion</A
+>&nbsp;--&nbsp;Devuelve una cadena conteniendo información a cerca de la version del servidor.
+    </DT
+><DT
+><A
+HREF="function.ocisetbufferinglob.html"
+>lob-&#62;setBuffering</A
+>&nbsp;--&nbsp;Changes current state of buffering for large object</DT
+><DT
+><A
+HREF="function.ocisetprefetch.html"
+>ocisetprefetch</A
+>&nbsp;--&nbsp;Sets number of rows to be prefetched</DT
+><DT
+><A
+HREF="function.ocistatementtype.html"
+>OCIStatementType</A
+>&nbsp;--&nbsp;Devuelve el tipo de una sentencia OCI.</DT
+><DT
+><A
+HREF="function.ociwritelobtofile.html"
+>ociwritelobtofile</A
+>&nbsp;--&nbsp;Saves a large object file</DT
+><DT
+><A
+HREF="function.ociwritetemporarylob.html"
+>ociwritetemporarylob</A
+>&nbsp;--&nbsp;Writes temporary blob</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.deaggregate.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.oci-bind-by-name.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>deaggregate</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>oci_bind_by_name</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

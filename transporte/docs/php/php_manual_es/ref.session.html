@@ -1,0 +1,1196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones para el manejo de sesiones</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="sesam_settransaction"
+HREF="function.sesam-settransaction.html"><LINK
+REL="NEXT"
+TITLE="session_cache_expire"
+HREF="function.session-cache-expire.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sesam-settransaction.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.session-cache-expire.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.session"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XCVII. Funciones para el manejo de sesiones</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN95965"
+></A
+><P
+>&#13;    El apoyo que PHP proporciona para las sesiones consiste en una forma de
+	conservar ciertos datos a lo largo de los subsiguientes accesos, lo cual
+	le permite construir aplicaciones más personalizadas e incrementar el
+	atractivo de su sitio web.
+   </P
+><P
+>&#13;    Si ya está familiarizado con el tratamiento de sesiones de PHPLIB,
+	notará que algunos conceptos son similares al soporte de las sesiones
+	de PHP.
+   </P
+><P
+>&#13;    A cada visitante que accede a su web se le asigna un identificador único,
+	llamado "session id" (identificador de sesión). Éste se almacena
+	en una cookie por parte del usuario o se propaga en la URL.
+   </P
+><P
+>&#13;    El soporte de las sesiones le permite registrar un número arbitrario de
+	variables que se conservarán en las siguientes peticiones. Cuando un
+	visitante acceda a su web, PHP comprobará automáticamente (si
+	session.auto_start está puesto a 1) o cuando usted lo especifique (de forma
+	explícita mendiante <A
+HREF="function.session-start.html"
+><B
+CLASS="function"
+>session_start()</B
+></A
+> o implícita a través
+	de <A
+HREF="function.session-register.html"
+><B
+CLASS="function"
+>session_register()</B
+></A
+>) si se le ha enviado un "session id"
+	específico con su petición, en cuyo caso se recrean las variables que se
+	habían guardado anteriormente.
+   </P
+><P
+>&#13;    Todas las variables registradas son almacenadas tras finalizar la petición.
+	Las variables que están indefinidas se marcan como no definidas. En los
+	subsiguientes accesos, no estarán definidas por el módulo de sesiones a
+	menos que el usuario las defina más tarde.
+   </P
+><P
+>&#13;    Las opciones de configuración <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+><VAR
+CLASS="literal"
+>track_vars</VAR
+></A
+> y <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+> influyen
+	notablemente en la forma en que las variables de la sesión se almacenan
+	y restauran.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     A partir de PHP 4.0.3, <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+><VAR
+CLASS="literal"
+>track_vars</VAR
+></A
+> siempre está activado.
+    </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	 A partir de PHP 4.1.0, <VAR
+CLASS="varname"
+>$_SESSION</VAR
+> está disponible como
+	 variable global, al igual que <VAR
+CLASS="varname"
+>$_POST</VAR
+>, <VAR
+CLASS="varname"
+>$_GET</VAR
+>,
+	 <VAR
+CLASS="varname"
+>$_REQUEST</VAR
+> y demás. Al contrario que
+	 <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>, <VAR
+CLASS="varname"
+>$_SESSION</VAR
+> siempre es
+	 global. Por tanto, no se debe usar global para <VAR
+CLASS="varname"
+>$_SESSION</VAR
+>.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Si <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+><VAR
+CLASS="literal"
+>track_vars</VAR
+></A
+> está activado y
+	<A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+> está
+	desactivado, sólo los miembros del vector asociativo global
+	<VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+> pueden ser registrados como variables de
+	la sesión. Las variables restauradas de la sesión sólo estarán disponibles en
+	el vector <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>.
+  <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN95998"
+></A
+><P
+><B
+>Ejemplo 1. 
+      Registrar una variable con <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+><VAR
+CLASS="literal"
+>track_vars</VAR
+></A
+>
+      activado
+     </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />session_start</font><font color="#007700">();<br />if (isset(</font><font color="#0000BB">$HTTP_SESSION_VARS</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$HTTP_SESSION_VARS</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">]++;<br />}<br />else {<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$HTTP_SESSION_VARS</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">] = </font><font color="#0000BB">0</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Se recomienda usar <VAR
+CLASS="varname"
+>$_SESSION</VAR
+> (o
+	<VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+> con PHP 4.0.6 o inferior) por seguridad
+	y para hacer el código más legible. Con <VAR
+CLASS="varname"
+>$_SESSION</VAR
+> o
+	<VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>, no es necesario usar las funciones
+	session_register() / session_unregister() / session_is_registered(). Los usuarios
+	pueden acceder a una variable de la sesión como si se tratase de una variable
+	normal.
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96008"
+></A
+><P
+><B
+>Ejemplo 2. 
+      Registrar una variable con $_SESSION.
+     </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />session_start</font><font color="#007700">();<br /></font><font color="#FF8000">// Use $HTTP_SESSION_VARS con PHP 4.0.6 o inferior<br /></font><font color="#007700">if (!isset(</font><font color="#0000BB">$_SESSION</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$_SESSION</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">] = </font><font color="#0000BB">0</font><font color="#007700">;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$_SESSION</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">]++;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96011"
+></A
+><P
+><B
+>Ejemplo 3. 
+      Borrar una variable con $_SESSION.
+     </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />session_start</font><font color="#007700">();<br /></font><font color="#FF8000">// Use $HTTP_SESSION_VARS con PHP 4.0.6 o inferior<br /></font><font color="#007700">unset(</font><font color="#0000BB">$_SESSION</font><font color="#007700">[</font><font color="#DD0000">'count'</font><font color="#007700">]);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Si <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+>
+	está activado, todas las variables globales pueden ser registradas como
+	variables de la sesión, y las variables de la sesión serán restauradas a sus
+	correspondientes variables globales. Como PHP debe saber qué variables
+	globles están registradas como variables de la sesión, los usuarios deben
+	registrar las variables con la función session_register(), mientras que con
+	<VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>/<VAR
+CLASS="varname"
+>$_SESSION</VAR
+> no es
+	necesario usar session_register().
+    <DIV
+CLASS="caution"
+><P
+></P
+><TABLE
+CLASS="caution"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Atención</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Si está usando
+      <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>/<VAR
+CLASS="varname"
+>$_SESSION</VAR
+>
+      y desactiva <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+>,
+      no use <A
+HREF="function.session-register.html"
+><B
+CLASS="function"
+>session_register()</B
+></A
+>,
+      <A
+HREF="function.session-is-registered.html"
+><B
+CLASS="function"
+>session_is_registered()</B
+></A
+> ni
+      <A
+HREF="function.session-unregister.html"
+><B
+CLASS="function"
+>session_unregister()</B
+></A
+>.
+     </P
+><P
+>&#13;      Si activa <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+>,
+       <A
+HREF="function.session-unregister.html"
+><B
+CLASS="function"
+>session_unregister()</B
+></A
+> debería ser usado a partir de
+	   que las variables de la sesión sean registradas como variables
+	   globales cuando los datos de la sesión se guardan. Se recomienda
+	   desactivar <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+>
+	   por motivos de seguridad y rendimiendo.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+>
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96034"
+></A
+><P
+><B
+>Ejemplo 4. 
+      Registrar una variable con <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+>
+      activado
+     </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (!</font><font color="#0000BB">session_is_registered</font><font color="#007700">(</font><font color="#DD0000">'count'</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">session_register</font><font color="#007700">(</font><font color="#DD0000">"count"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$count </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br />}<br />else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$count</font><font color="#007700">++;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Si <A
+HREF="ini.sect.data-handling.html#ini.track-vars"
+><VAR
+CLASS="literal"
+>track_vars</VAR
+></A
+> y
+	<A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+><VAR
+CLASS="literal"
+>register_globals</VAR
+></A
+>
+	están activados, las variables globales y las entradas de
+	<VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>/<VAR
+CLASS="varname"
+>$_SESSION</VAR
+> harán
+	referencia al mismo valor para variables ya registradas.
+   </P
+><P
+>&#13;    Si el usuario utiliza session_register() para registrar una variable, el
+	vector <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+>/<VAR
+CLASS="varname"
+>$_SESSION</VAR
+>
+	no contendrá esa variable hasta que se cargue de los datos de la sesión.
+	(p.ej. hasta la próxima petición).
+   </P
+><P
+>&#13;    Hay dos formas de propagar un "session id":
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       Cookies
+      </P
+></LI
+><LI
+><P
+>&#13;       Parámetro en la URL
+      </P
+></LI
+></UL
+>
+   </P
+><P
+>&#13;    El módulo de sesiones admite ambas formas. Las Cookies son la mejor
+	opción, pero como no son fiables (los clientes no están obligados a aceptarlas),
+	no podemos confiar en ellas. El segundo método incrusta el "session id"
+	directamente en las URLs.
+   </P
+><P
+>&#13;    PHP es capaz de hacerlo de forma transparente al usuario cuando se compila con
+	<A
+HREF="missing-stuff.html#install.configure.enable-trans-sid"
+>&#13;    <VAR
+CLASS="literal"
+>--enable-trans-sid</VAR
+></A
+>. Si activa esta opción, las URIs relativas
+	serán modificadas de forma que contengan el session id automáticamente.
+	Alternativamente, puede usar la constante <VAR
+CLASS="literal"
+>SID</VAR
+> que está
+	definida, si el cliente no envía la cookie adecuada. El <VAR
+CLASS="literal"
+>SID</VAR
+>
+	puede tener la forma de <VAR
+CLASS="literal"
+>nombre_de_sesion=session_id</VAR
+> o ser
+	una cadena vacía.
+   </P
+><P
+>&#13;    El ejemplo siguiente demuestra cómo registrar una variable, y cómo colocar
+	correctamente un enlace a otra página usando la constante SID.
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96063"
+></A
+><P
+><B
+>Ejemplo 5. Contar el número de impresiones de un usuario</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (!</font><font color="#0000BB">session_is_registered</font><font color="#007700">(</font><font color="#DD0000">'count'</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">session_register</font><font color="#007700">(</font><font color="#DD0000">'count'</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$count </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br />}<br />else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$count</font><font color="#007700">++;<br />}<br /></font><font color="#0000BB">?&gt;<br /></font><br />Hola, visitante. Has visto esta p&amp;aacute;gina <font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$count</font><font color="#007700">; </font><font color="#0000BB">?&gt;</font> veces.<br /><br /><font color="#0000BB">&lt;?php<br /></font><font color="#FF8000"># el &lt;?php echo SID</font><font color="#0000BB">?&gt;</font> (Se puede usar <font color="#0000BB">&lt;?=SID?&gt;</font> si short tag est&amp;aacute; activado)<br /># es necesario para conservar el session id<br /># en caso de que el usuario haya desactivado las cookies<br />?&gt;<br /><br />Para continuar, haga click &lt;A HREF="nextpage.php?<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">SID?&gt;</font>"&gt;aqu&amp;iacute;&lt;/A&gt;.</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    El <VAR
+CLASS="literal"
+>&#60;?=SID?&#62;</VAR
+> no es necesario si se ha usado
+    <A
+HREF="missing-stuff.html#install.configure.enable-trans-sid"
+>&#13;    <VAR
+CLASS="literal"
+>--enable-trans-sid</VAR
+></A
+> al compilar PHP.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Se asume que las URLs no relativas apuntan a sitios web externos,
+	 y por tanto no se añade el SID, ya que pasar el SID a un servidor
+	 diferente podría ocasionar un agujero de seguridad.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Para implementar el almacenamiento en bases de datos o en otro tipo
+	de almacenamiento, necesitará usar
+	<B
+CLASS="function"
+>session_set_save_handler()()</B
+> para crear una
+	colección de funciones de almacenamiento a nivel de usuario.
+   </P
+><P
+>&#13;    El sistema de control de sesiones soporta varias opciones de
+	configuración que puede colocar en su archivo <TT
+CLASS="filename"
+>php.ini</TT
+>. Les daremos
+	un pequeño repaso.
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.save_handler</VAR
+> define el nombre del
+	   controlador que se usa para almacenar y recuperar los datos
+	   asociados a la sesión. Su valor por defecto es <VAR
+CLASS="literal"
+>files</VAR
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.save_path</VAR
+> define el argumento que se
+	   pasa al controlador de almacenamiento. Si elige el controlador de
+	   archivos por defecto, esta es la ruta donde los archivos se crean.
+	   Por defecto es <VAR
+CLASS="literal"
+>/tmp</VAR
+>. Si la profundidad de la
+	   ruta de <VAR
+CLASS="literal"
+>session.save_path</VAR
+> es mayor que 2, no se
+	   llevará a cabo la recolección de basura.
+      </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;	    Si lo deja apuntando a un directorio con permiso de lectura por el
+		resto de usuarios, como <TT
+CLASS="filename"
+>/tmp</TT
+> (la opción por
+		defecto), los demás usuarios del servidor pueden conseguir robar
+		las sesiones obteniéndolas de la lista de archivos de ese directorio.
+       </P
+></TD
+></TR
+></TABLE
+></DIV
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.name</VAR
+> especifica el nombre de la sesión que
+	   se usa como nombre de la cookie. Sólo debería contener caracteres
+	   alfanuméricos. Por defecto vale <VAR
+CLASS="literal"
+>PHPSESSID</VAR
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.auto_start</VAR
+> especifica si el módulo de las
+	   sesión inicia una sesión automáticamente al comenzar la petición. Por
+	   defecto está <VAR
+CLASS="literal"
+>0</VAR
+> (desactivado).
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.cookie_lifetime</VAR
+> especifica la duración de
+	   la cookie en segundos que se manda al navegador. El valor
+	   <VAR
+CLASS="literal"
+>0</VAR
+> significa "hasta que se cierra el navegador", y
+	   es el que se encuentra por defecto.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.serialize_handler</VAR
+> define el nombre del
+	   controlador que se utiliza para guardar y restaurar los datos.
+	   Actualmente se soportan un formato interno de PHP (cuyo nombre es
+	   <VAR
+CLASS="literal"
+>php</VAR
+>) y WDDX (cuyo nombre es
+	   <VAR
+CLASS="literal"
+>wddx</VAR
+>). WDDX sólo está disponible si PHP está
+	   compilado con <A
+HREF="ref.wddx.html"
+>Soporte para WDDX</A
+>. Por
+	   defecto es <VAR
+CLASS="literal"
+>php</VAR
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.gc_probability</VAR
+> especifica la probabilidad
+	   de que se inicie la rutina gc (garbage collection - recoleción de
+	   basura) en cada petición en porcentaje. Por defecto es <VAR
+CLASS="literal"
+>1</VAR
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.gc_maxlifetime</VAR
+> especifica el número de segundos
+	   tras los cuales los datos se considerarán como 'basura' y serán
+	   eliminados.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.referer_check</VAR
+> contiene la subcadena que usted
+	   quiera que se compruebe en cada "HTTP Referer" (N.T.: Página desde donde
+	   proviene el enlace a la página actual). Si el "Referer" fue enviado por
+	   el cliente y la subcadena no se ha encontrado, el session id incrustado
+	   será marcado como inválido. Por defecto es una cadena vacía.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.entropy_file</VAR
+> indica la ruta a un recurso
+	   externo (un archivo) que se usará como fuente adicional de entropía
+	   en el proceso de creación de session id's. Por ejemplo
+	   <VAR
+CLASS="literal"
+>/dev/random</VAR
+> o <VAR
+CLASS="literal"
+>/dev/urandom</VAR
+>,
+	   que están disponibles en muchos sistemas Unix.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.entropy_length</VAR
+> especifica el número
+	   de bytes que serán leidos del archivo indicado más arriba. Por
+	   defecto es <VAR
+CLASS="literal"
+>0</VAR
+> (desactivado).
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.use_cookies</VAR
+> indica si el módulo
+	   puede usar cookies para guardar el session id en el lado del
+	   cliente. Por defecto está a  <VAR
+CLASS="literal"
+>1</VAR
+> (activado).
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.cookie_path</VAR
+> especifica la ruta a
+	   colocar en session_cookie. Por defecto es <VAR
+CLASS="literal"
+>/</VAR
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.cookie_domain</VAR
+> especifica el dominio
+	   a establecer en session_cookie. Por defecto no se especifica
+	   ninguno en ningún caso. 
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.cache_limiter</VAR
+> especifica el método
+	   de control del caché a usar en las páginas de la sesión
+	   (none/nocache/private/private_no_expire/public). Por defecto es
+       <VAR
+CLASS="literal"
+>nocache</VAR
+> (no guardar las páginas en el caché).
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.cache_expire</VAR
+> especifica el
+	   tiempo-de-vida de las páginas de la sesión que se encuentran en
+	   el caché en minutos. No tiene efecto para el limitador nocache.
+	   Por defecto vale <VAR
+CLASS="literal"
+>180</VAR
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>session.use_trans_sid</VAR
+> indica si la inclusión
+	   del sid transparente está activada o no, si fue activada
+	   compilando con  <A
+HREF="missing-stuff.html#install.configure.enable-trans-sid"
+>&#13;       <VAR
+CLASS="literal"
+>--enable-trans-sid</VAR
+></A
+>. Por defecto está a
+	   <VAR
+CLASS="literal"
+>1</VAR
+> (activado).
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="literal"
+>url_rewriter.tags</VAR
+> especifica qué etiquetas
+	   html serán reescritas para incluir el session id si la inclusión
+	   del sid transparente está activada. Las etiquetas por defecto son
+	   <VAR
+CLASS="literal"
+>a=href,area=href,frame=src,input=src,form=fakeentry</VAR
+>
+      </P
+></LI
+></UL
+>
+    <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El manejo de sesiones fue añadido en PHP 4.0.
+     </P
+></BLOCKQUOTE
+></DIV
+>
+   </P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.session-cache-expire.html"
+>session_cache_expire</A
+>&nbsp;--&nbsp;Devuelve la caducidad actual del caché</DT
+><DT
+><A
+HREF="function.session-cache-limiter.html"
+>session_cache_limiter</A
+>&nbsp;--&nbsp;Lee y/o cambia el limitador del caché actual</DT
+><DT
+><A
+HREF="function.session-commit.html"
+>session_commit</A
+>&nbsp;--&nbsp;Alias of <A
+HREF="function.session-write-close.html"
+><B
+CLASS="function"
+>session_write_close()</B
+></A
+></DT
+><DT
+><A
+HREF="function.session-decode.html"
+>session_decode</A
+>&nbsp;--&nbsp;Decodifica los datos de una sesión a partir de una cadena</DT
+><DT
+><A
+HREF="function.session-destroy.html"
+>session_destroy</A
+>&nbsp;--&nbsp;Destruye todos los datos guardados en una sesión</DT
+><DT
+><A
+HREF="function.session-encode.html"
+>session_encode</A
+>&nbsp;--&nbsp;
+     Codifica los datos de la sesión actual en una cadena
+    </DT
+><DT
+><A
+HREF="function.session-get-cookie-params.html"
+>session_get_cookie_params</A
+>&nbsp;--&nbsp;
+     Obtiene los parámetros de la cookie de la sesión
+    </DT
+><DT
+><A
+HREF="function.session-id.html"
+>session_id</A
+>&nbsp;--&nbsp;Lee y/o cambia el session id actual</DT
+><DT
+><A
+HREF="function.session-is-registered.html"
+>session_is_registered</A
+>&nbsp;--&nbsp;
+     Comprueba si una variable está registrada en la sesión
+    </DT
+><DT
+><A
+HREF="function.session-module-name.html"
+>session_module_name</A
+>&nbsp;--&nbsp;Lee y/o cambia el módulo de la sesión actual</DT
+><DT
+><A
+HREF="function.session-name.html"
+>session_name</A
+>&nbsp;--&nbsp;Lee y/o cambia el nombre de la sesión actual</DT
+><DT
+><A
+HREF="function.session-regenerate-id.html"
+>session_regenerate_id</A
+>&nbsp;--&nbsp;
+     Actualizar la id de sesión actual con una recién generada
+    </DT
+><DT
+><A
+HREF="function.session-register.html"
+>session_register</A
+>&nbsp;--&nbsp;
+     Registrar una o más variables globales con la
+     sesión actual
+    </DT
+><DT
+><A
+HREF="function.session-save-path.html"
+>session_save_path</A
+>&nbsp;--&nbsp;Lee y/o cambia la ruta donde se guardan los datos de
+    la sesión actual</DT
+><DT
+><A
+HREF="function.session-set-cookie-params.html"
+>session_set_cookie_params</A
+>&nbsp;--&nbsp;
+     Cambia los parámetros de la cookie de la sesión
+    </DT
+><DT
+><A
+HREF="function.session-set-save-handler.html"
+>session_set_save_handler</A
+>&nbsp;--&nbsp;
+     Establece unas funciones para el almacenamiento de los datos de la sesión a nivel de usuario
+    </DT
+><DT
+><A
+HREF="function.session-start.html"
+>session_start</A
+>&nbsp;--&nbsp;Inicializar los datos de una sesión</DT
+><DT
+><A
+HREF="function.session-unregister.html"
+>session_unregister</A
+>&nbsp;--&nbsp;
+     Desregistrar una variable de la sesión actual
+    </DT
+><DT
+><A
+HREF="function.session-unset.html"
+>session_unset</A
+>&nbsp;--&nbsp;
+     Elimina todas las variables de la sesión
+    </DT
+><DT
+><A
+HREF="function.session-write-close.html"
+>session_write_close</A
+>&nbsp;--&nbsp;Escribe los datos de la sesión y la finaliza</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sesam-settransaction.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.session-cache-expire.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sesam_settransaction</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>session_cache_expire</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

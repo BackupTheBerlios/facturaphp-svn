@@ -1,0 +1,435 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_stmt_prepare</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_stmt_param_count"
+HREF="function.mysqli-stmt-param-count.html"><LINK
+REL="NEXT"
+TITLE="mysqli_stmt_result_metadata"
+HREF="function.mysqli-stmt-result-metadata.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-param-count.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-result-metadata.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-stmt-prepare"
+></A
+>mysqli_stmt_prepare</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN68234"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_stmt_prepare<P
+>    (no version information, might be only in CVS)</P
+>stmt-&#62;prepare&nbsp;--&nbsp;
+     Prepara una sentencia SQL para su ejecución
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68238"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>bool <B
+CLASS="methodname"
+>mysqli_stmt_prepare</B
+> ( objeto stmt, cadena query)<BR
+></BR
+><P
+>Estilo orientado a objetos (método)</P
+>class <B
+CLASS="classname"
+>stmt</B
+> { <BR
+></BR
+>mixto <B
+CLASS="methodname"
+>prepare</B
+> ( cadena query)<BR
+></BR
+>}<P
+>&#13;      <B
+CLASS="function"
+>mysqli_stmt_prepare()</B
+> prepara la consulta SQL apuntada por
+      la cadena de consulta terminada en NULL. El objeto de la sentencia tiene que 
+      ser asignado por <A
+HREF="function.mysqli-stmt-init.html"
+><B
+CLASS="function"
+>mysqli_stmt_init()</B
+></A
+>.
+      La consulta debe consistir de una sentencia SQL sencilla.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       No debe agregar al final el punto y coma o <VAR
+CLASS="literal"
+>\g</VAR
+>
+       a la sentencia.
+      </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;      El parámetro <VAR
+CLASS="parameter"
+>query</VAR
+> puede incluir uno o más 
+      marcadores de parámetro en la sentencia SQL, insertando el caracter 
+      interrogativo (<VAR
+CLASS="literal"
+>?</VAR
+>) en la posición apropiada.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Los marcadores son legales solo en ciertos lugares en la sentencia SQL.
+       Por ejemplo, son permitidos en la lista VALUES() de una sentencia INSERT 
+       (para específicar calores de columnas para una fila), o en una 
+       comparación con una columna en una clausula WHERE para específicar 
+       un valor de comparación.
+      </P
+><P
+>&#13;       Sin embargo, no son permitidos para identificadores (tales como nombres de 
+       tabla o columna), en el listado de los nombres de las columnas 
+       a ser regresadas por la sentencia SELECT, o para específicar operadores 
+       de resultado binario, tales como <VAR
+CLASS="literal"
+>=</VAR
+> el signo de igual.
+       La última restricción es necesaria porque serí 
+       imposuble determinar el tipo de parámetro. En general, los marcadores 
+       de parámetro son legales solo en las sentencias del lenguaje de 
+       manipulación de datos (DML), y no en las sentencias del lenguaje 
+       de definición de datos (DDL).
+      </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;      Los marcadores de parámetro deben estar enlazados a variables de 
+      aplicación usando <A
+HREF="function.mysqli-stmt-bind-param.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_param()</B
+></A
+> y/o 
+      <A
+HREF="function.mysqli-stmt-bind-result.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_result()</B
+></A
+> antes de ejecutar la sentencia 
+      u obtener las filas del resultado.
+     </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68276"
+></A
+><H2
+>Return values</H2
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68281"
+></A
+><H2
+>Ver también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-stmt-init.html"
+><B
+CLASS="function"
+>mysqli_stmt_init()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-execute.html"
+><B
+CLASS="function"
+>mysqli_stmt_execute()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-bind-param.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_param()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-bind-result.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_result()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-close.html"
+><B
+CLASS="function"
+>mysqli_stmt_close()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68290"
+></A
+><H2
+>Ejmeplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN68292"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$city </font><font color="#007700">= </font><font color="#DD0000">"Amersfoort"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* create a prepared statement */<br /></font><font color="#0000BB">$stmt </font><font color="#007700">=&nbsp;&nbsp;</font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">stmt_init</font><font color="#007700">();<br />if (</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">prepare</font><font color="#007700">(</font><font color="#DD0000">"SELECT District FROM City WHERE Name=?"</font><font color="#007700">)) {<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* bind parameters for markers */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">bind_param</font><font color="#007700">(</font><font color="#DD0000">"s"</font><font color="#007700">, </font><font color="#0000BB">$city</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* execute query */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">execute</font><font color="#007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* bind result variables */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">bind_result</font><font color="#007700">(</font><font color="#0000BB">$district</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* fetch value */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">fetch</font><font color="#007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s is in district %s\n"</font><font color="#007700">, </font><font color="#0000BB">$city</font><font color="#007700">, </font><font color="#0000BB">$district</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* close statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br />} <br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN68295"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$city </font><font color="#007700">= </font><font color="#DD0000">"Amersfoort"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* create a prepared statement */<br /></font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">mysqli_stmt_init</font><font color="#007700">();<br />if (</font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">mysqli_stmt_prepare</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">, </font><font color="#DD0000">"SELECT District FROM City WHERE Name=?"</font><font color="#007700">)) {<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* bind parameters for markers */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_bind_param</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">, </font><font color="#DD0000">"s"</font><font color="#007700">, </font><font color="#0000BB">$city</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* execute query */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_execute</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* bind result variables */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_bind_result</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">, </font><font color="#0000BB">$district</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* fetch value */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_fetch</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s is in district %s\n"</font><font color="#007700">, </font><font color="#0000BB">$city</font><font color="#007700">, </font><font color="#0000BB">$district</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* close statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_close</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br />} <br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Amersfoort is in district Utrecht</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-param-count.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-result-metadata.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_stmt_param_count</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_stmt_result_metadata</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

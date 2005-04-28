@@ -1,0 +1,494 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sprintf</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="soundex"
+HREF="function.soundex.html"><LINK
+REL="NEXT"
+TITLE="sscanf"
+HREF="function.sscanf.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.soundex.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sscanf.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sprintf"
+></A
+>sprintf</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN107047"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>sprintf&nbsp;--&nbsp;Devuelve una cadena con formato</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN107050"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>sprintf</B
+> ( string formato [, mixed args])<BR
+></BR
+><P
+>&#13;     Devuelve una cadena producida de acuerdo a la cadena de 
+     <VAR
+CLASS="parameter"
+>formato</VAR
+>.
+    </P
+><P
+>&#13;     La cadena de formato está compuesta por cero o más directivas:
+     caracteres ordinarios (excepto <VAR
+CLASS="literal"
+>%</VAR
+>) que son
+     copiados directamente al resultado, y <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>especificaciones
+     de conversión</I
+></SPAN
+>, cada una de las cuales provoca la
+     obtención de su propio parámetro. Esto se aplica tanto a 
+     <B
+CLASS="function"
+>sprintf()</B
+> como a <A
+HREF="function.printf.html"
+><B
+CLASS="function"
+>printf()</B
+></A
+>.
+    </P
+><P
+>&#13;     Cada especificación de conversión consiste en uno de estos elementos,
+     por orden:
+     <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;        Un <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>especificador de relleno</I
+></SPAN
+> opcional que
+        indica qué caracter se utilizará para rellenar el resultado hasta
+        el tamaño de cadena correcto. Este puede ser un espacio o un 
+        <VAR
+CLASS="literal"
+>0</VAR
+> (caracter cero). El valor por defecto es
+        rellenar con espacios. Un caracter de relleno alternativo se puede
+        especificar prefijándolo con una comilla simple (<VAR
+CLASS="literal"
+>'</VAR
+>).
+        Vea los ejemplos más abajo.
+       </P
+></LI
+><LI
+><P
+>&#13;        Un <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>especificador de alineación</I
+></SPAN
+> opcional que
+        indica si el resultado debe ser alineado a la izquierda o a la
+        derecha. Por defecto se alinea a la derecha; un caracter 
+        <VAR
+CLASS="literal"
+>-</VAR
+> aquí lo justificará a la izquierda.
+       </P
+></LI
+><LI
+><P
+>&#13;        Un número opcional, un <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>especificador de ancho</I
+></SPAN
+>
+        que dice el número de caracteres (mínimo) en que debería resultar
+        esta conversión.
+       </P
+></LI
+><LI
+><P
+>&#13;        Un <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>especificador de precisión</I
+></SPAN
+> opcional que
+        indica cuántos dígitos decimales deben mostrarse para los números
+        en coma flotante. Esta opción no tienen efecto para otros tipos
+        que no sean double. (Otra función útil para formatear números
+        es <A
+HREF="function.number-format.html"
+><B
+CLASS="function"
+>number_format()</B
+></A
+>).
+       </P
+></LI
+><LI
+><P
+>&#13;        Un <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>especificador de tipo</I
+></SPAN
+> que indica el tipo
+        a usar para tratar los datos de los argumentos. Los tipos posibles
+        son:
+        <P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>%</VAR
+> - un caracter literal de porcentaje. No se
+          precisa argumento.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>b</VAR
+> - el argumento es tratado como un entero y
+          presentado como un número binario.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>c</VAR
+> - el argumento es tratado como un entero, y
+          presentado como el caracter con dicho valor ASCII.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>d</VAR
+> - el argumento es tratado como un entero y
+          presentado como un número decimal.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>f</VAR
+> - el argumento es tratado como un doble y
+          presentado como un número de coma flotante.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>o</VAR
+> - el argumento es tratado como un entero, y
+          presentado como un número octal.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>s</VAR
+> - el argumento es tratado como una cadena y
+          es presentado como tal.
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>x</VAR
+> - el argumento es tratado como un entero y
+          presentado como un número hexadecimal (con minúsculas).
+         </TD
+></TR
+><TR
+><TD
+>&#13;          <VAR
+CLASS="literal"
+>X</VAR
+> - el argumento es tratado como un entero y
+          presentado como un número hexadecimal (con mayúsculas).
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+>
+       </P
+></LI
+></OL
+>
+    </P
+><P
+>&#13;     Vea también: <A
+HREF="function.printf.html"
+><B
+CLASS="function"
+>printf()</B
+></A
+>, <A
+HREF="function.sscanf.html"
+><B
+CLASS="function"
+>sscanf()</B
+></A
+>,
+         <A
+HREF="function.fscanf.html"
+><B
+CLASS="function"
+>fscanf()</B
+></A
+>, y <A
+HREF="function.number-format.html"
+><B
+CLASS="function"
+>number_format()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN107113"
+></A
+><H2
+>Ejemplos</H2
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN107116"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>sprintf()</B
+>: enteros rellenos con ceros</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$fechaiso = sprintf ("%04d-%02d-%02d", $anno, $mes, $dia);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN107120"
+></A
+><P
+><B
+>Ejemplo 2. Ejemplo de <B
+CLASS="function"
+>sprintf()</B
+>: formateando monedas</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$pelas1 = 68.75;<br />$pelas2 = 54.35;<br />$pelas = $pelas1 + $pelas2;<br />// echo $pelas mostrará "123.1";<br />$formateado = sprintf ("%01.2f", $pelas);<br />// echo $formateado mostrará "123.10"</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.soundex.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sscanf.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>soundex</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sscanf</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

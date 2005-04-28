@@ -1,0 +1,302 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_send_query</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_select"
+HREF="function.pg-select.html"><LINK
+REL="NEXT"
+TITLE="pg_set_client_encoding"
+HREF="function.pg-set-client-encoding.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-select.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-set-client-encoding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-send-query"
+></A
+>pg_send_query</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN89769"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>pg_send_query&nbsp;--&nbsp;
+     Sends asynchronous query
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN89772"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>pg_send_query</B
+> ( resource connection, string query)<BR
+></BR
+>bool <B
+CLASS="methodname"
+>pg_send_query</B
+> ( string query)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pg_send_query()</B
+> send asynchronous query to the
+     <VAR
+CLASS="parameter"
+>connection</VAR
+>. Unlike
+     <A
+HREF="function.pg-query.html"
+><B
+CLASS="function"
+>pg_query()</B
+></A
+>, it can send multiple query to
+     PostgreSQL and get the result one by one using
+     <A
+HREF="function.pg-get-result.html"
+><B
+CLASS="function"
+>pg_get_result()</B
+></A
+>. Script execution is not blocked
+     while query is executing. Use
+     <A
+HREF="function.pg-connection-busy.html"
+><B
+CLASS="function"
+>pg_connection_busy()</B
+></A
+> to check connection is
+     busy (i.e. query is executing). Query may be cancelled by calling
+     <A
+HREF="function.pg-cancel-query.html"
+><B
+CLASS="function"
+>pg_cancel_query()</B
+></A
+>.
+    </P
+><P
+>&#13;     Although user can send multiple query at once, user cannot send
+     multiple query over busy connection. If query is sent while
+     connection is busy, it waits until last query is finished and
+     discards all result.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN89798"
+></A
+><P
+><B
+>Ejemplo 1. Asynchronous Queries</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;$dbconn </font><font color="#007700">= </font><font color="#0000BB">pg_connect</font><font color="#007700">(</font><font color="#DD0000">"dbname=publisher"</font><font color="#007700">) or die(</font><font color="#DD0000">"Could not connect"</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000BB">pg_connection_busy</font><font color="#007700">(</font><font color="#0000BB">$dbconn</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">pg_send_query</font><font color="#007700">(</font><font color="#0000BB">$dbconn</font><font color="#007700">, </font><font color="#DD0000">"select * from authors; select count(*) from authors;"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$res1 </font><font color="#007700">= </font><font color="#0000BB">pg_get_result</font><font color="#007700">(</font><font color="#0000BB">$dbconn</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"First call to pg_get_result(): $res1</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$rows1 </font><font color="#007700">= </font><font color="#0000BB">pg_num_rows</font><font color="#007700">(</font><font color="#0000BB">$res1</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$res1 has $rows1 records</font><font color="#007700">\n\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$res2 </font><font color="#007700">= </font><font color="#0000BB">pg_get_result</font><font color="#007700">(</font><font color="#0000BB">$dbconn</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"second call to pg_get_result(): $res2</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$rows2 </font><font color="#007700">= </font><font color="#0000BB">pg_num_rows</font><font color="#007700">(</font><font color="#0000BB">$res2</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$res2 has $rows2 records</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       The above example would produce the following output:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>first call to pg_get_result(): Resource id #3
+Resource id #3 has 3 records
+
+second call to pg_get_result(): Resource id #4
+Resource id #4 has 1 records</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+> 
+    </P
+><P
+>&#13;     See also <A
+HREF="function.pg-query.html"
+><B
+CLASS="function"
+>pg_query()</B
+></A
+>,
+     <A
+HREF="function.pg-cancel-query.html"
+><B
+CLASS="function"
+>pg_cancel_query()</B
+></A
+>,
+     <A
+HREF="function.pg-get-result.html"
+><B
+CLASS="function"
+>pg_get_result()</B
+></A
+> and
+     <A
+HREF="function.pg-connection-busy.html"
+><B
+CLASS="function"
+>pg_connection_busy()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-select.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-set-client-encoding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_select</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_set_client_encoding</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

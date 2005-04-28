@@ -1,0 +1,331 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>strnatcmp</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="strnatcasecmp"
+HREF="function.strnatcasecmp.html"><LINK
+REL="NEXT"
+TITLE="strncasecmp"
+HREF="function.strncasecmp.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.strnatcasecmp.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.strncasecmp.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.strnatcmp"
+></A
+>strnatcmp</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN107770"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>strnatcmp&nbsp;--&nbsp;
+    	Compara cadenas usando un algoritmo de "orden natural"
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN107773"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>strnatcmp</B
+> ( string cad1, string cad2)<BR
+></BR
+><P
+>&#13;         Esta función implementa un algoritmo de comparación que ordena
+         las cadenas alfanuméricas como lo haría un ser humano, que es lo
+         que se denomina "orden natural". A continuación se puede ver un
+         ejemplo de la diferencia entre este algoritmo y los algoritmos de
+         ordenación de cadenas habituales en los ordenadores (utilizados 
+         en <A
+HREF="function.strcmp.html"
+><B
+CLASS="function"
+>strcmp()</B
+></A
+>):
+         <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN107786"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$matriz1 = $matriz2 = array ("img12.png","img10.png","img2.png","img1.png");
+echo "Comparación de cadenas estándar\n";
+usort($matriz1,"strcmp");
+print_r($matriz1);
+echo "\nComparación de cadenas en orden natural\n";
+usort($matriz2,"strnatcmp");
+print_r($matriz2);</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+         El código anterior generará la siguiente salida:
+         <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN107788"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>Comparación de cadenas estándar
+Array
+(
+    [0] =&#62; img1.png
+    [1] =&#62; img10.png
+    [2] =&#62; img12.png
+    [3] =&#62; img2.png
+)
+
+Comparación de cadenas en orden natural
+Array
+(
+    [0] =&#62; img1.png
+    [1] =&#62; img2.png
+    [2] =&#62; img10.png
+    [3] =&#62; img12.png
+)</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+         Para más información, vea la página de Martin Pool sobre
+         <A
+HREF="http://www.naturalordersort.org/"
+TARGET="_top"
+>Comparación de Cadenas en
+         Orden Natural</A
+>.
+        </P
+><P
+>&#13;         De forma similar a otras funciones de comparación de cadenas,
+         esta devuelve &#60; 0 si <VAR
+CLASS="parameter"
+>cad1</VAR
+> es menor que
+         <VAR
+CLASS="parameter"
+>cad2</VAR
+>; &#62; 0 si <VAR
+CLASS="parameter"
+>cad1</VAR
+>
+         es mayor que <VAR
+CLASS="parameter"
+>cad2</VAR
+>, y 0 si son iguales.
+    </P
+><P
+>&#13;     Nótese que esta comparación es sensible a mayúsculas y minúsculas.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.ereg.html"
+><B
+CLASS="function"
+>ereg()</B
+></A
+>,
+     <A
+HREF="function.strcasecmp.html"
+><B
+CLASS="function"
+>strcasecmp()</B
+></A
+>, <A
+HREF="function.substr.html"
+><B
+CLASS="function"
+>substr()</B
+></A
+>,
+     <A
+HREF="function.stristr.html"
+><B
+CLASS="function"
+>stristr()</B
+></A
+>, <A
+HREF="function.strcmp.html"
+><B
+CLASS="function"
+>strcmp()</B
+></A
+>,
+     <A
+HREF="function.strncmp.html"
+><B
+CLASS="function"
+>strncmp()</B
+></A
+>, <A
+HREF="function.strnatcasecmp.html"
+><B
+CLASS="function"
+>strnatcasecmp()</B
+></A
+>,
+         y <A
+HREF="function.strstr.html"
+><B
+CLASS="function"
+>strstr()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.strnatcasecmp.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.strncasecmp.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>strnatcasecmp</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>strncasecmp</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

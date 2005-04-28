@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_stmt_bind_param</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_stmt_affected_rows"
+HREF="function.mysqli-stmt-affected-rows.html"><LINK
+REL="NEXT"
+TITLE="mysqli_stmt_bind_result"
+HREF="function.mysqli-stmt-bind-result.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-affected-rows.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-bind-result.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-stmt-bind-param"
+></A
+>mysqli_stmt_bind_param</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN67622"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_stmt_bind_param<P
+>    (no version information, might be only in CVS)</P
+>stmt-&#62;bind_param&nbsp;--&nbsp;Enlaza variables como parámetros a una sentencia preparada</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67626"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>bool <B
+CLASS="methodname"
+>mysqli_stmt_bind_param</B
+> ( objeto stmt, cadena types, mixto var1 [, mixto var2, ...])<BR
+></BR
+><P
+>Estilo orientado a objetos (método):</P
+>class <B
+CLASS="classname"
+>stmt</B
+> { <BR
+></BR
+>bool <B
+CLASS="methodname"
+>bind_param</B
+> ( matriz types, mixto var1 [, mixto var2, ...])<BR
+></BR
+>}<P
+>&#13;     <B
+CLASS="function"
+>mysqli_stmt_bind_param()</B
+> es usada para enlazar variables 
+     para los marcadores de parámetros en la sentencia SQL que fue pasada 
+     a <B
+CLASS="function"
+>mysql_prepare()</B
+>.
+     La cadena <VAR
+CLASS="parameter"
+>types</VAR
+> contiene uno o más caracteres 
+     los cuales especifican los tipos para las variables enlazadas correspondientes.
+     <DIV
+CLASS="table"
+><A
+NAME="AEN67664"
+></A
+><P
+><B
+>Tabla 1. Especificación de caracteres de tipo</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Caracter</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>i</TD
+><TD
+>La variable correspondiente tiene tipo entero</TD
+></TR
+><TR
+><TD
+>d</TD
+><TD
+>La variable correspondiente tiene tipo doble</TD
+></TR
+><TR
+><TD
+>s</TD
+><TD
+>La variable correspondiente tiene tipo cadena</TD
+></TR
+><TR
+><TD
+>b</TD
+><TD
+>La variable correspondiente tiene tipo BLOB y será enviada 
+         en paquetes</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Si el tamaño de los datos de la variable exceden el tamaño 
+       maximo permitido para un paquete (max_allowed_package), tienes que 
+       específicar <VAR
+CLASS="literal"
+>b</VAR
+> en <VAR
+CLASS="parameter"
+>types</VAR
+> y
+       usar <A
+HREF="function.mysqli-stmt-send-long-data.html"
+><B
+CLASS="function"
+>mysqli_stmt_send_long_data()</B
+></A
+> para enviar los datos
+       en paquetes.
+      </P
+><P
+>&#13;       El número de variables y longitud de la cadena <VAR
+CLASS="parameter"
+>types</VAR
+> 
+       debe coincidir los parámetros en la sentencia.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67691"
+></A
+><H2
+>Valores regresados</H2
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67696"
+></A
+><H2
+>Vea también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-stmt-bind-result.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_result()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-execute.html"
+><B
+CLASS="function"
+>mysqli_stmt_execute()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+>,
+     <A
+HREF="function.mysqli-prepare.html"
+><B
+CLASS="function"
+>mysqli_prepare()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-send-long-data.html"
+><B
+CLASS="function"
+>mysqli_stmt_send_long_data()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-errno.html"
+><B
+CLASS="function"
+>mysqli_stmt_errno()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-error.html"
+><B
+CLASS="function"
+>mysqli_stmt_error()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67706"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN67708"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">'localhost'</font><font color="#007700">, </font><font color="#DD0000">'my_user'</font><font color="#007700">, </font><font color="#DD0000">'my_password'</font><font color="#007700">, </font><font color="#DD0000">'world'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">prepare</font><font color="#007700">(</font><font color="#DD0000">"INSERT INTO CountryLanguage VALUES (?, ?, ?, ?)"</font><font color="#007700">);<br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">bind_param</font><font color="#007700">(</font><font color="#DD0000">'sssd'</font><font color="#007700">, </font><font color="#0000BB">$code</font><font color="#007700">, </font><font color="#0000BB">$language</font><font color="#007700">, </font><font color="#0000BB">$official</font><font color="#007700">, </font><font color="#0000BB">$percent</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$code </font><font color="#007700">= </font><font color="#DD0000">'DEU'</font><font color="#007700">;<br /></font><font color="#0000BB">$language </font><font color="#007700">= </font><font color="#DD0000">'Bavarian'</font><font color="#007700">;<br /></font><font color="#0000BB">$official </font><font color="#007700">= </font><font color="#DD0000">"F"</font><font color="#007700">;<br /></font><font color="#0000BB">$percent </font><font color="#007700">= </font><font color="#0000BB">11.2</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* execute prepared statement */<br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">execute</font><font color="#007700">();<br /><br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%d Row inserted.\n"</font><font color="#007700">, </font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">affected_rows</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close statement and connection */<br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /><br /></font><font color="#FF8000">/* Clean up table CountryLanguage */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"DELETE FROM CountryLanguage WHERE Language='Bavarian'"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%d Row deleted.\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">affected_rows</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN67711"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">'localhost'</font><font color="#007700">, </font><font color="#DD0000">'my_user'</font><font color="#007700">, </font><font color="#DD0000">'my_password'</font><font color="#007700">, </font><font color="#DD0000">'world'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (!</font><font color="#0000BB">$link</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">mysqli_prepare</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"INSERT INTO CountryLanguage VALUES (?, ?, ?, ?)"</font><font color="#007700">);<br /></font><font color="#0000BB">mysqli_stmt_bind_param</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">, </font><font color="#DD0000">'sssd'</font><font color="#007700">, </font><font color="#0000BB">$code</font><font color="#007700">, </font><font color="#0000BB">$language</font><font color="#007700">, </font><font color="#0000BB">$official</font><font color="#007700">, </font><font color="#0000BB">$percent</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$code </font><font color="#007700">= </font><font color="#DD0000">'DEU'</font><font color="#007700">;<br /></font><font color="#0000BB">$language </font><font color="#007700">= </font><font color="#DD0000">'Bavarian'</font><font color="#007700">;<br /></font><font color="#0000BB">$official </font><font color="#007700">= </font><font color="#DD0000">"F"</font><font color="#007700">;<br /></font><font color="#0000BB">$percent </font><font color="#007700">= </font><font color="#0000BB">11.2</font><font color="#007700">;<br /><br /></font><font color="#FF8000">/* execute prepared statement */<br /></font><font color="#0000BB">mysqi_stmt_execute</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%d Row inserted.\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_stmt_affected_rows</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* close statement and connection */<br /></font><font color="#0000BB">mysqli_stmt_close</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Clean up table CountryLanguage */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"DELETE FROM CountryLanguage WHERE Language='Bavarian'"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%d Row deleted.\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_affected_rows</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>1 Row inserted.
+1 Row deleted.</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-affected-rows.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-bind-result.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_stmt_affected_rows</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_stmt_bind_result</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_intersect_assoc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_flip"
+HREF="function.array-flip.html"><LINK
+REL="NEXT"
+TITLE="array_intersect"
+HREF="function.array-intersect.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-flip.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-intersect.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-intersect-assoc"
+></A
+>array_intersect_assoc</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6814"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>array_intersect_assoc&nbsp;--&nbsp;Computes the intersection of arrays with additional index check</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6817"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>array_intersect_assoc</B
+> ( array array1, array array2 [, array ...])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_intersect_assoc()</B
+> returns an array
+     containing all the values of <VAR
+CLASS="parameter"
+>array1</VAR
+>
+     that are present in all the arguments. Note that the keys are used in
+     the comparison unlike in <A
+HREF="function.array-intersect.html"
+><B
+CLASS="function"
+>array_intersect()</B
+></A
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN6836"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>array_intersect_assoc()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$array1 </font><font color="#007700">= array(</font><font color="#DD0000">"a" </font><font color="#007700">=&gt; </font><font color="#DD0000">"green"</font><font color="#007700">, </font><font color="#DD0000">"b" </font><font color="#007700">=&gt; </font><font color="#DD0000">"brown"</font><font color="#007700">, </font><font color="#DD0000">"c" </font><font color="#007700">=&gt; </font><font color="#DD0000">"blue"</font><font color="#007700">, </font><font color="#DD0000">"red"</font><font color="#007700">);<br /></font><font color="#0000BB">$array2 </font><font color="#007700">= array(</font><font color="#DD0000">"a" </font><font color="#007700">=&gt; </font><font color="#DD0000">"green"</font><font color="#007700">, </font><font color="#DD0000">"yellow"</font><font color="#007700">, </font><font color="#DD0000">"red"</font><font color="#007700">);<br /></font><font color="#0000BB">$result_array </font><font color="#007700">= </font><font color="#0000BB">array_intersect_assoc</font><font color="#007700">(</font><font color="#0000BB">$array1</font><font color="#007700">, </font><font color="#0000BB">$array2</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       $result_array will look like:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [a] =&#62; green
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     In our example you see that only the pair <VAR
+CLASS="literal"
+>"a" =&#62;
+     "green"</VAR
+> is present in both arrays and thus is returned. 
+     The value <VAR
+CLASS="literal"
+>"red"</VAR
+> is not returned because in 
+     <VAR
+CLASS="varname"
+>$array1</VAR
+> its key is <VAR
+CLASS="literal"
+>0</VAR
+> while
+     the key of "red" in <VAR
+CLASS="varname"
+>$array2</VAR
+> is 
+     <VAR
+CLASS="literal"
+>1</VAR
+>.
+    </P
+><P
+>&#13;     The two values from the <VAR
+CLASS="literal"
+>key =&#62; value</VAR
+> pairs are
+     considered equal only if 
+     <VAR
+CLASS="literal"
+>(string) $elem1 === (string) $elem2 </VAR
+>. In otherwords
+     a strict type check is executed so the string representation must be
+     the same. 
+     
+    </P
+><P
+>&#13;     See also <A
+HREF="function.array-intersect.html"
+><B
+CLASS="function"
+>array_intersect()</B
+></A
+>,
+     <A
+HREF="function.array-diff.html"
+><B
+CLASS="function"
+>array_diff()</B
+></A
+> and
+     <A
+HREF="function.array-diff-assoc.html"
+><B
+CLASS="function"
+>array_diff_assoc()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-flip.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-intersect.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_flip</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_intersect</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

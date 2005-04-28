@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_chunk</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_change_key_case"
+HREF="function.array-change-key-case.html"><LINK
+REL="NEXT"
+TITLE="array_combine"
+HREF="function.array-combine.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-change-key-case.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-combine.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-chunk"
+></A
+>array_chunk</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6505"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>array_chunk&nbsp;--&nbsp;Divide una matriz en segmentos</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6508"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>array_chunk</B
+> ( array input, int size [, bool preserve_keys])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_chunk()</B
+> divide una matriz en varias matrices, cada una con
+     un número de valores equivalente a <VAR
+CLASS="parameter"
+>size</VAR
+>. La 
+     última matriz generada puede tener un número menor de valores. 
+     Las matrices se obtienen como miembros de una matriz multidimensional, que
+     será indexada con números empezando por el cero.
+    </P
+><P
+>&#13;     Si al parámetro opcional <VAR
+CLASS="parameter"
+>preserve_keys</VAR
+> se 
+     le da el valor de <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, se fuerza a PHP a preservar las claves originales 
+     de la matriz de entrada. Si se especifica <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, se utilizarán 
+     nuevos índices numéricos en cada matriz resultante. El valor 
+     por defecto es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN6530"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>array_chunk()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$input_array = array('a', 'b', 'c', 'd', 'e');<br />print_r(array_chunk($input_array, 2));<br />print_r(array_chunk($input_array, 2, TRUE));</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      La salida del anterior programa será:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; Array
+        (
+            [0] =&#62; a
+            [1] =&#62; b
+        )
+
+    [1] =&#62; Array
+        (
+            [0] =&#62; c
+            [1] =&#62; d
+        )
+
+    [2] =&#62; Array
+        (
+            [0] =&#62; e
+        )
+
+)
+Array
+(
+    [0] =&#62; Array
+        (
+            [0] =&#62; a
+            [1] =&#62; b
+        )
+
+    [1] =&#62; Array
+        (
+            [2] =&#62; c
+            [3] =&#62; d
+        )
+
+    [2] =&#62; Array
+        (
+            [4] =&#62; e
+        )
+
+)</PRE
+></TD
+></TR
+></TABLE
+>
+     </P
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-change-key-case.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-combine.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_change_key_case</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_combine</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

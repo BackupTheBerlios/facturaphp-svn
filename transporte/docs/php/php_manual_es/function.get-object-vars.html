@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>get_object_vars</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Clases/Objetos"
+HREF="ref.classobj.html"><LINK
+REL="PREVIOUS"
+TITLE="get_declared_interfaces"
+HREF="function.get-declared-interfaces.html"><LINK
+REL="NEXT"
+TITLE="get_parent_class"
+HREF="function.get-parent-class.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-declared-interfaces.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.get-parent-class.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.get-object-vars"
+></A
+>get_object_vars</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN12649"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>get_object_vars&nbsp;--&nbsp;Devuelve un vector de propiedades del objecto</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN12652"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>get_class_vars</B
+> ( object obj)<BR
+></BR
+><P
+>&#13;   Esta función devuelve una matriz con las propiedades
+   definidas en el objecto especificado como
+   <VAR
+CLASS="parameter"
+>obj</VAR
+>. 
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Con anterioridad a PHP 4.2.0, si las variables declaradas en la
+    clase a la que pertenece <VAR
+CLASS="parameter"
+>obj</VAR
+>, no les ha
+    sido asignado un valor, no serán devueltas en el vector. En
+    versiones posteriores a PHP 4.2.0 se les asignará un valor
+    <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN12667"
+></A
+><P
+><B
+>Ejemplo 1. Uso de <B
+CLASS="function"
+>get_object_vars()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">Point2D </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;var </font><font color="#0000BB">$x</font><font color="#007700">, </font><font color="#0000BB">$y</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;var </font><font color="#0000BB">$label</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">Point2D</font><font color="#007700">(</font><font color="#0000BB">$x</font><font color="#007700">, </font><font color="#0000BB">$y</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x </font><font color="#007700">= </font><font color="#0000BB">$x</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">y </font><font color="#007700">= </font><font color="#0000BB">$y</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">setLabel</font><font color="#007700">(</font><font color="#0000BB">$label</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">label </font><font color="#007700">= </font><font color="#0000BB">$label</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">getPoint</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return array(</font><font color="#DD0000">"x" </font><font color="#007700">=&gt; </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">x</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"y" </font><font color="#007700">=&gt; </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">y</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"label" </font><font color="#007700">=&gt; </font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">label</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#FF8000">// "$label" is declared but not defined<br /></font><font color="#0000BB">$p1 </font><font color="#007700">= new </font><font color="#0000BB">Point2D</font><font color="#007700">(</font><font color="#0000BB">1.233</font><font color="#007700">, </font><font color="#0000BB">3.445</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">get_object_vars</font><font color="#007700">(</font><font color="#0000BB">$p1</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$p1</font><font color="#007700">-&gt;</font><font color="#0000BB">setLabel</font><font color="#007700">(</font><font color="#DD0000">"point #1"</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">get_object_vars</font><font color="#007700">(</font><font color="#0000BB">$p1</font><font color="#007700">));<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;     El resultado de este programa es: 
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+ (
+     [x] =&#62; 1.233
+     [y] =&#62; 3.445
+     [label] =&#62;
+ )
+
+ Array
+ (
+     [x] =&#62; 1.233
+     [y] =&#62; 3.445
+     [label] =&#62; point #1
+ )</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Ver tambien <A
+HREF="function.get-class-methods.html"
+><B
+CLASS="function"
+>get_class_methods()</B
+></A
+> y
+   <A
+HREF="function.get-class-vars.html"
+><B
+CLASS="function"
+>get_class_vars()</B
+></A
+>
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-declared-interfaces.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.get-parent-class.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_declared_interfaces</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.classobj.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>get_parent_class</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

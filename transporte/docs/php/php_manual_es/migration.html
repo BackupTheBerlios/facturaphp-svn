@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Migración desde PHP/FI 2 hacia PHP 3</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Apéndices"
+HREF="appendixes.html"><LINK
+REL="PREVIOUS"
+TITLE="Gestión de variables globales"
+HREF="migration4.variables.html"><LINK
+REL="NEXT"
+TITLE="old_function"
+HREF="migration.old-function.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="appendix"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration4.variables.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="migration.old-function.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="appendix"
+><H1
+><A
+NAME="migration"
+>Apéndice D. Migración desde PHP/FI 2 hacia PHP 3</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="migration.html#migration.about"
+>Sobre las incompatibilidades en 3.0</A
+></DT
+><DT
+><A
+HREF="migration.old-function.html"
+><VAR
+CLASS="literal"
+>old_function</VAR
+></A
+></DT
+><DT
+><A
+HREF="migration.startendtags.html"
+>Etiquetas de inicio/final</A
+></DT
+><DT
+><A
+HREF="migration.if-endif.html"
+>Sintaxis if..endif</A
+></DT
+><DT
+><A
+HREF="migration.while.html"
+>Sintaxis while</A
+></DT
+><DT
+><A
+HREF="migration.expr.html"
+>Tipos de las expresiones</A
+></DT
+><DT
+><A
+HREF="migration.errors.html"
+>Los mensajes de error han cambiado</A
+></DT
+><DT
+><A
+HREF="migration.booleval.html"
+>Evaluación booleana de corto-circuito</A
+></DT
+><DT
+><A
+HREF="migration.truefalse.html"
+>Valores de retorno de función <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>/<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+></A
+></DT
+><DT
+><A
+HREF="migration.other.html"
+>Otras incompatibilidades</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration.about"
+>Sobre las incompatibilidades en 3.0</A
+></H1
+><P
+>&#13;   PHP 3.0 ha sido rescrito desde ceros. Posee un analizador
+   sintáctico apropiado, que es mucho más robusto y
+   consistente que el de 2.0. 3.0 es también significativamente
+   mas rápido, y usa menos memoria. Sin embargo, algunas de
+   estas mejoras no fueron posibles sin modificaciones de
+   compatibilidad, tanto en la sintaxis como en el funcionamiento.
+  </P
+><P
+>&#13;   Además, los desarrolladores de PHP han intentado limpiar
+   tanto la sintaxis como la semántica de PHP en la
+   versión 3.0, y ésto ha causado también algunas
+   incompatibilidades. Creemos que, a largo plazo, estos cambios
+   serán para bien.
+  </P
+><P
+>&#13;   Este capítulo intentará guiarle a través de
+   las incompatibilidades que puede encontrar cuando vaya desde PHP/FI
+   2.0 a PHP 3.0, además de ayudarle a resolverlas. No se
+   mencionan aquí las nuevas características, a menos
+   que sea necesario.
+  </P
+><P
+>&#13;   Existe un programa que puede convertir automáticamente sus
+   viejos scripts PHP/FI 2.0. Puede ser encontrado en el
+   subdirectorio <TT
+CLASS="filename"
+>convertor</TT
+> de
+   la distribucion 3.0 de PHP. Sin embargo, éste programa solo
+   detecta los cambios de sintaxis, así que debería leer
+   este capítulo con cuidado, en cualquier caso.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration4.variables.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="migration.old-function.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Gestión de variables globales</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="appendixes.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>old_function</VAR
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

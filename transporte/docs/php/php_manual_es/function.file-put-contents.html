@@ -1,0 +1,278 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>file_put_contents</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="file_get_contents"
+HREF="function.file-get-contents.html"><LINK
+REL="NEXT"
+TITLE="file"
+HREF="function.file.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.file-get-contents.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.file-put-contents"
+></A
+>file_put_contents</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN28333"
+></A
+><P
+>    (PHP 5)</P
+>file_put_contents&nbsp;--&nbsp;Escribir una cadena sobre un archivo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN28336"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>file_put_contents</B
+> ( string nombre_archivo, string datos [, int banderas [, resource contexto]])<BR
+></BR
+><P
+>&#13;     Idéntico a llamar <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>,
+     <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>, y <A
+HREF="function.fclose.html"
+><B
+CLASS="function"
+>fclose()</B
+></A
+>
+     sucesivamente. La función devuelve la cantidad de bytes
+     que fueron escritos en el archivo.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>banderas</VAR
+> puede recibir
+     <TT
+CLASS="constant"
+><B
+>FILE_USE_INCLUDE_PATH</B
+></TT
+> o
+     <TT
+CLASS="constant"
+><B
+>FILE_APPEND</B
+></TT
+>, sin embargo, la opción
+     <TT
+CLASS="constant"
+><B
+>FILE_USE_INCLUDE_PATH</B
+></TT
+> debe ser usada con
+     precaución.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función es segura
+binariamente.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>Puede usar una URL como
+nombre de archivo con esta función si los <A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>fopen wrappers</A
+> han sido
+activados.  Consulte <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> para más
+detalles sobre cómo especificar el nombre de fichero y <A
+HREF="wrappers.html"
+>Apéndice L</A
+> una lista de protocolos URL
+soportados</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>,
+     <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>, <A
+HREF="function.fclose.html"
+><B
+CLASS="function"
+>fclose()</B
+></A
+>, y
+     <A
+HREF="function.file-get-contents.html"
+><B
+CLASS="function"
+>file_get_contents()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.file-get-contents.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>file_get_contents</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>file</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

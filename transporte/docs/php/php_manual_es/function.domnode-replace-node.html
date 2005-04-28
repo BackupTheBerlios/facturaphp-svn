@@ -1,0 +1,209 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>DomNode-&#62;replace_node</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones DOM XML"
+HREF="ref.domxml.html"><LINK
+REL="PREVIOUS"
+TITLE="DomNode->replace_child"
+HREF="function.domnode-replace-child.html"><LINK
+REL="NEXT"
+TITLE="DomNode->set_content"
+HREF="function.domnode-set-content.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.domnode-replace-child.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.domnode-set-content.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.domnode-replace-node"
+></A
+>DomNode-&#62;replace_node</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN24461"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>DomNode-&#62;replace_node&nbsp;--&nbsp;
+     Replaces node
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN24464"
+></A
+><H2
+>Description</H2
+>object <B
+CLASS="methodname"
+>DomNode-&#62;replace_node</B
+> ( object newnode)<BR
+></BR
+><P
+>&#13;     (PHP 4.2) This function replaces an existing node with the passed
+     new node. Before the replacement
+     <VAR
+CLASS="parameter"
+>newnode</VAR
+> is copied if it has a parent to
+     make sure a node which is
+     already in the document will not be inserted a second time. This
+     behaviour enforces doing all modifications on the node before the
+     replacement or to refetch the inserted node afterwards with functions like
+     <A
+HREF="function.domnode-first-child.html"
+><B
+CLASS="function"
+>domnode_first_child()</B
+></A
+>,
+     <A
+HREF="function.domnode-child-nodes.html"
+><B
+CLASS="function"
+>domnode_child_nodes()</B
+></A
+> etc..
+    </P
+><P
+>&#13;     (PHP 4.3) This function replaces an existing node with the passed new node. It is not
+     copied anymore. If <VAR
+CLASS="parameter"
+>newnode</VAR
+>  was already inserted in the document 
+     it is first unlinked from its existing context. If the replacement succeeds the old 
+     node is returned. 
+    </P
+><P
+>&#13;     See also <A
+HREF="function.domnode-append-child.html"
+><B
+CLASS="function"
+>domnode_append_child()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.domnode-replace-child.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.domnode-set-content.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>DomNode-&#62;replace_child</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.domxml.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DomNode-&#62;set_content</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

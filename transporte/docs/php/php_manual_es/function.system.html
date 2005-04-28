@@ -1,0 +1,398 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>system</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Ejecución de Programas"
+HREF="ref.exec.html"><LINK
+REL="PREVIOUS"
+TITLE="shell_exec"
+HREF="function.shell-exec.html"><LINK
+REL="NEXT"
+TITLE="Printer Functions"
+HREF="ref.printer.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.shell-exec.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.printer.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.system"
+></A
+>system</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN91074"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>system&nbsp;--&nbsp;Ejecutar un programa externo y mostrar su
+    salida</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN91077"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>system</B
+> ( string comando [, int val_retorno])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>system()</B
+> es similar a la versión C de
+     la función de mismo nombre, dado que ejecuta el
+     <VAR
+CLASS="parameter"
+>comando</VAR
+> dado y muestra el resultado. Si se
+     entrega una variable como segundo argumento, entonces el
+     código de status devuelto por el comando ejecutado
+     será escrito en esta variable.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>If you are going to allow data coming
+from user input to be passed to this function, then you should be using 
+<A
+HREF="function.escapeshellarg.html"
+><B
+CLASS="function"
+>escapeshellarg()</B
+></A
+> or <A
+HREF="function.escapeshellcmd.html"
+><B
+CLASS="function"
+>escapeshellcmd()</B
+></A
+>
+to make sure that users cannot trick the system into executing arbitrary
+commands.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>If you start a program using this function
+and want to leave it running in the background, you have to make sure that the
+output of that program is redirected to a file or some other output stream or
+else PHP will hang until the execution of the program ends.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     La llamada a <B
+CLASS="function"
+>system()</B
+> también intenta
+     volcar automáticamente el búfer de salida del
+     servidor web después de cada línea de salida, si
+     PHP está corriendo como un módulo de servidor.
+    </P
+><P
+>&#13;	 Devuelve la última línea de la salida del comando
+	 en caso de éxito, y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si se presenta algún
+	 fallo.
+    </P
+><P
+>&#13;     Si necesita ejecutar un comando y recibir de vuelta todo los
+     datos del mismo sin interferencias, use la
+     función <A
+HREF="function.passthru.html"
+><B
+CLASS="function"
+>passthru()</B
+></A
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN91104"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>system()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#DD0000">'&lt;pre&gt;'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Muestra el resultado completo del comando "ls", y devuelve la<br />// ultima linea de la salida en $ultima_linea. Almacena el valor de<br />// retorno del comando en $retval.<br /></font><font color="#0000BB">$ultima_linea </font><font color="#007700">= </font><font color="#0000BB">system</font><font color="#007700">(</font><font color="#DD0000">'ls'</font><font color="#007700">, </font><font color="#0000BB">$retval</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Imprimir informacion adicional<br /></font><font color="#007700">echo </font><font color="#DD0000">'<br />&lt;/pre&gt;<br />&lt;hr /&gt;Ultima linea de la salida: ' </font><font color="#007700">. </font><font color="#0000BB">$ultima_linea </font><font color="#007700">. </font><font color="#DD0000">'<br />&lt;hr /&gt;Valor de retorno: ' </font><font color="#007700">. </font><font color="#0000BB">$retval</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>When
+<A
+HREF="features.safe-mode.html"
+>safe mode</A
+> is enabled, you can only
+execute executables within the <A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>.
+For practical reasons it is currently not allowed to have <VAR
+CLASS="literal"
+>..</VAR
+>
+components in the path to the executable. </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>With <A
+HREF="features.safe-mode.html"
+>safe mode</A
+> enabled,
+all words following the initial command string are treated as a single argument. Thus, 
+<VAR
+CLASS="literal"
+>echo y | echo x</VAR
+> becomes <VAR
+CLASS="literal"
+>echo "y | echo x"</VAR
+>.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.exec.html"
+><B
+CLASS="function"
+>exec()</B
+></A
+>,
+     <A
+HREF="function.passthru.html"
+><B
+CLASS="function"
+>passthru()</B
+></A
+>, <A
+HREF="function.popen.html"
+><B
+CLASS="function"
+>popen()</B
+></A
+>,
+     <A
+HREF="function.escapeshellcmd.html"
+><B
+CLASS="function"
+>escapeshellcmd()</B
+></A
+>,
+     <A
+HREF="function.pcntl-exec.html"
+><B
+CLASS="function"
+>pcntl_exec()</B
+></A
+> y el <A
+HREF="language.operators.execution.html"
+>operador de comilla
+     invertida</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.shell-exec.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.printer.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>shell_exec</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.exec.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Printer Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

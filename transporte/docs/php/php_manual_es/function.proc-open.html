@@ -1,0 +1,369 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>proc_open</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Ejecución de Programas"
+HREF="ref.exec.html"><LINK
+REL="PREVIOUS"
+TITLE="proc_nice"
+HREF="function.proc-nice.html"><LINK
+REL="NEXT"
+TITLE="proc_terminate"
+HREF="function.proc-terminate.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.proc-nice.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.proc-terminate.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.proc-open"
+></A
+>proc_open</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN90979"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>proc_open&nbsp;--&nbsp;
+     Ejecutar un comando y abrir apuntadores de archivo para
+     entrada/salida
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN90982"
+></A
+><H2
+>Descripción</H2
+>resource <B
+CLASS="methodname"
+>proc_open</B
+> ( string cmd, array espec_descriptor, array pipes)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>proc_open()</B
+> es similar a
+     <A
+HREF="function.popen.html"
+><B
+CLASS="function"
+>popen()</B
+></A
+> pero provee un grado de control mucho
+     mayor sobre la ejecución del
+     programa. <VAR
+CLASS="parameter"
+>cmd</VAR
+> es el comando a ser
+     ejecutado por el intérprete de
+     comandos. <VAR
+CLASS="parameter"
+>espec_descriptor</VAR
+> es una matriz
+     indexada en donde la clave representa el número de
+     descriptor y el valor representa el modo como PHP pasará
+     ese descriptor al proceso hijo. <VAR
+CLASS="parameter"
+>pipes</VAR
+>
+     será definido como una matriz indexada de apuntadores a
+     archivo que corresponden a los puntos de comunicación con
+     PHP de todo pipe que sea creado. El valor de retorno es un
+     recurso que representa el proceso; usted debe liberarlo usando
+     <A
+HREF="function.proc-close.html"
+><B
+CLASS="function"
+>proc_close()</B
+></A
+> una vez haya terminado de usarlo.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN91004"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$espec_descriptor </font><font color="#007700">= array(<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">0 </font><font color="#007700">=&gt; array(</font><font color="#DD0000">"pipe"</font><font color="#007700">, </font><font color="#DD0000">"r"</font><font color="#007700">),&nbsp;&nbsp;</font><font color="#FF8000">// stdin es un pipe usado por el hijo para lectura<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">1 </font><font color="#007700">=&gt; array(</font><font color="#DD0000">"pipe"</font><font color="#007700">, </font><font color="#DD0000">"w"</font><font color="#007700">),&nbsp;&nbsp;</font><font color="#FF8000">// stdout es un pipe usado por el hijo para escritura<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">2 </font><font color="#007700">=&gt; array(</font><font color="#DD0000">"file"</font><font color="#007700">, </font><font color="#DD0000">"/tmp/error-output.txt"</font><font color="#007700">, </font><font color="#DD0000">"a"</font><font color="#007700">) </font><font color="#FF8000">// stderr es un archivo para escritura<br /></font><font color="#007700">);<br /></font><font color="#0000BB">$proceso </font><font color="#007700">= </font><font color="#0000BB">proc_open</font><font color="#007700">(</font><font color="#DD0000">"php"</font><font color="#007700">, </font><font color="#0000BB">$espec_descriptor</font><font color="#007700">, </font><font color="#0000BB">$pipes</font><font color="#007700">);<br />if (</font><font color="#0000BB">is_resource</font><font color="#007700">(</font><font color="#0000BB">$proceso</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// $pipes ahora luce de esta forma:<br />&nbsp;&nbsp;&nbsp;&nbsp;// 0 =&gt; gestor de escritura conectado con la entrada estandar del hijo<br />&nbsp;&nbsp;&nbsp;&nbsp;// 1 =&gt; gestor de lectura conectado con la salida estandar del hijo<br />&nbsp;&nbsp;&nbsp;&nbsp;// Cualquier mensaje de salida de error sera adicionado a /tmp/error-output.txt<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$pipes</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">], </font><font color="#DD0000">"&lt;?php echo \"&amp;iexcl;Hola mundo!\"; ?&gt;"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$pipes</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;while (!</font><font color="#0000BB">feof</font><font color="#007700">(</font><font color="#0000BB">$pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">])) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">fgets</font><font color="#007700">(</font><font color="#0000BB">$pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">], </font><font color="#0000BB">1024</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$pipes</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Es importante que cierre todos los pipes antes de llamar<br />&nbsp;&nbsp;&nbsp;&nbsp;// proc_close para evitar un bloqueo muerto<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$retval </font><font color="#007700">= </font><font color="#0000BB">proc_close</font><font color="#007700">(</font><font color="#0000BB">$proceso</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"el comando ha devuelto $retval</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     PHP 5RC2 introduce soporte pty para sistemas con ptys
+     Unix98. Esto le permite a su script interactuar con aplicaciones
+     que esperan estar hablando con una terminal. Una pty trabaja como
+     un pipe, pero es bi-direccional, así que no hay necesidad
+     de especificar un modo de lectura/escritura. El siguiente ejemplo
+     muestra cómo usar una pty; note que no necesita tener
+     todos los descriptores hablando con una pty. Note también
+     que solo una pty es creada, incluso cuando pty se especifica 3
+     veces. En una versión futura de PHP, puede que sea posible
+     hacer más que simplemente leer y escribir a la pty.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN91008"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Crear una pseudo terminal para el proceso hijo<br /></font><font color="#0000BB">$espec_descriptor </font><font color="#007700">= array(<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">0 </font><font color="#007700">=&gt; array(</font><font color="#DD0000">"pty"</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">1 </font><font color="#007700">=&gt; array(</font><font color="#DD0000">"pty"</font><font color="#007700">),<br />&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">2 </font><font color="#007700">=&gt; array(</font><font color="#DD0000">"pty"</font><font color="#007700">)<br />);<br /></font><font color="#0000BB">$proceso </font><font color="#007700">= </font><font color="#0000BB">proc_open</font><font color="#007700">(</font><font color="#DD0000">"cvs -d:pserver:cvsread@cvs.php.net:/repository login"</font><font color="#007700">, </font><font color="#0000BB">$espec_descriptor</font><font color="#007700">, </font><font color="#0000BB">$pipes</font><font color="#007700">);<br />if (</font><font color="#0000BB">is_resource</font><font color="#007700">(</font><font color="#0000BB">$proceso</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// trabaje con el recurso aqui<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     Los números de descriptor de archivo en
+     <VAR
+CLASS="parameter"
+>espec_descriptor</VAR
+> no están limitados
+     a 0, 1 y 2 - usted puede especificar cualquier número de
+     descriptor de archivo válido y éste será
+     pasado al proceso hijo. Esto le permite a su script interoperar
+     con otros scripts que corran como "co-procesos". En particular,
+     esto es útil para pasar contraseñas a programas
+     como PGP, GPG y openssl en un modo más
+     seguro. También es útil para la lectura de
+     información de status entregada por aquellos programas en
+     descriptores de archivo auxiliares.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Compatibilidad con windows: Los descriptores más
+      allá de 2 (stderr) son entregados al proceso hijo como
+      gestores heredables, pero ya que la arquitectura windows no
+      asocia números de descriptor de archivo con gestores de
+      bajo nivel, el proceso hijo no dispone (aun) de un medio para
+      acceder a esos gestores. Stdin, stdout y stderr funcionan como
+      es de esperar.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si sólo necesita un pipe de proceso uni-direccional
+      (una-vía), use <A
+HREF="function.popen.html"
+><B
+CLASS="function"
+>popen()</B
+></A
+> en su lugar, ya
+      que es mucho más fácil de usar.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.stream-select.html"
+><B
+CLASS="function"
+>stream_select()</B
+></A
+>,
+     <A
+HREF="function.exec.html"
+><B
+CLASS="function"
+>exec()</B
+></A
+>,
+     <A
+HREF="function.system.html"
+><B
+CLASS="function"
+>system()</B
+></A
+>,
+     <A
+HREF="function.passthru.html"
+><B
+CLASS="function"
+>passthru()</B
+></A
+>, <A
+HREF="function.popen.html"
+><B
+CLASS="function"
+>popen()</B
+></A
+>,
+     <A
+HREF="function.escapeshellcmd.html"
+><B
+CLASS="function"
+>escapeshellcmd()</B
+></A
+>, y el <A
+HREF="language.operators.execution.html"
+>operador de comilla
+     invertida</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.proc-nice.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.proc-terminate.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>proc_nice</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.exec.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>proc_terminate</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

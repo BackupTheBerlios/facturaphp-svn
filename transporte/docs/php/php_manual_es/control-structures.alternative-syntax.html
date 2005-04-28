@@ -1,0 +1,274 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Sintaxis Alternativa de Estructuras de Control</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Estructuras de Control"
+HREF="control-structures.html"><LINK
+REL="PREVIOUS"
+TITLE="elseif"
+HREF="control-structures.elseif.html"><LINK
+REL="NEXT"
+TITLE="while"
+HREF="control-structures.while.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="control-structures.elseif.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 11. Estructuras de Control</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="control-structures.while.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="control-structures.alternative-syntax"
+>Sintaxis Alternativa de Estructuras de Control</A
+></H1
+><P
+>&#13;   PHP ofrece una sintaxis altenativa para alguna de sus estructuras
+   de control; a saber, <VAR
+CLASS="literal"
+>if</VAR
+>,
+   <VAR
+CLASS="literal"
+>while</VAR
+>, <VAR
+CLASS="literal"
+>for</VAR
+>, y
+   <VAR
+CLASS="literal"
+>switch</VAR
+>.  En cada caso, la forma básica de
+   la sintaxis alternativa es cambiar abrir-llave por dos puntos (:) y
+   cerrar-llave por <VAR
+CLASS="literal"
+>endif;</VAR
+>,
+   <VAR
+CLASS="literal"
+>endwhile;</VAR
+>, <VAR
+CLASS="literal"
+>endfor;</VAR
+>, or
+   <VAR
+CLASS="literal"
+>endswitch;</VAR
+>, respectivamente.
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3820"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php </font><font color="#007700">if (</font><font color="#0000BB">$a</font><font color="#007700">==</font><font color="#0000BB">5</font><font color="#007700">): </font><font color="#0000BB">?&gt;<br /></font> A es igual a 5<br /> <font color="#0000BB">&lt;?php </font><font color="#007700">endif; </font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   En el ejemplo de arriba, el bloque HTML "A es igual 5" se anida
+   dentro de una sentencia <VAR
+CLASS="literal"
+>if</VAR
+> escrita en la
+   sintaxis alternativa.  El bloque HTML se mostraría solamente
+   si $a fuera igual a 5.
+  </P
+><P
+>&#13;   La sintaxis alternativa se aplica a <VAR
+CLASS="literal"
+>else</VAR
+> y
+   también a <VAR
+CLASS="literal"
+>elseif</VAR
+>.  La siguiente es una
+   estructura <VAR
+CLASS="literal"
+>if</VAR
+> con <VAR
+CLASS="literal"
+>elseif</VAR
+> y
+   <VAR
+CLASS="literal"
+>else</VAR
+> en el formato alternativo:
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3830"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /> </font><font color="#007700">if (</font><font color="#0000BB">$a </font><font color="#007700">== </font><font color="#0000BB">5</font><font color="#007700">):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"a es igual a 5"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"..."</font><font color="#007700">;<br /> elseif (</font><font color="#0000BB">$a </font><font color="#007700">== </font><font color="#0000BB">6</font><font color="#007700">):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"a es igual a 6"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"!!!"</font><font color="#007700">;<br /> else:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"a no es ni 5 ni 6"</font><font color="#007700">;<br /> endif;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+><P
+>&#13;   Mirar también <A
+HREF="control-structures.while.html"
+>while</A
+>, <A
+HREF="control-structures.for.html"
+>for</A
+>, e <A
+HREF="control-structures.html#control-structures.if"
+>if</A
+> para más ejemplos.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="control-structures.elseif.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="control-structures.while.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>elseif</VAR
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="control-structures.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><VAR
+CLASS="literal"
+>while</VAR
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

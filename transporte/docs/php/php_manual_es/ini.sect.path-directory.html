@@ -1,0 +1,718 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Rutas y Directorios</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de directivas de núcleo en php.ini"
+HREF="ini.html"><LINK
+REL="PREVIOUS"
+TITLE="Manejo de Datos"
+HREF="ini.sect.data-handling.html"><LINK
+REL="NEXT"
+TITLE="Cargas de Archivos"
+HREF="ini.sect.file_uploads.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ini.sect.data-handling.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice H. Lista de directivas de núcleo en <TT
+CLASS="filename"
+>php.ini</TT
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ini.sect.file_uploads.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ini.sect.path-directory"
+>Rutas y Directorios</A
+></H1
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN124965"
+></A
+><P
+><B
+>Tabla H-5. Opciones de Configuración de Rutas y Directorios</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>include_path</TD
+><TD
+>PHP_INCLUDE_PATH</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>doc_root</TD
+><TD
+>PHP_INCLUDE_PATH</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>user_dir</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>extension_dir</TD
+><TD
+>PHP_EXTENSION_DIR</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>cgi.fix_pathinfo</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>cgi.force_redirect</TD
+><TD
+>"1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>cgi.redirect_status_env</TD
+><TD
+>""</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>fastcgi.impersonate</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>cgi.rfc2616_headers</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.include-path"
+></A
+><VAR
+CLASS="parameter"
+>include_path</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Especifica una lista de directorios en donde las funciones
+         <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+>, <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> y
+         <B
+CLASS="function"
+>fopen_with_path()</B
+> buscan archivos. El
+         formato es como aquel de la variable de entorno de sistema
+         <VAR
+CLASS="envar"
+>PATH</VAR
+>: una lista de directorios separada con
+         dos-puntos en Unix o punto-y-coma en Windows.
+        </P
+><P
+>&#13;         <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN125024"
+></A
+><P
+><B
+>Ejemplo H-1. include_path en Unix</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="php.ini"
+>include_path=".:/php/includes"</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+        </P
+><P
+>&#13;         <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN125028"
+></A
+><P
+><B
+>Ejemplo H-2. include_path en Windows</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="php.ini"
+>include_path=".;c:\php\includes"</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+        </P
+><P
+>&#13;         Mediante el uso de <VAR
+CLASS="literal"
+>.</VAR
+> en la ruta de
+         inclusión es posible definir inclusiones relativas, ya
+         que su valor se traduce como el directorio actual.
+        </P
+></DD
+><DT
+><A
+NAME="ini.doc-root"
+></A
+><VAR
+CLASS="parameter"
+>doc_root</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         El "directorio raíz" de PHP en el servidor. Usado
+         solamente si su valor no es vacío. Si PHP es
+         configurado con <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+>, no se servirán archivos
+         por fuera de este directorio. Si PHP no fue compilado con
+         FORCE_REDIRECT, usted <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>debería</I
+></SPAN
+>
+         definir doc_root en caso de estar usando PHP como CGI bajo
+         cualquier servidor web (diferente a IIS). La alternativa es
+         usar el parámetro de configuración <A
+HREF="ini.sect.path-directory.html#ini.cgi.force-redirect"
+>cgi.force_redirect</A
+>
+         descrito más adelante.
+        </P
+></DD
+><DT
+><A
+NAME="ini.user-dir"
+></A
+><VAR
+CLASS="parameter"
+>user_dir</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         El nombre base del directorio usado en un directorio de
+         usuario para archivos PHP, por ejemplo <TT
+CLASS="filename"
+>public_html</TT
+>.
+        </P
+></DD
+><DT
+><A
+NAME="ini.extension-dir"
+></A
+><VAR
+CLASS="parameter"
+>extension_dir</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         El directorio en donde PHP ha de buscar por extensiones
+         cargadas dinámicamente. Vea también: <A
+HREF="ref.info.html#ini.enable-dl"
+>enable_dl</A
+>, y
+         <A
+HREF="function.dl.html"
+><B
+CLASS="function"
+>dl()</B
+></A
+>.
+        </P
+></DD
+><DT
+><A
+NAME="ini.extension"
+></A
+><VAR
+CLASS="parameter"
+>extension</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Cuáles extensiones de carga dinámica leer
+         cuando PHP inicia.
+        </P
+></DD
+><DT
+><A
+NAME="ini.cgi.fix_pathinfo"
+></A
+><VAR
+CLASS="parameter"
+>cgi.fix_pathinfo</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Ofrece un soporte <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>real</I
+></SPAN
+> de
+         PATH_INFO/PATH_TRANSLATED para CGI. El comportamiento
+         anterior de PHP era definir PATH_TRANSLATED como
+         SCRIPT_FILENAME, y no producir el valor PATH_INFO. Para
+         más información sobre PATH_INFO, consulte las
+         especificaciones sobre el estándar cgi. Definir este
+         parámetro como 1 causará que el modo CGI de PHP
+         fije su ruta para que cumpla con la especificación. Un
+         valor de cero causa que PHP se comporte como lo hacía
+         anteriormente. El valor predeterminado es cero. Es
+         recomendable que arregle sus scripts para que usen
+         SCRIPT_FILENAME en lugar de PATH_TRANSLATED.
+        </P
+></DD
+><DT
+><A
+NAME="ini.cgi.force-redirect"
+></A
+><VAR
+CLASS="parameter"
+>cgi.force_redirect</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         cgi.force_redirect es necesario para ofrecer seguridad cuando
+         PHP es ejecutado como CGI bajo la mayoría de
+         servidores web. Si no es definido, PHP habilita este
+         parámetro por defecto. Es posible deshabilitarlo
+         <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>bajo su propio riesgo</I
+></SPAN
+>.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          Usuarios de Windows: Es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>posible</I
+></SPAN
+>
+          deshabilitar esta opción para IIS, de hecho, es
+          <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>necesario</I
+></SPAN
+> hacerlo. Para lograr que
+          OmniHTTPD o Xitami funcionen es
+          <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>necesario</I
+></SPAN
+> deshabilitar este
+          parámetro.
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.cgi.redirect-status-env"
+></A
+><VAR
+CLASS="parameter"
+>cgi.redirect_status_env</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Si cgi.force_redirect se encuentra habilitado, y no
+         está usando servidores web Apache o Netscape
+         (iPlanet), <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>puede</I
+></SPAN
+> que necesite definir un
+         nombre de variable de entorno que PHP use para saber si
+         está bien continuar con la ejecución.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          Definir esta variable <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>puede</I
+></SPAN
+> causar
+          problemas de seguridad, <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>asegúrese de saber
+          lo que hace primero</I
+></SPAN
+>.
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.fastcgi.impersonate"
+></A
+><VAR
+CLASS="parameter"
+>fastcgi.impersonate</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         FastCGI bajo IIS (en un SO basado en WINNT) soporta la
+         habilidad de imitar tokens de seguridad del cliente que hace
+         las peticiones. Esto permite que IIS defina el contexto de
+         seguridad bajo el cual es ejecutada la
+         petición. mod_fastcgi bajo apache no soporta esta
+         característica por el momento (03/17/2002). Defina su
+         valor como 1 si está usando IIS. Su valor
+         predeterminado es cero.
+        </P
+></DD
+><DT
+><A
+NAME="ini.cgi.rfc2616-headers"
+></A
+><VAR
+CLASS="parameter"
+>cgi.rfc2616_headers</VAR
+>
+        <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>int</B
+></A
+></DT
+><DD
+><P
+>&#13;         Le dice a PHP qué tipo de cabeceras usar cuando
+         envíe los códigos de respuesta HTTP. Si su
+         valor es 0, PHP envía una cabecera Status: que es
+         soportada por Apache y otros servidores web. Cuando esta
+         opción tiene el valor de 1, PHP enviará
+         cabeceras compatibles con el documento <A
+HREF="http://www.faqs.org/rfcs/rfc2616"
+TARGET="_top"
+>RFC 2616</A
+>. Deje su valor en 0 a
+         menos que sepa lo que está haciendo.
+        </P
+></DD
+></DL
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ini.sect.data-handling.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ini.sect.file_uploads.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Manejo de Datos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ini.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Cargas de Archivos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

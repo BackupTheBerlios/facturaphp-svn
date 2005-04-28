@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Seguridad</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.html"><LINK
+REL="PREVIOUS"
+TITLE="Seguridad"
+HREF="security.html"><LINK
+REL="NEXT"
+TITLE="Consideraciones generales"
+HREF="security.general.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.general.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="security.index"
+>Capítulo 15. Seguridad</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="security.index.html#security.intro"
+>Introducción</A
+></DT
+><DT
+><A
+HREF="security.general.html"
+>Consideraciones generales</A
+></DT
+><DT
+><A
+HREF="security.cgi-bin.html"
+>Instalación como un binario CGI</A
+></DT
+><DT
+><A
+HREF="security.apache.html"
+>Instalación como módulo de Apache</A
+></DT
+><DT
+><A
+HREF="security.filesystem.html"
+>Seguridad del sistema de archivos</A
+></DT
+><DT
+><A
+HREF="security.database.html"
+>Seguridad de Bases de Datos</A
+></DT
+><DT
+><A
+HREF="security.errors.html"
+>Reporte de Errores</A
+></DT
+><DT
+><A
+HREF="security.globals.html"
+>Uso de Register Globals</A
+></DT
+><DT
+><A
+HREF="security.variables.html"
+>Datos Enviados por el Usuario</A
+></DT
+><DT
+><A
+HREF="security.hiding.html"
+>Ocultando PHP</A
+></DT
+><DT
+><A
+HREF="security.current.html"
+>Mantenerse al Día</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.intro"
+>Introducción</A
+></H1
+><P
+>&#13;   PHP es un poderoso lenguaje e intérprete, ya sea incluido
+   como parte de un servidor web en forma de módulo o ejecutado
+   como un binario <ACRONYM
+CLASS="acronym"
+>CGI</ACRONYM
+> separado, es capaz de
+   acceder a archivos, ejecutar comandos y abrir conexiones de red en
+   el servidor. Estas propiedades hacen que cualquier cosa que sea
+   ejecutada en un servidor web sea insegura por naturaleza. PHP
+   está diseñado específicamente para ser un
+   lenguaje más seguro para escribir programas CGI que Perl o
+   C, y con la selección correcta de opciones de
+   configuración en tiempos de compilación y
+   ejecución, y siguiendo algunas prácticas correctas de
+   programación, PHP le puede dar la combinación precisa
+   de libertad y seguridad que usted necesita.
+  </P
+><P
+>&#13;   Ya que hay muchas maneras de utilizar PHP, existen varias opciones
+   de configuración diseñadas para controlar su
+   comportamiento. Un amplio rango de opciones le garantizan que pueda
+   usar PHP para muchos propósitos distintos, pero
+   también quiere decir que hay combinaciones de éstas
+   opciones y configuraciones de servidor que pueden resultar en un
+   entorno inseguro.
+  </P
+><P
+>&#13;   El nivel de flexibilidad en la configuración de PHP se
+   compara quizás solo con su flexibilidad de desarrollo. PHP
+   puede ser usado para escribir aplicaciones completas de servidor,
+   con todo el poder de un usuario de un intérprete de
+   comandos, o puede ser usado para inclusiones simples del lado del
+   servidor con muy poco riesgo en un entorno minuciosamente
+   controlado. Cómo construir ese entorno, y qué tan
+   seguro es, básicamente depende del desarrollador PHP.
+  </P
+><P
+>&#13;   Este capítulo comienza con algunas recomendaciones generales
+   de seguridad, explica las diferentes combinaciones de opciones de
+   configuración y las situaciones en las que pueden ser usadas
+   con seguridad, y describe diferentes consideraciones a la hora de
+   programar para diferentes niveles de seguridad.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.general.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Seguridad</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Consideraciones generales</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

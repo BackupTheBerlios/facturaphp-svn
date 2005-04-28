@@ -1,0 +1,268 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Soporte del método PUT</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Manejo de envío de archivos"
+HREF="features.file-upload.html"><LINK
+REL="PREVIOUS"
+TITLE="Envío de multiples ficheros"
+HREF="features.file-upload.multiple.html"><LINK
+REL="NEXT"
+TITLE="Usando archivos remotos"
+HREF="features.remote-files.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.multiple.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 19. Manejo de envío de archivos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.remote-files.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="features.file-upload.put-method"
+>Soporte del método PUT</A
+></H1
+><P
+>&#13;    PHP soporta el metodo HTTP PUT que usan aplicaciones como Netscape
+    Composer y Amaya del W3C. Las peticiones PUT son más sencillas que
+    el método POST. Un ejemplo:
+
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN5186"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>PUT /path/filename.html HTTP/1.1</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><P
+>&#13;    Esto normalmente significaría que el cliente remoto quiere salvar
+    el contenido como: /path/filename.html en tu árbol web. Lógicamente
+    no una buena idea que la gente pueda escribir en tu árbol web. Para
+    manipular esta petición debes decirle al servidor que esta petición
+    sea atendida por un script PHP. En Apache, por ejemplo, se utiliza
+    para esto la directiva <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Script</I
+></SPAN
+> en los alguno
+    de los archivos de configuración del servidor. Un sitio típico de
+    uso es dentro del bloque &#38;lt;Directory&#38;gt; o quizás en el
+    bloque &#38;lt;Virtualhost&#38;gt;. Una linia así deberia hacer ésta
+    función:
+
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN5190"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>Script PUT /put.php</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><P
+>&#13;    Ésto le dice a Apache que envíe todas peticiones PUT para URIs que
+    contengan esta linia al script put.php. Se asume que PHP se
+    encuentra activo y con la extensión .php enlazada a él.
+   </P
+><P
+>&#13;    Dentro del script put.php3 se podría implementar algo así:
+   </P
+><P
+>&#13;    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN5195"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php copy</font><font color="#007700">(</font><font color="#0000BB">$PHP_UPLOADED_FILE_NAME</font><font color="#007700">,</font><font color="#0000BB">$DOCUMENT_ROOT</font><font color="#007700">.</font><font color="#0000BB">$REQUEST_URI</font><font color="#007700">); </font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><P
+>&#13;    Esto copiaría el archivo a la localización requerida por el cliente
+    remoto. Aqui se pueden ejecutar funciones de autentificación de
+    usuario o cualquier otro tipo de chequeo. El archivo se guarda en
+    el archivo temporal del sistema servidor de la misma manera que el
+    <A
+HREF="features.file-upload.html#features.file-upload.post-method"
+>Método POST</A
+>.
+    Cuando la petición finaliza, el archivo temporal es eliminado. En
+    consequencia el script dede proceder al trato de éste inmediatamente,
+    ya sea para copiarlo, renombrarlo, etc. El archivo se encuentra en
+    la variable $PHP_PUT_FILENAME, y el destino sugerido por el cliente
+    en la variable $REQUEST_URI (puede variar en servidores web que no sean
+    Apache). No es necesario hacer caso al destino sugerido por el cliente.
+    Por ejemplo se podrían copiar los archivos enviados a directorios
+    especialmente designados para esta tarea.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.file-upload.multiple.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.remote-files.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Envío de multiples ficheros</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Usando archivos remotos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

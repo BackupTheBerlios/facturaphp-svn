@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Servidores-Sambar</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Servidores-Servidor OmniHTTPd"
+HREF="install.omnihttpd.html"><LINK
+REL="NEXT"
+TITLE="Servidores-Xitami"
+HREF="install.xitami.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.omnihttpd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.xitami.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.sambar"
+>Servidores-Sambar</A
+></H1
+><P
+>&#13;  Esta sección contiene información específica
+  sobre la instalación de <VAR
+CLASS="literal"
+>PHP</VAR
+> con el
+  servidor Sambar para Windows
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.sambar.windows"
+>Sambar para Windows</A
+></H2
+><P
+>&#13;   Esta lista describe como instalar el módulo ISAPI de PHP
+   para que funcione conel servidor Sambar para Windows.
+  </P
+><P
+>&#13;   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Localizar el fichero mappings.ini (en el directorio de
+      configuración) en el directorio de Sambar.
+     </P
+></LI
+><LI
+><P
+>&#13;      Editar <TT
+CLASS="filename"
+>mappings.ini</TT
+> i añadir la
+      siguiente linea bajo la etiqueta <VAR
+CLASS="literal"
+>[ISAPI]</VAR
+>:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN1802"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>*.php = c:\php\php4isapi.dll</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+      (Esta linea asume que PHP está instalado en
+      <VAR
+CLASS="literal"
+>c:\php</VAR
+>.)
+     </P
+></LI
+><LI
+><P
+>&#13;      Arrancar el servidor Sambar de nuevo.
+     </P
+></LI
+></UL
+>
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.omnihttpd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.xitami.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Servidores-Servidor OmniHTTPd</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-Xitami</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

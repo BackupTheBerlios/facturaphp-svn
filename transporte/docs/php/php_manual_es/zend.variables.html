@@ -1,0 +1,546 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Creating Variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Zend API"
+HREF="zend.html"><LINK
+REL="PREVIOUS"
+TITLE="Assuring Write Safety for Other Parameters"
+HREF="zend.arguments.write-safety.html"><LINK
+REL="NEXT"
+TITLE="Longs (Integers)"
+HREF="zend.variables.long.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.arguments.write-safety.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.variables.long.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="zend.variables"
+>Capítulo 34. Creating Variables</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="zend.variables.html#zend.variables.overview"
+>Overview</A
+></DT
+><DT
+><A
+HREF="zend.variables.long.html"
+>Longs (Integers)</A
+></DT
+><DT
+><A
+HREF="zend.variables.float.html"
+>Doubles (Floats)</A
+></DT
+><DT
+><A
+HREF="zend.variables.string.html"
+>Strings</A
+></DT
+><DT
+><A
+HREF="zend.variables.boolean.html"
+>Booleans</A
+></DT
+><DT
+><A
+HREF="zend.variables.array.html"
+>Arrays</A
+></DT
+><DT
+><A
+HREF="zend.variables.object.html"
+>Objects</A
+></DT
+><DT
+><A
+HREF="zend.variables.resource.html"
+>Resources</A
+></DT
+><DT
+><A
+HREF="zend.variables.global.html"
+>Macros for Automatic Global Variable Creation</A
+></DT
+><DT
+><A
+HREF="zend.variables.constant.html"
+>Creating Constants</A
+></DT
+></DL
+></DIV
+><P
+>&#13;   When exchanging data from your own extensions with PHP scripts, one
+   of the most important issues is the creation of variables. This
+   section shows you how to deal with the variable types that PHP
+   supports.
+  </P
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.variables.overview"
+>Overview</A
+></H1
+><P
+>&#13;    To create new variables that can be seen "from the outside" by the
+    executing script, you need to allocate a new <VAR
+CLASS="envar"
+>zval</VAR
+>
+    container, fill this container with meaningful values, and then
+    introduce it to Zend's internal symbol table. This basic process
+    is common to all variable creations: 
+   </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zval *new_variable; 
+
+/* allocate and initialize new container */
+MAKE_STD_ZVAL(new_variable); 
+
+/* set type and variable contents here, see the following sections */ 
+
+/* introduce this variable by the name "new_variable_name" into the symbol table */
+ZEND_SET_SYMBOL(EG(active_symbol_table), "new_variable_name", new_variable); 
+
+/* the variable is now accessible to the script by using $new_variable_name */</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;    The macro <VAR
+CLASS="literal"
+>MAKE_STD_ZVAL</VAR
+> allocates a new
+    <VAR
+CLASS="envar"
+>zval</VAR
+> container using <VAR
+CLASS="literal"
+>ALLOC_ZVAL</VAR
+>
+    and initializes it using <VAR
+CLASS="literal"
+>INIT_ZVAL</VAR
+>. As
+    implemented in Zend at the time of this writing,
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>initializing</I
+></SPAN
+> means setting the reference
+    count to <VAR
+CLASS="literal"
+>1</VAR
+> and clearing the
+    <VAR
+CLASS="envar"
+>is_ref</VAR
+> flag, but this process could be extended
+    later - this is why it's a good idea to keep using
+    <VAR
+CLASS="literal"
+>MAKE_STD_ZVAL</VAR
+> instead of only using
+    <VAR
+CLASS="literal"
+>ALLOC_ZVAL</VAR
+>. If you want to optimize for speed
+    (and you don't have to explicitly initialize the
+    <VAR
+CLASS="envar"
+>zval</VAR
+> container here), you can use
+    <VAR
+CLASS="literal"
+>ALLOC_ZVAL</VAR
+>, but this isn't recommended because
+    it doesn't ensure data integrity.
+   </P
+><P
+>&#13;    <VAR
+CLASS="literal"
+>ZEND_SET_SYMBOL</VAR
+> takes care of introducing the
+    new variable to Zend's symbol table. This macro checks whether the
+    value already exists in the symbol table and converts the new
+    symbol to a reference if so (with automatic deallocation of the
+    old <VAR
+CLASS="envar"
+>zval</VAR
+> container). This is the preferred method
+    if speed is not a crucial issue and you'd like to keep memory
+    usage low.
+   </P
+><P
+>&#13;    Note that <VAR
+CLASS="literal"
+>ZEND_SET_SYMBOL</VAR
+> makes use of the Zend
+    executor globals via the macro <VAR
+CLASS="literal"
+>EG</VAR
+>. By
+    specifying <VAR
+CLASS="literal"
+>EG(active_symbol_table)</VAR
+>, you get access to the
+    currently active symbol table, dealing with the active, local scope. The local
+    scope may differ depending on whether the function was invoked from
+    within a function.
+   </P
+><P
+>&#13;    If you need to optimize for speed and don't care about optimal memory
+    usage, you can omit the check for an existing variable with the same value and instead
+    force insertion into the symbol table by using
+    <B
+CLASS="function"
+>zend_hash_update()</B
+>: 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zval *new_variable;
+
+/* allocate and initialize new container */
+MAKE_STD_ZVAL(new_variable);
+
+/* set type and variable contents here, see the following sections */
+
+/* introduce this variable by the name "new_variable_name" into the symbol table */
+zend_hash_update(
+    EG(active_symbol_table),
+    "new_variable_name",
+    strlen("new_variable_name") + 1,
+    &#38;new_variable,
+    sizeof(zval *),
+    NULL
+);</PRE
+></TD
+></TR
+></TABLE
+>
+    This is actually the standard method used in most modules.
+   </P
+><P
+>&#13;    The variables generated with the snippet above will always be of local
+    scope, so they reside in the context in which the function has been called. To
+    create new variables in the global scope, use the same method
+    but refer to another symbol table: 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zval *new_variable;
+     
+// allocate and initialize new container
+MAKE_STD_ZVAL(new_variable);
+
+//
+// set type and variable contents here
+//
+
+// introduce this variable by the name "new_variable_name" into the global symbol table
+ZEND_SET_SYMBOL(&#38;EG(symbol_table), "new_variable_name", new_variable);</PRE
+></TD
+></TR
+></TABLE
+>
+    The macro <VAR
+CLASS="literal"
+>ZEND_SET_SYMBOL</VAR
+> is now being
+    called with a reference to the main, global symbol table by referring
+    <VAR
+CLASS="literal"
+>EG(symbol_table)</VAR
+>.
+   </P
+><P
+>&#13;    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Note:</I
+></SPAN
+> The <VAR
+CLASS="envar"
+>active_symbol_table</VAR
+>
+    variable is a pointer, but <VAR
+CLASS="envar"
+>symbol_table</VAR
+> is not.
+    This is why you have to use
+    <VAR
+CLASS="literal"
+>EG(active_symbol_table)</VAR
+> and
+    <VAR
+CLASS="literal"
+>&#38;EG(symbol_table)</VAR
+> as parameters to
+    <VAR
+CLASS="literal"
+>ZEND_SET_SYMBOL</VAR
+> - it requires a pointer.
+   </P
+><P
+>&#13;    Similarly, to get a more efficient version, you can hardcode the
+    symbol table update: 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zval *new_variable;
+
+// allocate and initialize new container
+MAKE_STD_ZVAL(new_variable);
+
+//
+// set type and variable contents here
+//
+
+// introduce this variable by the name "new_variable_name" into the global symbol table
+zend_hash_update(
+    &#38;EG(symbol_table),
+    "new_variable_name",
+    strlen("new_variable_name") + 1,
+    &#38;new_variable,
+    sizeof(zval *),
+    NULL
+);</PRE
+></TD
+></TR
+></TABLE
+>
+    <A
+HREF="zend.variables.html#example.variable-scopes"
+>Ejemplo 34-1</A
+> shows a sample source that
+    creates two variables - <VAR
+CLASS="envar"
+>local_variable</VAR
+> with a local scope
+    and <VAR
+CLASS="envar"
+>global_variable</VAR
+> with a global scope (see Figure 9.7). 
+    The full example can be found on the CD-ROM.
+   </P
+><P
+>&#13;    Note: You can see that the global variable is actually not accessible from
+    within the function. This is because it's not imported into the local scope
+    using <VAR
+CLASS="literal"
+>global $global_variable;</VAR
+> in the PHP source. 
+   </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="example.variable-scopes"
+></A
+><P
+><B
+>Ejemplo 34-1. Creating variables with different scopes.</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>ZEND_FUNCTION(variable_creation)
+{
+    zval *new_var1, *new_var2;
+
+    MAKE_STD_ZVAL(new_var1);
+    MAKE_STD_ZVAL(new_var2);
+
+    ZVAL_LONG(new_var1, 10);
+    ZVAL_LONG(new_var2, 5);
+
+    ZEND_SET_SYMBOL(EG(active_symbol_table), "local_variable", new_var1);
+    ZEND_SET_SYMBOL(&#38;EG(symbol_table), "global_variable", new_var2);
+
+    RETURN_NULL();
+
+}</PRE
+></TD
+></TR
+></TABLE
+><P
+><IMG
+SRC="figures/Extending_Zend_6_variable_creation.png"></P
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.arguments.write-safety.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.variables.long.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Assuring Write Safety for Other Parameters</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Longs (Integers)</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

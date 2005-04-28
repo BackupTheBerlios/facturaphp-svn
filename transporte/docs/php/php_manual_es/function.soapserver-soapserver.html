@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SoapServer::SoapServer</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SOAP Functions"
+HREF="ref.soap.html"><LINK
+REL="PREVIOUS"
+TITLE="SoapParam::SoapParam"
+HREF="function.soapparam-soapparam.html"><LINK
+REL="NEXT"
+TITLE="SoapServer::addFunction"
+HREF="function.soapserver-addfunction.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.soapparam-soapparam.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.soapserver-addfunction.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.SoapServer-SoapServer"
+></A
+>SoapServer::SoapServer</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN97804"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>SoapServer::SoapServer&nbsp;--&nbsp;
+     SoapServer constructor
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN97807"
+></A
+><H2
+>Description</H2
+>object <B
+CLASS="methodname"
+>SoapServer::SoapServer</B
+> ( mixed wsdl [, array options])<BR
+></BR
+><P
+>&#13;     This constuctor allows the creatiion of SoapServer objects in WSDL or non-WSDL mode.
+     In the first case, <VAR
+CLASS="parameter"
+>wsdl</VAR
+> must be set to the URI of a WSDL file.
+     In the second case, <VAR
+CLASS="parameter"
+>wsdl</VAR
+> must be set to <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> and the
+     <VAR
+CLASS="literal"
+>uri</VAR
+> option must be set.
+     Additional <VAR
+CLASS="parameter"
+>options</VAR
+> allow setting a default SOAP version
+     (<VAR
+CLASS="literal"
+>soap_version</VAR
+>) and actor URI (<VAR
+CLASS="literal"
+>actor</VAR
+>).
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN97827"
+></A
+><P
+><B
+>Ejemplo 1. Some examples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$server </font><font color="#007700">= new </font><font color="#0000BB">SoapServer</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$server </font><font color="#007700">= new </font><font color="#0000BB">SoapServer</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">, array(</font><font color="#DD0000">'soap_version' </font><font color="#007700">=&gt; </font><font color="#0000BB">SOAP_1_2</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$server </font><font color="#007700">= new </font><font color="#0000BB">SoapServer</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">, array(</font><font color="#DD0000">'actor' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://example.org/ts-tests/C"</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$server </font><font color="#007700">= new </font><font color="#0000BB">SoapServer</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">, array(</font><font color="#DD0000">'uri' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://test-uri/"</font><font color="#007700">));<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.soapparam-soapparam.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.soapserver-addfunction.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SoapParam::SoapParam</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.soap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SoapServer::addFunction</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

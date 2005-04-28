@@ -1,0 +1,283 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>msg_send</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones Semáforo y de memoria compartida"
+HREF="ref.sem.html"><LINK
+REL="PREVIOUS"
+TITLE="msg_remove_queue"
+HREF="function.msg-remove-queue.html"><LINK
+REL="NEXT"
+TITLE="msg_set_queue"
+HREF="function.msg-set-queue.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.msg-remove-queue.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.msg-set-queue.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.msg-send"
+></A
+>msg_send</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN94611"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>msg_send&nbsp;--&nbsp;
+     Send a message to a message queue
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN94614"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>msg_send</B
+> ( resource queue, int msgtype, mixed message [, bool serialize [, bool blocking [, int errorcode]]])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>msg_send()</B
+> sends a <VAR
+CLASS="parameter"
+>message</VAR
+> of type
+     <VAR
+CLASS="parameter"
+>msgtype</VAR
+> (which MUST be greater than 0) to a
+     the message queue specified by <VAR
+CLASS="parameter"
+>queue</VAR
+>.
+    </P
+><P
+>&#13;     If the message is too large to fit in the queue, your script will wait
+     until another process reads messages from the queue and frees enough
+     space for your message to be sent.
+     This is called blocking; you can prevent blocking by setting the
+     optional <VAR
+CLASS="parameter"
+>blocking</VAR
+> parameter to <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, in which
+     case <B
+CLASS="function"
+>msg_send()</B
+> will immediately return <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if the
+     message is too big for the queue, and set the optional
+     <VAR
+CLASS="parameter"
+>errorcode</VAR
+> to EAGAIN, indicating that you should
+     try to send your message again a little later on.
+    </P
+><P
+>&#13;     The optional <VAR
+CLASS="parameter"
+>serialize</VAR
+> controls how the
+     <VAR
+CLASS="parameter"
+>message</VAR
+> is sent.  <VAR
+CLASS="parameter"
+>serialize</VAR
+>
+     defaults to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> which means that the <VAR
+CLASS="parameter"
+>message</VAR
+> is
+     serialized using the same mechanism as the session module before being
+     sent to the queue.  This allows complex arrays and objects to be sent to
+     other PHP scripts, or if you are using the WDDX serializer, to any WDDX
+     compatible client.
+    </P
+><P
+>&#13;     Upon successful completion the message queue data structure is updated as
+     follows: <VAR
+CLASS="parameter"
+>msg_lspid</VAR
+> is set to the process-ID of the
+     calling process, <VAR
+CLASS="parameter"
+>msg_qnum</VAR
+> is incremented by 1 and
+     <VAR
+CLASS="parameter"
+>msg_stime</VAR
+> is set to the current time.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.msg-remove-queue.html"
+><B
+CLASS="function"
+>msg_remove_queue()</B
+></A
+>,
+     <A
+HREF="function.msg-receive.html"
+><B
+CLASS="function"
+>msg_receive()</B
+></A
+>,
+     <A
+HREF="function.msg-stat-queue.html"
+><B
+CLASS="function"
+>msg_stat_queue()</B
+></A
+> and
+     <A
+HREF="function.msg-set-queue.html"
+><B
+CLASS="function"
+>msg_set_queue()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.msg-remove-queue.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.msg-set-queue.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>msg_remove_queue</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>msg_set_queue</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

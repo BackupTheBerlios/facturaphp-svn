@@ -1,0 +1,260 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>com_load_typelib</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones COM y .Net (Windows)"
+HREF="ref.com.html"><LINK
+REL="PREVIOUS"
+TITLE="com_isenum"
+HREF="function.com-isenum.html"><LINK
+REL="NEXT"
+TITLE="com_load"
+HREF="function.com-load.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.com-isenum.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.com-load.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.com-load-typelib"
+></A
+>com_load_typelib</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN11098"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>com_load_typelib&nbsp;--&nbsp;Loads a Typelib</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN11101"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>com_load_typelib</B
+> ( string typelib_name [, int case_insensitive])<BR
+></BR
+><P
+>&#13;     Loads a type-library and registers its constants in the engine, as though
+     they were defined using <A
+HREF="function.define.html"
+><B
+CLASS="function"
+>define()</B
+></A
+>.  The
+     <VAR
+CLASS="parameter"
+>case_insensitive</VAR
+> behaves in the same way as the
+     parameter with the same name in the <A
+HREF="function.define.html"
+><B
+CLASS="function"
+>define()</B
+></A
+> function.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>typelib_name</VAR
+> can be one of the following:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        The filename of a <VAR
+CLASS="literal"
+>.tlb</VAR
+> file or the executable module
+        that contains the type library.
+       </P
+></LI
+><LI
+><P
+>&#13;        The type library GUID, followed by its version number, for example
+        <VAR
+CLASS="literal"
+>{00000200-0000-0010-8000-00AA006D2EA4},2,0</VAR
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        The type library name, e.g. <VAR
+CLASS="literal"
+>Microsoft OLE DB ActiveX Data
+        Objects 1.0 Library</VAR
+>.
+       </P
+></LI
+></UL
+>
+
+     PHP will attempt to resolve the type library in this order, as the
+     process gets more and more expensive as you progress down the list;
+     searching for the type library by name is handled by physically
+     enumerating the registry until we find a match.
+    </P
+><P
+>&#13;     Note that it is much more efficient to use the
+     <A
+HREF="ref.com.html#ini.com.typelib-file"
+><I
+CLASS="term"
+>&#13;     <VAR
+CLASS="parameter"
+>com.typelib_file</VAR
+>
+    </I
+></A
+>
+     configuration setting to pre-load and register the constants,
+     although not so flexible.
+    </P
+><P
+>&#13;     If you have turned on <A
+HREF="ref.com.html#ini.com.autoregister-typelib"
+><I
+CLASS="term"
+>&#13;     <VAR
+CLASS="parameter"
+>com.autoregister_typelib</VAR
+>
+    </I
+></A
+>,
+     then PHP will attempt to automatically register the constants associated
+     with a COM object when you instantiate it.  This depends on the
+     interfaces provided by the COM object itself, and may not always be
+     possible.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.com-isenum.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.com-load.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>com_isenum</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.com.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>com_load</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,326 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación en Unix/HP-UX</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="NEXT"
+TITLE="Instalación en Unix/Linux"
+HREF="install.linux.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.linux.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.hpux"
+>Instalación en Unix/HP-UX</A
+></H1
+><P
+>&#13;  Esta sección contiene notas y ayudas específicas para instalar PHP
+  en sistemas HP-UX.
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Notas para PHP 4.0.4 y Apache v1.3.9
+  </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;  <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;     Necesitais gzip, podeis bajar una distribución binaria de
+     http://hpux.connect.org.uk/ftp/hpux/Gnu/gzip-1.2.4a/gzip-1.2.4a-sd-10.20.depot.Z
+     descomprimir el fichero e instalar usando swinstall.
+    </P
+></LI
+><LI
+><P
+>&#13;     Necesitais gcc, podeis bajar una distribución binaria de
+     http://gatekeep.cs.utah.edu/ftp/hpux/Gnu/gcc-2.95.2/gcc-2.95.2-sd-10.20.depot.gz
+     descomprimir el fichero e instalar usando swinstall.
+    </P
+></LI
+><LI
+><P
+>&#13;     Necesitais GNU binutils, podeis bajar una distribución binaria de
+     http://hpux.connect.org.uk/ftp/hpux/Gnu/binutils-2.9.1/binutils-2.9.1-sd-10.20.depot.gz
+     descomprimir el fichero e instalar usando swinstall.
+    </P
+></LI
+><LI
+><P
+>&#13;     Necesitais bison, podeis bajar una distribución binaria de
+     http://hpux.connect.org.uk/ftp/hpux/Gnu/bison-1.28/bison-1.28-sd-10.20.depot.gz
+     descomprimir el fichero e instalar usando swinstall.
+    </P
+></LI
+><LI
+><P
+>&#13;     Necesitais flex, podeis bajar el código fuente de uno de los
+     servidores espejo de http://www.gnu.org. Se encuentra en el
+     directorio non-gnu en el servidor ftp. Bajar el fichero y
+     ejecutar <B
+CLASS="command"
+>tar -xvf</B
+> en el mismo. Entrar en el
+     nuevo directorio flex creado y ejecutar
+     <B
+CLASS="command"
+>./configure</B
+>, <B
+CLASS="command"
+>make</B
+>, y por
+     ultimo <B
+CLASS="command"
+>make install</B
+>.
+    </P
+><P
+>&#13;     Si teneis errores, es probablemente porque gcc, etc no se encuentra
+     en vuestro PATH, actualizar la variable PATH para corregir esto.
+    </P
+></LI
+><LI
+><P
+>&#13;     Bajar el codigo fuente de PHP y Apache
+    </P
+></LI
+><LI
+><P
+>&#13;     Ejecutar <B
+CLASS="command"
+>gunzip</B
+> y <B
+CLASS="command"
+>tar -xvf</B
+>
+     en ellos. Necesitamos cambiar una par de ficheros para que
+     compilen sin problemas.
+    </P
+></LI
+><LI
+><P
+>&#13;     Para empezar el fichero de configuracion necesita cambiarse
+     porque parece que olvida que estamos en una maquina hpux. Existe
+     otra manera de hacer esto, pero una manera rapida y faciel es
+     introducir la linea <VAR
+CLASS="literal"
+>lt_target=hpux10.20</VAR
+> em la
+     linea 47286 del script de configuración.
+    </P
+></LI
+><LI
+><P
+>&#13;     Tambien tenemos que cambiar el fichero de apache GuessOS. En el
+     fichero <TT
+CLASS="filename"
+>apache_1.3.9/src/helpers</TT
+> cambiar la
+     linea 89 de <VAR
+CLASS="literal"
+>echo "hp${HPUXMACH}-hpux${HPUXVER}"; exit
+     0</VAR
+> a <VAR
+CLASS="literal"
+>echo "hp${HPUXMACH}-hp-hpux${HPUXVER}";
+     exit 0</VAR
+>
+    </P
+></LI
+><LI
+><P
+> 
+     No se puede instalar PHP como modulo compartido en HP-UX,
+     se debe compilar estaticamente, seguir las instrucciones en la
+     documentación de Apache.
+    </P
+></LI
+><LI
+><P
+>&#13;     PHP y apache deberian de haber compilado sin problemas, pero
+     Apache no arrancara. Necesitamos crear un nuevo usuario para
+     ejecutar Apache, p.ej: www o apache. Cambiar la linea 252 y 253
+     en el fichero de configuracion de Apache
+     <TT
+CLASS="filename"
+>conf/httpd.conf</TT
+>, para en vez de:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>User nobody 
+Group nogroup</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;     tener
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>User www 
+Group sys</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Esto hay que hacerlo porque Apache no puede ejecutarse como
+     nobody en hp-ux. Apache y PHP deberian de funcionar ahora.
+    </P
+></LI
+></OL
+>
+ </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.linux.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalación en Unix/Linux</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

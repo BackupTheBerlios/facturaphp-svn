@@ -1,0 +1,410 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>YAZ</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="xslt_setopt"
+HREF="function.xslt-setopt.html"><LINK
+REL="NEXT"
+TITLE="yaz_addinfo"
+HREF="function.yaz-addinfo.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.xslt-setopt.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.yaz-addinfo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.yaz"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXXII. YAZ</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN116324"
+></A
+><P
+>&#13;    The <B
+CLASS="function"
+>yaz()</B
+> functions wrap the YAZ API.  The home
+    page of the project is <A
+HREF="http://www.indexdata.dk/yaz/"
+TARGET="_top"
+>http://www.indexdata.dk/yaz/</A
+>.
+    Information about the phpyaz module can be found at <A
+HREF="http://www.indexdata.dk/phpyaz/"
+TARGET="_top"
+>http://www.indexdata.dk/phpyaz/</A
+>.
+   </P
+><P
+>&#13;    PHP/YAZ is much simpler to use than the C API for YAZ but less
+    flexible. The intent is to make it easy to build basic client
+    functions. It supports persistent stateless connections very
+    similar to those offered by the various SQL APIs that are
+    available for PHP. This means that sessions are stateless but
+    shared amongst users, thus saving the connect and INIT steps in
+    many cases.
+   </P
+><P
+>&#13;    Before compiling PHP with the PHP/YAZ module you'll need the YAZ
+    toolkit.  Build YAZ and install it. Build PHP with your favourite
+    modules and add option --with-yaz. Your task is roughly the
+    following:
+   </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN116331"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>gunzip -c yaz-1.6.tar.gz|tar xf -
+gunzip -c php-4.0.X.tar.gz|tar xf -
+cd yaz-1.6
+./configure --prefix=/usr
+make
+make install
+cd ../php-4.0.X
+./configure --with-yaz=/usr/bin
+make
+make install</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;    PHP/YAZ keeps track of connections with targets
+    (Z-Associations). A positive integer represents the ID of a
+    particular association.
+   </P
+><P
+>&#13;    The script below demonstrates the parallel searching feature of
+    the API.  When invoked it either prints a query form (if no
+    arguments are supplied) or if there are arguments (term and one or
+    more hosts) it searches the targets in array host.
+   </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN116335"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>YAZ()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$num_hosts = count ($host);<br />if (empty($term) || count($host) == 0) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo '&lt;form method="get"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox"<br />&nbsp;&nbsp;&nbsp;&nbsp;name="host[]" value="bagel.indexdata.dk/gils"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GILS test<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox"<br />&nbsp;&nbsp;&nbsp;&nbsp;name="host[]" value="localhost:9999/Default"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;local test<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" checked="1"<br />&nbsp;&nbsp;&nbsp;&nbsp;name="host[]" value="z3950.bell-labs.com/books"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BELL Labs Library<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;br&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;RPN Query:<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" size="30" name="term"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" name="action" value="Search"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;';&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo 'You searced for ' . htmlspecialchars($term) . '&lt;br&gt;';<br />&nbsp;&nbsp;&nbsp;&nbsp;for ($i = 0; $i &gt; $num_hosts; $i++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$id[] = yaz_connect($host[$i]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yaz_syntax($id[$i],"sutrs");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yaz_search($id[$i],"rpn",$term);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;yaz_wait();<br />&nbsp;&nbsp;&nbsp;&nbsp;for ($i = 0; $i &lt; $num_hosts; $i++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo '&lt;hr&gt;' . $host[$i] . ":";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$error = yaz_error($id[$i]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (!empty($error)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo "Error: $error";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$hits = yaz_hits($id[$i]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo "Result Count $hits";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo '&lt;dl&gt;';<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for ($p = 1; $p &lt;= 10; $p++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$rec = yaz_record($id[$i],$p,"string");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (empty($rec)) continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo "&lt;dt&gt;&lt;b&gt;$p&lt;/b&gt;&lt;/dt&gt;&lt;dd&gt;";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo ereg_replace("\n", "&lt;br&gt;\n",$rec);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo "&lt;/dd&gt;";<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo '&lt;/dl&gt;';<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.yaz-addinfo.html"
+>yaz_addinfo</A
+>&nbsp;--&nbsp;Returns additional error information</DT
+><DT
+><A
+HREF="function.yaz-ccl-conf.html"
+>yaz_ccl_conf</A
+>&nbsp;--&nbsp;Configure CCL parser</DT
+><DT
+><A
+HREF="function.yaz-ccl-parse.html"
+>yaz_ccl_parse</A
+>&nbsp;--&nbsp;Invoke CCL Parser</DT
+><DT
+><A
+HREF="function.yaz-close.html"
+>yaz_close</A
+>&nbsp;--&nbsp;Closes a YAZ connection</DT
+><DT
+><A
+HREF="function.yaz-connect.html"
+>yaz_connect</A
+>&nbsp;--&nbsp;
+     Returns a positive association ID on success; zero on failure
+    </DT
+><DT
+><A
+HREF="function.yaz-database.html"
+>yaz_database</A
+>&nbsp;--&nbsp;
+     Specifies the databases within a session
+    </DT
+><DT
+><A
+HREF="function.yaz-element.html"
+>yaz_element</A
+>&nbsp;--&nbsp;
+     Specifies Element-Set Name for retrieval
+    </DT
+><DT
+><A
+HREF="function.yaz-errno.html"
+>yaz_errno</A
+>&nbsp;--&nbsp;Returns error number</DT
+><DT
+><A
+HREF="function.yaz-error.html"
+>yaz_error</A
+>&nbsp;--&nbsp;Returns error description</DT
+><DT
+><A
+HREF="function.yaz-es-result.html"
+>yaz_es_result</A
+>&nbsp;--&nbsp;
+     Inspects Extended Services Result
+    </DT
+><DT
+><A
+HREF="function.yaz-get-option.html"
+>yaz_get_option</A
+>&nbsp;--&nbsp;Returns value of option for connection</DT
+><DT
+><A
+HREF="function.yaz-hits.html"
+>yaz_hits</A
+>&nbsp;--&nbsp;Returns number of hits for last search</DT
+><DT
+><A
+HREF="function.yaz-itemorder.html"
+>yaz_itemorder</A
+>&nbsp;--&nbsp;
+     Prepares for Z39.50 Item Order with an ILL-Request package
+    </DT
+><DT
+><A
+HREF="function.yaz-present.html"
+>yaz_present</A
+>&nbsp;--&nbsp;
+     Prepares for retrieval (Z39.50 present).
+    </DT
+><DT
+><A
+HREF="function.yaz-range.html"
+>yaz_range</A
+>&nbsp;--&nbsp;
+     Specifies the maximum number of records to retrieve
+    </DT
+><DT
+><A
+HREF="function.yaz-record.html"
+>yaz_record</A
+>&nbsp;--&nbsp;Returns a record</DT
+><DT
+><A
+HREF="function.yaz-scan-result.html"
+>yaz_scan_result</A
+>&nbsp;--&nbsp;Returns Scan Response result</DT
+><DT
+><A
+HREF="function.yaz-scan.html"
+>yaz_scan</A
+>&nbsp;--&nbsp;Prepares for a scan</DT
+><DT
+><A
+HREF="function.yaz-schema.html"
+>yaz_schema</A
+>&nbsp;--&nbsp;
+     Specifies schema for retrieval.
+    </DT
+><DT
+><A
+HREF="function.yaz-search.html"
+>yaz_search</A
+>&nbsp;--&nbsp;Prepares for a search</DT
+><DT
+><A
+HREF="function.yaz-set-option.html"
+>yaz_set_option</A
+>&nbsp;--&nbsp;Sets one or more options for connection</DT
+><DT
+><A
+HREF="function.yaz-sort.html"
+>yaz_sort</A
+>&nbsp;--&nbsp;Sets sorting criteria</DT
+><DT
+><A
+HREF="function.yaz-syntax.html"
+>yaz_syntax</A
+>&nbsp;--&nbsp;
+     Specifies the preferred record syntax for retrieval
+    </DT
+><DT
+><A
+HREF="function.yaz-wait.html"
+>yaz_wait</A
+>&nbsp;--&nbsp;Executes queries</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.xslt-setopt.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.yaz-addinfo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>xslt_setopt</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>yaz_addinfo</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

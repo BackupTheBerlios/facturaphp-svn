@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>getrusage</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="getopt"
+HREF="function.getopt.html"><LINK
+REL="NEXT"
+TITLE="ini_alter"
+HREF="function.ini-alter.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.getopt.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ini-alter.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.getrusage"
+></A
+>getrusage</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN85448"
+></A
+><P
+>    (PHP 3&#62;= 3.0.7, PHP 4 , PHP 5)</P
+>getrusage&nbsp;--&nbsp;Obtiene el consumo actual de recursos.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN85451"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>getrusage</B
+> ( [int who])<BR
+></BR
+><P
+>&#13;     Es un interface a getrusage(2). Devuelve un array asociativo
+     que contiene los datos devueltos de la llamada del sistema. Si who (quien) es 1,
+     getrusage debería llamarse con RUSAGE_CHILDREN.
+     
+     Todas las entradas son accesibles utilizando sus nombres de campo documentados.
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN85460"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo Getrusage</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$dat = getrusage();<br />echo $dat["ru_nswap"];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# number of swaps<br />echo $dat["ru_majflt"];&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;# number of page faults<br />echo $dat["ru_utime.tv_sec"];&nbsp;&nbsp;# user time used (seconds)<br />echo $dat["ru_utime.tv_usec"]; # user time used (microseconds)</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+
+     Vea la página man de system para más detalles. 
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.getopt.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ini-alter.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>getopt</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ini_alter</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>array_udiff</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="array_udiff_uassoc"
+HREF="function.array-udiff-uassoc.html"><LINK
+REL="NEXT"
+TITLE="array_unique"
+HREF="function.array-unique.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.array-udiff-uassoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.array-unique.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.array-udiff"
+></A
+>array_udiff</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN7635"
+></A
+><P
+>    (PHP 5)</P
+>array_udiff&nbsp;--&nbsp;Computa la diferencia entre matrices, usando una
+    llamada de retorno para la comparación de
+    datos.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN7638"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>array_udiff</B
+> ( array matriz1, array matriz2 [, array ..., callback func_comparacion_datos])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>array_udiff()</B
+> devuelve una matriz que contiene
+     todos los valores de <VAR
+CLASS="parameter"
+>matriz1</VAR
+> que no
+     están presentes en ninguno de los otros argumentos. Note
+     que las claves son preservadas. Para la comparación de
+     datos, se usa <VAR
+CLASS="parameter"
+>func_comparacion_datos</VAR
+>. Esta
+     función debe devolver un entero menor que, igual, o mayor
+     que cero si el primer argumento es considerado como menor, igual,
+     o mayor que el segundo, respectivamente. Esto en contraste
+     a <A
+HREF="function.array-diff.html"
+><B
+CLASS="function"
+>array_diff()</B
+></A
+>, la cual usa una función
+     interna para la comparación de datos.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN7661"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>array_udiff()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">cr </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">private $miembro_privado</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">$val</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">miembro_privado </font><font color="#007700">= </font><font color="#0000BB">$val</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">func_comp_cr</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$a</font><font color="#007700">-&gt;</font><font color="#0000BB">miembro_privado </font><font color="#007700">=== </font><font color="#0000BB">$b</font><font color="#007700">-&gt;</font><font color="#0000BB">miembro_privado</font><font color="#007700">) return </font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return (</font><font color="#0000BB">$a</font><font color="#007700">-&gt;</font><font color="#0000BB">miembro_privado </font><font color="#007700">&gt; </font><font color="#0000BB">$b</font><font color="#007700">-&gt;</font><font color="#0000BB">miembro_privado</font><font color="#007700">)? </font><font color="#0000BB">1</font><font color="#007700">:-</font><font color="#0000BB">1</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">$a </font><font color="#007700">= array(</font><font color="#DD0000">"0.1" </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">9</font><font color="#007700">), </font><font color="#DD0000">"0.5" </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">12</font><font color="#007700">), </font><font color="#0000BB">0 </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">23</font><font color="#007700">), </font><font color="#0000BB">1</font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">4</font><font color="#007700">), </font><font color="#0000BB">2 </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(-</font><font color="#0000BB">15</font><font color="#007700">),);<br /></font><font color="#0000BB">$b </font><font color="#007700">= array(</font><font color="#DD0000">"0.2" </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">9</font><font color="#007700">), </font><font color="#DD0000">"0.5" </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">22</font><font color="#007700">), </font><font color="#0000BB">0 </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">3</font><font color="#007700">), </font><font color="#0000BB">1</font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(</font><font color="#0000BB">4</font><font color="#007700">), </font><font color="#0000BB">2 </font><font color="#007700">=&gt; new </font><font color="#0000BB">cr</font><font color="#007700">(-</font><font color="#0000BB">15</font><font color="#007700">),);<br /><br /></font><font color="#0000BB">$resultado </font><font color="#007700">= </font><font color="#0000BB">array_udiff</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">$b</font><font color="#007700">, array(</font><font color="#DD0000">"cr"</font><font color="#007700">, </font><font color="#DD0000">"func_comp_cr"</font><font color="#007700">));<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$resultado</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       El resultado es:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0.5] =&#62; cr Object
+        (
+            [miembro_privado:private] =&#62; 12
+        )
+
+    [0] =&#62; cr Object
+        (
+            [miembro_privado:private] =&#62; 23
+        )
+
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Dos elementos son considerados iguales si, y solo
+      si <VAR
+CLASS="literal"
+>(string) $elem1 === (string) $elem2</VAR
+>. Esto
+      es: cuando su representación tipo cadena es la misma.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Por favor note que esta función sólo analiza una
+      dimensión de una matriz n-dimensional. Por supuesto,
+      puede analizar dimensiones más profundas
+      usando <VAR
+CLASS="literal"
+>array_udiff($matriz1[0], $matriz2[0],
+      "data_compare_func");</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también
+     <A
+HREF="function.array-diff.html"
+><B
+CLASS="function"
+>array_diff()</B
+></A
+>,
+     <A
+HREF="function.array-diff-assoc.html"
+><B
+CLASS="function"
+>array_diff_assoc()</B
+></A
+>,
+     <A
+HREF="function.array-diff-uassoc.html"
+><B
+CLASS="function"
+>array_diff_uassoc()</B
+></A
+>,
+     <A
+HREF="function.array-udiff-assoc.html"
+><B
+CLASS="function"
+>array_udiff_assoc()</B
+></A
+>, 
+     <A
+HREF="function.array-udiff-uassoc.html"
+><B
+CLASS="function"
+>array_udiff_uassoc()</B
+></A
+>, 
+     <A
+HREF="function.array-intersect.html"
+><B
+CLASS="function"
+>array_intersect()</B
+></A
+>,  
+     <A
+HREF="function.array-intersect-assoc.html"
+><B
+CLASS="function"
+>array_intersect_assoc()</B
+></A
+>,
+     <B
+CLASS="function"
+>array_uintersect()</B
+>,  
+     <B
+CLASS="function"
+>array_uintersect_assoc()</B
+> y
+     <B
+CLASS="function"
+>array_uintersect_uassoc()</B
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.array-udiff-uassoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.array-unique.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>array_udiff_uassoc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>array_unique</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

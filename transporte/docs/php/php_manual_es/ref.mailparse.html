@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones mailparse</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="mail"
+HREF="function.mail.html"><LINK
+REL="NEXT"
+TITLE="mailparse_determine_best_xfer_encoding"
+HREF="function.mailparse-determine-best-xfer-encoding.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mail.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mailparse-determine-best-xfer-encoding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.mailparse"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LII. Funciones mailparse</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN46964"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mailparse.intro"
+>Introducción</A
+></H1
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta extensión es
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta extensión, los nombre de sus funciones y
+en definitiva TODO lo documentado sobre esta extensión, puede
+cambiar en una futura versión de PHP SIN AVISO. La advertencia
+queda hecha, y utilizar esta extensión queda bajo su propia
+responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     Esta extensión ha sido movida desde PHP a partir de PHP
+     4.2.0 y ahora mailparse existe en <A
+HREF="http://pecl.php.net/package/mailparse"
+TARGET="_top"
+>PECL</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="mailparse.installation"
+>Instalación</A
+></H1
+><P
+>&#13;Estas funciones están disponibles únicamente
+si <VAR
+CLASS="literal"
+>PHP</VAR
+> fue configurado con la opción <VAR
+CLASS="option"
+>--enable-mailparse</VAR
+>.
+ </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.mailparse-determine-best-xfer-encoding.html"
+>mailparse_determine_best_xfer_encoding</A
+>&nbsp;--&nbsp;
+     Encuentra la mejor forma de codificar el contenido leído
+     desde el apuntador de archivo fp, el cual debe tener capacidades
+     de búsqueda
+    </DT
+><DT
+><A
+HREF="function.mailparse-msg-create.html"
+>mailparse_msg_create</A
+>&nbsp;--&nbsp;Devuelve un gestor que puede ser usado para procesar
+    un mensaje</DT
+><DT
+><A
+HREF="function.mailparse-msg-extract-part-file.html"
+>mailparse_msg_extract_part_file</A
+>&nbsp;--&nbsp;Extrae/decodifica una sección de mensaje,
+    operando sobre la codificación de
+    transferencia</DT
+><DT
+><A
+HREF="function.mailparse-msg-extract-part.html"
+>mailparse_msg_extract_part</A
+>&nbsp;--&nbsp;
+     Extrae/decodifica una sección de mensaje. Si no se
+     especifica una llamada de retorno, el contenido será
+     enviado a "stdout"
+    </DT
+><DT
+><A
+HREF="function.mailparse-msg-free.html"
+>mailparse_msg_free</A
+>&nbsp;--&nbsp;Libera un gestor ubicado
+    por <A
+HREF="function.mailparse-msg-create.html"
+><B
+CLASS="function"
+>mailparse_msg_create()</B
+></A
+></DT
+><DT
+><A
+HREF="function.mailparse-msg-get-part-data.html"
+>mailparse_msg_get_part_data</A
+>&nbsp;--&nbsp;Devuelve una matriz asociativa de información
+    sobre el mensaje</DT
+><DT
+><A
+HREF="function.mailparse-msg-get-part.html"
+>mailparse_msg_get_part</A
+>&nbsp;--&nbsp;Devuelve un gestor sobre una sección dada en un
+    mensaje mime</DT
+><DT
+><A
+HREF="function.mailparse-msg-get-structure.html"
+>mailparse_msg_get_structure</A
+>&nbsp;--&nbsp;Devuelve una matriz de nombres de sección mime
+    en el mensaje dado</DT
+><DT
+><A
+HREF="function.mailparse-msg-parse-file.html"
+>mailparse_msg_parse_file</A
+>&nbsp;--&nbsp;Procesar un archivo y devolver un recurso que
+    represente la estructura</DT
+><DT
+><A
+HREF="function.mailparse-msg-parse.html"
+>mailparse_msg_parse</A
+>&nbsp;--&nbsp;Procesar datos incrementalmente sobre un
+    búfer</DT
+><DT
+><A
+HREF="function.mailparse-rfc822-parse-addresses.html"
+>mailparse_rfc822_parse_addresses</A
+>&nbsp;--&nbsp;
+     Procesar direcciones y devolver una matriz asociativa que
+     contenga los datos
+    </DT
+><DT
+><A
+HREF="function.mailparse-stream-encode.html"
+>mailparse_stream_encode</A
+>&nbsp;--&nbsp;
+     Secuencia datos desde un apuntador de archivo, codifica y
+     escribe a fp_destino
+    </DT
+><DT
+><A
+HREF="function.mailparse-uudecode-all.html"
+>mailparse_uudecode_all</A
+>&nbsp;--&nbsp;
+     Procesa los datos desde un apuntador a archivo y extrae cada
+     archivo embebido con codificación uu. Devuelve una matriz
+     que lista la información de nombres de archivo
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mail.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mailparse-determine-best-xfer-encoding.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mail</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mailparse_determine_best_xfer_encoding</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

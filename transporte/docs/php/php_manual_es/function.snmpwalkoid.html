@@ -1,0 +1,264 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>snmpwalkoid</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones SNMP "
+HREF="ref.snmp.html"><LINK
+REL="PREVIOUS"
+TITLE="snmpwalk"
+HREF="function.snmpwalk.html"><LINK
+REL="NEXT"
+TITLE="Funciones de Socket"
+HREF="ref.sockets.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.snmpwalk.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.snmpwalkoid"
+></A
+>snmpwalkoid</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN100714"
+></A
+><P
+>    (PHP 3&#62;= 3.0.8, PHP 4 , PHP 5)</P
+>snmpwalkoid&nbsp;--&nbsp;Busqueda por un arbol de información acerca de un entidad de red
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN100717"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>snmpwalkoid</B
+> ( string hostname, string community, string object_id [, int timeout [, int retries]])<BR
+></BR
+><P
+>&#13;     Devuelve una matriz asociativa con los identificadores de los objetos y
+     sus respectivos valores comenzando por el
+     <VAR
+CLASS="parameter"
+>object_id</VAR
+> como raíz y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de error.
+    </P
+><P
+>&#13;     La función <B
+CLASS="function"
+>snmpwalkoid()</B
+> es usada para leer todos los
+     identificadores de objetos y sus respectivos valores de un agente SNMP
+     especificado por el nombre del servidor. La lectura de
+     <VAR
+CLASS="parameter"
+>community</VAR
+> especifica la comunidad para el agente. Un
+     <VAR
+CLASS="parameter"
+>object_id</VAR
+> nulo es tomado como la raíz del arbol de
+     objetos SNMP y todos los objetos por debajo de este arbol son devueltos
+     como una matriz. Si <VAR
+CLASS="parameter"
+>object_id</VAR
+> es especificado,
+     todos los objetos SNMP inferiores al <VAR
+CLASS="parameter"
+>object_id</VAR
+> son
+     devueltos.</P
+><P
+>&#13;     La existencia de <B
+CLASS="function"
+>snmpwalkoid()</B
+> y
+     <A
+HREF="function.snmpwalk.html"
+><B
+CLASS="function"
+>snmpwalk()</B
+></A
+> tiene razones historicas. Ambas funciones
+     son proporcionadas para compatibilidad hacia atrás. 
+
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN100749"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a = snmpwalkoid("127.0.0.1", "public", "");</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+><P
+>&#13;     La llamada a las funciones superiores devuelve todos los objetos SNMP del
+     agente SNMP en ejecución en el servidor local. Uno puede pasar por todos los valores con un bucle.
+     
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN100752"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+for (reset($a); $i = key($a); next($a)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "$i: $a[$i]&lt;br&gt;\n";<br />}</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.snmpwalk.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>snmpwalk</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.snmp.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Funciones de Socket</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

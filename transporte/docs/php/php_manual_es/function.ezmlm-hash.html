@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ezmlm_hash</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Correo"
+HREF="ref.mail.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones de Correo"
+HREF="ref.mail.html"><LINK
+REL="NEXT"
+TITLE="mail"
+HREF="function.mail.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.mail.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mail.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ezmlm-hash"
+></A
+>ezmlm_hash</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN46850"
+></A
+><P
+>    (PHP 3&#62;= 3.0.17, PHP 4 &#62;= 4.0.2, PHP 5)</P
+>ezmlm_hash&nbsp;--&nbsp;Calcular el valor hash que necesita EZMLM</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN46853"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ezmlm_hash</B
+> ( string dir)<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>ezmlm_hash()</B
+> calcula el valor de hash que se
+necesita cuando se administran listas de correo EZMLM en una base de
+datos MySQL.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN46864"
+></A
+><P
+><B
+>Ejemplo 1. Cálculo de hash y suscripción de un usuario</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$usuario&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#DD0000">"joecool@example.com"</font><font color="#007700">;<br /></font><font color="#0000BB">$hash&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">= </font><font color="#0000BB">ezmlm_hash</font><font color="#007700">(</font><font color="#0000BB">$usuario</font><font color="#007700">);<br /></font><font color="#0000BB">$consulta </font><font color="#007700">= </font><font color="#0000BB">sprintf</font><font color="#007700">(</font><font color="#DD0000">"INSERT INTO ejemplo VALUES (%s, '%s')"</font><font color="#007700">, </font><font color="#0000BB">$hash</font><font color="#007700">, </font><font color="#0000BB">$usuario</font><font color="#007700">);<br /></font><font color="#0000BB">$db</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#0000BB">$consulta</font><font color="#007700">); </font><font color="#FF8000">// usando la interfaz de bd PHPLIB<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.mail.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mail.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones de Correo</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mail.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mail</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

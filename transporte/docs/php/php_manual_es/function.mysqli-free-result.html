@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_free_result</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_field_tell"
+HREF="function.mysqli-field-tell.html"><LINK
+REL="NEXT"
+TITLE="mysqli_get_client_info"
+HREF="function.mysqli-get-client-info.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-field-tell.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-get-client-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-free-result"
+></A
+>mysqli_free_result</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN65948"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_free_result<P
+>    (no version information, might be only in CVS)</P
+>result-&#62;free&nbsp;--&nbsp;Libera la memoria asociada con el resultado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN65952"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>void <B
+CLASS="methodname"
+>mysqli_free_result</B
+> ( objeto resultado)<BR
+></BR
+><P
+>Estilo orientado a objetos (método):</P
+>class <B
+CLASS="classname"
+>resultado</B
+> { <BR
+></BR
+>void <B
+CLASS="methodname"
+>free</B
+> ( void )<BR
+></BR
+>}<P
+>&#13;	  La función <B
+CLASS="function"
+>mysqli_free_result()</B
+> libera la memoria 
+	  asociada al resultado representado por el parámetro 
+	  <VAR
+CLASS="parameter"
+>resultado</VAR
+>, la cuál fue tomada por 
+     <A
+HREF="function.mysqli-query.html"
+><B
+CLASS="function"
+>mysqli_query()</B
+></A
+>, <A
+HREF="function.mysqli-store-result.html"
+><B
+CLASS="function"
+>mysqli_store_result()</B
+></A
+>
+     o <A
+HREF="function.mysqli-use-result.html"
+><B
+CLASS="function"
+>mysqli_use_result()</B
+></A
+>.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	   Usted debe siempre liberar el resultado con <B
+CLASS="function"
+>mysqli_free_result()</B
+>,
+		cuando su objeto resultado no se necesite más.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN65978"
+></A
+><H2
+>Return values</H2
+><P
+>&#13;	  Esta función no regresa ningun valor.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN65981"
+></A
+><H2
+>Ver también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-query.html"
+><B
+CLASS="function"
+>mysqli_query()</B
+></A
+>, 
+     <A
+HREF="function.mysqli-stmt-store-result.html"
+><B
+CLASS="function"
+>mysqli_stmt_store_result()</B
+></A
+>,
+     <A
+HREF="function.mysqli-store-result.html"
+><B
+CLASS="function"
+>mysqli_store_result()</B
+></A
+>,
+     <A
+HREF="function.mysqli-use-result.html"
+><B
+CLASS="function"
+>mysqli_use_result()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-field-tell.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-get-client-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_field_tell</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_get_client_info</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

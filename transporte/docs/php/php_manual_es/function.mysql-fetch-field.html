@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysql_fetch_field</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones MySQL"
+HREF="ref.mysql.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_fetch_assoc"
+HREF="function.mysql-fetch-assoc.html"><LINK
+REL="NEXT"
+TITLE="mysql_fetch_lengths"
+HREF="function.mysql-fetch-lengths.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-fetch-assoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-fetch-lengths.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysql-fetch-field"
+></A
+>mysql_fetch_field</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN62954"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mysql_fetch_field&nbsp;--&nbsp;
+     Extrae la información de una columna y la devuelve como un objeto.
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN62957"
+></A
+><H2
+>Descripción</H2
+>object <B
+CLASS="methodname"
+>mysql_fetch_field</B
+> ( int id_resultado [, int salto])<BR
+></BR
+><P
+>&#13;     Devuelve un objeto que contiene la información del campo.
+    </P
+><P
+>&#13;     Puede usarse <B
+CLASS="function"
+>mysql_fetch_field()</B
+> para obtener
+     información sobre campos en un resultado. Si no se especifica
+     el salto, se extrae el siguiente campo que todavia no ha sido extraido.
+     con <B
+CLASS="function"
+>mysql_fetch_field()</B
+>.
+    </P
+><P
+>&#13;     Las propiedades del objeto son:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        name - nombre de la columna
+       </P
+></LI
+><LI
+><P
+>&#13;        table - name de la tabla a la que pertenece la columna
+       </P
+></LI
+><LI
+><P
+>&#13;        max_length - longitud máxima de la columna
+       </P
+></LI
+><LI
+><P
+>&#13;        not_null - 1 si la columna no puede contener un valor nulo
+       </P
+></LI
+><LI
+><P
+>&#13;        primary_key - 1 si la columna es clave primaria
+       </P
+></LI
+><LI
+><P
+>&#13;        unique_key - 1 si la columna es clave unica
+       </P
+></LI
+><LI
+><P
+>&#13;        multiple_key - 1 si la columna es clave no unica
+       </P
+></LI
+><LI
+><P
+>&#13;        numeric - 1 si la columna es numerica
+       </P
+></LI
+><LI
+><P
+>&#13;        blob - 1 si la columna es un BLOB
+       </P
+></LI
+><LI
+><P
+>&#13;        type - el tipo de la columna
+       </P
+></LI
+><LI
+><P
+>&#13;        unsigned - 1 si la columna es unsigned
+       </P
+></LI
+><LI
+><P
+>&#13;        zerofill - 1 si la columna es zero-filled
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     Ver también <A
+HREF="function.mysql-field-seek.html"
+><B
+CLASS="function"
+>mysql_field_seek()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-fetch-assoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-fetch-lengths.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_fetch_assoc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_fetch_lengths</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

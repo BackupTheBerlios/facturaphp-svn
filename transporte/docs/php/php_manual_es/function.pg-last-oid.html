@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_last_oid</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_last_notice"
+HREF="function.pg-last-notice.html"><LINK
+REL="NEXT"
+TITLE="pg_lo_close"
+HREF="function.pg-lo-close.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-last-notice.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-lo-close.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-last-oid"
+></A
+>pg_last_oid</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN89098"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>pg_last_oid&nbsp;--&nbsp;Returns the last object's oid</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN89101"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>pg_last_oid</B
+> ( resource result)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pg_last_oid()</B
+> is used to retrieve the
+     <VAR
+CLASS="varname"
+>oid</VAR
+> assigned to an inserted tuple (record) if
+     the result resource is used from the last command sent via
+     <A
+HREF="function.pg-query.html"
+><B
+CLASS="function"
+>pg_query()</B
+></A
+> and was an SQL INSERT.  Returns a
+     positive integer if there was a valid <VAR
+CLASS="varname"
+>oid</VAR
+>.  It
+     returns <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if an error occurs or the last command sent via
+     <A
+HREF="function.pg-query.html"
+><B
+CLASS="function"
+>pg_query()</B
+></A
+> was not an INSERT or INSERT is
+     failed.
+    </P
+><P
+>&#13;     OID field became an optional field from PostgreSQL 7.2. When 
+     OID field is not defined in a table, programmer must use 
+     <A
+HREF="function.pg-result-status.html"
+><B
+CLASS="function"
+>pg_result_status()</B
+></A
+> to check if record is
+     is inserted successfully or not.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      This function used to be called <VAR
+CLASS="literal"
+>pg_getlastoid()</VAR
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     See also <A
+HREF="function.pg-query.html"
+><B
+CLASS="function"
+>pg_query()</B
+></A
+> and
+     <A
+HREF="function.pg-result-status.html"
+><B
+CLASS="function"
+>pg_result_status()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-last-notice.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-lo-close.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_last_notice</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_lo_close</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

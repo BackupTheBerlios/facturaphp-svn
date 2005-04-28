@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>printer_create_pen</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Printer Functions"
+HREF="ref.printer.html"><LINK
+REL="PREVIOUS"
+TITLE="printer_create_font"
+HREF="function.printer-create-font.html"><LINK
+REL="NEXT"
+TITLE="printer_delete_brush"
+HREF="function.printer-delete-brush.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.printer-create-font.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.printer-delete-brush.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.printer-create-pen"
+></A
+>printer_create_pen</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN91337"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>printer_create_pen&nbsp;--&nbsp;Create a new pen</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN91340"
+></A
+><H2
+>Description</H2
+>mixed <B
+CLASS="methodname"
+>printer_create_pen</B
+> ( int style, int width, string color)<BR
+></BR
+><P
+>&#13;      The function creates a new pen and returns a handle to it. A pen is 
+      used to draw lines and curves. For an example see 
+      <A
+HREF="function.printer-select-pen.html"
+><B
+CLASS="function"
+>printer_select_pen()</B
+></A
+>. <VAR
+CLASS="parameter"
+>color</VAR
+> 
+      must be a color in RGB hex format, i.e. "000000" for black,  
+      <VAR
+CLASS="parameter"
+>width</VAR
+> specifies the width of the pen whereas 
+      <VAR
+CLASS="parameter"
+>style</VAR
+> must be one of the following constants:
+       <P
+></P
+><UL
+><LI
+><P
+>&#13;          <VAR
+CLASS="parameter"
+>PRINTER_PEN_SOLID</VAR
+>:
+          creates a solid pen.
+         </P
+></LI
+><LI
+><P
+>&#13;          <VAR
+CLASS="parameter"
+>PRINTER_PEN_DASH</VAR
+>:
+          creates a dashed pen.
+         </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_PEN_DOT</VAR
+>:
+            creates a dotted pen.
+         </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_PEN_DASHDOT</VAR
+>:
+            creates a pen with dashes and dots.
+         </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_PEN_DASHDOTDOT</VAR
+>:
+            creates a pen with dashes and double dots.
+         </P
+></LI
+><LI
+><P
+>&#13;            <VAR
+CLASS="parameter"
+>PRINTER_PEN_INVISIBLE</VAR
+>:
+            creates an invisible pen. 
+          </P
+></LI
+></UL
+>
+     </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.printer-create-font.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.printer-delete-brush.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>printer_create_font</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.printer.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>printer_delete_brush</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

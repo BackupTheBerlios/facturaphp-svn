@@ -1,0 +1,1083 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Modo Seguro (Safe Mode)</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Características"
+HREF="features.html"><LINK
+REL="PREVIOUS"
+TITLE="Conexiones persistentes a bases de datos"
+HREF="features.persistent-connections.html"><LINK
+REL="NEXT"
+TITLE="Usando PHP desde la línea de comando"
+HREF="features.commandline.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.persistent-connections.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.commandline.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="features.safe-mode"
+>Capítulo 23. Modo Seguro (Safe Mode)</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="features.safe-mode.html#features.safe-mode.functions"
+>Funciones restringidas/inhabilitadas por Modo Seguro</A
+></DT
+></DL
+></DIV
+><P
+>&#13;   El Modo Seguro de PHP es un intento para resolver el problema de la seguridad
+   en un servidor compartido. Tratar de resolver este problema al nivel de PHP es
+   arquitectónicamente incorrecto, pero ya que las alternativas en un servidor web
+   y a niveles de sistemas operativos no son tan realistas, mucha gente, 
+   especialmente la de proveedores de Internet (ISP), usa el Modo Seguro por ahora.
+  </P
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN5306"
+></A
+><P
+><B
+>Tabla 23-1. Las directivas de Configuración que controlan el Modo Seguro son:</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Directiva</TH
+><TH
+>Valor por Omisión</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>&#13;        <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe_mode</A
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>Off</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <A
+HREF="missing-stuff.html#ini.safe-mode-gid"
+>safe_mode_gid</A
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>0</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <A
+HREF="missing-stuff.html#ini.safe-mode-include-dir"
+>safe_mode_include_dir</A
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>""</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>1</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <A
+HREF="missing-stuff.html#ini.open-basedir"
+>open_basedir</A
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>""</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <VAR
+CLASS="literal"
+>safe_mode_allowed_env_vars</VAR
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>PHP_</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <VAR
+CLASS="literal"
+>safe_mode_protected_env_vars</VAR
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>LD_LIBRARY_PATH</VAR
+></TD
+></TR
+><TR
+><TD
+>&#13;        <VAR
+CLASS="literal"
+>disable_functions</VAR
+>
+       </TD
+><TD
+><VAR
+CLASS="literal"
+>""</VAR
+></TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+><P
+>&#13;   Cuando <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe_mode</A
+> está en On, el PHP verifica
+   si el dueño del script actual coincide con el dueño del fichero a ser operado por
+   una función de fichero. Por ejemplo:
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ls"
+>-rw-rw-r--    1 rasmus   rasmus       33 Jul  1 19:20 script.php 
+-rw-r--r--    1 root     root       1116 May 26 18:01 /etc/passwd</PRE
+></TD
+></TR
+></TABLE
+>
+   Corriendo este script.php 
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /> readfile</font><font color="#007700">(</font><font color="#DD0000">'/etc/passwd'</font><font color="#007700">); <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+   resulta in este error cuando Modo Seguro está habilitado: 
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Warning: SAFE MODE Restriction in effect. The script whose uid is 500 is not 
+allowed to access /etc/passwd owned by uid 0 in /docroot/script.php on line 2</PRE
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Sin embargo, pueden haber ambientes donde una estricta verificación del
+   <VAR
+CLASS="literal"
+>UID</VAR
+> no es apropiada, y una relajada verificación del
+   <VAR
+CLASS="literal"
+>GID</VAR
+> es suficiente. Esto es soportado por medio
+   del switch <A
+HREF="missing-stuff.html#ini.safe-mode-gid"
+>safe_mode_gid</A
+>. 
+   Seteándolo a <VAR
+CLASS="literal"
+>On</VAR
+> hace la verificación relajada
+   <VAR
+CLASS="literal"
+>GID</VAR
+>, seteándolo a <VAR
+CLASS="literal"
+>Off</VAR
+> (el valor
+   por omisión) hace la verificación del <VAR
+CLASS="literal"
+>UID</VAR
+>.
+  </P
+><P
+>&#13;   Si en vez del <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe_mode</A
+>, Ud. setea
+   un directorio <A
+HREF="missing-stuff.html#ini.open-basedir"
+>open_basedir</A
+>, 
+   entonces todas las operaciones de fichero estarán limitadas a los ficheros
+   bajo ese directorio especificado.
+   Por ejemplo (ejemplo de httpd.conf de Apache):
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>&#60;Directory /docroot&#62;
+  php_admin_value open_basedir /docroot 
+&#60;/Directory&#62;</PRE
+></TD
+></TR
+></TABLE
+>
+   Si Ud. corre el mismo script.php con este seteo
+   <A
+HREF="missing-stuff.html#ini.open-basedir"
+>open_basedir</A
+>,
+   entonces este es el resultado: 
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Warning: open_basedir restriction in effect. File is in wrong directory in 
+/docroot/script.php on line 2</PRE
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Ud. también puede inhabilitar funciones individuales. Note que la directiva 
+   disable_functions no puede ser usada fuera del fichero <TT
+CLASS="filename"
+>php.ini</TT
+> lo que significa
+   que Ud. no puede inhabilitar funciones en los principios per-virtualhost o
+   per-directory en su fichero httpd.conf.
+   Si agregamos esto a nuestro fichero <TT
+CLASS="filename"
+>php.ini</TT
+>:
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>disable_functions readfile,system</PRE
+></TD
+></TR
+></TABLE
+>
+   Entonces obtenemos esta salida: 
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Warning: readfile() has been disabled for security reasons in 
+/docroot/script.php on line 2</PRE
+></TD
+></TR
+></TABLE
+>
+  </P
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="features.safe-mode.functions"
+>Funciones restringidas/inhabilitadas por Modo Seguro</A
+></H1
+><P
+>&#13;    Esta es una lista probablemente incompleta y posiblemente incorrecta
+    de las funciones limitadas por <A
+HREF="features.safe-mode.html"
+>safe 
+    mode</A
+>.
+    
+    <DIV
+CLASS="table"
+><A
+NAME="AEN5382"
+></A
+><P
+><B
+>Tabla 23-2. Funciones limitadas por Modo Seguro</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Función</TH
+><TH
+>Limitaciones</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><A
+HREF="function.dbmopen.html"
+><B
+CLASS="function"
+>dbmopen()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.dbase-open.html"
+><B
+CLASS="function"
+>dbase_open()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.filepro.html"
+><B
+CLASS="function"
+>filepro()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.filepro-rowcount.html"
+><B
+CLASS="function"
+>filepro_rowcount()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.filepro-retrieve.html"
+><B
+CLASS="function"
+>filepro_retrieve()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>ifx_*()</B
+></TD
+><TD
+>restricciones sql_safe_mode, (!= safe mode)</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>ingres_*()</B
+></TD
+><TD
+>restricciones sql_safe_mode, (!= safe mode)</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>mysql_*()</B
+></TD
+><TD
+>restricciones sql_safe_mode, (!= safe mode)</TD
+></TR
+><TR
+><TD
+><B
+CLASS="function"
+>pg_loimport()</B
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.posix-mkfifo.html"
+><B
+CLASS="function"
+>posix_mkfifo()</B
+></A
+></TD
+><TD
+>Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.putenv.html"
+><B
+CLASS="function"
+>putenv()</B
+></A
+></TD
+><TD
+>Obecede las ini-directivas safe_mode_protected_env_vars y 
+        safe_mode_allowed_env_vars. Vea también la documentación
+        de <A
+HREF="function.putenv.html"
+><B
+CLASS="function"
+>putenv()</B
+></A
+></TD
+></TR
+><TR
+><TD
+><A
+HREF="function.move-uploaded-file.html"
+><B
+CLASS="function"
+>move_uploaded_file()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. </TD
+></TR
+><TR
+><TD
+><A
+HREF="function.chdir.html"
+><B
+CLASS="function"
+>chdir()</B
+></A
+></TD
+><TD
+>Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.dl.html"
+><B
+CLASS="function"
+>dl()</B
+></A
+></TD
+><TD
+>Esta función no está habilitada en
+<A
+HREF="features.safe-mode.html"
+>safe-mode (modo-seguro)</A
+></TD
+></TR
+><TR
+><TD
+><A
+HREF="language.operators.execution.html"
+>backtick operator</A
+></TD
+><TD
+>Esta función no está habilitada en
+<A
+HREF="features.safe-mode.html"
+>safe-mode (modo-seguro)</A
+></TD
+></TR
+><TR
+><TD
+><A
+HREF="function.shell-exec.html"
+><B
+CLASS="function"
+>shell_exec()</B
+></A
+> (equivalencia funcional de 
+        backticks)</TD
+><TD
+>Esta función no está habilitada en
+<A
+HREF="features.safe-mode.html"
+>safe-mode (modo-seguro)</A
+></TD
+></TR
+><TR
+><TD
+><A
+HREF="function.exec.html"
+><B
+CLASS="function"
+>exec()</B
+></A
+></TD
+><TD
+>Ud. puede correr sólo ejecutables dentro del<A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>.
+        Por razones prácticas, no está actualmente permitido tener
+        componentes <VAR
+CLASS="literal"
+>..</VAR
+> en la ruta del fichero
+        ejecutable.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.system.html"
+><B
+CLASS="function"
+>system()</B
+></A
+></TD
+><TD
+>Ud. puede correr sólo ejecutatables dentro del<A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>.
+        Por razones prácticas, no está actualmente permitido tener
+        componentes <VAR
+CLASS="literal"
+>..</VAR
+> en la ruta del fichero
+        ejecutable.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.passthru.html"
+><B
+CLASS="function"
+>passthru()</B
+></A
+></TD
+><TD
+>Ud. puede correr sólo ejecutatables dentro del<A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>.
+        Por razones prácticas, no está actualmente permitido tener
+        componentes <VAR
+CLASS="literal"
+>..</VAR
+> en la ruta del fichero
+        ejecutable.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.popen.html"
+><B
+CLASS="function"
+>popen()</B
+></A
+></TD
+><TD
+>Ud. puede correr sólo ejecutatables dentro del<A
+HREF="missing-stuff.html#ini.safe-mode-exec-dir"
+>safe_mode_exec_dir</A
+>.
+        Por razones prácticas, no está actualmente permitido tener
+        componentes <VAR
+CLASS="literal"
+>..</VAR
+> en la ruta del fichero 
+        ejecutable.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.mkdir.html"
+><B
+CLASS="function"
+>mkdir()</B
+></A
+></TD
+><TD
+>Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.rmdir.html"
+><B
+CLASS="function"
+>rmdir()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.rename.html"
+><B
+CLASS="function"
+>rename()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.unlink.html"
+><B
+CLASS="function"
+>unlink()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.copy.html"
+><B
+CLASS="function"
+>copy()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado. (en 
+        <VAR
+CLASS="parameter"
+>source</VAR
+> y 
+        <VAR
+CLASS="parameter"
+>target</VAR
+>) </TD
+></TR
+><TR
+><TD
+><A
+HREF="function.chgrp.html"
+><B
+CLASS="function"
+>chgrp()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.chown.html"
+><B
+CLASS="function"
+>chown()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.chmod.html"
+><B
+CLASS="function"
+>chmod()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Además, Ud. no puede setear  
+        los bits de SUID, SGID y sticky</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.touch.html"
+><B
+CLASS="function"
+>touch()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado.</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.symlink.html"
+><B
+CLASS="function"
+>symlink()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado. (Nota: sólo el target es 
+        comprobado)</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.link.html"
+><B
+CLASS="function"
+>link()</B
+></A
+></TD
+><TD
+>Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado. (Nota: sólo the target es
+        comprobado)</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.getallheaders.html"
+><B
+CLASS="function"
+>getallheaders()</B
+></A
+></TD
+><TD
+>En Modo Seguro, las cabeceras que empiezan con 'authorization' 
+        (insensitivo al tipo de letra)
+        no serán retornadas. Advertencia: esto está roto por la implementación 
+        de aol-server de <A
+HREF="function.getallheaders.html"
+><B
+CLASS="function"
+>getallheaders()</B
+></A
+>!</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+></TD
+><TD
+>En Modo Seguro, el UID del script está agregado a la
+        parte <VAR
+CLASS="literal"
+>realm</VAR
+> de la cabecera 
+        <VAR
+CLASS="literal"
+>WWW-Authenticate</VAR
+> si Ud. setea esta
+        cabecera (usado por HTTP Authentication).</TD
+></TR
+><TR
+><TD
+>&#13;         <A
+HREF="function.highlight-file.html"
+><B
+CLASS="function"
+>highlight_file()</B
+></A
+>,
+         <A
+HREF="function.show-source.html"
+><B
+CLASS="function"
+>show_source()</B
+></A
+>
+        </TD
+><TD
+>&#13;         Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado. (Nota: sólo afectado desde PHP 4.2.1)
+        </TD
+></TR
+><TR
+><TD
+>&#13;         <A
+HREF="function.parse-ini-file.html"
+><B
+CLASS="function"
+>parse_ini_file()</B
+></A
+>
+        </TD
+><TD
+>&#13;         Comprueba que los archivos/directorios que va a
+utilizar, tengan la misma UID que el script que está siendo
+ejecutado. Comprueba si el directorio que vaa a
+utilizar, tiene la misma UID que el script que está siendo
+ejecutado. (Nota: sólo afectado desde PHP 4.2.1)
+        </TD
+></TR
+><TR
+><TD
+>Cualquier función que usa 
+         <TT
+CLASS="filename"
+>php4/main/fopen_wrappers.c</TT
+>
+        </TD
+><TD
+>??</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.persistent-connections.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.commandline.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conexiones persistentes a bases de datos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Usando PHP desde la línea de comando</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

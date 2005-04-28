@@ -1,0 +1,486 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones específicas de Apache</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="NEXT"
+TITLE="apache_child_terminate"
+HREF="function.apache-child-terminate.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="funcref.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.apache-child-terminate.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.apache"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>I. Funciones específicas de Apache</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN5965"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="apache.intro"
+>Introducción</A
+></H1
+><P
+>&#13;    Estas funciones están disponibles solamente cuando PHP se ejecuta
+    como módulo de Apache 1.x.
+   </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="apache.installation"
+>Instalación</A
+></H1
+><P
+>&#13;    Información sobre la instalación de PHP con Apache se puede
+    encontrar en el capítulo sobre instalación en la <A
+HREF="install.apache.html"
+>sección sobre Apache</A
+>
+   </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="apache.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>&#13;  El comportamiento del módulo PHP de Apache está sujeto 
+  a los parámetros ajustados en <TT
+CLASS="filename"
+>php.ini</TT
+>. Los parámetros 
+  ajustados mediante php_flag en el archivo de configuración 
+  del servidor o archivos <TT
+CLASS="filename"
+>.htaccess</TT
+> locales, tendrán preferencia 
+  sobre aquellos ajustados en <TT
+CLASS="filename"
+>php.ini</TT
+>.
+ </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN5979"
+></A
+><P
+><B
+>Ejemplo 1. Desactivar el intérprete PHP en un directorio utilizando <TT
+CLASS="filename"
+>.htaccess</TT
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>php_flag engine off</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN5984"
+></A
+><P
+><B
+>Tabla 1. Opciones de configuración de Apache</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Por defecto</TH
+><TH
+>Modificable</TH
+><TH
+>Función</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>engine</TD
+><TD
+>On</TD
+><TD
+>PHP_INI_ALL</TD
+><TD
+>habilita o desactiva el intérprete PHP</TD
+></TR
+><TR
+><TD
+>child_terminate</TD
+><TD
+>Off</TD
+><TD
+>PHP_INI_ALL</TD
+><TD
+>&#13;       especifica si los scripts PHP pueden requerir la terminación del proceso 
+       hijo al acabar un requerimiento. Véase también 
+       <A
+HREF="function.apache-child-terminate.html"
+><B
+CLASS="function"
+>apache_child_terminate()</B
+></A
+>
+      </TD
+></TR
+><TR
+><TD
+>last_modified</TD
+><TD
+>Off</TD
+><TD
+>PHP_INI_ALL</TD
+><TD
+>enviar la fecha de modificación de los scripts PHP como la fecha de 
+      la última modifición en la cabecera del requerimiento actual</TD
+></TR
+><TR
+><TD
+>xbithack</TD
+><TD
+>Off</TD
+><TD
+>PHP_INI_ALL</TD
+><TD
+>interpretar los archivos cuyo bit ejecutable esté fijado a PHP, 
+      independientemente de su extensión
+      </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.engine"
+></A
+><VAR
+CLASS="parameter"
+>engine</VAR
+>
+   <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Esta directiva realmente sólo es útil cuando PHP
+     es un módulo de Apache. Se utiliza para sitios que
+     quieran activar o desactivar el intérprete de PHP 
+     en función del directorio o del host-virtual. Añadiendo 
+     <KBD
+CLASS="userinput"
+>engine off</KBD
+> en los lugares apropiados del 
+     archivo <TT
+CLASS="filename"
+>httpd.conf</TT
+>, PHP puede ser habilitado o desactivado. 
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="apache.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="apache.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.apache-child-terminate.html"
+>apache_child_terminate</A
+>&nbsp;--&nbsp;Terminar un proceso de apache una vez concluido el requerimiento en ejecució</DT
+><DT
+><A
+HREF="function.apache-get-modules.html"
+>apache_get_modules</A
+>&nbsp;--&nbsp;
+	  Obtiene una lista de los modulos cargados con el servidor Apache
+    </DT
+><DT
+><A
+HREF="function.apache-get-version.html"
+>apache_get_version</A
+>&nbsp;--&nbsp;
+	  Obtiene la version de Apache
+    </DT
+><DT
+><A
+HREF="function.apache-getenv.html"
+>apache_getenv</A
+>&nbsp;--&nbsp;
+	  Obtiene una variable subprocess_env de Apache
+    </DT
+><DT
+><A
+HREF="function.apache-lookup-uri.html"
+>apache_lookup_uri</A
+>&nbsp;--&nbsp;
+     Realiza una petición parcial por la URI especificada y
+     devuelve toda la información sobre ella
+    </DT
+><DT
+><A
+HREF="function.apache-note.html"
+>apache_note</A
+>&nbsp;--&nbsp;Obtener y establecer las notas de petición de
+    apache</DT
+><DT
+><A
+HREF="function.apache-request-headers.html"
+>apache_request_headers</A
+>&nbsp;--&nbsp;Obtener todas las cabeceras HTTP</DT
+><DT
+><A
+HREF="function.apache-response-headers.html"
+>apache_response_headers</A
+>&nbsp;--&nbsp;
+     Obtener todas las cabeceras HTTP de respuesta
+    </DT
+><DT
+><A
+HREF="function.apache-setenv.html"
+>apache_setenv</A
+>&nbsp;--&nbsp;fijar una variable subprocess_env de Apache</DT
+><DT
+><A
+HREF="function.ascii2ebcdic.html"
+>ascii2ebcdic</A
+>&nbsp;--&nbsp;Traducir una cadena en ASCII a EBCDIC</DT
+><DT
+><A
+HREF="function.ebcdic2ascii.html"
+>ebcdic2ascii</A
+>&nbsp;--&nbsp;Traduce una cadena en EBCDIC a ASCII</DT
+><DT
+><A
+HREF="function.getallheaders.html"
+>getallheaders</A
+>&nbsp;--&nbsp;Recuperar todas las cabeceras de petición
+    HTTP</DT
+><DT
+><A
+HREF="function.virtual.html"
+>virtual</A
+>&nbsp;--&nbsp;Realizar una sub-petición de
+    Apache</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.apache-child-terminate.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Referencia de las Funciones</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>apache_child_terminate</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

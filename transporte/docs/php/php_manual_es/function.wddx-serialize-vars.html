@@ -1,0 +1,239 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>wddx_serialize_vars</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones WDDX"
+HREF="ref.wddx.html"><LINK
+REL="PREVIOUS"
+TITLE="wddx_serialize_value"
+HREF="function.wddx-serialize-value.html"><LINK
+REL="NEXT"
+TITLE="Funciones de intérprete XML"
+HREF="ref.xml.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.wddx-serialize-value.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.xml.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.wddx-serialize-vars"
+></A
+>wddx_serialize_vars</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN113727"
+></A
+><P
+>    (PHP 3&#62;= 3.0.7, PHP 4 , PHP 5)</P
+>wddx_serialize_vars&nbsp;--&nbsp;Serializa variables en un paquete WDDX</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN113730"
+></A
+><H2
+>Descripcion</H2
+>cadena <B
+CLASS="methodname"
+>wddx_serialize_vars</B
+> ( varios-tipos nombre_var [, varios-tipos ...])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>wddx_serialize_vars()</B
+> se utiliza para crear un
+     paquete WDDX con una estructura que contiene la representacion
+     serializada de las variables pasadas como parametros.</P
+><P
+>&#13;     <B
+CLASS="function"
+>wddx_serialize_vars()</B
+> toma un numero variable de
+     argumentos, cada uno de los cuales puede ser una cadena con el nombre
+     de una variable o un array con nombres de variables, o de otro array,
+     etc.</P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN113746"
+></A
+><P
+><B
+>Ejemplo 1. wddx_serialize_vars example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+$a = 1;
+$b = 5.5;
+$c = array("azul", "naranja", "violeta");
+$d = "colores";
+
+$clvars = array("c", "d");
+print wddx_serialize_vars("a", "b", $clvars);
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;     El ejemplo anterior producira:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;wddxPacket version='0.9'&#62;&#60;header/&#62;&#60;data&#62;&#60;struct&#62;&#60;var name='a'&#62;&#60;number&#62;1&#60;/number&#62;&#60;/var&#62;
+&#60;var name='b'&#62;&#60;number&#62;5.5&#60;/number&#62;&#60;/var&#62;&#60;var name='c'&#62;&#60;array length='3'&#62;
+&#60;string&#62;azul&#60;/string&#62;&#60;string&#62;naranja&#60;/string&#62;&#60;string&#62;violeta&#60;/string&#62;&#60;/array&#62;&#60;/var&#62;
+&#60;var name='d'&#62;&#60;string&#62;colores&#60;/string&#62;&#60;/var&#62;&#60;/struct&#62;&#60;/data&#62;&#60;/wddxPacket&#62;</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.wddx-serialize-value.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.xml.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>wddx_serialize_value</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.wddx.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Funciones de intérprete XML</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

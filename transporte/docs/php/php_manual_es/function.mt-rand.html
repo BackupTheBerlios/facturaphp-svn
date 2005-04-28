@@ -1,0 +1,247 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mt_rand</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones matemáticas"
+HREF="ref.math.html"><LINK
+REL="PREVIOUS"
+TITLE="mt_getrandmax"
+HREF="function.mt-getrandmax.html"><LINK
+REL="NEXT"
+TITLE="mt_srand"
+HREF="function.mt-srand.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mt-getrandmax.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mt-srand.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mt-rand"
+></A
+>mt_rand</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN47971"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>mt_rand&nbsp;--&nbsp;genera un valor aleatorio mejorado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN47974"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mt_rand</B
+> ( [int min [, int max]])<BR
+></BR
+><P
+>&#13;     Muchos generadores de números aleatorios de libcs antiguas
+     tienen características dudosas o desconocidas y son lentas.
+     Por defecto, PHP usa el generador de números aleatorios de libc
+     con la función <A
+HREF="function.rand.html"
+><B
+CLASS="function"
+>rand()</B
+></A
+>. La función 
+     <B
+CLASS="function"
+>mt_rand()</B
+> es un reemplazo para esta. Usa un 
+     generador de números aleatorios con características conocidas, el
+     Tornado de Mersenne, que es capaz de producir números aleatorios
+     que incluso se pueden emplear para propósitos criptográficos y es
+     cuatro veces más rápido que la media de los que provee libc. La 
+     página principal del Tornado de Mersenne puede encontrarse en
+     <A
+HREF="http://www.math.keio.ac.jp/~matumoto/emt.html"
+TARGET="_top"
+>http://www.math.keio.ac.jp/~matumoto/emt.html</A
+>,
+     y una versión optimizada del código del TM esta disponible en
+     <A
+HREF="http://www.scp.syr.edu/~marc/hawk/twister.html"
+TARGET="_top"
+>http://www.scp.syr.edu/~marc/hawk/twister.html</A
+>.</P
+><P
+>&#13;     Si es llamada sin los parámetros opcionales min y max
+     <B
+CLASS="function"
+>mt_rand()</B
+> devuelve un valor
+     pseudo-aleatorio entre 0 y RAND_MAX. Si quiere un número
+     aleatorio entre 5 y 15 (inclusive), use mt_rand(5,15).</P
+><P
+>&#13;     Recuerde introducir la semilla del generador de números aleatorios
+     antes de usar la instrucción con <A
+HREF="function.mt-srand.html"
+><B
+CLASS="function"
+>mt_srand()</B
+></A
+>.</P
+><P
+>&#13;     Vea también <A
+HREF="function.mt-srand.html"
+><B
+CLASS="function"
+>mt_srand()</B
+></A
+>,
+     <A
+HREF="function.mt-getrandmax.html"
+><B
+CLASS="function"
+>mt_getrandmax()</B
+></A
+>,
+     <A
+HREF="function.srand.html"
+><B
+CLASS="function"
+>srand()</B
+></A
+>,
+     <A
+HREF="function.rand.html"
+><B
+CLASS="function"
+>rand()</B
+></A
+> y 
+     <A
+HREF="function.getrandmax.html"
+><B
+CLASS="function"
+>getrandmax()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mt-getrandmax.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mt-srand.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mt_getrandmax</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.math.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mt_srand</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>highlight_file</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Miscelánea"
+HREF="ref.misc.html"><LINK
+REL="PREVIOUS"
+TITLE="get_browser"
+HREF="function.get-browser.html"><LINK
+REL="NEXT"
+TITLE="highlight_string"
+HREF="function.highlight-string.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-browser.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.highlight-string.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.highlight-file"
+></A
+>highlight_file</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN59835"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>highlight_file&nbsp;--&nbsp;Resaltado de sintaxis de un archivo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN59838"
+></A
+><H2
+>Descripción</H2
+>mixed <B
+CLASS="methodname"
+>highlight_file</B
+> ( string nombre_archivo [, bool devolver])<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>highlight_file()</B
+> imprime una
+     versión con resaltado de sintaxis del código
+     contenido en <VAR
+CLASS="parameter"
+>nombre_archivo</VAR
+> usando los
+     colores definidos en el resaltador de sintaxis incorporado de
+     PHP.
+    </P
+><P
+>&#13;     Si el segundo parámetro <VAR
+CLASS="parameter"
+>devolver</VAR
+> es
+     definido a <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> entonces <B
+CLASS="function"
+>highlight_file()</B
+>
+     devolverá el código resaltado en lugar de
+     imprimirlo. Si el segundo parámetro no es definido a
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> entonces <B
+CLASS="function"
+>highlight_file()</B
+>
+     devolverá <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si tiene éxito, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+     de fallo.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El parámetro <VAR
+CLASS="parameter"
+>devolver</VAR
+>
+      apareció en PHP 4.2.0. Antes de esta versión,
+      tenía el comportamiento predeterminado, que es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="caution"
+><P
+></P
+><TABLE
+CLASS="caution"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Atención</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Debe tenerse cuidado cuando se usan las
+      funciones <A
+HREF="function.show-source.html"
+><B
+CLASS="function"
+>show_source()</B
+></A
+>
+      y <B
+CLASS="function"
+>highlight_file()</B
+> para asegurarse de que no
+      se revele inadvertidamente información sensible, tal como
+      contraseñas o cualquier otro tipo de información
+      que pueda crear un riesgo potencial de seguridad.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      A partir de PHP 4.2.1 esta función es influenciada
+      también por <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe_mode</A
+> y <A
+HREF="missing-stuff.html#ini.open-basedir"
+>open_basedir</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Para crear una URL que pueda resaltar el código de
+     cualquier script que le sea pasado, haremos uso de la directiva
+     "ForceType" en Apache para generar un agradable patrón
+     URL, y usaremos la
+     función <B
+CLASS="function"
+>highlight_file()</B
+> para mostrar
+     un listado de código bien presentado.
+    </P
+><P
+>&#13;     En su <TT
+CLASS="filename"
+>httpd.conf</TT
+> puede agregar lo siguiente:
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN59877"
+></A
+><P
+><B
+>Ejemplo 1. Creación de una URL para resaltar código
+      fuente</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache-conf"
+>&#60;Location /source&#62;
+    ForceType application/x-httpd-php
+&#60;/Location&#62;</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;       Y luego cree un archivo llamado <TT
+CLASS="filename"
+>source</TT
+> y
+       colóquelo en su directorio raíz de documentos
+       web.
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;html&gt;<br />&lt;head&gt;<br />&lt;title&gt;Presentaci&amp;oacute;n de C&amp;oacute;digo Fuente&lt;/title&gt;<br />&lt;/head&gt;<br />&lt;body bgcolor="white"&gt;<br /><font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;$script </font><font color="#007700">= </font><font color="#0000BB">getenv</font><font color="#007700">(</font><font color="#DD0000">"PATH_TRANSLATED"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000BB">$script</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;br /&gt;&lt;b&gt;ERROR: Se necesita el Nombre del Script&lt;/b&gt;&lt;br /&gt;"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">ereg</font><font color="#007700">(</font><font color="#DD0000">"(</font><font color="#007700">\\</font><font color="#DD0000">.php|</font><font color="#007700">\\</font><font color="#DD0000">.inc)</font><font color="#007700">$</font><font color="#DD0000">"</font><font color="#007700">,</font><font color="#0000BB">$script</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;h1&gt;Fuente de: " </font><font color="#007700">. </font><font color="#0000BB">getenv</font><font color="#007700">(</font><font color="#DD0000">"PATH_INFO"</font><font color="#007700">) . </font><font color="#DD0000">"&lt;/h1&gt;\n&lt;hr /&gt;\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">highlight_file</font><font color="#007700">(</font><font color="#0000BB">$script</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;h1&gt;ERROR: Solo se permiten scripts o archivos de " </font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"inclusion PHP&lt;/h1&gt;"</font><font color="#007700">; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;hr /&gt;Procesado: " </font><font color="#007700">. </font><font color="#0000BB">date</font><font color="#007700">(</font><font color="#DD0000">"Y/M/d H:i:s"</font><font color="#007700">, </font><font color="#0000BB">time</font><font color="#007700">());<br /></font><font color="#0000BB">?&gt;<br /></font>&lt;/BODY&gt;<br />&lt;/HTML&gt;</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Luego puede usar una URL como la siguiente para mostrar una
+       versión en colores de un script ubicado en
+       "/ruta/hacia/script.php" en su sitio web.
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>http://www.example.com/source/ruta/hacia/script.php</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.highlight-string.html"
+><B
+CLASS="function"
+>highlight_string()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-browser.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.highlight-string.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_browser</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.misc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>highlight_string</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

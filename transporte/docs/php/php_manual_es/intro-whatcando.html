@@ -1,0 +1,377 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>¿Qué se puede hacer con PHP?</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Introducción"
+HREF="introduction.html"><LINK
+REL="PREVIOUS"
+TITLE="Introducción"
+HREF="introduction.html"><LINK
+REL="NEXT"
+TITLE="Una explicación sencilla"
+HREF="tutorial.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 1. Introducción</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tutorial.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="intro-whatcando"
+>¿Qué se puede hacer con PHP?</A
+></H1
+><P
+>&#13;    PHP puede hacer cualquier cosa que se pueda hacer con un script
+    CGI, como procesar la información de formularios, generar
+    páginas con contenidos dinámicos, o enviar y recibir
+    cookies. Y esto no es todo, se puede hacer mucho más.
+   </P
+><P
+>&#13;    Existen tres campos en los que se usan scripts escritos en PHP.
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       Scripts del lado del servidor. Este es el campo más
+       tradicional y el principal foco de trabajo. Se necesitan tres
+       cosas para que esto funcione. El intérprete PHP (CGI
+       ó módulo), un servidor web y un navegador. Es
+       necesario correr el servidor web con PHP instalado. El
+       resultado del programa PHP se puede obtener a través del
+       navegador, conectándose con el servidor web. Consultar
+       la sección <A
+HREF="installation.html"
+> Instrucciones
+       de instalación</A
+> para más
+       información.
+      </P
+></LI
+><LI
+><P
+>&#13;       Scripts en la línea de comandos. Puede crear un script
+       PHP y correrlo sin ningún servidor web o
+       navegador. Solamente necesita el intérprete PHP para
+       usarlo de esta manera. Este tipo de uso es ideal para scripts
+       ejecutados regularmente desde cron (en *nix o Linux) o el
+       Planificador de tareas (en Windows). Estos scripts
+       también pueden ser usados para tareas simples de
+       procesamiento de texto. Consultar la sección <A
+HREF="features.commandline.html"
+>Usos de PHP en la línea
+       de comandos</A
+> para más información.
+      </P
+></LI
+><LI
+><P
+>&#13;       Escribir aplicaciones de interfaz gráfica. Probablemente
+       PHP no sea el lenguaje más apropiado para escribir
+       aplicaciones gráficas, pero si conoce bien PHP, y
+       quisiera utilizar algunas características avanzadas en
+       programas clientes, puede utilizar PHP-GTK para escribir dichos
+       programas. También es posible escribir aplicaciones
+       independientes de una plataforma. PHP-GTK es una
+       extensión de PHP, no disponible en la
+       distribución principal. Si está interesado en
+       PHP-GTK, puedes visitar las
+       <A
+HREF="http://gtk.php.net/"
+TARGET="_top"
+>páginas web del
+       proyecto</A
+>.
+      </P
+></LI
+></UL
+>
+   </P
+><P
+>&#13;    PHP puede ser utilizado en cualquiera de los principales sistemas
+    operativos del mercado, incluyendo Linux, muchas variantes Unix
+    (incluyendo HP-UX, Solaris y OpenBSD), Microsoft Windows, Mac OS
+    X, RISC OS y probablemente alguno más.  PHP soporta la
+    mayoría de servidores web de hoy en día, incluyendo
+    Apache, Microsoft Internet Information Server, Personal Web
+    Server, Netscape e iPlanet, Oreilly Website Pro server, Caudium,
+    Xitami, OmniHTTPd y muchos otros. PHP tiene módulos
+    disponibles para la mayoría de los servidores, para
+    aquellos otros que soporten el estándar CGI, PHP puede
+    usarse como procesador CGI.
+   </P
+><P
+>&#13;    De modo que, con PHP tiene la libertad de elegir el sistema
+    operativo y el servidor de su gusto. También tiene la
+    posibilidad de usar programación procedimental o
+    programación orientada a objetos. Aunque no todas las
+    características estándar de la programación
+    orientada a objetos están implementadas en la
+    versión actual de PHP, muchas bibliotecas y
+    aplicaciones grandes (incluyendo la biblioteca PEAR)
+    están escritas íntegramente usando
+    programación orientada a objetos.
+   </P
+><P
+>&#13;    Con PHP no se encuentra limitado a resultados en HTML. Entre las
+    habilidades de PHP se incluyen: creación de
+    imágenes, archivos PDF y películas Flash (usando
+    libswf y Ming) sobre la marcha. Tambié puede presentar
+    otros resultados, como XHTM y archivos XML. PHP puede autogenerar
+    éstos archivos y almacenarlos en el sistema de archivos en
+    vez de presentarlos en la pantalla.
+   </P
+><P
+>&#13;    Quizás la característica más potente y
+    destacable de PHP es su soporte para una gran cantidad de bases de
+    datos. Escribir un interfaz vía web para una base de datos
+    es una tarea simple con PHP. Las siguientes bases de datos
+    están soportadas actualmente:
+    <A
+NAME="AEN122"
+></A
+><BLOCKQUOTE
+CLASS="BLOCKQUOTE"
+><P
+></P
+><TABLE
+BORDER="0"
+><TBODY
+><TR
+><TD
+>Adabas D</TD
+><TD
+>Ingres</TD
+><TD
+>Oracle (OCI7 and OCI8)</TD
+></TR
+><TR
+><TD
+>dBase</TD
+><TD
+>InterBase</TD
+><TD
+>Ovrimos</TD
+></TR
+><TR
+><TD
+>Empress</TD
+><TD
+>FrontBase</TD
+><TD
+>PostgreSQL</TD
+></TR
+><TR
+><TD
+>FilePro (read-only)</TD
+><TD
+>mSQL</TD
+><TD
+>Solid</TD
+></TR
+><TR
+><TD
+>Hyperwave</TD
+><TD
+>Direct MS-SQL</TD
+><TD
+>Sybase</TD
+></TR
+><TR
+><TD
+>IBM DB2</TD
+><TD
+>MySQL</TD
+><TD
+>Velocis</TD
+></TR
+><TR
+><TD
+>Informix</TD
+><TD
+>ODBC</TD
+><TD
+>Unix dbm</TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></BLOCKQUOTE
+>
+     También contamos con una extensión DBX de
+     abstracción de base de datos que permite usar de forma
+     transparente cualquier base de datos soportada por la
+     extensión. Adicionalmente, PHP soporta ODBC (el
+     Estándar Abierto de Conexión con Bases de Datos),
+     asi que puede conectarse a cualquier base de datos que soporte
+     tal estándar.
+   </P
+><P
+>&#13;    PHP también cuenta con soporte para comunicarse con otros
+    servicios usando protocolos tales como LDAP, IMAP, SNMP, NNTP,
+    POP3, HTTP, COM (en Windows) y muchos otros. También se
+    pueden crear sockets puros. PHP soporta WDDX para el intercambio
+    de datos entre lenguajes de programación en web. Y hablando
+    de interconexión, PHP puede utilizar objetos Java de forma
+    transparente como objetos PHP Y la extensión de CORBA puede
+    ser utilizada para acceder a objetos remotos.
+   </P
+><P
+>&#13;    PHP tiene unas características muy útiles para el
+    procesamiento de texto, desde expresiones regulares POSIX
+    extendidas o tipo Perl hasta procesadores de documentos XML. Para
+    procesar y acceder a documentos XML, soportamos los
+    estándares SAX y DOM. Puede utilizar la extensión
+    XSLT para transformar documentos XML.
+   </P
+><P
+>&#13;    Si usa PHP en el campo del comercio electrónico,
+    encontrará muy útiles las funciones Cybercash,
+    CyberMUT, VeriSign Payflow Pro y CCVS para sus programas de pago.
+   </P
+><P
+>&#13;    Para terminar, contamos con muchas otras extensiones muy
+    interesantes, las funciones del motor de búsquedas
+    mnoGoSearch, funciones para pasarelas de IRC, utilidades de
+    compresión (gzip, bz2),, conversión de calendarios,
+    traducción .....
+   </P
+><P
+>&#13;    Como puede apreciar, esta página no es suficiente para
+    enumerar todas las características y beneficios que PHP
+    ofrece. Consulte las secciones
+    <A
+HREF="installation.html"
+>Instalación de PHP</A
+> y 
+    <A
+HREF="funcref.html"
+>Referencia de las funciones</A
+> para
+    una explicación de las extensiones mencionadas aquí.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Introducción</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="introduction.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Una explicación sencilla</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

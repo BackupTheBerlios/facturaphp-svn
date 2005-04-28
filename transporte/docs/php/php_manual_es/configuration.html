@@ -1,0 +1,325 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Configuración del comportamiento de PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Conceptos Básicos"
+HREF="getting-started.html"><LINK
+REL="PREVIOUS"
+TITLE="Problemas?"
+HREF="install.problems.html"><LINK
+REL="NEXT"
+TITLE="Como cambiar los valores de la configuración"
+HREF="configuration.changes.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.problems.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="configuration.changes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="configuration"
+>Capítulo 4. Configuración del comportamiento de PHP</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="configuration.html#configuration.file"
+>El archivo de configuración</A
+></DT
+><DT
+><A
+HREF="configuration.changes.html"
+>Como cambiar los valores de la configuración</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="configuration.file"
+>El archivo de configuración</A
+></H1
+><P
+>&#13;   El archivo de configuración (llamado
+   <TT
+CLASS="filename"
+>php3.ini</TT
+> en PHP 3, y simplemente
+   <TT
+CLASS="filename"
+>php.ini</TT
+> a partir de PHP 4) es leído
+   cuando arranca PHP. Para las versiones de PHP como módulo de
+   servidor esto sólo ocurre una vez al arrancar el servidor
+   web. Para la versión <ACRONYM
+CLASS="acronym"
+>CGI</ACRONYM
+> y
+   <ACRONYM
+CLASS="acronym"
+>CLI</ACRONYM
+>, esto ocurre en cada llamada.
+  </P
+><P
+>&#13;   La localización por defecto de <TT
+CLASS="filename"
+>php.ini</TT
+> es definida en
+   tiempo de compilación (Consultar la <A
+HREF="faq.installation.html#faq.installation.phpini"
+>FAQ</A
+>), pero puede ser
+   cambiada en la versión <ACRONYM
+CLASS="acronym"
+>CGI</ACRONYM
+> y
+   <ACRONYM
+CLASS="acronym"
+>CLI</ACRONYM
+> con la opción de la linea de comandos
+   <VAR
+CLASS="literal"
+>-c</VAR
+>, consultar el cápitulo sobre como usar
+   PHP desde la <A
+HREF="features.commandline.html"
+>linea de
+   comandos</A
+>. También se puede definir la variable de
+   entorno <VAR
+CLASS="varname"
+>PHPRC</VAR
+> con un "path" adicional para la
+   búsqueda del archivo <TT
+CLASS="filename"
+>php.ini</TT
+>
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    El servidor web Apache cambia al directorio raiz al arrancar, por
+    ello PHP intentará leer el archivo <TT
+CLASS="filename"
+>php.ini</TT
+> en
+    el directorio raiz, si existe.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   Las directivas <TT
+CLASS="filename"
+>php.ini</TT
+> gestionadas por extensiones están
+   documentadas en cada una de las páginas de las extensiones
+   respectivamente. La <A
+HREF="ini.html"
+>lista de directivas de
+   núcleo</A
+> se encuentra disponible en el
+   apéndice. En cualquier caso, es probable que no todas las
+   directivas de PHP estén documentadas en el manual. Para
+   obtener una lista completa de todas las directivas disponibles en
+   su versión de PHP, por favor lea su archivo <TT
+CLASS="filename"
+>php.ini</TT
+>, el
+   cual debe estar bien documentado. Alternativamente, puede encontrar
+   útil la última versión del archivo <A
+HREF="http://cvs.php.net/co.php/php-src/php.ini-dist"
+TARGET="_top"
+><TT
+CLASS="filename"
+>php.ini</TT
+></A
+> desde CVS.
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1884"
+></A
+><P
+><B
+>Ejemplo 4-1. Ejemplo <TT
+CLASS="filename"
+>php.ini</TT
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>; any text on a line after an unquoted semicolon (;) is ignored
+[php] ; section markers (text within square brackets) are also ignored
+; Boolean values can be set to either:
+;    true, on, yes
+; or false, off, no, none
+register_globals = off
+track_errors = yes
+
+; you can enclose strings in double-quotes
+include_path = ".:/usr/local/lib/php"
+
+; backslashes are treated the same as any other character
+include_path = ".;c:\php\lib"</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.problems.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="configuration.changes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Problemas?</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="getting-started.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Como cambiar los valores de la configuración</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

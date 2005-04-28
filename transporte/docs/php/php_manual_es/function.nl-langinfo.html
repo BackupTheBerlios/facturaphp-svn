@@ -1,0 +1,678 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>nl_langinfo</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="money_format"
+HREF="function.money-format.html"><LINK
+REL="NEXT"
+TITLE="nl2br"
+HREF="function.nl2br.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.money-format.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.nl2br.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.nl-langinfo"
+></A
+>nl_langinfo</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN106498"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>nl_langinfo&nbsp;--&nbsp;
+     Consultar información sobre el lenguaje y la localidad
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN106501"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>nl_langinfo</B
+> ( int item)<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>nl_langinfo()</B
+> es usada para
+     acceder a elementos individuales de las categorías de
+     localidad. A diferencia de <A
+HREF="function.localeconv.html"
+><B
+CLASS="function"
+>localeconv()</B
+></A
+>, que
+     devuelve todos los elementos, <B
+CLASS="function"
+>nl_langinfo()</B
+> le
+     permite seleccionar cualquier elemento específico.
+    </P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>item</VAR
+> no es válido, se
+     devolverá <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>item</VAR
+> puede ser un valor entero del
+     elemento o el nombre de constante del elemento. La siguiente es
+     una lista de nombres de constante
+     para <VAR
+CLASS="parameter"
+>item</VAR
+> que pueden ser usados y su
+     descripción. Puede que algunas de éstas constantes
+     no estén definidas o no contengan valor alguno para
+     ciertas localidades.
+     <DIV
+CLASS="table"
+><A
+NAME="AEN106519"
+></A
+><P
+><B
+>Tabla 1. Constantes de nl_langinfo</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+TITLE="c1"><COL
+WIDTH="1*"
+TITLE="c2"><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+COLSPAN="2"
+ALIGN="center"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Constantes de la Categoría
+         LC_TIME</I
+></SPAN
+></TD
+></TR
+><TR
+><TD
+>ABDAY_(1-7)</TD
+><TD
+>Nombre abreviado del n-ésimo día de la
+         semana.</TD
+></TR
+><TR
+><TD
+>DAY_(1-7)</TD
+><TD
+>Nombre abreviado del n-ésimo día de la
+         semana (DAY_1 = Domingo).</TD
+></TR
+><TR
+><TD
+>ABMON_(1-12)</TD
+><TD
+>Nombre abreviado del mes n-ésimo del
+         año.</TD
+></TR
+><TR
+><TD
+>MON_(1-12)</TD
+><TD
+>Nombre del mes n-ésimo del año.</TD
+></TR
+><TR
+><TD
+>AM_STR</TD
+><TD
+>Cadena del ante-meridiano.</TD
+></TR
+><TR
+><TD
+>PM_STR</TD
+><TD
+>Cadena del post-meridiano.</TD
+></TR
+><TR
+><TD
+>D_T_FMT</TD
+><TD
+>Cadena que puede ser usada como cadena de formato
+         para <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>, para representar la hora
+         y fecha.</TD
+></TR
+><TR
+><TD
+>D_FMT</TD
+><TD
+>Cadena que puede ser usada como cadena de formato
+         para <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>, para representar la
+         fecha.</TD
+></TR
+><TR
+><TD
+>T_FMT</TD
+><TD
+>Cadena que puede ser usada como la cadena de formato
+         para <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>, para representar la
+         hora.</TD
+></TR
+><TR
+><TD
+>T_FMT_AMPM</TD
+><TD
+>Cadena que puede ser usada como cadena de formato
+         para <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+> para representar la hora
+         en formato 12-horas con ante/post meridiano.</TD
+></TR
+><TR
+><TD
+>ERA</TD
+><TD
+>Era alterna.</TD
+></TR
+><TR
+><TD
+>ERA_YEAR</TD
+><TD
+>Año en formato de era alterna.</TD
+></TR
+><TR
+><TD
+>ERA_D_T_FMT</TD
+><TD
+>Fecha y hora en formato de era alterna (la cadena
+         puede ser usada en <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>).</TD
+></TR
+><TR
+><TD
+>ERA_D_FMT</TD
+><TD
+>Fecha en formato de era alterna (la cadena puede ser
+         usada en <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>).</TD
+></TR
+><TR
+><TD
+>ERA_T_FMT</TD
+><TD
+>Hora en formato de era alterna (la cadena puede ser
+         usada en <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>).</TD
+></TR
+><TR
+><TD
+COLSPAN="2"
+ALIGN="center"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Constantes de la Categoría
+         LC_MONETARY</I
+></SPAN
+></TD
+></TR
+><TR
+><TD
+>INT_CURR_SYMBOL</TD
+><TD
+>Símbolo de moneda internacional.</TD
+></TR
+><TR
+><TD
+>CURRENCY_SYMBOL</TD
+><TD
+>Símbolo de moneda local.</TD
+></TR
+><TR
+><TD
+>CRNCYSTR</TD
+><TD
+>El mismo valor de CURRENCY_SYMBOL.</TD
+></TR
+><TR
+><TD
+>MON_DECIMAL_POINT</TD
+><TD
+>Caracter de punto decimal.</TD
+></TR
+><TR
+><TD
+>MON_THOUSANDS_SEP</TD
+><TD
+>Separador de miles (grupos de tres
+         dígitos).</TD
+></TR
+><TR
+><TD
+>MON_GROUPING</TD
+><TD
+>Como el elemento 'grouping'.</TD
+></TR
+><TR
+><TD
+>POSITIVE_SIGN</TD
+><TD
+>Signo para valores positivos.</TD
+></TR
+><TR
+><TD
+>NEGATIVE_SIGN</TD
+><TD
+>Signo para valores negativos.</TD
+></TR
+><TR
+><TD
+>INT_FRAC_DIGITS</TD
+><TD
+>Dígitos fraccionarios internacionales.</TD
+></TR
+><TR
+><TD
+>FRAC_DIGITS</TD
+><TD
+>Dígitos fraccionarios locales.</TD
+></TR
+><TR
+><TD
+>P_CS_PRECEDES</TD
+><TD
+>Devuelve 1 si CURRENCY_SYMBOL precede un valor
+         positivo.</TD
+></TR
+><TR
+><TD
+>P_SEP_BY_SPACE</TD
+><TD
+>Devuelve 1 si un espacio separa a CURRENCY_SYMBOL de
+         un valor positivo.</TD
+></TR
+><TR
+><TD
+>N_CS_PRECEDES</TD
+><TD
+>Devuelve 1 si CURRENCY_SYMBOL precede un valor
+         negativo.</TD
+></TR
+><TR
+><TD
+>N_SEP_BY_SPACE</TD
+><TD
+>Devuelve 1 si un espacio separa a CURRENCY_SYMBOL de
+         un valor negativo.</TD
+></TR
+><TR
+><TD
+>P_SIGN_POSN</TD
+><TD
+ROWSPAN="2"
+VALIGN="middle"
+>&#13;          <P
+></P
+><UL
+><LI
+><P
+>&#13;             Devuelve 0 si unos paréntesis rodean la cantidad y
+             currency_symbol.
+            </P
+></LI
+><LI
+><P
+>&#13;             Devuelve 1 si la cadena de signo precede a la cantidad y
+             currency_symbol.
+            </P
+></LI
+><LI
+><P
+>&#13;             Devuelve 2 si la cadena de signo sigue a
+             continuación de la cantidad y currency_symbol.
+            </P
+></LI
+><LI
+><P
+>&#13;             Devuelve 3 si la cadena de signo precede inmediatamente a
+             currency_symbol.
+            </P
+></LI
+><LI
+><P
+>&#13;             Devuelve 4 si la cadena de signo sigue inmediatamente
+             después de currency_symbol.
+            </P
+></LI
+></UL
+>
+         </TD
+></TR
+><TR
+><TD
+>N_SIGN_POSN</TD
+></TR
+><TR
+><TD
+COLSPAN="2"
+ALIGN="center"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Constantes de la Categoría
+         LC_NUMERIC</I
+></SPAN
+></TD
+></TR
+><TR
+><TD
+>DECIMAL_POINT</TD
+><TD
+>Caracter de punto decimal.</TD
+></TR
+><TR
+><TD
+>RADIXCHAR</TD
+><TD
+>El mismo valor de DECIMAL_POINT.</TD
+></TR
+><TR
+><TD
+>THOUSANDS_SEP</TD
+><TD
+>Caracter separador para los miles (grupos de tres
+         dígitos).</TD
+></TR
+><TR
+><TD
+>THOUSEP</TD
+><TD
+>El mismo valor de THOUSANDS_SEP.</TD
+></TR
+><TR
+><TD
+>GROUPING</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+COLSPAN="2"
+ALIGN="center"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Constantes de la Categoría
+         LC_MESSAGES</I
+></SPAN
+></TD
+></TR
+><TR
+><TD
+>YESEXPR</TD
+><TD
+>Cadena de expresión regular para coincidir con
+         la entrada 'sí'.</TD
+></TR
+><TR
+><TD
+>NOEXPR</TD
+><TD
+>Cadena de expresión regular para coincidir con
+         la entrada 'no'.</TD
+></TR
+><TR
+><TD
+>YESSTR</TD
+><TD
+>Cadena de salida para 'sí'.</TD
+></TR
+><TR
+><TD
+>NOSTR</TD
+><TD
+>Cadena de salida para 'no'.</TD
+></TR
+><TR
+><TD
+COLSPAN="2"
+ALIGN="center"
+><SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Constantes de la Categoría
+         LC_CTYPE</I
+></SPAN
+></TD
+></TR
+><TR
+><TD
+>CODESET</TD
+><TD
+>Devuelve una cadena con el nombre de la
+         codificación de caracteres.</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función no
+está implementada en plataformas Windows.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.setlocale.html"
+><B
+CLASS="function"
+>setlocale()</B
+></A
+> y
+     <A
+HREF="function.localeconv.html"
+><B
+CLASS="function"
+>localeconv()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.money-format.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.nl2br.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>money_format</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>nl2br</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

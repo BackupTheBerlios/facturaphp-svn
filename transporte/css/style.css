@@ -1,0 +1,313 @@
+/*
+	COMIENZO DE LOS ESTILOS DE LINKS EN GENERAL
+*/
+a:link{
+	text-decoration:none;
+	font-family:arial;
+	font-size:10px;
+	color:#000000;
+}
+
+a:hover{
+	text-decoration:underline;
+	font-family:arial;
+	font-size:10px;
+	color:#000000;
+}
+
+a:visited{
+	text-decoration:none;
+	font-family:arial;
+	font-size:10px;
+	color:#000000;
+}
+/*
+	FIN DE LOS ESTILOS DE LINKS EN GENERAL
+*/
+/*
+	COMIENZO DE enlaceMenu
+	liks de la clase enlaceMenu.ESto habra que reestructurarlo para que quede mejor, ya que
+ 	este modelo (aunque supuestamente estandard) da problemas.
+	
+*/
+
+a.enlaceMenu:link{
+	text-decoration:none;
+	font-family:verdana;
+	font-size:9px;
+	color:#000000;
+}
+
+a.enlaceMenu:hover{
+	text-decoration:underline;
+	font-family:verdana;
+	font-size:9px;
+	font-weight:bold;
+	color:#000000;
+}
+
+/*
+
+	FIN DE enlaceMenu
+*/
+<!--color:#13A703;-->
+a.enlaceMenu:visited{
+	text-decoration:none;
+	font-family:verdana;
+	font-size:9px;
+	color:#000000;
+}
+
+/*
+	cabeceraMenu -> Degradado de las cabeceras de las cajas.
+*/
+.cabeceraMenu{
+	background-image:url(../pics/fondoCabeceraMenu.gif);
+	background-color:#13A703;
+	color:#ffffff;
+	vertical-align:middle;
+	font-family:verdana;
+	font-size:12px;
+	font-weight:bold;
+	text-align:center;
+	
+}
+/*
+	tituloMenu -> Para las categorias pasdres del menu, y el fondo gris de las cajitas del menu
+	
+*/
+.tituloMenu{	
+	background-color:#F0F0F0;
+	color:#13A703;
+	font-family:verdana;
+	font-size:10px;
+	text-align:left;	
+}
+
+/*
+	textoMenu->Clase usada tanto para el texto de los menues (q no sean enlaces ni categorias padre en un enlace) 
+	como para las cajas de texto de los formularios
+*/
+.textoMenu{
+
+	color:#000000;
+	vertical-align:middle;
+	font-family:verdana;
+	font-size:9px;
+	text-align:left;
+}
+
+/*
+	textoMenuUsuarios -> Formato usado para el texto de las cajas de login y usuarios
+*/
+.textoMenuUsuarios{
+	color:#000000;
+	vertical-align:middle;
+	font-family:verdana;
+	font-size:10px;
+	text-align:center;
+}
+
+/*
+	.cajaMenu ->Formato de las cajas del menu
+*/
+.cajaMenu{
+	border:1px solid #000000;
+	
+}
+/*
+	piePagina-> Formato del pie de pagina
+*/
+.piePagina{	
+	font-family:arial;
+	font-size:10px;
+	color:#000000;
+	text-align:center;
+}
+
+/*
+	colores de los botones
+*/
+.botones{
+	border:1px solid black;
+	background-color:#13A703;
+	font-family:Verdana;
+	font-size:10px;
+}
+/*
+	barraNavegacion -> fondo y tipo de letra de la barra de navegacion de la aplicacion
+*/
+.barraNavegacion{
+	background-image:url(../pics/fondoCamposVistas.gif);
+	font-family:arial;
+	font-size:15px;
+	color:#000000;
+	font-weight:bold;
+
+}
+/*
+	COMIENZO DE barraNavegacion link
+ 	links de la barra de navegacion. ESto habra que reestructurarlo para que quede mejor, ya que
+ 	este modelo (aunque supuestamente estandard) da problemas.
+*/
+.barraNavegacion a:link
+	{
+	text-decoration:none;
+	font-family:arial;
+	font-size:15px;
+	color:#000000;
+	font-style:italic;
+}
+
+.barraNavegacion a:hover{
+	text-decoration:underline;
+	font-family:arial;
+	font-size:15px;
+	color:#000000;
+	font-style:italic;
+}
+
+.barraNavegacion a:visited{
+	text-decoration:none;
+	font-family:arial;
+	font-size:15px;
+	color:#000000;
+	font-style:italic;
+}
+/*
+	FIN DE barraNavegacionLink
+*/
+
+/*
+	.Cabecera -> Usado en el modulo de noticias para poner la cabecera del texto.
+*/
+.Cabecera{
+	font-size:20px;
+	font-weight:bold;
+	font-family:Arial;
+	vertical-align:middle;
+	text-decoration:underline;
+}
+/*
+	.CabeceraModulo -> Usado para el texto que nos indica el modulo donde estamos por ejemplo:
+	Añadir Usuario.
+*/
+.CabeceraModulo{
+	background-image:url(../pics/fondoCabeceraMenu.gif);
+	Color:#FFFFFF;
+	font-size:20px;
+	font-weight:bold;
+	font-family:Arial;
+	vertical-align:middle;
+	text-decoration:underline;
+}
+/*
+	.divCentral -> usado en el tpl de noticias para darle el fondo gris
+*/
+.divCentral{
+	border: 1px thin solid;
+	background-color: #EEEEEE;
+}
+/*
+	.cabeceraCampoFormulario-> es para las letras negras que estan antes de un formulario
+	como por ejemplo: Datos del usuario:
+*/
+.cabeceraCampoFormulario{ 	
+	font-weight:bold;
+	color:#000000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+	text-decoration:underline;
+}
+/*
+	.CampoFormulario-> usada en los formularios, para poner el nombre del campo
+	que hay que rellenar, por ejemplo: Nombre: o Primer apellido:
+*/
+.CampoFormulario{
+	
+	background-color: #13A703;
+	color: #FFFFFF;
+	vertical-align: middle;
+	font-family: verdana;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: right;
+}
+/*
+	tr.cabeceraMultilinea-> Usado en las tablas como cabecera negra con texto blanco
+*/
+tr.cabeceraMultiLinea {
+	background-color:#000000;
+	font-family: verdana;
+	font-weight:bold;	
+	font-size: 10px;
+	color:#FFFFFF;
+	text-align:center;
+	vertical-align:middle;
+}
+
+/*
+	tr.mutiLinea1->en las tablas que tienen varias lineas para hacer colores
+	intercalados se usan esta clase y multilinea2. Esta es el color verde
+*/
+tr.multiLinea1 {
+	background-color:#9ECC99;
+	font-family: verdana;
+	font-size: 10px;
+	text-align:left;
+}
+/*
+	tr.mutiLinea2->en las tablas que tienen varias lineas para hacer colores
+	intercalados se usan esta clase y multilinea1. Esta es el color transparente
+*/
+tr.multiLinea2 {
+	font-family: verdana;
+	font-size: 10px;
+	text-align:left;	
+}
+/*
+	.datosVista-> usado en los view para poner los datos del modulo en cuestion
+*/
+.datosVista{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+
+}
+/*
+.camposVistas-> usado en los view para poner 
+	el nombre del campo del cual hay una descripcion al lado
+*/
+.camposVistas {
+	background-image:url(../pics/fondoCamposVistas.gif);
+	background-color:#9ECC99;
+	font-family: verdana;
+	font-size: 10px;
+	text-align:left;
+	font-weight:bold;
+}
+
+/*
+.numerosBuscar -> no usado por el momento
+*/
+.numerosBuscar{
+	color:#000000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:10px;
+}
+/*
+.notaPeequegna-> estilo para notas pequeñas
+*/
+.notaPequegna{
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:9px;
+	}
+
+/*
+.error -> estilo del texto que devuelve la validacion de datos
+*/
+.error{
+	font-family:arial;
+	font-size:9px;
+	color:#FF0000;
+	font-style:italic;
+}

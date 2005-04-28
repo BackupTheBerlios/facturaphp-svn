@@ -1,0 +1,306 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación en Unix/OpenBSD</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación en Unix/Mac OS X"
+HREF="install.macosx.html"><LINK
+REL="NEXT"
+TITLE="Instalación en Unix/Solaris"
+HREF="install.solaris.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.macosx.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.solaris.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.openbsd"
+>Instalación en Unix/OpenBSD</A
+></H1
+><P
+>&#13;  Esta sección contiene información específica
+  sobre la instalación de <VAR
+CLASS="literal"
+>PHP</VAR
+> en <A
+HREF="http://www.openbsd.org/"
+TARGET="_top"
+>OpenBSD 3.2</A
+>.
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.openbsd.packages"
+>Usando paquetes binarios</A
+></H2
+><P
+>&#13;   El uso de paquetes binarios para instalar PHP en OpenBSD es el
+   método más simple y el recomendado. El paquete principal ha sido
+   separado de los diferentes módulos y cada uno de ellos se puede
+   instalar y desinstalar independientemente unos de otros. Los
+   ficheros que necesitais se pueden encontrar en vuestro CD de
+   OpenBSD ó en el servidor FTP.
+  </P
+><P
+>&#13;   El paquete principal que teneis que instalar es
+   <TT
+CLASS="filename"
+>php4-core-4.2.3.tgz</TT
+>, el cual, contiene el
+   motor básico (más gettext y iconv). A continuación podeis instalar
+   los paquetes de módulos, tales como
+   <TT
+CLASS="filename"
+>php4-mysql-4.2.3.tgz</TT
+> ó
+   <TT
+CLASS="filename"
+>php4-imap-4.2.3.tgz</TT
+>. Debeis de usar el comando
+   <B
+CLASS="command"
+>phpxs</B
+> para activar y desactivar estos módulos en
+   vuestro fichero <TT
+CLASS="filename"
+>php.ini</TT
+>.
+  </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="install.openbsd.ports.example"
+></A
+><P
+><B
+>Ejemplo 3-2. Ejemplo de instalación de los paquetes en OpenBSD</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+># pkg_add php4-core-4.2.3.tgz
+# /usr/local/sbin/phpxs -s
+# cp /usr/local/share/doc/php4/php.ini-recommended /var/www/conf/php.ini
+  (add in mysql)
+# pkg_add php4-mysql-4.2.3.tgz
+# /usr/local/sbin/phpxs -a mysql
+  (add in imap)
+# pkg_add php4-imap-4.2.3.tgz
+# /usr/local/sbin/phpxs -a imap
+  (remove mysql as a test)
+# pkg_delete php4-mysql-4.2.3
+# /usr/local/sbin/phpxs -r mysql
+  (install the PEAR libraries)
+# pkg_add php4-pear-4.2.3.tgz</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;   Consultar las páginas del manual <A
+HREF="http://www.openbsd.org/cgi-bin/man.cgi?query=packages"
+TARGET="_top"
+>packages(7)</A
+> para más
+   información sobre paquetes binarios en OpenBSD.
+  </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.openbsd.ports"
+>Usando Ports</A
+></H2
+><P
+>&#13;   Tambien podeis compilar PHP vosotros mismos usando el <A
+HREF="http://www.openbsd.org/ports.html"
+TARGET="_top"
+>árbol de "ports"</A
+>. De todas
+   maneras, esto se recomienda solamente a usuarios que esten
+   familiarizados con OpenBSD. El "port" de PHP4 se encuentra dividido
+   en tres subdirectorios, core, extensions y pear. El subdirectorio
+   de extensiones genera los sub-paquetes para todos los módulos de
+   PHP soportados. Si no quereis crear algunos de estos módulos usar
+   el comando <B
+CLASS="command"
+>no_*</B
+> FLAVOR. Por ejemplo, para no
+   crear el módulo imap, configurar FLAVOR con
+   <B
+CLASS="command"
+>no_imap</B
+>.
+  </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.openbsd.older"
+>Versiones antiguas</A
+></H2
+><P
+>&#13;   Versiones antiguas de OpenBSD usaban FLAVORS para compilar y
+   enlazar estáticamente PHP. Ya que es difícil generar paquetes
+   binarios utilizando este método, no se soporta más. Podeis utilizar
+   todavia los "ports" antiguos estables, si quereis, pero debeis de
+   saber que no se soportan más por el equipo de OpenBSD. Si teneis
+   algún comentario sobre esto, podeis contactar con el mantenedor
+   actual del "port" <A
+HREF="mailto:avsm@openbsd.org"
+TARGET="_top"
+>Anil
+    Madhavapeddy</A
+>.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.macosx.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.solaris.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación en Unix/Mac OS X</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalación en Unix/Solaris</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

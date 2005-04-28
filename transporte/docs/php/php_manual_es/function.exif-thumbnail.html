@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>exif_thumbnail</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para imágenes"
+HREF="ref.image.html"><LINK
+REL="PREVIOUS"
+TITLE="exif_read_data"
+HREF="function.exif-read-data.html"><LINK
+REL="NEXT"
+TITLE="gd_info"
+HREF="function.gd-info.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.exif-read-data.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.gd-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.exif-thumbnail"
+></A
+>exif_thumbnail</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN37074"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>exif_thumbnail&nbsp;--&nbsp;Retrieve the embedded thumbnail of a TIFF or JPEG image</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN37077"
+></A
+><H2
+>Description</H2
+>string <B
+CLASS="methodname"
+>exif_thumbnail</B
+> ( string filename [, int &#38;width [, int &#38;height [, int &#38;imagetype]]])<BR
+></BR
+><P
+>&#13;    <B
+CLASS="function"
+>exif_thumbnail()</B
+> reads the embedded thumbnail of
+    a TIFF or JPEG image. If the image contains no thumbnail <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+    will be returned.
+   </P
+><P
+>&#13;    The parameters <VAR
+CLASS="parameter"
+>width</VAR
+>, 
+    <VAR
+CLASS="parameter"
+>height</VAR
+> and <VAR
+CLASS="parameter"
+>imagetype</VAR
+> are
+    available since PHP 4.3.0 and return the size of the thumbnail as well
+    as its type. It is possible that <B
+CLASS="function"
+>exif_thumbnail()</B
+>
+    cannot create an image but can determine its size. In this case, the
+    return value is <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> but <VAR
+CLASS="parameter"
+>width</VAR
+> and 
+    <VAR
+CLASS="parameter"
+>height</VAR
+> are set.
+   </P
+><P
+>&#13;    If you want to deliver thumbnails through this function, you should send
+    the mimetype information using the <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+> function.
+    The following example demonstrates this:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN37108"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>exif_thumbnail()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">array_key_exists</font><font color="#007700">(</font><font color="#DD0000">'file'</font><font color="#007700">, </font><font color="#0000BB">$_REQUEST</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$image </font><font color="#007700">= </font><font color="#0000BB">exif_thumbnail</font><font color="#007700">(</font><font color="#0000BB">$_REQUEST</font><font color="#007700">[</font><font color="#DD0000">'file'</font><font color="#007700">], </font><font color="#0000BB">$width</font><font color="#007700">, </font><font color="#0000BB">$height</font><font color="#007700">, </font><font color="#0000BB">$type</font><font color="#007700">);<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$image </font><font color="#007700">= </font><font color="#0000BB">false</font><font color="#007700">;<br />}<br />if (</font><font color="#0000BB">$image</font><font color="#007700">!==</font><font color="#0000BB">false</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Content-type: " </font><font color="#007700">.</font><font color="#0000BB">image_type_to_mime_type</font><font color="#007700">(</font><font color="#0000BB">$type</font><font color="#007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$image</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// no thumbnail available, handle the error here<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">echo </font><font color="#DD0000">"No thumbnail available"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Starting from version PHP 4.3.0, the function
+    <B
+CLASS="function"
+>exif_thumbnail()</B
+> can return thumbnails in
+    <ACRONYM
+CLASS="acronym"
+>TIFF</ACRONYM
+> format. 
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     This function is only available in PHP 4 compiled using 
+     <VAR
+CLASS="option"
+>--enable-exif</VAR
+>.
+     Its functionality and behaviour has changed in PHP 4.2.0
+    </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     This function does not require the GD image library.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    See also <A
+HREF="function.exif-read-data.html"
+><B
+CLASS="function"
+>exif_read_data()</B
+></A
+> and
+    <A
+HREF="function.image-type-to-mime-type.html"
+><B
+CLASS="function"
+>image_type_to_mime_type()</B
+></A
+>. 
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.exif-read-data.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.gd-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>exif_read_data</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.image.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>gd_info</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,218 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>checkdnsrr</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Red"
+HREF="ref.network.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones de Red"
+HREF="ref.network.html"><LINK
+REL="NEXT"
+TITLE="closelog"
+HREF="function.closelog.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.network.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.closelog.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.checkdnsrr"
+></A
+>checkdnsrr</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN69405"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>checkdnsrr&nbsp;--&nbsp;Comprueba registros DNS correspondientes a nombres de máquinas
+     en Internet o direcciones IP.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN69408"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>checkdnsrr</B
+> ( string host [, string type])<BR
+></BR
+><P
+>&#13;     Busca en DNS entradas del tipo <VAR
+CLASS="parameter"
+>type</VAR
+>
+     correspondientes a <VAR
+CLASS="parameter"
+>host</VAR
+>. Devuelve verdadero si
+     encuentra algún registro; devuelve falso si no encuentra ninguno o
+     sucedió algún error.</P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>type</VAR
+> puede ser: A, MX, NS, SOA,
+     PTR, CNAME, o ANY.  Por defecto es MX.</P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>host</VAR
+> puede ser o la dirección IP de la forma 
+     xxxx.xxxx.xxxx.xxxx o el nombre de la máquina.</P
+><P
+>&#13;     Ver también
+     <A
+HREF="function.getmxrr.html"
+><B
+CLASS="function"
+>getmxrr()</B
+></A
+>,
+     <A
+HREF="function.gethostbyaddr.html"
+><B
+CLASS="function"
+>gethostbyaddr()</B
+></A
+>, 
+     <A
+HREF="function.gethostbyname.html"
+><B
+CLASS="function"
+>gethostbyname()</B
+></A
+>, 
+     <A
+HREF="function.gethostbynamel.html"
+><B
+CLASS="function"
+>gethostbynamel()</B
+></A
+>, y
+      named(8) en las páginas del manual.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.network.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.closelog.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones de Red</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.network.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>closelog</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

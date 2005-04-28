@@ -1,0 +1,423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>NSAPI-specific Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="notes_version"
+HREF="function.notes-version.html"><LINK
+REL="NEXT"
+TITLE="nsapi_request_headers"
+HREF="function.nsapi-request-headers.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.notes-version.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.nsapi-request-headers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.nsapi"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXXII. NSAPI-specific Functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN74062"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="nsapi.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     These functions are only available when running PHP as a NSAPI module in Netscape/iPlanet/SunONE webservers.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="nsapi.installation"
+>Instalación</A
+></H1
+><P
+>&#13;     For PHP installation on Netscape/iPlanet/SunONE webservers see the
+     <A
+HREF="install.netscape-enterprise.html"
+>NSAPI section</A
+> in the installation
+     chapter.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="nsapi.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>&#13;  The behaviour of the NSAPI PHP module is affected by settings in <TT
+CLASS="filename"
+>php.ini</TT
+>.
+  Configuration settings from <TT
+CLASS="filename"
+>php.ini</TT
+> may be overridden by additional parameters
+  to the <VAR
+CLASS="literal"
+>php4_execute</VAR
+> call in <TT
+CLASS="filename"
+>obj.conf</TT
+>
+ </P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN74078"
+></A
+><P
+><B
+>Tabla 1. NSAPI configuration options</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Default</TH
+><TH
+>Changeable</TH
+><TH
+>Function</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>nsapi.read_timeout</TD
+><TD
+>60</TD
+><TD
+>PHP_INI_ALL</TD
+><TD
+>sets the time in seconds the plugin is waiting for POST data from the client</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="nsapi.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="nsapi.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="nsapi.seealso"
+>Ver también</A
+></H1
+><P
+>&#13;     NSAPI implements a subset of the functions from the Apache module for maximum compatibility.
+    </P
+><P
+>&#13;      <DIV
+CLASS="table"
+><A
+NAME="AEN74103"
+></A
+><P
+><B
+>Tabla 2. Apache functions implemented by NSAPI</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Apache function (only as alias)</TH
+><TH
+>NSAPI function</TH
+><TH
+>Description</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><A
+HREF="function.apache-request-headers.html"
+><B
+CLASS="function"
+>apache_request_headers()</B
+></A
+></TD
+><TD
+><A
+HREF="function.nsapi-request-headers.html"
+><B
+CLASS="function"
+>nsapi_request_headers()</B
+></A
+></TD
+><TD
+>Fetch all HTTP request headers</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.apache-response-headers.html"
+><B
+CLASS="function"
+>apache_response_headers()</B
+></A
+></TD
+><TD
+><A
+HREF="function.nsapi-response-headers.html"
+><B
+CLASS="function"
+>nsapi_response_headers()</B
+></A
+></TD
+><TD
+>Fetch all HTTP response headers</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.getallheaders.html"
+><B
+CLASS="function"
+>getallheaders()</B
+></A
+></TD
+><TD
+><A
+HREF="function.nsapi-request-headers.html"
+><B
+CLASS="function"
+>nsapi_request_headers()</B
+></A
+></TD
+><TD
+>Fetch all HTTP request headers</TD
+></TR
+><TR
+><TD
+><A
+HREF="function.virtual.html"
+><B
+CLASS="function"
+>virtual()</B
+></A
+></TD
+><TD
+><A
+HREF="function.nsapi-virtual.html"
+><B
+CLASS="function"
+>nsapi_virtual()</B
+></A
+></TD
+><TD
+>Make NSAPI sub-request</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.nsapi-request-headers.html"
+>nsapi_request_headers</A
+>&nbsp;--&nbsp;Fetch all HTTP request headers</DT
+><DT
+><A
+HREF="function.nsapi-response-headers.html"
+>nsapi_response_headers</A
+>&nbsp;--&nbsp;
+     Fetch all HTTP response headers
+    </DT
+><DT
+><A
+HREF="function.nsapi-virtual.html"
+>nsapi_virtual</A
+>&nbsp;--&nbsp;Perform an NSAPI sub-request</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.notes-version.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.nsapi-request-headers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>notes_version</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>nsapi_request_headers</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

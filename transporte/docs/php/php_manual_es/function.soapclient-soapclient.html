@@ -1,0 +1,275 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SoapClient::SoapClient</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SOAP Functions"
+HREF="ref.soap.html"><LINK
+REL="PREVIOUS"
+TITLE="SOAP Functions"
+HREF="ref.soap.html"><LINK
+REL="NEXT"
+TITLE="SoapClient::__call"
+HREF="function.soapclient-call.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.soap.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.soapclient-call.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.SoapClient-SoapClient"
+></A
+>SoapClient::SoapClient</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN97534"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>SoapClient::SoapClient&nbsp;--&nbsp;
+     SoapClient constructor
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN97537"
+></A
+><H2
+>Description</H2
+>object <B
+CLASS="methodname"
+>SoapClient::SoapClient</B
+> ( mixed wsdl [, array options])<BR
+></BR
+><P
+>&#13;     This constructor allows creating SoapClient objects in WSDL or non-WSDL mode.
+     The first case requires the URI of WSDL file as the first parameter and an
+     optional <VAR
+CLASS="parameter"
+>options</VAR
+> array. The second case requires <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>
+     as the first parameter and the <VAR
+CLASS="parameter"
+>options</VAR
+> array with
+     <VAR
+CLASS="literal"
+>location</VAR
+> and <VAR
+CLASS="literal"
+>uri</VAR
+> options set,
+     where <VAR
+CLASS="literal"
+>location</VAR
+> is a URL to request and <VAR
+CLASS="literal"
+>uri</VAR
+>
+     is a target namespace of the SOAP service.
+    </P
+><P
+>&#13;     The <VAR
+CLASS="literal"
+>style</VAR
+> and <VAR
+CLASS="literal"
+>use</VAR
+> options only work in
+     non-WSDL mode. In WSDL mode, they comes from the WSDL file.
+    </P
+><P
+>&#13;     The <VAR
+CLASS="literal"
+>soap_version</VAR
+> option specifies whether to use SOAP
+     1.1, or SOAP 1.2 client.
+    </P
+><P
+>&#13;     For HTTP authentication, you may use the <VAR
+CLASS="literal"
+>login</VAR
+> and
+     <VAR
+CLASS="literal"
+>password</VAR
+> options. For making a HTTP connection through
+     a proxy server, use the options <VAR
+CLASS="literal"
+>proxy_host</VAR
+>,
+     <VAR
+CLASS="literal"
+>proxy_port</VAR
+>, <VAR
+CLASS="literal"
+>proxy_login</VAR
+>
+     and <VAR
+CLASS="literal"
+>proxy_password</VAR
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN97569"
+></A
+><P
+><B
+>Ejemplo 1. SoapClient examples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">, array(</font><font color="#DD0000">'soap_version'&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#0000BB">SOAP_1_2</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">, array(</font><font color="#DD0000">'login'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"some_name"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'password'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"some_password"</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">, array(</font><font color="#DD0000">'proxy_host'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"localhost"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'proxy_port'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#0000BB">8080</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#DD0000">"some.wsdl"</font><font color="#007700">, array(</font><font color="#DD0000">'proxy_host'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"localhost"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'proxy_port'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#0000BB">8080</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'proxy_login'&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"some_name"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'proxy_password' </font><font color="#007700">=&gt; </font><font color="#DD0000">"some_password"</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">, array(</font><font color="#DD0000">'location' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://localhost/soap.php"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'uri'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"http://test-uri/"</font><font color="#007700">));<br /><br /></font><font color="#0000BB">$client </font><font color="#007700">= new </font><font color="#0000BB">SoapClient</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">, array(</font><font color="#DD0000">'location' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://localhost/soap.php"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'uri'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#DD0000">"http://test-uri/"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'style'&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#0000BB">SOAP_DOCUMENT</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">'use'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">=&gt; </font><font color="#0000BB">SOAP_LITERAL</font><font color="#007700">));<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.soap.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.soapclient-call.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SOAP Functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.soap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SoapClient::__call</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

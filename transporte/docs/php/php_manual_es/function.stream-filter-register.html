@@ -1,0 +1,629 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_filter_register</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_filter_prepend"
+HREF="function.stream-filter-prepend.html"><LINK
+REL="NEXT"
+TITLE="stream_get_contents"
+HREF="function.stream-get-contents.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-filter-prepend.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-get-contents.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-filter-register"
+></A
+>stream_filter_register</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104104"
+></A
+><P
+>    (PHP 5)</P
+>stream_filter_register&nbsp;--&nbsp;
+     Registrar un filtro de secuencia implementado como una clase PHP
+     derivada de <VAR
+CLASS="literal"
+>php_user_filter</VAR
+>
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104108"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>stream_filter_register</B
+> ( string nombre_filtro, string nombre_clase)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>stream_filter_register()</B
+> le permite
+     implementar su propio filtro en cualquier secuencia registrada
+     utilizada con todas los otras funciones de sistema de archivos
+     (tales
+     como <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>, <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+>
+     etc.).
+    </P
+><P
+>&#13;     Para implementar un filtro, necesita definir una clase como una
+     extensión de <VAR
+CLASS="literal"
+>php_user_filter</VAR
+> con un
+     número de funciones miembro, tal y como se define
+     más adelante. Cuando realice operaciones de
+     lectura/escritura en la secuencia a la que se ha adjuntado su
+     filtro, PHP pasará los datos a través de su filtro
+     (y cualquier otro filtre adjunto a esa secuencia) de modo que los
+     datos puedan ser modificados como lo desee. Debe implementar los
+     métodos exactamente como se describe más adelante -
+     hacerlo de otra forma llevará a comportamientos
+     indefenidos.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>stream_filter_register()</B
+> devolverá
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si <VAR
+CLASS="parameter"
+>nombre_filtro</VAR
+> ya se encuentra
+     definido.
+    </P
+>int <B
+CLASS="methodname"
+>filter</B
+> ( resource entrada, resource salida, int &#38;consumido, bool cerrando)<BR
+></BR
+><P
+>&#13;     Este método es llamado siempre que se lean o escriban
+     datos desde y hacia la secuencia adjunta (tal y como sucede
+     con <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+>
+     o <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>). <VAR
+CLASS="parameter"
+>entrada</VAR
+> es
+     un recurso que apunta a una <VAR
+CLASS="literal"
+>brigada de
+     paquetes</VAR
+> que contiene uno o más objetos de
+     tipo <VAR
+CLASS="literal"
+>paquete</VAR
+> que contienen datos a ser
+     filtrados. <VAR
+CLASS="parameter"
+>salida</VAR
+> es un recurso que apunta
+     a una segunda <VAR
+CLASS="literal"
+>brigada de paquetes</VAR
+> en la que
+     deben ser colocados sus paquetes modificados.
+     <VAR
+CLASS="parameter"
+>consumido</VAR
+>, que debe
+     declararse <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>siempre</I
+></SPAN
+> por referencia, debe ser
+     incrementado de acuerdo a la longitud de los datos que su filtro
+     lee y altera. En la mayoría de casos esto quiere decir que
+     usted incrementa <VAR
+CLASS="parameter"
+>consumido</VAR
+> en
+     $paquete-&#62;datalen para cada $paquete. Si la secuencia está
+     en el proceso de ser cerrada (y por lo tanto este es el
+     último paso por la cadena de filtros), el
+     parámetro <VAR
+CLASS="parameter"
+>cerrando</VAR
+> será
+     definido como <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>. El
+     método <CODE
+CLASS="methodname"
+>filter</CODE
+> debe devolver uno
+     de tres valores cuando complete su ejecución.
+     <DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN104158"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Valor de Retorno</TH
+><TH
+>Significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>PSFS_PASS_ON</B
+></TT
+></TD
+><TD
+>&#13;          El filtro fue procesado satisfactoriamente con los datos
+          disponibles en la <VAR
+CLASS="literal"
+>brigada de
+          paquetes</VAR
+> <VAR
+CLASS="parameter"
+>salida</VAR
+>.
+         </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>PSFS_FEED_ME</B
+></TT
+></TD
+><TD
+>&#13;          El filtro fue procesado satisfactoriamente, sin embargo, no
+          habían datos disponibles para devolver. Se requieren
+          más datos desde la secuencia o desde el filtro
+          anterior.
+         </TD
+></TR
+><TR
+><TD
+><TT
+CLASS="constant"
+><B
+>PSFS_ERR_FATAL</B
+></TT
+> (predeterminado)</TD
+><TD
+>&#13;          El filtro experimentó un error irrecuperable y no
+          puede continuar.
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+>void <B
+CLASS="methodname"
+>onCreate</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado durante la instanciación del
+     objeto clase del filtro. Si su filtro ubica o inicializa
+     cualquier otro tipo de recursos (como un búfer),
+     éste es el lugar para hacerlo. Su implementación de
+     este método debería devolver <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de
+     fallo, o <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si tiene éxito.
+    </P
+><P
+>&#13;     Cuando su filtro es instanciado por primera vez,
+     y <VAR
+CLASS="literal"
+>su_filtro-&#62;onCreate()</VAR
+> es llamado, se
+     colocarán a su disposición un número de
+     propiedades, como lo muestra la siguiente tabla.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN104189"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Propiedad</TH
+><TH
+>Contenidos</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>ClaseFiltro-&#62;filtername</VAR
+></TD
+><TD
+>&#13;          Una cadena que contiene el nombre con el que fue instanciado
+          el filtro. Los filtros pueden ser registrados bajo
+          múltiples nombres o bajo comodines. Use ésta
+          propiedad para determinar el nombre que fue usado.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>ClaseFiltro-&#62;params</VAR
+></TD
+><TD
+>&#13;          Los contenidos del
+          parámetro <VAR
+CLASS="parameter"
+>parametros</VAR
+> pasado
+          a <A
+HREF="function.stream-filter-append.html"
+><B
+CLASS="function"
+>stream_filter_append()</B
+></A
+>
+          o <A
+HREF="function.stream-filter-prepend.html"
+><B
+CLASS="function"
+>stream_filter_prepend()</B
+></A
+>.
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+>void <B
+CLASS="methodname"
+>onClose</B
+> ( void )<BR
+></BR
+><P
+>&#13;     Este método es llamado cuando se realiza la
+     destrucción del filtro (por lo general, esto ocurre
+     también durante la destrucción de la secuencia), y
+     es ejecutado <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>después</I
+></SPAN
+> de que el
+     método <VAR
+CLASS="literal"
+>flush</VAR
+> es llamado. Si se ubicaron
+     o inicializaron recursos durante <VAR
+CLASS="literal"
+>onCreate</VAR
+>,
+     éste sería el momento para destruirlos o
+     desecharlos.
+    </P
+><P
+>&#13;     El siguiente ejemplo implementa un filtro
+     llamado <VAR
+CLASS="literal"
+>strtoupper</VAR
+> en la
+     secuencia <VAR
+CLASS="literal"
+>foo-bar.txt</VAR
+>, el cual convierte a
+     mayúsculas todos los caracteres alfabéticos
+     escritos hacia/leidos desde esa secuencia.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN104218"
+></A
+><P
+><B
+>Ejemplo 1. Filtro para convertir los caracteres a mayúsculas
+      en la secuencia foo-bar.txt</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">/* Definicion de nuestra clase de filtro */<br /></font><font color="#007700">class </font><font color="#0000BB">strtoupper_filter </font><font color="#007700">extends </font><font color="#0000BB">php_user_filter </font><font color="#007700">{<br />&nbsp;&nbsp;function </font><font color="#0000BB">filter</font><font color="#007700">(</font><font color="#0000BB">$entrada</font><font color="#007700">, </font><font color="#0000BB">$salida</font><font color="#007700">, &amp;</font><font color="#0000BB">$consumido</font><font color="#007700">, </font><font color="#0000BB">$cerrando</font><font color="#007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while (</font><font color="#0000BB">$paquete </font><font color="#007700">= </font><font color="#0000BB">stream_bucket_make_writeable</font><font color="#007700">(</font><font color="#0000BB">$entrada</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">data </font><font color="#007700">= </font><font color="#0000BB">strtoupper</font><font color="#007700">(</font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">data</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$consumido </font><font color="#007700">+= </font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">datalen</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">stream_bucket_append</font><font color="#007700">(</font><font color="#0000BB">$salida</font><font color="#007700">, </font><font color="#0000BB">$paquete</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">PSFS_PASS_ON</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />} <br /><br /></font><font color="#FF8000">/* Registrar nuestro filtro con PHP */<br /></font><font color="#0000BB">stream_filter_register</font><font color="#007700">(</font><font color="#DD0000">"strtoupper"</font><font color="#007700">, </font><font color="#DD0000">"strtoupper_filter"</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">"Fall&amp;oacute; el registro del filtro"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#DD0000">"foo-bar.txt"</font><font color="#007700">, </font><font color="#DD0000">"w"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Adjuntar el filtro registrado a la secuencia que acabamos de abrir */<br /></font><font color="#0000BB">stream_filter_append</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"strtoupper"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"Linea1\n"</font><font color="#007700">);<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"Palabra - 2\n"</font><font color="#007700">);<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"Tan sencillo como 123\n"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Leer los contenidos de vuelta<br /> */<br /></font><font color="#0000BB">readfile</font><font color="#007700">(</font><font color="#DD0000">"foo-bar.txt"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Salida
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>LINEA1
+PALABRA - 2
+TAN SENCILLO COMO 123</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN104224"
+></A
+><P
+><B
+>Ejemplo 2. Registro de una clase genérica de filtro para que
+      coincida con múltiples nombres de filtro.</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">/* Definicion de nuestra clase de filtro */<br /></font><font color="#007700">class </font><font color="#0000BB">filtro_cadena </font><font color="#007700">extends </font><font color="#0000BB">php_user_filter </font><font color="#007700">{<br />&nbsp;&nbsp;var </font><font color="#0000BB">$modo</font><font color="#007700">;<br /><br />&nbsp;&nbsp;function </font><font color="#0000BB">filter</font><font color="#007700">(</font><font color="#0000BB">$entrada</font><font color="#007700">, </font><font color="#0000BB">$salida</font><font color="#007700">, &amp;</font><font color="#0000BB">$consumido</font><font color="#007700">, </font><font color="#0000BB">$cerrando</font><font color="#007700">)<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;while (</font><font color="#0000BB">$paquete </font><font color="#007700">= </font><font color="#0000BB">stream_bucket_make_writeable</font><font color="#007700">(</font><font color="#0000BB">$entrada</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">modo </font><font color="#007700">== </font><font color="#0000BB">1</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">data </font><font color="#007700">= </font><font color="#0000BB">strtoupper</font><font color="#007700">(</font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">data</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} elseif (</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">modo </font><font color="#007700">== </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">data </font><font color="#007700">= </font><font color="#0000BB">strtolower</font><font color="#007700">(</font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">data</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$consumido </font><font color="#007700">+= </font><font color="#0000BB">$paquete</font><font color="#007700">-&gt;</font><font color="#0000BB">datalen</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">stream_bucket_append</font><font color="#007700">(</font><font color="#0000BB">$salida</font><font color="#007700">, </font><font color="#0000BB">$paquete</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">PSFS_PASS_ON</font><font color="#007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function </font><font color="#0000BB">onCreate</font><font color="#007700">()<br />&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">filtername </font><font color="#007700">== </font><font color="#DD0000">'str.toupper'</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">modo </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;} elseif (</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">filtername </font><font color="#007700">== </font><font color="#DD0000">'str.tolower'</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">modo </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Se ha pedido otro filtro str.* , reportar un fallo de modo<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* que PHP continue buscando */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">return </font><font color="#0000BB">false</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">true</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />} <br /><br /></font><font color="#FF8000">/* Registrar nuestro filtro con PHP */<br /></font><font color="#0000BB">stream_filter_register</font><font color="#007700">(</font><font color="#DD0000">"str.*"</font><font color="#007700">, </font><font color="#DD0000">"filtro_cadena"</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;or die(</font><font color="#DD0000">"Fall&amp;oacute; el registro del filtro"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#DD0000">"foo-bar.txt"</font><font color="#007700">, </font><font color="#DD0000">"w"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Adjuntar el filtro registrado a la secuencia recien<br /> * abierta. Alternativamente, aqui podemos enlazar str.tolower */<br /></font><font color="#0000BB">stream_filter_append</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"str.toupper"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"Linea1\n"</font><font color="#007700">);<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"Palabra - 2\n"</font><font color="#007700">);<br /></font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"Tan sencillo como 123\n"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Leer los contenidos de vuelta<br /> */<br /></font><font color="#0000BB">readfile</font><font color="#007700">(</font><font color="#DD0000">"foo-bar.txt"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Salida<br /> * ------<br /><br />LINEA1<br />PALABRA - 2<br />TAN SENCILLO COMO 123<br /><br /> */<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también:
+     <A
+HREF="function.stream-wrapper-register.html"
+><B
+CLASS="function"
+>stream_wrapper_register()</B
+></A
+>,
+     <A
+HREF="function.stream-filter-prepend.html"
+><B
+CLASS="function"
+>stream_filter_prepend()</B
+></A
+>, y
+     <A
+HREF="function.stream-filter-append.html"
+><B
+CLASS="function"
+>stream_filter_append()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-filter-prepend.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-get-contents.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_filter_prepend</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_get_contents</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

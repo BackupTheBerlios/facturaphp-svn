@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ldap_search</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones LDAP"
+HREF="ref.ldap.html"><LINK
+REL="PREVIOUS"
+TITLE="ldap_sasl_bind"
+HREF="function.ldap-sasl-bind.html"><LINK
+REL="NEXT"
+TITLE="ldap_set_option"
+HREF="function.ldap-set-option.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ldap-sasl-bind.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ldap-set-option.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ldap-search"
+></A
+>ldap_search</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN46518"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>ldap_search&nbsp;--&nbsp;Busca en un arbol LDAP</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN46521"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ldap_search</B
+> ( int identificador_de_conexion, string dn_base, string filtro [, array atributos])<BR
+></BR
+><P
+>&#13;     Devuelve un identificador de resultado de búsqueda o falso en caso de error.</P
+><P
+>  
+     <B
+CLASS="function"
+>ldap_search()</B
+> realiza la búsqueda según el filtro
+     especificado con alcance LDAP_SCOPE_SUBTREE. Esto es equivalente a
+     buscar en el directorio entero. <VAR
+CLASS="parameter"
+>dn_base</VAR
+>
+     especifica el DN base para el directorio.</P
+><P
+>&#13;     Existe un cuarto parámetro opcional que puede ser añadido
+     para restringir los atributos y valores devueltos por el
+     servidor a sólo los requeridos. Es mucho más eficiente que la
+     acción por defecto (que devolverá todos los atributos y sus
+     valores asociados). El uso del cuarto parámetro debe ser por
+     tanto considerado una práctica recomendable.</P
+><P
+>&#13;     El cuerto parámetro es un array estándar de PHP con los atributos
+     requeridos, por ejemplo array("email","sn","cn"). Nota: "dn" siempre es
+     devuelto independientemente de que tipos de atributos sean
+     solicitados.</P
+><P
+>&#13;     También es necesario resaltar que algunos servidores de directorio
+     están configurados para devolver un cierto número de entradas como
+     máximo. Si esto ocurre, el servidor indicará que solo devuelve
+     un conjunto de resultados parcial.</P
+><P
+>&#13;     El filtro de búsqueda puede ser simple o avanzado, usando
+     operadores booleanos en el formato descrito en la documentación
+     sobre LDAP (Consulte el <A
+HREF="http://developer.netscape.com/tech/directory/"
+TARGET="_top"
+>Netscape Directory SDK</A
+>
+     para obtener completa información sobre filtros).</P
+><P
+>&#13;     El ejemplo de abajo recupera la unidad organizativa (ou), apellidos
+     nombre común y dirección de email para todas las personas de
+     "Mi Compañía" donde los apellidos o el nombre común contiene la
+     subcadena $persona. Este ejemplo usa un filtro booleano para
+     indicar al servidor que busque la información en más de un atributo.
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN46548"
+></A
+><P
+><B
+>Ejemplo 1. Búsqueda LDAP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// $ds es un identificador de conexión válido<br /><br />// $persona es todo o parte del nombre de una persona, por ejemplo "Pe"<br /><br />$dn = "o=Mi Compañía, c=ES";<br />$filtro="(|(sn=$persona*)(givenname=$persona*))";<br />$solonecesito = array( "ou", "sn", "givenname", "mail");<br /><br />$sr=ldap_search($ds, $dn, $filtro, $solonecesito);<br /><br />$info = ldap_get_entries($ds, $sr);<br /><br />print $info["count"]." entradas devueltas&lt;p&gt;";</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ldap-sasl-bind.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ldap-set-option.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ldap_sasl_bind</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ldap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ldap_set_option</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,457 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Opciones del Lenguaje</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de directivas de núcleo en php.ini"
+HREF="ini.html"><LINK
+REL="PREVIOUS"
+TITLE="Lista de directivas de núcleo en php.ini"
+HREF="ini.html"><LINK
+REL="NEXT"
+TITLE="Límites de Recursos"
+HREF="ini.sect.resource-limits.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ini.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice H. Lista de directivas de núcleo en <TT
+CLASS="filename"
+>php.ini</TT
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ini.sect.resource-limits.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ini.sect.language-options"
+>Opciones del Lenguaje</A
+></H1
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN124614"
+></A
+><P
+><B
+>Tabla H-2. Opciones del Lenguaje y Configuración
+    Variada</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>short_open_tag</TD
+><TD
+>On</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>asp_tags</TD
+><TD
+>Off</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>precision</TD
+><TD
+>"14"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>y2k_compliance</TD
+><TD
+>Off</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>allow_call_time_pass_reference</TD
+><TD
+>On</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>expose_php</TD
+><TD
+>On</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+   </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.short-open-tag"
+></A
+><VAR
+CLASS="parameter"
+>short_open_tag</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Indica si se permite el uso de la forma corta
+         (<KBD
+CLASS="userinput"
+>&#60;?  ?&#62;</KBD
+>) de la etiqueta de
+         apertura de PHP. Si desea usar PHP en conjunto con XML, puede
+         deshabilitar esta opción, de modo que pueda usar
+         <KBD
+CLASS="userinput"
+>&#60;?xml ?&#62;</KBD
+> en forma directa. De
+         otro modo, puede imprimir esta cadena con PHP, por ejemplo:
+         <KBD
+CLASS="userinput"
+>&#60;?php echo '&#60;?xml version="1.0"';
+         ?&#62;</KBD
+>. Asimismo, si el parámetro
+         está deshabilitado, debe usar la forma larga de la
+         etiqueta de apertura de PHP (<KBD
+CLASS="userinput"
+>&#60;?php
+         ?&#62;</KBD
+>).
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          Esta directiva afecta también la contracción
+          <KBD
+CLASS="userinput"
+>&#60;?=</KBD
+>, la cual es idéntica a
+          <KBD
+CLASS="userinput"
+>&#60;? echo</KBD
+>. El uso de este atajo
+          requiere que <SPAN
+CLASS="systemitem"
+>short_open_tag</SPAN
+> se encuentre
+          habilitado.
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.asp-tags"
+></A
+><VAR
+CLASS="parameter"
+>asp_tags</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Habilita el uso de etiquetas &#60;% %&#62; tipo-ASP
+         además de las etiquetas convencionales &#60;?php
+         ?&#62;. Esto incluye el atajo para imprimir valores de
+         variable &#60;%= $valor %&#62;. Para más
+         información, vea <A
+HREF="language.basic-syntax.html#language.basic-syntax.phpmode"
+>Escapar desde
+         HTML</A
+>.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          El soporte para etiquetas tipo-ASP fue agregado en 3.0.4.
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.precision"
+></A
+><VAR
+CLASS="parameter"
+>precision</VAR
+>
+        <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;         El número de dígitos significativos desplegados
+         en números de punto flotante.
+        </P
+></DD
+><DT
+><A
+NAME="ini.y2k-compliance"
+></A
+><VAR
+CLASS="parameter"
+>y2k_compliance</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Obligar compatibilidad con el año 2000 (causa
+         problemas con navegadores no-compatibles)
+        </P
+></DD
+><DT
+><A
+NAME="ini.allow-call-time-pass-reference"
+></A
+><VAR
+CLASS="parameter"
+>allow_call_time_pass_reference</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;        Indica si se permite la habilidad de obligar que los
+        argumentos sean pasados por referencia al momento de efectuar
+        llamados de función. Este método es considerado
+        obsoleto y es posible que no sea soportado en versiones
+        futuras de PHP/Zend. El método recomendado de
+        especificar cuáles argumentos deben ser pasados por
+        referencia se encuentra en la declaración de
+        funciones. Es recomendable que proceda a deshabilitar esta
+        opción y asegurarse de que sus scripts trabajen
+        correctamente sin ella, de modo que pueda estar seguro de que
+        trabajarán con versiones futuras del lenguaje
+        (recibirá una advertencia cada vez que use esta
+        característica, y el argumento será pasado por
+        valor, y no por referencia).
+        </P
+><P
+>&#13;         Vea también <A
+HREF="language.references.html"
+>las
+         Referencias Explicadas</A
+>.
+        </P
+></DD
+><DT
+><A
+NAME="ini.expose-php"
+></A
+><VAR
+CLASS="parameter"
+>expose_php</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Decide si PHP debe exponer el hecho de que está
+         instalado en el servidor (p.ej. agregando su firma en la
+         cabecera del servidor Web). No constituye un riesgo de
+         seguridad en ninguna forma, pero hace posible determinar si
+         usted usa PHP es su servidor o no.
+        </P
+></DD
+></DL
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ini.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ini.sect.resource-limits.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Lista de directivas de núcleo en <TT
+CLASS="filename"
+>php.ini</TT
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ini.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Límites de Recursos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_info</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_get_server_version"
+HREF="function.mysqli-get-server-version.html"><LINK
+REL="NEXT"
+TITLE="mysqli_init"
+HREF="function.mysqli-init.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-get-server-version.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-init.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-info"
+></A
+>mysqli_info</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN66228"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_info<P
+>    (no version information, might be only in CVS)</P
+>mysqli-&#62;info&nbsp;--&nbsp;Obtiene información acerca de la consulta más 
+    recientemente ejecutada</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN66232"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>cadena <B
+CLASS="methodname"
+>mysqli_info</B
+> ( objeto identificador_de_enlace)<BR
+></BR
+><P
+>Estilo orientado a objetos (propiedad)</P
+>class <B
+CLASS="classname"
+>mysqli</B
+> { <BR
+></BR
+>cadena info<BR
+></BR
+>}<P
+>&#13;     La función <B
+CLASS="function"
+>mysqli_info()</B
+> regresa una cadena 
+     proveyendo información acerca de la consulta ejecutada más 
+     recientemente. La naturaleza de esta cadena es como sigue:
+    </P
+><P
+>&#13;    <DIV
+CLASS="table"
+><A
+NAME="AEN66251"
+></A
+><P
+><B
+>Tabla 1. Valores regresados posibles de mysqli_info</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Tipo de Consulta</TH
+><TH
+>Ejemplo de cadena resultante</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>INSERT INTO...SELECT...</TD
+><TD
+>Records: 100 Duplicates: 0 Warnings: 0</TD
+></TR
+><TR
+><TD
+>INSERT INTO...VALUES (...),(...),(...)</TD
+><TD
+>Records: 3 Duplicates: 0 Warnings: 0</TD
+></TR
+><TR
+><TD
+>LOAD DATA INFILE ...</TD
+><TD
+>Records: 1 Deleted: 0 Skipped: 0 Warnings: 0</TD
+></TR
+><TR
+><TD
+>ALTER TABLE ...</TD
+><TD
+>Records: 3 Duplicates: 0 Warnings: 0</TD
+></TR
+><TR
+><TD
+>UPDATE ...</TD
+><TD
+>Rows matched: 40 Changed: 40 Warnings: 0</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La consultas que no sean una de las antes mencionadas no están 
+      soportadas. En esta situación, <B
+CLASS="function"
+>mysqli_info()</B
+> 
+      regresará una cadena vacía. 
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN66277"
+></A
+><H2
+>Return values</H2
+><P
+>&#13;     Una cadena representando información adicional acerca de la consulta 
+     más recientemente ejecutada.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN66280"
+></A
+><H2
+>Ver también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-affected-rows.html"
+><B
+CLASS="function"
+>mysqli_affected_rows()</B
+></A
+>,
+     <A
+HREF="function.mysqli-warning-count.html"
+><B
+CLASS="function"
+>mysqli_warning_count()</B
+></A
+>,
+     <A
+HREF="function.mysqli-num-rows.html"
+><B
+CLASS="function"
+>mysqli_num_rows()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN66286"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN66288"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"CREATE TEMPORARY TABLE t1 LIKE City"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* INSERT INTO .. SELECT */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"INSERT INTO t1 SELECT * FROM City ORDER BY ID LIMIT 150"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">info</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN66291"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"CREATE TEMPORARY TABLE t1 LIKE City"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* INSERT INTO .. SELECT */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"INSERT INTO t1 SELECT * FROM City ORDER BY ID LIMIT 150"</font><font color="#007700">);<br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_info</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Los ejemplos anteriores producirá la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Records: 150  Duplicates: 0  Warnings: 0</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-get-server-version.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-init.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_get_server_version</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_init</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

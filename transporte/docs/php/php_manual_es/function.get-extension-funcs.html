@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>get_extension_funcs</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="get_defined_constants"
+HREF="function.get-defined-constants.html"><LINK
+REL="NEXT"
+TITLE="get_include_path"
+HREF="function.get-include-path.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-defined-constants.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.get-include-path.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.get-extension-funcs"
+></A
+>get_extension_funcs</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN85161"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>get_extension_funcs&nbsp;--&nbsp;
+     Devuelve una matriz con los nombres de funciones de un módulo
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN85164"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>get_extension_funcs</B
+> ( string nombre_modulo)<BR
+></BR
+><P
+>&#13;Esta función devuelve los nombres de todas las funciones
+definidas en el módulo indicado
+por <VAR
+CLASS="parameter"
+>nombre_modulo</VAR
+>.
+    </P
+><P
+>&#13;     Por ejemplo, las siguientes líneas
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN85175"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />print_r</font><font color="#007700">(</font><font color="#0000BB">get_extension_funcs</font><font color="#007700">(</font><font color="#DD0000">"xml"</font><font color="#007700">));<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">get_extension_funcs</font><font color="#007700">(</font><font color="#DD0000">"gd"</font><font color="#007700">));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       imprimirán una lista de las funciones en los
+       módulos <VAR
+CLASS="varname"
+>xml</VAR
+> y <VAR
+CLASS="varname"
+>gd</VAR
+>
+       respectivamente.
+      </P
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     Vea también: <A
+HREF="function.get-loaded-extensions.html"
+><B
+CLASS="function"
+>get_loaded_extensions()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-defined-constants.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.get-include-path.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_defined_constants</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>get_include_path</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

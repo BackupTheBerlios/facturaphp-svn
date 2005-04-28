@@ -1,0 +1,433 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_get_meta_data</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_get_line"
+HREF="function.stream-get-line.html"><LINK
+REL="NEXT"
+TITLE="stream_get_transports"
+HREF="function.stream-get-transports.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-get-line.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-get-transports.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-get-meta-data"
+></A
+>stream_get_meta_data</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104311"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>stream_get_meta_data&nbsp;--&nbsp;Recupera meta datos/cabeceras desde apuntadores a
+    secuencias/archivos</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104314"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>stream_get_meta_data</B
+> ( resource secuencia)<BR
+></BR
+><P
+>&#13;     Devuelve información sobre
+     una <VAR
+CLASS="parameter"
+>secuencia</VAR
+> existente. La secuencia
+     puede ser cualquiera creada
+     por <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>, <A
+HREF="function.fsockopen.html"
+><B
+CLASS="function"
+>fsockopen()</B
+></A
+>
+     y <A
+HREF="function.pfsockopen.html"
+><B
+CLASS="function"
+>pfsockopen()</B
+></A
+>. La matriz resultante contiene
+     los siguientes items:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>timed_out</VAR
+> (bool) - <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si la
+       secuencia ha superado el tiempo de espera máximo
+       mientras esperaba datos en el último llamado
+       a <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+> o <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>blocked</VAR
+> (bool) - <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si la secuencia
+       se encuentra en modo de bloqueo de
+       E/S. Vea <A
+HREF="function.stream-set-blocking.html"
+><B
+CLASS="function"
+>stream_set_blocking()</B
+></A
+>.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>eof</VAR
+> (bool) - <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si la secuencia ha
+       alcanzado el final del archivo. Note que para secuencias de
+       socket, este miembro puede ser <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> incluso
+       cuando <VAR
+CLASS="parameter"
+>unread_bytes</VAR
+> es diferente de
+       cero. Para determinar si hay más datos para ser leidos,
+       use
+       <A
+HREF="function.feof.html"
+><B
+CLASS="function"
+>feof()</B
+></A
+> en lugar de leer este item.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>unread_bytes</VAR
+> (int) - el número de
+       bytes contenidos actualmente en el búfer de lectura.
+      </P
+></LI
+></UL
+><P
+>&#13;     Los siguientes items fueron agregados en PHP 4.3:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>stream_type</VAR
+> (string) - una etiqueta que
+       decribe la implementación de bajo nivel de la secuencia.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>wrapper_type</VAR
+> (string) - una etiqueta que
+       describe la implementación de envoltura de protocolo que
+       cubre a la secuencia. Vea <A
+HREF="wrappers.html"
+>Apéndice L</A
+> para
+       más información sobre las envolturas.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>wrapper_data</VAR
+> (mixed) - datos
+       específicos de envoltura adjuntos a esta secuencia. Vea
+       <A
+HREF="wrappers.html"
+>Apéndice L</A
+> para más información
+       sobre las envolturas y sus datos de envoltura.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>filters</VAR
+> (array) - una matriz que
+       contiene los nombres de cualquier filtro que esté
+       apilado para esta secuencia. Los filtros en la actualidad
+       carecen de documentación.
+      </P
+></LI
+></UL
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Esta función fue introducida en PHP 4.3, pero
+      anteriormente, <A
+HREF="function.socket-get-status.html"
+><B
+CLASS="function"
+>socket_get_status()</B
+></A
+>
+      podía ser usado para recuperar los primeros cuatro items,
+      para <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>secuencias basadas en sockets
+      únicamente</I
+></SPAN
+>.
+     </P
+><P
+>&#13;      En PHP 4.3 y versiones
+      posteriores, <A
+HREF="function.socket-get-status.html"
+><B
+CLASS="function"
+>socket_get_status()</B
+></A
+> es un alias
+      de esta función.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Esta función NO trabaja sobre sockets creados por
+      la <A
+HREF="ref.sockets.html"
+>Extensión de
+      sockets</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Los siguientes ítems fueron agregados en PHP 5.0:
+    </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>mode</VAR
+> (string) - el modo (o permisos) de
+       la URI asociada con ésta secuencia.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>seakable</VAR
+> (bool) - si la secuencia actual
+       puede ser reubicada.
+      </P
+></LI
+><LI
+><P
+>&#13;       <VAR
+CLASS="parameter"
+>uri</VAR
+> (string) - el nombre de archivo/URI
+       asociado con ésta secuencia.
+      </P
+></LI
+></UL
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-get-line.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-get-transports.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_get_line</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_get_transports</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

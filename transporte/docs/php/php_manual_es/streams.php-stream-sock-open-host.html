@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_sock_open_host</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de API de Sockets de Secuencia"
+HREF="streams.socket-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_sock_open_from_socket"
+HREF="streams.php-stream-sock-open-from-socket.html"><LINK
+REL="NEXT"
+TITLE="php_stream_sock_open_unix"
+HREF="streams.php-stream-sock-open-unix.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-sock-open-from-socket.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-sock-open-unix.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-sock-open-host"
+></A
+>php_stream_sock_open_host</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN121419"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_sock_open_host&nbsp;--&nbsp;Abrir una conexión con un servidor
+    huésped y devolver una secuencia</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN121422"
+></A
+><H2
+>Descripción</H2
+>php_stream * <B
+CLASS="methodname"
+>php_stream_sock_open_host</B
+> ( const char * host, unsigned short puerto, int tipo_sock, struct timeval * tiempo_espera, int persistente)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_sock_open_host()</B
+> establece una
+     conexión con el <VAR
+CLASS="parameter"
+>host</VAR
+> y
+     <VAR
+CLASS="parameter"
+>puerto</VAR
+>
+     especificados. <VAR
+CLASS="parameter"
+>tipo_sock</VAR
+> especifica la
+     semántica de conexión que debe aplicarse a la
+     misma. Los valores de <VAR
+CLASS="parameter"
+>tipo_sock</VAR
+> dependen
+     del sistema, pero usualmente incluyen (como mínimo)
+     <TT
+CLASS="constant"
+><B
+>SOCK_STREAM</B
+></TT
+> para secuencias basadas en
+     conexiones secuenciales, confiables y de doble vía (TCP),
+     o <TT
+CLASS="constant"
+><B
+>SOCK_DGRAM</B
+></TT
+> para mensajes sin
+     conexión, no confiables y una longitud máxima
+     (UDP).
+    </P
+><P
+>&#13;      <VAR
+CLASS="parameter"
+>persistente</VAR
+> es una bandera que controla
+      si la secuencia es abierta como una secuencia persistente. Por
+      lo general, este parámetro será 0.
+    </P
+><P
+>&#13;     Si es diferente a NULL, <VAR
+CLASS="parameter"
+>tiempo_espera</VAR
+>
+     especifica un tiempo máximo para permitir que se
+     establezca la conexión. Si el intento de conexión
+     toma más tiempo que el valor de tiempo de espera, el
+     intento de conexión es abortado y se devuelve NULL para
+     indicar que la secuencia no pudo ser abierta.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El valor de tiempo de espera no incluye el tiempo que toma
+      realizar una consulta de DNS. La razón de esto es que no
+      hay una forma portable de implementar una consulta DNS que no
+      bloquee.
+     </P
+><P
+>&#13;      El tiempo de espera sólo se aplica a la fase de
+      conexión; si necesita establecer los tiempos de espera
+      para operaciones posteriores de lectura o escritura,
+      debería usar
+      <B
+CLASS="function"
+>php_stream_sock_set_timeout()</B
+> para configurar
+      la duración de tiempo de espera para su secuencia una vez
+      ésta ha sido abierta.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     La API de secuencias no coloca restricciones sobre los valores
+     que puede usar para <VAR
+CLASS="parameter"
+>tipo_socket</VAR
+>, pero es
+     recomendable que considere la portabilidad de los valores que
+     elige antes de que libere su extensión.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-sock-open-from-socket.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-sock-open-unix.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_sock_open_from_socket</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="streams.socket-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_sock_open_unix</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

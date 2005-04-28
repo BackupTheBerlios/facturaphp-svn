@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Pspell Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="printer_write"
+HREF="function.printer-write.html"><LINK
+REL="NEXT"
+TITLE="pspell_add_to_personal"
+HREF="function.pspell-add-to-personal.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.printer-write.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pspell-add-to-personal.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.pspell"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXXXIX. Pspell Functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN92198"
+></A
+><P
+>&#13;    The <B
+CLASS="function"
+>pspell()</B
+> functions allow you to check the
+    spelling of a word and offer suggestions.
+   </P
+><P
+>&#13;    You need the aspell and pspell libraries, available from <A
+HREF="http://aspell.sourceforge.net/"
+TARGET="_top"
+>http://aspell.sourceforge.net/</A
+> and
+    <A
+HREF="http://aspell.net/"
+TARGET="_top"
+>http://aspell.net/</A
+> respectively, and
+    add the <VAR
+CLASS="option"
+>--with-pspell[=dir]</VAR
+> option
+    when compiling php.
+   </P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.pspell-add-to-personal.html"
+>pspell_add_to_personal</A
+>&nbsp;--&nbsp;Agrega la palabra a la lista personal de palabras</DT
+><DT
+><A
+HREF="function.pspell-add-to-session.html"
+>pspell_add_to_session</A
+>&nbsp;--&nbsp;Agrega la palabra a la lista de palabras en la sesión actual
+    </DT
+><DT
+><A
+HREF="function.pspell-check.html"
+>pspell_check</A
+>&nbsp;--&nbsp;Check a word</DT
+><DT
+><A
+HREF="function.pspell-clear-session.html"
+>pspell_clear_session</A
+>&nbsp;--&nbsp;Limpia la sesión actual</DT
+><DT
+><A
+HREF="function.pspell-config-create.html"
+>pspell_config_create</A
+>&nbsp;--&nbsp;Create a config used to open a dictionary</DT
+><DT
+><A
+HREF="function.pspell-config-data-dir.html"
+>pspell_config_data_dir</A
+>&nbsp;--&nbsp;
+   location of language data files
+  </DT
+><DT
+><A
+HREF="function.pspell-config-dict-dir.html"
+>pspell_config_dict_dir</A
+>&nbsp;--&nbsp;
+   Location of the main word list
+  </DT
+><DT
+><A
+HREF="function.pspell-config-ignore.html"
+>pspell_config_ignore</A
+>&nbsp;--&nbsp;Ignore words less than N characters long</DT
+><DT
+><A
+HREF="function.pspell-config-mode.html"
+>pspell_config_mode</A
+>&nbsp;--&nbsp;Change the mode number of suggestions returned</DT
+><DT
+><A
+HREF="function.pspell-config-personal.html"
+>pspell_config_personal</A
+>&nbsp;--&nbsp;Set a file that contains personal wordlist</DT
+><DT
+><A
+HREF="function.pspell-config-repl.html"
+>pspell_config_repl</A
+>&nbsp;--&nbsp;Set a file that contains replacement pairs</DT
+><DT
+><A
+HREF="function.pspell-config-runtogether.html"
+>pspell_config_runtogether</A
+>&nbsp;--&nbsp;Consider run-together words as valid compounds</DT
+><DT
+><A
+HREF="function.pspell-config-save-repl.html"
+>pspell_config_save_repl</A
+>&nbsp;--&nbsp;Determine whether to save a replacement pairs list
+    along with the wordlist</DT
+><DT
+><A
+HREF="function.pspell-new-config.html"
+>pspell_new_config</A
+>&nbsp;--&nbsp;Load a new dictionary with settings based on a given config
+    </DT
+><DT
+><A
+HREF="function.pspell-new-personal.html"
+>pspell_new_personal</A
+>&nbsp;--&nbsp;Load a new dictionary with personal wordlist</DT
+><DT
+><A
+HREF="function.pspell-new.html"
+>pspell_new</A
+>&nbsp;--&nbsp;Load a new dictionary</DT
+><DT
+><A
+HREF="function.pspell-save-wordlist.html"
+>pspell_save_wordlist</A
+>&nbsp;--&nbsp;Save the personal wordlist to a file</DT
+><DT
+><A
+HREF="function.pspell-store-replacement.html"
+>pspell_store_replacement</A
+>&nbsp;--&nbsp;Store a replacement pair for a word</DT
+><DT
+><A
+HREF="function.pspell-suggest.html"
+>pspell_suggest</A
+>&nbsp;--&nbsp;Suggest spellings of a word</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.printer-write.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pspell-add-to-personal.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>printer_write</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pspell_add_to_personal</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

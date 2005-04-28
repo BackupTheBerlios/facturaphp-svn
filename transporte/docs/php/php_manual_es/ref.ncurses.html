@@ -1,0 +1,2141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Control de Pantalla con Terminal Ncurses</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="syslog"
+HREF="function.syslog.html"><LINK
+REL="NEXT"
+TITLE="ncurses_addch"
+HREF="function.ncurses-addch.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.syslog.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ncurses-addch.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.ncurses"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXX. Funciones de Control de Pantalla con Terminal Ncurses</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN70138"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ncurses.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     ncurses (new curses) es un sistema de emulación del
+     paquete curses del Sistema V 4.0 (y superiores). Usa formatos
+     terminfo, soporta pads, colores, resaltados múltiples,
+     caracteres de formulario y asignaciones de funciones de
+     teclado. Debido a la naturaleza interactiva de esta biblioteca,
+     ésta será de poca utilidad para la escritura de
+     aplicaciones Web, pero puede ser útil cuando se escriben
+     scripts orientados al <A
+HREF="features.commandline.html"
+>uso de
+     PHP desde la línea de comandos</A
+>.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta extensión es
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta extensión, los nombre de sus funciones y
+en definitiva TODO lo documentado sobre esta extensión, puede
+cambiar en una futura versión de PHP SIN AVISO. La advertencia
+queda hecha, y utilizar esta extensión queda bajo su propia
+responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     Ncurses se encuentra disponible para las siguientes plataformas:
+     <P
+></P
+><UL
+><LI
+><P
+>AIX</P
+></LI
+><LI
+><P
+>BeOS</P
+></LI
+><LI
+><P
+>Cygwin</P
+></LI
+><LI
+><P
+>Digital Unix (aka OSF1)</P
+></LI
+><LI
+><P
+>FreeBSD</P
+></LI
+><LI
+><P
+>GNU/Linux</P
+></LI
+><LI
+><P
+>HPUX</P
+></LI
+><LI
+><P
+>IRIX</P
+></LI
+><LI
+><P
+>OS/2</P
+></LI
+><LI
+><P
+>SCO OpenServer</P
+></LI
+><LI
+><P
+>Solaris</P
+></LI
+><LI
+><P
+>SunOS</P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ncurses.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Necesita las bibliotecas ncurses y sus archivos de
+     cabecera. Descargue la última versión desde <A
+HREF="ftp://ftp.gnu.org/pub/gnu/ncurses/"
+TARGET="_top"
+>ftp://ftp.gnu.org/pub/gnu/ncurses/</A
+> o algún otro
+     mirror GNU.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ncurses.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  Para que estas funciones trabajen, debe compilar la versión
+  CGI o CLI de PHP con <VAR
+CLASS="option"
+>--with-ncurses[=DIR]</VAR
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ncurses.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13; <DIV
+CLASS="table"
+><A
+NAME="AEN70185"
+></A
+><P
+><B
+>Tabla 1. Opciones de configuración de ncurses</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ncurses.value</TD
+><TD
+>"42"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>ncurses.string</TD
+><TD
+>"foobar"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ Para más detalles sobre las constantes PHP_INI_* y su
+ definición, vea <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ncurses.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ncurses.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="ncurses.errconsts"
+>Códigos de error</A
+></H2
+><P
+>&#13;    En caso de fallos, las funciones ncurses devuelven NCURSES_ERR.
+   </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="ncurses.colorconsts"
+>Colores</A
+></H2
+><DIV
+CLASS="table"
+><A
+NAME="AEN70214"
+></A
+><P
+><B
+>Tabla 2. constantes de color de ncurses</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>constante</TH
+><TH
+>significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>NCURSES_COLOR_BLACK</TD
+><TD
+>sin color (negro)</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_WHITE</TD
+><TD
+>blanco</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_RED</TD
+><TD
+>rojo - soportado cuando la terminal se encuentra en
+         modo de color</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_GREEN</TD
+><TD
+>verde - soportado cuando la terminal se encuentra en
+         modo de color</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_YELLOW</TD
+><TD
+>amarillo - soportado cuando la terminal se encuentra
+         en modo de color</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_BLUE</TD
+><TD
+>azul - soportado cuando la terminal se encuentra en
+         modo de color</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_CYAN</TD
+><TD
+>cyan - soportado cuando la terminal se encuentra en
+         modo de color</TD
+></TR
+><TR
+><TD
+>NCURSES_COLOR_MAGENTA</TD
+><TD
+>magenta - soportado cuando la terminal se encuentra en
+         modo de color</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="ncurses.keyconsts"
+>Teclas</A
+></H2
+><DIV
+CLASS="table"
+><A
+NAME="AEN70248"
+></A
+><P
+><B
+>Tabla 3. constantes de teclas ncurses</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>constante</TH
+><TH
+>significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>NCURSES_KEY_F0 - NCURSES_KEY_F64</TD
+><TD
+>teclas de función F1 - F64</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_DOWN</TD
+><TD
+>flecha hacia abajo</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_UP</TD
+><TD
+>flecha hacia arriba</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_LEFT</TD
+><TD
+>flecha hacia la izquierda</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_RIGHT</TD
+><TD
+>flecha hacia la derecha</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_HOME</TD
+><TD
+>tecla home (flecha arriba+izquierda)</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_BACKSPACE</TD
+><TD
+>backspace</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_DL</TD
+><TD
+>eliminar línea</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_IL</TD
+><TD
+>insertar línea</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_DC</TD
+><TD
+>eliminar caracter</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_IC</TD
+><TD
+>insertar caracter o entrar en modo de
+         inserción</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_EIC</TD
+><TD
+>salir de modo de inserción de
+         caracteres</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_CLEAR</TD
+><TD
+>limpiar la pantalla</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_EOS</TD
+><TD
+>limpiar hasta el fin de la pantalla</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_EOL</TD
+><TD
+>limpiar hasta el fin de la línea</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SF</TD
+><TD
+>desplazarse una línea hacia adelante</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SR</TD
+><TD
+>desplazarse una línea hacia atrás</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_NPAGE</TD
+><TD
+>siguiente página</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_PPAGE</TD
+><TD
+>página anterior</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_STAB</TD
+><TD
+>definir tab</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_CTAB</TD
+><TD
+>eliminar tab</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_CATAB</TD
+><TD
+>eliminar todos los tabs</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SRESET</TD
+><TD
+>reset suave (parcial)</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_RESET</TD
+><TD
+>reset o reset fuerte</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_PRINT</TD
+><TD
+>imprimir</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_LL</TD
+><TD
+>izquierda inferior</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_A1</TD
+><TD
+>izquierda superior del teclado numérico</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_A3</TD
+><TD
+>derecha superior del teclado numérico</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_B2</TD
+><TD
+>centro del teclado numérico</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_C1</TD
+><TD
+>izquierda inferior del teclado numérico</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_C3</TD
+><TD
+>derecha inferior del teclado numérico</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_BTAB</TD
+><TD
+>tab hacia atrás</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_BEG</TD
+><TD
+>comienzo</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_CANCEL</TD
+><TD
+>cancelar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_CLOSE</TD
+><TD
+>cerrar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_COMMAND</TD
+><TD
+>cmd (comando)</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_COPY</TD
+><TD
+>copiar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_CREATE</TD
+><TD
+>crear</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_END</TD
+><TD
+>fin</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_EXIT</TD
+><TD
+>salida</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_FIND</TD
+><TD
+>encontrar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_HELP</TD
+><TD
+>ayuda</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_MARK</TD
+><TD
+>marca</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_MESSAGE</TD
+><TD
+>mensaje</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_MOVE</TD
+><TD
+>mover</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_NEXT</TD
+><TD
+>siguiente</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_OPEN</TD
+><TD
+>abrir</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_OPTIONS</TD
+><TD
+>opciones</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_PREVIOUS</TD
+><TD
+>anterior</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_REDO</TD
+><TD
+>rehacer</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_REFERENCE</TD
+><TD
+>ref (referencia)</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_REFRESH</TD
+><TD
+>refrescar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_REPLACE</TD
+><TD
+>reemplazar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_RESTART</TD
+><TD
+>reiniciar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_RESUME</TD
+><TD
+>reiniciar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SAVE</TD
+><TD
+>guardar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SBEG</TD
+><TD
+>comienzo usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SCANCEL</TD
+><TD
+>cancelar usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SCOMMAND</TD
+><TD
+>comando usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SCOPY</TD
+><TD
+>copiar usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SCREATE</TD
+><TD
+>crear usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SDC</TD
+><TD
+>eliminar caracter usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SDL</TD
+><TD
+>eliminar línea usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SELECT</TD
+><TD
+>seleccionar</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SEND</TD
+><TD
+>final usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SEOL</TD
+><TD
+>fin de línea usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SEXIT</TD
+><TD
+>salida usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SFIND</TD
+><TD
+>encontrar usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SHELP</TD
+><TD
+>ayuda usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SHOME</TD
+><TD
+>home usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SIC</TD
+><TD
+>entrada usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SLEFT</TD
+><TD
+>flecha hacia la izquierda usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SMESSAGE</TD
+><TD
+>mensaje usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SMOVE</TD
+><TD
+>mover usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SNEXT</TD
+><TD
+>siguiente usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SOPTIONS</TD
+><TD
+>opciones usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SPREVIOUS</TD
+><TD
+>anterior usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SPRINT</TD
+><TD
+>imprimir usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SREDO</TD
+><TD
+>rehacer usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SREPLACE</TD
+><TD
+>reemplazar usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SRIGHT</TD
+><TD
+>flecha hacia la derecha usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SRSUME</TD
+><TD
+>reiniciar usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SSAVE</TD
+><TD
+>guardar usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_SSUSPEND</TD
+><TD
+>suspender usando shift</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_UNDO</TD
+><TD
+>deshacer</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_MOUSE</TD
+><TD
+>evento del mouse ha ocurrido</TD
+></TR
+><TR
+><TD
+>NCURSES_KEY_MAX</TD
+><TD
+>valor máximo de tecla</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="AEN70517"
+>Mouse</A
+></H2
+><DIV
+CLASS="table"
+><A
+NAME="AEN70519"
+></A
+><P
+><B
+>Tabla 4. constantes de mouse</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Constante</TH
+><TH
+>significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>NCURSES_BUTTON1_RELEASED -
+         NCURSES_BUTTON4_RELEASED</TD
+><TD
+>botón (1-4) liberado</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON1_PRESSED -
+         NCURSES_BUTTON4_PRESSED</TD
+><TD
+>botón (1-4) presionado</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON1_CLICKED -
+         NCURSES_BUTTON4_CLICKED</TD
+><TD
+>botón (1-4) pulsado</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON1_DOUBLE_CLICKED -
+         NCURSES_BUTTON4_DOUBLE_CLICKED</TD
+><TD
+>botón (1-4) pulsado dos veces</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON1_TRIPLE_CLICKED -
+         NCURSES_BUTTON4_TRIPLE_CLICKED</TD
+><TD
+>botón (1-4) pulsado tres veces</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON_CTRL</TD
+><TD
+>ctrl presionado durante el clic</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON_SHIFT</TD
+><TD
+>shift presionado durante el clic</TD
+></TR
+><TR
+><TD
+>NCURSES_BUTTON_ALT</TD
+><TD
+>alt presionado durante el clic</TD
+></TR
+><TR
+><TD
+>NCURSES_ALL_MOUSE_EVENTS</TD
+><TD
+>reportar todos los eventos del mouse</TD
+></TR
+><TR
+><TD
+>NCURSES_REPORT_MOUSE_POSITION</TD
+><TD
+>reportar la posición del mouse</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.ncurses-addch.html"
+>ncurses_addch</A
+>&nbsp;--&nbsp;Agregar un caracter en la posición actual y
+    avanzar el cursor</DT
+><DT
+><A
+HREF="function.ncurses-addchnstr.html"
+>ncurses_addchnstr</A
+>&nbsp;--&nbsp;Agregar cadena con atributos y longitud especificada
+    en la posición actual</DT
+><DT
+><A
+HREF="function.ncurses-addchstr.html"
+>ncurses_addchstr</A
+>&nbsp;--&nbsp;Agregar una cadena con atributos en la posición
+    actual</DT
+><DT
+><A
+HREF="function.ncurses-addnstr.html"
+>ncurses_addnstr</A
+>&nbsp;--&nbsp;Agregar una cadena con la longitud especificada en la
+    posición actual</DT
+><DT
+><A
+HREF="function.ncurses-addstr.html"
+>ncurses_addstr</A
+>&nbsp;--&nbsp;Imprimir texto en la posición
+    actual</DT
+><DT
+><A
+HREF="function.ncurses-assume-default-colors.html"
+>ncurses_assume_default_colors</A
+>&nbsp;--&nbsp;Definir colores predeterminados para el color
+    0</DT
+><DT
+><A
+HREF="function.ncurses-attroff.html"
+>ncurses_attroff</A
+>&nbsp;--&nbsp;Deshabilitar los atributos dados</DT
+><DT
+><A
+HREF="function.ncurses-attron.html"
+>ncurses_attron</A
+>&nbsp;--&nbsp;Habilitar los atributos dados</DT
+><DT
+><A
+HREF="function.ncurses-attrset.html"
+>ncurses_attrset</A
+>&nbsp;--&nbsp;Establecer los atributos dados</DT
+><DT
+><A
+HREF="function.ncurses-baudrate.html"
+>ncurses_baudrate</A
+>&nbsp;--&nbsp;Devuelve la tasa de baudios de la terminal</DT
+><DT
+><A
+HREF="function.ncurses-beep.html"
+>ncurses_beep</A
+>&nbsp;--&nbsp;Producir un beep en la terminal</DT
+><DT
+><A
+HREF="function.ncurses-bkgd.html"
+>ncurses_bkgd</A
+>&nbsp;--&nbsp;Establecer la propiedad de segundo plano para la
+    pantalla de la terminal</DT
+><DT
+><A
+HREF="function.ncurses-bkgdset.html"
+>ncurses_bkgdset</A
+>&nbsp;--&nbsp;Controla el segundo plano de la pantalla</DT
+><DT
+><A
+HREF="function.ncurses-border.html"
+>ncurses_border</A
+>&nbsp;--&nbsp;Dibujar un borde alrededor de la pantalla usando
+    caracteres con atributos</DT
+><DT
+><A
+HREF="function.ncurses-bottom-panel.html"
+>ncurses_bottom_panel</A
+>&nbsp;--&nbsp;
+     Mueve un panel visible al fondo de la pila
+    </DT
+><DT
+><A
+HREF="function.ncurses-can-change-color.html"
+>ncurses_can_change_color</A
+>&nbsp;--&nbsp;Chequear si es posible cambiar los colores de la
+    terminal</DT
+><DT
+><A
+HREF="function.ncurses-cbreak.html"
+>ncurses_cbreak</A
+>&nbsp;--&nbsp;Cambio de búferes de entrada</DT
+><DT
+><A
+HREF="function.ncurses-clear.html"
+>ncurses_clear</A
+>&nbsp;--&nbsp;Limpiar la pantalla</DT
+><DT
+><A
+HREF="function.ncurses-clrtobot.html"
+>ncurses_clrtobot</A
+>&nbsp;--&nbsp;Limpiar la pantalla desde la posición actual al
+    final</DT
+><DT
+><A
+HREF="function.ncurses-clrtoeol.html"
+>ncurses_clrtoeol</A
+>&nbsp;--&nbsp;Limpiar la pantalla desde la posición actual al
+    final de la línea</DT
+><DT
+><A
+HREF="function.ncurses-color-content.html"
+>ncurses_color_content</A
+>&nbsp;--&nbsp;
+     Obtiene el valor RGB del color
+    </DT
+><DT
+><A
+HREF="function.ncurses-color-set.html"
+>ncurses_color_set</A
+>&nbsp;--&nbsp;Establecer los colores de primer y segundo
+    plano</DT
+><DT
+><A
+HREF="function.ncurses-curs-set.html"
+>ncurses_curs_set</A
+>&nbsp;--&nbsp;Establecer el estado del cursor</DT
+><DT
+><A
+HREF="function.ncurses-def-prog-mode.html"
+>ncurses_def_prog_mode</A
+>&nbsp;--&nbsp;Guarda los modos de terminal (programa)</DT
+><DT
+><A
+HREF="function.ncurses-def-shell-mode.html"
+>ncurses_def_shell_mode</A
+>&nbsp;--&nbsp;Guarda los modos de terminal (intérprete de
+    comandos)</DT
+><DT
+><A
+HREF="function.ncurses-define-key.html"
+>ncurses_define_key</A
+>&nbsp;--&nbsp;Definir un código de tecla</DT
+><DT
+><A
+HREF="function.ncurses-del-panel.html"
+>ncurses_del_panel</A
+>&nbsp;--&nbsp;
+     Remover un panel de la pila y eliminarlo (pero no la ventana asociada)
+    </DT
+><DT
+><A
+HREF="function.ncurses-delay-output.html"
+>ncurses_delay_output</A
+>&nbsp;--&nbsp;Retrasar la salida en la terminal usando caracteres de
+    relleno</DT
+><DT
+><A
+HREF="function.ncurses-delch.html"
+>ncurses_delch</A
+>&nbsp;--&nbsp;Eliminar un caracter en la posición actual,
+    mover el resto de la línea hacia la izquierda</DT
+><DT
+><A
+HREF="function.ncurses-deleteln.html"
+>ncurses_deleteln</A
+>&nbsp;--&nbsp;Eliminar una línea en la posición
+    actual, mover el resto de la pantalla hacia arriba</DT
+><DT
+><A
+HREF="function.ncurses-delwin.html"
+>ncurses_delwin</A
+>&nbsp;--&nbsp;Eliminar una ventana ncurses</DT
+><DT
+><A
+HREF="function.ncurses-doupdate.html"
+>ncurses_doupdate</A
+>&nbsp;--&nbsp;Escribir todas las actualizaciones preparadas sobre la
+    terminal</DT
+><DT
+><A
+HREF="function.ncurses-echo.html"
+>ncurses_echo</A
+>&nbsp;--&nbsp;Activar la repetición de entrada del
+    teclado</DT
+><DT
+><A
+HREF="function.ncurses-echochar.html"
+>ncurses_echochar</A
+>&nbsp;--&nbsp;Salida de un caracter sencillo, incluyendo
+    actualización</DT
+><DT
+><A
+HREF="function.ncurses-end.html"
+>ncurses_end</A
+>&nbsp;--&nbsp;Dejar de usar ncurses, limpiar la
+    pantalla</DT
+><DT
+><A
+HREF="function.ncurses-erase.html"
+>ncurses_erase</A
+>&nbsp;--&nbsp;Limpiar pantalla de terminal</DT
+><DT
+><A
+HREF="function.ncurses-erasechar.html"
+>ncurses_erasechar</A
+>&nbsp;--&nbsp;Devuelve el caracter de borrado actual</DT
+><DT
+><A
+HREF="function.ncurses-filter.html"
+>ncurses_filter</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ncurses-flash.html"
+>ncurses_flash</A
+>&nbsp;--&nbsp;Relampaguear la pantalla de terminal (campana
+    visual)</DT
+><DT
+><A
+HREF="function.ncurses-flushinp.html"
+>ncurses_flushinp</A
+>&nbsp;--&nbsp;Volcar el búfer de entrada de teclado</DT
+><DT
+><A
+HREF="function.ncurses-getch.html"
+>ncurses_getch</A
+>&nbsp;--&nbsp;Leer un caracter desde el teclado</DT
+><DT
+><A
+HREF="function.ncurses-getmaxyx.html"
+>ncurses_getmaxyx</A
+>&nbsp;--&nbsp;Devuelve el tamaño de una ventana</DT
+><DT
+><A
+HREF="function.ncurses-getmouse.html"
+>ncurses_getmouse</A
+>&nbsp;--&nbsp;Lee un evento del mouse</DT
+><DT
+><A
+HREF="function.ncurses-getyx.html"
+>ncurses_getyx</A
+>&nbsp;--&nbsp;
+     Devuelve la posición de cursor actual para una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-halfdelay.html"
+>ncurses_halfdelay</A
+>&nbsp;--&nbsp;Colocar la terminal en modo de medio
+    retraso</DT
+><DT
+><A
+HREF="function.ncurses-has-colors.html"
+>ncurses_has_colors</A
+>&nbsp;--&nbsp;Chequear si la terminal tiene colores</DT
+><DT
+><A
+HREF="function.ncurses-has-ic.html"
+>ncurses_has_ic</A
+>&nbsp;--&nbsp;Chequear por el soporte de inserción y
+    borrado</DT
+><DT
+><A
+HREF="function.ncurses-has-il.html"
+>ncurses_has_il</A
+>&nbsp;--&nbsp;Chequea el soporte de inserción y
+    borrado</DT
+><DT
+><A
+HREF="function.ncurses-has-key.html"
+>ncurses_has_key</A
+>&nbsp;--&nbsp;Chequear por la presencia de una tecla de
+    función en el teclado de la terminal</DT
+><DT
+><A
+HREF="function.ncurses-hide-panel.html"
+>ncurses_hide_panel</A
+>&nbsp;--&nbsp;
+     Remover un panel de la pila, haciéndolo invisible
+    </DT
+><DT
+><A
+HREF="function.ncurses-hline.html"
+>ncurses_hline</A
+>&nbsp;--&nbsp;Dibujar una línea horizontal en la
+    posición actual usando un caracter con atributos, y de
+    máximo n caracteres de largo</DT
+><DT
+><A
+HREF="function.ncurses-inch.html"
+>ncurses_inch</A
+>&nbsp;--&nbsp;Obtener el caracter y los atributos de la
+    posición actual</DT
+><DT
+><A
+HREF="function.ncurses-init-color.html"
+>ncurses_init_color</A
+>&nbsp;--&nbsp;Establecer un nuevo valor RGB para un
+    color</DT
+><DT
+><A
+HREF="function.ncurses-init-pair.html"
+>ncurses_init_pair</A
+>&nbsp;--&nbsp;Reservar una pareja de color</DT
+><DT
+><A
+HREF="function.ncurses-init.html"
+>ncurses_init</A
+>&nbsp;--&nbsp;Inicializar ncurses</DT
+><DT
+><A
+HREF="function.ncurses-insch.html"
+>ncurses_insch</A
+>&nbsp;--&nbsp;Insertar un caracter, moviendo el resto de la
+    línea, incluyendo el caracter en la posición
+    actual</DT
+><DT
+><A
+HREF="function.ncurses-insdelln.html"
+>ncurses_insdelln</A
+>&nbsp;--&nbsp;Insertar líneas antes de la línea
+    actual, desplazando hacia abajo (los números negativos
+    eliminan líneas y desplazan hacia arriba)</DT
+><DT
+><A
+HREF="function.ncurses-insertln.html"
+>ncurses_insertln</A
+>&nbsp;--&nbsp;Insertar una línea, mover el resto de la pantalla
+    hacia abajo</DT
+><DT
+><A
+HREF="function.ncurses-insstr.html"
+>ncurses_insstr</A
+>&nbsp;--&nbsp;Insertar cadena en la posición actual, moviendo
+    el resto de la línea hacia la derecha</DT
+><DT
+><A
+HREF="function.ncurses-instr.html"
+>ncurses_instr</A
+>&nbsp;--&nbsp;Lee una cadena desde la pantalla de
+    terminal</DT
+><DT
+><A
+HREF="function.ncurses-isendwin.html"
+>ncurses_isendwin</A
+>&nbsp;--&nbsp;Ncurses se encuentra en modo endwin, puede efectuarse
+    salida de pantalla normal</DT
+><DT
+><A
+HREF="function.ncurses-keyok.html"
+>ncurses_keyok</A
+>&nbsp;--&nbsp;Habilitar o deshabilitar un código de
+    tecla</DT
+><DT
+><A
+HREF="function.ncurses-keypad.html"
+>ncurses_keypad</A
+>&nbsp;--&nbsp;
+     Activa o desactiva el teclado numérico
+    </DT
+><DT
+><A
+HREF="function.ncurses-killchar.html"
+>ncurses_killchar</A
+>&nbsp;--&nbsp;Devuelve el caracter de eliminación de
+    línea actual</DT
+><DT
+><A
+HREF="function.ncurses-longname.html"
+>ncurses_longname</A
+>&nbsp;--&nbsp;Devuelve la descripción de la
+    terminal</DT
+><DT
+><A
+HREF="function.ncurses-meta.html"
+>ncurses_meta</A
+>&nbsp;--&nbsp;
+     Habilita/deshabilita la meta-información de 8-bits de
+     tecla
+    </DT
+><DT
+><A
+HREF="function.ncurses-mouse-trafo.html"
+>ncurses_mouse_trafo</A
+>&nbsp;--&nbsp;
+     Transforma coordenadas
+    </DT
+><DT
+><A
+HREF="function.ncurses-mouseinterval.html"
+>ncurses_mouseinterval</A
+>&nbsp;--&nbsp;Establecer el tiempo de espera para clics de
+    botón del mouse</DT
+><DT
+><A
+HREF="function.ncurses-mousemask.html"
+>ncurses_mousemask</A
+>&nbsp;--&nbsp;Establece opciones del mouse</DT
+><DT
+><A
+HREF="function.ncurses-move-panel.html"
+>ncurses_move_panel</A
+>&nbsp;--&nbsp;
+     Mueve un panel de modo que su esquina superior izquierda se
+     encuentre en [comienzo_x, comienzo_y]
+    </DT
+><DT
+><A
+HREF="function.ncurses-move.html"
+>ncurses_move</A
+>&nbsp;--&nbsp;Mover la posición de salida</DT
+><DT
+><A
+HREF="function.ncurses-mvaddch.html"
+>ncurses_mvaddch</A
+>&nbsp;--&nbsp;Mover la posición actual y agregar un
+    caracter</DT
+><DT
+><A
+HREF="function.ncurses-mvaddchnstr.html"
+>ncurses_mvaddchnstr</A
+>&nbsp;--&nbsp;Mover la posición y agregar una cadena con
+    atributos con la longitud especificada</DT
+><DT
+><A
+HREF="function.ncurses-mvaddchstr.html"
+>ncurses_mvaddchstr</A
+>&nbsp;--&nbsp;Mover la posición y agregar una cadena con
+    atributos</DT
+><DT
+><A
+HREF="function.ncurses-mvaddnstr.html"
+>ncurses_mvaddnstr</A
+>&nbsp;--&nbsp;Mover la posición y agregar una cadena con la
+    longitud especificada</DT
+><DT
+><A
+HREF="function.ncurses-mvaddstr.html"
+>ncurses_mvaddstr</A
+>&nbsp;--&nbsp;Mover la posición y agregar una
+    cadena</DT
+><DT
+><A
+HREF="function.ncurses-mvcur.html"
+>ncurses_mvcur</A
+>&nbsp;--&nbsp;Mover el cursor inmediatamente</DT
+><DT
+><A
+HREF="function.ncurses-mvdelch.html"
+>ncurses_mvdelch</A
+>&nbsp;--&nbsp;Mover la posición y eliminar un caracter,
+    desplazar el resto de la línea hacia la
+    izquierda</DT
+><DT
+><A
+HREF="function.ncurses-mvgetch.html"
+>ncurses_mvgetch</A
+>&nbsp;--&nbsp;Mover la posición y obtener el caracter en la
+    nueva posición</DT
+><DT
+><A
+HREF="function.ncurses-mvhline.html"
+>ncurses_mvhline</A
+>&nbsp;--&nbsp;Establecer una nueva posición y dibujar una
+    línea horizontal usando un caracter con atributos y una
+    longitud máxima de n caracteres</DT
+><DT
+><A
+HREF="function.ncurses-mvinch.html"
+>ncurses_mvinch</A
+>&nbsp;--&nbsp;Mover la posición y obtener el caracter con
+    atributos en la nueva posición</DT
+><DT
+><A
+HREF="function.ncurses-mvvline.html"
+>ncurses_mvvline</A
+>&nbsp;--&nbsp;Establecer una nueva posición y dibujar una
+    línea vertical usando un caracter con atributos y una
+    longitud máxima de n caracteres</DT
+><DT
+><A
+HREF="function.ncurses-mvwaddstr.html"
+>ncurses_mvwaddstr</A
+>&nbsp;--&nbsp;Agregar una cadena en una nueva posición al
+    interior de una ventana</DT
+><DT
+><A
+HREF="function.ncurses-napms.html"
+>ncurses_napms</A
+>&nbsp;--&nbsp;Dormir</DT
+><DT
+><A
+HREF="function.ncurses-new-panel.html"
+>ncurses_new_panel</A
+>&nbsp;--&nbsp;
+     Crear un nuevo panel y asociarlo con una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-newpad.html"
+>ncurses_newpad</A
+>&nbsp;--&nbsp;
+     Crea un nuevo pad (ventana)
+    </DT
+><DT
+><A
+HREF="function.ncurses-newwin.html"
+>ncurses_newwin</A
+>&nbsp;--&nbsp;Crear una nueva ventana</DT
+><DT
+><A
+HREF="function.ncurses-nl.html"
+>ncurses_nl</A
+>&nbsp;--&nbsp;Traducir línea nueva y retorno de carro /
+    alimentación de línea</DT
+><DT
+><A
+HREF="function.ncurses-nocbreak.html"
+>ncurses_nocbreak</A
+>&nbsp;--&nbsp;Cambiar la terminal a modo normal
+    (cooked)</DT
+><DT
+><A
+HREF="function.ncurses-noecho.html"
+>ncurses_noecho</A
+>&nbsp;--&nbsp;Desactivar la repetición de entrada del
+    teclado</DT
+><DT
+><A
+HREF="function.ncurses-nonl.html"
+>ncurses_nonl</A
+>&nbsp;--&nbsp;No traducir línea nueva y retorno de carro /
+    alimentación de línea</DT
+><DT
+><A
+HREF="function.ncurses-noqiflush.html"
+>ncurses_noqiflush</A
+>&nbsp;--&nbsp;No realizar volcados en caracteres de
+    señales</DT
+><DT
+><A
+HREF="function.ncurses-noraw.html"
+>ncurses_noraw</A
+>&nbsp;--&nbsp;Salir del modo puro en la terminal</DT
+><DT
+><A
+HREF="function.ncurses-pair-content.html"
+>ncurses_pair_content</A
+>&nbsp;--&nbsp;
+     Obtiene el valor RGB del color
+    </DT
+><DT
+><A
+HREF="function.ncurses-panel-above.html"
+>ncurses_panel_above</A
+>&nbsp;--&nbsp;
+     Devuelve el panel encima del panel indicado. Si el panel no
+     existe, devuelve el panel más bajo en la pila
+    </DT
+><DT
+><A
+HREF="function.ncurses-panel-below.html"
+>ncurses_panel_below</A
+>&nbsp;--&nbsp;
+     Devuelve el panel por debajo del panel indicado. Si el panel no
+     existe, devuelve el panel más arriba en la pila
+    </DT
+><DT
+><A
+HREF="function.ncurses-panel-window.html"
+>ncurses_panel_window</A
+>&nbsp;--&nbsp;
+     Devuelve la ventana asociada con el panel
+    </DT
+><DT
+><A
+HREF="function.ncurses-pnoutrefresh.html"
+>ncurses_pnoutrefresh</A
+>&nbsp;--&nbsp;
+     Copia una región desde un pad a la pantalla virtual
+    </DT
+><DT
+><A
+HREF="function.ncurses-prefresh.html"
+>ncurses_prefresh</A
+>&nbsp;--&nbsp;
+     Copia una región desde un pad a la pantalla virtual
+    </DT
+><DT
+><A
+HREF="function.ncurses-putp.html"
+>ncurses_putp</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ncurses-qiflush.html"
+>ncurses_qiflush</A
+>&nbsp;--&nbsp;Producir volcado en caracteres de
+    señales</DT
+><DT
+><A
+HREF="function.ncurses-raw.html"
+>ncurses_raw</A
+>&nbsp;--&nbsp;Colocar la terminal en modo puro</DT
+><DT
+><A
+HREF="function.ncurses-refresh.html"
+>ncurses_refresh</A
+>&nbsp;--&nbsp;Refrescar la pantalla</DT
+><DT
+><A
+HREF="function.ncurses-replace-panel.html"
+>ncurses_replace_panel</A
+>&nbsp;--&nbsp;
+     Reemplaza la ventana asociada con el panel
+    </DT
+><DT
+><A
+HREF="function.ncurses-reset-prog-mode.html"
+>ncurses_reset_prog_mode</A
+>&nbsp;--&nbsp;
+     Restablece el modo de programa guardado por def_prog_mode
+    </DT
+><DT
+><A
+HREF="function.ncurses-reset-shell-mode.html"
+>ncurses_reset_shell_mode</A
+>&nbsp;--&nbsp;
+     Restablece el modo de intérprete de comandos guardado por
+     def_shell_mode
+    </DT
+><DT
+><A
+HREF="function.ncurses-resetty.html"
+>ncurses_resetty</A
+>&nbsp;--&nbsp;Restablece el estado guardado de la
+    terminal</DT
+><DT
+><A
+HREF="function.ncurses-savetty.html"
+>ncurses_savetty</A
+>&nbsp;--&nbsp;Guarda el estado de la terminal</DT
+><DT
+><A
+HREF="function.ncurses-scr-dump.html"
+>ncurses_scr_dump</A
+>&nbsp;--&nbsp;Vuelca el contenido de la pantalla en un
+    archivo</DT
+><DT
+><A
+HREF="function.ncurses-scr-init.html"
+>ncurses_scr_init</A
+>&nbsp;--&nbsp;Inicializar la pantalla desde un volcado en un
+    archivo</DT
+><DT
+><A
+HREF="function.ncurses-scr-restore.html"
+>ncurses_scr_restore</A
+>&nbsp;--&nbsp;Recuperar la pantalla desde un volcado en un
+    archivo</DT
+><DT
+><A
+HREF="function.ncurses-scr-set.html"
+>ncurses_scr_set</A
+>&nbsp;--&nbsp;Heredar la pantalla de un volcado en un
+    archivo</DT
+><DT
+><A
+HREF="function.ncurses-scrl.html"
+>ncurses_scrl</A
+>&nbsp;--&nbsp;Desplazar el contenido de la ventana hacia arriba o
+    abajo sin cambiar la posición actual</DT
+><DT
+><A
+HREF="function.ncurses-show-panel.html"
+>ncurses_show_panel</A
+>&nbsp;--&nbsp;
+     Coloca un panel invisible al comienzo de la pila,
+     haciéndola visible
+    </DT
+><DT
+><A
+HREF="function.ncurses-slk-attr.html"
+>ncurses_slk_attr</A
+>&nbsp;--&nbsp;Devuelve el atributo de la etiqueta suave de
+    teclado</DT
+><DT
+><A
+HREF="function.ncurses-slk-attroff.html"
+>ncurses_slk_attroff</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ncurses-slk-attron.html"
+>ncurses_slk_attron</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ncurses-slk-attrset.html"
+>ncurses_slk_attrset</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ncurses-slk-clear.html"
+>ncurses_slk_clear</A
+>&nbsp;--&nbsp;Limpia las etiquetas suaves de la
+    pantalla</DT
+><DT
+><A
+HREF="function.ncurses-slk-color.html"
+>ncurses_slk_color</A
+>&nbsp;--&nbsp;Establece el color para las etiquetas suaves de
+    teclado</DT
+><DT
+><A
+HREF="function.ncurses-slk-init.html"
+>ncurses_slk_init</A
+>&nbsp;--&nbsp;Inicializa las etiquetas suaves de funciones de
+    teclado</DT
+><DT
+><A
+HREF="function.ncurses-slk-noutrefresh.html"
+>ncurses_slk_noutrefresh</A
+>&nbsp;--&nbsp;Copia las etiquetas suaves de teclado a la pantalla
+    virtual</DT
+><DT
+><A
+HREF="function.ncurses-slk-refresh.html"
+>ncurses_slk_refresh</A
+>&nbsp;--&nbsp;Copia las etiquetas suaves de teclado a la
+    pantalla</DT
+><DT
+><A
+HREF="function.ncurses-slk-restore.html"
+>ncurses_slk_restore</A
+>&nbsp;--&nbsp;Recupera las etiquetas suaves de teclado</DT
+><DT
+><A
+HREF="function.ncurses-slk-set.html"
+>ncurses_slk_set</A
+>&nbsp;--&nbsp;
+     Establece las etiquetas de teclado
+    </DT
+><DT
+><A
+HREF="function.ncurses-slk-touch.html"
+>ncurses_slk_touch</A
+>&nbsp;--&nbsp;Obliga a que se produzca salida cuando se ejecute
+    ncurses_slk_noutrefresh</DT
+><DT
+><A
+HREF="function.ncurses-standend.html"
+>ncurses_standend</A
+>&nbsp;--&nbsp;Dejar de usar el atributo 'standout'</DT
+><DT
+><A
+HREF="function.ncurses-standout.html"
+>ncurses_standout</A
+>&nbsp;--&nbsp;Comenzar a usar el atributo 'standout'</DT
+><DT
+><A
+HREF="function.ncurses-start-color.html"
+>ncurses_start_color</A
+>&nbsp;--&nbsp;Comenzar a usar colores</DT
+><DT
+><A
+HREF="function.ncurses-termattrs.html"
+>ncurses_termattrs</A
+>&nbsp;--&nbsp;Devuelve un valor OR lógico de todas las
+    banderas de atributos soportados por la terminal</DT
+><DT
+><A
+HREF="function.ncurses-termname.html"
+>ncurses_termname</A
+>&nbsp;--&nbsp;Devuelve el nombre (corto) de la terminal</DT
+><DT
+><A
+HREF="function.ncurses-timeout.html"
+>ncurses_timeout</A
+>&nbsp;--&nbsp;Establecer el tiempo de espera para secuencias
+    especiales de teclas</DT
+><DT
+><A
+HREF="function.ncurses-top-panel.html"
+>ncurses_top_panel</A
+>&nbsp;--&nbsp;
+     Mueve un panel visible al tope de la pila
+    </DT
+><DT
+><A
+HREF="function.ncurses-typeahead.html"
+>ncurses_typeahead</A
+>&nbsp;--&nbsp;Especificar un descriptor de archivo diferente para
+    el chequeo de escritura siguiente</DT
+><DT
+><A
+HREF="function.ncurses-ungetch.html"
+>ncurses_ungetch</A
+>&nbsp;--&nbsp;Colocar un caracter de vuelta en la secuencia de
+    entrada</DT
+><DT
+><A
+HREF="function.ncurses-ungetmouse.html"
+>ncurses_ungetmouse</A
+>&nbsp;--&nbsp;Coloca un evento de mouse en la cola</DT
+><DT
+><A
+HREF="function.ncurses-update-panels.html"
+>ncurses_update_panels</A
+>&nbsp;--&nbsp;
+     Refresca la pantalla virtual, para reflejar las relaciones entre
+     los paneles en la pila.
+    </DT
+><DT
+><A
+HREF="function.ncurses-use-default-colors.html"
+>ncurses_use_default_colors</A
+>&nbsp;--&nbsp;Asignar los colores predeterminados de la terminal al
+    id de color -1</DT
+><DT
+><A
+HREF="function.ncurses-use-env.html"
+>ncurses_use_env</A
+>&nbsp;--&nbsp;Controlar el uso de información del entorno
+    sobre el tamaño de la terminal</DT
+><DT
+><A
+HREF="function.ncurses-use-extended-names.html"
+>ncurses_use_extended_names</A
+>&nbsp;--&nbsp;Controlar el uso de nombres extendidos en
+    descripciones de información de terminal</DT
+><DT
+><A
+HREF="function.ncurses-vidattr.html"
+>ncurses_vidattr</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ncurses-vline.html"
+>ncurses_vline</A
+>&nbsp;--&nbsp;Dibujar una línea vertical en la
+    posición actual usando un caracter con atributos y una
+    longitud máxima de n caracteres</DT
+><DT
+><A
+HREF="function.ncurses-waddch.html"
+>ncurses_waddch</A
+>&nbsp;--&nbsp;
+     Agrega un caracter en la posición actual de una ventana y
+     avanza el cursor
+    </DT
+><DT
+><A
+HREF="function.ncurses-waddstr.html"
+>ncurses_waddstr</A
+>&nbsp;--&nbsp;
+     Imprime un texto en la posición actual de una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wattroff.html"
+>ncurses_wattroff</A
+>&nbsp;--&nbsp;
+     Deshabilita los atributos para una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wattron.html"
+>ncurses_wattron</A
+>&nbsp;--&nbsp;
+     Habilita los atributos para una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wattrset.html"
+>ncurses_wattrset</A
+>&nbsp;--&nbsp;
+     Establecer los atributos para una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wborder.html"
+>ncurses_wborder</A
+>&nbsp;--&nbsp;Dibuja un borde alrededor de la ventana usando
+     caracteres con atributos</DT
+><DT
+><A
+HREF="function.ncurses-wclear.html"
+>ncurses_wclear</A
+>&nbsp;--&nbsp;
+     Limpia la ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wcolor-set.html"
+>ncurses_wcolor_set</A
+>&nbsp;--&nbsp;
+     Establece parejas de colores en la ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-werase.html"
+>ncurses_werase</A
+>&nbsp;--&nbsp;
+     Eliminar los contenidos de la ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wgetch.html"
+>ncurses_wgetch</A
+>&nbsp;--&nbsp;
+     Lee un caracter desde el teclado (en la ventana)
+    </DT
+><DT
+><A
+HREF="function.ncurses-whline.html"
+>ncurses_whline</A
+>&nbsp;--&nbsp;
+     Dibuja una línea horizontal en una ventana en la
+     posición actual usando un caracter con atributos y un
+     largo máximo de n caracteres
+    </DT
+><DT
+><A
+HREF="function.ncurses-wmouse-trafo.html"
+>ncurses_wmouse_trafo</A
+>&nbsp;--&nbsp;
+     Transforma coordenadas de ventana/stdscr
+    </DT
+><DT
+><A
+HREF="function.ncurses-wmove.html"
+>ncurses_wmove</A
+>&nbsp;--&nbsp;
+     Mueve la posición de salida de la ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wnoutrefresh.html"
+>ncurses_wnoutrefresh</A
+>&nbsp;--&nbsp;
+     Copia la ventana a la pantalla virtual
+    </DT
+><DT
+><A
+HREF="function.ncurses-wrefresh.html"
+>ncurses_wrefresh</A
+>&nbsp;--&nbsp;Refrescar la ventana en la pantalla de
+    terminal</DT
+><DT
+><A
+HREF="function.ncurses-wstandend.html"
+>ncurses_wstandend</A
+>&nbsp;--&nbsp;
+     Finaliza el modo standout para una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wstandout.html"
+>ncurses_wstandout</A
+>&nbsp;--&nbsp;
+     Ingresar a modo standout en una ventana
+    </DT
+><DT
+><A
+HREF="function.ncurses-wvline.html"
+>ncurses_wvline</A
+>&nbsp;--&nbsp;
+     Dibuja una línea vertical en una ventana en la
+     posición actual usando un caracter con atributos y una
+     longitud máxima de n caracteres
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.syslog.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ncurses-addch.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>syslog</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ncurses_addch</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

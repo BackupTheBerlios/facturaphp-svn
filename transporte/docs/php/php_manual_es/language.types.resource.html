@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Recurso</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Tipos"
+HREF="language.types.html"><LINK
+REL="PREVIOUS"
+TITLE="Objetos"
+HREF="language.types.object.html"><LINK
+REL="NEXT"
+TITLE="NULL"
+HREF="language.types.null.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.types.object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 6. Tipos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.null.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.types.resource"
+>Recurso</A
+></H1
+><P
+>&#13;     Un recurso es una variable especial, que contiene una referencia
+     a un recurso externo. Los recursos son creados y usados por
+     funciones especiales. Vea el <A
+HREF="resource.html"
+>apéndice</A
+> para un listado de
+     todas estas funciones y los tipos de recurso correspondientes.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El tipo recurso fue introducido en PHP 4
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.resource.casting"
+>Conversión a un recurso</A
+></H2
+><P
+>&#13;     Dado que los tipos de recurso contienen gestores especiales a
+     archivos abiertos, conexiones con bases de datos, áreas de
+     pintura de imágenes y cosas por el estilo, no es posible
+     convertir cualquier valor a un recurso.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.resource.self-destruct"
+>Liberación de recursos</A
+></H2
+><P
+>&#13;     Gracias al sistema de conteo de referencias introducido con el
+     Motor Zend de PHP 4, se detecta automáticamente cuando un
+     recurso ya no es referenciado (tal como en Java). Cuando este es
+     el caso, todos los recursos que fueron usados para éste
+     recurso se liberan por el recolector de basura. Por esta
+     razón, rara vez se necesita liberar la memoria manualmente
+     mediante el uso de alguna función free_result.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Los enlaces persistentes con bases de datos son especiales,
+       ellos <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> son destruidos por el recolector
+       de basura. Vea también la sección sobre <A
+HREF="features.persistent-connections.html"
+>conexiones
+       persistentes</A
+>.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.types.object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.null.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Objetos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.types.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>NULL</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

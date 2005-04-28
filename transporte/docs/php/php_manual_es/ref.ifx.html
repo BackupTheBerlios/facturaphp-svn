@@ -1,0 +1,1189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Informix</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_utf8"
+HREF="function.imap-utf8.html"><LINK
+REL="NEXT"
+TITLE="ifx_affected_rows"
+HREF="function.ifx-affected-rows.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-utf8.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ifx-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.ifx"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XLIV. Funciones de Informix</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN42015"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ifx.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     El controlador de Informix para Informix (IDS) 7.x, SE 7.x,
+     Universal Server (IUS) 9.x y IDS 2000 es implementado en "ifx.ec"
+     y "php3_ifx.h" en el directorio de la extensión
+     informix. El soporte para IDS 7.x es razonablemente completo, con
+     soporte para columnas BYTE y TEXT. El soporte para IUS 9.x se
+     encuentra parcialmente terminado: los nuevos tipos de datos se
+     encuentran allí, pero el soporte para SLOB y CLOB aun
+     está en construcción
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ifx.requirements"
+>Requerimientos</A
+></H1
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Notas de configuración: </B
+>
+       Necesita alguna versión de ESQL/C para compilar el
+       controlador para Informix de PHP. Las versiones de ESQL/C a
+       partir de 7.2x deben trabajar bien. ESQL/C es ahora parte del
+       SDK de Cliente de Informix.
+      </P
+><P
+>&#13;       Asegúrese de que la variable "INFORMIXDIR" haya sido
+       definida, y de que $INFORMIXDIR/bin se encuentre en su PATH
+       antes de ejecutar el script "configure".
+      </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ifx.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  To be able to use the functions defined in this module you must compile
+  your PHP interpreter using the configure line
+  <VAR
+CLASS="option"
+>--with_informix[=DIR]</VAR
+>, where DIR is the
+  Informix base install directory, defaults to nothing.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ifx.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   Make sure that the Informix environment variables INFORMIXDIR and
+   INFORMIXSERVER are available to the PHP ifx driver, and that the
+   INFORMIX bin directory is in the PATH. Check this by running a
+   script that contains a call to <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>
+   before you start testing. The <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>
+   output should list these environment variables. This is <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> for
+   both CGI php and Apache mod_php. You may have to set these
+   environment variables in your Apache startup script.
+  </P
+><P
+>&#13;   The Informix shared libraries should also be available to the
+   loader (check LD_LIBRARY_PATH or ld.so.conf/ldconfig).
+  </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Some notes on the use of BLOBs (TEXT and BYTE columns): </B
+>
+   BLOBs are normally addressed by BLOB identifiers.  Select queries
+   return a "blob id" for every BYTE and TEXT column.  You can get
+   at the contents with "string_var = ifx_get_blob($blob_id);" if
+   you choose to get the BLOBs in memory (with:
+   "ifx_blobinfile(0);").  If you prefer to receive the content of
+   BLOB columns in a file, use "ifx_blobinfile(1);", and
+   "ifx_get_blob($blob_id);" will get you the filename.  Use normal
+   file I/O to get at the blob contents.
+  </P
+><P
+>&#13;   For insert/update queries you must create these "blob id's"
+   yourself with "<A
+HREF="function.ifx-create-blob.html"
+><B
+CLASS="function"
+>ifx_create_blob()</B
+></A
+>;". You then
+   plug the blob id's into an array, and replace the blob columns
+   with a question mark (?) in the query string.  For
+   updates/inserts, you are responsible for setting the blob
+   contents with <A
+HREF="function.ifx-update-blob.html"
+><B
+CLASS="function"
+>ifx_update_blob()</B
+></A
+>.
+  </P
+><P
+>&#13;   The behaviour of BLOB columns can be altered by configuration
+   variables that also can be set at runtime:
+  </P
+><P
+>&#13;   configuration variable: ifx.textasvarchar
+  </P
+><P
+>&#13;   configuration variable: ifx.byteasvarchar
+  </P
+><P
+>&#13;   runtime functions:
+  </P
+><P
+>&#13;   ifx_textasvarchar(0): use blob id's for select queries with TEXT
+   columns
+  </P
+><P
+>&#13;   ifx_byteasvarchar(0): use blob id's for select queries with BYTE
+   columns
+  </P
+><P
+>&#13;   ifx_textasvarchar(1): return TEXT columns as if they were
+   VARCHAR columns, so that you don't need to use blob id's for
+   select queries.
+  </P
+><P
+>&#13;   ifx_byteasvarchar(1): return BYTE columns as if they were
+   VARCHAR columns, so that you don't need to use blob id's for
+   select queries.
+  </P
+><P
+>&#13;   configuration variable: ifx.blobinfile
+  </P
+><P
+>&#13;   runtime function:
+  </P
+><P
+>&#13;   ifx_blobinfile_mode(0): return BYTE columns in memory, the blob
+   id lets you get at the contents.
+  </P
+><P
+>&#13;   ifx_blobinfile_mode(1): return BYTE columns in a file, the blob
+   id lets you get at the file name.
+  </P
+><P
+>&#13;   If you set ifx_text/byteasvarchar to 1, you can use TEXT and BYTE
+   columns in select queries just like normal (but rather long)
+   VARCHAR fields.  Since all strings are "counted" in PHP, this
+   remains "binary safe".  It is up to you to handle this
+   correctly. The returned data can contain anything, you are
+   responsible for the contents.
+  </P
+><P
+>&#13;   If you set ifx_blobinfile to 1, use the file name returned by
+   ifx_get_blob(..) to get at the blob contents.  Note that in this
+   case YOU ARE RESPONSIBLE FOR DELETING THE TEMPORARY FILES CREATED
+   BY INFORMIX when fetching the row.  Every new row fetched will
+   create new temporary files for every BYTE column.
+  </P
+><P
+>&#13;   The location of the temporary files can be influenced by the
+   environment variable "blobdir", default is "." (the current
+   directory).  Something like: putenv(blobdir=tmpblob"); will ease
+   the cleaning up of temp files accidentally left behind (their
+   names all start with "blb").
+  </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Automatically trimming "char" (SQLCHAR and SQLNCHAR) data: </B
+>
+   This can be set with the configuration variable
+  </P
+><P
+>&#13;   ifx.charasvarchar: if set to 1 trailing spaces will be
+   automatically trimmed, to save you some "chopping".
+  </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+><TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> values: </B
+>
+   The configuration variable ifx.nullformat (and the runtime
+   function <A
+HREF="function.ifx-nullformat.html"
+><B
+CLASS="function"
+>ifx_nullformat()</B
+></A
+>) when set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>
+   will return <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> columns as the string "<TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>", when set to <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+   they return the empty string. This allows you to discriminate
+   between <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> columns and empty columns.
+  </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13; <DIV
+CLASS="table"
+><A
+NAME="AEN42075"
+></A
+><P
+><B
+>Tabla 1. Informix configuration options</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Name</TH
+><TH
+>Default</TH
+><TH
+>Changeable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ifx.allow_persistent</TD
+><TD
+>"1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>ifx.max_persistent</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>ifx.max_links</TD
+><TD
+>"-1"</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>ifx.default_host</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>ifx.default_user</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>ifx.default_password</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>ifx.blobinfile</TD
+><TD
+>"1"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>ifx.textasvarchar</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>ifx.byteasvarchar</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>ifx.charasvarchar</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>ifx.nullformat</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+ For further details and definition of the PHP_INI_* constants see
+ <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.ifx.allow-persistent"
+></A
+><VAR
+CLASS="parameter"
+>ifx.allow_persistent</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Whether to allow persistent Informix connections.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.max-persistent"
+></A
+><VAR
+CLASS="parameter"
+>ifx.max_persistent</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;     The maximum number of persistent Informix connections per
+     process.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.max-links"
+></A
+><VAR
+CLASS="parameter"
+>ifx.max_links</VAR
+>
+    <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;     The maximum number of Informix connections per process, including
+     persistent connections.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.default-host"
+></A
+><VAR
+CLASS="parameter"
+>ifx.default_host</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     The default host to connect to when no host is specified
+     in <A
+HREF="function.ifx-connect.html"
+><B
+CLASS="function"
+>ifx_connect()</B
+></A
+> or 
+     <A
+HREF="function.ifx-pconnect.html"
+><B
+CLASS="function"
+>ifx_pconnect()</B
+></A
+>. Doesn't apply in
+     <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.default-user"
+></A
+><VAR
+CLASS="parameter"
+>ifx.default_user</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     The default user id to use when none is specified 
+     in <A
+HREF="function.ifx-connect.html"
+><B
+CLASS="function"
+>ifx_connect()</B
+></A
+> or 
+     <A
+HREF="function.ifx-pconnect.html"
+><B
+CLASS="function"
+>ifx_pconnect()</B
+></A
+>. Doesn't apply in
+     <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.default-password"
+></A
+><VAR
+CLASS="parameter"
+>ifx.default_password</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;     The default password to use when none is specified 
+     in <A
+HREF="function.ifx-connect.html"
+><B
+CLASS="function"
+>ifx_connect()</B
+></A
+> or 
+     <A
+HREF="function.ifx-pconnect.html"
+><B
+CLASS="function"
+>ifx_pconnect()</B
+></A
+>. Doesn't apply in
+     <A
+HREF="missing-stuff.html#ini.safe-mode"
+>safe mode</A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.blobinfile"
+></A
+><VAR
+CLASS="parameter"
+>ifx.blobinfile</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if you want to return blob columns
+     in a file, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if you want them in memory. You can
+     override the setting at runtime 
+     with <A
+HREF="function.ifx-blobinfile-mode.html"
+><B
+CLASS="function"
+>ifx_blobinfile_mode()</B
+></A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.textasvarchar"
+></A
+><VAR
+CLASS="parameter"
+>ifx.textasvarchar</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if you want to return TEXT columns
+     as normal strings in select statements,
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if you want to use blob id parameters. You can
+     override the setting at runtime with 
+    <A
+HREF="function.ifx-textasvarchar.html"
+><B
+CLASS="function"
+>ifx_textasvarchar()</B
+></A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.byteasvarchar"
+></A
+><VAR
+CLASS="parameter"
+>ifx.byteasvarchar</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if you want to return BYTE columns
+     as normal strings in select queries, 
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if you want to use blob id parameters. You can
+     override the setting at runtime with 
+     <A
+HREF="function.ifx-textasvarchar.html"
+><B
+CLASS="function"
+>ifx_textasvarchar()</B
+></A
+>.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.charasvarchar"
+></A
+><VAR
+CLASS="parameter"
+>ifx.charasvarchar</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if you want to trim trailing spaces
+     from CHAR columns when fetching them.
+    </P
+></DD
+><DT
+><A
+NAME="ini.ifx.nullformat"
+></A
+><VAR
+CLASS="parameter"
+>ifx.nullformat</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;     Set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if you want to return <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> columns
+     as the literal string "<TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>", <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> if you want
+     them returned as the empty string "". You can
+     override this setting at runtime with 
+     <A
+HREF="function.ifx-nullformat.html"
+><B
+CLASS="function"
+>ifx_nullformat()</B
+></A
+>.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ifx.resources"
+>Tipos de recursos</A
+></H1
+><P
+>&#13;    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ifx.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.ifx-affected-rows.html"
+>ifx_affected_rows</A
+>&nbsp;--&nbsp;Obtiene el número de registros procesados por una consulta</DT
+><DT
+><A
+HREF="function.ifx-blobinfile-mode.html"
+>ifx_blobinfile_mode</A
+>&nbsp;--&nbsp;Define el modo por defecto para los blob en todas las consultas
+    de selección</DT
+><DT
+><A
+HREF="function.ifx-byteasvarchar.html"
+>ifx_byteasvarchar</A
+>&nbsp;--&nbsp;Define el modo por defecto para los campos de tipo byte</DT
+><DT
+><A
+HREF="function.ifx-close.html"
+>ifx_close</A
+>&nbsp;--&nbsp;Cierra una conexión con Informix</DT
+><DT
+><A
+HREF="function.ifx-connect.html"
+>ifx_connect</A
+>&nbsp;--&nbsp;Abrir una conexión con un servidor
+    Informix</DT
+><DT
+><A
+HREF="function.ifx-copy-blob.html"
+>ifx_copy_blob</A
+>&nbsp;--&nbsp;Duplica el objeto blob dado</DT
+><DT
+><A
+HREF="function.ifx-create-blob.html"
+>ifx_create_blob</A
+>&nbsp;--&nbsp;Crea un objeto blob</DT
+><DT
+><A
+HREF="function.ifx-create-char.html"
+>ifx_create_char</A
+>&nbsp;--&nbsp;Crea un objeto char</DT
+><DT
+><A
+HREF="function.ifx-do.html"
+>ifx_do</A
+>&nbsp;--&nbsp;Ejecuta una sentencia SQL preparada previamente</DT
+><DT
+><A
+HREF="function.ifx-error.html"
+>ifx_error</A
+>&nbsp;--&nbsp;Devuelve el código de error de la última llamada a Informix</DT
+><DT
+><A
+HREF="function.ifx-errormsg.html"
+>ifx_errormsg</A
+>&nbsp;--&nbsp;Devuelve el mensaje de error de la última llamada a Informix</DT
+><DT
+><A
+HREF="function.ifx-fetch-row.html"
+>ifx_fetch_row</A
+>&nbsp;--&nbsp;Obtiene registros como un array (vector) enumerado</DT
+><DT
+><A
+HREF="function.ifx-fieldproperties.html"
+>ifx_fieldproperties</A
+>&nbsp;--&nbsp;Indica las propiedades de los campos de una consulta SQL</DT
+><DT
+><A
+HREF="function.ifx-fieldtypes.html"
+>ifx_fieldtypes</A
+>&nbsp;--&nbsp;Obtiene los campos de una consulta SQL</DT
+><DT
+><A
+HREF="function.ifx-free-blob.html"
+>ifx_free_blob</A
+>&nbsp;--&nbsp;Borra el objeto blob</DT
+><DT
+><A
+HREF="function.ifx-free-char.html"
+>ifx_free_char</A
+>&nbsp;--&nbsp;Elimina un objeto char</DT
+><DT
+><A
+HREF="function.ifx-free-result.html"
+>ifx_free_result</A
+>&nbsp;--&nbsp;Libera los recursos de una consulta</DT
+><DT
+><A
+HREF="function.ifx-get-blob.html"
+>ifx_get_blob</A
+>&nbsp;--&nbsp;Obtiene el contenido de un objeto blob</DT
+><DT
+><A
+HREF="function.ifx-get-char.html"
+>ifx_get_char</A
+>&nbsp;--&nbsp;Obtiene el contenido de un objeto char</DT
+><DT
+><A
+HREF="function.ifx-getsqlca.html"
+>ifx_getsqlca</A
+>&nbsp;--&nbsp;Después de una consulta, obtiene el contenido de sqlca.sqlerrd[0..5]</DT
+><DT
+><A
+HREF="function.ifx-htmltbl-result.html"
+>ifx_htmltbl_result</A
+>&nbsp;--&nbsp;Muestra todos los registros de una consulta en una tabla HTML</DT
+><DT
+><A
+HREF="function.ifx-nullformat.html"
+>ifx_nullformat</A
+>&nbsp;--&nbsp;Define el valor por defecto cuando se leen valores nulos</DT
+><DT
+><A
+HREF="function.ifx-num-fields.html"
+>ifx_num_fields</A
+>&nbsp;--&nbsp;Devuelve el número de columnas en una consulta</DT
+><DT
+><A
+HREF="function.ifx-num-rows.html"
+>ifx_num_rows</A
+>&nbsp;--&nbsp;Cuenta los registros ya leídos de una consulta</DT
+><DT
+><A
+HREF="function.ifx-pconnect.html"
+>ifx_pconnect</A
+>&nbsp;--&nbsp;Abre una conexión permanente con Informix</DT
+><DT
+><A
+HREF="function.ifx-prepare.html"
+>ifx_prepare</A
+>&nbsp;--&nbsp;Preparar una sentencia-SQL para su
+    ejecución</DT
+><DT
+><A
+HREF="function.ifx-query.html"
+>ifx_query</A
+>&nbsp;--&nbsp;Enviar una consulta Informix</DT
+><DT
+><A
+HREF="function.ifx-textasvarchar.html"
+>ifx_textasvarchar</A
+>&nbsp;--&nbsp;Define el modo por defecto para los campos de tipo text</DT
+><DT
+><A
+HREF="function.ifx-update-blob.html"
+>ifx_update_blob</A
+>&nbsp;--&nbsp;Actualiza el contenido de un objeto blob</DT
+><DT
+><A
+HREF="function.ifx-update-char.html"
+>ifx_update_char</A
+>&nbsp;--&nbsp;Actualiza el contenido de un objeto char</DT
+><DT
+><A
+HREF="function.ifxus-close-slob.html"
+>ifxus_close_slob</A
+>&nbsp;--&nbsp;Cierra un objeto slob</DT
+><DT
+><A
+HREF="function.ifxus-create-slob.html"
+>ifxus_create_slob</A
+>&nbsp;--&nbsp;Crea un objeto slob y lo abre</DT
+><DT
+><A
+HREF="function.ifxus-free-slob.html"
+>ifx_free_slob</A
+>&nbsp;--&nbsp;Elimina un objeto slob</DT
+><DT
+><A
+HREF="function.ifxus-open-slob.html"
+>ifxus_open_slob</A
+>&nbsp;--&nbsp;Abre un objeto slob</DT
+><DT
+><A
+HREF="function.ifxus-read-slob.html"
+>ifxus_read_slob</A
+>&nbsp;--&nbsp;Lee un número de bytes (nbytes) de un objeto slob</DT
+><DT
+><A
+HREF="function.ifxus-seek-slob.html"
+>ifxus_seek_slob</A
+>&nbsp;--&nbsp;Establece la posición de archivo o
+    búsqueda actual</DT
+><DT
+><A
+HREF="function.ifxus-tell-slob.html"
+>ifxus_tell_slob</A
+>&nbsp;--&nbsp;Devuelve la posición de archivo o
+    búsqueda actual</DT
+><DT
+><A
+HREF="function.ifxus-write-slob.html"
+>ifxus_write_slob</A
+>&nbsp;--&nbsp;Escribe una cadena en un objeto slob</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-utf8.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ifx-affected-rows.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_utf8</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ifx_affected_rows</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

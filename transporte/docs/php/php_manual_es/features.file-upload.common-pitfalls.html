@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Errores comunes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Manejo de envío de archivos"
+HREF="features.file-upload.html"><LINK
+REL="PREVIOUS"
+TITLE="Manejo de envío de archivos"
+HREF="features.file-upload.html"><LINK
+REL="NEXT"
+TITLE="Envío de multiples ficheros"
+HREF="features.file-upload.multiple.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 19. Manejo de envío de archivos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="features.file-upload.multiple.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="features.file-upload.common-pitfalls"
+>Errores comunes</A
+></H1
+><P
+>&#13;    	A <VAR
+CLASS="literal"
+>MAX_FILE_SIZE</VAR
+> no se le puede dar un valor mayor que
+	el valor que se haya especificado en la directiva<A
+HREF="ini.sect.file_uploads.html#ini.upload-max-filesize"
+>upload_max_filesize</A
+>.
+    	Por defecto se tiene un límite de 2 MegaBytes.
+   </P
+><P
+>&#13;	Si se ha activado el límite de memoria, se deben especificar un
+	valor alto para <A
+HREF="ini.sect.resource-limits.html#ini.memory-limit"
+>memory_limit</A
+>.
+	En cualquier caso, se debe asegurar un valor suficientemente grande para 
+	<A
+HREF="ini.sect.resource-limits.html#ini.memory-limit"
+>memory_limit</A
+>.
+   </P
+><P
+>&#13;   	Si <A
+HREF="ref.info.html#ini.max-execution-time"
+>max_execution_time</A
+>
+    	tiene un valor muy pequeño, la ejecución del script puede exceder este valor.
+	De esta forma, se debe asegurar un valor suficientemente grande para
+    	<VAR
+CLASS="literal"
+>max_execution_time</VAR
+>.
+   </P
+><P
+>&#13;        Si <A
+HREF="ini.sect.data-handling.html#ini.post-max-size"
+>post_max_size</A
+>
+        tiene un valor muy pequeño, los ficheros mas grandes a este valor, no podrán
+	ser enviados. Por ello, se debe asegurar un valor suficientemente grande para
+        <VAR
+CLASS="literal"
+>post_max_size</VAR
+>.
+    </P
+><P
+>&#13;	No verificar que ficheros se estan manipulando puede tener como consecuencia
+	que los usuarios puedan acceder a información sensible en otros directorios.
+   </P
+><P
+>&#13;	Cabe señalar que el httpd de CERN parece cortar todo a partir
+	del primer espacio en blanco en el "content-type" de la cabecera mime que
+	obtiene del cliente. Si este es el caso, con el httpd de CERN no se soporta
+	la funcionalidad de envío de ficheros.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="features.file-upload.multiple.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Manejo de envío de archivos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="features.file-upload.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Envío de multiples ficheros</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

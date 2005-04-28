@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_is</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_is_persistent"
+HREF="streams.php-stream-is-persistent.html"><LINK
+REL="NEXT"
+TITLE="php_stream_passthru"
+HREF="streams.php-stream-passthru.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-is-persistent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-passthru.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-is"
+></A
+>php_stream_is</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN121069"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_is&nbsp;--&nbsp;Determina si una secuencia es de un tipo
+    particular</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN121072"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>php_stream_is</B
+> ( php_stream * secuencia, int es_del_tipo)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_is()</B
+> devuelve 1
+     si <VAR
+CLASS="parameter"
+>secuencia</VAR
+> es del tipo especificado
+     por <VAR
+CLASS="parameter"
+>es_del_tipo</VAR
+>, o 0 de lo contrario.
+    <DIV
+CLASS="table"
+><A
+NAME="AEN121087"
+></A
+><P
+><B
+>Tabla 44-1. Valores para <VAR
+CLASS="parameter"
+>es_del_tipo</VAR
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Valor</TH
+><TH
+>Significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>PHP_STREAM_IS_STDIO</TD
+><TD
+>La secuencia es implementada usando stdio</TD
+></TR
+><TR
+><TD
+>PHP_STREAM_IS_SOCKET</TD
+><TD
+>La secuencia es implementada usando un socket de
+         red</TD
+></TR
+><TR
+><TD
+>PHP_STREAM_IS_USERSPACE</TD
+><TD
+>La secuencia es implementada usando un objeto de
+         espacio de usuario</TD
+></TR
+><TR
+><TD
+>PHP_STREAM_IS_MEMORY</TD
+><TD
+>La secuencia es implementada usando una secuencia con
+         memoria que crece a medida que es solicitada</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Las "constantes" PHP_STREAM_IS_XXX son definidas en realidad
+      como apuntadores a la estructura interna de operaciones de
+      secuencia. Si su extensión (o alguna otra
+      extensión) define secuencias adicionales, la
+      extensión debe declarar también una constante
+      PHP_STREAM_IS_XXX en su archivo de cabecera, que usted pueda
+      usar como base para esta comparación.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Esta función es implementada como una sencilla (y
+      rápida) comparación de apuntadores, y no modifica
+      el estado de la secuencia en forma alguna.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <B
+CLASS="function"
+>php_stream_cast()</B
+>
+     y <B
+CLASS="function"
+>php_stream_can_cast()</B
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-is-persistent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-passthru.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_is_persistent</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_passthru</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

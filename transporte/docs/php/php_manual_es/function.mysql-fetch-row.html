@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysql_fetch_row</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones MySQL"
+HREF="ref.mysql.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_fetch_object"
+HREF="function.mysql-fetch-object.html"><LINK
+REL="NEXT"
+TITLE="mysql_field_flags"
+HREF="function.mysql-field-flags.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-fetch-object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-field-flags.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysql-fetch-row"
+></A
+>mysql_fetch_row</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN63052"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mysql_fetch_row&nbsp;--&nbsp;Devuelve una fila de resultado como matriz</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN63055"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>mysql_fetch_row</B
+> ( int id_resultado)<BR
+></BR
+><P
+>&#13;     Devuelve: Una matriz que corresponde a la fila selecionada, o falso
+     si no quedan más lineas.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>mysql_fetch_row()</B
+> seleciona una fila de datos del
+     resultado asociado al identificador de resultado especificado.  La
+     fila es devuelta como una matriz.  Cada columna del resultdo es guardada en
+     un offset de la matriz, empezando por el offset 0.
+    </P
+><P
+>&#13;     La llamada a <B
+CLASS="function"
+>mysql_fetch_row()</B
+> debería 
+     devolver la próxima fila del resultado, o falso si no quedan
+     más filas.
+    </P
+><P
+>&#13;     Ver también: <A
+HREF="function.mysql-fetch-array.html"
+><B
+CLASS="function"
+>mysql_fetch_array()</B
+></A
+>,
+     <A
+HREF="function.mysql-fetch-object.html"
+><B
+CLASS="function"
+>mysql_fetch_object()</B
+></A
+>,
+     <A
+HREF="function.mysql-data-seek.html"
+><B
+CLASS="function"
+>mysql_data_seek()</B
+></A
+>,
+     <A
+HREF="function.mysql-fetch-lengths.html"
+><B
+CLASS="function"
+>mysql_fetch_lengths()</B
+></A
+>, and
+     <A
+HREF="function.mysql-result.html"
+><B
+CLASS="function"
+>mysql_result()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-fetch-object.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-field-flags.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_fetch_object</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_field_flags</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

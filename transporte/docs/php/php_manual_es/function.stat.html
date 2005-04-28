@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stat</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="set_file_buffer"
+HREF="function.set-file-buffer.html"><LINK
+REL="NEXT"
+TITLE="symlink"
+HREF="function.symlink.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.set-file-buffer.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.symlink.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stat"
+></A
+>stat</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN29652"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>stat&nbsp;--&nbsp;Entrega información sobre un
+    archivo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN29655"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>stat</B
+> ( string nombre_archivo)<BR
+></BR
+><P
+>&#13;     Reúne las estadísticas del archivo con el nombre
+     <VAR
+CLASS="parameter"
+>nombre_archivo</VAR
+>. Si
+     <VAR
+CLASS="parameter"
+>nombre_archivo</VAR
+> es un enlace
+     simbólico, las estadísticas son del archivo mismo,
+     no del enlace. <A
+HREF="function.lstat.html"
+><B
+CLASS="function"
+>lstat()</B
+></A
+> es una función
+     idéntica a <B
+CLASS="function"
+>stat()</B
+>, con la
+     excepción de que utiliza la información de status
+     de los enlaces simbólicos.
+    </P
+><P
+>&#13;     En caso de fallos, <B
+CLASS="function"
+>stat()</B
+> devuelve
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>. También arrojará una advertencia.
+    </P
+><P
+>&#13;     Devuelve una matriz con las estadísticas del archivo, con
+     los siguientes elementos. Esta matriz comienza en
+     cero. Además de devolver estos atributos en una matriz
+     numérica, éstos pueden ser accesados con
+     índices asociativos, como se nota al lado de cada
+     parámetro; esta alternativa está disponible a
+     partir de PHP 4.0.6:
+    </P
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN29673"
+></A
+><P
+><B
+>Tabla 1. Formato de resultados de <B
+CLASS="function"
+>stat()</B
+> y
+      <A
+HREF="function.fstat.html"
+><B
+CLASS="function"
+>fstat()</B
+></A
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Numérico</TH
+><TH
+>Asociativo (desde PHP 4.0.6)</TH
+><TH
+>Descripción</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>0</TD
+><TD
+>dev</TD
+><TD
+>número de dispositivo</TD
+></TR
+><TR
+><TD
+>1</TD
+><TD
+>ino</TD
+><TD
+>número de inode</TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>mode</TD
+><TD
+>modo de protección inode</TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>nlink</TD
+><TD
+>número de enlaces</TD
+></TR
+><TR
+><TD
+>4</TD
+><TD
+>uid</TD
+><TD
+>id de usuario del dueño</TD
+></TR
+><TR
+><TD
+>5</TD
+><TD
+>gid</TD
+><TD
+>id de grupo del dueño</TD
+></TR
+><TR
+><TD
+>6</TD
+><TD
+>rdev</TD
+><TD
+>tipo de dispositivo, si hay dispositivo inode
+         *</TD
+></TR
+><TR
+><TD
+>7</TD
+><TD
+>size</TD
+><TD
+>tamaño en bytes</TD
+></TR
+><TR
+><TD
+>8</TD
+><TD
+>atime</TD
+><TD
+>hora del último acceso (marca de tiempo
+         Unix)</TD
+></TR
+><TR
+><TD
+>9</TD
+><TD
+>mtime</TD
+><TD
+>hora de la última modificación (marca de
+         tiempo Unix)</TD
+></TR
+><TR
+><TD
+>10</TD
+><TD
+>ctime</TD
+><TD
+>hora del último cambio del inode (marca de
+         tiempo Unix)</TD
+></TR
+><TR
+><TD
+>11</TD
+><TD
+>blksize</TD
+><TD
+>tamaño de bloque de E/S del sistema de archivos
+         *</TD
+></TR
+><TR
+><TD
+>12</TD
+><TD
+>blocks</TD
+><TD
+>número de bloques reservados</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+
+     * - válido únicamente en sistemas que soportan el
+     tipo st_blksize--los demás sistemas (como Windows)
+     devuelven -1.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Los resultados de esta
+función son guardados. Consultar
+<A
+HREF="function.clearstatcache.html"
+><B
+CLASS="function"
+>clearstatcache()</B
+></A
+> para más
+detalles.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>As of 
+<VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+> this function can also be used with 
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>some</I
+></SPAN
+> URL wrappers.  Refer to 
+<A
+HREF="wrappers.html"
+>Apéndice L</A
+> for a listing of which wrappers support 
+<B
+CLASS="function"
+>stat()</B
+> family of functionality.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.lstat.html"
+><B
+CLASS="function"
+>lstat()</B
+></A
+>,
+     <A
+HREF="function.fstat.html"
+><B
+CLASS="function"
+>fstat()</B
+></A
+>,
+     <A
+HREF="function.filemtime.html"
+><B
+CLASS="function"
+>filemtime()</B
+></A
+>, y
+     <A
+HREF="function.filegroup.html"
+><B
+CLASS="function"
+>filegroup()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.set-file-buffer.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.symlink.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>set_file_buffer</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>symlink</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

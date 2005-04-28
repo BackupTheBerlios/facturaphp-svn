@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ibase_trans</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones InterBase"
+HREF="ref.ibase.html"><LINK
+REL="PREVIOUS"
+TITLE="ibase_timefmt"
+HREF="function.ibase-timefmt.html"><LINK
+REL="NEXT"
+TITLE="ibase_wait_event"
+HREF="function.ibase-wait-event.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ibase-timefmt.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ibase-wait-event.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ibase-trans"
+></A
+>ibase_trans</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN43923"
+></A
+><P
+>    (PHP 3&#62;= 3.0.7, PHP 4 , PHP 5)</P
+>ibase_trans&nbsp;--&nbsp;Begin a transaction</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN43926"
+></A
+><H2
+>Description</H2
+>resource <B
+CLASS="methodname"
+>ibase_trans</B
+> ( [int trans_args [, resource link_identifier]])<BR
+></BR
+><P
+>&#13;     Begins a transaction.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>trans_args</VAR
+> can be a combination of
+     IBASE_READ, IBASE_WRITE, IBASE_COMMITTED, IBASE_CONSISTENCY,
+     IBASE_CONCURRENCY, IBASE_REC_VERSION, IBASE_REC_NO_VERSION,
+     IBASE_WAIT and IBASE_NOWAIT.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      The behaviour of this function has been changed in PHP 5.0.0. The first call
+      to <B
+CLASS="function"
+>ibase_trans()</B
+> will not return the default transaction
+      of a connection. All transactions started by <B
+CLASS="function"
+>ibase_trans()</B
+>
+      will be rolled back at the end of the script if they were not committed or
+      rolled back by either <A
+HREF="function.ibase-commit.html"
+><B
+CLASS="function"
+>ibase_commit()</B
+></A
+> or 
+      <A
+HREF="function.ibase-rollback.html"
+><B
+CLASS="function"
+>ibase_rollback()</B
+></A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      In PHP 5.0.0. and up, this function will accept multiple <VAR
+CLASS="parameter"
+>trans_args</VAR
+>
+      and <VAR
+CLASS="parameter"
+>link_identifier</VAR
+> arguments. This allows transactions 
+      over multiple database connections, which are committed using a 2-phase commit 
+      algorithm. This means you can rely on the updates to either succeed in every 
+      database, or fail in every database. It does NOT mean you can use tables from 
+      different databases in the same query!
+     </P
+><P
+>&#13;      If you use transactions over multiple databases, you will have to specify both 
+      the <VAR
+CLASS="parameter"
+>link_id</VAR
+> and <VAR
+CLASS="parameter"
+>transaction_id</VAR
+> 
+      in calls to <A
+HREF="function.ibase-query.html"
+><B
+CLASS="function"
+>ibase_query()</B
+></A
+> and <A
+HREF="function.ibase-prepare.html"
+><B
+CLASS="function"
+>ibase_prepare()</B
+></A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ibase-timefmt.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ibase-wait-event.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ibase_timefmt</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ibase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ibase_wait_event</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

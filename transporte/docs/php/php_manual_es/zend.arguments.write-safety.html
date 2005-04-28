@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Assuring Write Safety for Other Parameters</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Accepting Arguments"
+HREF="zend.arguments.html"><LINK
+REL="PREVIOUS"
+TITLE="Dealing with Arguments Passed by Reference"
+HREF="zend.arguments.by-reference.html"><LINK
+REL="NEXT"
+TITLE="Creating Variables"
+HREF="zend.variables.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.arguments.by-reference.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 33. Accepting Arguments</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.variables.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.arguments.write-safety"
+>Assuring Write Safety for Other Parameters</A
+></H1
+><P
+>&#13;    You might run into a situation in which you need write access to a
+    parameter that's retrieved with <B
+CLASS="function"
+>zend_get_parameters_ex()</B
+> 
+    but not passed by reference. For this case, you can use the macro
+    <VAR
+CLASS="literal"
+>SEPARATE_ZVAL</VAR
+>, which does a zval separation on the provided
+    container. The newly generated <VAR
+CLASS="envar"
+>zval</VAR
+> is detached from internal
+    data and has only a local scope, meaning that it can be changed or destroyed
+    without implying global changes in the script context:
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zval **parameter;
+     
+/* retrieve parameter */
+zend_get_parameters_ex(1, &#38;parameter);
+
+/* at this stage, &#60;parameter&#62; still is connected */
+/* to Zend's internal data buffers */
+
+/* make &#60;parameter&#62; write-safe */
+SEPARATE_ZVAL(parameter);
+
+/* now we can safely modify &#60;parameter&#62; */
+/* without implying global changes */</PRE
+></TD
+></TR
+></TABLE
+>
+    <VAR
+CLASS="literal"
+>SEPARATE_ZVAL</VAR
+> uses <B
+CLASS="function"
+>emalloc()</B
+>
+    to allocate the new <VAR
+CLASS="envar"
+>zval</VAR
+> container, which means that even if you
+    don't deallocate this memory yourself, it will be destroyed automatically upon
+    script termination. However, doing a lot of calls to this macro
+    without freeing the resulting containers will clutter up your RAM.
+   </P
+><P
+>&#13;    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Note:</I
+></SPAN
+> As you can easily work around the lack
+    of write access in the "traditional" API (with
+    <B
+CLASS="function"
+>zend_get_parameters()</B
+> and so on), this API
+    seems to be obsolete, and is not discussed further in this
+    chapter.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.arguments.by-reference.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.variables.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Dealing with Arguments Passed by Reference</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.arguments.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Creating Variables</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>soundex</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="similar_text"
+HREF="function.similar-text.html"><LINK
+REL="NEXT"
+TITLE="sprintf"
+HREF="function.sprintf.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.similar-text.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sprintf.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.soundex"
+></A
+>soundex</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN107027"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>soundex&nbsp;--&nbsp;Calcula la clave soundex de una cadena</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN107030"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>soundex</B
+> ( string cad)<BR
+></BR
+><P
+>&#13;     Calcula la clave soundex de <VAR
+CLASS="parameter"
+>cad</VAR
+>.
+    </P
+><P
+>&#13;     Las claves soundex tienen la propiedad de que las palabras que
+     se pronuncian de forma parecida tienen la misma clave, de modo
+     que se pueden usar para simplificar la búsqueda en las bases de
+     datos cuando se conoce la pronunciación pero no la transcripción.
+     Esta función soundex devuelve una cadena de 4 caracteres que
+     comienza por una letra.
+    </P
+><P
+>&#13;     Esta función soundex en particular es la descrita por Donald Knuth
+     en "The Art Of Computer Programming, vol. 3: Sorting And
+     Searching", Addison-Wesley (1973), pp. 391-392.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN107043"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplos de Soundex</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+soundex ("Euler") == soundex ("Ellery") == 'E460';<br />soundex ("Gauss") == soundex ("Ghosh") == 'G200';<br />soundex ("Knuth") == soundex ("Kant") == 'H416';<br />soundex ("Lloyd") == soundex ("Ladd") == 'L300';<br />soundex ("Lukasiewicz") == soundex ("Lissajous") == 'L222';</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.similar-text.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sprintf.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>similar_text</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sprintf</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_socket_accept</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_set_write_buffer"
+HREF="function.stream-set-write-buffer.html"><LINK
+REL="NEXT"
+TITLE="stream_socket_client"
+HREF="function.stream-socket-client.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-set-write-buffer.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-client.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-socket-accept"
+></A
+>stream_socket_accept</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104628"
+></A
+><P
+>    (PHP 5)</P
+>stream_socket_accept&nbsp;--&nbsp;
+     Aceptar una conexión en un socket creado por
+     <A
+HREF="function.stream-socket-server.html"
+><B
+CLASS="function"
+>stream_socket_server()</B
+></A
+>
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104632"
+></A
+><H2
+>Descripción</H2
+>resource <B
+CLASS="methodname"
+>stream_socket_accept</B
+> ( resource socket_servidor [, int tiempo_espera [, string &#38;nombre_de_par]])<BR
+></BR
+><P
+>&#13;     Aceptar una conexión en un socket creado previamente por
+     <A
+HREF="function.stream-socket-server.html"
+><B
+CLASS="function"
+>stream_socket_server()</B
+></A
+>. Si se especifica
+     <VAR
+CLASS="parameter"
+>tiempo_espera</VAR
+>, el tiempo de espera
+     predeterminado para el proceso accept del socket será
+     sobrescrito con el tiempo especificado en segundos. El nombre
+     (dirección) del cliente que se ha conectado será
+     pasado de vuelta en <VAR
+CLASS="parameter"
+>nombre_de_par</VAR
+>, si se
+     incluye y se encuentra disponible en el transporte seleccionado.
+    </P
+><P
+>&#13;     Puede determinarse el valor de
+     <VAR
+CLASS="parameter"
+>nombre_de_par</VAR
+> también más
+     adelante, usando <A
+HREF="function.stream-socket-get-name.html"
+><B
+CLASS="function"
+>stream_socket_get_name()</B
+></A
+>.
+    </P
+><P
+>&#13;     Si el llamado falla, devolverá <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.stream-socket-server.html"
+><B
+CLASS="function"
+>stream_socket_server()</B
+></A
+>, 
+     <A
+HREF="function.stream-socket-get-name.html"
+><B
+CLASS="function"
+>stream_socket_get_name()</B
+></A
+>,
+     <A
+HREF="function.stream-set-blocking.html"
+><B
+CLASS="function"
+>stream_set_blocking()</B
+></A
+>,
+     <A
+HREF="function.stream-set-timeout.html"
+><B
+CLASS="function"
+>stream_set_timeout()</B
+></A
+>, 
+     <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+>,
+     <A
+HREF="function.fgetss.html"
+><B
+CLASS="function"
+>fgetss()</B
+></A
+>, <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>,
+     <A
+HREF="function.fclose.html"
+><B
+CLASS="function"
+>fclose()</B
+></A
+>, <A
+HREF="function.feof.html"
+><B
+CLASS="function"
+>feof()</B
+></A
+>, y
+     la <A
+HREF="ref.curl.html"
+>extensión Curl</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-set-write-buffer.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-socket-client.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_set_write_buffer</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_socket_client</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

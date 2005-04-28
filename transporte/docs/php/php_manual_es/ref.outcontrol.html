@@ -1,0 +1,774 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Control de Salida</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="ovrimos_rollback"
+HREF="function.ovrimos-rollback.html"><LINK
+REL="NEXT"
+TITLE="flush"
+HREF="function.flush.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ovrimos-rollback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.flush.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.outcontrol"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXXIX. Funciones de Control de Salida</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN80987"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.intro"
+>Introducción</A
+></H1
+><P
+>&#13;Las funciones de Control de Salida le permiten controlar cuándo
+es enviada la salida desde el script. Esto puede resultar útil
+en muchas situaciones diferentes, especialmente si necesita enviar
+cabeceras al navegador después de que su script ha comenzado a
+enviar datos. Las funciones de Control de Salida no afectan las
+cabeceras enviadas usando <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+>
+o <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+>, sólo funciones
+como <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+> y los datos entre bloques de
+código PHP.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.installation"
+>Instalación</A
+></H1
+><P
+>No se necesita ninguna instalación
+para usar estas funciones, son parte del núcleo de
+PHP.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN81005"
+></A
+><P
+><B
+>Tabla 1. Opciones de configuración del Control de Salida</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>output_buffering</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_PERDIR|PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>output_handler</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_PERDIR|PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>implicit_flush</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_PERDIR|PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+Para más detalles sobre las constantes PHP_INI_* y su
+definición, vea
+<A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13; <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.output-buffering"
+></A
+><VAR
+CLASS="parameter"
+>output_buffering</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+>/<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;Puede habilitar el uso de búferes de salida para todos los
+archivos, definiendo esta directiva como 'On'. Si desea limitar el
+tamaño del búfer a cierta cantidad - puede usar un
+número máximo de bytes, en lugar de 'On', como valor
+para esta directiva (p.ej., output_buffering=4096).
+    </P
+></DD
+><DT
+><A
+NAME="ini.output-handler"
+></A
+><VAR
+CLASS="parameter"
+>output_handler</VAR
+>
+    <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;Puede redireccionar toda la salida de sus scripts a una
+función. Por ejemplo, si establece el valor de output_handler
+a <A
+HREF="function.mb-output-handler.html"
+><B
+CLASS="function"
+>mb_output_handler()</B
+></A
+>, la codificación de
+caracteres será convertida de forma transparente a la
+codificación especificada. Al definir cualquier gestor de
+salida, el control mediante búferes se activa
+automáticamente.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Usted no puede usar <A
+HREF="function.mb-output-handler.html"
+><B
+CLASS="function"
+>mb_output_handler()</B
+></A
+> con
+<B
+CLASS="function"
+>ob_inconv_handler()</B
+> al tiempo, y no puede usar
+<A
+HREF="function.ob-gzhandler.html"
+><B
+CLASS="function"
+>ob_gzhandler()</B
+></A
+> y
+<A
+HREF="ref.zlib.html#ini.zlib.output-compression"
+>zlib.output_compression</A
+>
+al tiempo.
+     </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.implicit-flush"
+></A
+><VAR
+CLASS="parameter"
+>implicit_flush</VAR
+>
+    <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> por defecto. Cambiar este valor a <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> le indica a PHP que
+debe decirle a la capa de salida que se vacíe
+automáticamente después de cada bloque de salida. Esto
+es equivalente a llamar la función
+de <VAR
+CLASS="literal"
+>PHP</VAR
+> <A
+HREF="function.flush.html"
+><B
+CLASS="function"
+>flush()</B
+></A
+> después de
+todas y cada una de las llamadas a <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+>
+o <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>, y cada bloque <VAR
+CLASS="literal"
+>HTML</VAR
+>.
+    </P
+><P
+>&#13;Cuando use <VAR
+CLASS="literal"
+>PHP</VAR
+> bajo un entorno web, el habilitar
+esta opción tiene unas implicaciones serias en el rendimiento,
+y por lo general se recomienda su uso únicamente para
+propósitos de depuración. Este valor es igual a <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>
+por defecto cuando se opera bajo la <VAR
+CLASS="literal"
+>SAPI CLI</VAR
+>.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.ob-implicit-flush.html"
+><B
+CLASS="function"
+>ob_implicit_flush()</B
+></A
+>.
+    </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN81078"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de Control de Salida</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />ob_start</font><font color="#007700">();<br />echo </font><font color="#DD0000">"Hola\n"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">setcookie</font><font color="#007700">(</font><font color="#DD0000">"nombre_cookie"</font><font color="#007700">, </font><font color="#DD0000">"datos_cookie"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">ob_end_flush</font><font color="#007700">();<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;En el anterior ejemplo, la salida de <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>
+sería almacenada en el búfer de salida hasta
+que <A
+HREF="function.ob-end-flush.html"
+><B
+CLASS="function"
+>ob_end_flush()</B
+></A
+> sea llamada. Entre tanto, la
+llamada a <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+> almacena satisfactoriamente
+una cookie sin causar un error. (Normalmente, usted no puede enviar
+cabeceras al navegador después de que se han enviado datos.)
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Cuando se actualice desde PHP 4.1 (y 4.2) hacia 4.3, debe asegurarse
+de que <VAR
+CLASS="literal"
+>implict_flush</VAR
+> tenga el
+valor <VAR
+CLASS="literal"
+>OFF</VAR
+> en su <TT
+CLASS="filename"
+>php.ini</TT
+> debido a un fallo en
+versiones antiguas, de otra forma, cualquier salida procesada
+por <A
+HREF="function.ob-start.html"
+><B
+CLASS="function"
+>ob_start()</B
+></A
+> no será ocultada en la salida
+final.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="outcontrol.seealso"
+>Ver también</A
+></H1
+><P
+>&#13;     Vea también
+     <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+> y
+     <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.flush.html"
+>flush</A
+>&nbsp;--&nbsp;Flush the output buffer</DT
+><DT
+><A
+HREF="function.ob-clean.html"
+>ob_clean</A
+>&nbsp;--&nbsp;
+     Limpiar (eliminar) el búfer de salida
+    </DT
+><DT
+><A
+HREF="function.ob-end-clean.html"
+>ob_end_clean</A
+>&nbsp;--&nbsp;
+     Clean (erase) the output buffer and turn off output buffering
+    </DT
+><DT
+><A
+HREF="function.ob-end-flush.html"
+>ob_end_flush</A
+>&nbsp;--&nbsp;
+     Flush (send) the output buffer and turn off output buffering    
+    </DT
+><DT
+><A
+HREF="function.ob-flush.html"
+>ob_flush</A
+>&nbsp;--&nbsp;
+     Vaciar (enviar) el búfer de salida
+    </DT
+><DT
+><A
+HREF="function.ob-get-clean.html"
+>ob_get_clean</A
+>&nbsp;--&nbsp;
+     Obtener los contenidos del búfer actual y eliminar el
+     búfer de salida actual
+    </DT
+><DT
+><A
+HREF="function.ob-get-contents.html"
+>ob_get_contents</A
+>&nbsp;--&nbsp;
+     Devolver el contenido del búfer de salida
+    </DT
+><DT
+><A
+HREF="function.ob-get-flush.html"
+>ob_get_flush</A
+>&nbsp;--&nbsp;
+     Flush the output buffer, return it as a string and turn off output buffering
+    </DT
+><DT
+><A
+HREF="function.ob-get-length.html"
+>ob_get_length</A
+>&nbsp;--&nbsp;
+     Return the length of the output buffer
+    </DT
+><DT
+><A
+HREF="function.ob-get-level.html"
+>ob_get_level</A
+>&nbsp;--&nbsp;
+     Devolver el nivel de anidamiento del mecanismo de búferes
+     de salida
+    </DT
+><DT
+><A
+HREF="function.ob-get-status.html"
+>ob_get_status</A
+>&nbsp;--&nbsp;
+     Obtener el status de los búferes de salida
+    </DT
+><DT
+><A
+HREF="function.ob-gzhandler.html"
+>ob_gzhandler</A
+>&nbsp;--&nbsp;
+     Llamada de retorno de ob_start para comprimir mediante gzip el
+     búfer de salida
+    </DT
+><DT
+><A
+HREF="function.ob-implicit-flush.html"
+>ob_implicit_flush</A
+>&nbsp;--&nbsp;
+     Turn implicit flush on/off 
+    </DT
+><DT
+><A
+HREF="function.ob-list-handlers.html"
+>ob_list_handlers</A
+>&nbsp;--&nbsp;
+     List all output handlers in use
+    </DT
+><DT
+><A
+HREF="function.ob-start.html"
+>ob_start</A
+>&nbsp;--&nbsp;Turn on output buffering</DT
+><DT
+><A
+HREF="function.output-add-rewrite-var.html"
+>output_add_rewrite_var</A
+>&nbsp;--&nbsp;
+     Add URL rewriter values
+    </DT
+><DT
+><A
+HREF="function.output-reset-rewrite-vars.html"
+>output_reset_rewrite_vars</A
+>&nbsp;--&nbsp;
+     Reset URL rewriter values
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ovrimos-rollback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.flush.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ovrimos_rollback</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>flush</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

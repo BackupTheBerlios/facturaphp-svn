@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_ssl_set</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_sqlstate"
+HREF="function.mysqli-sqlstate.html"><LINK
+REL="NEXT"
+TITLE="mysqli_stat"
+HREF="function.mysqli-stat.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-sqlstate.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stat.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-ssl-set"
+></A
+>mysqli_ssl_set</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN67463"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_ssl_set<P
+>    (no version information, might be only in CVS)</P
+>mysqli-&#62;ssl_set&nbsp;--&nbsp;Usado para establecer conexiones seguras usando SSL.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67467"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>bool <B
+CLASS="methodname"
+>mysqli_ssl_set</B
+> ( objeto identificador_de_enlace [, cadena key [, cadena cert [, cadena ca [, cadena capath [, cadena cipher]]]]])<BR
+></BR
+><P
+>Estilo orientado a objetos (método):</P
+>class <B
+CLASS="classname"
+>mysqli</B
+> { <BR
+></BR
+>bool <B
+CLASS="methodname"
+>ssl_set</B
+> ( [cadena key [, cadena cert [, cadena ca [, cadena capath [, cadena cipher]]]]])<BR
+></BR
+>}<P
+>&#13;     La función <B
+CLASS="function"
+>mysqli_ssl_set()</B
+> es usada para establecer 
+     conexiones seguras usando SSL. Esta debe ser llamada antes de 
+     <A
+HREF="function.mysqli-real-connect.html"
+><B
+CLASS="function"
+>mysqli_real_connect()</B
+></A
+>. Esta función no hace nada 
+     a menos que el soporte OpenSSL este activo.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>key</VAR
+> es la ubicación del archivo principal.
+     <VAR
+CLASS="parameter"
+>cert</VAR
+> es la ubicación del archivo del certificado.
+     <VAR
+CLASS="parameter"
+>ca</VAR
+> es la ubicación  del archivo de autorización 
+     del certificado.
+     <VAR
+CLASS="parameter"
+>capath</VAR
+> es la ubicación del directorio que contiene 
+     los certificados SSL CA en que se confí en formato pem.
+     <VAR
+CLASS="parameter"
+>cipher</VAR
+> es una lista de los ciphes permitidos a usar para 
+     la encriptación SSL.
+     Cualquier parámetro SSL sin usar, recibirá el valor <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67523"
+></A
+><H2
+>Valores regresados</H2
+><P
+>&#13;     Está función siempre regresa el valor <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>. Si la disposición 
+     de SSL está incorrecta <A
+HREF="function.mysqli-real-connect.html"
+><B
+CLASS="function"
+>mysqli_real_connect()</B
+></A
+> 
+     regresará un error cuando se intente conectar.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67528"
+></A
+><H2
+>Vea tambié</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-options.html"
+><B
+CLASS="function"
+>mysqli_options()</B
+></A
+>,
+     <A
+HREF="function.mysqli-real-connect.html"
+><B
+CLASS="function"
+>mysqli_real_connect()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-sqlstate.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-stat.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_sqlstate</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_stat</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

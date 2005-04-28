@@ -1,0 +1,333 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>socket_accept</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Socket"
+HREF="ref.sockets.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones de Socket"
+HREF="ref.sockets.html"><LINK
+REL="NEXT"
+TITLE="socket_bind"
+HREF="function.socket-bind.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.socket-bind.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.socket-accept"
+></A
+>socket_accept</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN101016"
+></A
+><P
+>    (PHP 4 &#62;= 4.1.0, PHP 5)</P
+>socket_accept&nbsp;--&nbsp;Accepts a connection on a socket</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN101019"
+></A
+><H2
+>Description</H2
+>resource <B
+CLASS="methodname"
+>socket_accept</B
+> ( resource socket)<BR
+></BR
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     After the socket <VAR
+CLASS="parameter"
+>socket</VAR
+> has been created
+     using <A
+HREF="function.socket-create.html"
+><B
+CLASS="function"
+>socket_create()</B
+></A
+>, bound to a name with
+     <A
+HREF="function.socket-bind.html"
+><B
+CLASS="function"
+>socket_bind()</B
+></A
+>, and told to listen for connections
+     with <A
+HREF="function.socket-listen.html"
+><B
+CLASS="function"
+>socket_listen()</B
+></A
+>, this function will accept
+     incoming connections on that socket. Once a successful connection
+     is made, a new socket resource is returned, which may be used
+     for communication. If there are multiple connections queued on
+     the socket, the first will be used. If there are no pending
+     connections, <B
+CLASS="function"
+>socket_accept()</B
+> will block until
+     a connection becomes present. If <VAR
+CLASS="parameter"
+>socket</VAR
+>
+     has been made non-blocking using
+     <A
+HREF="function.socket-set-blocking.html"
+><B
+CLASS="function"
+>socket_set_blocking()</B
+></A
+> or
+     <A
+HREF="function.socket-set-nonblock.html"
+><B
+CLASS="function"
+>socket_set_nonblock()</B
+></A
+>, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> will be returned.
+    </P
+><P
+>&#13;     The socket resource returned by
+     <B
+CLASS="function"
+>socket_accept()</B
+> may not be used to accept new
+     connections. The original listening socket
+     <VAR
+CLASS="parameter"
+>socket</VAR
+>, however, remains open and may be
+     reused.
+    </P
+><P
+>&#13;     Returns a new socket resource on success, or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on error. The actual
+     error code can be retrieved by calling
+     <A
+HREF="function.socket-last-error.html"
+><B
+CLASS="function"
+>socket_last_error()</B
+></A
+>. This error code may be passed to
+     <A
+HREF="function.socket-strerror.html"
+><B
+CLASS="function"
+>socket_strerror()</B
+></A
+> to get a textual explanation of the
+     error.
+    </P
+><P
+>&#13;     See also 
+     <A
+HREF="function.socket-bind.html"
+><B
+CLASS="function"
+>socket_bind()</B
+></A
+>,
+     <A
+HREF="function.socket-connect.html"
+><B
+CLASS="function"
+>socket_connect()</B
+></A
+>,
+     <A
+HREF="function.socket-listen.html"
+><B
+CLASS="function"
+>socket_listen()</B
+></A
+>,
+     <A
+HREF="function.socket-create.html"
+><B
+CLASS="function"
+>socket_create()</B
+></A
+>, and
+     <A
+HREF="function.socket-strerror.html"
+><B
+CLASS="function"
+>socket_strerror()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.socket-bind.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones de Socket</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sockets.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>socket_bind</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

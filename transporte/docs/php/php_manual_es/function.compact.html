@@ -1,0 +1,261 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>compact</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de matrices"
+HREF="ref.array.html"><LINK
+REL="PREVIOUS"
+TITLE="asort"
+HREF="function.asort.html"><LINK
+REL="NEXT"
+TITLE="count"
+HREF="function.count.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.asort.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.count.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.compact"
+></A
+>compact</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN7915"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>compact&nbsp;--&nbsp;
+     Crea una matriz que contiene variables y sus valores
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN7918"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>compact</B
+> ( string nombrevar | array
+     nombrevars [,  ...])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>compact()</B
+> toma un número variable de parámetros.
+     Cada uno puede ser tanto una cadena que contiene el nombre
+     de la variable, como una matriz de nombres de variable. La 
+     matriz puede contener otras matrices de nombres de variable
+     en su interior; <B
+CLASS="function"
+>compact()</B
+> los procesa
+     recursivamente.
+    </P
+><P
+>&#13;     Para cada uno de estos, <B
+CLASS="function"
+>compact()</B
+> busca una 
+     variable con dicho nombre en la tabla de símbolos y la añade a
+     la matriz de salida de modo que el nombre de la variable es la
+     clave y el contenido de ésta es el valor para dicha clave. Para
+     resumir, hace lo contrario de <A
+HREF="function.extract.html"
+><B
+CLASS="function"
+>extract()</B
+></A
+>.
+     Devuelve la matriz de salida con las variables añadidas a la misma.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN7935"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>compact()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$ciudad = "San Francisco";<br />$estado = "CA";<br />$evento = "SIGGRAPH";<br /><br />$location_vars = array ("ciudad", "estado");<br /><br />$resultado = compact ("evento", $location_vars);</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Tras esto, $resultado valdrá array ("evento" =&#62; "SIGGRAPH",
+       "ciudad" =&#62; "San Francisco", "estado" =&#62; "CA").
+      </P
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también: <A
+HREF="function.extract.html"
+><B
+CLASS="function"
+>extract()</B
+></A
+>.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Esta función fue añadida en el PHP 4.0.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.asort.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.count.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>asort</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.array.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>count</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

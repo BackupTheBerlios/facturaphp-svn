@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>fbsql_select_db</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FrontBase Functions"
+HREF="ref.fbsql.html"><LINK
+REL="PREVIOUS"
+TITLE="fbsql_rollback"
+HREF="function.fbsql-rollback.html"><LINK
+REL="NEXT"
+TITLE="fbsql_set_lob_mode"
+HREF="function.fbsql-set-lob-mode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-rollback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.fbsql-set-lob-mode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.fbsql-select-db"
+></A
+>fbsql_select_db</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN27317"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>fbsql_select_db&nbsp;--&nbsp;Select a FrontBase database</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN27320"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>fbsql_select_db</B
+> ( string database_name [, resource link_identifier])<BR
+></BR
+><P
+> 
+     <B
+CLASS="function"
+>fbsql_select_db()</B
+> sets the current active
+     database on the server that's associated with the specified link
+     identifier.  If no link identifier is specified, the last opened
+     link is assumed.  If no link is open, the function will try to
+     establish a link as if <A
+HREF="function.fbsql-connect.html"
+><B
+CLASS="function"
+>fbsql_connect()</B
+></A
+> was
+     called, and use it.
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><P
+>&#13;     The client contacts FBExec to obtain the port number to use for
+     the connection to the database. If the database name is a number
+     the system will use that as a port number and it will not ask
+     FBExec for the port number.  The FrontBase server can be stared
+     as FRontBase -FBExec=No -port=&#60;port number&#62; &#60;database
+     name&#62;.
+    </P
+><P
+>&#13;     Every subsequent call to <A
+HREF="function.fbsql-query.html"
+><B
+CLASS="function"
+>fbsql_query()</B
+></A
+> will be
+     made on the active database.
+    </P
+><P
+>&#13;     if the database is protected with a database password, the user must
+     call <A
+HREF="function.fbsql-database-password.html"
+><B
+CLASS="function"
+>fbsql_database_password()</B
+></A
+> before selecting
+     the database. 
+    </P
+><P
+> 
+     See also
+     <A
+HREF="function.fbsql-connect.html"
+><B
+CLASS="function"
+>fbsql_connect()</B
+></A
+>, 
+     <A
+HREF="function.fbsql-pconnect.html"
+><B
+CLASS="function"
+>fbsql_pconnect()</B
+></A
+>,
+     <A
+HREF="function.fbsql-database-password.html"
+><B
+CLASS="function"
+>fbsql_database_password()</B
+></A
+>, and
+     <A
+HREF="function.fbsql-query.html"
+><B
+CLASS="function"
+>fbsql_query()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fbsql-rollback.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.fbsql-set-lob-mode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fbsql_rollback</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.fbsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>fbsql_set_lob_mode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sybase_fetch_assoc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Sybase"
+HREF="ref.sybase.html"><LINK
+REL="PREVIOUS"
+TITLE="sybase_fetch_array"
+HREF="function.sybase-fetch-array.html"><LINK
+REL="NEXT"
+TITLE="sybase_fetch_field"
+HREF="function.sybase-fetch-field.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sybase-fetch-array.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sybase-fetch-field.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sybase-fetch-assoc"
+></A
+>sybase_fetch_assoc</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN108706"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>sybase_fetch_assoc&nbsp;--&nbsp;Obtiene el resultado de la sentencia como una matriz asociativa</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN108709"
+></A
+><H2
+>Descripción</H2
+>matriz <B
+CLASS="methodname"
+>sybase_fetch_assoc</B
+> ( int resultado)<BR
+></BR
+><P
+>&#13;     Regresa una matriz que corresponde a las filas obtenidas o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+     si no hay mas filas.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función se encuentra disponible solamente cuando se usan las bibliotecas 
+CT de Sybase y no las bibliotecas DB.</P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <B
+CLASS="function"
+>sybase_fetch_assoc()</B
+> es una adaptación de  
+     <A
+HREF="function.sybase-fetch-row.html"
+><B
+CLASS="function"
+>sybase_fetch_row()</B
+></A
+> que usa los nombre de las columnas 
+     en lugar de números enteros como indices en la matriz resultante.
+     En caso de columnas de diferentes tablas, con el mismo nombre, 
+     éstas son expresadas como: nombre, nombre1, nombre2, ..., nombreN.
+    </P
+><P
+>&#13;     Algo por tener en cuenta es, que usando 
+     <B
+CLASS="function"
+>sybase_fetch_assoc()</B
+> significativamente no es 
+     más lenta que usar <A
+HREF="function.sybase-fetch-row.html"
+><B
+CLASS="function"
+>sybase_fetch_row()</B
+></A
+>, 
+     dado que provee un valor agregado.
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.sybase-fetch-array.html"
+><B
+CLASS="function"
+>sybase_fetch_array()</B
+></A
+>, 
+     <A
+HREF="function.sybase-fetch-object.html"
+><B
+CLASS="function"
+>sybase_fetch_object()</B
+></A
+> y  
+     <A
+HREF="function.sybase-fetch-row.html"
+><B
+CLASS="function"
+>sybase_fetch_row()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sybase-fetch-array.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sybase-fetch-field.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sybase_fetch_array</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sybase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sybase_fetch_field</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

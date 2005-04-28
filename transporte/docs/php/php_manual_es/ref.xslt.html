@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>XSLT functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="xsl_xsltprocessor_transform_to_xml"
+HREF="function.xsl-xsltprocessor-transform-to-xml.html"><LINK
+REL="NEXT"
+TITLE="xslt_backend_info"
+HREF="function.xslt-backend-info.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.xsl-xsltprocessor-transform-to-xml.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.xslt-backend-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.xslt"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXXI. XSLT functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN115940"
+></A
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta extensión es
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta extensión, los nombre de sus funciones y
+en definitiva TODO lo documentado sobre esta extensión, puede
+cambiar en una futura versión de PHP SIN AVISO. La advertencia
+queda hecha, y utilizar esta extensión queda bajo su propia
+responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="xslt.partintro"
+>Introduction</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="xslt.intro"
+>About XSLT and Sablotron</A
+></H2
+><P
+>&#13;      XSLT (Extensible Stylesheet Language (XSL)
+      Transformations) is a language for transforming XML
+      documents into other XML documents.  It is a standard
+      defined by The World Wide Web consortium (W3C). 
+      Information about XSLT and related technologies can be
+      found at <A
+HREF="http://www.w3.org/TR/xslt"
+TARGET="_top"
+>http://www.w3.org/TR/xslt</A
+>.
+     </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="xslt.install"
+>Installation</A
+></H2
+><P
+>&#13;      This extension uses <SPAN
+CLASS="productname"
+>Sabloton</SPAN
+>
+      and <SPAN
+CLASS="productname"
+>expat</SPAN
+>, which can both be
+      found at <A
+HREF="http://www.gingerall.com/"
+TARGET="_top"
+>http://www.gingerall.com/</A
+>. Binaries
+      are provided as well as source.
+     </P
+><P
+>&#13;      On UNIX, run <B
+CLASS="command"
+>configure</B
+> with the <VAR
+CLASS="option"
+>--with-sablot</VAR
+> and <VAR
+CLASS="option"
+>--enable-sablot-errors-descriptive</VAR
+>
+      options.  The <SPAN
+CLASS="productname"
+>Sablotron</SPAN
+> library
+      should be installed somewhere your compiler can find it. 
+     </P
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="xslt.about"
+>About This Extension</A
+></H2
+><P
+>&#13;      This PHP extension implements support
+      <SPAN
+CLASS="productname"
+>Sablotron</SPAN
+> from Ginger Alliance
+      in PHP. This toolkit lets you transform 
+      XML documents into other documents, including new XML
+      documents, but also into HTML or other target formats. It
+      basically provides a standardized and portable template
+      mechanism, separating content and design of a website.
+     </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.xslt-backend-info.html"
+>xslt_backend_info</A
+>&nbsp;--&nbsp;
+     Returns the information on the compilation settings of the backend
+    </DT
+><DT
+><A
+HREF="function.xslt-backend-name.html"
+>xslt_backend_name</A
+>&nbsp;--&nbsp;
+     Returns the name of the backend
+    </DT
+><DT
+><A
+HREF="function.xslt-backend-version.html"
+>xslt_backend_version</A
+>&nbsp;--&nbsp;
+     Returns the version number of Sablotron
+    </DT
+><DT
+><A
+HREF="function.xslt-create.html"
+>xslt_create</A
+>&nbsp;--&nbsp;Create a new XSL processor.</DT
+><DT
+><A
+HREF="function.xslt-errno.html"
+>xslt_errno</A
+>&nbsp;--&nbsp;Return the current error number</DT
+><DT
+><A
+HREF="function.xslt-error.html"
+>xslt_error</A
+>&nbsp;--&nbsp;Return the current error string</DT
+><DT
+><A
+HREF="function.xslt-free.html"
+>xslt_free</A
+>&nbsp;--&nbsp;Free XSLT processor</DT
+><DT
+><A
+HREF="function.xslt-getopt.html"
+>xslt_getopt</A
+>&nbsp;--&nbsp;
+     Get options on a given xsl processor
+    </DT
+><DT
+><A
+HREF="function.xslt-process.html"
+>xslt_output_process</A
+>&nbsp;--&nbsp;unknown</DT
+><DT
+><A
+HREF="function.xslt-set-base.html"
+>xslt_set_base</A
+>&nbsp;--&nbsp;Set the base URI for all XSLT transformations</DT
+><DT
+><A
+HREF="function.xslt-set-encoding.html"
+>xslt_set_encoding</A
+>&nbsp;--&nbsp;Set the encoding for the parsing of XML documents</DT
+><DT
+><A
+HREF="function.xslt-set-error-handler.html"
+>xslt_set_error_handler</A
+>&nbsp;--&nbsp;Set an error handler for a XSLT processor</DT
+><DT
+><A
+HREF="function.xslt-set-log.html"
+>xslt_set_log</A
+>&nbsp;--&nbsp;Set the log file to write log messages to</DT
+><DT
+><A
+HREF="function.xslt-set-object.html"
+>xslt_set_object</A
+>&nbsp;--&nbsp;
+     Sets the object in which to resolve callback functions
+    </DT
+><DT
+><A
+HREF="function.xslt-set-sax-handler.html"
+>xslt_set_sax_handler</A
+>&nbsp;--&nbsp;Set SAX handlers for a XSLT processor</DT
+><DT
+><A
+HREF="function.xslt-set-sax-handlers.html"
+>xslt_set_sax_handlers</A
+>&nbsp;--&nbsp;
+     Set the SAX handlers to be called when the XML document gets processed
+    </DT
+><DT
+><A
+HREF="function.xslt-set-scheme-handler.html"
+>xslt_set_scheme_handler</A
+>&nbsp;--&nbsp;Set Scheme handlers for a XSLT processor</DT
+><DT
+><A
+HREF="function.xslt-set-scheme-handlers.html"
+>xslt_set_scheme_handlers</A
+>&nbsp;--&nbsp;
+     Set the scheme handlers for the XSLT processor
+    </DT
+><DT
+><A
+HREF="function.xslt-setopt.html"
+>xslt_setopt</A
+>&nbsp;--&nbsp;
+     Set options on a given xsl processor
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.xsl-xsltprocessor-transform-to-xml.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.xslt-backend-info.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>xsl_xsltprocessor_transform_to_xml</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>xslt_backend_info</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

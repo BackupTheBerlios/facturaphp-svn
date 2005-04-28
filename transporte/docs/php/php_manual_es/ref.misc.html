@@ -1,0 +1,696 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Miscelánea</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="SWFTextField"
+HREF="function.swftextfield.html"><LINK
+REL="NEXT"
+TITLE="connection_aborted"
+HREF="function.connection-aborted.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.swftextfield.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.connection-aborted.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.misc"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>LXII. Funciones de Miscelánea</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN59470"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="misc.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Estas funciones fueron colocadas aquí debido a que no
+     parecen ajustarse a ninguna otra categoría.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="misc.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="misc.installation"
+>Instalación</A
+></H1
+><P
+>No se necesita ninguna instalación
+para usar estas funciones, son parte del núcleo de
+PHP.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="misc.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>El comportamiento de estas
+funciones está afectado por los valores definidos en
+<TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+><P
+>&#13;  <DIV
+CLASS="table"
+><A
+NAME="AEN59485"
+></A
+><P
+><B
+>Tabla 1. Opciones Varias de Configuración</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>ignore_user_abort</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>highlight.string</TD
+><TD
+>#DD0000</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>highlight.comment</TD
+><TD
+>#FF9900</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>highlight.keyword</TD
+><TD
+>#007700</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>highlight.bg</TD
+><TD
+>#FFFFFF</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>highlight.default</TD
+><TD
+>#0000BB</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>highlight.html</TD
+><TD
+>#000000</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>browscap</TD
+><TD
+>NULL</TD
+><TD
+>PHP_INI_SYSTEM</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+Para más detalles sobre las constantes PHP_INI_* y su
+definición, vea
+<A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+ </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;  <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.ignore-user-abort"
+></A
+><VAR
+CLASS="parameter"
+>ignore_user_abort</VAR
+>
+     <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;      <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> por defecto. Si se modifica a <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, los scripts
+      terminarán tan pronto intenten generar alguna salida
+      despuén de que el cliente haya abortado su
+      conexión.
+     </P
+><P
+>&#13;      Vea también <A
+HREF="function.ignore-user-abort.html"
+><B
+CLASS="function"
+>ignore_user_abort()</B
+></A
+>.
+     </P
+></DD
+><DT
+><A
+NAME="ini.syntax-highlighting"
+></A
+><VAR
+CLASS="parameter"
+>highlight.comment</VAR
+>
+      <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>, <VAR
+CLASS="parameter"
+>highlight.default</VAR
+>
+      <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>, <VAR
+CLASS="parameter"
+>highlight.html</VAR
+>
+      <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>, <VAR
+CLASS="parameter"
+>highlight.keyword</VAR
+>
+      <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>, <VAR
+CLASS="parameter"
+>highlight.string</VAR
+>
+      <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;       Colores para el modo de Resaltado de Sintaxis. Cualquier cosa
+       que sea aceptable en &#60;font color="??????"&#62; debería
+       funcionar.
+      </P
+></DD
+><DT
+><A
+NAME="ini.browscap"
+></A
+><VAR
+CLASS="parameter"
+>browscap</VAR
+>
+     <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;      Nombre (p.ej.: <TT
+CLASS="filename"
+>browscap.ini</TT
+>) y
+      ubicación del archivo de capacidades del navegador. Vea
+      también <A
+HREF="function.get-browser.html"
+><B
+CLASS="function"
+>get_browser()</B
+></A
+>.
+     </P
+></DD
+></DL
+></DIV
+>
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="misc.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="misc.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>CONNECTION_ABORTED</B
+></TT
+>
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CONNECTION_NORMAL</B
+></TT
+>
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>CONNECTION_TIMEOUT</B
+></TT
+>
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;
+    </P
+></DD
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.connection-aborted.html"
+>connection_aborted</A
+>&nbsp;--&nbsp;Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el cliente está desconectado</DT
+><DT
+><A
+HREF="function.connection-status.html"
+>connection_status</A
+>&nbsp;--&nbsp;Devuelve el estado de la conexión en un campo de bits</DT
+><DT
+><A
+HREF="function.connection-timeout.html"
+>connection_timeout</A
+>&nbsp;--&nbsp;Devolver <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el script ha alcanzado su tiempo de
+    espera máximo</DT
+><DT
+><A
+HREF="function.constant.html"
+>constant</A
+>&nbsp;--&nbsp;Devuelve el valor de una constante</DT
+><DT
+><A
+HREF="function.define.html"
+>define</A
+>&nbsp;--&nbsp;Define una constante con nombre.</DT
+><DT
+><A
+HREF="function.defined.html"
+>defined</A
+>&nbsp;--&nbsp;Comprueba que una constante con nombre dada existe.</DT
+><DT
+><A
+HREF="function.die.html"
+>die</A
+>&nbsp;--&nbsp;Envía a la salida un mensaje y finaliza el script actual</DT
+><DT
+><A
+HREF="function.eval.html"
+>eval</A
+>&nbsp;--&nbsp;Evalúa una cadena de carácteres como código PHP</DT
+><DT
+><A
+HREF="function.exit.html"
+>exit</A
+>&nbsp;--&nbsp;Finaliza el script actual</DT
+><DT
+><A
+HREF="function.get-browser.html"
+>get_browser</A
+>&nbsp;--&nbsp;
+     Indica las capacidades del navegador del usuario
+    </DT
+><DT
+><A
+HREF="function.highlight-file.html"
+>highlight_file</A
+>&nbsp;--&nbsp;Resaltado de sintaxis de un archivo</DT
+><DT
+><A
+HREF="function.highlight-string.html"
+>highlight_string</A
+>&nbsp;--&nbsp;Resaltado de sintaxis de una cadena</DT
+><DT
+><A
+HREF="function.ignore-user-abort.html"
+>ignore_user_abort</A
+>&nbsp;--&nbsp;Establece si la desconexión de un cliente debe suspender la ejecución del script</DT
+><DT
+><A
+HREF="function.pack.html"
+>pack</A
+>&nbsp;--&nbsp;empaqueta datos en una cadena binaria</DT
+><DT
+><A
+HREF="function.php-check-syntax.html"
+>php_check_syntax</A
+>&nbsp;--&nbsp;
+   Check the syntax of the specified file
+  </DT
+><DT
+><A
+HREF="function.php-strip-whitespace.html"
+>php_strip_whitespace</A
+>&nbsp;--&nbsp;
+   Return source with stripped comments and whitespace
+  </DT
+><DT
+><A
+HREF="function.show-source.html"
+>show_source</A
+>&nbsp;--&nbsp;Alias de <A
+HREF="function.highlight-file.html"
+><B
+CLASS="function"
+>highlight_file()</B
+></A
+></DT
+><DT
+><A
+HREF="function.sleep.html"
+>sleep</A
+>&nbsp;--&nbsp;Ejecución retardada</DT
+><DT
+><A
+HREF="function.time-nanosleep.html"
+>time_nanosleep</A
+>&nbsp;--&nbsp;
+   Delay for a number of seconds and nano seconds
+  </DT
+><DT
+><A
+HREF="function.uniqid.html"
+>uniqid</A
+>&nbsp;--&nbsp;Genera un id único.</DT
+><DT
+><A
+HREF="function.unpack.html"
+>unpack</A
+>&nbsp;--&nbsp;desempaqueta datos de una cadena binaria</DT
+><DT
+><A
+HREF="function.usleep.html"
+>usleep</A
+>&nbsp;--&nbsp;Retrasa la ejecución, en microsegundos</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.swftextfield.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.connection-aborted.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SWFTextField</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>connection_aborted</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

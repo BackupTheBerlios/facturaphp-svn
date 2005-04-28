@@ -1,0 +1,582 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Algo útil</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Una explicación sencilla"
+HREF="tutorial.html"><LINK
+REL="PREVIOUS"
+TITLE="Su primera página con PHP"
+HREF="tutorial.firstpage.html"><LINK
+REL="NEXT"
+TITLE="Uso de Formularios HTML"
+HREF="tutorial.forms.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tutorial.firstpage.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 2. Una explicación sencilla</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tutorial.forms.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="tutorial.useful"
+>Algo útil</A
+></H1
+><P
+>&#13;    Hagamos ahora algo que puede ser más útil. Vamos a
+    chequear qué clase de navegador web utiliza. Para hacerlo,
+    vamos a consultar la información que el navegador nos
+    envía como parte de su petición HTTP. Esta
+    información es guardada en una <A
+HREF="language.variables.html"
+>variable</A
+>. Las variables
+    siempre comienzan con un signo de dólar ("$") en PHP. La
+    variable que vamos a utilizar en esta situación
+    es <VAR
+CLASS="varname"
+>$_SERVER["HTTP_USER_AGENT"]</VAR
+>.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     <A
+HREF="reserved.variables.html#reserved.variables.server"
+>$_SERVER</A
+> es una
+     variable reservada por PHP que contiene toda la
+     información del servidor web. Es conocida como Autoglobal
+     (o Superglobal).
+
+     Consulte el manual en su sección titulada <A
+HREF="language.variables.predefined.html#language.variables.superglobals"
+>Autoglobales</A
+>
+     para mas información. Éstas son variables
+     especiales que fueron introducidas en la versión <A
+HREF="http://www.php.net/release_4_1_0.php"
+TARGET="_top"
+>4.1.0</A
+> de PHP. Antes
+     podíamos usar las
+     matrices <VAR
+CLASS="varname"
+>$HTTP_*_VARS</VAR
+>, tales como
+     <VAR
+CLASS="varname"
+>$HTTP_SERVER_VARS</VAR
+>. Aunque éstas han
+     sido marcadas como obsoletas, tales matrices todavía
+     existen. (También puede echar un vistazo a las notas
+     relacionadas con el <A
+HREF="tutorial.oldcode.html"
+>código antiguo</A
+>.)
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Para poder ver esta variable solo necesita:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN228"
+></A
+><P
+><B
+>Ejemplo 2-2. Impresión de una variable (elemento de la
+    matriz)</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">"HTTP_USER_AGENT"</font><font color="#007700">]; </font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;     Un ejemplo de los resultados de este programa sería:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>Mozilla/4.0 (compatible; MSIE 5.01; Windows NT 5.0)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Hay muchos <A
+HREF="language.types.html"
+>tipos</A
+> de
+    variables en PHP.  En el ejemplo anterior imprimimos una <A
+HREF="language.types.array.html"
+>matriz</A
+>. Las matrices pueden
+    ser muy útiles.
+   </P
+><P
+>&#13;    <VAR
+CLASS="varname"
+>$_SERVER</VAR
+> es simplemente una variable que se
+    encuentra disponible automáticamente para usted en
+    PHP. Puede encontrar una lista en la sección titulada <A
+HREF="reserved.variables.html"
+>Variables Reservadas</A
+> del
+    manual, o puede generar una lista completa creando un archivo como
+    el presentado a continuación:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN240"
+></A
+><P
+><B
+>Ejemplo 2-3. Consultar todas las variables predefinidas
+     con <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php phpinfo</font><font color="#007700">(); </font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Si abre este archivo con su navegador, puede ver una página
+    con información acerca de PHP, junto a una lista de todas
+    las variables que puede usar.
+   </P
+><P
+>&#13;    Puede usar más de un declaración PHP dentro de una
+    etiqueta PHP, y crear pequeños segmentos de código
+    que pueden hacer más que un "echo". Por ejemplo, si
+    quisiéramos detectar el uso de "Internet Explorer",
+    haríamos algo así:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN247"
+></A
+><P
+><B
+>Ejemplo 2-4. Ejemplos de uso de <A
+HREF="control-structures.html"
+>estructuras de control
+     </A
+> y <A
+HREF="functions.html"
+>funciones</A
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">strstr</font><font color="#007700">(</font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">"HTTP_USER_AGENT"</font><font color="#007700">], </font><font color="#DD0000">"MSIE"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Est&amp;aacute; usando Internet Explorer&lt;br /&gt;"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      Un ejemplo de los resultado del script puede ser:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>Est&#38;aacute; usando Internet Explorer&#60;br /&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    A continuación introduciremos un par de conceptos
+    nuevos. Tenemos una declaración
+    <A
+HREF="control-structures.html#control-structures.if"
+>"if"</A
+>. Si está
+    familiarizado con la sintaxis básica del lenguaje "C", esto
+    se vera lógico, Pero si no entiende "C", u otros lenguajes
+    de programación donde encuentra la sintaxis usada
+    anteriormente, probablemente debería conseguir un libro que
+    le introduzca mejor a PHP, y lea los primeros capítulos, o
+    también puede ver la parte del manual titulada <A
+HREF="langref.html"
+>Referencia del lenguaje</A
+>.  Puedes
+    encontrar una lista de libros sobre PHP en <A
+HREF="http://www.php.net/books.php"
+TARGET="_top"
+>http://www.php.net/books.php</A
+>.
+   </P
+><P
+>&#13;    El segundo concepto que introducimos fue la función llamada
+    <A
+HREF="function.strstr.html"
+><B
+CLASS="function"
+>strstr()</B
+></A
+>. <A
+HREF="function.strstr.html"
+><B
+CLASS="function"
+>strstr()</B
+></A
+> es una
+    función integrada de PHP que busca un cadena dentro de otra
+    cadena más larga. En el caso anterior estamos buscando
+    <VAR
+CLASS="literal"
+>"MSIE"</VAR
+> dentro de
+    <VAR
+CLASS="varname"
+>$_SERVER["HTTP_USER_AGENT"]</VAR
+>. Si la cadena fue
+    encontrada, la función devolverá verdadero
+    ("<TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>"), la declaración
+    <A
+HREF="control-structures.html#control-structures.if"
+>"if"</A
+> se evalúa
+    a verdadero ("<TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>") y el código adentro de las llaves {}
+    es ejecutado. De otra manera no resulta ejecutado. Tómese
+    la libertad de crear ejemplos similares usando <A
+HREF="control-structures.html#control-structures.if"
+>"if"</A
+>, <A
+HREF="control-structures.else.html"
+>"else" ("de otra
+    manera")</A
+>, y otras funciones
+    como <A
+HREF="function.strtoupper.html"
+><B
+CLASS="function"
+>strtoupper()</B
+></A
+>
+    y <A
+HREF="function.strlen.html"
+><B
+CLASS="function"
+>strlen()</B
+></A
+>. Cada página del manual
+    contiene ejemplos que puede usar. Si no está seguro sobre
+    el modo de uso éstas funciones, es recomendable que lea las
+    páginas del manual tituladas <A
+HREF="about.prototypes.html"
+>Cómo leer una definición
+    de función</A
+> y la sección relacionada a <A
+HREF="functions.html"
+>Funciones en PHP</A
+>
+   </P
+><P
+>&#13;    Podemos continuar y demostrar cómo puede saltar adentro y
+    afuera del modo PHP en el medio de un bloque de código.
+    </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN274"
+></A
+><P
+><B
+>Ejemplo 2-5. Mezcla de los modos HTML y PHP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">strstr</font><font color="#007700">(</font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">"HTTP_USER_AGENT"</font><font color="#007700">], </font><font color="#DD0000">"MSIE"</font><font color="#007700">)) {<br /></font><font color="#0000BB">?&gt;<br /></font>&lt;h3&gt;strstr debe haber devuelto verdadero&lt;/h3&gt;<br />&lt;center&gt;&lt;b&gt;Est&amp;aacute; usando Internet Explorer&lt;/b&gt;&lt;/center&gt;<br /><font color="#0000BB">&lt;?php<br /></font><font color="#007700">} else {<br /></font><font color="#0000BB">?&gt;<br /></font>&lt;h3&gt;strstr debi&amp;oacute; devolver falso&lt;/h3&gt;<br />&lt;center&gt;&lt;b&gt;No est&amp;aacute; usando Internet Explorer&lt;/b&gt;&lt;/center&gt;<br /><font color="#0000BB">&lt;?php<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      Un ejemplo de los resultados de este script puede ser:
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;h3&#62;strstr debe haber devuelto verdadero &#60;/h3&#62;
+&#60;center&#62;&#60;b&#62;Est&#38;aacute; usando Internet Explorer&#60;/b&#62;&#60;/center&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    En vez de usar una sentencia PHP "echo" para demostrar algo,
+    saltamos fuera del código PHP y escribimos HTML puro. Este
+    es un punto muy importante y potente que debemos observar
+    aquí, y es que la fluidez lógica del script
+    está intacta. Sólamente las partes donde hay HTML
+    serán enviadas a su navegador dependiendo de los resultados
+    que <A
+HREF="function.strstr.html"
+><B
+CLASS="function"
+>strstr()</B
+></A
+> devuelve (si fue verdadero
+    [<TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>], o falso [<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>]). En otras palabras, si la cadena
+    <VAR
+CLASS="literal"
+>MSIE</VAR
+> fue encontrada o no.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tutorial.firstpage.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tutorial.forms.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Su primera página con PHP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Uso de Formularios HTML</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

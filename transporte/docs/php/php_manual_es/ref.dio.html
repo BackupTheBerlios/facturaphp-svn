@@ -1,0 +1,381 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de acceso directo a E/S</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="dbplus_xunlockrel"
+HREF="function.dbplus-xunlockrel.html"><LINK
+REL="NEXT"
+TITLE="dio_close"
+HREF="function.dio-close.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dbplus-xunlockrel.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.dio-close.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.dio"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XXII. Funciones de acceso directo a E/S</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN20253"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="dio.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     PHP incluye soporte para funciones de acceso directo a E/S tal y
+     como se especifican en la sección sexta del
+     estándar de Posix. Estas funciones permiten realizar
+     operaciones de E/S a un nivel inferior al de las funciones
+     genéricas de C como <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>
+     y <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+>.  Las funciones de acceso directo a
+     E/S solo deberían emplearse cuando se requiere un control
+     directo de un determinado dispositivo. En todos los demás
+     casos, es más adecuado el empleo de las funciones
+     estándar del <A
+HREF="ref.filesystem.html"
+>sistema de
+     archivos</A
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta
+extensión no está disponible en plataformas
+Windows</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="dio.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="dio.installation"
+>Instalación</A
+></H1
+><P
+>&#13; Para usar las funciones de acceso directo a E/S, se debe añadir el
+ parámetro <VAR
+CLASS="option"
+>--enable-dio</VAR
+> a las
+ opciones de configuración de PHP.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="dio.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="dio.resources"
+>Tipos de recursos</A
+></H1
+><P
+>&#13;     La extensión de las funciones de acceso directo a E/S define un
+     nuevo tipo de recurso: un descriptor de archivo devuelto por la
+     función <A
+HREF="function.dio-open.html"
+><B
+CLASS="function"
+>dio_open()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="dio.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.dio-close.html"
+>dio_close</A
+>&nbsp;--&nbsp;Cierra el descriptor de archivo indicado por el parámetro fd</DT
+><DT
+><A
+HREF="function.dio-fcntl.html"
+>dio_fcntl</A
+>&nbsp;--&nbsp;Realiza una operación del tipo fcntl de la
+    libería de C sobre el descriptor de archivo indicado por el
+    parámetro fd</DT
+><DT
+><A
+HREF="function.dio-open.html"
+>dio_open</A
+>&nbsp;--&nbsp;
+     Abre un archivo cuyo nombre indica el parámetro "nombre_archivo" con las opciones indicadas por "flags" y los permisos establecidos con "modo"
+    </DT
+><DT
+><A
+HREF="function.dio-read.html"
+>dio_read</A
+>&nbsp;--&nbsp;
+     Lee hasta <VAR
+CLASS="parameter"
+>n</VAR
+> bytes del archivo cuyo descriptor es <VAR
+CLASS="parameter"
+>fd</VAR
+> y los devuelve. Si no se le indica el valor de <VAR
+CLASS="parameter"
+>n</VAR
+>, se leen hasta 1024 bytes.</DT
+><DT
+><A
+HREF="function.dio-seek.html"
+>dio_seek</A
+>&nbsp;--&nbsp;Cambia el posicionamiento en el archivo cuyo descriptor es
+    <VAR
+CLASS="parameter"
+>fd</VAR
+> a traves de los parámetros
+    <VAR
+CLASS="parameter"
+>pos</VAR
+> y <VAR
+CLASS="parameter"
+>whence</VAR
+></DT
+><DT
+><A
+HREF="function.dio-stat.html"
+>dio_stat</A
+>&nbsp;--&nbsp;
+     Obtiene la información sobre el archivo cuyo descriptor es
+     <VAR
+CLASS="parameter"
+>fd</VAR
+>
+    </DT
+><DT
+><A
+HREF="function.dio-tcsetattr.html"
+>dio_tcsetattr</A
+>&nbsp;--&nbsp;
+     Configura las opciones de un terminal y la velocidad de un puerto serie
+    </DT
+><DT
+><A
+HREF="function.dio-truncate.html"
+>dio_truncate</A
+>&nbsp;--&nbsp; 
+     Trunca el tamaño del archivo cuyo descriptor es <VAR
+CLASS="parameter"
+>fd</VAR
+> hasta un valor de <VAR
+CLASS="parameter"
+>offset</VAR
+> bytes 
+    </DT
+><DT
+><A
+HREF="function.dio-write.html"
+>dio_write</A
+>&nbsp;--&nbsp;
+     Escribe datos en el archivo cuyo descriptor es <VAR
+CLASS="parameter"
+>fd</VAR
+> 
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dbplus-xunlockrel.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.dio-close.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dbplus_xunlockrel</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>dio_close</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

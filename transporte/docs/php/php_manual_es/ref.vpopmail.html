@@ -1,0 +1,321 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>vpopmail Functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="var_export"
+HREF="function.var-export.html"><LINK
+REL="NEXT"
+TITLE="vpopmail_add_alias_domain_ex"
+HREF="function.vpopmail-add-alias-domain-ex.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.var-export.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.vpopmail-add-alias-domain-ex.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.vpopmail"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXIV. vpopmail Functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN113005"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="vpopmail.intro"
+>Introducción</A
+></H1
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta extensión es
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta extensión, los nombre de sus funciones y
+en definitiva TODO lo documentado sobre esta extensión, puede
+cambiar en una futura versión de PHP SIN AVISO. La advertencia
+queda hecha, y utilizar esta extensión queda bajo su propia
+responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     This extension has been moved from PHP as of PHP 4.3.0 and now
+     vpopmail lives in <A
+HREF="http://pecl.php.net/package/vpopmail"
+TARGET="_top"
+>PECL</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="vpopmail.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  In PHP 4, these functions are only available if <VAR
+CLASS="literal"
+>PHP</VAR
+> was
+  configured with <VAR
+CLASS="option"
+>--with-vpopmail[=DIR]</VAR
+>.
+ </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.vpopmail-add-alias-domain-ex.html"
+>vpopmail_add_alias_domain_ex</A
+>&nbsp;--&nbsp;Add alias to an existing virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-add-alias-domain.html"
+>vpopmail_add_alias_domain</A
+>&nbsp;--&nbsp;Add an alias for a virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-add-domain-ex.html"
+>vpopmail_add_domain_ex</A
+>&nbsp;--&nbsp;Add a new virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-add-domain.html"
+>vpopmail_add_domain</A
+>&nbsp;--&nbsp;Add a new virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-add-user.html"
+>vpopmail_add_user</A
+>&nbsp;--&nbsp;Add a new user to the specified virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-alias-add.html"
+>vpopmail_alias_add</A
+>&nbsp;--&nbsp;insert a virtual alias</DT
+><DT
+><A
+HREF="function.vpopmail-alias-del-domain.html"
+>vpopmail_alias_del_domain</A
+>&nbsp;--&nbsp;deletes all virtual aliases of a domain</DT
+><DT
+><A
+HREF="function.vpopmail-alias-del.html"
+>vpopmail_alias_del</A
+>&nbsp;--&nbsp;deletes all virtual aliases of a user</DT
+><DT
+><A
+HREF="function.vpopmail-alias-get-all.html"
+>vpopmail_alias_get_all</A
+>&nbsp;--&nbsp;get all lines of an alias for a domain</DT
+><DT
+><A
+HREF="function.vpopmail-alias-get.html"
+>vpopmail_alias_get</A
+>&nbsp;--&nbsp;get all lines of an alias for a domain</DT
+><DT
+><A
+HREF="function.vpopmail-auth-user.html"
+>vpopmail_auth_user</A
+>&nbsp;--&nbsp;Attempt to validate a username/domain/password. Returns true/false</DT
+><DT
+><A
+HREF="function.vpopmail-del-domain-ex.html"
+>vpopmail_del_domain_ex</A
+>&nbsp;--&nbsp;Delete a virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-del-domain.html"
+>vpopmail_del_domain</A
+>&nbsp;--&nbsp;Delete a virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-del-user.html"
+>vpopmail_del_user</A
+>&nbsp;--&nbsp;Delete a user from a virtual domain</DT
+><DT
+><A
+HREF="function.vpopmail-error.html"
+>vpopmail_error</A
+>&nbsp;--&nbsp;Get text message for last vpopmail error. Returns string</DT
+><DT
+><A
+HREF="function.vpopmail-passwd.html"
+>vpopmail_passwd</A
+>&nbsp;--&nbsp;Change a virtual user's password</DT
+><DT
+><A
+HREF="function.vpopmail-set-user-quota.html"
+>vpopmail_set_user_quota</A
+>&nbsp;--&nbsp;Sets a virtual user's quota</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.var-export.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.vpopmail-add-alias-domain-ex.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>var_export</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>vpopmail_add_alias_domain_ex</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

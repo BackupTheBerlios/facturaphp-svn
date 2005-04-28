@@ -1,0 +1,554 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>FTP y FTPS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de Protocolos/Envolturas Soportadas"
+HREF="wrappers.html"><LINK
+REL="PREVIOUS"
+TITLE="HTTP y HTTPS"
+HREF="wrappers.http.html"><LINK
+REL="NEXT"
+TITLE="Secuencias de entrada/salida PHP"
+HREF="wrappers.php.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="wrappers.http.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice L. Lista de Protocolos/Envolturas Soportadas</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="wrappers.php.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="wrappers.ftp"
+>FTP y FTPS</A
+></H1
+><P
+>PHP 3, PHP 4, PHP 5.  <TT
+CLASS="filename"
+>ftps://</TT
+> a partir
+  de <VAR
+CLASS="literal"
+>PHP 4.3.0</VAR
+></P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>ftp://example.com/pub/archivo.txt</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>ftp://usuario:contrasenya@example.com/pub/archivo.txt</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>ftps://example.com/pub/archivo.txt</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>ftps://usuario:contrasenya@example.com/pub/archivo.txt</TT
+></P
+></LI
+></UL
+><P
+>&#13;   Permite acceso de lectura a archivos exsistentes y la
+   creación de nuevos archivos mediante FTP. Si el servidor no
+   soporta el modo pasivo de ftp, la conexión fallará.
+  </P
+><P
+>&#13;   Puede abrir archivos para lectura o para escritura, pero no en los
+   dos modos simultáneamente. Si el archivo remoto existe
+   previamente en el servidor ftp e intenta abrirlo para escritura,
+   pero no tiene especificada la opción de
+   contexto <VAR
+CLASS="literal"
+>overwrite</VAR
+>, la conexión
+   fallará. Si necesita sobrescribir archivos existentes sobre
+   ftp, especifique la opción <VAR
+CLASS="literal"
+>overwrite</VAR
+> en
+   el contexto y abra el archivo para escritura. Alternativamente,
+   puede usar la <A
+HREF="ref.ftp.html"
+>extensión FTP</A
+>.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Adición: </B
+>
+    A partir de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>, los archivos pueden ser
+    extendidos, agregando nuevos datos al final, mediante la envoltura
+    de URL <VAR
+CLASS="literal"
+>ftp://</VAR
+>. En versiones anteriores, al
+    intentar adicionar datos a un archivo
+    mediante <VAR
+CLASS="literal"
+>ftp://</VAR
+> se producirá un fallo.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   <TT
+CLASS="filename"
+>ftps://</TT
+> se ha introducido en <VAR
+CLASS="literal"
+>PHP
+   4.3.0</VAR
+>. Es igual a <TT
+CLASS="filename"
+>ftp://</TT
+>, pero
+   intenta negociar una conexión segura con el servidor ftp. Si
+   el servidor no soporta SSL, entonces la conexión recae sobre
+   el ftp corriente, sin encripción.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>FTPS es soportado desde <VAR
+CLASS="literal"
+>PHP 4.3.0</VAR
+>, si
+   ha compilado el soporte para OpenSSL.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN131211"
+></A
+><P
+><B
+>Tabla L-4. Resumen de Envoltura</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Atributo</TH
+><TH
+><VAR
+CLASS="literal"
+>PHP 4</VAR
+></TH
+><TH
+><VAR
+CLASS="literal"
+>PHP 5</VAR
+></TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Restricción
+       por <VAR
+CLASS="literal"
+>allow_url_fopen</VAR
+>.</TD
+><TD
+>Si</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Permite Lectura</TD
+><TD
+>Si</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Permite Escritura</TD
+><TD
+>Si (archivos nuevos únicamente)</TD
+><TD
+>Si (archivos nuevos/archivos existentes
+       con <VAR
+CLASS="parameter"
+>overwrite</VAR
+>)</TD
+></TR
+><TR
+><TD
+>Permite Adición</TD
+><TD
+>No</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Permite Lectura y Escritura Simultánea</TD
+><TD
+>No</TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.stat.html"
+><B
+CLASS="function"
+>stat()</B
+></A
+></TD
+><TD
+>No</TD
+><TD
+>&#13;        Solo los
+        elementos <A
+HREF="function.filesize.html"
+><B
+CLASS="function"
+>filesize()</B
+></A
+>, <A
+HREF="function.filetype.html"
+><B
+CLASS="function"
+>filetype()</B
+></A
+>,
+        <A
+HREF="function.file-exists.html"
+><B
+CLASS="function"
+>file_exists()</B
+></A
+>, <A
+HREF="function.is-file.html"
+><B
+CLASS="function"
+>is_file()</B
+></A
+>,
+        y <A
+HREF="function.is-dir.html"
+><B
+CLASS="function"
+>is_dir()</B
+></A
+>.
+       </TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.unlink.html"
+><B
+CLASS="function"
+>unlink()</B
+></A
+></TD
+><TD
+>No</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.rename.html"
+><B
+CLASS="function"
+>rename()</B
+></A
+></TD
+><TD
+>No</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.mkdir.html"
+><B
+CLASS="function"
+>mkdir()</B
+></A
+></TD
+><TD
+>No</TD
+><TD
+>Si</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.rmdir.html"
+><B
+CLASS="function"
+>rmdir()</B
+></A
+></TD
+><TD
+>No</TD
+><TD
+>Si</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN131275"
+></A
+><P
+><B
+>Tabla L-5. Opciones de contexto (a la altura de <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>)</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Uso</TH
+><TH
+>Predeterminado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+><VAR
+CLASS="literal"
+>overwrite</VAR
+></TD
+><TD
+>&#13;        Permite la sobrescritura de archivos previamente existentes en
+        el servidor remoto. Se aplica al modo de escritura (carga de
+        archivos) solamente.
+       </TD
+><TD
+><TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> (Deshabilitada)</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>resume_pos</VAR
+></TD
+><TD
+>&#13;        Desplazamiento de archivo para iniciar la transferencia. Se
+        aplica únicamente al modo de lectura (descarga de
+        archivos).
+       </TD
+><TD
+>0 (Comienzo del Archivo)</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Opciones de contexto de las secuencias de socket interno: </B
+>
+    Puede que se soporten opciones de contexto adicionales por el
+    <A
+HREF="transports.html#transports.inet"
+>transporte
+    implícito</A
+>.  Para
+    secuencias <VAR
+CLASS="literal"
+>ftp://</VAR
+>, refiérase a las
+    opciones de contexto para el
+    transporte <VAR
+CLASS="literal"
+>tcp://</VAR
+>. Para
+    secuencias <VAR
+CLASS="literal"
+>ftps://</VAR
+>, refiérase a las
+    opciones de contexto del transporte <VAR
+CLASS="literal"
+>ssl://</VAR
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="wrappers.http.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="wrappers.php.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>HTTP y HTTPS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="wrappers.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Secuencias de entrada/salida PHP</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>session_regenerate_id</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para el manejo de sesiones"
+HREF="ref.session.html"><LINK
+REL="PREVIOUS"
+TITLE="session_name"
+HREF="function.session-name.html"><LINK
+REL="NEXT"
+TITLE="session_register"
+HREF="function.session-register.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.session-name.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.session-register.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.session-regenerate-id"
+></A
+>session_regenerate_id</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN96374"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.2, PHP 5)</P
+>session_regenerate_id&nbsp;--&nbsp;
+     Actualizar la id de sesión actual con una recién generada
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN96377"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>session_regenerate_id</B
+> ( void )<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>session_regenerate_id()</B
+> reemplazará la id de
+sesión actual con una nueva, y conservará la
+información de sesión actual.
+    </P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96389"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo de <B
+CLASS="function"
+>session_regenerate_id()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />session_start</font><font color="#007700">();<br /><br /></font><font color="#0000BB">$id_sesion_antigua </font><font color="#007700">= </font><font color="#0000BB">session_id</font><font color="#007700">();<br /><br /></font><font color="#0000BB">session_regenerate_id</font><font color="#007700">();<br /><br /></font><font color="#0000BB">$id_sesion_nueva </font><font color="#007700">= </font><font color="#0000BB">session_id</font><font color="#007700">();<br /><br />echo </font><font color="#DD0000">"Sesi&amp;oacute;n Vieja: $id_sesion_antigua&lt;br /&gt;"</font><font color="#007700">;<br />echo </font><font color="#DD0000">"Sesi&amp;oacute;n Nueva: $id_sesion_nueva&lt;br /&gt;"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$_SESSION</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+A partir de PHP 4.3.3, si están habilitadas las cookies de
+sesión, el uso de <B
+CLASS="function"
+>session_regenerate_id()</B
+>
+también enviará una nueva cookie de sesión con la
+nueva id de sesión.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también
+     <A
+HREF="function.session-id.html"
+><B
+CLASS="function"
+>session_id()</B
+></A
+>,
+     <A
+HREF="function.session-start.html"
+><B
+CLASS="function"
+>session_start()</B
+></A
+>, y
+     <A
+HREF="function.session-name.html"
+><B
+CLASS="function"
+>session_name()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.session-name.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.session-register.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>session_name</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.session.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>session_register</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

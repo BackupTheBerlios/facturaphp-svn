@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>session_start</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para el manejo de sesiones"
+HREF="ref.session.html"><LINK
+REL="PREVIOUS"
+TITLE="session_set_save_handler"
+HREF="function.session-set-save-handler.html"><LINK
+REL="NEXT"
+TITLE="session_unregister"
+HREF="function.session-unregister.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.session-set-save-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.session-unregister.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.session-start"
+></A
+>session_start</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN96559"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>session_start&nbsp;--&nbsp;Inicializar los datos de una sesión</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN96562"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>session_start</B
+> ( void )<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>session_start()</B
+> crea una sesió (o la
+     continúa basandose en el session id pasado por GET
+     o mediante una cookie).
+    </P
+><P
+>&#13;     Si desea usar una sesión con un nombre en concreto,
+	 debe llamar a <A
+HREF="function.session-name.html"
+><B
+CLASS="function"
+>session_name()</B
+></A
+> antes de
+	 llamar a <B
+CLASS="function"
+>session_start()</B
+>.
+    </P
+><P
+>&#13;     Esta función siempre devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si está usando sesiones basadas en las cookies, debe llamar
+	  a <B
+CLASS="function"
+>session_start()</B
+> antes de que haya ninguna
+	  salida al navegador.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <B
+CLASS="function"
+>session_start()</B
+> registrará un manejador
+	 de salida interno para la reescritura de las URL's si
+     <VAR
+CLASS="literal"
+>trans-sid</VAR
+> está activado. Si un usuario
+	 utiliza <VAR
+CLASS="literal"
+>ob_gzhandler</VAR
+> o algo como
+     <A
+HREF="function.ob-start.html"
+><B
+CLASS="function"
+>ob_start()</B
+></A
+>, el orden del manejador de salida
+     es importante para que la salida sea la adecuada. Por ejemplo,
+	 el usuario debe registrar <VAR
+CLASS="literal"
+>ob_gzhandler</VAR
+>
+	 antes de iniciar la sesión.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Se recomienda utilizar <VAR
+CLASS="literal"
+>zlib.output_compression</VAR
+>
+	  en lugar de <VAR
+CLASS="literal"
+>ob_gzhandler</VAR
+>
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.session-set-save-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.session-unregister.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>session_set_save_handler</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.session.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>session_unregister</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

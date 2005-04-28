@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>crypt</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="crc32"
+HREF="function.crc32.html"><LINK
+REL="NEXT"
+TITLE="echo"
+HREF="function.echo.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.crc32.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.echo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.crypt"
+></A
+>crypt</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN105643"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>crypt&nbsp;--&nbsp;Encripta una cadena mediante DES</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN105646"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>crypt</B
+> ( string cad [, string semilla])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>crypt()</B
+> encriptará una cadena utilizando el
+     método estándar de encriptación del Unix <ABBR
+CLASS="abbrev"
+>DES</ABBR
+>.
+     Los argumentos son una cadena a encriptar y una cadena semilla
+     de 2 caracteres en la que basar la encriptación. Vea la página de
+     manual de Unix sobre crypt para más información.
+    </P
+><P
+>&#13;     Si el argumento de semilla no se proporciona, será generado
+     aleatoriamente por el PHP.
+    </P
+><P
+>&#13;     Algunos sistemas operativos soportan más de un tipo de encriptación.
+     De hecho, algunas veces la encriptación estándar DES es sustituída
+     por un algoritmo de encriptación basado en MD5. El tipo de
+     encriptación es disparado por el argumento semilla. En tiempo de
+     instalación, el PHP determina la capacidad de la función de
+     encriptación y aceptará semillas para otros tipos de encriptación.
+     Si no se proporciona la semilla, el PHP intentará generar una
+     semilla estándar DES de 2 caraceres por defecto, excepto si el
+     tipo de encriptación estándar del sistema es el MD5, en cuyo caso
+     se generará una semilla aleatoria compatible con MD5. El PHP
+     fija una constante llamada CRYPT_SALT_LENGTH que le especifica si
+     su sistema soporta una semilla de 2 caracteres o si se debe usar
+     la semilla de 12 caracteres del NDS.
+    </P
+><P
+>&#13;     La función estándar de encriptación <B
+CLASS="function"
+>crypt()</B
+> contiene
+     la semilla como los dos primeros caracteres de la salida.
+    </P
+><P
+>&#13;     En los sistemas en los que la función crypt() soporta múltiples
+     tipos de encriptación, las siguienes constantes son fijadas a
+     0 ó 1 dependiendo de si está disponible el tipo dado:
+     </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;       CRYPT_STD_DES - Encriptación DES estándar con semilla de 2 caracteres
+      </P
+></LI
+><LI
+><P
+>&#13;       CRYPT_EXT_DES - Encriptación DES extendida con semilla de 9 caracteres
+      </P
+></LI
+><LI
+><P
+>&#13;       CRYPT_MD5 - Encriptación MD5 con semilla de 12 caracteres y comenzando
+       por $1$
+      </P
+></LI
+><LI
+><P
+>&#13;       CRYPT_BLOWFISH - Encriptación DES extendida con semilla de 16 caracteres
+       y comenzando por $2$
+      </P
+></LI
+></UL
+><P
+>&#13;     No hay función de desencriptado porque <B
+CLASS="function"
+>crypt()</B
+>
+     utiliza un algoritmo de una sola vía.
+    </P
+><P
+>&#13;        Vea también: <A
+HREF="function.md5.html"
+><B
+CLASS="function"
+>md5()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.crc32.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.echo.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>crc32</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>echo</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

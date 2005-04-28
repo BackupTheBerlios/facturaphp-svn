@@ -1,0 +1,340 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Reporte de errores</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Migración de PHP 3 a PHP 4"
+HREF="migration4.html"><LINK
+REL="PREVIOUS"
+TITLE="Comportamiento del analizador sintáctico"
+HREF="migration4.parser.html"><LINK
+REL="NEXT"
+TITLE="Inicializadores"
+HREF="migration4.initializers.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration4.parser.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice C. Migración de PHP 3 a PHP 4</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="migration4.initializers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration4.error-reporting"
+>Reporte de errores</A
+></H1
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration4.error-reporting.config"
+>Cambios de configuración</A
+></H2
+><P
+>&#13;     Con PHP 3 el nivel de reporte de errores estaba establecido como
+     un valor numérico simple formado por la suma de los
+     números relacionados con diferentes niveles de
+     error. Algunos valores usuales eran 15 para reportar todos los
+     errores y advertencias, o 7 para reportar todo excepto mensajes
+     de noticias simples que indicaban mal estilo del código y
+     cosas por el estilo.
+    </P
+><P
+>&#13;     PHP 4 tiene un conjunto de niveles de error y advertencia mayor y
+     viene con un analizador sintáctico de configuración
+     que permite el uso de constantes simbólicas para
+     determinar el comportamiento deseado.
+    </P
+><P
+>&#13;     El nivel de reporte de errores debe ser ahora configurado
+     mediante la deshabilitación explícita de niveles de
+     advertencia que no desea que generen mensajes de error, con una
+     sentencia lógica OR sobre la constante
+     simbólica <VAR
+CLASS="literal"
+>E_ALL</VAR
+>. ¿Suena
+     complicado?  Bien, digamos que usted desea que el sistema de
+     reporte de errores le haga saber sobre cualquier problema excepto
+     por las advertencias de estilo simples que están
+     categorizadas por la constante
+     simbólica <VAR
+CLASS="literal"
+>E_NOTICE</VAR
+>. En ese caso,
+     colocará lo siguiente en su
+     <TT
+CLASS="filename"
+>php.ini</TT
+>: <VAR
+CLASS="literal"
+>error_reporting = E_ALL &#38; ~ ( E_NOTICE
+     )</VAR
+>. Si desea suprimir las advertencias también,
+     usted agrega la constante apropiada al interior de los
+     paréntesis usando el operador binario OR '|':
+     <VAR
+CLASS="literal"
+>error_reporting= E_ALL &#38; ~ ( E_NOTICE | E_WARNING
+     )</VAR
+>.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      Cuando actualice código o servidores desde PHP 3 a PHP 4,
+      usted debería chequear estos parámetros y llamadas
+      a <A
+HREF="function.error-reporting.html"
+><B
+CLASS="function"
+>error_reporting()</B
+></A
+> o puede que quiera
+      deshabilitar el reporte de los nuevos tipos de error,
+      especialmente E_COMPILE_ERROR. Esto puede llevar a la
+      generación de documentos sin información alguna
+      sobre qué ha pasado o en dónde investigar por
+      posibles problemas.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      El uso de los valores antiguos 7 y 15 para establecer el reporte
+      de errores es una muy mala idea ya que esto suprime algunas de
+      las nuevas clases de errores presentes, incluyendo errores de la
+      fase de análisis sintáctico. Esto puede producir
+      comportamientos bastante extraños, debido a que
+      posiblemente los scripts no trabajen más sin dejar de
+      mostrar mensajes de error en todas partes.
+     </P
+><P
+>&#13;      Esto ha producido una cantidad enorme de reportes de fallos
+      irreproducibles en el pasado, en donde la gente reportaba
+      problemas con el motor de scripts que eran incapaces de
+      rastrear, cuando lo que sucedía en realidad era
+      usualmente algún '}' que faltaba en un archivo requerido,
+      que el analizador sintáctico no podía reportar
+      debido a un sistema de reporte de errores mal configurado.
+     </P
+><P
+>&#13;      Así que revisar la configuración de su reporte de
+      errores debe ser lo primero que debe hacer siempre que sus
+      scripts mueran silenciosamente. El motor Zend puede considerarse
+      suficientemente maduro en la actualidad como para afirmar que
+      éste no es el causante de estos comportamientos
+      extraños.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H2
+CLASS="section"
+><A
+NAME="migration4.error-reporting.additions"
+>Mensajes de advertencia adicionales</A
+></H2
+><P
+>&#13;     Una gran cantidad de código PHP 3 existente usa
+     construcciones del lenguaje que deben ser consideradas como muy
+     mal estilo ya que, aunque logran el efecto esperado ahora, pueden
+     verse influenciadas por cambios en otros lugares del
+     código. PHP 4 desplegará una enorme cantidad de
+     mensajes de noticia en tales situaciones en donde PHP 3 no lo
+     hacía. La solución simple es deshabilitar los
+     mensajes E_NOTICE, pero usualmente es una buena idea arreglar el
+     código en su lugar.
+    </P
+><P
+>&#13;     El caso más común que produce mensajes de noticia
+     ahora es el uso de constantes de cadena sin comillas como
+     índices de matrices. Tanto PHP 3 como PHP 4
+     llegarán a interpretar éstas como cadenas si no
+     existen palabras clave o constantes con tales nombres, pero en
+     donde sea que una constante con tal nombre haya sido definida en
+     algún lugar del código, puede dañar el
+     script. Esto puede convertirse incluso en un riesgo de seguridad
+     si algún intruso logra redefinir constantes de cadena en
+     forma tal que hace que sus scripts le den derechos de acceso que
+     él no debía tener. Así que PHP 4 le
+     advertirá ahora siempre que use constantes de cadena sin
+     comillas, como por ejemplo
+     en <VAR
+CLASS="literal"
+>$_SERVER[REQUEST_METHOD]</VAR
+>. Modificar tal
+     expresión
+     por <VAR
+CLASS="literal"
+>$_SERVER['REQUEST_METHOD']</VAR
+> hará
+     feliz al analizador sintáctico y mejorará
+     significativamente el estilo y la seguridad de su código.
+    </P
+><P
+>&#13;     Otra cosa sobre la que PHP 4 le notificará es sobre el uso
+     de variables o elementos de matrices sin inicializar.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration4.parser.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="migration4.initializers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Comportamiento del analizador sintáctico</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="migration4.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Inicializadores</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

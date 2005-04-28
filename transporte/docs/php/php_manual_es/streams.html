@@ -1,0 +1,292 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>API de Secuencia para Autores de Extensiones PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="PHP API: Interfaces para autores de extensiones"
+HREF="api.html"><LINK
+REL="PREVIOUS"
+TITLE="PHP API: Interfaces para autores de extensiones"
+HREF="api.html"><LINK
+REL="NEXT"
+TITLE="Conceptos Básicos de Secuencias"
+HREF="streams.basics.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="api.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.basics.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="streams"
+>Capítulo 44. API de Secuencia para Autores de Extensiones PHP</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="streams.html#streams.overview"
+>Generalidades</A
+></DT
+><DT
+><A
+HREF="streams.basics.html"
+>Conceptos Básicos de Secuencias</A
+></DT
+><DT
+><A
+HREF="streams.resources.html"
+>Las Secuencias como Recursos</A
+></DT
+><DT
+><A
+HREF="stream.common-api.html"
+>Referencia de la API Común de Secuencias</A
+></DT
+><DT
+><A
+HREF="streams.dir-api.html"
+>Referencia de API de Directorios de Secuencias</A
+></DT
+><DT
+><A
+HREF="streams.file-api.html"
+>Referencia de API de Archivos de Secuencias</A
+></DT
+><DT
+><A
+HREF="streams.socket-api.html"
+>Referencia de API de Sockets de Secuencia</A
+></DT
+><DT
+><A
+HREF="streams.structs.html"
+>Estructuras de Secuencia</A
+></DT
+><DT
+><A
+HREF="streams.constants.html"
+>Constantes de Secuencias</A
+></DT
+></DL
+></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="streams.overview"
+>Generalidades</A
+></H1
+><P
+>&#13;   La API de Secuencias de PHP introduce un enfoque unificado a la
+   gestión de archivos y sockets en extensiones PHP. Usando una
+   API única con funciones estándar para operaciones
+   comunes, la API de secuencias le permite a su extensión
+   acceder a archivos, sockets, URLs, memoria y objetos definidos
+   por-script. Esta es una API extensible de tiempo de
+   ejecución que permite la carga dinámica de
+   módulos (¡y scripts!) para registrar nuevas
+   secuencias.
+  </P
+><P
+>&#13;   El propósito de la API de secuencias es facilitar la
+   apertura de archivos, URLs y otras fuentes de datos secuenciables a
+   los desarrolladores, mediante una API unificada que es fácil
+   de entender. La API se encuentra más o menos basada en la
+   familia de funciones ANSI C stdio (con una semántica
+   idéntica para la mayoría de sus funciones
+   principales), así que los progamadores de C tendrán
+   una sensación de familiaridad con las secuencias.
+  </P
+><P
+>&#13;   La API de secuencias opera en un par de niveles diferentes: al
+   nivel base, la API define objetos php_stream para representar
+   fuentes de datos secuenciables. En un nivel ligeramente más
+   alto, la API define objetos php_stream_wrapper que "envuelven" la
+   API de nivel más bajo para proveer soporte para la
+   recuperación de datos y meta-datos desde URLs. Un
+   parámetro de <VAR
+CLASS="literal"
+>contexto</VAR
+> adicional, aceptado
+   por la mayoría de funciones de creación de secuencia,
+   es pasado al método <VAR
+CLASS="literal"
+>stream_opener</VAR
+> de la
+   envoltura para configurar en detalle el comportamiento de la misma.
+  </P
+><P
+>&#13;   Cualquier secuencia, una vez abierta, puede tener también
+   cualquier número de <VAR
+CLASS="literal"
+>filtros</VAR
+> aplicados
+   sobre ella, los cuales procesan datos en la medida en que
+   éstos son leídos desde/escritos hacia la secuencia.
+  </P
+><P
+>&#13;   Las secuencias pueden ser moldeadas (convertidas) a otros tipos de
+   gestores de archivo, de modo que puedan ser usadas con bibliotecas
+   externas sin mucho problema. Esto permite que aquellas bibliotecas
+   accedan a datos directamente desde fuentes tipo URL. Si su sistema
+   tiene la función <B
+CLASS="function"
+>fopencookie()</B
+> o
+   <B
+CLASS="function"
+>funopen()</B
+>, ¡puede pasar incluso cualquier
+   secuencia PHP a cualquier biblioteca que use stdio ANSI!
+  </P
+><P
+>&#13;   <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Las funciones en este capítulo son para su uso en el
+     código fuente de PHP y no son funciones de PHP. Las
+     funciones de secuencias para usuarios pueden encontrarse en la
+     <A
+HREF="ref.stream.html"
+>Referencia de Secuencias</A
+>.
+    </P
+></BLOCKQUOTE
+></DIV
+>
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="api.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.basics.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PHP API: Interfaces para autores de extensiones</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Conceptos Básicos de Secuencias</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

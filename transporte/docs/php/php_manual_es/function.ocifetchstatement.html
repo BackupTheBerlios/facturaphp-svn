@@ -1,0 +1,243 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>OCIFetchStatement</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Oracle 8"
+HREF="ref.oci8.html"><LINK
+REL="PREVIOUS"
+TITLE="OCIFetchInto"
+HREF="function.ocifetchinto.html"><LINK
+REL="NEXT"
+TITLE="ocifreecollection"
+HREF="function.ocifreecollection.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ocifetchinto.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ocifreecollection.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ocifetchstatement"
+></A
+>OCIFetchStatement</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN78207"
+></A
+><P
+>    (PHP 3&#62;= 3.0.8, PHP 4 , PHP 5)</P
+>OCIFetchStatement&nbsp;--&nbsp;Busca todas la filas de un resultset dentro de un array.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN78210"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>OCIFetchStatement</B
+> ( int stmt, array &#38; variable)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>OCIFetchStatement()</B
+> busca todas las filas de un resultset 
+     dentro de un array definido por el usuario. <B
+CLASS="function"
+>OCIFetchStatement()</B
+> 
+     devuelve el numero de filas buscadas. 
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN78224"
+></A
+><P
+><B
+>Ejemplo 1. OCIFetchStatement</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+/* OCIFetchStatement example mbritton@verinet.com (990624) */
+
+$conn = OCILogon("scott","tiger");
+
+$stmt = OCIParse($conn,"select * from emp");
+
+OCIExecute($stmt);
+
+$nrows = OCIFetchStatement($stmt,$results);
+if ( $nrows &#62; 0 ) {
+   print "&#60;TABLE BORDER=\"1\"&#62;\n";
+   print "&#60;TR&#62;\n";
+   while ( list( $key, $val ) = each( $results ) ) {
+      print "&#60;TH&#62;$key&#60;/TH&#62;\n";
+   }
+   print "&#60;/TR&#62;\n";
+   
+   for ( $i = 0; $i &#60; $nrows; $i++ ) {
+      reset($results);
+      print "&#60;TR&#62;\n";
+      while ( $column = each($results) ) {   
+         $data = $column['value'];
+         print "&#60;TD&#62;$data[$i]&#60;/TD&#62;\n";
+      }
+      print "&#60;/TR&#62;\n";
+   }
+   print "&#60;/TABLE&#62;\n";
+} else {
+   echo "No data found&#60;BR&#62;\n";
+}      
+print "$nrows Records Selected&#60;BR&#62;\n";
+ 
+OCIFreeStatement($stmt);
+OCILogoff($conn);
+
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ocifetchinto.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ocifreecollection.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>OCIFetchInto</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oci8.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ocifreecollection</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

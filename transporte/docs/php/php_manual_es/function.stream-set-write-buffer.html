@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_set_write_buffer</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_set_timeout"
+HREF="function.stream-set-timeout.html"><LINK
+REL="NEXT"
+TITLE="stream_socket_accept"
+HREF="function.stream-socket-accept.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-set-timeout.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-accept.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-set-write-buffer"
+></A
+>stream_set_write_buffer</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104596"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>stream_set_write_buffer&nbsp;--&nbsp;Establece el uso de búferes de archivo en la
+    secuencia dada</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104599"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>stream_set_write_buffer</B
+> ( resource secuencia, int bufer)<BR
+></BR
+><P
+>&#13;     La salida al usar <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+> se acumula
+     normalmente en un búfer a los 8K. Esto quiere decir que si
+     existen dos procesos que desean escribir sobre la misma secuencia
+     de salida (un archivo), cada uno es pausado después de los
+     8K de datos para permitir que el otro
+     escriba. <B
+CLASS="function"
+>stream_set_write_buffer()</B
+> establece
+     el uso del búfer para operaciones de escritura sobre el
+     apuntador de archivo dado <VAR
+CLASS="parameter"
+>secuencia</VAR
+> a
+     <VAR
+CLASS="parameter"
+>bufer</VAR
+> bytes. Si
+     <VAR
+CLASS="parameter"
+>bufer</VAR
+> es 0, entonces las operaciones de
+     escritura no usan el búfer. Esto se asegura de que todas
+     las escrituras con <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+> sean completadas
+     antes de que a otros procesos les sea permitido escribir sobre
+     esa secuencia de salida.
+    </P
+><P
+>&#13;     La función devuelve 0 en caso de éxito, o EOF si la
+     petición no puede ser cumplida.
+    </P
+><P
+>&#13;     El siguiente ejemplo demuestra el modo de usar
+     <B
+CLASS="function"
+>stream_set_write_buffer()</B
+> para crear una
+     secuencia sin uso de búferes.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN104620"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de
+      <B
+CLASS="function"
+>stream_set_write_buffer()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#0000BB">$archivo</font><font color="#007700">, </font><font color="#DD0000">"w"</font><font color="#007700">);<br />if (</font><font color="#0000BB">$da</font><font color="#007700">) {<br />&nbsp;&nbsp;</font><font color="#0000BB">stream_set_write_buffer</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#0000BB">$salida</font><font color="#007700">);<br />&nbsp;&nbsp;</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> y <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-set-timeout.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-socket-accept.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_set_timeout</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_socket_accept</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

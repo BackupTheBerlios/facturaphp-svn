@@ -1,0 +1,222 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mssql_connect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Microsoft SQL Server"
+HREF="ref.mssql.html"><LINK
+REL="PREVIOUS"
+TITLE="mssql_close"
+HREF="function.mssql-close.html"><LINK
+REL="NEXT"
+TITLE="mssql_data_seek"
+HREF="function.mssql-data-seek.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mssql-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mssql-data-seek.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mssql-connect"
+></A
+>mssql_connect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN56075"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mssql_connect&nbsp;--&nbsp;Abrir una conexión con MS SQL
+    server</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN56078"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mssql_connect</B
+> ( [string nombre_servidor [, string nombre_usuario [, string contrasenya]]])<BR
+></BR
+><P
+>&#13;     Devuelve: Un identificador de enlace MS SQL positivo de tener
+     éxito, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ocurre un error.
+    </P
+><P
+> 
+     <B
+CLASS="function"
+>mssql_connect()</B
+> establece una conexión
+     con un servidor MS SQL. El argumento nombre_servidor debe ser un
+     nombre de servidor válido, que esté definido en el
+     archivo 'interfaces'.
+    </P
+><P
+>&#13;     En caso de que se realice una segunda llamada
+     a <B
+CLASS="function"
+>mssql_connect()</B
+> con los mismos argumentos,
+     no se establecerá un nuevo enlace, sino que se
+     devolverá el identificador de enlace de la conexión
+     abierta anteriormente.
+    </P
+><P
+> 
+     El enlace con el servidor será cerrado tan pronto como
+     finalice la ejecución del script, a menos que se cierre
+     antes mediante una llamada explícita
+     a <A
+HREF="function.mssql-close.html"
+><B
+CLASS="function"
+>mssql_close()</B
+></A
+>.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.mssql-pconnect.html"
+><B
+CLASS="function"
+>mssql_pconnect()</B
+></A
+>,
+     <A
+HREF="function.mssql-close.html"
+><B
+CLASS="function"
+>mssql_close()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mssql-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mssql-data-seek.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mssql_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mssql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mssql_data_seek</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

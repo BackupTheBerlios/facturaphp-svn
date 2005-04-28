@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>file_get_contents</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="file_exists"
+HREF="function.file-exists.html"><LINK
+REL="NEXT"
+TITLE="file_put_contents"
+HREF="function.file-put-contents.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.file-exists.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.file-put-contents.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.file-get-contents"
+></A
+>file_get_contents</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN28288"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>file_get_contents&nbsp;--&nbsp;Lee un archivo entero en una cadena</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN28291"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>file_get_contents</B
+> ( string nombre_archivo [, bool usar_ruta_inclusion [, resource contexto]])<BR
+></BR
+><P
+>&#13;     Función idéntica a <A
+HREF="function.file.html"
+><B
+CLASS="function"
+>file()</B
+></A
+>, con
+     la excepción de que <B
+CLASS="function"
+>file_get_contents()</B
+>
+     devuelve el archivo en una cadena. En caso de
+     fallo, <B
+CLASS="function"
+>file_get_contents()</B
+> devolverá
+     <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>file_get_contents()</B
+> es el modo preferido para
+     leer los contenidos de un archivo en una cadena. Esta
+     función usa las técnicas de asignación de
+     memoria que soporte su SO para incrementar su rendimiento.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función es segura
+binariamente.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>Puede usar una URL como
+nombre de archivo con esta función si los <A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>fopen wrappers</A
+> han sido
+activados.  Consulte <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> para más
+detalles sobre cómo especificar el nombre de fichero y <A
+HREF="wrappers.html"
+>Apéndice L</A
+> una lista de protocolos URL
+soportados</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Context support was added
+with <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>When using SSL, Microsoft IIS
+will violate the protocol by closing the connection without sending a
+close_notify indicator.  PHP will report this as "SSL: Fatal Protocol Error"
+when you reach the end of the data.  To workaround this, you should lower your
+<A
+HREF="ref.errorfunc.html#ini.error-reporting"
+>error_reporting</A
+> level not to include warnings.
+PHP 4.3.7 and higher can detect buggy IIS server software when you open
+the stream using the https:// wrapper and will suppress the warning for you.
+If you are using <A
+HREF="function.fsockopen.html"
+><B
+CLASS="function"
+>fsockopen()</B
+></A
+> to create an ssl:// socket,
+you are responsible for detecting and suppressing the warning yourself.
+</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+>,
+     <A
+HREF="function.file.html"
+><B
+CLASS="function"
+>file()</B
+></A
+>, <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+>,
+     <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+>, y <A
+HREF="function.readfile.html"
+><B
+CLASS="function"
+>readfile()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.file-exists.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.file-put-contents.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>file_exists</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>file_put_contents</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

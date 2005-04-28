@@ -1,0 +1,517 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Variables predefinidas</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Variables"
+HREF="language.variables.html"><LINK
+REL="PREVIOUS"
+TITLE="Variables"
+HREF="language.variables.html"><LINK
+REL="NEXT"
+TITLE="Ambito de las variables"
+HREF="language.variables.scope.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.variables.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 7. Variables</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.variables.scope.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.variables.predefined"
+>Variables predefinidas</A
+></H1
+><P
+>&#13;   PHP proporciona una gran cantidad de variables predefinidas a
+   cualquier script que se ejecute. De todas formas, muchas de esas
+   variables no pueden estar completamente documentadas ya que
+   dependen de sobre qué servidor se esté ejecutando, la
+   versión y configuración de dicho servidor, y otros
+   factores. Algunas de estas variables no estarán disponibles
+   cuando se ejecute PHP desde la <A
+HREF="features.commandline.html"
+>línea de
+   comandos</A
+>.Para obtener una lista de estas variables podeis
+   consultar la sección <A
+HREF="reserved.variables.html"
+>Variables predefinidas
+   reservadas</A
+>.
+   </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;    A partir de PHP 4.2.0, el valor por defecto de la directiva PHP
+    <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+> es
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>off</I
+></SPAN
+> (desactivada). Este es un cambio
+    importante en PHP. Teniendo register_globals
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>off</I
+></SPAN
+> afecta el conjunto de variables
+    predefinidas disponibles en el sistema. Por ejemplo, para obtener
+    <VAR
+CLASS="varname"
+>DOCUMENT_ROOT</VAR
+> se usará
+    <VAR
+CLASS="varname"
+>$_SERVER['DOCUMENT_ROOT']</VAR
+> en vez de
+    <VAR
+CLASS="varname"
+>$DOCUMENT_ROOT</VAR
+> ó <VAR
+CLASS="varname"
+>$_GET['id']</VAR
+>
+    de la URL <VAR
+CLASS="literal"
+>http://www.example.com/test.php?id=3</VAR
+>
+    en vez de <VAR
+CLASS="varname"
+>$id</VAR
+> ó
+    <VAR
+CLASS="varname"
+>$_ENV['HOME']</VAR
+> en vez de
+    <VAR
+CLASS="varname"
+>$HOME</VAR
+>.
+   </P
+><P
+>&#13;    Para más información sobre este cambio, podeis consultar el
+    apartado de configuración sobre <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>, el
+    capítulo sobre seguridad <A
+HREF="security.globals.html"
+>Usando "Register Globals"
+    </A
+>, asi como los anuncios de lanzamiento de PHP <A
+HREF="http://www.php.net/release_4_1_0.php"
+TARGET="_top"
+>4.1.0 </A
+> y <A
+HREF="http://www.php.net/release_4_2_0.php"
+TARGET="_top"
+>4.2.0</A
+>
+   </P
+><P
+>&#13;    El uso de las variables reservadas predefinidas en PHP, como <A
+HREF="language.variables.predefined.html#language.variables.superglobals"
+>matrices
+     superglobales</A
+> es recomendable.
+   </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;   A partir de PHP 4.1.0, PHP ofrece un conjunto adicional de matrices
+   predefinidas, conteniendo variables del servidor web, el entorno y
+   entradas del usuario. Estas nuevas matrices son un poco especiales
+   porque son automáticamente globales. Por esta razón, son conocidas a
+   menudo como "autoglobales" ó "superglobales". Las superglobales se
+   mencionan más abajo; sin embargo para una lista de sus contenidos y
+   más información sobre variables predefinidas en PHP, consultar la
+   sección <A
+HREF="reserved.variables.html"
+>Variables predefinidas
+   reservadas</A
+>. Podreis ver como las variables predefinidas
+   antiguas (<VAR
+CLASS="varname"
+>$HTTP_*_VARS</VAR
+>) todavía existen.
+
+   A partir de PHP 5.0.0, las
+matrices de tipo "long" de <A
+HREF="language.variables.predefined.html"
+> variables
+predefinidas</A
+>, se pueden desactivar con la directiva <A
+HREF="ini.sect.data-handling.html#ini.register-long-arrays"
+>register_long_arrays</A
+>.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Variables variables: </B
+>
+    Las superglobales no pueden usarse como <A
+HREF="language.variables.variable.html"
+>variables variables</A
+>.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   Si ciertas variables no son definidas en <A
+HREF="ini.sect.data-handling.html#ini.variables-order"
+>variables_order</A
+>, las matrices
+   PHP predefinidas asociadas a estas, estarán vacias.
+  </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><P
+><B
+>PHP superglobales</B
+></P
+><DL
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.globals"
+>$GLOBALS</A
+></DT
+><DD
+><P
+>&#13;      Contiene una referencia a cada variable disponible en el
+      espectro de las variables del script. Las llaves de esta matriz
+      son los nombres de las variables
+      globales. <VAR
+CLASS="varname"
+>$GLOBALS</VAR
+> existe dese PHP 3.
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.server"
+>$_SERVER</A
+></DT
+><DD
+><P
+>&#13;      Variables definidas por el servidor web ó directamente
+      relacionadas con el entorno en don el script se esta
+      ejecutando. Análoga a la antigua matriz
+      <VAR
+CLASS="varname"
+>$HTTP_SERVER_VARS</VAR
+> (la cual está todavía
+      disponible, aunque no se use).
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.get"
+>$_GET</A
+></DT
+><DD
+><P
+>&#13;      Variables proporcionadas al script por medio de HTTP GET.
+      Análoga a la antigua matriz <VAR
+CLASS="varname"
+>$HTTP_GET_VARS</VAR
+>
+      (la cual está todavía disponible, aunque no se use).
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.post"
+>$_POST</A
+></DT
+><DD
+><P
+>&#13;       Variables proporcionadas al script por medio de HTTP POST.
+      Análoga a la antigua matriz <VAR
+CLASS="varname"
+>$HTTP_POST_VARS</VAR
+>
+      (la cual está todavía disponible, aunque no se use).
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.cookies"
+>$_COOKIE</A
+></DT
+><DD
+><P
+>&#13;      Variables proporcionadas al script por medio de HTTP cookies.
+      Análoga a la antigua matriz <VAR
+CLASS="varname"
+>$HTTP_COOKIE_VARS</VAR
+>
+      (la cual está todavía disponible, aunque no se use).
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.files"
+>$_FILES</A
+></DT
+><DD
+><P
+>&#13;      Variables proporcionadas al script por medio de la subida de
+      ficheros via HTTP .  Análoga a la antigua matriz
+      <VAR
+CLASS="varname"
+>$HTTP_POST_FILES</VAR
+> (la cual está todavía
+      disponible, aunque no se use). Vea también <A
+HREF="features.file-upload.html#features.file-upload.post-method"
+>Subiendo ficheros por
+       método POST</A
+> para más información.
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.environment"
+>$_ENV</A
+></DT
+><DD
+><P
+>&#13;      Variables proporcionadas al script por medio del entorno.
+      Análoga a la antigua matriz <VAR
+CLASS="varname"
+>$HTTP_ENV_VARS</VAR
+>
+      (la cual está todavía disponible, aunque no se use).
+     </P
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.request"
+>$_REQUEST</A
+></DT
+><DD
+><P
+>&#13;      Variables proporcionadas al script por medio de cuaquier
+      mecanismo de entrada del usuario y por lo tanto no se puede
+      confiar en ellas. La presencia y el orden en que aparecen las
+      variables en esta matriz es definido por la directiva de
+      configuración <A
+HREF="ini.sect.data-handling.html#ini.variables-order"
+>variables_order</A
+>. Esta
+      matriz no tiene un análogo en versiones anteriores a PHP
+      4.1.0. Vea también
+      <A
+HREF="function.import-request-variables.html"
+><B
+CLASS="function"
+>import_request_variables()</B
+></A
+>.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Cuando se utiliza la <A
+HREF="features.commandline.html"
+>linea
+	de comandos</A
+>, <VAR
+CLASS="varname"
+>argv</VAR
+> y
+       <VAR
+CLASS="varname"
+>argc</VAR
+> <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> son incluidas
+       aquí; estas variables se podrán encontrar en la matriz
+      </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+HREF="reserved.variables.html#reserved.variables.session"
+>$_SESSION</A
+></DT
+><DD
+><P
+>&#13;      Variables registradas en la sesión del script.  Análoga a la
+      antigua matriz <VAR
+CLASS="varname"
+>$HTTP_SESSION_VARS</VAR
+> (la cual
+      está todavía disponible, aunque no se use). Vea también la
+      sección <A
+HREF="ref.session.html"
+>Funciones para el manejo de
+      sessiones</A
+> para más información.
+     </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.variables.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.variables.scope.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Variables</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.variables.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Ambito de las variables</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

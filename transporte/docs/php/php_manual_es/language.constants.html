@@ -1,0 +1,407 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Constantes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><LINK
+REL="PREVIOUS"
+TITLE="Variables externas a PHP"
+HREF="language.variables.external.html"><LINK
+REL="NEXT"
+TITLE="Constantes predefinidas"
+HREF="language.constants.predefined.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.variables.external.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.constants.predefined.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="language.constants"
+>Capítulo 8. Constantes</A
+></H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="language.constants.html#language.constants.syntax"
+>Sintaxis</A
+></DT
+><DT
+><A
+HREF="language.constants.predefined.html"
+>Constantes predefinidas</A
+></DT
+></DL
+></DIV
+><P
+>&#13;   Una constante es un identificador para expresar un valor simple.
+   Como el nombre sugiere, este valor no puede variar durante la ejecución del script.
+   (Las constantes especiales <TT
+CLASS="constant"
+><B
+>__FILE__</B
+></TT
+>  y <TT
+CLASS="constant"
+><B
+> __LINE__</B
+></TT
+>
+   son una excepción a esto, ya que actualmente no lo soin). Una constante es sensible a mayúsculas por
+   defecto. Por convención, los identificadores de constantes suelen declararse en mayúsculas
+
+  </P
+><P
+>&#13;  El nombre de una constante sigue las mismas reglas que cualquier etiqueta en PHP.
+  Un nombre de constante válido empieza con una letra o un caracter de subrayado, seguido
+  por cualquier número de letras, números, o subrayados.
+  Se podrían expresar mediante la siguiente expresión regular:
+   <VAR
+CLASS="literal"
+>[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*</VAR
+>
+
+   
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Para nuestros propósitos , entenderemos como letra los carácteres
+    a-z, A-Z, y los ASCII del 127 hasta el 255 (0x7f-0xff).
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    El alcanze de una constante es global, Es decir, es posible acceder a ellas
+    sin preocuparse por el ámbito de alcance.
+  </P
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.constants.syntax"
+>Sintaxis</A
+></H1
+><P
+>&#13;    Se puede definir una constante usando la función
+    <A
+HREF="function.define.html"
+><B
+CLASS="function"
+>define()</B
+></A
+>. Una vez definida, no puede ser modificada
+    ni eliminada .
+   </P
+><P
+>&#13;   Solo se puede definir como constantes valores escalares (<A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+>, 
+   <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+> y <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+> ).
+   </P
+><P
+>&#13;   Para obtener el valor de una constante solo es necesario especificar su nombre.
+   A diferencia de las variables, <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> se tiene que especificar el prefijo
+   <VAR
+CLASS="literal"
+>$</VAR
+>.
+
+
+   Tambien se puede utilizar la función <A
+HREF="function.constant.html"
+><B
+CLASS="function"
+>constant()</B
+></A
+>, para obtener el valor de una constante,
+   en el caso de que queramos expresarla de forma dinámica
+
+   Usa la función <A
+HREF="function.get-defined-constants.html"
+><B
+CLASS="function"
+>get_defined_constants()</B
+></A
+> parar obtener una lista de todas
+   las constantes definidas.
+
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Las contantes y las variables (globales) se encuentran en un espacio de nombres
+     distinto. Esto implica que por ejemplo <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> y <VAR
+CLASS="varname"
+>$TRUE</VAR
+> son diferentes.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;
+    Si usas una constante todavia no definida, PHP asume que estás refiriéndote
+    al nombre de la constante en si. Se lanzará un <A
+HREF="missing-stuff.html#features.error-handling"
+>aviso</A
+> si esto sucede.
+    Usa la función <A
+HREF="function.defined.html"
+><B
+CLASS="function"
+>defined()</B
+></A
+> para comprobar la existencia de dicha constante.
+     </P
+><P
+>&#13;   Estas son las diferencias entre constantes y variables:
+
+    <P
+></P
+><UL
+><LI
+><P
+>&#13;       Las constantes no son precedidas por un símbolo de dolar (<VAR
+CLASS="literal"
+>$</VAR
+>)
+        </P
+></LI
+><LI
+><P
+>&#13;       Las contantes solo pueden ser definidas usando la <B
+CLASS="function"
+>función()</B
+> define , nunca por simple asignación
+
+      </P
+></LI
+><LI
+><P
+>&#13;      Las constantes pueden ser definidas y  accedidas sin tener en cuenta las reglas de alcanze del ámbito.
+      </P
+></LI
+><LI
+><P
+>&#13;       Las constantes no pueden ser redefinidas o eliminadas despues de establecerse; y
+        </P
+></LI
+><LI
+><P
+>&#13;       Las constantes solo puede albergar valores escalares
+       </P
+></LI
+></UL
+>
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN3220"
+></A
+><P
+><B
+>Ejemplo 8-1. Definiendo constantes</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />define</font><font color="#007700">(</font><font color="#DD0000">"CONSTANT"</font><font color="#007700">, </font><font color="#DD0000">"Hello world."</font><font color="#007700">);<br />echo </font><font color="#0000BB">CONSTANT</font><font color="#007700">; </font><font color="#FF8000">// outputs "Hello world."<br /></font><font color="#007700">echo </font><font color="#0000BB">Constant</font><font color="#007700">; </font><font color="#FF8000">// outputs "Constant" and issues a notice.<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+
+   </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.variables.external.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.constants.predefined.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Variables externas a PHP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Constantes predefinidas</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

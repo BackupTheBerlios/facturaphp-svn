@@ -1,0 +1,3 @@
+/var/www/proyectos/.metadata/.plugins/org.trustudio.php.core/3812157262.index
+/var/www/proyectos/.metadata/.plugins/org.trustudio.php.core/2919464511.index
+/var/www/proyectos/.metadata/.plugins/org.trustudio.php.core/4120154851.index

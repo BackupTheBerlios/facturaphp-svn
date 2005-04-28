@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>error_log</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Gestión de Errores y Registros"
+HREF="ref.errorfunc.html"><LINK
+REL="PREVIOUS"
+TITLE="debug_print_backtrace"
+HREF="function.debug-print-backtrace.html"><LINK
+REL="NEXT"
+TITLE="error_reporting"
+HREF="function.error-reporting.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.debug-print-backtrace.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.error-reporting.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.error-log"
+></A
+>error_log</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN25386"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>error_log&nbsp;--&nbsp;envía un mensaje de error a algún lugar</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN25389"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>error_log</B
+> ( string message, int message_type [, string destination [, string extra_headers]])<BR
+></BR
+><P
+>&#13;     Envía un mensaje de error al log de errores del servidor web, a 
+     un puerto <ACRONYM
+CLASS="acronym"
+>TCP</ACRONYM
+> o a un fichero. El primer parámetro,
+     <VAR
+CLASS="parameter"
+>message</VAR
+> (mensaje), es el mensaje de error 
+     que debe ser registrado. El segundo parámetro, <VAR
+CLASS="parameter"
+>message_type</VAR
+> 
+     (tipo de mensaje) indica el lugar al que debe dirigirse:
+     <DIV
+CLASS="table"
+><A
+NAME="AEN25410"
+></A
+><P
+><B
+>Tabla 1. <B
+CLASS="function"
+>error_log()</B
+> tipos de log</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+>0</TD
+><TD
+>&#13;	  <VAR
+CLASS="parameter"
+>message</VAR
+> es enviado al registro de sistema 
+          de PHP, utilizando el mecanismo de registro de sistema del Sistema
+          Operativo, o a un fichero, dependiendo del valor de la directiva de
+          configuración <A
+HREF="ref.errorfunc.html#ini.error-log"
+>error_log</A
+>
+	 </TD
+></TR
+><TR
+><TD
+>1</TD
+><TD
+>&#13;	  <VAR
+CLASS="parameter"
+>message</VAR
+> es enviado por correo electrónico 
+          a la dirección del parámetro <VAR
+CLASS="parameter"
+>destination</VAR
+> 
+          (destino). Este es el único tipo de mensaje donde se utiliza 
+          el cuarto parámetro, <VAR
+CLASS="parameter"
+>extra_headers</VAR
+>. Este 
+          tipo de mensaje utiliza la misma funcionalidad interna que 
+          <A
+HREF="function.mail.html"
+><B
+CLASS="function"
+>mail()</B
+></A
+> realiza.
+	 </TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>&#13;	  <VAR
+CLASS="parameter"
+>message</VAR
+> es enviado a través de la conexión
+          de depuración de PHP. Esta opción está disponible sólo si 
+	  <A
+HREF="missing-stuff.html#enable-debugger"
+>la depuración remota ha sido 
+          activada</A
+>. En este caso el parámetro 
+          <VAR
+CLASS="parameter"
+>destination</VAR
+> especifica el nombre de host
+          o dirección IP y, opcionalmente, el número de puerto del
+          socket que recibe la información de depuración.
+	 </TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>&#13;	  <VAR
+CLASS="parameter"
+>message</VAR
+> es añadido al fichero 
+	  <VAR
+CLASS="parameter"
+>destination</VAR
+>.
+	 </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN25439"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>error_log()</B
+> ejemplos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// Send notification through the server log if we can not<br />// connect to the database.<br />if (!Ora_Logon($username, $password)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;error_log("Oracle database not available!", 0);<br />}<br /><br />// Notify administrator by email if we run out of FOO<br />if (!($foo = allocate_new_foo()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;error_log("Big trouble, we're all out of FOOs!", 1,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"operator@mydomain.com");<br />}<br /><br />// other ways of calling error_log():<br />error_log("You messed up!", 2, "127.0.0.1:7000");<br />error_log("You messed up!", 2, "loghost");<br />error_log("You messed up!", 3, "/var/tmp/my-errors.log");</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.debug-print-backtrace.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.error-reporting.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>debug_print_backtrace</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.errorfunc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>error_reporting</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

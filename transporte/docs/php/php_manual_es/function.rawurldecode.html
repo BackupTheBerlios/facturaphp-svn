@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>rawurldecode</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de URL"
+HREF="ref.url.html"><LINK
+REL="PREVIOUS"
+TITLE="parse_url"
+HREF="function.parse-url.html"><LINK
+REL="NEXT"
+TITLE="rawurlencode"
+HREF="function.rawurlencode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.parse-url.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.rawurlencode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.rawurldecode"
+></A
+>rawurldecode</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN111945"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>rawurldecode&nbsp;--&nbsp;Decodificar cadenas codificadas estilo URL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN111948"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>rawurldecode</B
+> ( string cadena)<BR
+></BR
+><P
+>&#13;Devuelve una cadena en done las con secuencias con signos de
+porcentaje (<VAR
+CLASS="literal"
+>%</VAR
+>) seguidos de dos dígitos
+hexadecimales, son reemplazados con caracteres literales.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN111959"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>rawurldecode()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#007700">echo </font><font color="#0000BB">rawurldecode</font><font color="#007700">(</font><font color="#DD0000">'foo%20bar%40baz'</font><font color="#007700">); </font><font color="#FF8000">// foo bar@baz<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+<B
+CLASS="function"
+>rawurldecode()</B
+> no decodifica los símbolos
+más ('+') como espacios. <A
+HREF="function.urldecode.html"
+><B
+CLASS="function"
+>urldecode()</B
+></A
+> lo
+hace.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también
+     <A
+HREF="function.rawurlencode.html"
+><B
+CLASS="function"
+>rawurlencode()</B
+></A
+>,
+     <A
+HREF="function.urldecode.html"
+><B
+CLASS="function"
+>urldecode()</B
+></A
+> y
+     <A
+HREF="function.urlencode.html"
+><B
+CLASS="function"
+>urlencode()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.parse-url.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.rawurlencode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>parse_url</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.url.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>rawurlencode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

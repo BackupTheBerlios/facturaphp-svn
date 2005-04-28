@@ -1,0 +1,643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Secuencias de entrada/salida PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de Protocolos/Envolturas Soportadas"
+HREF="wrappers.html"><LINK
+REL="PREVIOUS"
+TITLE="FTP y FTPS"
+HREF="wrappers.ftp.html"><LINK
+REL="NEXT"
+TITLE="Secuencias de Compresión"
+HREF="wrappers.compression.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="wrappers.ftp.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice L. Lista de Protocolos/Envolturas Soportadas</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="wrappers.compression.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="wrappers.php"
+>Secuencias de entrada/salida PHP</A
+></H1
+><P
+>&#13;   <VAR
+CLASS="literal"
+>PHP 3.0.13</VAR
+> y superior, <TT
+CLASS="filename"
+>php://output</TT
+> 
+   y <TT
+CLASS="filename"
+>php://input</TT
+> a partir de <VAR
+CLASS="literal"
+>PHP 4.3.0</VAR
+>,
+   <TT
+CLASS="filename"
+>php://filter</TT
+> desde <VAR
+CLASS="literal"
+>PHP 5.0.0</VAR
+>
+  </P
+><P
+></P
+><UL
+><LI
+><P
+><TT
+CLASS="filename"
+>php://stdin</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>php://stdout</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>php://stderr</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>php://output</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>php://input</TT
+></P
+></LI
+><LI
+><P
+><TT
+CLASS="filename"
+>php://filter</TT
+></P
+></LI
+></UL
+><P
+>&#13;   <TT
+CLASS="filename"
+>php://stdin</TT
+>, <TT
+CLASS="filename"
+>php://stdout</TT
+>
+   y <TT
+CLASS="filename"
+>php://stderr</TT
+> le ofrecen acceso a las
+   secuencias de entrada o salida correspondientes del proceso PHP.
+  </P
+><P
+>&#13;   <TT
+CLASS="filename"
+>php://output</TT
+> le permite escribir sobre el
+   mecanismo de búfer de salida en la misma manera que lo hacen
+   <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+> y <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>.
+  </P
+><P
+>&#13;   <TT
+CLASS="filename"
+>php://input</TT
+> le permite leer datos POST en su
+   forma primitiva. Es una alternativa que consume menos memoria que
+   <VAR
+CLASS="varname"
+>$HTTP_RAW_POST_DATA</VAR
+> y no requiere de directivas
+   <TT
+CLASS="filename"
+>php.ini</TT
+> especiales.
+  </P
+><P
+>&#13;   <TT
+CLASS="filename"
+>php://stdin</TT
+> y
+   <TT
+CLASS="filename"
+>php://input</TT
+> son de sólo-lectura, mientras que
+   <TT
+CLASS="filename"
+>php://stdout</TT
+>,
+   <TT
+CLASS="filename"
+>php://stderr</TT
+> y
+   <TT
+CLASS="filename"
+>php://output</TT
+> son de sólo-escritura.
+  </P
+><P
+>&#13;   <TT
+CLASS="filename"
+>php://filter</TT
+> es una especie de meta-envoltura
+   diseñada para permitir el uso de filtros sobre una secuencia
+   al momento de su apertura. Resulta útil con aquellas
+   funciones de archivos todo-en-uno,
+   como <A
+HREF="function.readfile.html"
+><B
+CLASS="function"
+>readfile()</B
+></A
+>, <A
+HREF="function.file.html"
+><B
+CLASS="function"
+>file()</B
+></A
+>,
+   y <A
+HREF="function.file-get-contents.html"
+><B
+CLASS="function"
+>file_get_contents()</B
+></A
+> en donde de otro modo no
+   habría forma de aplicar filtros a la secuencia antes de que
+   los contenidos fueran leídos.
+  </P
+><P
+>&#13;   El destino <TT
+CLASS="filename"
+>php://filter</TT
+> recibe los siguientes
+   'parámetros' como partes de su 'ruta'.
+  </P
+><P
+></P
+><UL
+><LI
+><P
+>&#13;     <VAR
+CLASS="literal"
+>/resource=&#60;secuencia a ser filtrada&#62;</VAR
+>
+     (<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>requerido</I
+></SPAN
+>) Este parámetro debe estar
+     ubicado el final de su
+     especificación <TT
+CLASS="filename"
+>php://filter</TT
+> y debe
+     apuntar a la secuencia que desea filtrar.
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN131363"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Esto es equivalente a simplemente:<br />&nbsp;&nbsp;&nbsp;readfile("http://www.example.com");<br />&nbsp;&nbsp;&nbsp;ya que no se aplica filtro alguno */<br /><br /></font><font color="#0000BB">readfile</font><font color="#007700">(</font><font color="#DD0000">"php://filter/resource=http://www.example.com"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     <VAR
+CLASS="literal"
+>/read=&#60;lista de filtros a aplicar a la cadena de
+     lectura&#62;</VAR
+> (<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>opcional</I
+></SPAN
+>) Este
+     parámetro toma uno o más nombres de filtros
+     separados por el caracter <VAR
+CLASS="literal"
+>|</VAR
+>.
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN131370"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Esto produce como salida el contenido de <br />&nbsp;&nbsp;&nbsp;www.example.com enteramente en mayusculas */<br /></font><font color="#0000BB">readfile</font><font color="#007700">(</font><font color="#DD0000">"php://filter/read=string.toupper/resource=http://www.example.com"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Esto hace lo mismo pero tambien codifica la salida con&nbsp;&nbsp;ROT13 */<br /></font><font color="#0000BB">readfile</font><font color="#007700">(</font><font color="#DD0000">"php://filter/read=string.toupper|string.rot13/resource=http://www.example.com"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     <VAR
+CLASS="literal"
+>/write=&#60;lista de filtros a aplicar a la cadena de
+     escritura&#62;</VAR
+> (<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>opcional</I
+></SPAN
+>) Este
+     parámetro toma uno o más nombres de filtro
+     separados por el caracter <VAR
+CLASS="literal"
+>|</VAR
+>.
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN131377"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Esto filtra la cadena "Hola Mundo" a traves del filtro rot13,<br />&nbsp;&nbsp;&nbsp;luego escribe al archivo ejemplo.txt en el directorio actual */<br /></font><font color="#0000BB">file_set_contents</font><font color="#007700">(</font><font color="#DD0000">"php://filter/write=string.rot13/resource=ejemplo.txt"</font><font color="#007700">,</font><font color="#DD0000">"Hola Mundo"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+></LI
+><LI
+><P
+>&#13;     <VAR
+CLASS="literal"
+>/&#60;lista de filtros a aplicar a ambas
+     cadenas&#62;</VAR
+> (<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>opcional</I
+></SPAN
+>) Cualquier
+     lista de filtros que no esté precedida
+     por <VAR
+CLASS="literal"
+>read=</VAR
+> o <VAR
+CLASS="literal"
+>write=</VAR
+>
+     será aplicada tanto a la cadena de lectura como a la de
+     escritura (según sea el caso).
+    </P
+></LI
+></UL
+><P
+>&#13;   <DIV
+CLASS="table"
+><A
+NAME="AEN131386"
+></A
+><P
+><B
+>Tabla L-6. 
+     Resumen de Envoltura (Para <VAR
+CLASS="literal"
+>php://filter</VAR
+>, 
+     refiérase al resumen de la envoltura siendo filtrada.)
+    </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Atributo</TH
+><TH
+>Soporte</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Restricción
+       por <VAR
+CLASS="literal"
+>allow_url_fopen</VAR
+>.</TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Permite Lectura</TD
+><TD
+>&#13;        <VAR
+CLASS="literal"
+>php://stdin</VAR
+> y 
+        <VAR
+CLASS="literal"
+>php://input</VAR
+> únicamente.
+       </TD
+></TR
+><TR
+><TD
+>Permite Escritura</TD
+><TD
+>&#13;        <VAR
+CLASS="literal"
+>php://stdout</VAR
+>,
+        <VAR
+CLASS="literal"
+>php://stderr</VAR
+>, y
+        <VAR
+CLASS="literal"
+>php://output</VAR
+> únicamente.
+       </TD
+></TR
+><TR
+><TD
+>Permite Adición</TD
+><TD
+>&#13;        <VAR
+CLASS="literal"
+>php://stdout</VAR
+>,
+        <VAR
+CLASS="literal"
+>php://stderr</VAR
+>, y 
+        <VAR
+CLASS="literal"
+>php://output</VAR
+> únicamente. (Equivalente a la
+        escritura)
+       </TD
+></TR
+><TR
+><TD
+>Permite Lectura y Escritura Simultánea</TD
+><TD
+>No. Estas envolturas son unidireccionales.</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.stat.html"
+><B
+CLASS="function"
+>stat()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.unlink.html"
+><B
+CLASS="function"
+>unlink()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.rename.html"
+><B
+CLASS="function"
+>rename()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.mkdir.html"
+><B
+CLASS="function"
+>mkdir()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+><TR
+><TD
+>Soporte <A
+HREF="function.rmdir.html"
+><B
+CLASS="function"
+>rmdir()</B
+></A
+></TD
+><TD
+>No</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="wrappers.ftp.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="wrappers.compression.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>FTP y FTPS</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="wrappers.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Secuencias de Compresión</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

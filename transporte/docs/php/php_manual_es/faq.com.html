@@ -1,0 +1,753 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>PHP and COM</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQ: Preguntas frecuentes"
+HREF="faq.html"><LINK
+REL="PREVIOUS"
+TITLE="PHP and HTML"
+HREF="faq.html.html"><LINK
+REL="NEXT"
+TITLE="PHP y otros lenguajes"
+HREF="faq.languages.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="faq.html.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.languages.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="faq.com"
+>Capítulo 53. PHP and COM</A
+></H1
+><P
+>&#13;    PHP can be used to access COM and DCOM objects on Win32 platforms.
+   </P
+><DIV
+CLASS="qandaset"
+><DL
+><DT
+>1. <A
+HREF="faq.com.html#faq.com.q1"
+>&#13;      I have built a DLL to calculate something. Is there any way to run this DLL under PHP ?
+     </A
+></DT
+><DT
+>2. <A
+HREF="faq.com.html#faq.com.q2"
+>&#13;      What does 'Unsupported variant type: xxxx (0xxxxx)' mean ?
+     </A
+></DT
+><DT
+>3. <A
+HREF="faq.com.html#faq.com.q3"
+>&#13;      Is it possible manipulate visual objects in PHP ?
+     </A
+></DT
+><DT
+>4. <A
+HREF="faq.com.html#faq.com.q4"
+>&#13;      Can I store a COM object in a session ?
+     </A
+></DT
+><DT
+>5. <A
+HREF="faq.com.html#faq.com.q5"
+>&#13;      How can I trap COM errors ?
+     </A
+></DT
+><DT
+>6. <A
+HREF="faq.com.html#faq.com.q6"
+>&#13;      Can I generate DLL files from PHP scripts like i can in Perl ?
+     </A
+></DT
+><DT
+>7. <A
+HREF="faq.com.html#faq.com.q7"
+>&#13;      What does 'Unable to obtain IDispatch interface for CLSID {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}' mean ?
+     </A
+></DT
+><DT
+>8. <A
+HREF="faq.com.html#faq.com.q8"
+>&#13;      How can I run COM object from remote server ?
+     </A
+></DT
+><DT
+>9. <A
+HREF="faq.com.html#faq.com.q9"
+>&#13;      I get 'DCOM is disabled in C:\path...\scriptname.php on line 6', what can I do ?
+     </A
+></DT
+><DT
+>10. <A
+HREF="faq.com.html#faq.com.q10"
+>&#13;      Is it possible to load/manipulate an ActiveX object in a page with PHP ?
+     </A
+></DT
+><DT
+>11. <A
+HREF="faq.com.html#faq.com.q11"
+>&#13;      Is it possible to get a running instance of a component ?
+     </A
+></DT
+><DT
+>12. <A
+HREF="faq.com.html#faq.com.q12"
+>&#13;      Is there a way to handle an event sent from COM object ?
+     </A
+></DT
+><DT
+>13. <A
+HREF="faq.com.html#faq.com.q13"
+>&#13;      I'm having problems when trying to invoke a method of a COM object 
+      which exposes more than one interface. What can I do ?
+     </A
+></DT
+><DT
+>14. <A
+HREF="faq.com.html#faq.com.q14"
+>&#13;      So PHP works with COM, how about COM+ ?
+     </A
+></DT
+><DT
+>15. <A
+HREF="faq.com.html#faq.com.q15"
+>&#13;      If PHP can manipulate COM objects, can we imagine to use 
+      MTS to manage components resources, in conjunction with PHP ?
+     </A
+></DT
+></DL
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q1"
+></A
+><B
+>1. </B
+>
+      I have built a DLL to calculate something. Is there any way to run this DLL under PHP ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      If this is a simple DLL there is no way yet to run it from PHP. If the DLL contains a COM
+      server you may be able to access it if it implements the IDispatch interface.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q2"
+></A
+><B
+>2. </B
+>
+      What does 'Unsupported variant type: xxxx (0xxxxx)' mean ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      There are dozens of VARIANT types and combinations of them. Most of them are already supported but
+      a few still have to be implemented.
+      Arrays are not completely supported. Only single dimensional indexed
+      only arrays can be passed between PHP and COM.
+      If you find other types that aren't supported, please report them as a bug (if not already reported)
+      and provide as much information as available.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q3"
+></A
+><B
+>3. </B
+>
+      Is it possible manipulate visual objects in PHP ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Generally it is, but as PHP is mostly used as a web scripting language it runs in the web servers context, thus
+      visual objects will never appear on the servers desktop.
+      If you use PHP for application scripting e.g. in conjunction with PHP-GTK there is no limitation in accessing and
+      manipulating visual objects through COM.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q4"
+></A
+><B
+>4. </B
+>
+      Can I store a COM object in a session ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      No, you can't. COM instances are treated as resources and therefore they are only available in a single script's context.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q5"
+></A
+><B
+>5. </B
+>
+      How can I trap COM errors ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Currently it's not possible to trap COM errors beside the ways provided by PHP itself (@, track_errors, ..), but we are
+      thinking of a way to implement this.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q6"
+></A
+><B
+>6. </B
+>
+      Can I generate DLL files from PHP scripts like i can in Perl ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      No, unfortunately there is no such tool available for PHP.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q7"
+></A
+><B
+>7. </B
+>
+      What does 'Unable to obtain IDispatch interface for CLSID {xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx}' mean ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      This error can have multiple reasons:
+      <P
+></P
+><UL
+><LI
+><P
+>&#13;         the CLSID is wrong
+         </P
+></LI
+><LI
+><P
+>&#13;         the requested DLL is missing
+         </P
+></LI
+><LI
+><P
+>&#13;         the requested component doesn't implement the IDispatch interface
+         </P
+></LI
+></UL
+>
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q8"
+></A
+><B
+>8. </B
+>
+      How can I run COM object from remote server ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Exactly like you run local objects. You only have to pass the IP of the remote machine as second parameter to
+      the COM constructor.
+     </P
+><P
+>&#13;      Make sure that you have set <VAR
+CLASS="literal"
+>com.allow_dcom=true</VAR
+> in your <TT
+CLASS="filename"
+>php.ini</TT
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q9"
+></A
+><B
+>9. </B
+>
+      I get 'DCOM is disabled in C:\path...\scriptname.php on line 6', what can I do ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Edit your <TT
+CLASS="filename"
+>php.ini</TT
+> and set <VAR
+CLASS="literal"
+>com.allow_dcom=true</VAR
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q10"
+></A
+><B
+>10. </B
+>
+      Is it possible to load/manipulate an ActiveX object in a page with PHP ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      This has nothing to do with PHP. ActiveX objects are loaded on client side if they are requested
+      by the HTML document. There is no relation to the PHP script and therefore there is no direct
+      server side interaction possible.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q11"
+></A
+><B
+>11. </B
+>
+      Is it possible to get a running instance of a component ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      This is possible with the help of monikers. If you want to get multiple references to the same word instance
+      you can create that instance like shown:
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$word = new COM("C:\docs\word.doc");</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      This will create a new instance if there is no running instance available or it will return a handle to the
+      running instance, if available.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q12"
+></A
+><B
+>12. </B
+>
+      Is there a way to handle an event sent from COM object ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Starting in PHP 4.3.0, you can define an event sink and bind it as shown
+      in the example below.  You can use <A
+HREF="function.com-print-typeinfo.html"
+><B
+CLASS="function"
+>com_print_typeinfo()</B
+></A
+>
+      to have PHP generate a skeleton for the event sink class.
+
+      <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN122645"
+></A
+><P
+><B
+>Ejemplo 53-1. COM event sink example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">class </font><font color="#0000BB">IEEventSinker </font><font color="#007700">{<br />&nbsp;&nbsp;var </font><font color="#0000BB">$terminated </font><font color="#007700">= </font><font color="#0000BB">false</font><font color="#007700">;<br /><br />&nbsp;&nbsp;function </font><font color="#0000BB">ProgressChange</font><font color="#007700">(</font><font color="#0000BB">$progress</font><font color="#007700">, </font><font color="#0000BB">$progressmax</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Download progress: $progress / $progressmax</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function </font><font color="#0000BB">DocumentComplete</font><font color="#007700">(&amp;</font><font color="#0000BB">$dom</font><font color="#007700">, </font><font color="#0000BB">$url</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Document $url complete</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;function </font><font color="#0000BB">OnQuit</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Quit!\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$this</font><font color="#007700">-&gt;</font><font color="#0000BB">terminated </font><font color="#007700">= </font><font color="#0000BB">true</font><font color="#007700">;<br />&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">$ie </font><font color="#007700">= new </font><font color="#0000BB">COM</font><font color="#007700">(</font><font color="#DD0000">"InternetExplorer.Application"</font><font color="#007700">);<br /></font><font color="#0000BB">$sink </font><font color="#007700">=&amp; new </font><font color="#0000BB">IEEventSinker</font><font color="#007700">();<br /></font><font color="#0000BB">com_event_sink</font><font color="#007700">(</font><font color="#0000BB">$ie</font><font color="#007700">, </font><font color="#0000BB">$sink</font><font color="#007700">, </font><font color="#DD0000">"DWebBrowserEvents2"</font><font color="#007700">);<br /></font><font color="#0000BB">$ie</font><font color="#007700">-&gt;</font><font color="#0000BB">Visible </font><font color="#007700">= </font><font color="#0000BB">true</font><font color="#007700">;<br /></font><font color="#0000BB">$ie</font><font color="#007700">-&gt;</font><font color="#0000BB">Navigate</font><font color="#007700">(</font><font color="#DD0000">"http://www.php.net"</font><font color="#007700">);<br />while(!</font><font color="#0000BB">$sink</font><font color="#007700">-&gt;</font><font color="#0000BB">terminated</font><font color="#007700">) {<br />&nbsp;&nbsp;</font><font color="#0000BB">com_message_pump</font><font color="#007700">(</font><font color="#0000BB">4000</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">$ie </font><font color="#007700">= </font><font color="#0000BB">null</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q13"
+></A
+><B
+>13. </B
+>
+      I'm having problems when trying to invoke a method of a COM object 
+      which exposes more than one interface. What can I do ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      The answer is as simple as unsatisfying. I don't know exactly but i think you can do nothing.
+      If someone has specific information about this, please let <A
+HREF="mailto:harald.radi@nme.at"
+TARGET="_top"
+>me</A
+> know :)
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q14"
+></A
+><B
+>14. </B
+>
+      So PHP works with COM, how about COM+ ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      COM+ extends COM by a framework for managing components through MTS and MSMQ but there is nothing special that
+      PHP has to support to use such components.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.com.q15"
+></A
+><B
+>15. </B
+>
+      If PHP can manipulate COM objects, can we imagine to use 
+      MTS to manage components resources, in conjunction with PHP ?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      PHP itself doesn't handle transactions yet. Thus if an error 
+      occurs no rollback is initiated. If you use components that
+      support transactions you will have to implement the 
+      transaction management yourself.
+     </P
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="faq.html.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.languages.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>PHP and HTML</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>PHP y otros lenguajes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

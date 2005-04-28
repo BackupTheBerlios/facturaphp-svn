@@ -1,0 +1,33 @@
+
+body
+{
+	background-color:#44bbee;
+	color:darkblue;
+}
+h1
+{
+	color:black;
+}
+.cabeceratabla
+{	
+	background-color:black;
+	color:orange;
+	font-family:arial;
+	font-size:110%;
+	font-weight:bold;
+	text-align:center;	
+}
+.datostabla
+{
+	background-color:lightorange;
+	color:black;
+	font-weight:bold;
+	font-family:comic sans;
+	font-size:110%;
+	text-align:center;	
+}
+input
+{
+	background-color:lightblue;
+	color:darkblue;
+}

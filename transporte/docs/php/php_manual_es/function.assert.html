@@ -1,0 +1,337 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>assert</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="assert_options"
+HREF="function.assert-options.html"><LINK
+REL="NEXT"
+TITLE="dl"
+HREF="function.dl.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.assert-options.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.dl.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.assert"
+></A
+>assert</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN84970"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>assert&nbsp;--&nbsp;Revisa si la aserción es evaluada a
+    <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN84974"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>assert</B
+> ( mixed asercion)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>assert()</B
+> revisará
+     la <VAR
+CLASS="parameter"
+>asercion</VAR
+> dada y tomará una
+     acción apropiada si su resultado es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><P
+>&#13;     Si la <VAR
+CLASS="parameter"
+>asercion</VAR
+> es dada como una cadena,
+     ésta será evaluada como código PHP
+     por <B
+CLASS="function"
+>assert()</B
+>. Las ventajas de
+     una <VAR
+CLASS="parameter"
+>asercion</VAR
+> tipo cadena son menor
+     sobrecarga cuando el chequeo de aserciones se encuentre
+     deshabilitado, y la producción de mensajes que contengan
+     la expresión <VAR
+CLASS="parameter"
+>asercion</VAR
+> cuando
+     ésta falle. Esto quiere decir que si pasa una
+     condición booleana como <VAR
+CLASS="parameter"
+>asercion</VAR
+>,
+     ésta condición no aparecerá como
+     parámetro de la función de aserción, la cual
+     pudo haber definido con la
+     función <A
+HREF="function.assert-options.html"
+><B
+CLASS="function"
+>assert_options()</B
+></A
+>, la
+     condición es convertida en una cadena antes de llamar tal
+     función gestora, y el valor booleano <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> es convertido
+     como una cadena vacía.
+    </P
+><P
+>&#13;     Las aserciones deben ser usadas como una característica de
+     depuración únicamente. Puede usarlas para realizar
+     chequeos de integridad que prueben condiciones que
+     deberían ser siempre <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> y que indiquen algunos errores
+     de programación si no se cumplen, o que chequeen por la
+     presencia de ciertas características como las funciones de
+     extensión, o ciertos límites y
+     características de sistema.
+    </P
+><P
+>&#13;     Las aserciones no deberían ser usadas para operaciones
+     normales de tiempo de ejecución como chequeos de
+     parámetros de entrada. Como regla de oro, su código
+     debería trabajar correctamente siempre si el chequeo de
+     aserciones no está activado.
+    </P
+><P
+>&#13;     El comportamiento de <B
+CLASS="function"
+>assert()</B
+> puede ser
+     configurado por <A
+HREF="function.assert-options.html"
+><B
+CLASS="function"
+>assert_options()</B
+></A
+> o mediante
+     los parámetros .ini descritos en su respectiva
+     página del manual.
+    </P
+><P
+>&#13;     La función <A
+HREF="function.assert-options.html"
+><B
+CLASS="function"
+>assert_options()</B
+></A
+> o la
+     directiva de configuración ASSERT_CALLBACK permiten el uso
+     de llamadas de retorno para gestionar las aserciones fallidas.
+    </P
+><P
+>&#13;     Las llamadas de retorno de <B
+CLASS="function"
+>assert()</B
+> son
+     particularmente útiles para productos que prueben procesos
+     automatizados de generación, ya que le permitin capturar
+     fácilmente el código pasado a la aserción,
+     junto con información sobre dónde se creó la
+     aserción. Aunque esta información puede ser
+     capturada mediante otros métodos, ¡el uso de
+     aserciones lo hace mucho más rápido y sencillo!
+    </P
+><P
+>&#13;     La llamada de retorno debe aceptar tres argumentos. El primer
+     argumento contendrá el archivo en el que ha fallado la
+     aserción. El segundo argumento contendrá la
+     línea en la que falló la aserción, y el
+     tercer argumento contendrá la expresión que
+     falló (si está disponible - valores literales como
+     1 o "dos" no serán pasados a través de este
+     argumento).
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN85006"
+></A
+><P
+><B
+>Ejemplo 1. Gestionar una aserción fallida con una
+      función personalizada</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Activar las aserciones y hacerlas calladas<br /></font><font color="#0000BB">assert_options</font><font color="#007700">(</font><font color="#0000BB">ASSERT_ACTIVE</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">);<br /></font><font color="#0000BB">assert_options</font><font color="#007700">(</font><font color="#0000BB">ASSERT_WARNING</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">assert_options</font><font color="#007700">(</font><font color="#0000BB">ASSERT_QUIET_EVAL</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Crear una funcion gestora<br /></font><font color="#007700">function </font><font color="#0000BB">mi_gestor_de_asercion</font><font color="#007700">(</font><font color="#0000BB">$archivo</font><font color="#007700">, </font><font color="#0000BB">$linea</font><font color="#007700">, </font><font color="#0000BB">$codigo</font><font color="#007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;hr&gt;Aserci&amp;oacute;n Fallida:<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Archivo '$archivo'&lt;br /&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linea&nbsp;&nbsp;&nbsp;'$linea'&lt;br /&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Codigo&nbsp;&nbsp;'$codigo'&lt;br /&gt;&lt;hr /&gt;"</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// Configurar la llamada de retorno<br /></font><font color="#0000BB">assert_options</font><font color="#007700">(</font><font color="#0000BB">ASSERT_CALLBACK</font><font color="#007700">, </font><font color="#DD0000">'mi_gestor_de_asercion'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Crear una aserci&amp;oacute;n que deber&amp;iacute;a fallar<br /></font><font color="#0000BB">assert</font><font color="#007700">(</font><font color="#DD0000">'mysql_query ("")'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.assert-options.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.dl.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>assert_options</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>dl</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

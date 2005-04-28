@@ -1,0 +1,257 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>preg_match</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Expresiones Regulares (Compatibles con
+  Perl)"
+HREF="ref.pcre.html"><LINK
+REL="PREVIOUS"
+TITLE="preg_match_all"
+HREF="function.preg-match-all.html"><LINK
+REL="NEXT"
+TITLE="preg_quote"
+HREF="function.preg-quote.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.preg-match-all.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.preg-quote.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.preg-match"
+></A
+>preg_match</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN93890"
+></A
+><P
+>    (PHP 3&#62;= 3.0.9, PHP 4 , PHP 5)</P
+>preg_match&nbsp;--&nbsp;Realiza un emparejamiento dada una expresión</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN93893"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>preg_match</B
+> ( string pattern, string subject [, array matches])<BR
+></BR
+><P
+>&#13;     Busca en <VAR
+CLASS="parameter"
+>subject</VAR
+> para un emparejamiento, dada la expresión
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+>.</P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>matches</VAR
+> es dado, entonces será definido con
+     el resultado de la búsqueda. $matches[0] contendrá el texto que empareja
+     con el patrón en su totalidad. $matches[1] tendrá la cadena que empareje con
+     el primer subpatrón que esté entre paréntesis y así sucesivamente.</P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si se encontró en la cadena un emparejamiento dado el patrón
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+>, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si no se produjo o hubo un error.</P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93917"
+></A
+><P
+><B
+>Ejemplo 1. Obtener el número de la siguiente página dada una cadena</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>if (preg_match("/page\s+#(\d+)/i", "Go to page #9.", $parts))
+    print "Next page is $parts[1]";             // La siguiente página es $parts[1]
+else
+    print "Page not found.";                    // Página no encontrada</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+
+     Examinar también <A
+HREF="function.preg-match-all.html"
+><B
+CLASS="function"
+>preg_match_all()</B
+></A
+>,
+     <A
+HREF="function.preg-replace.html"
+><B
+CLASS="function"
+>preg_replace()</B
+></A
+>, y
+     <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.preg-match-all.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.preg-quote.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>preg_match_all</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pcre.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>preg_quote</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

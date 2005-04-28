@@ -1,0 +1,319 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>split</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Expresiones Regulares (POSIX Extendido)"
+HREF="ref.regex.html"><LINK
+REL="PREVIOUS"
+TITLE="eregi"
+HREF="function.eregi.html"><LINK
+REL="NEXT"
+TITLE="spliti"
+HREF="function.spliti.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.eregi.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.spliti.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.split"
+></A
+>split</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN94335"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>split&nbsp;--&nbsp;divide la cadena en elementos de un array según una
+	expresión regular</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN94338"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>split</B
+> ( string pattern, string string [, int limit])<BR
+></BR
+><P
+>&#13;	 Devuelve un array de cadenas, cada una de las cuales es una
+	 subcadena de <VAR
+CLASS="parameter"
+>string</VAR
+> formada al dividir
+	 esta en los límites formados por la expresión regular
+	 <VAR
+CLASS="parameter"
+>pattern</VAR
+>. Si ocurre un error, devuelve un
+	 valor falso.
+	</P
+><P
+>&#13;	 Para obtener los cinco primeros campos de una línea de
+     <TT
+CLASS="filename"
+>/etc/passwd</TT
+>:
+	 <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN94357"
+></A
+><P
+><B
+>Ejemplo 1. split() example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$passwd_list = split( ":", $passwd_line, 5 );</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>&#13;	 Para examinar una fecha que puede estar delimitada por barras,
+	 puntos o guiones:
+	 <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN94361"
+></A
+><P
+><B
+>Ejemplo 2. split() example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$date = "04/30/1973";  // Los delimitadores pueden ser barras, puntos o guiones
+list( $month, $day, $year ) = split( '[/.-]', $date );
+echo "Month: $month; Day: $day; Year: $year&#60;br&#62;\n";</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+	</P
+><P
+>&#13;	 Observar que <VAR
+CLASS="parameter"
+>pattern</VAR
+> distingue entre
+	 mayúsculas y minúsculas.
+	</P
+><P
+>&#13;	 Observar que si no se necesita la potencia de las expresiones
+	 regulares, es más rápido utilizar <A
+HREF="function.explode.html"
+><B
+CLASS="function"
+>explode()</B
+></A
+>,
+	 que no carga el motor de expresiones regulares.
+	</P
+><P
+>&#13;	 Por favor, observar que <VAR
+CLASS="parameter"
+>pattern</VAR
+> es una
+	 expresión regular. Si se quiere dividir con alguno de los
+	 caracteres especiales de las expresiones regulares, se necesita
+	 protegerlo antes. Si pareciera que <B
+CLASS="function"
+>split()</B
+> (o
+	 cualquier otra función de regex) está haciendo algo irregular,
+	 léase el archivo <TT
+CLASS="filename"
+>regex.7</TT
+>, incluido en el
+	 subdirectorio <TT
+CLASS="filename"
+>regex</TT
+> de la distribución de
+	 PHP. Está en formato de página de manual, por lo que para leerlo
+	 es necesaria una orden como <B
+CLASS="command"
+>man
+	 /usr/local/src/regex/regex.7</B
+>.
+	</P
+><P
+>&#13;	 Ver también: <A
+HREF="function.explode.html"
+><B
+CLASS="function"
+>explode()</B
+></A
+> e
+	 <A
+HREF="function.implode.html"
+><B
+CLASS="function"
+>implode()</B
+></A
+>.
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.eregi.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.spliti.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>eregi</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.regex.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>spliti</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

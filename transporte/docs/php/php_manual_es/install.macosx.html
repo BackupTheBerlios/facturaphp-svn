@@ -1,0 +1,386 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Instalación en Unix/Mac OS X</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Instalación en Unix/Linux"
+HREF="install.linux.html"><LINK
+REL="NEXT"
+TITLE="Instalación en Unix/OpenBSD"
+HREF="install.openbsd.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.linux.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.openbsd.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.macosx"
+>Instalación en Unix/Mac OS X</A
+></H1
+><P
+>&#13;  Esta sección contiene informacion específica de como instalar PHP en
+  Mac OS X Server.
+ </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.macosx.packages"
+>Usando paquetes</A
+></H2
+><P
+>&#13;   Existen unos cuantos paquetes precompilados de PHP para Mac OS
+   X. Esto puede ayudar a instalar una configuración estandar, pero si
+   necesitais utilizar caracteristicas diferentes a las compiladas
+   (p.ej.: servidor seguro, ó un controlador de bases de datos
+   diferentes) tendreis que compilar PHP y vuestro servidor web
+   ustedes mismos. Si no estais familiarizados con la compilación de
+   vuestro propio software, no está de más comprobar si alguien ya ha
+   creado un paquete con las caracteristicas que necesitais.
+  </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.macosx.compile"
+>Compilando en OS X server</A
+></H2
+><P
+>&#13;   Existen dos versiones diferentes de Mac OS X, clente y servidor. A
+   continuación teneis información para la versión servidor.
+  </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="install.macosx.compile.example"
+></A
+><P
+><B
+>Ejemplo 3-1. Instalación en Mac OS X server</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>1. Bajarse las ultimas distribuciones de Apache y PHP.
+2. Desempaquetarlas y ejecutar el programa configure en el directorio
+    de apache:
+    ./configure --exec-prefix=/usr \ 
+    --localstatedir=/var \ 
+    --mandir=/usr/share/man \ 
+    --libexecdir=/System/Library/Apache/Modules \ 
+    --iconsdir=/System/Library/Apache/Icons \ 
+    --includedir=/System/Library/Frameworks/Apache.framework/Versions/1.3/Headers \ 
+    --enable-shared=max \ 
+    --enable-module=most \ 
+    --target=apache 
+
+4. Podeis agregar esta linea:
+    setenv OPTIM=-O2 
+   si quereis que el compilador optimize el c&#38;oacute;digo.
+    
+5. Ir al directorio de PHP y configurarlo con: 
+    ./configure --prefix=/usr \ 
+    --sysconfdir=/etc \ 
+    --localstatedir=/var \ 
+    --mandir=/usr/share/man \ 
+    --with-xml \ 
+    --with-apache=/src/apache_1.3.12 
+
+    Si teneis otras caracteristicas que querais a&#38;ntilde;adir (MySQL,
+    GD, etc.), asegurarse de a&#38;ntilse;adirlas aqu&#38;iacute;. En  --with-apache=
+    teneis que poner el PATH de vuestro directorio Apache con el
+    c&#38;oacute;digo fuente del mismo, p.ej.: "/src/apache_1.3.12".
+
+6. make
+7. make install    
+   Esto a&#38;ntilde;adir&#38;aacute; un directorio en vuestro directorio Apache con el
+   c&#38;oacute;digo fuente del mismo, bajo src/modules/php4.
+    
+8. Reconfigurar Apache para utilizar PHP4:
+    ./configure --exec-prefix=/usr \ 
+    --localstatedir=/var \ 
+    --mandir=/usr/share/man \ 
+    --libexecdir=/System/Library/Apache/Modules \ 
+    --iconsdir=/System/Library/Apache/Icons \ 
+    --includedir=/System/Library/Frameworks/Apache.framework/Versions/1.3/Headers \ 
+    --enable-shared=max \ 
+    --enable-module=most \ 
+    --target=apache \ 
+    --activate-module=src/modules/php4/libphp4.a 
+
+    Podeis obtener un mensaje diciendo que libmodphp4.a no est&#38;aacute;
+    actualzido. Si esto ocurre, ir al directorio src/modules/php4 y
+    ejecutar este comando:
+
+    ranlib libmodphp4.a 
+
+    Una vez ejecutado este comando, volver el directorio raiz de apache y ejecutar
+    el comando de configuraci&#38;oacute;n antes mencionado.
+
+9. make
+
+10. make install
+
+11. Copiar y renombrar el fichero php.ini-dist de vuestro directorio
+    con las fuentes de PHP al directorio "bin":
+
+    cp php.ini-dist /usr/local/bin/php.ini 
+
+    &#38;oacute; (si no tenesi un directorio local/) 
+
+    cp php.ini-dist /usr/bin/php.ini</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.macosx.client"
+>Compilando en MacOS X client</A
+></H2
+><P
+>&#13;   Estos datos han sido proporcionados por <A
+HREF="http://www.entropy.ch/software/macosx/"
+TARGET="_top"
+>Marc
+    Liyanage</A
+>.
+  </P
+><P
+>&#13;   El módulo de PHP para Apache incluido en Mac OS X incluye soporte
+   para bases de datos MySQL y PostgreSQL.
+  </P
+><P
+>&#13;   NOTA: Tener cuidado cuando hagais esto, podeis estropear vuestro
+   servidor Apache.
+  </P
+><P
+>&#13;   Hacer esto para instalar:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      1.	Abrir una ventana terminal.
+     </P
+></LI
+><LI
+><P
+>&#13;      2.	Escribir "wget http://www.diax.ch/users/liyanage/software/macosx/libphp4.so.gz",
+      esperar a que termine 
+     </P
+></LI
+><LI
+><P
+>&#13;      3.	Escribir "gunzip libphp4.so.gz" 
+     </P
+></LI
+><LI
+><P
+>&#13;      4.	Escribir "sudo apxs -i -a -n php4 libphp4.so" 
+     </P
+></LI
+></UL
+>
+   Ahora escribir "<VAR
+CLASS="literal"
+>sudo open -a TextEdit /etc/httpd/httpd.conf</VAR
+>"
+   TextEdit se abrirá con el fichero de configuración de
+   Apache. Localizar estas dos lineas al final del fichero (podeis
+   utilizar el comando find)
+   <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="apache"
+>#AddType application/x-httpd-php .php 
+   #AddType application/x-httpd-php-source .phps</PRE
+></TD
+></TR
+></TABLE
+>
+   Borrar los dos caracteres (<VAR
+CLASS="literal"
+>#</VAR
+>), grabar y salir de TextEdit.
+  </P
+><P
+>&#13;   Finalmente escribir "<VAR
+CLASS="literal"
+>sudo apachectl graceful</VAR
+>"
+   para rearrancar el servidor web.
+  </P
+><P
+>&#13;   PHP deberia de funcionar ahora. Podeis comprobar que funciona,
+   grabando un fichero llamado "test.php" en vuestro directorio
+   web. Escribir esta linea en este fichero: "<VAR
+CLASS="literal"
+>&#60;?php
+   phpinfo() ?&#62;</VAR
+>".
+  </P
+><P
+>&#13;   Ahora abrir la dirección
+   <VAR
+CLASS="literal"
+>127.0.0.1/~your_username/test.php</VAR
+> en vuestro
+   navegador. Deberiais de ver una tabla con información sobre el
+   módulo PHP.
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.linux.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.openbsd.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Instalación en Unix/Linux</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Instalación en Unix/OpenBSD</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

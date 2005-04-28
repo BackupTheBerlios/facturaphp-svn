@@ -1,0 +1,414 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_stmt_bind_result</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_stmt_bind_param"
+HREF="function.mysqli-stmt-bind-param.html"><LINK
+REL="NEXT"
+TITLE="mysqli_stmt_close"
+HREF="function.mysqli-stmt-close.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-bind-param.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-close.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-stmt-bind-result"
+></A
+>mysqli_stmt_bind_result</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN67717"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_stmt_bind_result<P
+>    (no version information, might be only in CVS)</P
+>stmt-&#62;bind_result&nbsp;--&nbsp;Enlaza variables a una sentencia preparada para el almacenamiento 
+    del resultado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67721"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>bool <B
+CLASS="methodname"
+>mysqli_stnt_bind_result</B
+> ( objeto stmt, mixto var1 [, mixto var2, ...])<BR
+></BR
+><P
+>Estilo orientado a objetos (método):</P
+>class <B
+CLASS="classname"
+>stmt</B
+> { <BR
+></BR
+>bool <B
+CLASS="methodname"
+>bind_result</B
+> ( mixto var1 [, mixto var2, ...])<BR
+></BR
+>}<P
+>&#13;      <B
+CLASS="function"
+>mysqli_stmt_bind_result()</B
+> es usada para asociar (enlazar) 
+      columnas en el resultado a variables. Cuando <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+>
+      es llamada para obtener datos, el protocolo cliente/servidor de MySQL coloca 
+      los datos para las columnas delimitadas en las variables específicadas en  
+      <VAR
+CLASS="parameter"
+>var1, ...</VAR
+>.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Note que todas las columnas deben estar delimitadas antes de llamar 
+       <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+>. Dependiendo en los tipos de 
+       columnas a las variables delimitadas pueden silenciosamente cambiar al tipo
+       correspondiente en PHP.
+      </P
+><P
+>&#13;       Una columna puede ser delimitada o re-delimitada en cualquier momento, 
+       aún despues de que se ha recuperado parcialmente un resultado. 
+       La nueva delimitación toma efecto la siguiente vez que 
+       <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+> es llamada.
+      </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67758"
+></A
+><H2
+>Valores regresados</H2
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67763"
+></A
+><H2
+>Vea también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-stmt-bind-param.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_param()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-execute.html"
+><B
+CLASS="function"
+>mysqli_stmt_execute()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-fetch.html"
+><B
+CLASS="function"
+>mysqli_stmt_fetch()</B
+></A
+>,
+     <A
+HREF="function.mysqli-prepare.html"
+><B
+CLASS="function"
+>mysqli_prepare()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-prepare.html"
+><B
+CLASS="function"
+>mysqli_stmt_prepare()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-init.html"
+><B
+CLASS="function"
+>mysqli_stmt_init()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-errno.html"
+><B
+CLASS="function"
+>mysqli_stmt_errno()</B
+></A
+>,
+     <A
+HREF="function.mysqli-stmt-error.html"
+><B
+CLASS="function"
+>mysqli_stmt_error()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67774"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN67776"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br />if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#FF8000">/* prepare statement */<br /></font><font color="#007700">if (</font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">prepare</font><font color="#007700">(</font><font color="#DD0000">"SELECT Code, Name FROM Country ORDER BY Name LIMIT 5"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">execute</font><font color="#007700">();<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* bind variables to prepared statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">bind_result</font><font color="#007700">(</font><font color="#0000BB">$col1</font><font color="#007700">, </font><font color="#0000BB">$col2</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* fetch values */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">while (</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">fetch</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s %s\n"</font><font color="#007700">, </font><font color="#0000BB">$col1</font><font color="#007700">, </font><font color="#0000BB">$col2</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* close statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br />}<br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN67779"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (!</font><font color="#0000BB">$link</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#FF8000">/* prepare statement */<br /></font><font color="#007700">if (</font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">mysqli_prepare</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"SELECT Code, Name FROM Country ORDER BY Name LIMIT 5"</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_execute</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* bind variables to prepared statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_bind_result</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">, </font><font color="#0000BB">$col1</font><font color="#007700">, </font><font color="#0000BB">$col2</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* fetch values */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">while (</font><font color="#0000BB">mysqli_stmt_fetch</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s %s\n"</font><font color="#007700">, </font><font color="#0000BB">$col1</font><font color="#007700">, </font><font color="#0000BB">$col2</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* close statement */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_stmt_close</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br />}<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>AFG Afghanistan
+ALB Albania
+DZA Algeria
+ASM American Samoa
+AND Andorra</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-bind-param.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-close.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_stmt_bind_param</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_stmt_close</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

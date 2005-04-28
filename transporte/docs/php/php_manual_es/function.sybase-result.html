@@ -1,0 +1,208 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>sybase_result</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Sybase"
+HREF="ref.sybase.html"><LINK
+REL="PREVIOUS"
+TITLE="sybase_query"
+HREF="function.sybase-query.html"><LINK
+REL="NEXT"
+TITLE="sybase_select_db"
+HREF="function.sybase-select-db.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sybase-query.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sybase-select-db.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.sybase-result"
+></A
+>sybase_result</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN109012"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>sybase_result&nbsp;--&nbsp;obtiene datos de un resultado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN109015"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>sybase_result</B
+> ( int result, int i, mixed field)<BR
+></BR
+><P
+> Devuelve: El contenido de la celda en la fila y el offset especificado
+    de un conjunto de resultados de Sybase.
+    </P
+><P
+>&#13;     sybase_result() devuelve el contenido de una celda de un conjunto
+     de resultados de Sybase. El parámetro field puede ser el offset del
+     campo, o el nombre del campo, o el nombre de la tabla, un punto y el nombre 
+     del campo (nombre_tabla.nombre_campo). Si el nombre de la columna
+     tiene un alias ('select foo as bar from...'), use el alias en vez del 
+     nombre de la columna.
+    </P
+><P
+>&#13;     Cuando trabaje con conjuntos de resultados grandes, debe considerar
+     el uso de alguna de las funciones que cargan una fila entera
+     (especificadas abajo). Ya que estas funciones devuelven el contenido
+     de multiples celdas en una única llamada, son MUCHO más rápidas que
+     sybase_result().  Además, note que especificar un offset númerico
+     en el parámetro field es mucho más rápido que especificar un nombre
+     de campo o nombre_tabla.nombre_campo.
+    </P
+><P
+>&#13;     Alternativas recomendadas para alto rendimiento:
+     <A
+HREF="function.sybase-fetch-row.html"
+><B
+CLASS="function"
+>sybase_fetch_row()</B
+></A
+>, 
+     <A
+HREF="function.sybase-fetch-array.html"
+><B
+CLASS="function"
+>sybase_fetch_array()</B
+></A
+>, y
+     <A
+HREF="function.sybase-fetch-object.html"
+><B
+CLASS="function"
+>sybase_fetch_object()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sybase-query.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sybase-select-db.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sybase_query</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sybase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sybase_select_db</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

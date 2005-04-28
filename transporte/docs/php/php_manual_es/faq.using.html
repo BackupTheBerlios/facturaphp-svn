@@ -1,0 +1,1245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Uso de PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="FAQ: Preguntas frecuentes"
+HREF="faq.html"><LINK
+REL="PREVIOUS"
+TITLE="Build Problems"
+HREF="faq.build.html"><LINK
+REL="NEXT"
+TITLE="PHP and HTML"
+HREF="faq.html.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="chapter"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="faq.build.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="faq.html.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="chapter"
+><H1
+><A
+NAME="faq.using"
+>Capítulo 51. Uso de PHP</A
+></H1
+><P
+>&#13;   Esta sección reúne varios errores comunes que usted
+   puede enfrentar cuando escribe scripts PHP.
+  </P
+><DIV
+CLASS="qandaset"
+><DL
+><DT
+>1. <A
+HREF="faq.using.html#faq.using.anyform"
+>&#13;      Quisiera escribir un script PHP genérico que pudiera
+      manejar datos que lleguen desde cualquier
+      formulario. ¿Cómo averiguo qué variables
+      del método POST se encuentran disponibles?
+     </A
+></DT
+><DT
+>2. <A
+HREF="faq.using.html#faq.using.addslashes"
+>&#13;      Necesito convertir todas las comillas sencillas (') en una barra
+      invertida seguida de una comilla sencilla
+      (\'). ¿Cómo puedo hacer esto con una
+      expresión regular? También me gustaría
+      convertir " en \" y \ en \\.
+     </A
+></DT
+><DT
+>3. <A
+HREF="faq.using.html#faq.using.stripslashes"
+>&#13;      Todos mis caracteres " se convierten en \" y mis ' se convierten
+      en \', ¿cómo me deshago de todas esas barras
+      invertidas indeseadas? ¿Cómo y porqué
+      llegaron allí?
+     </A
+></DT
+><DT
+>4. <A
+HREF="faq.using.html#faq.using.wrong-order"
+>&#13;      Cuando hago lo siguiente, la salida se imprime en el orden
+      equivocado:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">mi_funcion</font><font color="#007700">(</font><font color="#0000BB">$argumento</font><font color="#007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$argumento </font><font color="#007700">+ </font><font color="#0000BB">10</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">$variable </font><font color="#007700">= </font><font color="#0000BB">10</font><font color="#007700">;<br />echo </font><font color="#DD0000">"mi_funcion($variable) = " </font><font color="#007700">. </font><font color="#0000BB">mi_funcion</font><font color="#007700">(</font><font color="#0000BB">$variable</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+      ¿qué sucede?
+     </A
+></DT
+><DT
+>5. <A
+HREF="faq.using.html#faq.using.newlines"
+>&#13;      ¿Hey, qué ha sucedido con mis saltos de
+      línea?
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;pre&gt;<br /><font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#DD0000">"Esta debe ser la primera l&amp;iacute;nea."</font><font color="#007700">; </font><font color="#0000BB">?&gt;<br />&lt;?php </font><font color="#007700">echo </font><font color="#DD0000">"Esto debe aparecer despu&amp;eacute;s de la nueva l&amp;iacute;nea anterior."</font><font color="#007700">; </font><font color="#0000BB">?&gt;<br /></font>&lt;/pre&gt;</font>
+</code></TD
+></TR
+></TABLE
+>
+     </A
+></DT
+><DT
+>6. <A
+HREF="faq.using.html#faq.using.headers-sent"
+>&#13;      Recibo el mensaje 'Warning: Cannot send session cookie - headers
+      already sent...' o 'Cannot add header information - headers
+      already sent...'.
+     </A
+></DT
+><DT
+>7. <A
+HREF="faq.using.html#faq.using.header"
+>&#13;      Necesito acceder a información directamente de las
+      cabeceras de la petición. ¿Cómo puedo hacer
+      esto?
+     </A
+></DT
+><DT
+>8. <A
+HREF="faq.using.html#faq.using.authentication"
+>&#13;      Cuando intento usar autenticación con IIS, recibo el
+      mensaje 'No Input file specified'.
+     </A
+></DT
+><DT
+>9. <A
+HREF="faq.using.html#faq.using.netscape"
+>&#13;      Mi script PHP funciona en IE y Lynx, pero en Netscape parte de
+      mi salida está faltando. Cuando acciono "Ver
+      código fuente" veo el contenido en IE pero no en
+      Netscape.
+     </A
+></DT
+><DT
+>10. <A
+HREF="faq.using.html#faq.using.mixml"
+>&#13;      ¿Cómo se supone que mezcle XML y PHP? ¡Se
+      queja sobre mis etiquetas &#60;?xml!
+     </A
+></DT
+><DT
+>11. <A
+HREF="faq.using.html#faq.using.editor"
+>&#13;      ¿Cómo puedo usar PHP con FrontPage u otro editor
+      HTML que insiste en mover mi código por todas partes?
+     </A
+></DT
+><DT
+>12. <A
+HREF="faq.using.html#faq.using.variables"
+>&#13;      ¿En dónde puedo encontrar una lista completa de
+      variables disponibles en PHP?
+     </A
+></DT
+><DT
+>13. <A
+HREF="faq.using.html#faq.using.freepdf"
+>&#13;      ¿Cómo puedo generar archivos PDF sin usar las
+      bibliotecas no-libres y comerciales <A
+HREF="ref.cpdf.html"
+>ClibPDF</A
+> y <A
+HREF="ref.pdf.html"
+>PDFLib</A
+>? Quisiera algo que fuera
+      gratuito y no requiera de bibliotecas PDF externas.
+     </A
+></DT
+><DT
+>14. <A
+HREF="faq.using.html#faq.using.cgi-vars"
+>&#13;      Estoy tratando de acceder a una de las variables CGI
+      estándar (como $DOCUMENT_ROOT o $HTTP_REFERER) en una
+      función definida por el usuario, y parece que no la
+      encuentra. ¿Qué está fallando?
+     </A
+></DT
+></DL
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.anyform"
+></A
+><B
+>1. </B
+>
+      Quisiera escribir un script PHP genérico que pudiera
+      manejar datos que lleguen desde cualquier
+      formulario. ¿Cómo averiguo qué variables
+      del método POST se encuentran disponibles?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      PHP ofrece numerosas <A
+HREF="language.variables.predefined.html"
+>&#13;      variables predefinidas</A
+>, como la super-global <VAR
+CLASS="varname"
+>&#13;      $_POST</VAR
+>. Usted podría
+      recorrer <VAR
+CLASS="varname"
+>$_POST</VAR
+> con un ciclo ya que se trata
+      de una matriz asociativa con todos los valores POST. Por
+      ejemplo, puede recorrer la matriz simplemente con <A
+HREF="control-structures.foreach.html"
+>foreach</A
+>, realizar un
+      chequeo por valores <A
+HREF="function.empty.html"
+><B
+CLASS="function"
+>empty()</B
+></A
+>, e imprimirlos.
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$vacio </font><font color="#007700">= </font><font color="#0000BB">$post </font><font color="#007700">= array();<br />foreach (</font><font color="#0000BB">$_POST </font><font color="#007700">as </font><font color="#0000BB">$nombre_var </font><font color="#007700">=&gt; </font><font color="#0000BB">$valor_var</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if (empty(</font><font color="#0000BB">$valor_var</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$vacio</font><font color="#007700">[</font><font color="#0000BB">$nombre_var</font><font color="#007700">] = </font><font color="#0000BB">$valor_var</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$post</font><font color="#007700">[</font><font color="#0000BB">$nombre_var</font><font color="#007700">] = </font><font color="#0000BB">$valor_var</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br />print </font><font color="#DD0000">"&lt;pre&gt;"</font><font color="#007700">;<br />if (empty(</font><font color="#0000BB">$vacio</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Ninguno de los valores POST est&amp;aacute;n vac&amp;iacute;os, se envi&amp;oacute;:\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$post</font><font color="#007700">);<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Tenemos " </font><font color="#007700">. </font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$vacio</font><font color="#007700">) . </font><font color="#DD0000">" valores vac&amp;iacute;os\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Se envi&amp;oacute;:\n"</font><font color="#007700">; </font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$post</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;print </font><font color="#DD0000">"Vac&amp;iacute;os:\n"</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$vacio</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;exit;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Superglobals: Nota de
+disponibilidad: </B
+> Desde 4.1.0, están disponibles
+algunas matrices superglobales tales como <VAR
+CLASS="varname"
+>$_GET</VAR
+>,
+<VAR
+CLASS="varname"
+>$_POST</VAR
+>, y <VAR
+CLASS="varname"
+>$_SERVER</VAR
+>, etc. Para
+más información puede consultar la sección
+<A
+HREF="language.variables.predefined.html"
+>superglobals</A
+></P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.addslashes"
+></A
+><B
+>2. </B
+>
+      Necesito convertir todas las comillas sencillas (') en una barra
+      invertida seguida de una comilla sencilla
+      (\'). ¿Cómo puedo hacer esto con una
+      expresión regular? También me gustaría
+      convertir " en \" y \ en \\.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      La función <A
+HREF="function.addslashes.html"
+><B
+CLASS="function"
+>addslashes()</B
+></A
+> hace esto. Vea
+      también <A
+HREF="function.mysql-escape-string.html"
+><B
+CLASS="function"
+>mysql_escape_string()</B
+></A
+>. También
+      puede remover las barras invertidas
+      con <A
+HREF="function.stripslashes.html"
+><B
+CLASS="function"
+>stripslashes()</B
+></A
+>.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota de directiva:
+magic_quotes_gpc: </B
+> La directiva PHP <A
+HREF="ref.info.html#ini.magic-quotes-gpc"
+>magic_quotes_gpc</A
+> tiene por
+defecto el valor <VAR
+CLASS="literal"
+>on</VAR
+>. Básicamente ejecuta
+<A
+HREF="function.addslashes.html"
+><B
+CLASS="function"
+>addslashes()</B
+></A
+> en los datos obtenidos por GET, POST,
+y COOKIE. Se puede usar <A
+HREF="function.stripslashes.html"
+><B
+CLASS="function"
+>stripslashes()</B
+></A
+> para
+quitarlos.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.stripslashes"
+></A
+><B
+>3. </B
+>
+      Todos mis caracteres " se convierten en \" y mis ' se convierten
+      en \', ¿cómo me deshago de todas esas barras
+      invertidas indeseadas? ¿Cómo y porqué
+      llegaron allí?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      La función de PHP <A
+HREF="function.stripslashes.html"
+><B
+CLASS="function"
+>stripslashes()</B
+></A
+>
+      eliminará todas esas barras invertidas de su
+      variable <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>. Lo más posible es que esas
+      barras invertidas existen mágicamente por que la
+      directiva de PHP
+      <A
+HREF="ref.info.html#ini.magic-quotes-gpc"
+>magic_quotes_gpc</A
+>
+      está activa.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota de directiva:
+magic_quotes_gpc: </B
+> La directiva PHP <A
+HREF="ref.info.html#ini.magic-quotes-gpc"
+>magic_quotes_gpc</A
+> tiene por
+defecto el valor <VAR
+CLASS="literal"
+>on</VAR
+>. Básicamente ejecuta
+<A
+HREF="function.addslashes.html"
+><B
+CLASS="function"
+>addslashes()</B
+></A
+> en los datos obtenidos por GET, POST,
+y COOKIE. Se puede usar <A
+HREF="function.stripslashes.html"
+><B
+CLASS="function"
+>stripslashes()</B
+></A
+> para
+quitarlos.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.wrong-order"
+></A
+><B
+>4. </B
+>
+      Cuando hago lo siguiente, la salida se imprime en el orden
+      equivocado:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">mi_funcion</font><font color="#007700">(</font><font color="#0000BB">$argumento</font><font color="#007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$argumento </font><font color="#007700">+ </font><font color="#0000BB">10</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">$variable </font><font color="#007700">= </font><font color="#0000BB">10</font><font color="#007700">;<br />echo </font><font color="#DD0000">"mi_funcion($variable) = " </font><font color="#007700">. </font><font color="#0000BB">mi_funcion</font><font color="#007700">(</font><font color="#0000BB">$variable</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+      ¿qué sucede?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Para poder usar los resultados de su función en una
+      expresión (como ocurre al concatenar con otras cadenas,
+      como en el ejemplo anterior), necesita devolver el valor
+      mediante <A
+HREF="function.return.html"
+><B
+CLASS="function"
+>return()</B
+></A
+>, no imprimirlo
+      con <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.newlines"
+></A
+><B
+>5. </B
+>
+      ¿Hey, qué ha sucedido con mis saltos de
+      línea?
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;pre&gt;<br /><font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#DD0000">"Esta debe ser la primera l&amp;iacute;nea."</font><font color="#007700">; </font><font color="#0000BB">?&gt;<br />&lt;?php </font><font color="#007700">echo </font><font color="#DD0000">"Esto debe aparecer despu&amp;eacute;s de la nueva l&amp;iacute;nea anterior."</font><font color="#007700">; </font><font color="#0000BB">?&gt;<br /></font>&lt;/pre&gt;</font>
+</code></TD
+></TR
+></TABLE
+>
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      En PHP, el final de un bloque de código es, o bien
+      "?&#62;" o "?&#62;\n" (en donde \n quiere decir una nueva
+      línea). De modo que en el ejemplo anterior, las
+      sentencias impresas con echo estarán en una línea,
+      puesto que PHP omite los saltos de línea después
+      del final del bloque. Esto quiere decir que usted necesita
+      insertar un salto de línea extra después de cada
+      bloque de código PHP para hacer que imprima una nueva
+      línea.
+     </P
+><P
+>&#13;      ¿Porqué hace esto PHP? Por que al dar formato a un
+      documento HTML normal, este comportamiento por lo general hace
+      su vida más simple, ya que no desea ese salto de
+      línea, pero tendría que crear líneas
+      extremadamente largas o de otra forma hacer ilegible el
+      código fuente base para lograr ese efecto.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.headers-sent"
+></A
+><B
+>6. </B
+>
+      Recibo el mensaje 'Warning: Cannot send session cookie - headers
+      already sent...' o 'Cannot add header information - headers
+      already sent...'.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Las
+      funciones <A
+HREF="function.header.html"
+><B
+CLASS="function"
+>header()</B
+></A
+>, <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+>,
+      y las <A
+HREF="ref.session.html"
+>funciones de
+      sesión</A
+> necesitan agregar cabeceras a la secuencia
+      de salida, pero las cabeceras sólo pueden ser enviadas
+      antes del resto del contenido. No puede haber salida antes de
+      usar éstas funciones, salida como HTML. La
+      función <A
+HREF="function.headers-sent.html"
+><B
+CLASS="function"
+>headers_sent()</B
+></A
+> revisa si su
+      script ya ha enviado las cabeceras, y asimismo consulte
+      las <A
+HREF="ref.outcontrol.html"
+>funciones de Control de
+      Salida</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.header"
+></A
+><B
+>7. </B
+>
+      Necesito acceder a información directamente de las
+      cabeceras de la petición. ¿Cómo puedo hacer
+      esto?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      La función <A
+HREF="function.getallheaders.html"
+><B
+CLASS="function"
+>getallheaders()</B
+></A
+> hará
+      esto si está ejecutando PHP como módulo de
+      Apache. Así que, el siguiente segmento de código
+      le mostrará todas las cabeceras de petición:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$cabeceras </font><font color="#007700">= </font><font color="#0000BB">getallheaders</font><font color="#007700">();<br />foreach (</font><font color="#0000BB">$cabeceras </font><font color="#007700">as </font><font color="#0000BB">$nombre </font><font color="#007700">=&gt; </font><font color="#0000BB">$contenido</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"cabeceras</font><font color="#007700">[</font><font color="#DD0000">$nombre</font><font color="#007700">]</font><font color="#DD0000"> = $contenido&lt;br /&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+     </P
+><P
+>&#13;      Vea también
+      <A
+HREF="function.apache-lookup-uri.html"
+><B
+CLASS="function"
+>apache_lookup_uri()</B
+></A
+>,
+      <A
+HREF="function.apache-response-headers.html"
+><B
+CLASS="function"
+>apache_response_headers()</B
+></A
+>, y
+      <A
+HREF="function.fsockopen.html"
+><B
+CLASS="function"
+>fsockopen()</B
+></A
+>
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.authentication"
+></A
+><B
+>8. </B
+>
+      Cuando intento usar autenticación con IIS, recibo el
+      mensaje 'No Input file specified'.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      El modelo de seguridad de IIS es la causa del problema
+      aquí. Este es un inconveniente común a todos los
+      programas CGI que corren bajo IIS. Una forma de evitar el
+      problema es crear un archivo HTML plano (no interpretado por
+      PHP) como página de entrada en un directorio
+      autenticado. Luego usar una etiqueta META para redirigir a la
+      página PHP, o tener un enlace hacia la página
+      PHP. PHP reconocerá entonces la autenticación
+      correctamente. Con el módulo ISAPI, esto no es un
+      problema. Este inconveniente no debe afectar otros servidores
+      web NT. Para más información, vea:
+      <A
+HREF="http://support.microsoft.com/support/kb/articles/q160/4/22.asp"
+TARGET="_top"
+>http://support.microsoft.com/support/kb/articles/q160/4/22.asp</A
+> y la sección del manual
+      sobre <A
+HREF="features.http-auth.html"
+>Autenticación
+      HTTP</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.netscape"
+></A
+><B
+>9. </B
+>
+      Mi script PHP funciona en IE y Lynx, pero en Netscape parte de
+      mi salida está faltando. Cuando acciono "Ver
+      código fuente" veo el contenido en IE pero no en
+      Netscape.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Netscape es más estricto que IE en cuanto a etiquetas
+      HTML (como tablas) se refiere. Pasar su salida HTML a
+      través de un validador de HTML, como <A
+HREF="http://validator.w3.org/"
+TARGET="_top"
+>validator.w3.org</A
+>, puede ser de
+      ayuda. Por ejemplo, una etiqueta &#60;/table&#62; faltante puede
+      ser la causa de éste problema.
+     </P
+><P
+>&#13;      Asimismo, tanto IE como Lynx ignoran los caracteres NUL
+      (<VAR
+CLASS="literal"
+>\0</VAR
+>) en la secuencia HTML, mientras que
+      Netscape no. La mejor manera de chequear esto es compilar la
+      versión de <A
+HREF="features.commandline.html"
+>línea de comandos</A
+>
+      de PHP (también conocida como la versión CGI) y
+      ejecutar su script desde la línea de comandos. En *nix,
+      envíe la salida a través de un pipe a <VAR
+CLASS="literal"
+>od
+      -c</VAR
+> y busque caracteres <VAR
+CLASS="literal"
+>\0</VAR
+>. Si se
+      encuentra en Windows necesita un editor o algún otro
+      programa que le permita ver archivos binarios. Cuando Netscape
+      ve un NUL en un archivo, típicamente no imprimirá
+      nada más en aquella línea, mientras que tanto IE
+      como Lynx si lo hacen.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.mixml"
+></A
+><B
+>10. </B
+>
+      ¿Cómo se supone que mezcle XML y PHP? ¡Se
+      queja sobre mis etiquetas &#60;?xml!
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Para poder embeber etiquetas &#60;?xml directamente en su
+      código PHP, tendrá que deshabilitar las etiquetas
+      cortas, definiendo la directiva PHP <A
+HREF="ini.sect.language-options.html#ini.short-open-tag"
+>short_open_tags</A
+>
+      como <VAR
+CLASS="literal"
+>0</VAR
+>. No puede definir esta directiva
+      con <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>. Independientemente del valor
+      de <A
+HREF="ini.sect.language-options.html#ini.short-open-tag"
+>short_open_tags</A
+>,
+      usted puede hacer algo como:
+      <VAR
+CLASS="literal"
+>&#60;?php echo '&#60;?xml'; ?&#62;</VAR
+>. El valor
+      predeterminado para esta directiva es on.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.editor"
+></A
+><B
+>11. </B
+>
+      ¿Cómo puedo usar PHP con FrontPage u otro editor
+      HTML que insiste en mover mi código por todas partes?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Una de las cosas más fáciles es habilitar el uso
+      de etiquetas ASP en su código PHP. Esto le permite usar
+      el estilo de delimitadores de código ASP &#60;% y
+      %&#62;. Algunos de los editores HTML populares gestionan
+      éstas etiquetas de forma más inteligente (por
+      ahora). Para habilitar las etiquetas estilo-ASP, necesita
+      definir la variable <TT
+CLASS="filename"
+>php.ini</TT
+> <A
+HREF="ini.sect.language-options.html#ini.asp-tags"
+>asp_tags</A
+>, o usar la directiva de
+      Apache apropiada.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.variables"
+></A
+><B
+>12. </B
+>
+      ¿En dónde puedo encontrar una lista completa de
+      variables disponibles en PHP?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Consulte la página del manual sobre <A
+HREF="language.variables.predefined.html"
+>variables
+      predefinidas</A
+>, ya que allí se incluye una lista
+      parcial de variables predefinidas disponibles para su
+      script. Una lista completa de variables disponibles (y mucha
+      más información) puede ser consultada al llamar la
+      función
+      <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>. Asegúrese de leer la
+      sección del manual sobre <A
+HREF="language.variables.external.html"
+>variables externas a
+      PHP</A
+> ya que allí se describen escenarios comunes
+      para variables externas, como las provenientes de formularios
+      HTML, Cookies y URLs.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>register_globals: Nota
+importante: </B
+> Desde PHP 4.2.0 el valor por defecto de la
+directiva <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>off</I
+></SPAN
+>. La comunidad PHP anima a todos a no
+confiar en esta directiva y usar en su lugar
+<A
+HREF="language.variables.predefined.html"
+>superglobals</A
+>.</P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.freepdf"
+></A
+><B
+>13. </B
+>
+      ¿Cómo puedo generar archivos PDF sin usar las
+      bibliotecas no-libres y comerciales <A
+HREF="ref.cpdf.html"
+>ClibPDF</A
+> y <A
+HREF="ref.pdf.html"
+>PDFLib</A
+>? Quisiera algo que fuera
+      gratuito y no requiera de bibliotecas PDF externas.
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+      Existen algunas pocas alternativas escritas en PHP, como
+      <A
+HREF="http://www.ros.co.nz/pdf/"
+TARGET="_top"
+>http://www.ros.co.nz/pdf/</A
+>, 
+      <A
+HREF="http://www.fpdf.org/"
+TARGET="_top"
+>http://www.fpdf.org/</A
+>, 
+      <A
+HREF="http://www.gnuvox.com/pdf4php/"
+TARGET="_top"
+>http://www.gnuvox.com/pdf4php/</A
+>, y 
+      <A
+HREF="http://www.potentialtech.com/ppl.php"
+TARGET="_top"
+>http://www.potentialtech.com/ppl.php</A
+>. También
+      existe el módulo <A
+HREF="http://www.stillhq.com/cgi-bin/getpage?area=panda"
+TARGET="_top"
+>Panda</A
+>.
+     </P
+></DIV
+></DIV
+><DIV
+CLASS="qandaentry"
+><B
+><DIV
+CLASS="question"
+><P
+><A
+NAME="faq.using.cgi-vars"
+></A
+><B
+>14. </B
+>
+      Estoy tratando de acceder a una de las variables CGI
+      estándar (como $DOCUMENT_ROOT o $HTTP_REFERER) en una
+      función definida por el usuario, y parece que no la
+      encuentra. ¿Qué está fallando?
+     </P
+></DIV
+></B
+><DIV
+CLASS="answer"
+><P
+><B
+> </B
+>
+
+      Es importante darse cuenta de que la directiva PHP <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>
+      también afecta a variables de servidor y de
+      entorno. Cuando register_globals = off (el valor predeterminado
+      es off a partir de PHP 4.2.0), <VAR
+CLASS="varname"
+>$DOCUMENT_ROOT</VAR
+>
+      no existirá. En su lugar,
+      use <VAR
+CLASS="varname"
+>$_SERVER['DOCUMENT_ROOT']</VAR
+>. Si
+      register_globals = on entonces las variables
+      <VAR
+CLASS="varname"
+>$DOCUMENT_ROOT</VAR
+> y
+      <VAR
+CLASS="varname"
+>$GLOBALS['DOCUMENT_ROOT']</VAR
+> existirán
+      también.
+     </P
+><P
+>&#13;      Si está seguro de que register_globals = on y se pregunta
+      porqué <VAR
+CLASS="varname"
+>$DOCUMENT_ROOT</VAR
+> no se encuentra
+      disponible al interior de funciones, es porque éste tipo
+      de variables es como cualquier otra, y requeriría de una
+      sentencia <VAR
+CLASS="literal"
+>global $DOCUMENT_ROOT</VAR
+> al interior
+      de la función. Vea también la página del
+      manual sobre los
+      <A
+HREF="language.variables.scope.html"
+>contextos de
+      variables</A
+>. Es recomendable escribir código bajo el
+      modelo register_globals = off.
+     </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Superglobals: Nota de
+disponibilidad: </B
+> Desde 4.1.0, están disponibles
+algunas matrices superglobales tales como <VAR
+CLASS="varname"
+>$_GET</VAR
+>,
+<VAR
+CLASS="varname"
+>$_POST</VAR
+>, y <VAR
+CLASS="varname"
+>$_SERVER</VAR
+>, etc. Para
+más información puede consultar la sección
+<A
+HREF="language.variables.predefined.html"
+>superglobals</A
+></P
+></BLOCKQUOTE
+></DIV
+></DIV
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="faq.build.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="faq.html.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Build Problems</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="faq.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>PHP and HTML</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

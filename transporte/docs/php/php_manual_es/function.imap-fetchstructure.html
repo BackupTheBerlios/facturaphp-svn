@@ -1,0 +1,521 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imap_fetchstructure</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones IMAP"
+HREF="ref.imap.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_fetchheader"
+HREF="function.imap-fetchheader.html"><LINK
+REL="NEXT"
+TITLE="imap_get_quota"
+HREF="function.imap-get-quota.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-fetchheader.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-get-quota.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imap-fetchstructure"
+></A
+>imap_fetchstructure</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN40714"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>imap_fetchstructure&nbsp;--&nbsp;
+     Lee la estructuta de un mensaje concreto
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN40717"
+></A
+><H2
+>Descripción</H2
+>object <B
+CLASS="methodname"
+>imap_fetchstructure</B
+> ( int imap_stream, int msg_number [, int flags])<BR
+></BR
+><P
+>&#13;     Esta función busca toda la información estructurada en el mensaje
+     especificado. El parámetro opcional <VAR
+CLASS="parameter"
+>flags</VAR
+> sólo 
+     tiene una opcion, <VAR
+CLASS="parameter"
+>FT_UID</VAR
+>, la cual indica a la función
+     que trate el argumento <VAR
+CLASS="parameter"
+>msg_number</VAR
+> como un <VAR
+CLASS="parameter"
+>UID</VAR
+>.
+     El objeto devuelto incluye el sobre, la fecha interna, el tama¤o, flags y la 
+     estructura del cuerpo con un objeto similar por cada mime adjunto al mensaje.
+     La estructura de los objetos devueltos es como sigue:
+    </P
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN40737"
+></A
+><P
+><B
+>Tabla 1. 
+       Objetos Devueltos para <B
+CLASS="function"
+>imap_fetchstructure()</B
+>
+      </B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+>type</TD
+><TD
+>Tipo primario del cuerpo</TD
+></TR
+><TR
+><TD
+>encoding</TD
+><TD
+>Body transfer encoding</TD
+></TR
+><TR
+><TD
+>ifsubtype</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si hay una cadena de subtipo</TD
+></TR
+><TR
+><TD
+>subtype</TD
+><TD
+><ACRONYM
+CLASS="acronym"
+>MIME</ACRONYM
+> subtype</TD
+></TR
+><TR
+><TD
+>ifDescripción</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si hay una cadena de Descripción</TD
+></TR
+><TR
+><TD
+>Description</TD
+><TD
+>Conenido de la cadena de Descripción</TD
+></TR
+><TR
+><TD
+>ifid</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si hay una cadena de identificación</TD
+></TR
+><TR
+><TD
+>id</TD
+><TD
+>Cadena de Identificación</TD
+></TR
+><TR
+><TD
+>lines</TD
+><TD
+>Número de lineas</TD
+></TR
+><TR
+><TD
+>bytes</TD
+><TD
+>Número de bytes</TD
+></TR
+><TR
+><TD
+>ifdisposition</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si hay una cadena de configuración</TD
+></TR
+><TR
+><TD
+>disposition</TD
+><TD
+>Cadena de configuración</TD
+></TR
+><TR
+><TD
+>ifdparameters</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el array dparameters existe</TD
+></TR
+><TR
+><TD
+>dparameters
+	  <A
+NAME="AEN40789"
+HREF="#FTN.AEN40789"
+><SPAN
+CLASS="footnote"
+>[a]</SPAN
+></A
+>
+	 </TD
+><TD
+>Array de parametro de configuración</TD
+></TR
+><TR
+><TD
+>ifparameters</TD
+><TD
+><TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si el array de parámetros existe</TD
+></TR
+><TR
+><TD
+>parameters
+	  <A
+NAME="AEN40798"
+HREF="#FTN.AEN40798"
+><SPAN
+CLASS="footnote"
+>[b]</SPAN
+></A
+>
+	 </TD
+><TD
+><ACRONYM
+CLASS="acronym"
+>MIME</ACRONYM
+> parameters array</TD
+></TR
+><TR
+><TD
+>parts
+	  <A
+NAME="AEN40804"
+HREF="#FTN.AEN40804"
+><SPAN
+CLASS="footnote"
+>[c]</SPAN
+></A
+>
+	 </TD
+><TD
+>Array de objetos describiendo cada parte del mensaje</TD
+></TR
+></TBODY
+><TR
+><TD
+COLSPAN="2"
+>Notas de Tabla:<BR><A
+NAME="FTN.AEN40789"
+>a. </A
+>
+       dparameters es un array de objetos donde cada objeto tiene
+       un  "atributo" y una propiedad "valor".
+	   <BR><A
+NAME="FTN.AEN40798"
+>b. </A
+>
+       parameter es un array de objetos donde cada objetor tiene un
+       "atributo" y una propiedad "valor".
+	   <BR><A
+NAME="FTN.AEN40804"
+>c. </A
+>
+       parts es un array de objetos identico en estructura al objeto del
+       primer nivel, con la limitación de que este no puede contener más
+       objetos 'parts'.
+	   <BR></TD
+></TR
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN40808"
+></A
+><P
+><B
+>Tabla 2. Tipo primario del cuerpo</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+>0</TD
+><TD
+>texto</TD
+></TR
+><TR
+><TD
+>1</TD
+><TD
+>multiparte</TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>mensaje</TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>aplicación</TD
+></TR
+><TR
+><TD
+>4</TD
+><TD
+>audio</TD
+></TR
+><TR
+><TD
+>5</TD
+><TD
+>imagen</TD
+></TR
+><TR
+><TD
+>6</TD
+><TD
+>video</TD
+></TR
+><TR
+><TD
+>7</TD
+><TD
+>otro</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN40837"
+></A
+><P
+><B
+>Tabla 3. Codificacion para tranferencia</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+>0</TD
+><TD
+>7BIT</TD
+></TR
+><TR
+><TD
+>1</TD
+><TD
+>8BIT</TD
+></TR
+><TR
+><TD
+>2</TD
+><TD
+>BINARY</TD
+></TR
+><TR
+><TD
+>3</TD
+><TD
+>BASE64</TD
+></TR
+><TR
+><TD
+>4</TD
+><TD
+>QUOTED-PRINTABLE</TD
+></TR
+><TR
+><TD
+>5</TD
+><TD
+>OTRO</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-fetchheader.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-get-quota.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_fetchheader</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.imap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_get_quota</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

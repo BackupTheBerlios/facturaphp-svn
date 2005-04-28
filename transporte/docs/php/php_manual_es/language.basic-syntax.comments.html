@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Comentarios</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Sintaxis básica"
+HREF="language.basic-syntax.html"><LINK
+REL="PREVIOUS"
+TITLE="Separación de instrucciones"
+HREF="language.basic-syntax.instruction-separation.html"><LINK
+REL="NEXT"
+TITLE="Tipos"
+HREF="language.types.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.basic-syntax.instruction-separation.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 5. Sintaxis básica</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.basic-syntax.comments"
+>Comentarios</A
+></H1
+><P
+>&#13;    PHP soporta el estilo de comentarios de 'C', 'C++' y de la interfaz de comandos
+    de Unix. Por ejemplo:
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2020"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">echo </font><font color="#DD0000">"This is a test"</font><font color="#007700">; </font><font color="#FF8000">// This is a one-line c++ style comment<br />&nbsp;&nbsp;&nbsp;&nbsp;/* This is a multi line comment<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;yet another line of comment */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">echo </font><font color="#DD0000">"This is yet another test"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"One Final Test"</font><font color="#007700">; </font><font color="#FF8000"># This is shell-style style comment<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><P
+>&#13;    Los estilos de comentarios de una linea actualmente sólo comentan
+    hasta el final de la linea o el bloque actual de código PHP, lo
+    primero que ocurra.
+   </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2023"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;h1&gt;This is an <font color="#0000BB">&lt;?php </font><font color="#FF8000"># echo "simple";</font><font color="#0000BB">?&gt;</font> example.&lt;/h1&gt;<br />&lt;p&gt;The header above will say 'This is an example'.</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;    Hay que tener cuidado con no anidar comentarios de estilo 'C', algo
+    que puede ocurrir al comentar bloques largos de código.
+   </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2026"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /> </font><font color="#FF8000">/*<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "This is a test"; /* This comment will cause a problem */<br /> </font><font color="#007700">*/<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;    Los estilos de comentarios de una linea actualmente sólo comentan
+    hasta el final de la linea o del bloque actual de código PHP,
+    lo primero que ocurra. Esto implica que el código HTML tras // ?&#62; seráa
+    impreso: ?&#62; sale del modo PHP, retornando al modo HTML, el comentario
+    // no le influye.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.basic-syntax.instruction-separation.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Separación de instrucciones</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.basic-syntax.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Tipos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

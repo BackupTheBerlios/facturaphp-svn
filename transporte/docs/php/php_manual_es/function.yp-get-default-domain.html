@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>yp_get_default_domain</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE=" NIS funciona "
+HREF="ref.nis.html"><LINK
+REL="PREVIOUS"
+TITLE=" yp_first"
+HREF="function.yp-first.html"><LINK
+REL="NEXT"
+TITLE="yp_master"
+HREF="function.yp-master.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.yp-first.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.yp-master.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.yp-get-default-domain"
+></A
+>yp_get_default_domain</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN117038"
+></A
+><P
+>    (PHP 3&#62;= 3.0.7, PHP 4 , PHP 5)</P
+>yp_get_default_domain&nbsp;--&nbsp;Trae el valor por omision de dominios de maquina NIS.
+  </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN117041"
+></A
+><H2
+>Descripcion</H2
+>int <B
+CLASS="methodname"
+>yp get_default_domain</B
+> ( void )<BR
+></BR
+><P
+>&#13;             <B
+CLASS="function"
+>yp_ get_default_domain()</B
+>
+        Retorna el valor  por omision del dominio del nodo o FALSO. Puede ser usado el parametro de dominio para sucesivas llamadas a NIS.
+              </P
+><P
+>&#13;              Un dominio de NIS puede ser descrito en un grupo de mapas NIS. Cada host necesita buscar uniones de informacion en un mismo dominio. Acudir a los documentos mencionados en el comienzo para mas informacion.
+            </P
+><P
+>&#13;           <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN117051"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo para el dominio por omision</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?$domain </font><font color="#007700">= </font><font color="#0000BB">yp_ get_default_domain </font><font color="#007700">(); if (!$ </font><font color="#0000BB">domain</font><font color="#007700">) {</font><font color="#DD0000">"echo yp_errno()."</font><font color="#007700">:</font><font color="#DD0000">" .yp_err_string();}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo "</font><font color="#0000BB">El valor por omision de dominio NIS es</font><font color="#007700">:&nbsp;&nbsp;$ </font><font color="#0000BB">domain</font><font color="#007700">;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+         </P
+><P
+> 
+				 Ver tambien:
+         <A
+HREF="function.yp-errno.html"
+>yp_ errno (nombre de la funcion)</A
+> 
+           y   
+         <A
+HREF="function.yp-err-string.html"
+>yp_err_string (nombre de la funcion)</A
+>
+        </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.yp-first.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.yp-master.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>yp_first</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.nis.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>yp_master</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

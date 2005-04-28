@@ -1,0 +1,698 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>header</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones HTTP"
+HREF="ref.http.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones HTTP"
+HREF="ref.http.html"><LINK
+REL="NEXT"
+TITLE="headers_list"
+HREF="function.headers-list.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.http.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.headers-list.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.header"
+></A
+>header</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN33481"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>header&nbsp;--&nbsp;Enviar una cabecera HTTP pura</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN33484"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>header</B
+> ( string cadena [, bool reemplazar [, int cod_respuesta_http]])<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>header()</B
+> es usada para
+     enviar cabeceras <ACRONYM
+CLASS="acronym"
+>HTTP</ACRONYM
+> puras. Consulte la
+     <A
+HREF="http://www.faqs.org/rfcs/rfc2616"
+TARGET="_top"
+>especificación HTTP/1.1</A
+>
+     para más información sobre las cabeceras
+     <ACRONYM
+CLASS="acronym"
+>HTTP</ACRONYM
+>.
+    </P
+><P
+>&#13;     El parámetro opcional <VAR
+CLASS="parameter"
+>reemplazar</VAR
+>
+     indica si la cabecera debe reemplazar una cabecera previa
+     semejante, o si debe agregar una segunda cabecera del mismo tipo.
+     Por defecto esta función procede a reemplazar, pero si
+     pasa <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> como el segundo argumento, puede obligar a que se
+     envíen múltiples cabeceras del mismo tipo. Por
+     ejemplo:
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33507"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />header</font><font color="#007700">(</font><font color="#DD0000">'WWW-Authenticate: Negotiate'</font><font color="#007700">);<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">'WWW-Authenticate: NTLM'</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     El segundo parámetro opcional,
+     <VAR
+CLASS="parameter"
+>cod_respuesta_http</VAR
+>, obliga a que el
+     código de respuesta HTTP sea el valor especificado. (Este
+     parámetro se encuentra disponible a partir de PHP 4.3.0.)
+    </P
+><P
+>&#13;     Existen dos llamadas de cabecera que son casos especiales. El
+     primero es una cabecera que comience con la cadena
+     "<VAR
+CLASS="literal"
+>HTTP/</VAR
+>" (no es importante la diferencia entre
+     mayúsculas y minúsculas), la cual será usada
+     para elegir el código de status HTTP a enviar. Por
+     ejemplo, si ha configurado a Apache para que use un script PHP a
+     la hora de gestionar peticiones por archivos inexistentes (usando
+     la directiva <VAR
+CLASS="literal"
+>ErrorDocument</VAR
+>), puede que quiera
+     asegurarse de que su script genere el código de status
+     apropiado.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33515"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />header</font><font color="#007700">(</font><font color="#DD0000">"HTTP/1.0 404 Not Found"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La línea de cabecera con el status HTTP será
+      siempre la primera en ser enviada al cliente, independientemente
+      de que la llamada a <B
+CLASS="function"
+>header()</B
+> correspondiente
+      sea la primera o no. El status puede ser sobrescrito llamando
+      <B
+CLASS="function"
+>header()</B
+> con una nueva línea de status
+      en cualquier momento, a menos que las cabeceras HTTP ya hayan
+      sido enviadas.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      En PHP 3, esto funciona únicamente cuando PHP ha sido
+      compilado como un módulo de Apache. Puede conseguir el
+      mismo efecto usando la cabecera <VAR
+CLASS="literal"
+>Status</VAR
+>.
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33524"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />header</font><font color="#007700">(</font><font color="#DD0000">"Status: 404 Not Found"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     El segundo caso especial es la cabecera "Location:". No solo
+     envía esta cabecera de vuelta al navegador, sino que
+     también devuelve un código de status
+     <VAR
+CLASS="literal"
+>REDIRECT</VAR
+> (302) al navegador a menos que
+     algún código de status <VAR
+CLASS="literal"
+>3xx</VAR
+> haya
+     sido enviado ya.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33530"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />header</font><font color="#007700">(</font><font color="#DD0000">"Location: http://www.example.com/"</font><font color="#007700">); </font><font color="#FF8000">/* Redirigir al navegador */<br /><br />/* Asegurarse de que no se ejecute el codigo adicional cuando se redireccione. */<br /></font><font color="#007700">exit;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      HTTP/1.1 requiere una <ACRONYM
+CLASS="acronym"
+>URI</ACRONYM
+> absoluta como
+      argumento a <A
+HREF="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.30"
+TARGET="_top"
+>Location:</A
+>
+      incluyendo el esquema, el nombre del host y una ruta absoluta,
+      aunque algunos clientes aceptan URIs relativas. Usualmente puede
+      usar <VAR
+CLASS="literal"
+>$_SERVER['HTTP_HOST']</VAR
+>,
+      <VAR
+CLASS="literal"
+>$_SERVER['PHP_SELF']</VAR
+> y
+      <A
+HREF="function.dirname.html"
+><B
+CLASS="function"
+>dirname()</B
+></A
+> para construir una URI absoluta a
+      partir de una relativa:
+      <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33539"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />header</font><font color="#007700">(</font><font color="#DD0000">"Location: http://" </font><font color="#007700">. </font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">'HTTP_HOST'</font><font color="#007700">]<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </font><font color="#0000BB">dirname</font><font color="#007700">(</font><font color="#0000BB">$_SERVER</font><font color="#007700">[</font><font color="#DD0000">'PHP_SELF'</font><font color="#007700">])<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;. </font><font color="#DD0000">"/" </font><font color="#007700">. </font><font color="#0000BB">$url_relativa</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Con frecuencia, los scripts PHP generan contenido dinámico
+     que no debe ser almacenado en caché por el navegador del
+     cliente o cualquier caché de proxy entre el servidor y el
+     navegador del cliente. Muchos proxys y clientes pueden ser
+     obligados a deshabilitar el uso de cachés con:
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33543"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Fecha en el pasado<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Expires: Mon, 26 Jul 1997 05:00:00 GMT"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// siempre modificado<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Last-Modified: " </font><font color="#007700">. </font><font color="#0000BB">gmdate</font><font color="#007700">(</font><font color="#DD0000">"D, d M Y H:i:s"</font><font color="#007700">) . </font><font color="#DD0000">" GMT"</font><font color="#007700">);<br /> <br /></font><font color="#FF8000">// HTTP/1.1<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Cache-Control: no-store, no-cache, must-revalidate"</font><font color="#007700">);<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Cache-Control: post-check=0, pre-check=0"</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// HTTP/1.0<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">"Pragma: no-cache"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Puede que encuentre que sus páginas no son puestas en
+      caché aun cuando no use todas las cabeceras
+      enteriores. Existe un número de opciones que puede que se
+      encuentren a disposición de los usuarios en sus
+      navegadores para modificar sus comportamientos de caché
+      predeterminados. Al enviar las anteriores cabeceras, usted
+      debería sobrescribir cualquier parámetro de
+      configuración que de otra forma podría estar
+      causando que la salida de su script sea puesta en caché.
+     </P
+><P
+>&#13;      Adicionalmente, <A
+HREF="function.session-cache-limiter.html"
+><B
+CLASS="function"
+>session_cache_limiter()</B
+></A
+> y el
+      parámetro de configuración
+      <VAR
+CLASS="literal"
+>session.cache_limiter</VAR
+> pueden ser usados para
+      generar automáticamente las cabeceras de uso de
+      caché apropiadas cuando se están usando sesiones.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Recuerde que la función <B
+CLASS="function"
+>header()</B
+> debe
+     ser llamada antes de que cualquier salida sea enviada, ya sea
+     mediante etiquetas HTML normales, líneas en blanco de un
+     archivo, o desde PHP. Es un error bastante común
+     interpretar código extra con <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+>,
+     <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+>, o alguna otra función de
+     acceso de archivos, y terminar con espacios o líneas en
+     blanco que son impresas antes de un llamado a
+     <B
+CLASS="function"
+>header()</B
+>. El mismo problema existe cuando se
+     usa un archivo PHP/HTML único.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33556"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;html&gt;<br /><font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Esto produce un error. Note la salida anterior, que se realiza<br /> * antes de llamar a header() */<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">'Location: http://www.example.com/'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      En PHP 4, puede usar búferes de salida para evitar este
+      problema, con el efecto lateral de que toda su salida al
+      navegador es colocada en un búfer en el servidor hasta
+      que usted la envíe. Puede lograr esto usando
+      <A
+HREF="function.ob-start.html"
+><B
+CLASS="function"
+>ob_start()</B
+></A
+> y
+      <A
+HREF="function.ob-end-flush.html"
+><B
+CLASS="function"
+>ob_end_flush()</B
+></A
+> en su script, o al definir la
+      directiva de configuración
+      <VAR
+CLASS="literal"
+>output_buffering</VAR
+> en su <TT
+CLASS="filename"
+>php.ini</TT
+> u otros
+      archivos de configuración.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Si desea que el usuario reciba un cuadro de diálogo para
+     almacenar los datos que usted envía, como en el caso de un
+     archivo PDF generado al vuelo, puede usar la cabecera <A
+HREF="http://www.faqs.org/rfcs/rfc2183"
+TARGET="_top"
+>Content-Disposition</A
+> para indicar un
+     nombre de archivo recomendado y obligar a que el navegador
+     despliegue un diálogo de guardado.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN33567"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Enviaremos un PDF<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">'Content-type: application/pdf'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// Se va a llamar descarga.pdf<br /></font><font color="#0000BB">header</font><font color="#007700">(</font><font color="#DD0000">'Content-Disposition: attachment; filename="descarga.pdf"'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// La fuente del PDF se encuentra en original.pdf<br /></font><font color="#0000BB">readfile</font><font color="#007700">(</font><font color="#DD0000">'original.pdf'</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Existe un problema en Microsoft Internet Explorer 4.01 que
+      impide que esto funcione. No existe forma de evitar este
+      inconveniente. Hay también un fallo en Microsoft Internet
+      Explorer 5.5 que interfiere con esto, el cual puede ser resuelto
+      al actualizarse a Service Pack 2 o superior.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si se encuentra habilitado el <A
+HREF="missing-stuff.html#ini.safe-mode"
+>modo
+      seguro</A
+>, el uid del script es agregado a la sección
+      <VAR
+CLASS="literal"
+>realm</VAR
+> de la cabecera
+      <VAR
+CLASS="literal"
+>WWW-Authenticate</VAR
+> si define ésta
+      cabecera (usada para Autenticación HTTP).
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.headers-sent.html"
+><B
+CLASS="function"
+>headers_sent()</B
+></A
+>,
+     <A
+HREF="function.setcookie.html"
+><B
+CLASS="function"
+>setcookie()</B
+></A
+>, y la sección sobre <A
+HREF="features.http-auth.html"
+>autenticación HTTP</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.http.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.headers-list.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones HTTP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.http.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>headers_list</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imagecopyresampled</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para imágenes"
+HREF="ref.image.html"><LINK
+REL="PREVIOUS"
+TITLE="imagecopymergegray"
+HREF="function.imagecopymergegray.html"><LINK
+REL="NEXT"
+TITLE="ImageCopyResized"
+HREF="function.imagecopyresized.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imagecopymergegray.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imagecopyresized.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imagecopyresampled"
+></A
+>imagecopyresampled</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN38184"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>imagecopyresampled&nbsp;--&nbsp;Copia y reescala parte de una imagen con remuestreo</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN38187"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>imagecopyresampled</B
+> ( resource img_dst, resource img_org, int Xdst, int Ydst, int Xorg, int Yorg, int ancho_dst, int alto_dst, int ancho_org, int alto_org)<BR
+></BR
+><P
+>&#13;    <B
+CLASS="function"
+>imagecopyresampled()</B
+> copia una porción
+	rectangular de una imagen sobre otra, suavizando los valores de los
+	píxeles mediante interpolación, de forma que al
+	reducir el tamaño de una imagen aún mantiene una buena
+	claridad.
+    <VAR
+CLASS="parameter"
+>img_dst</VAR
+> es la imagen de destino,
+    <VAR
+CLASS="parameter"
+>img_org</VAR
+> es el identificador de la imagen de
+	origen. Si las coordenadas de origen y destino y ancho y alto son
+	diferentes, se encogerá o agrandará el fragmento de
+	imagen según sea necesario. Las coordenadas son relativas a
+	la esquina superior izquierda. Esta función se puede usar para
+	copiar regiones dentro de la misma imagen (si
+	<VAR
+CLASS="parameter"
+>img_dst</VAR
+> es la misma que
+    <VAR
+CLASS="parameter"
+>img_org</VAR
+>) pero si las regiones se superponen,
+	los resultados serán impredecibles.
+   </P
+><P
+>&#13;    Vea también <A
+HREF="function.imagecopyresized.html"
+><B
+CLASS="function"
+>imagecopyresized()</B
+></A
+>.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función fue añadida en PHP 4.0.6 y
+   requiere GD 2.0.1 o superior</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imagecopymergegray.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imagecopyresized.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imagecopymergegray</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.image.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ImageCopyResized</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

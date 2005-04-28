@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>msg_get_queue</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones Semáforo y de memoria compartida"
+HREF="ref.sem.html"><LINK
+REL="PREVIOUS"
+TITLE="ftok"
+HREF="function.ftok.html"><LINK
+REL="NEXT"
+TITLE="msg_receive"
+HREF="function.msg-receive.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ftok.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.msg-receive.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.msg-get-queue"
+></A
+>msg_get_queue</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN94471"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>msg_get_queue&nbsp;--&nbsp;
+     Create or attach to a message queue
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN94474"
+></A
+><H2
+>Description</H2
+>resource <B
+CLASS="methodname"
+>msg_get_queue</B
+> ( int key [, int perms])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>msg_get_queue()</B
+> returns an id that can be used to
+     access the System V message queue with the given
+     <VAR
+CLASS="parameter"
+>key</VAR
+>. The first call creates the message queue with
+     the optional <VAR
+CLASS="parameter"
+>perms</VAR
+> (default: 0666).
+     A second call to <B
+CLASS="function"
+>msg_get_queue()</B
+> for the same
+     <VAR
+CLASS="parameter"
+>key</VAR
+> will return a different message queue
+     identifier, but both identifiers access the same underlying message
+     queue.
+     If the message queue already exists, the <VAR
+CLASS="parameter"
+>perms</VAR
+>
+     will be ignored.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.msg-remove-queue.html"
+><B
+CLASS="function"
+>msg_remove_queue()</B
+></A
+>,
+     <A
+HREF="function.msg-receive.html"
+><B
+CLASS="function"
+>msg_receive()</B
+></A
+>, <A
+HREF="function.msg-send.html"
+><B
+CLASS="function"
+>msg_send()</B
+></A
+>,
+     <A
+HREF="function.msg-stat-queue.html"
+><B
+CLASS="function"
+>msg_stat_queue()</B
+></A
+> and
+     <A
+HREF="function.msg-set-queue.html"
+><B
+CLASS="function"
+>msg_set_queue()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ftok.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.msg-receive.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ftok</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.sem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>msg_receive</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones Semáforo y de memoria compartida</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="sql_regcase"
+HREF="function.sql-regcase.html"><LINK
+REL="NEXT"
+TITLE="ftok"
+HREF="function.ftok.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.sql-regcase.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ftok.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.sem"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XCV. Funciones Semáforo y de memoria compartida</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN94425"
+></A
+><P
+>&#13;   Este módulo provee funciones semáforo utilizando los semaforos de System V.
+   Los semáforos pueden usarse para obtener acceso exclusivo a algun recurso del
+   ordenador en cuestión, o para limitar el número de procesos que pueden usar
+   un recurso simultaneamente.</P
+><P
+>&#13;   Este módulo provee tambien funciones de memoria compartida, usando el
+   compartimiento de memoria de System V. La memoria compartida puede usarse para proveer
+   acceso a variables globales. Los diferentes demonios http e incluso otros programas,
+   (como Perl, C, ...) son capaces de utilizar estos datos, para intercambiarlos de
+   modo global. Recuerde que, la memoria compartida NO es segura para los
+   accesos simultáneos. Use los semáforos para obtener sincronismo.
+
+    <DIV
+CLASS="table"
+><A
+NAME="AEN94428"
+></A
+><P
+><B
+>Tabla 1. Limites de la memoria compartida del SO Unix</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><TBODY
+><TR
+><TD
+>SHMMAX</TD
+><TD
+>máximo tamaño de memoria compartida, normalmente 131072
+	bytes</TD
+></TR
+><TR
+><TD
+>SHMMIN</TD
+><TD
+>minimo tamaño de memoria compartida, por lo general 1 byte</TD
+></TR
+><TR
+><TD
+>SHMMNI</TD
+><TD
+>máxima cantidad de segmentos de memoria compartida, normalmente
+	100</TD
+></TR
+><TR
+><TD
+>SHMSEG</TD
+><TD
+>máximo de memoria compartida por proceso, normalmente
+	6</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+></P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.ftok.html"
+>ftok</A
+>&nbsp;--&nbsp;
+     Convert a pathname and a project identifier to a System V IPC key
+    </DT
+><DT
+><A
+HREF="function.msg-get-queue.html"
+>msg_get_queue</A
+>&nbsp;--&nbsp;
+     Create or attach to a message queue
+    </DT
+><DT
+><A
+HREF="function.msg-receive.html"
+>msg_receive</A
+>&nbsp;--&nbsp;
+     Receive a message from a message queue
+    </DT
+><DT
+><A
+HREF="function.msg-remove-queue.html"
+>msg_remove_queue</A
+>&nbsp;--&nbsp;
+     Destroy a message queue
+    </DT
+><DT
+><A
+HREF="function.msg-send.html"
+>msg_send</A
+>&nbsp;--&nbsp;
+     Send a message to a message queue
+    </DT
+><DT
+><A
+HREF="function.msg-set-queue.html"
+>msg_set_queue</A
+>&nbsp;--&nbsp;
+     Set information in the message queue data structure
+    </DT
+><DT
+><A
+HREF="function.msg-stat-queue.html"
+>msg_stat_queue</A
+>&nbsp;--&nbsp;
+     Returns information from the message queue data structure
+    </DT
+><DT
+><A
+HREF="function.sem-acquire.html"
+>sem_acquire</A
+>&nbsp;--&nbsp;adquiere un semáforo, lo toma para sí</DT
+><DT
+><A
+HREF="function.sem-get.html"
+>sem_get</A
+>&nbsp;--&nbsp;obtiene la identificacion de un semáforo (semaphore id)</DT
+><DT
+><A
+HREF="function.sem-release.html"
+>sem_release</A
+>&nbsp;--&nbsp;release a semaphore</DT
+><DT
+><A
+HREF="function.sem-remove.html"
+>sem_remove</A
+>&nbsp;--&nbsp;Remove a semaphore</DT
+><DT
+><A
+HREF="function.shm-attach.html"
+>shm_attach</A
+>&nbsp;--&nbsp;Crea o abre un segmento de memoria compartida</DT
+><DT
+><A
+HREF="function.shm-detach.html"
+>shm_detach</A
+>&nbsp;--&nbsp;Finaliza conexión con un segmento de memoria compartida</DT
+><DT
+><A
+HREF="function.shm-get-var.html"
+>shm_get_var</A
+>&nbsp;--&nbsp;Devuelve una variable de la memoria compartida
+    </DT
+><DT
+><A
+HREF="function.shm-put-var.html"
+>shm_put_var</A
+>&nbsp;--&nbsp;
+     Inserta o actualiza una variable en la memoria compartida
+    </DT
+><DT
+><A
+HREF="function.shm-remove-var.html"
+>shm_remove_var</A
+>&nbsp;--&nbsp;Elimina una variable de la memoria compartida
+    </DT
+><DT
+><A
+HREF="function.shm-remove.html"
+>shm_remove</A
+>&nbsp;--&nbsp;Elimina memoria compartida del sistma Unix</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.sql-regcase.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ftok.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>sql_regcase</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ftok</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

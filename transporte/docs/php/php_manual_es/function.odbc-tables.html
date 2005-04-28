@@ -1,0 +1,328 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>odbc_tables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="PREVIOUS"
+TITLE="odbc_tableprivileges"
+HREF="function.odbc-tableprivileges.html"><LINK
+REL="NEXT"
+TITLE="Object Aggregation/Composition Functions"
+HREF="ref.objaggregation.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.odbc-tableprivileges.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.objaggregation.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.odbc-tables"
+></A
+>odbc_tables</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN75489"
+></A
+><P
+>    (PHP 3&#62;= 3.0.17, PHP 4 , PHP 5)</P
+>odbc_tables&nbsp;--&nbsp;
+     Get the list of table names stored in a specific data source.
+     Returns a result identifier containing the
+     information.
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN75492"
+></A
+><H2
+>Description</H2
+>int <B
+CLASS="methodname"
+>odbc_tables</B
+> ( resource connection_id [, string qualifier [, string owner [, string name [, string types]]]])<BR
+></BR
+><P
+>&#13;     Lists all tables in the requested range.  Returns an ODBC result
+     identifier or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on failure.
+    </P
+><P
+>&#13;     The result set has the following columns:
+     <P
+></P
+><UL
+><LI
+><P
+>TABLE_QUALIFIER</P
+></LI
+><LI
+><P
+>TABLE_OWNER</P
+></LI
+><LI
+><P
+>TABLE_NAME</P
+></LI
+><LI
+><P
+>TABLE_TYPE</P
+></LI
+><LI
+><P
+>REMARKS</P
+></LI
+></UL
+> 
+    </P
+><P
+>&#13;     The result set is ordered by TABLE_TYPE, TABLE_QUALIFIER,
+     TABLE_OWNER and TABLE_NAME.
+    </P
+><P
+>&#13;     The <VAR
+CLASS="parameter"
+>owner</VAR
+> and <VAR
+CLASS="parameter"
+>name</VAR
+>
+     arguments accept search patterns ('%' to match zero or more
+     characters and '_' to match a single character).
+    </P
+><P
+>&#13;     To support enumeration of qualifiers, owners, and table types,
+     the following special semantics for the
+     <VAR
+CLASS="parameter"
+>qualifier</VAR
+>, <VAR
+CLASS="parameter"
+>owner</VAR
+>,
+     <VAR
+CLASS="parameter"
+>name</VAR
+>, and
+     <VAR
+CLASS="parameter"
+>table_type</VAR
+> are available:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        If <VAR
+CLASS="parameter"
+>qualifier</VAR
+> is a single percent
+        character (%) and <VAR
+CLASS="parameter"
+>owner</VAR
+> and
+        <VAR
+CLASS="parameter"
+>name</VAR
+> are empty strings, then the result
+        set contains a list of valid qualifiers for the data
+        source. (All columns except the TABLE_QUALIFIER column contain
+        NULLs.)
+       </P
+></LI
+><LI
+><P
+>&#13;        If <VAR
+CLASS="parameter"
+>owner</VAR
+> is a single percent character
+        (%) and <VAR
+CLASS="parameter"
+>qualifier</VAR
+> and
+        <VAR
+CLASS="parameter"
+>name</VAR
+> are empty strings, then the result
+        set contains a list of valid owners for the data source. (All
+        columns except the TABLE_OWNER column contain
+        NULLs.)
+       </P
+></LI
+><LI
+><P
+>&#13;        If <VAR
+CLASS="parameter"
+>table_type</VAR
+> is a single percent
+        character (%) and <VAR
+CLASS="parameter"
+>qualifier</VAR
+>,
+        <VAR
+CLASS="parameter"
+>owner</VAR
+> and <VAR
+CLASS="parameter"
+>name</VAR
+>
+        are empty strings, then the result set contains a list of
+        valid table types for the data source. (All columns except the
+        TABLE_TYPE column contain NULLs.)
+       </P
+></LI
+></UL
+> 
+    </P
+><P
+>&#13;     If <VAR
+CLASS="parameter"
+>table_type</VAR
+> is not an empty string, it
+     must contain a list of comma-separated values for the types of
+     interest; each value may be enclosed in single quotes (') or
+     unquoted. For example, "'TABLE','VIEW'" or "TABLE, VIEW".  If the
+     data source does not support a specified table type,
+     <B
+CLASS="function"
+>odbc_tables()</B
+> does not return any results for
+     that type.
+    </P
+><P
+>&#13;     See also <A
+HREF="function.odbc-tableprivileges.html"
+><B
+CLASS="function"
+>odbc_tableprivileges()</B
+></A
+> to retrieve
+     associated privileges.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.odbc-tableprivileges.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.objaggregation.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>odbc_tableprivileges</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Object Aggregation/Composition Functions</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

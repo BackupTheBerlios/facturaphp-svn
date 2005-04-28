@@ -1,0 +1,206 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ldap_next_entry</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones LDAP"
+HREF="ref.ldap.html"><LINK
+REL="PREVIOUS"
+TITLE="ldap_next_attribute"
+HREF="function.ldap-next-attribute.html"><LINK
+REL="NEXT"
+TITLE="ldap_next_reference"
+HREF="function.ldap-next-reference.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ldap-next-attribute.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ldap-next-reference.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ldap-next-entry"
+></A
+>ldap_next_entry</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN46349"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>ldap_next_entry&nbsp;--&nbsp;Obtiene la siguiente entrada de un resultado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN46352"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ldap_next_entry</B
+> ( int identificador_de_conexion, int identificador_de_entrada_de_resultado)<BR
+></BR
+><P
+>&#13;     Devuelve el identificador de la siguiente entrada del resultado.
+     Las entradas deben haber sido leidas al principio con 
+     <A
+HREF="function.ldap-first-entry.html"
+><B
+CLASS="function"
+>ldap_first_entry()</B
+></A
+>. Si no hay más entradas
+     en el resultado devuelve falso.</P
+><P
+>  
+     La función <B
+CLASS="function"
+>ldap_next_entry()</B
+> se utiliza para
+     obtener las entradas almacenadas en un resultado. Llamadas
+     sucesivas a la función 
+     <B
+CLASS="function"
+>ldap_next_entry()</B
+> devuelven las entradas una
+     a una hasta que ya no queden más entradas. La primera llamada a
+     <B
+CLASS="function"
+>ldap_next_entry()</B
+> se realiza después de llamar a
+     <A
+HREF="function.ldap-first-entry.html"
+><B
+CLASS="function"
+>ldap_first_entry()</B
+></A
+>.</P
+><P
+>&#13;     Ver también <A
+HREF="function.ldap-get-entries.html"
+><B
+CLASS="function"
+>ldap_get_entries()</B
+></A
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ldap-next-attribute.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ldap-next-reference.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ldap_next_attribute</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ldap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ldap_next_reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

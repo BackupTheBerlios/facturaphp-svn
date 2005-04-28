@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_ini_scanned_files</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="memory_get_usage"
+HREF="function.memory-get-usage.html"><LINK
+REL="NEXT"
+TITLE="php_logo_guid"
+HREF="function.php-logo-guid.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.memory-get-usage.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.php-logo-guid.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.php-ini-scanned-files"
+></A
+>php_ini_scanned_files</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN86768"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>php_ini_scanned_files&nbsp;--&nbsp;Devolver una lista de archivos .ini procesados del
+    directorio ini adicional</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN86771"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>php_ini_scanned_files</B
+> ( void )<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>php_ini_scanned_files()</B
+> devuelve una lista separada
+por comas de archivos de configuración procesados
+después de <TT
+CLASS="filename"
+>php.ini</TT
+>. Estos archivos se encuentran en un
+directorio definido por la
+opción <VAR
+CLASS="literal"
+>--with-config-file-scan-dir</VAR
+>, la cual
+es definida durante la compilación.
+     </P
+><P
+>&#13;Devuelve una cadena, separada por comas, de archivos .ini en caso de
+éxito. Si la
+directiva <VAR
+CLASS="literal"
+>--with-config-files-scan-dir</VAR
+> no fue
+definida, se devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>. Si la opción estaba definida y
+el directorio estaba vacío, se devuelve una cadena
+vacía. Si un archivo es irreconocible, éste aun
+será incluido en la cadena devuelta, pero también se
+producirá un error de PHP. Este error de PHP será visto
+tanto en tiempo de compilación como cuando se
+usa <B
+CLASS="function"
+>php_ini_scanned_files()</B
+>.
+     </P
+><P
+>&#13;Los archivos de configuración devueltos también incluyen
+la ruta, tal y como fuera sido declarada en la
+directiva <VAR
+CLASS="literal"
+>--with-config-file-scan-dir</VAR
+>. Asimismo,
+cada coma es seguida por una nueva línea.
+     </P
+><P
+>&#13;      <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN86788"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo simple para listar los archivos ini devueltos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">$lista_archivos </font><font color="#007700">= </font><font color="#0000BB">php_ini_scanned_files</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">strlen</font><font color="#007700">(</font><font color="#0000BB">$lista_archivos</font><font color="#007700">) &gt; </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$archivos </font><font color="#007700">= </font><font color="#0000BB">explode</font><font color="#007700">(</font><font color="#DD0000">','</font><font color="#007700">, </font><font color="#0000BB">$lista_archivos</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;foreach (</font><font color="#0000BB">$archivos </font><font color="#007700">as </font><font color="#0000BB">$archivo</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;li&gt;" </font><font color="#007700">. </font><font color="#0000BB">trim</font><font color="#007700">(</font><font color="#0000BB">$archivo</font><font color="#007700">) . </font><font color="#DD0000">"&lt;/li&gt;\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     </P
+><P
+>&#13;      Vea también
+      <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+> y <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>.
+     </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.memory-get-usage.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.php-logo-guid.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>memory_get_usage</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_logo_guid</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

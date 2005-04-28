@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mssql_fetch_array</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Microsoft SQL Server"
+HREF="ref.mssql.html"><LINK
+REL="PREVIOUS"
+TITLE="mssql_execute"
+HREF="function.mssql-execute.html"><LINK
+REL="NEXT"
+TITLE="mssql_fetch_assoc"
+HREF="function.mssql-fetch-assoc.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mssql-execute.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mssql-fetch-assoc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mssql-fetch-array"
+></A
+>mssql_fetch_array</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN56151"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mssql_fetch_array&nbsp;--&nbsp;Captura la fila en un array</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN56154"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mssql_fetch_array</B
+> ( int result)<BR
+></BR
+><P
+> Devuelve: Un array que corresponde a la fila capturada, o
+    <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si no hay más filas.
+    </P
+><P
+>&#13;     mssql_fetch_array() es una versión extendida de
+     <A
+HREF="function.mssql-fetch-row.html"
+><B
+CLASS="function"
+>mssql_fetch_row()</B
+></A
+>. A¤ade el almacenar los datos
+     en los índices numéricos del array resultante, también almacena
+     los datos en índices asociativos, usando los nombres de los campos
+     como claves.
+    </P
+><P
+>&#13;     Una observación a tener en cuenta es, que usar mssql_fetch_array() NO es
+     más lento que usar mssql_fetch_row(), mientras que esta
+     provee un valor a¤adido significativo.</P
+><P
+>&#13;     Para más detalles, ver también
+     <A
+HREF="function.mssql-fetch-row.html"
+><B
+CLASS="function"
+>mssql_fetch_row()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mssql-execute.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mssql-fetch-assoc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mssql_execute</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mssql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mssql_fetch_assoc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

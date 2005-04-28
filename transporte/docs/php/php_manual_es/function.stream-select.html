@@ -1,0 +1,570 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_select</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_register_wrapper"
+HREF="function.stream-register-wrapper.html"><LINK
+REL="NEXT"
+TITLE="stream_set_blocking"
+HREF="function.stream-set-blocking.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-register-wrapper.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-set-blocking.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-select"
+></A
+>stream_select</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104432"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>stream_select&nbsp;--&nbsp;Ejecuta el equivalente al llamado de sistema select()
+    en la matriz de secuencias dada, con un tiempo de espera
+    especificado por tv_sec y tv_usec</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104435"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>stream_select</B
+> ( array &#38;lectura, array &#38;escritura, array &#38;excepcional, int tv_sec [, int tv_usec])<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>stream_select()</B
+> acepta una
+     matriz de secuencias y espera a que éstas cambien su
+     status. Su operación es equivalente a la de la
+     función <A
+HREF="function.socket-select.html"
+><B
+CLASS="function"
+>socket_select()</B
+></A
+>, excepto que
+     actúa sobre secuencias.
+    </P
+><P
+>&#13;     Las secuencias listadas en la matriz
+     <VAR
+CLASS="parameter"
+>lectura</VAR
+> serán vigiladas para ver si
+     aparecen caracteres disponibles para lectura (o más
+     precisamente, para ver si una operación de lectura no
+     producirá un bloqueo - en particular, un recurso de
+     secuencia se encuentra listo también al llegar al final
+     del archivo, en cuyo caso un llamado a <A
+HREF="function.fread.html"
+><B
+CLASS="function"
+>fread()</B
+></A
+>
+     devolverá una cadena de longitud cero).
+    </P
+><P
+>&#13;     Las secuencias listadas en la matriz
+     <VAR
+CLASS="parameter"
+>escritura</VAR
+> serán vigiladas para ver
+     si una escritura no crea bloqueos.
+    </P
+><P
+>&#13;     Las secuencias listadas en la matriz
+     <VAR
+CLASS="parameter"
+>excepcional</VAR
+> serán vigiladas por la
+     llegada de datos excepcionales ("out-of-band") de alta prioridad.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Cuando <B
+CLASS="function"
+>stream_select()</B
+> devuelve un valor, las
+      matrices <VAR
+CLASS="parameter"
+>lectura</VAR
+>,
+      <VAR
+CLASS="parameter"
+>escritura</VAR
+> y
+      <VAR
+CLASS="parameter"
+>excepcional</VAR
+> son modificadas para indicar
+      cuáles recursos de secuencia modificaron su status en
+      realidad.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Los parámetros <VAR
+CLASS="parameter"
+>tv_sec</VAR
+> y
+     <VAR
+CLASS="parameter"
+>tv_usec</VAR
+>, juntos forman el parámetro
+     <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>tiempo de espera</I
+></SPAN
+>,
+     <VAR
+CLASS="parameter"
+>tv_sec</VAR
+> especifica el número de
+     segundos, mientras que <VAR
+CLASS="parameter"
+>tv_usec</VAR
+> el
+     número de microsegundos. El <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>tiempo de
+     espera</I
+></SPAN
+> es un límite superior sobre la cantidad
+     de tiempo que <B
+CLASS="function"
+>stream_select()</B
+> esperará
+     antes de devolver un valor. Si tanto
+     <VAR
+CLASS="parameter"
+>tv_sec</VAR
+> como <VAR
+CLASS="parameter"
+>tv_usec</VAR
+>
+     son definidos como <VAR
+CLASS="literal"
+>0</VAR
+>,
+     <B
+CLASS="function"
+>stream_select()</B
+> no esperará por datos -
+     en su lugar devolverá un valor inmediatamente, indicando
+     el status actual de las secuencias. Si
+     <VAR
+CLASS="parameter"
+>tv_sec</VAR
+> es <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>
+     <B
+CLASS="function"
+>stream_select()</B
+> puede crear un bloqueo
+     indefinidamente, y sólo devolverá un valor cuando
+     ocurra un evento en alguna de las secuencias vigiladas (o si una
+     señal interrumpe el llamado de sistema).
+    </P
+><P
+>&#13;     En caso de éxito, <B
+CLASS="function"
+>stream_select()</B
+>
+     devuelve el número de recursos de secuencia modificados
+     contenidos en las matrices, que puede ser cero si el tiempo de
+     espera expira antes de que algo interesante suceda. En caso de
+     fallo, el valor <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> es devuelto y se genera una advertencia
+     (esto puede pasar si el llamado de sistema es interrumpido por
+     una señal entrante).
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;      El uso de un valor de tiempo de espera de <VAR
+CLASS="literal"
+>0</VAR
+>
+      le permite consultar el status de las secuencias de forma
+      instantánea, sin embargo, NO es buena idea usar un valor
+      de tiempo de espera de <VAR
+CLASS="literal"
+>0</VAR
+> en un ciclo, dado
+      que causará que su script consuma mucho tiempo de CPU.
+     </P
+><P
+>&#13;      Es mucho mejor especificar un valor de tiempo de espera de
+      algunos pocos segundos, aunque si necesita hacer chequeos y
+      ejecutar otro segmento de código concurrentemente, usar
+      un valor de tiempo de espera de por lo menos
+      <VAR
+CLASS="literal"
+>200000</VAR
+> microsegundos le ayudará a
+      reducir el uso de CPU de su script.
+     </P
+><P
+>&#13;      Recuerde que el valor de tiempo de espera es el tiempo
+      máximo que transcurrirá;
+      <B
+CLASS="function"
+>stream_select()</B
+> devolverá un valor tan
+      pronto como las secuencias solicitadas se encuentren listas para
+      su uso.
+     </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     No necesita pasar cada matriz a
+     <B
+CLASS="function"
+>stream_select()</B
+>. Puede dejar de especificarlas
+     y usar una matriz vacía o <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> en su lugar. Tampoco
+     olvide que éstas matrices son pasadas <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>por
+     referencia</I
+></SPAN
+> y serán modificadas después
+     de que <B
+CLASS="function"
+>stream_select()</B
+> devuelva un valor.
+    </P
+><P
+>&#13;     Este ejemplo revisa si han llegado datos para lectura ya sea en
+     <VAR
+CLASS="parameter"
+>$secuencia1</VAR
+> o en
+     <VAR
+CLASS="parameter"
+>$secuencia2</VAR
+>. Dado que el valor de tiempo
+     de espera es <VAR
+CLASS="literal"
+>0</VAR
+>, la función
+     retornará inmediatamente:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Preparar la matriz de lectura */<br /></font><font color="#0000BB">$lectura </font><font color="#007700">= array(</font><font color="#0000BB">$secuencia1</font><font color="#007700">, </font><font color="#0000BB">$secuencia2</font><font color="#007700">);<br /><br />if (</font><font color="#0000BB">false </font><font color="#007700">=== (</font><font color="#0000BB">$num_secuencias_modificadas </font><font color="#007700">= </font><font color="#0000BB">stream_select</font><font color="#007700">(</font><font color="#0000BB">$lectura</font><font color="#007700">, </font><font color="#0000BB">$escritura </font><font color="#007700">= </font><font color="#0000BB">NULL</font><font color="#007700">, </font><font color="#0000BB">$excepcional </font><font color="#007700">= </font><font color="#0000BB">NULL</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">))) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Gestion de errores */<br /></font><font color="#007700">} elseif (</font><font color="#0000BB">$num_secuencias_modificadas </font><font color="#007700">&gt; </font><font color="#0000BB">0</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* En por lo menos una de las secuencias ha ocurrido algo interesante */<br /></font><font color="#007700">}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Debido a una limitación en el Motor Zend actual, no es
+      posible pasar un modificador constante como <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> directamente
+      como parámetro a una función que espera que tal
+      parámetro sea pasado por referencia. En su lugar, use una
+      variable temporal o una expresión en donde el miembro del
+      lado izquierdo sea una variable temporal:
+      <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />stream_select</font><font color="#007700">(</font><font color="#0000BB">$l</font><font color="#007700">, </font><font color="#0000BB">$e</font><font color="#007700">, </font><font color="#0000BB">$ex </font><font color="#007700">= </font><font color="#0000BB">NULL</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Asegúrese de usar el operador <VAR
+CLASS="literal"
+>===</VAR
+>
+      cuando efectúe chequeos de error. Dado que
+      <B
+CLASS="function"
+>stream_select()</B
+> puede devolver 0, la
+      comparación con <VAR
+CLASS="literal"
+>==</VAR
+> evaluaría a
+      <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">false </font><font color="#007700">=== </font><font color="#0000BB">stream_select</font><font color="#007700">(</font><font color="#0000BB">$l</font><font color="#007700">, </font><font color="#0000BB">$e</font><font color="#007700">, </font><font color="#0000BB">$ex </font><font color="#007700">= </font><font color="#0000BB">NULL</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"stream_select() fall&amp;oacute;\n"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si lee/escribe sobre una secuencia devuelta con las matrices,
+      tenga en cuenta que éstas no necesariemente leen/escriben
+      la cantidad completa de datos que usted ha
+      solicitado. Prepárese para gestionar incluso la
+      lectura/escritura de un solo byte.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota de Windows 98: </B
+>
+      El uso de <B
+CLASS="function"
+>stream_select()</B
+> sobre un pipe
+      devuelto desde <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+> puede causar
+      pérdida de datos bajo Windows 98.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también
+     <A
+HREF="function.stream-set-blocking.html"
+><B
+CLASS="function"
+>stream_set_blocking()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-register-wrapper.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-set-blocking.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_register_wrapper</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_set_blocking</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

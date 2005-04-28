@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mcrypt_get_cipher_name</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cifrado Mcrypt"
+HREF="ref.mcrypt.html"><LINK
+REL="PREVIOUS"
+TITLE="mcrypt_get_block_size"
+HREF="function.mcrypt-get-block-size.html"><LINK
+REL="NEXT"
+TITLE="mcrypt_get_iv_size"
+HREF="function.mcrypt-get-iv-size.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mcrypt-get-block-size.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mcrypt-get-iv-size.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mcrypt-get-cipher-name"
+></A
+>mcrypt_get_cipher_name</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN52348"
+></A
+><P
+>    (PHP 3&#62;= 3.0.8, PHP 4 , PHP 5)</P
+>mcrypt_get_cipher_name&nbsp;--&nbsp;Obtiene el nombre del cifrado especificado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN52351"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>mcrypt_get_cipher_name</B
+> ( int cipher)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>mcrypt_get_cipher_name()</B
+> se usa para obtener el nombre
+     del cifrado especificado.</P
+><P
+>&#13;     <B
+CLASS="function"
+>mcrypt_get_cipher_name()</B
+> toma como argumento el número de cifrado
+     y devuelve el nombre del cifrado o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, si el cifrado no
+     existe.</P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN52365"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de mcrypt_get_cipher_name</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+$cipher = MCRYPT_TripleDES;
+
+print mcrypt_get_cipher_name($cipher);
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;     El ejemplo de más arriba da como resultado:
+     <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>TripleDES</PRE
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mcrypt-get-block-size.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mcrypt-get-iv-size.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mcrypt_get_block_size</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mcrypt.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mcrypt_get_iv_size</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

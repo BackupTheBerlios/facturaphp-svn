@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>printer_draw_text</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Printer Functions"
+HREF="ref.printer.html"><LINK
+REL="PREVIOUS"
+TITLE="printer_draw_roundrect"
+HREF="function.printer-draw-roundrect.html"><LINK
+REL="NEXT"
+TITLE="printer_end_doc"
+HREF="function.printer-end-doc.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.printer-draw-roundrect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.printer-end-doc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.printer-draw-text"
+></A
+>printer_draw_text</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN91756"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>printer_draw_text&nbsp;--&nbsp;Draw text</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN91759"
+></A
+><H2
+>Description</H2
+>void <B
+CLASS="methodname"
+>printer_draw_text</B
+> ( resource printer_handle, string text, int x, int y)<BR
+></BR
+><P
+>&#13;     The function simply draws <VAR
+CLASS="parameter"
+>text</VAR
+> at position 
+     <VAR
+CLASS="parameter"
+>x</VAR
+>, <VAR
+CLASS="parameter"
+>y</VAR
+> using the selected 
+     font. <VAR
+CLASS="parameter"
+>printer_handle</VAR
+> must be a valid handle to 
+     a printer.
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN91781"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>printer_draw_text()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$handle </font><font color="#007700">= </font><font color="#0000BB">printer_open</font><font color="#007700">();<br /></font><font color="#0000BB">printer_start_doc</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">, </font><font color="#DD0000">"My Document"</font><font color="#007700">);<br /></font><font color="#0000BB">printer_start_page</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$font </font><font color="#007700">= </font><font color="#0000BB">printer_create_font</font><font color="#007700">(</font><font color="#DD0000">"Arial"</font><font color="#007700">, </font><font color="#0000BB">72</font><font color="#007700">, </font><font color="#0000BB">48</font><font color="#007700">, </font><font color="#0000BB">400</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">, </font><font color="#0000BB">false</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);<br /></font><font color="#0000BB">printer_select_font</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">, </font><font color="#0000BB">$font</font><font color="#007700">);<br /></font><font color="#0000BB">printer_draw_text</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">, </font><font color="#DD0000">"test"</font><font color="#007700">, </font><font color="#0000BB">10</font><font color="#007700">, </font><font color="#0000BB">10</font><font color="#007700">);<br /></font><font color="#0000BB">printer_delete_font</font><font color="#007700">(</font><font color="#0000BB">$font</font><font color="#007700">);<br /><br /></font><font color="#0000BB">printer_end_page</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">);<br /></font><font color="#0000BB">printer_end_doc</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">);<br /></font><font color="#0000BB">printer_close</font><font color="#007700">(</font><font color="#0000BB">$handle</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.printer-draw-roundrect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.printer-end-doc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>printer_draw_roundrect</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.printer.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>printer_end_doc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,510 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>hw_Modifyobject</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para Hyperwave"
+HREF="ref.hyperwave.html"><LINK
+REL="PREVIOUS"
+TITLE="hw_mapid"
+HREF="function.hw-mapid.html"><LINK
+REL="NEXT"
+TITLE="hw_Mv"
+HREF="function.hw-mv.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.hw-mapid.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.hw-mv.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.hw-modifyobject"
+></A
+>hw_Modifyobject</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN34865"
+></A
+><P
+>    (PHP 3&#62;= 3.0.7, PHP 4 )</P
+>hw_Modifyobject&nbsp;--&nbsp;modifica el registro de objeto</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN34868"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>hw_modifyobject</B
+> ( int conexión, int objeto_a_cambiar, array eliminar, array añadir, int modo)<BR
+></BR
+><P
+>&#13;     Este comando permite eliminar, añadir, o modificar atributos individuales
+     de un registro de objeto. El objeto está especificado por el ID de
+     objeto <VAR
+CLASS="parameter"
+>objeto_a_cambiar</VAR
+>. La primera tabla,
+     <VAR
+CLASS="parameter"
+>eliminar</VAR
+>, es la lista de atributos a eliminar.
+     La segunda tabla, <VAR
+CLASS="parameter"
+>añadir</VAR
+>, es la lista de atributos
+     a añadir. Para modificar un atributo, hay que borrar el antiguo y añadir
+     uno nuevo. <B
+CLASS="function"
+>hw_modifyobject()</B
+> siempre eliminará los
+     atributos antes de añadir los nuevos excepto si el valor del atributo
+     a eliminar no es una cadena o una tabla.</P
+><P
+>&#13;     El último parámetro determina si la modificación se realiza de manera
+     recursiva. 1 quiere decir que sea recursiva. Si alguno de los objetos
+     no se puede modificar, será ignorado sin avisar.
+     Incluso <A
+HREF="function.hw-error.html"
+><B
+CLASS="function"
+>hw_error()</B
+></A
+> podría no indicar un
+     error aunque alguno de los objetos no pueda ser modificado.</P
+><P
+>&#13;     Las claves de ambas tablas son los nombres de los atributos. El valor
+     de cada elemento de la tabla puede ser una tabla, una cadena o cualquier
+     otra cosa. Si es una tabla, cada valor de atributo se construye como
+     la clave de cada elemento más dos puntos y el valor de cada elemento. Si
+     es una cadena se toma como valor del atributo. Una cadena vacía producirá
+     la supresión completa del atributo. Si el valor no es ni cadena ni tabla,
+     sino otra cosa, p. ej. un entero, no se realizará operación alguna en el
+     atributo. Esto es necesario se desea añadir un atributo completamente
+     nuevo, no solamente un nuevo valor para un atributo existente. Si la
+     tabla eliminar contuviera una cadena vacía para dicho atributo, este
+     se intentaría suprimir, lo que fallaría porque este no existe. La
+     siguiente adición de un nuevo valor para dicho atributo también fallará.
+     Fijando el valor para dicho atributo p. ej. a 0 hará que ni siquiera
+     se intente eliminar, pero funcionará la adición del mismo.</P
+><P
+>&#13;     Si desea cambiar el atributo 'Nombre' con el valor actual 'libros' por
+     el de 'artículos' deberá crear dos tablas y llamar a <B
+CLASS="function"
+>hw_modifyobject()</B
+>.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN34898"
+></A
+><P
+><B
+>Ejemplo 1. modificando un atributo</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// $conexion es una conexión con el servidor Hyperwave<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// $idobj es la ID del objeto a modificar<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablasupr = array("Nombre" =&gt; "libros");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablaanad = array("Nombre" =&gt; "artículos");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$hw_modifyobject($conexion, $idobj, $tablasupr, $tablaanad);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Para borrar/añadir un par nombre=valor de/a el registro de objeto,
+     simplemente pase la tabla eliminar/añadir y fije el último/tercer
+     parámetro a tabla vacía. Si el atributo es el primero con dicho
+     nombre que se añade, fije el valor del atributo en la tabla eliminar
+     a un valor entero.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN34901"
+></A
+><P
+><B
+>Ejemplo 2. añadiendo un atributo completamente nuevo</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// $conexion es una conexión con el servidor Hyperwave<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// $idobj es la ID del objeto a modificar<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablasupr = array("Nombre" =&gt; 0);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablaanad = array("Nombre" =&gt; "artículos");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$hw_modifyobject($conexion, $idobj, $tablasupr, $tablaanad);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Los atributos plurilingües, p. ej. 'Título', se pueden modificar
+       de dos maneras. O bien proporcionando los valores de los atributos
+       en su forma nativa 'lenguaje':'título', bien proporcionando una tabla
+       con los elementos para cada lenguaje según se describe más arriba.
+       El ejemplo anterior podría quedar entonces:</P
+></BLOCKQUOTE
+></DIV
+>
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN34907"
+></A
+><P
+><B
+>Ejemplo 3. modificando el atributo Título</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$tablasupr = array("Título" =&gt; "es:Libros");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablaanad = array("Título" =&gt; "es:Artículos");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$hw_modifyobject($conexion, $idobj, $tablasupr, $tablaanad);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+      o
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN34910"
+></A
+><P
+><B
+>Ejemplo 4. modificando el atributo Título</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$tablasupr = array("Título" =&gt; array("es" =&gt; "Libros"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablaanad = array("Título" =&gt; array("es" =&gt; "Artículos", "ge"=&gt;"Artikel"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$hw_modifyobject($conexion, $idobj, $tablasupr, $tablaanad);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Esto elimina el título español 'Libros' y añade el título español
+     'Artículos' y el título alemán 'Artikel'.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN34913"
+></A
+><P
+><B
+>Ejemplo 5. eliminando atributos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$tablasupr = array("Título" =&gt; "");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$tablaanad = array("Tñitulo" =&gt; "es:Artículos");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$hw_modifyobject($conexion, $idobj, $tablasupr, $tablaanad);</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Esto eliminará todos los atributos con el nombre 'Título' y añadirá
+       un nuevo atributo 'Título'. Esto es útil cuando se desea eliminar
+       atributos de forma recursiva.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Si necesita eliminar todos los atributos con un cierto nombre
+       tendrá que pasar una cadena vacía como el valor del atributo.</P
+></BLOCKQUOTE
+></DIV
+>
+    <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Sólo los atributos 'Title', 'Description' y 'Keyword' (así, en inglés)
+     manejarán de forma apropiada el prefijo de idioma. Si estos atributos
+     no llevaran prefijo de idioma, se les asignariá el prefijo 'xx'.
+    </P
+></BLOCKQUOTE
+></DIV
+>
+    <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     El atributo 'Name' es bastante especial. En algunos casos no puede ser
+     completamente eliminado. Obtendrá un mensaje de error 'Change of base
+     attribute' ('Cambio de atributo base', no está muy claro cuando ocurre).
+     Por tanto, tendrá siempre que añadir un nuevo atributo Name primero y
+     luego eliminar el anterior.
+    </P
+></BLOCKQUOTE
+></DIV
+>
+    <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      No debe rodear esta función de llamadas a 
+      <A
+HREF="function.hw-getandlock.html"
+><B
+CLASS="function"
+>hw_getandlock()</B
+></A
+> ni a <A
+HREF="function.hw-unlock.html"
+><B
+CLASS="function"
+>hw_unlock()</B
+></A
+>.
+      <B
+CLASS="function"
+>hw_modifyobject()</B
+> ya lo hace internamente.
+    </P
+></BLOCKQUOTE
+></DIV
+></P
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si no hay error o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso contrario.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.hw-mapid.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.hw-mv.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>hw_mapid</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.hyperwave.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>hw_Mv</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

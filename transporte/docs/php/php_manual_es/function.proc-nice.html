@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>proc_nice</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Ejecución de Programas"
+HREF="ref.exec.html"><LINK
+REL="PREVIOUS"
+TITLE="proc_get_status"
+HREF="function.proc-get-status.html"><LINK
+REL="NEXT"
+TITLE="proc_open"
+HREF="function.proc-open.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.proc-get-status.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.proc-open.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.proc-nice"
+></A
+>proc_nice</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN90955"
+></A
+><P
+>    (PHP 5)</P
+>proc_nice&nbsp;--&nbsp;
+     Modificar la prioridad del proceso actual
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN90958"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>proc_nice</B
+> ( int prioridad)<BR
+></BR
+><P
+>&#13;<B
+CLASS="function"
+>proc_nice()</B
+> modifica la prioridad del proceso
+actual. Si un error ocurre, como que el usuario carezca de permisos
+para modificar la prioridad, un error de
+nivel <TT
+CLASS="constant"
+><B
+>E_WARNING</B
+></TT
+> es generado, y se devuelve
+<TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>. De otro modo, se devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+<B
+CLASS="function"
+>proc_nice()</B
+> existirá únicamente si su
+sistema tiene soporte para 'nice'. 'nice' está definido de
+acuerdo a los estándares: SVr4, SVID EXT, AT&#38;T, X/OPEN, BSD
+4.3. Esto quiere decir que <B
+CLASS="function"
+>proc_nice()</B
+> no
+está disponible en windows.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     La función <B
+CLASS="function"
+>proc_nice()</B
+> no se encuentra
+     relacionada con
+     <A
+HREF="function.proc-open.html"
+><B
+CLASS="function"
+>proc_open()</B
+></A
+> ni sus funciones asociadas en
+     ninguna forma.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.proc-get-status.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.proc-open.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>proc_get_status</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.exec.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>proc_open</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

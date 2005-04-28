@@ -1,0 +1,350 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Pseudo-tipos usados en esta documentación</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Tipos"
+HREF="language.types.html"><LINK
+REL="PREVIOUS"
+TITLE="NULL"
+HREF="language.types.null.html"><LINK
+REL="NEXT"
+TITLE="Manipulación de Tipos"
+HREF="language.types.type-juggling.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.types.null.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 6. Tipos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.type-juggling.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.pseudo-types"
+>Pseudo-tipos usados en esta documentación</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.mixed"
+>mixed</A
+></H2
+><P
+>&#13;     <VAR
+CLASS="literal"
+>mixed</VAR
+> indica que un parámetro puede
+     aceptar múltiples tipos (pero no necesariamente todos).
+    </P
+><P
+>&#13;     <A
+HREF="function.gettype.html"
+><B
+CLASS="function"
+>gettype()</B
+></A
+> por ejemplo aceptará todos
+     los tipos PHP, mientras que <A
+HREF="function.str-replace.html"
+><B
+CLASS="function"
+>str_replace()</B
+></A
+>
+     aceptará cadenas y matrices.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.number"
+>number</A
+></H2
+><P
+>&#13;     <VAR
+CLASS="literal"
+>number</VAR
+> indica que un parámetro puede
+     ser <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> o <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.callback"
+>callback</A
+></H2
+><P
+>&#13;     Algunas funciones como <A
+HREF="function.call-user-func.html"
+><B
+CLASS="function"
+>call_user_func()</B
+></A
+> o
+     <A
+HREF="function.usort.html"
+><B
+CLASS="function"
+>usort()</B
+></A
+> aceptan llamadas de retorno definidas
+     por el usuario como un parámetro. Las funciones tipo
+     llamada de retorno no sólo pueden ser funciones simples,
+     también pueden ser métodos de objetos incluyendo
+     métodos estáticos de clase.
+    </P
+><P
+>&#13;     Una función de PHP es simplemente pasada usando su nombre
+     como una cadena. Puede pasar cualquier función incorporada
+     o definida por el usuario con la excepción de
+     <A
+HREF="function.array.html"
+><B
+CLASS="function"
+>array()</B
+></A
+>, <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>,
+     <A
+HREF="function.empty.html"
+><B
+CLASS="function"
+>empty()</B
+></A
+>, <A
+HREF="function.eval.html"
+><B
+CLASS="function"
+>eval()</B
+></A
+>,
+     <A
+HREF="function.exit.html"
+><B
+CLASS="function"
+>exit()</B
+></A
+>, <A
+HREF="function.isset.html"
+><B
+CLASS="function"
+>isset()</B
+></A
+>,
+     <A
+HREF="function.list.html"
+><B
+CLASS="function"
+>list()</B
+></A
+>, <A
+HREF="function.print.html"
+><B
+CLASS="function"
+>print()</B
+></A
+> y
+     <A
+HREF="function.unset.html"
+><B
+CLASS="function"
+>unset()</B
+></A
+>.
+    </P
+><P
+>&#13;     Un método de un objeto instanciado es pasado como una
+     matriz que contiene un objeto como el elemento con el
+     índice 0 y un nombre de método como el elemento con
+     índice 1.
+    </P
+><P
+>&#13;     Los métodos estáticos de clase pueden ser pasados
+     también sin instanciar un objeto de esa clase al pasar el
+     nombre de clase en lugar de un objeto como el elemento con
+     índice 0.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2792"
+></A
+><P
+><B
+>Ejemplo 6-11. 
+       Ejemplos de funciones tipo llamada de retorno
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php <br /><br /></font><font color="#FF8000">// ejemplo simple de una llamada de retorno<br /></font><font color="#007700">function </font><font color="#0000BB">mi_llamada_de_retorno</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">'&amp;iexcl;Hola mundo!'</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">call_user_func</font><font color="#007700">(</font><font color="#DD0000">'mi_llamada_de_retorno'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// ejemplos de un m&amp;eacute;todo como llamada de retorno<br /></font><font color="#007700">class </font><font color="#0000BB">MiClase </font><font color="#007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;function </font><font color="#0000BB">miMetodoDeRetorno</font><font color="#007700">() {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">'&amp;iexcl;Hola Mundo!'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#FF8000">// llamada de metodo estatico de clase sin instanciar un objeto<br /></font><font color="#0000BB">call_user_func</font><font color="#007700">(array(</font><font color="#DD0000">'MiClase'</font><font color="#007700">, </font><font color="#DD0000">'miMetodoDeRetorno'</font><font color="#007700">));<br /><br /></font><font color="#FF8000">// llamada a un metodo de objeto<br /></font><font color="#0000BB">$obj </font><font color="#007700">= new </font><font color="#0000BB">MiClase</font><font color="#007700">();<br /></font><font color="#0000BB">call_user_func</font><font color="#007700">(array(&amp;</font><font color="#0000BB">$obj</font><font color="#007700">, </font><font color="#DD0000">'miMetodoDeRetorno'</font><font color="#007700">));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.types.null.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.type-juggling.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>NULL</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.types.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Manipulación de Tipos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

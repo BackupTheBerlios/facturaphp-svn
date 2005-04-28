@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_convert</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_connection_status"
+HREF="function.pg-connection-status.html"><LINK
+REL="NEXT"
+TITLE="pg_copy_from"
+HREF="function.pg-copy-from.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-connection-status.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-copy-from.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-convert"
+></A
+>pg_convert</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN88325"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>pg_convert&nbsp;--&nbsp;
+     Convert associative array value into suitable for SQL statement.
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN88328"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>pg_convert</B
+> ( resource connection, string table_name, array assoc_array [, int options])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>pg_convert()</B
+> checks and converts the values in
+     <VAR
+CLASS="literal"
+>assoc_array</VAR
+> into suitable values for use in a SQL
+     statement. Precondition for <B
+CLASS="function"
+>pg_convert()</B
+> is the existence
+     of a table <VAR
+CLASS="literal"
+>table_name</VAR
+> which has at least as many columns
+     as <VAR
+CLASS="literal"
+>assoc_array</VAR
+> has elements. The fieldnames as well as
+     the fieldvalues in <VAR
+CLASS="literal"
+>table_name</VAR
+> must match the indices and
+     values of <VAR
+CLASS="literal"
+>assoc_array</VAR
+>. Returns an array with the converted
+     values on success, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> otherwise.
+    </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta función
+es <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta función, el nombre de esta
+función y en definitiva TODO lo documentado sobre esta
+función, puede cambiar en una futura version de PHP SIN
+AVISO. La advertencia queda hecha, y utilizar esta extensión
+queda bajo su propia responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     See also <A
+HREF="function.pg-meta-data.html"
+><B
+CLASS="function"
+>pg_meta_data()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-connection-status.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-copy-from.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_connection_status</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_copy_from</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

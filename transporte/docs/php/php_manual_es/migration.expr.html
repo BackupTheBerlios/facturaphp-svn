@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Tipos de las expresiones</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Migración desde PHP/FI 2 hacia PHP 3"
+HREF="migration.html"><LINK
+REL="PREVIOUS"
+TITLE="Sintaxis while"
+HREF="migration.while.html"><LINK
+REL="NEXT"
+TITLE="Los mensajes de error han cambiado"
+HREF="migration.errors.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="migration.while.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice D. Migración desde PHP/FI 2 hacia PHP 3</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="migration.errors.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="migration.expr"
+>Tipos de las expresiones</A
+></H1
+><P
+>&#13;   PHP/FI 2.0 usaba el lado izquierdo de las expresiones para
+   determinar el tipo del resultado. PHP 3.0 toma ambos lados en
+   cuenta cuando determina los tipos del resultado, y esto puede
+   producir comportamientos impredecibles si ejecuta scripts 2.0 en
+   3.0.
+  </P
+><P
+>&#13;   Considere este ejemplo:
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN123633"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a[0]=5;<br />$a[1]=7;<br /><br />$clave = key($a);<br />while ("" != $clave) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo "$clave";<br />&nbsp;&nbsp;&nbsp;&nbsp;next($a);<br />}</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+
+   En PHP/FI 2.0, esto mostraría los dos índices de $a.
+   En PHP 3.0, no mostraría nada. La razón es que en PHP
+   2.0, al ser el argumento izquierdo de tipo cadena, se realizaba una
+   comparación de cadenas, y ciertamente <VAR
+CLASS="literal"
+>""</VAR
+>
+   no es igual a
+   <VAR
+CLASS="literal"
+>"0"</VAR
+>, y el ciclo continúa.  En PHP 3.0,
+   cuando se compara una cadena con un entero, se realiza una
+   comparación de enteros (la cadena es convertida a
+   entero). Esto resulta en la comparación
+   de <VAR
+CLASS="literal"
+>atoi("")</VAR
+> que es
+   <VAR
+CLASS="literal"
+>0</VAR
+>, y <VAR
+CLASS="literal"
+>lista_de_variables</VAR
+> que
+   también es <VAR
+CLASS="literal"
+>0</VAR
+>, y dado
+   que <VAR
+CLASS="literal"
+>0==0</VAR
+>, el ciclo no avanzará ni una
+   sola vez.
+  </P
+><P
+>&#13;   La solución a esto es simple. Reemplace la sentencia while
+   con:
+   <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN123643"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+while ((string)$clave != "") {</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="migration.while.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="migration.errors.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Sintaxis while</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="migration.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Los mensajes de error han cambiado</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

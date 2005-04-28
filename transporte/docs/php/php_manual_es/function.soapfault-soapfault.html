@@ -1,0 +1,294 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>SoapFault::SoapFault</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="SOAP Functions"
+HREF="ref.soap.html"><LINK
+REL="PREVIOUS"
+TITLE="SoapClient::__getTypes"
+HREF="function.soapclient-gettypes.html"><LINK
+REL="NEXT"
+TITLE="SoapHeader::SoapHeader"
+HREF="function.soapheader-soapheader.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.soapclient-gettypes.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.soapheader-soapheader.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.SoapFault-SoapFault"
+></A
+>SoapFault::SoapFault</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN97688"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>SoapFault::SoapFault&nbsp;--&nbsp;
+     SoapFault constructor
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN97691"
+></A
+><H2
+>Description</H2
+>object <B
+CLASS="methodname"
+>SoapFault::SoapFault</B
+> ( string faultcode, string faultstring [, string faultactor [, mixed detail [, string faultname [, mixed headerfault]]]])<BR
+></BR
+><P
+>&#13;     This class is useful when you would like to send SOAP fault responses from
+     the PHP handler. <VAR
+CLASS="parameter"
+>faultcode</VAR
+>, <VAR
+CLASS="parameter"
+>faultstring</VAR
+>, 
+     <VAR
+CLASS="parameter"
+>faultactor</VAR
+> and <VAR
+CLASS="parameter"
+>details</VAR
+> are 
+     standard elements of SOAP Fault; <VAR
+CLASS="parameter"
+>faultname</VAR
+> is an 
+     optional parameter that can be used to select proper fault encoding from 
+     WSDL; <VAR
+CLASS="parameter"
+>headerfault</VAR
+> is an optional parameter that 
+     can be used during SOAP header handling to report an error in the response
+     header.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN97722"
+></A
+><P
+><B
+>Ejemplo 1. Some examples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">test</font><font color="#007700">(</font><font color="#0000BB">$x</font><font color="#007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;return new </font><font color="#0000BB">SoapFault</font><font color="#007700">(</font><font color="#DD0000">"Server"</font><font color="#007700">, </font><font color="#DD0000">"Some error message"</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">$server </font><font color="#007700">= new </font><font color="#0000BB">SoapServer</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">, array(</font><font color="#DD0000">'uri' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://test-uri/"</font><font color="#007700">));<br /></font><font color="#0000BB">$server</font><font color="#007700">-&gt;</font><font color="#0000BB">addFunction</font><font color="#007700">(</font><font color="#DD0000">"test"</font><font color="#007700">);<br /></font><font color="#0000BB">$server</font><font color="#007700">-&gt;</font><font color="#0000BB">handle</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     It is possible to use PHP exception mechanism to throw SOAP Fault.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN97727"
+></A
+><P
+><B
+>Ejemplo 2. Some examples</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">test</font><font color="#007700">(</font><font color="#0000BB">$x</font><font color="#007700">)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">throw </font><font color="#007700">new </font><font color="#0000BB">SoapFault</font><font color="#007700">(</font><font color="#DD0000">"Server"</font><font color="#007700">, </font><font color="#DD0000">"Some error message"</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">$server </font><font color="#007700">= new </font><font color="#0000BB">SoapServer</font><font color="#007700">(</font><font color="#0000BB">null</font><font color="#007700">, array(</font><font color="#DD0000">'uri' </font><font color="#007700">=&gt; </font><font color="#DD0000">"http://test-uri/"</font><font color="#007700">));<br /></font><font color="#0000BB">$server</font><font color="#007700">-&gt;</font><font color="#0000BB">addFunction</font><font color="#007700">(</font><font color="#DD0000">"test"</font><font color="#007700">);<br /></font><font color="#0000BB">$server</font><font color="#007700">-&gt;</font><font color="#0000BB">handle</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     See also
+     <B
+CLASS="function"
+>SoapClient::SoapClient()</B
+>,
+     <B
+CLASS="function"
+>SoapClient::__call()</B
+>,
+     <B
+CLASS="function"
+>SoapParam::SoapParam()</B
+>,
+     <B
+CLASS="function"
+>SoapVar::SoapVar()</B
+>, and
+     <A
+HREF="function.is-soap-fault.html"
+><B
+CLASS="function"
+>is_soap_fault()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.soapclient-gettypes.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.soapheader-soapheader.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>SoapClient::__getTypes</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.soap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>SoapHeader::SoapHeader</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

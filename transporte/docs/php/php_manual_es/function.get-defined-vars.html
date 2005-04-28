@@ -1,0 +1,211 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>get_defined_vars</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Variables"
+HREF="ref.var.html"><LINK
+REL="PREVIOUS"
+TITLE="floatval"
+HREF="function.floatval.html"><LINK
+REL="NEXT"
+TITLE="get_resource_type"
+HREF="function.get-resource-type.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.floatval.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.get-resource-type.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.get-defined-vars"
+></A
+>get_defined_vars</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN112164"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.4, PHP 5)</P
+>get_defined_vars&nbsp;--&nbsp;
+     Devuelve una matriz con todas la variables definidas
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN112167"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>get_defined_vars</B
+> ( void )<BR
+></BR
+><P
+>&#13;Esta función devuelve una matriz multidimensional que contiene
+una lista de todas las variables definidas, ya sean variables de
+entorno, de servidor, o definidas por el usuario.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN112175"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$b </font><font color="#007700">= array(</font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">2</font><font color="#007700">, </font><font color="#0000BB">3</font><font color="#007700">, </font><font color="#0000BB">5</font><font color="#007700">, </font><font color="#0000BB">8</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$matriz </font><font color="#007700">= </font><font color="#0000BB">get_defined_vars</font><font color="#007700">();<br /><br /></font><font color="#FF8000">// imprimir $b<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"b"</font><font color="#007700">]);<br /><br /></font><font color="#FF8000">/* imprimir ruta al interpretre PHP (si es usado como CGI)<br /> * p.ej. /usr/local/bin/php */<br /></font><font color="#007700">echo </font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"_"</font><font color="#007700">];<br /><br /></font><font color="#FF8000">// imprimir los parametros de la linea de comandos, si existen<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"argv"</font><font color="#007700">]);<br /><br /></font><font color="#FF8000">// imprimir todas las variables del servidor<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$matriz</font><font color="#007700">[</font><font color="#DD0000">"_SERVER"</font><font color="#007700">]);<br /><br /></font><font color="#FF8000">// imprimir todas las claves disponibles para las matrices de variables<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">array_keys</font><font color="#007700">(</font><font color="#0000BB">get_defined_vars</font><font color="#007700">()));<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.get-defined-functions.html"
+><B
+CLASS="function"
+>get_defined_functions()</B
+></A
+> y
+     <A
+HREF="function.get-defined-constants.html"
+><B
+CLASS="function"
+>get_defined_constants()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.floatval.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.get-resource-type.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>floatval</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.var.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>get_resource_type</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>fstat</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones del Sistema de Archivos"
+HREF="ref.filesystem.html"><LINK
+REL="PREVIOUS"
+TITLE="fseek"
+HREF="function.fseek.html"><LINK
+REL="NEXT"
+TITLE="ftell"
+HREF="function.ftell.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fseek.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ftell.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.fstat"
+></A
+>fstat</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN28833"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>fstat&nbsp;--&nbsp;Obtiene información sobre un archivo usando un
+    apuntador de archivo abierto</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN28836"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>fstat</B
+> ( resource gestor)<BR
+></BR
+><P
+>&#13;Reúne las estadísticas del archivo abierto por el
+apuntador a archivo <VAR
+CLASS="parameter"
+>gestor</VAR
+>. Esta función
+es similar a la función <A
+HREF="function.stat.html"
+><B
+CLASS="function"
+>stat()</B
+></A
+>, excepto que
+opera sobre un apuntador de archivo abierto en lugar de un nombre de
+archivo.
+    </P
+><P
+>&#13;Devuelve una matriz con las estadísticas del archivo; el
+formato de la matriz es descrito en la página del manual
+sobre <A
+HREF="function.stat.html"
+><B
+CLASS="function"
+>stat()</B
+></A
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN28850"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>fstat()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// abrir un archivo<br /></font><font color="#0000BB">$da </font><font color="#007700">= </font><font color="#0000BB">fopen</font><font color="#007700">(</font><font color="#DD0000">"/etc/passwd"</font><font color="#007700">, </font><font color="#DD0000">"r"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// reunir estadisticas<br /></font><font color="#0000BB">$fstat </font><font color="#007700">= </font><font color="#0000BB">fstat</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// cerrar el archivo<br /></font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// imprimir solo la parte asociativa<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">array_slice</font><font color="#007700">(</font><font color="#0000BB">$fstat</font><font color="#007700">, </font><font color="#0000BB">13</font><font color="#007700">));<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       esto producirá :
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [dev] =&#62; 771
+    [ino] =&#62; 488704
+    [mode] =&#62; 33188
+    [nlink] =&#62; 1
+    [uid] =&#62; 0
+    [gid] =&#62; 0
+    [rdev] =&#62; 0
+    [size] =&#62; 1114
+    [atime] =&#62; 1061067181
+    [mtime] =&#62; 1056136526
+    [ctime] =&#62; 1056136526
+    [blksize] =&#62; 4096
+    [blocks] =&#62; 8
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Los resultados de esta
+función son guardados. Consultar
+<A
+HREF="function.clearstatcache.html"
+><B
+CLASS="function"
+>clearstatcache()</B
+></A
+> para más
+detalles.</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta función no
+funcionará con <A
+HREF="features.remote-files.html"
+>archivos
+remotos</A
+> ya que el archivo a examinar debe estar disponible
+vía el sistema de archivos del servidor</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fseek.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ftell.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fseek</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.filesystem.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ftell</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

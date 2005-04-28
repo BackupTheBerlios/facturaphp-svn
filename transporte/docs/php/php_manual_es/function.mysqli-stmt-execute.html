@@ -1,0 +1,377 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_stmt_execute</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_stmt_error"
+HREF="function.mysqli-stmt-error.html"><LINK
+REL="NEXT"
+TITLE="mysqli_stmt_fetch"
+HREF="function.mysqli-stmt-fetch.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-stmt-fetch.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-stmt-execute"
+></A
+>mysqli_stmt_execute</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN67960"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_stmt_execute<P
+>    (no version information, might be only in CVS)</P
+>stmt-&#62;execute&nbsp;--&nbsp;Ejecuta una consulta preparada</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67964"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos:</P
+>bool <B
+CLASS="methodname"
+>mysqli_stmt_execute</B
+> ( objeto stmt)<BR
+></BR
+><P
+>Estilo orientado a objetos (método):</P
+>class <B
+CLASS="classname"
+>mysql</B
+> { <BR
+></BR
+>bool <B
+CLASS="methodname"
+>execute</B
+> ( void )<BR
+></BR
+>}<P
+>&#13;     La función <B
+CLASS="function"
+>mysqli_stmt_execute()</B
+> ejecuta una consulta 
+     que había sido previamente preparada usando la función 
+     <A
+HREF="function.mysqli-prepare.html"
+><B
+CLASS="function"
+>mysqli_prepare()</B
+></A
+> representada por el objeto 
+     <VAR
+CLASS="parameter"
+>stmt</VAR
+>. Cuando se ejecuta cualquier marcador de parámetro 
+     que exista será automáticamente remplazado con los datos 
+     apropiados.
+    </P
+><P
+>&#13;     Si la sentencia es UPDATE, DELETE, o INSERT, el número total de filas 
+     afectadas puede ser determinada usabdo la función 
+     <A
+HREF="function.mysqli-stmt-affected-rows.html"
+><B
+CLASS="function"
+>mysqli_stmt_affected_rows()</B
+></A
+>. Asimismo, si la consulta 
+     produce un resultado la función <A
+HREF="function.mysqli-fetch.html"
+><B
+CLASS="function"
+>mysqli_fetch()</B
+></A
+> 
+     es usada.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Cuando se usa <B
+CLASS="function"
+>mysqli_stmt_execute()</B
+>, la función 
+      <A
+HREF="function.mysqli-fetch.html"
+><B
+CLASS="function"
+>mysqli_fetch()</B
+></A
+> debe ser usada para recuperar los datos 
+      antes de realizar cualquier consulta adicional.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67992"
+></A
+><H2
+>Valores regresados</H2
+><P
+>Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN67997"
+></A
+><H2
+>Vea también</H2
+><P
+>&#13;     <A
+HREF="function.mysqli-prepare.html"
+><B
+CLASS="function"
+>mysqli_prepare()</B
+></A
+>
+     <A
+HREF="function.mysqli-stmt-bind-param.html"
+><B
+CLASS="function"
+>mysqli_stmt_bind_param()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN68002"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN68004"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;<br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br />&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"CREATE TABLE myCity LIKE City"</font><font color="#007700">);<br /> <br /></font><font color="#FF8000">/* Prepare an insert statement */<br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"INSERT INTO myCity (Name, CountryCode, District) VALUES (?,?,?)"</font><font color="#007700">;<br /></font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">prepare</font><font color="#007700">(</font><font color="#0000BB">$query</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">bind_param</font><font color="#007700">(</font><font color="#DD0000">"sss"</font><font color="#007700">, </font><font color="#0000BB">$val1</font><font color="#007700">, </font><font color="#0000BB">$val2</font><font color="#007700">, </font><font color="#0000BB">$val3</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$val1 </font><font color="#007700">= </font><font color="#DD0000">'Stuttgart'</font><font color="#007700">;<br /></font><font color="#0000BB">$val2 </font><font color="#007700">= </font><font color="#DD0000">'DEU'</font><font color="#007700">;<br /></font><font color="#0000BB">$val3 </font><font color="#007700">= </font><font color="#DD0000">'Baden-Wuerttemberg'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#FF8000">/* Execute the statement */<br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">execute</font><font color="#007700">();<br /><br /></font><font color="#0000BB">$val1 </font><font color="#007700">= </font><font color="#DD0000">'Bordeaux'</font><font color="#007700">;<br /></font><font color="#0000BB">$val2 </font><font color="#007700">= </font><font color="#DD0000">'FRA'</font><font color="#007700">;<br /></font><font color="#0000BB">$val3 </font><font color="#007700">= </font><font color="#DD0000">'Aquitaine'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#FF8000">/* Execute the statement */<br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">execute</font><font color="#007700">();<br /><br /></font><font color="#FF8000">/* close statement */<br /></font><font color="#0000BB">$stmt</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /><br /></font><font color="#FF8000">/* retrieve all rows from myCity */<br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"SELECT Name, CountryCode, District FROM myCity"</font><font color="#007700">;<br />if (</font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#0000BB">$query</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;while (</font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">fetch_row</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s (%s,%s)\n"</font><font color="#007700">, </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">], </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">], </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* free result set */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$result</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br />}<br /><br /></font><font color="#FF8000">/* remove table */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">query</font><font color="#007700">(</font><font color="#DD0000">"DROP TABLE myCity"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">(); <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN68007"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;<br /></font><font color="#FF8000">/* check connection */<br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br />&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"CREATE TABLE myCity LIKE City"</font><font color="#007700">);<br /> <br /></font><font color="#FF8000">/* Prepare an insert statement */<br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"INSERT INTO myCity (Name, CountryCode, District) VALUES (?,?,?)"</font><font color="#007700">;<br /></font><font color="#0000BB">$stmt </font><font color="#007700">= </font><font color="#0000BB">mysqli_prepare</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#0000BB">$query</font><font color="#007700">);<br /><br /></font><font color="#0000BB">mysqli_stmt_bind_param</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">, </font><font color="#DD0000">"sss"</font><font color="#007700">, </font><font color="#0000BB">$val1</font><font color="#007700">, </font><font color="#0000BB">$val2</font><font color="#007700">, </font><font color="#0000BB">$val3</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$val1 </font><font color="#007700">= </font><font color="#DD0000">'Stuttgart'</font><font color="#007700">;<br /></font><font color="#0000BB">$val2 </font><font color="#007700">= </font><font color="#DD0000">'DEU'</font><font color="#007700">;<br /></font><font color="#0000BB">$val3 </font><font color="#007700">= </font><font color="#DD0000">'Baden-Wuerttemberg'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#FF8000">/* Execute the statement */<br /></font><font color="#0000BB">mysqli_stmt_execute</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$val1 </font><font color="#007700">= </font><font color="#DD0000">'Bordeaux'</font><font color="#007700">;<br /></font><font color="#0000BB">$val2 </font><font color="#007700">= </font><font color="#DD0000">'FRA'</font><font color="#007700">;<br /></font><font color="#0000BB">$val3 </font><font color="#007700">= </font><font color="#DD0000">'Aquitaine'</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#FF8000">/* Execute the statement */<br /></font><font color="#0000BB">mysqli_stmt_execute</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close statement */<br /></font><font color="#0000BB">mysqli_stmt_close</font><font color="#007700">(</font><font color="#0000BB">$stmt</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* retrieve all rows from myCity */<br /></font><font color="#0000BB">$query </font><font color="#007700">= </font><font color="#DD0000">"SELECT Name, CountryCode, District FROM myCity"</font><font color="#007700">;<br />if (</font><font color="#0000BB">$result </font><font color="#007700">= </font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#0000BB">$query</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;while (</font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">mysqli_fetch_row</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"%s (%s,%s)\n"</font><font color="#007700">, </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">], </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">], </font><font color="#0000BB">$row</font><font color="#007700">[</font><font color="#0000BB">2</font><font color="#007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* free result set */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">mysqli_free_result</font><font color="#007700">(</font><font color="#0000BB">$result</font><font color="#007700">);<br />}<br /><br /></font><font color="#FF8000">/* remove table */<br /></font><font color="#0000BB">mysqli_query</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">, </font><font color="#DD0000">"DROP TABLE myCity"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */&nbsp;&nbsp;&nbsp;&nbsp;<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">); <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;     Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Stuttgart (DEU,Baden-Wuerttemberg)
+Bordeaux (FRA,Aquitaine)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-stmt-fetch.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_stmt_error</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_stmt_fetch</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

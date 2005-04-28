@@ -1,0 +1,250 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imap_getmailboxes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones IMAP"
+HREF="ref.imap.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_getacl"
+HREF="function.imap-getacl.html"><LINK
+REL="NEXT"
+TITLE="imap_getsubscribed"
+HREF="function.imap-getsubscribed.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-getacl.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-getsubscribed.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imap-getmailboxes"
+></A
+>imap_getmailboxes</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN40951"
+></A
+><P
+>    (PHP 3&#62;= 3.0.12, PHP 4 , PHP 5)</P
+>imap_getmailboxes&nbsp;--&nbsp;
+     Lee la lista de buzones, devolviendo informacón detallada de cada uno
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN40954"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>imap_getmailboxes</B
+> ( int imap_stream, string ref, string pat)<BR
+></BR
+><P
+>&#13;     Devuelve un array de objetos coneniendo información del buzón. Cada 
+     objeto tiene los atributos <VAR
+CLASS="parameter"
+>name</VAR
+>, especificando el 
+     nombre completo del buzón; <VAR
+CLASS="parameter"
+>delimiter</VAR
+>,
+     que es el delimitador jerárquico para la parte de la jerarquía
+     dónde está este buzón; y
+     <VAR
+CLASS="parameter"
+>attributes</VAR
+>. <VAR
+CLASS="parameter"
+>Attributes</VAR
+>
+     es una máscara de bits contra la que se puede probar:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;   LATT_NOINFERIORS - Este buzón no tiene "hijos" (No ha buzones por debajo de él)   
+       </P
+></LI
+><LI
+><P
+>&#13;   LATT_NOSELECT - Esto es sólo un contenedor, no un buzón - No puede 
+   abrirlo.
+       </P
+></LI
+><LI
+><P
+>&#13;   LATT_MARKED - Este buzón está marcado. Unicamente usado por UW-IMAPD.
+       </P
+></LI
+><LI
+><P
+> 
+   LATT_UNMARKED - Este buzón no está marcado. Unicamente usado por
+	UW-IMAPD.
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>ref</VAR
+> normalmente debería ser solo el servidor
+     IMAP, de la forma: {imap_server:imap_port}, y
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+> especifica, dónde en la estructura jerárquica
+     del buzón, para comenzar a buscar. Si quiere todo los buzones, pase el 
+     parámetro <VAR
+CLASS="parameter"
+>pattern</VAR
+> como una cadena vacía.
+    </P
+><P
+>&#13;     Hay dos caracteres especiales que puede pasar como parte del parámetro
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+>: '*' and '%'. '*' significa que devuelva
+     todos los buzones. Si pasa el parámetro <VAR
+CLASS="parameter"
+>pattern</VAR
+>
+     como '*', obtendrá una lista con la jerarquía completa del buzón.
+     %' significa que devuelva sólo el nivel actual. Pasar '%' en el parámetro
+     <VAR
+CLASS="parameter"
+>pattern</VAR
+> devolverá sólo el nivel más alto
+     de los buzones; '~/mail/%' en UW_IMAPD devolverá cada buzón
+     del directorio ~/mail, pero ninguno de los subdirectorios de ese
+     directorio.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-getacl.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-getsubscribed.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_getacl</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.imap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_getsubscribed</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

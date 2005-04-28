@@ -1,0 +1,557 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>stream_socket_client</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Secuencias"
+HREF="ref.stream.html"><LINK
+REL="PREVIOUS"
+TITLE="stream_socket_accept"
+HREF="function.stream-socket-accept.html"><LINK
+REL="NEXT"
+TITLE="stream_socket_get_name"
+HREF="function.stream-socket-get-name.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-accept.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.stream-socket-get-name.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.stream-socket-client"
+></A
+>stream_socket_client</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN104667"
+></A
+><P
+>    (PHP 5)</P
+>stream_socket_client&nbsp;--&nbsp;
+     Abrir una conexión de socket de dominio de Internet o Unix
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN104670"
+></A
+><H2
+>Descripción</H2
+>resource <B
+CLASS="methodname"
+>stream_socket_client</B
+> ( string socket_remoto [, int &#38;errno [, string &#38;errstr [, float tiempo_espera [, int banderas [, resource contexto]]]]])<BR
+></BR
+><P
+>&#13;     Inicia una conexión secuenciada o tipo datagrama al
+     destino especificado por <VAR
+CLASS="parameter"
+>socket_remoto</VAR
+>. El
+     tipo de socket creado es determinado por el transporte
+     especificado usando el formato de URL estándar:
+     <VAR
+CLASS="literal"
+>transporte://destino</VAR
+>. Para sockets de dominio
+     de Internet (AF_INET) tales como TCP y UDP, la porción
+     <VAR
+CLASS="literal"
+>destino</VAR
+> del parámetro
+     <VAR
+CLASS="parameter"
+>socket_remoto</VAR
+> debe consistir de un nombre
+     de host o dirección IP seguido de un signo de dos puntos y
+     un número de puerto. Para sockets de dominio Unix, la
+     porción <VAR
+CLASS="parameter"
+>destino</VAR
+> debe apuntar al
+     archivo de socket en el sistema de archivos.
+
+     El <VAR
+CLASS="parameter"
+>tiempo_espera</VAR
+> opcional puede ser usado
+     para establecer un tiempo de espera máximo en segundos
+     para el llamado de conexión del sistema.
+
+     <VAR
+CLASS="parameter"
+>banderas</VAR
+> es un campo de máscara de
+     bits que puede ser definido como una combinación de
+     banderas de conexión. Actualmente, las banderas de
+     conexión disponibles están limitadas a
+     <TT
+CLASS="constant"
+><B
+>STREAM_CLIENT_ASYNC_CONNECT</B
+></TT
+> y
+     <TT
+CLASS="constant"
+><B
+>STREAM_CLIENT_PERSISTENT</B
+></TT
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si necesita establecer un tiempo de espera para la
+      lectura/escritura de datos sobre el socket, use
+      <A
+HREF="function.stream-set-timeout.html"
+><B
+CLASS="function"
+>stream_set_timeout()</B
+></A
+>, ya que el
+      parámetro <VAR
+CLASS="parameter"
+>tiempo_espera</VAR
+> de
+      <B
+CLASS="function"
+>stream_socket_client()</B
+> sólo se aplica
+      cuando se establece la conexión con el socket.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <B
+CLASS="function"
+>stream_socket_client()</B
+> devuelve un recurso de
+     secuencia que puede ser usado junto con las otras funciones de
+     archivos (tales como <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+>,
+     <A
+HREF="function.fgetss.html"
+><B
+CLASS="function"
+>fgetss()</B
+></A
+>, <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>,
+     <A
+HREF="function.fclose.html"
+><B
+CLASS="function"
+>fclose()</B
+></A
+>, y <A
+HREF="function.feof.html"
+><B
+CLASS="function"
+>feof()</B
+></A
+>).
+    </P
+><P
+>&#13;     Si la llamada falla, devolverá <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> y si los argumentos
+     opcionales <VAR
+CLASS="parameter"
+>errno</VAR
+> y
+     <VAR
+CLASS="parameter"
+>errstr</VAR
+> están presentes,
+     éstos serán definidos de modo tal que indiquen el
+     error de nivel de sistema actual que ocurrió en el llamado
+     de nivel de sistema <VAR
+CLASS="literal"
+>connect()</VAR
+>. Si el valor
+     devuelto en <VAR
+CLASS="parameter"
+>errno</VAR
+> es <VAR
+CLASS="literal"
+>0</VAR
+>
+     y la función devolvió <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, es un indicio de que
+     el error ocurrió antes del llamado a
+     <VAR
+CLASS="literal"
+>connect()</VAR
+>. Esto es por lo general debido a un
+     problema con la inicialización del socket. Note que los
+     argumentos <VAR
+CLASS="parameter"
+>errno</VAR
+> y
+     <VAR
+CLASS="parameter"
+>errstr</VAR
+> serán siempre pasados por
+     referencia.
+    </P
+><P
+>&#13;     Dependiendo del entorno, el dominio Unix o el tiempo de espera de
+     conexión opcional pueden no estar disponibles. Una lista
+     de transportes disponibles puede ser recuperada usando
+     <A
+HREF="function.stream-get-transports.html"
+><B
+CLASS="function"
+>stream_get_transports()</B
+></A
+>. Vea <A
+HREF="transports.html"
+>Apéndice N</A
+> para consultar una lista de transportes
+     incorporados.
+    </P
+><P
+>&#13;     La secuencia será abierta por defecto en modo de
+     bloqueo. Puede modificarla a modo de no-bloqueo usando
+     <A
+HREF="function.stream-set-blocking.html"
+><B
+CLASS="function"
+>stream_set_blocking()</B
+></A
+>.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN104731"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de
+      <B
+CLASS="function"
+>stream_socket_client()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$da </font><font color="#007700">= </font><font color="#0000BB">stream_socket_client</font><font color="#007700">(</font><font color="#DD0000">"tcp://www.example.com:80"</font><font color="#007700">, </font><font color="#0000BB">$errno</font><font color="#007700">, </font><font color="#0000BB">$errstr</font><font color="#007700">, </font><font color="#0000BB">30</font><font color="#007700">);<br />if (!</font><font color="#0000BB">$da</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$errstr ($errno)&lt;br /&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"GET / HTTP/1.0\r\nHost: www.example.com\r\nAccept: */*\r\n\r\n"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;while (!</font><font color="#0000BB">feof</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">fgets</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#0000BB">1024</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     El siguiente ejemplo muestra cómo recuperar la fecha y
+     hora desde el servicio UDP "daytime" (puerto 13) en su
+     máquina local.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN104735"
+></A
+><P
+><B
+>Ejemplo 2. Uso de una conexión UDP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$da </font><font color="#007700">= </font><font color="#0000BB">stream_socket_client</font><font color="#007700">(</font><font color="#DD0000">"udp://127.0.0.1:13"</font><font color="#007700">, </font><font color="#0000BB">$errno</font><font color="#007700">, </font><font color="#0000BB">$errstr</font><font color="#007700">);<br />if (!</font><font color="#0000BB">$da</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"ERROR: $errno - $errstr&lt;br /&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fwrite</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#DD0000">"\n"</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">fread</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">, </font><font color="#0000BB">26</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">fclose</font><font color="#007700">(</font><font color="#0000BB">$da</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;       Los sockets UDP parecerán haber sido abiertos sin error
+       en ocasiones, incluso si el host remoto no ha podido ser
+       contactado. El error solo se hará aparente cuando lea o
+       escriba datos desde/hacia el socket. La razón de esto es
+       que UDP es un protocolo "sin conexión", lo que quiere
+       decir que el sistema operativo no intenta establecer un enlace
+       para el socket hasta que realmente necesita enviar o recibir
+       datos.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+>
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Cuando se especifique una
+dirección numérica IPv6 (p.ej. fe80::1) se debe incluir
+la IP entre corchetes. Por ejemplo
+<VAR
+CLASS="literal"
+>tcp://[fe80::1]:80</VAR
+>.</P
+></BLOCKQUOTE
+></DIV
+>
+     Vea también <A
+HREF="function.stream-socket-server.html"
+><B
+CLASS="function"
+>stream_socket_server()</B
+></A
+>, 
+     <A
+HREF="function.stream-set-blocking.html"
+><B
+CLASS="function"
+>stream_set_blocking()</B
+></A
+>,
+     <A
+HREF="function.stream-set-timeout.html"
+><B
+CLASS="function"
+>stream_set_timeout()</B
+></A
+>, 
+     <A
+HREF="function.stream-select.html"
+><B
+CLASS="function"
+>stream_select()</B
+></A
+>, 
+     <A
+HREF="function.fgets.html"
+><B
+CLASS="function"
+>fgets()</B
+></A
+>,
+     <A
+HREF="function.fgetss.html"
+><B
+CLASS="function"
+>fgetss()</B
+></A
+>, <A
+HREF="function.fwrite.html"
+><B
+CLASS="function"
+>fwrite()</B
+></A
+>,
+     <A
+HREF="function.fclose.html"
+><B
+CLASS="function"
+>fclose()</B
+></A
+>, <A
+HREF="function.feof.html"
+><B
+CLASS="function"
+>feof()</B
+></A
+>, y
+     la <A
+HREF="ref.curl.html"
+>extensión Curl</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.stream-socket-accept.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.stream-socket-get-name.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>stream_socket_accept</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.stream.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>stream_socket_get_name</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,477 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones InterBase</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="ifxus_write_slob"
+HREF="function.ifxus-write-slob.html"><LINK
+REL="NEXT"
+TITLE="ibase_add_user"
+HREF="function.ibase-add-user.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ifxus-write-slob.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ibase-add-user.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.ibase"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XLV. Funciones InterBase</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN43006"
+></A
+><P
+>&#13;   </P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.ibase-add-user.html"
+>ibase_add_user</A
+>&nbsp;--&nbsp;
+     Add a user to a security database (only for IB6 or later)
+    </DT
+><DT
+><A
+HREF="function.ibase-affected-rows.html"
+>ibase_affected_rows</A
+>&nbsp;--&nbsp;
+     Return the number of rows that were affected by the previous query
+    </DT
+><DT
+><A
+HREF="function.ibase-backup.html"
+>ibase_backup</A
+>&nbsp;--&nbsp;
+     Initiates a backup task in the service manager and returns immediately
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-add.html"
+>ibase_blob_add</A
+>&nbsp;--&nbsp;
+     Add data into a newly created blob
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-cancel.html"
+>ibase_blob_cancel</A
+>&nbsp;--&nbsp;
+     Cancel creating blob
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-close.html"
+>ibase_blob_close</A
+>&nbsp;--&nbsp;
+     Close blob
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-create.html"
+>ibase_blob_create</A
+>&nbsp;--&nbsp;
+     Create a new blob for adding data
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-echo.html"
+>ibase_blob_echo</A
+>&nbsp;--&nbsp;
+     Output blob contents to browser
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-get.html"
+>ibase_blob_get</A
+>&nbsp;--&nbsp;
+     Get len bytes data from open blob
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-import.html"
+>ibase_blob_import</A
+>&nbsp;--&nbsp;
+     Create blob, copy file in it, and close it
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-info.html"
+>ibase_blob_info</A
+>&nbsp;--&nbsp;
+     Return blob length and other useful info
+    </DT
+><DT
+><A
+HREF="function.ibase-blob-open.html"
+>ibase_blob_open</A
+>&nbsp;--&nbsp;
+     Open blob for retrieving data parts
+    </DT
+><DT
+><A
+HREF="function.ibase-close.html"
+>ibase_close</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-commit-ret.html"
+>ibase_commit_ret</A
+>&nbsp;--&nbsp;Commit a transaction without closing it</DT
+><DT
+><A
+HREF="function.ibase-commit.html"
+>ibase_commit</A
+>&nbsp;--&nbsp;Commit a transaction</DT
+><DT
+><A
+HREF="function.ibase-connect.html"
+>ibase_connect</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-db-info.html"
+>ibase_db_info</A
+>&nbsp;--&nbsp;
+     Request statistics about a database
+    </DT
+><DT
+><A
+HREF="function.ibase-delete-user.html"
+>ibase_delete_user</A
+>&nbsp;--&nbsp;
+     Delete a user from a security database (only for IB6 or later)
+    </DT
+><DT
+><A
+HREF="function.ibase-drop-db.html"
+>ibase_drop_db</A
+>&nbsp;--&nbsp;
+     Drops a database
+    </DT
+><DT
+><A
+HREF="function.ibase-errcode.html"
+>ibase_errcode</A
+>&nbsp;--&nbsp;
+     Return an error code
+    </DT
+><DT
+><A
+HREF="function.ibase-errmsg.html"
+>ibase_errmsg</A
+>&nbsp;--&nbsp;
+     Return error messages
+    </DT
+><DT
+><A
+HREF="function.ibase-execute.html"
+>ibase_execute</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-fetch-assoc.html"
+>ibase_fetch_assoc</A
+>&nbsp;--&nbsp;
+     Fetch a result row from a query as an associative array
+    </DT
+><DT
+><A
+HREF="function.ibase-fetch-object.html"
+>ibase_fetch_object</A
+>&nbsp;--&nbsp;Get an object from a InterBase database</DT
+><DT
+><A
+HREF="function.ibase-fetch-row.html"
+>ibase_fetch_row</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-field-info.html"
+>ibase_field_info</A
+>&nbsp;--&nbsp;
+     Get information about a field
+    </DT
+><DT
+><A
+HREF="function.ibase-free-event-handler.html"
+>ibase_free_event_handler</A
+>&nbsp;--&nbsp;
+     Cancels a registered event handler
+    </DT
+><DT
+><A
+HREF="function.ibase-free-query.html"
+>ibase_free_query</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-free-result.html"
+>ibase_free_result</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-gen-id.html"
+>ibase_gen_id</A
+>&nbsp;--&nbsp;
+     Increments the named generator and returns its new value
+    </DT
+><DT
+><A
+HREF="function.ibase-maintain-db.html"
+>ibase_maintain_db</A
+>&nbsp;--&nbsp;
+     Execute a maintenance command on the database server
+    </DT
+><DT
+><A
+HREF="function.ibase-modify-user.html"
+>ibase_modify_user</A
+>&nbsp;--&nbsp;
+     Modify a user to a security database (only for IB6 or later)
+    </DT
+><DT
+><A
+HREF="function.ibase-name-result.html"
+>ibase_name_result</A
+>&nbsp;--&nbsp;
+     Assigns a name to a result set
+    </DT
+><DT
+><A
+HREF="function.ibase-num-fields.html"
+>ibase_num_fields</A
+>&nbsp;--&nbsp;
+     Get the number of fields in a result set
+    </DT
+><DT
+><A
+HREF="function.ibase-num-params.html"
+>ibase_num_params</A
+>&nbsp;--&nbsp;
+     Return the number of parameters in a prepared query
+    </DT
+><DT
+><A
+HREF="function.ibase-param-info.html"
+>ibase_param_info</A
+>&nbsp;--&nbsp;
+     Return information about a parameter in a prepared query
+    </DT
+><DT
+><A
+HREF="function.ibase-pconnect.html"
+>ibase_pconnect</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-prepare.html"
+>ibase_prepare</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-query.html"
+>ibase_query</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-restore.html"
+>ibase_restore</A
+>&nbsp;--&nbsp;
+     Initiates a restore task in the service manager and returns immediately
+    </DT
+><DT
+><A
+HREF="function.ibase-rollback-ret.html"
+>ibase_rollback_ret</A
+>&nbsp;--&nbsp;Roll back a transaction without closing it</DT
+><DT
+><A
+HREF="function.ibase-rollback.html"
+>ibase_rollback</A
+>&nbsp;--&nbsp;Roll back a transaction</DT
+><DT
+><A
+HREF="function.ibase-server-info.html"
+>ibase_server_info</A
+>&nbsp;--&nbsp;
+     Request information about a database server
+    </DT
+><DT
+><A
+HREF="function.ibase-service-attach.html"
+>ibase_service_attach</A
+>&nbsp;--&nbsp;
+     Connect to the service manager
+    </DT
+><DT
+><A
+HREF="function.ibase-service-detach.html"
+>ibase_service_detach</A
+>&nbsp;--&nbsp;
+     Disconnect from the service manager
+    </DT
+><DT
+><A
+HREF="function.ibase-set-event-handler.html"
+>ibase_set_event_handler</A
+>&nbsp;--&nbsp;
+     Register a callback function to be called when events are posted
+    </DT
+><DT
+><A
+HREF="function.ibase-timefmt.html"
+>ibase_timefmt</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.ibase-trans.html"
+>ibase_trans</A
+>&nbsp;--&nbsp;Begin a transaction</DT
+><DT
+><A
+HREF="function.ibase-wait-event.html"
+>ibase_wait_event</A
+>&nbsp;--&nbsp;
+     Wait for an event to be posted by the database
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ifxus-write-slob.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ibase-add-user.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ifxus_write_slob</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ibase_add_user</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

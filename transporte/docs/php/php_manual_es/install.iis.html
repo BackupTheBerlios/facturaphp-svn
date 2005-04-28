@@ -1,0 +1,691 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Servidores-IIS/PWS</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Instalación"
+HREF="installation.html"><LINK
+REL="PREVIOUS"
+TITLE="Servidores-fhttpd"
+HREF="install.fhttpd.html"><LINK
+REL="NEXT"
+TITLE="Servidores-Netscape e iPlanet"
+HREF="install.netscape-enterprise.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="install.fhttpd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 3. Instalación</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="install.netscape-enterprise.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="install.iis"
+>Servidores-IIS/PWS</A
+></H1
+><P
+>&#13;  Esta sección contiene información específica
+  sobre la instalación de <VAR
+CLASS="literal"
+>PHP</VAR
+> con IIS
+  (Microsoft Internet Information Server), versiones <A
+HREF="install.iis.html#install.iis.iis3"
+>PWS/IIS 3</A
+>, <A
+HREF="install.iis.html#install.iis.pws4"
+>PWS 4 ó posterior</A
+> y <A
+HREF="install.iis.html#install.iis.iis4"
+>IIS 4 ó posterior</A
+>
+ </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Importante para usuarios de la versión CGI: </B
+>
+   Leer la <A
+HREF="faq.installation.html#faq.installation.forceredirect"
+>faq sobre
+    cgi.force_redirect</A
+> para más detalles. Esta
+   directiva debe de tener el valor <VAR
+CLASS="literal"
+>0</VAR
+>.
+  </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.iis.iis3"
+>Windows y PWS/IIS 3</A
+></H2
+><P
+>&#13;   El método recomendado para configurar estos servidores es
+   usar el archivo REG incluído con la distribución
+   (pws-php4cgi.reg).  Quizás desee editar este archivo y
+   asegurarse que las extensiones y directorios de instalación
+   se ajustan a su configuración. O puede seguir los pasos que
+   siguen para hacerlo de forma manual.
+  </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;    Estos pasos conllevan el trabajar directamente con el registro de
+    windows. Un error aquí puede dejar su sistema en un estado
+    inestable. Le recomendamos encarecidamente que haga una copia de
+    seguridad del registro con antelación. El equipo de
+    Desarrollo del PHP no se hará responsable si se
+    daña su registro.
+   </P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Ejecute Regedit.
+     </P
+></LI
+><LI
+><P
+>&#13;      Navegue hasta: <VAR
+CLASS="literal"
+>HKEY_LOCAL_MACHINE /System
+       /CurrentControlSet /Services /W3Svc /Parameters
+       /ScriptMap</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      En el menú de edición elija: <VAR
+CLASS="literal"
+>New-&#62;String
+       Value</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Escriba la extensión que desea usar para sus script
+      PHP. P.ej.: <VAR
+CLASS="literal"
+>.php</VAR
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      Haga una doble pulsación con el ratón en el nuevo valor de
+      cadena y escriba la localización de <VAR
+CLASS="literal"
+>php.exe</VAR
+>
+      en el campo del valor.  P.ej.:
+      <VAR
+CLASS="literal"
+>c:\php\php.exe</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Repita estos pasos para cada extensión que desee asociar
+      con los scripts PHP.
+     </P
+></LI
+></UL
+>
+  </P
+><P
+>&#13;   Los pasos siguientes no afectan a la instalación del servidor web y
+   solamente sirven si quereis ejecutar vuestros scripts en PHP desde
+   la linea de comandos (p.ej:
+   <TT
+CLASS="filename"
+>c:\myscripts\test.php</TT
+>) ó haciendo una
+   pulsación doble con el ratón desde una ventana del visualizador de
+   directorios. Podeis saltaros estos pasos si quereis que los
+   ficheros en PHP se abran en un editor cuando hagais una doble
+   pulsación sobre ellos.
+  </P
+><P
+>&#13;   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Navegue hasta: <VAR
+CLASS="literal"
+>HKEY_CLASSES_ROOT</VAR
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      En el menú de edición elija:
+      <VAR
+CLASS="literal"
+>New-&#62;Key</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Déle a la clave el nombre de la extensión que
+      preparó en la sección anterior. P.ej.:
+      <VAR
+CLASS="literal"
+>.php</VAR
+>
+     </P
+></LI
+><LI
+><P
+>&#13;      Marque la nueva clave y en el panel del lado derecho haga una
+      doble pulsación en "default value" y escriba
+      <VAR
+CLASS="literal"
+>phpfile</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Repita el último paso para cada extensión que
+      haya preparado en la sección previa.
+     </P
+></LI
+><LI
+><P
+>&#13;      Ahora cree otra <VAR
+CLASS="literal"
+>New-&#62;Key</VAR
+> bajo
+      <VAR
+CLASS="literal"
+>HKEY_CLASSES_ROOT</VAR
+> y denomínela
+      <VAR
+CLASS="literal"
+>phpfile</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Marque la nueva clave <VAR
+CLASS="literal"
+>phpfile</VAR
+>, haga una
+      doble pulsación en el panel derecho sobre "default value" y
+      escriba <VAR
+CLASS="literal"
+>PHP Script</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Pulse el botón derecho sobre la clave
+      <VAR
+CLASS="literal"
+>phpfile</VAR
+>, seleccione
+      <VAR
+CLASS="literal"
+>New-&#62;Key</VAR
+> y llámela
+      <VAR
+CLASS="literal"
+>Shell</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Pulse el botón derecho sobre la clave
+      <VAR
+CLASS="literal"
+>Shell</VAR
+> ,elija <VAR
+CLASS="literal"
+>New-&#62;Key</VAR
+> y
+      llámela <VAR
+CLASS="literal"
+>open</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Pulse el botón derecho sobre la clave
+      <VAR
+CLASS="literal"
+>open</VAR
+> y elija <VAR
+CLASS="literal"
+>New-&#62;Key</VAR
+> y
+      llámela <VAR
+CLASS="literal"
+>command</VAR
+>.
+     </P
+></LI
+><LI
+><P
+>&#13;      Marque la nueva clave <VAR
+CLASS="literal"
+>command</VAR
+> y en el panel
+      derecho haga una doble pulsación sobre "default value" y escriba
+      la localización de <VAR
+CLASS="literal"
+>php.exe</VAR
+>. P.ej.:
+      <VAR
+CLASS="literal"
+>c:\php\php.exe -q %1</VAR
+>. (no olvide el
+      <VAR
+CLASS="literal"
+>%1</VAR
+>).
+     </P
+></LI
+><LI
+><P
+>&#13;      Salga de Regedit.
+     </P
+></LI
+><LI
+><P
+>&#13;      Si está usando PWS en Windows, tendra que arrancar la maquina de
+      nuevo para que se carge el registro.
+     </P
+></LI
+></UL
+>
+  </P
+><P
+>&#13;     Los usuarios de PWS e IIS3 tienen ahora un sistema completamente
+     operativo. Los usuarios del IIS3 también pueden usar una
+     curiosa <A
+HREF="http://www.genusa.com/iis/iiscfg.html"
+TARGET="_top"
+>herramienta</A
+> de Steven
+     Genusa para configurar sus mapeados de script.
+  </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.iis.pws4"
+>Windows y PWS 4 ó posterior</A
+></H2
+><P
+>&#13;   Existen dos opciones para instalar PHP en Windows con PWS 4 ó
+   posterior. Una es el binario CGI de PHP y la otra el módulo DLL
+   ISAPI.
+  </P
+><P
+>&#13;   Si elegis el binario CGI, teneis que hacer lo siguiente:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Editar el fichero que se incluye con PHP llamado
+      <TT
+CLASS="filename"
+>pws-php4cgi.reg</TT
+> (mirar en el directorio
+      SAPI) para actualizarlo con la localización de vuestro
+      <TT
+CLASS="filename"
+>php.exe</TT
+>. Las barras invertidas tienen que
+      escaparse, p.ej:
+      <VAR
+CLASS="literal"
+>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w3svc\parameters\Script
+       Map] ".php"="c:\\php\\php.exe"</VAR
+>. A continuación incluir
+      este registro en vuestro sistema; podeis hacer esto haciendo una
+      doble pulsación sobre el mismo, con el ratón.
+     </P
+></LI
+><LI
+><P
+>&#13;      En el administrador de PWS, hacer una doble pulsación con el
+      botón derecho del ratón, sobre el directorio donde quereis
+      añadir soporte para PHP, seleccionar "Properties", elegir
+      "Execute" y confirmar.
+     </P
+></LI
+></UL
+>
+  </P
+><P
+>&#13;   Si elegis el módulo ISAPI, teneis que hacer lo siguiente:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Editar el fichero que se incluye con PHP llamado
+      <TT
+CLASS="filename"
+>pws-php4isapi.reg</TT
+> (mirar en el directorio
+      SAPI) para actualizarlo con la localización de vuestro
+      <TT
+CLASS="filename"
+>php4isapi.dll</TT
+>. Las barras invertidas tienen
+      que escaparse, p.ej:
+      <VAR
+CLASS="literal"
+>[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\w3svc\parameters\Script
+       Map] ".php"="c:\\php\\sapi\\php4isapi.dll"</VAR
+>. A
+      continuación incluir este registro en vuestro sistema; podeis
+      hacer esto haciendo una doble pulsación sobre el mismo, con el
+      ratón.
+     </P
+></LI
+><LI
+><P
+>&#13;      En el administrador de PWS, hacer una pulsación con el botón
+      derecho del ratón, sobre el directorio donde quereis
+      añadir soporte para PHP, seleccionar "Properties", elegir
+      "Execute" y confirmar.
+     </P
+></LI
+></UL
+>
+  </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="install.iis.iis4"
+>Windows NT/2000/XP y IIS 4 ó posterior</A
+></H2
+><P
+>&#13;   Para instalar PHP en un servidor NT/2000/XP con IIS 4 ó posterior,
+   teneis que seguir estas instrucciones.  Existen dos opciones para
+   instalar PHP, una es el binario CGI de PHP (php.exe) y la otra el
+   módulo ISAPI.
+  </P
+><P
+>&#13;   En ambos casos necesitais arrancar la "consola de administración de
+   Microsoft" (Puede encontrarse como 'Administrador de servicios
+   Internet", bien en vuestro "Windows NT 4.0 Option Pack" ó en el
+   Control Panel=&#62;Herramientas de administración bajo Windows
+   2000/XP). Hacer una pulsación con el botón derecho del ratón en el
+   nodo perteneciente a vuestro servidor web (probablemente aparezca
+   como "Servidor web por defecto") y seleccionar "Propiedades".
+  </P
+><P
+>&#13;   Si elegis el binario CGI, teneis que hacer lo siguiente:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Bajo "Carpeta Inicial", "Directorio Virtual" ó "Directorio",
+      pulsar en el botón "Configuración" y entrar en la pestaña
+      "Mapas de aplicaciones".
+     </P
+></LI
+><LI
+><P
+>&#13;       Pulse en ""Añadir", y en la caja Programa, escriba:
+       <VAR
+CLASS="literal"
+>c:\php\php.exe</VAR
+> (suponemos que habeis
+       descomprimido PHP en c:\php\).
+     </P
+></LI
+><LI
+><P
+>&#13;      En la caja Extensión, escriba la extensión de
+      fichero que desea asociar a los script de PHP. Dejar
+      "Exclusiones de método" vacio y elegir "Motor de
+      scripts". Tambien podeis elegir "comprobar que el fichero
+      existe" - por una pequeña perdida en el rendimiento, IIS
+      (ó PWS) comprobará que el script existe antes de usar php. Esto
+      significa que obtendremos errores del tipo 404 en vez de errores
+      cgi diciendo que php no devolvio ningún dato.
+     </P
+><P
+>&#13;      Debereis de repetir el paso anterior por cada extensión que
+      querais asociar con PHP.  <VAR
+CLASS="literal"
+>.php</VAR
+> y
+      <VAR
+CLASS="literal"
+>.phtml</VAR
+> son valores comunes, aunque
+      <VAR
+CLASS="literal"
+>.php3</VAR
+> puede que sea necesaria para ejecutar
+      scripts antiguos.
+     </P
+></LI
+><LI
+><P
+>&#13;      Ajuste la seguridad apropiada (esto se realiza en el
+      Administrador de Servicio de Internet) y si su NT Server usa
+      el sistema de archivos NTFS, añada derechos de
+      ejecución para I_USR_ en el directorio que contenga el
+      <VAR
+CLASS="literal"
+>php.exe</VAR
+>.
+     </P
+></LI
+></UL
+>
+  </P
+><P
+>&#13;    Si elegis el módulo ISAPI, teneis que hacer lo siguiente:
+   <P
+></P
+><UL
+><LI
+><P
+>&#13;      Si no quereis utilizar Autentificación HTTP usando PHP, podeis
+      (y debeis) de saltaros este paso. Bajo "Filtros ISAPI",
+      añadir un nuevo filtro ISAPI. Usar PHP como nombre del
+      filtro y definir la localización del fichero php4isapi.dll.
+     </P
+></LI
+><LI
+><P
+>&#13;      Bajo "Carpeta Inicial" pulsar en el botón "Configuración" y
+      añadir un nuevo valor en "Mapas de aplicaciones". Definir
+      la localización del fichero php4isapi.dll como ejecutable y
+      <VAR
+CLASS="literal"
+>.php</VAR
+> como la extensión.  Dejar "Exclusiones
+      de método" vacio y elegir "Motor de scripts"
+     </P
+></LI
+><LI
+><P
+>&#13;      Parar IIS completamente (NET STOP iisadmin)
+     </P
+></LI
+><LI
+><P
+>&#13;      Arrancar IIS de nuevo (NET START w3svc)
+     </P
+></LI
+></UL
+>
+  </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="install.fhttpd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="install.netscape-enterprise.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Servidores-fhttpd</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="installation.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Servidores-Netscape e iPlanet</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

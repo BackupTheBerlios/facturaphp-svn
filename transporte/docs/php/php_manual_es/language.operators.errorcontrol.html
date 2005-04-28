@@ -1,0 +1,290 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Operadores de Control de Errores</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Operadores"
+HREF="language.operators.html"><LINK
+REL="PREVIOUS"
+TITLE="Operadores de Comparación"
+HREF="language.operators.comparison.html"><LINK
+REL="NEXT"
+TITLE="Operadores de ejecución"
+HREF="language.operators.execution.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.operators.comparison.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 10. Operadores</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.operators.execution.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.operators.errorcontrol"
+>Operadores de Control de Errores</A
+></H1
+><P
+>&#13;    PHP ofrece soporte para un operador de control de errores: el
+    signo de arroba (@). Cuando es colocado al comienzo de una
+    expresión en PHP, cualquier mensaje de error que pudiera
+    generarse a causa de esa expresión será ignorado.
+   </P
+><P
+>&#13;    Si la característica <A
+HREF="ref.errorfunc.html#ini.track-errors"
+><VAR
+CLASS="option"
+>track_errors</VAR
+></A
+>
+    está habilitada, cualquier mensaje de error generado por la
+    expresión será almacenado en la variable <A
+HREF="reserved.variables.html#reserved.variables.phperrormsg"
+>$php_errormsg</A
+>. La
+    variable será sobrescrita en cada instancia de error,
+    así que realice sus chequeos de forma temprana si quiere
+    usarla.
+   </P
+><P
+>&#13;    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3520"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Error intencional de archivo */<br /></font><font color="#0000BB">$mi_archivo </font><font color="#007700">= @</font><font color="#0000BB">file </font><font color="#007700">(</font><font color="#DD0000">'archivo_que_no_existe'</font><font color="#007700">) or<br />&nbsp;&nbsp;&nbsp;&nbsp;die (</font><font color="#DD0000">"La apertura de archivo ha fallado: el error fue '$php_errormsg'"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// esto funciona con cualquier expresion, no solo con funciones:<br /></font><font color="#0000BB">$valor </font><font color="#007700">= @</font><font color="#0000BB">$cache</font><font color="#007700">[</font><font color="#0000BB">$llave</font><font color="#007700">];<br /></font><font color="#FF8000">// no producira una anotacion si el indice $llave no existe.<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     El operador @ trabaja sólo sobre
+     <A
+HREF="language.expressions.html"
+>expresiones</A
+>. Una
+     simple regla de oro es: si usted puede tomar el valor de algo,
+     entonces puede usar el operador @ sobre ese algo. Por ejemplo,
+     puede usarlo al inicio de variables, llamadas a funciones y
+     sencencias <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+>, constantes, y así
+     sucesivamente. No puede usarlo sobre definiciones de
+     función o clase, ni sobre estructuras condicionales
+     como <VAR
+CLASS="literal"
+>if</VAR
+> y
+     <VAR
+CLASS="literal"
+>foreach</VAR
+>, y así sucesivamente.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Vea también <A
+HREF="function.error-reporting.html"
+><B
+CLASS="function"
+>error_reporting()</B
+></A
+> y la
+    sección del manual sobre <A
+HREF="ref.errorfunc.html"
+>funciones de Gestión de Errores y
+    Registros</A
+>.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     El operador de prefijo "@" para control de errores no
+     deshabilitará los mensajes que son resultado de errores en
+     la fase de análisis sintáctico.
+    </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;     En la actualidad, el operador de prefijo "@" para control de
+     errores deshabilitará incluso el reporte de errores en
+     casos de fallos críticos que terminarán la
+     ejecución del script. Entre otras cosas, esto quiere decir
+     que si usa "@" para eliminar los errores de una cierta
+     función, y ésta no se encuentra disponible o ha
+     sido escrita de forma incorrecta, el script se detendrá en
+     ese punto sin dar indicación alguna del motivo.
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.operators.comparison.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.operators.execution.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Operadores de Comparación</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.operators.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Operadores de ejecución</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

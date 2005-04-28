@@ -1,0 +1,298 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>OCIBindByName</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Oracle 8"
+HREF="ref.oci8.html"><LINK
+REL="PREVIOUS"
+TITLE="oci_statement_type"
+HREF="function.oci-statement-type.html"><LINK
+REL="NEXT"
+TITLE="ocicancel"
+HREF="function.ocicancel.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.oci-statement-type.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ocicancel.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ocibindbyname"
+></A
+>OCIBindByName</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN77730"
+></A
+><P
+>    (PHP 3&#62;= 3.0.4, PHP 4 , PHP 5)</P
+>OCIBindByName&nbsp;--&nbsp;Enlaza una variable PHP a un Placeholder de Oracle</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN77733"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>OCIBindByName</B
+> ( int stmt, string ph_name, mixed &#38; variable, int length [, int type])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>OCIBindByName()</B
+> enlaza la variable PHP  
+     <VAR
+CLASS="parameter"
+>variable</VAR
+> a un placeholder de Oracle
+     <VAR
+CLASS="parameter"
+>ph_name</VAR
+>.  Si esta será usada para entrada o salida 
+     se determinará en tiempo de ejecución, y sera resevado el espacio necesario de
+     almacenamiento. El parámetro <VAR
+CLASS="parameter"
+>length</VAR
+> establece el tamaño máximo
+     del enlace. Si establece <VAR
+CLASS="parameter"
+>length</VAR
+> a -1
+     <B
+CLASS="function"
+>OCIBindByName()</B
+> usará el tamaño de la
+     <VAR
+CLASS="parameter"
+>variable</VAR
+> para establecer el tamaño máximo.
+    </P
+><P
+>&#13;     Si necesita enlazar tipos de datos abstractos (LOB/ROWID/BFILE) necesitará primero
+     reservar la memoria con la función <A
+HREF="function.ocinewdescriptor.html"
+><B
+CLASS="function"
+>OCINewDescriptor()</B
+></A
+>.
+     <VAR
+CLASS="parameter"
+>length</VAR
+> no se usa para tipos de datos abstractos y
+     debería establecerse a -1. La variable <VAR
+CLASS="parameter"
+>type</VAR
+> le informa a
+     Oracle, que tipo de descriptor queremos usar. Los valores posibles son:
+     OCI_B_FILE (Binary-File), OCI_B_CFILE (Character-File),
+     OCI_B_CLOB (Character-LOB), OCI_B_BLOB (Binary-LOB) and OCI_B_ROWID (ROWID).
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN77765"
+></A
+><P
+><B
+>Ejemplo 1. OCIDefineByName</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+/* OCIBindByPos example thies@digicol.de (980221)
+
+  inserts 3 resords into emp, and uses the ROWID for updating the 
+  records just after the insert.
+*/
+
+$conn = OCILogon("scott","tiger");
+
+$stmt = OCIParse($conn,"insert into emp (empno, ename) ".
+                       "values (:empno,:ename) ".
+                       "returning ROWID into :rid");
+
+$data = array(1111 =&#62; "Larry", 2222 =&#62; "Bill", 3333 =&#62; "Jim");
+
+$rowid = OCINewDescriptor($conn,OCI_D_ROWID);
+
+OCIBindByName($stmt,":empno",&#38;$empno,32);
+OCIBindByName($stmt,":ename",&#38;$ename,32);
+OCIBindByName($stmt,":rid",&#38;$rowid,-1,OCI_B_ROWID);
+
+$update = OCIParse($conn,"update emp set sal = :sal where ROWID = :rid");
+OCIBindByName($update,":rid",&#38;$rowid,-1,OCI_B_ROWID);
+OCIBindByName($update,":sal",&#38;$sal,32);
+
+$sal = 10000;
+
+while (list($empno,$ename) = each($data)) {
+    OCIExecute($stmt);
+    OCIExecute($update);
+} 
+
+$rowid-&#62;free();
+
+OCIFreeStatement($update);
+OCIFreeStatement($stmt);
+
+$stmt = OCIParse($conn,"select * from emp where empno in (1111,2222,3333)");
+OCIExecute($stmt);
+while (OCIFetchInto($stmt,&#38;$arr,OCI_ASSOC)) {
+    var_dump($arr);
+}
+OCIFreeStatement($stmt);
+
+/* delete our "junk" from the emp table.... */
+$stmt = OCIParse($conn,"delete from emp where empno in (1111,2222,3333)");
+OCIExecute($stmt);
+OCIFreeStatement($stmt);
+
+OCILogoff($conn);
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.oci-statement-type.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ocicancel.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>oci_statement_type</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.oci8.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ocicancel</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

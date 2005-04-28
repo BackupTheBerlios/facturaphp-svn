@@ -1,0 +1,231 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>odbc_autocommit</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="PREVIOUS"
+TITLE="ODBC functions"
+HREF="ref.odbc.html"><LINK
+REL="NEXT"
+TITLE="odbc_binmode"
+HREF="function.odbc-binmode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.odbc-binmode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.odbc-autocommit"
+></A
+>odbc_autocommit</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN74205"
+></A
+><P
+>    (PHP 3&#62;= 3.0.6, PHP 4 , PHP 5)</P
+>odbc_autocommit&nbsp;--&nbsp;Interruptor de comportamiento de auto-entrega</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN74208"
+></A
+><H2
+>Descripcion</H2
+>int <B
+CLASS="methodname"
+>odbc_autocommit</B
+> ( int connection_id [, int OnOff])<BR
+></BR
+><P
+>&#13;     Sin el parametro <VAR
+CLASS="parameter"
+>OnOff</VAR
+>, esta funcion devuelve
+     el estado de auto-entrega para 
+     <VAR
+CLASS="parameter"
+>connection_id</VAR
+>.  Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si auto-entrega
+     esta habilitado, y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si no lo esta o ha ocurrido un error.</P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>OnOff</VAR
+> es <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, auto-entrega esta activado,
+     si es <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> auto-entrega esta desactivado. Devuelve
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> cuando se cumple, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> cuando
+     falla.</P
+><P
+>&#13;     Por defecto, auto-entrega es para una conexion.  Desabilitar
+     auto-entrega es como comenzar una transaccion.</P
+><P
+>&#13;     Ver tambien
+     <A
+HREF="function.odbc-commit.html"
+><B
+CLASS="function"
+>odbc_commit()</B
+></A
+> y
+     <A
+HREF="function.odbc-rollback.html"
+><B
+CLASS="function"
+>odbc_rollback()</B
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.odbc-binmode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ODBC functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.odbc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>odbc_binmode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

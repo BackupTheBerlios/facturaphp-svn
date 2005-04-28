@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>uniqid</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Miscelánea"
+HREF="ref.misc.html"><LINK
+REL="PREVIOUS"
+TITLE="time_nanosleep"
+HREF="function.time-nanosleep.html"><LINK
+REL="NEXT"
+TITLE="unpack"
+HREF="function.unpack.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.time-nanosleep.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.unpack.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.uniqid"
+></A
+>uniqid</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN60084"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>uniqid&nbsp;--&nbsp;Genera un id único.</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN60087"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>uniqid</B
+> ( string prefix [, boolean lcg])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>uniqid()</B
+> devuelve un identificador único con un prefijo 
+     basado en la hora actual en microsegundos. El prefijo puede ser práctico
+     por ejemplo si se generan identificadores simultáneamente en varios host
+     que pueden haber generado el identificador en el mismo microsegundo.
+     <VAR
+CLASS="parameter"
+>prefix</VAR
+> (prefijo) puede ser de hasta 114
+     carácteres de longitud.
+    </P
+><P
+>&#13;     Si el parámetro opcional <VAR
+CLASS="parameter"
+>lcg</VAR
+> es <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>,
+     <B
+CLASS="function"
+>uniqid()</B
+> añadirá entropía "LCG combinada" al 
+     final del valor devuelto, que hará el resultado más único.
+    </P
+><P
+>&#13;     Con un <VAR
+CLASS="parameter"
+>prefix</VAR
+> (prefijo) vacío, la cadena devuelta
+     tendrá una longitud de 13 carácteres. Si <VAR
+CLASS="parameter"
+>lcg</VAR
+> es
+     <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, tendrá 23 carácteres.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+        El parámetro <VAR
+CLASS="parameter"
+>lcg</VAR
+> está disponible sólo en PHP 4 y 
+        PHP 3.0.13 y posteriores. 
+	 </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Si necesita un identificador único o testigo, y tiene la intención de 
+     hacer público ese testigo al usuario por medio de una red (i.e. cookies
+     de sesión) se recomienda que utilice algo parecido a estas líneas
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN60113"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$token = md5(uniqid("")); // no random portion
+$better_token = md5(uniqid(rand())); // better, difficult to guess</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+><P
+>&#13;     Esto creará un identificador de 32 carácteres (un número hexadecimal
+     de 128 bits) que es extremadamente difícil de predecir.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.time-nanosleep.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.unpack.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>time_nanosleep</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.misc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>unpack</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

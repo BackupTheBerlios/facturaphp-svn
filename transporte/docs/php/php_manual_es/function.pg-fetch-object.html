@@ -1,0 +1,285 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>pg_Fetch_Object</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones PostgreSQL"
+HREF="ref.pgsql.html"><LINK
+REL="PREVIOUS"
+TITLE="pg_fetch_assoc"
+HREF="function.pg-fetch-assoc.html"><LINK
+REL="NEXT"
+TITLE="pg_fetch_result"
+HREF="function.pg-fetch-result.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pg-fetch-assoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.pg-fetch-result.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.pg-fetch-object"
+></A
+>pg_Fetch_Object</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN88629"
+></A
+><P
+>    (PHP 3&#62;= 3.0.1, PHP 4 , PHP 5)</P
+>pg_Fetch_Object&nbsp;--&nbsp;obtener una fila en forma de objeto</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN88632"
+></A
+><H2
+>Descripción</H2
+>object <B
+CLASS="methodname"
+>pg_fetch_object</B
+> ( int result, int row [, int result_type])<BR
+></BR
+><P
+> 
+     Devuelve: Un objeto cuyas propiedades se corresponden con los campos de la fila obtenida, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>
+     si no hay más filas.
+    </P
+><P
+> 
+     <B
+CLASS="function"
+>pg_fetch_object()</B
+> es parecida a 
+     <A
+HREF="function.pg-fetch-array.html"
+><B
+CLASS="function"
+>pg_fetch_array()</B
+></A
+>, con una diferencia - se devuelve un objeto,
+     en vez de un array. Indirectamente, eso significa que solo puedes acceder a los
+     datos por medio de su nombre de campo, y no a través de sus posiciones
+     (los números son nombres de propiedad invalidos).
+    </P
+><P
+>&#13;     El tercer parámetro opcional <VAR
+CLASS="parameter"
+>result_type</VAR
+> en
+     <B
+CLASS="function"
+>pg_fetch_object()</B
+> es una constante y puede tomar
+     cualquiera de los siguientes valores: PGSQL_ASSOC, PGSQL_NUM, y PGSQL_BOTH.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       <VAR
+CLASS="parameter"
+>Result_type</VAR
+> se añadio en PHP 4.0.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><P
+>&#13;     Referente a la velocidad, la función es identica a 
+     <A
+HREF="function.pg-fetch-array.html"
+><B
+CLASS="function"
+>pg_fetch_array()</B
+></A
+>, y practicamente tan rápida como
+     <A
+HREF="function.pg-fetch-row.html"
+><B
+CLASS="function"
+>pg_fetch_row()</B
+></A
+> (la diferencia es insignificante).
+    </P
+><P
+> 
+     Ver también: <A
+HREF="function.pg-fetch-array.html"
+><B
+CLASS="function"
+>pg_fetch_array()</B
+></A
+> y
+     <A
+HREF="function.pg-fetch-row.html"
+><B
+CLASS="function"
+>pg_fetch_row()</B
+></A
+>.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN88663"
+></A
+><P
+><B
+>Ejemplo 1. Postgres fetch object</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php <br />$database </font><font color="#007700">= </font><font color="#DD0000">"verlag"</font><font color="#007700">;<br /></font><font color="#0000BB">$db_conn </font><font color="#007700">= </font><font color="#0000BB">pg_connect </font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"5432"</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#DD0000">""</font><font color="#007700">, </font><font color="#0000BB">$database</font><font color="#007700">);<br />if (!</font><font color="#0000BB">$db_conn</font><font color="#007700">): </font><font color="#0000BB">?&gt;<br /></font>&nbsp;&nbsp;&nbsp;&nbsp;&lt;H1&gt;Failed connecting to postgres database <font color="#0000BB">&lt;? </font><font color="#007700">echo </font><font color="#0000BB">$database ?&gt;</font>&lt;/H1&gt; <font color="#0000BB">&lt;?<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">exit;<br />endif;<br /><br /></font><font color="#0000BB">$qu </font><font color="#007700">= </font><font color="#0000BB">pg_exec </font><font color="#007700">(</font><font color="#0000BB">$db_conn</font><font color="#007700">, </font><font color="#DD0000">"SELECT * FROM verlag ORDER BY autor"</font><font color="#007700">);<br /></font><font color="#0000BB">$row </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#FF8000">// postgres needs a row counter other dbs might not <br /><br /></font><font color="#007700">while (</font><font color="#0000BB">$data </font><font color="#007700">= </font><font color="#0000BB">pg_fetch_object </font><font color="#007700">(</font><font color="#0000BB">$qu</font><font color="#007700">, </font><font color="#0000BB">$row</font><font color="#007700">)):<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$data</font><font color="#007700">-&gt;</font><font color="#0000BB">autor</font><font color="#007700">.</font><font color="#DD0000">" ("</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$data</font><font color="#007700">-&gt;</font><font color="#0000BB">jahr </font><font color="#007700">.</font><font color="#DD0000">"): "</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$data</font><font color="#007700">-&gt;</font><font color="#0000BB">titel</font><font color="#007700">.</font><font color="#DD0000">"&lt;BR&gt;"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$row</font><font color="#007700">++;<br />endwhile; </font><font color="#0000BB">?&gt;<br /></font><br />&lt;PRE&gt;<font color="#0000BB">&lt;?php<br />$fields</font><font color="#007700">[] = Array (</font><font color="#DD0000">"autor"</font><font color="#007700">, </font><font color="#DD0000">"Author"</font><font color="#007700">);<br /></font><font color="#0000BB">$fields</font><font color="#007700">[] = Array (</font><font color="#DD0000">"jahr"</font><font color="#007700">,&nbsp;&nbsp;</font><font color="#DD0000">"&nbsp;&nbsp;Year"</font><font color="#007700">);<br /></font><font color="#0000BB">$fields</font><font color="#007700">[] = Array (</font><font color="#DD0000">"titel"</font><font color="#007700">, </font><font color="#DD0000">" Title"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$row</font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#FF8000">// postgres needs a row counter other dbs might not<br /></font><font color="#007700">while (</font><font color="#0000BB">$data </font><font color="#007700">= </font><font color="#0000BB">pg_fetch_object </font><font color="#007700">(</font><font color="#0000BB">$qu</font><font color="#007700">, </font><font color="#0000BB">$row</font><font color="#007700">)):<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"----------\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">reset </font><font color="#007700">(</font><font color="#0000BB">$fields</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;while (list (,</font><font color="#0000BB">$item</font><font color="#007700">) = </font><font color="#0000BB">each </font><font color="#007700">(</font><font color="#0000BB">$fields</font><font color="#007700">)):<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$item</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">].</font><font color="#DD0000">": "</font><font color="#007700">.</font><font color="#0000BB">$data</font><font color="#007700">-&gt;</font><font color="#0000BB">$item</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">].</font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;endwhile;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$row</font><font color="#007700">++;<br />endwhile;<br />echo </font><font color="#DD0000">"----------\n"</font><font color="#007700">; </font><font color="#0000BB">?&gt;<br /></font>&lt;/PRE&gt; <font color="#0000BB">&lt;?php<br />pg_freeResult </font><font color="#007700">(</font><font color="#0000BB">$qu</font><font color="#007700">);<br /></font><font color="#0000BB">pg_close </font><font color="#007700">(</font><font color="#0000BB">$db_conn</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pg-fetch-assoc.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.pg-fetch-result.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pg_fetch_assoc</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pgsql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>pg_fetch_result</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

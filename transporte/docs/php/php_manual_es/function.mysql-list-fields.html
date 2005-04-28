@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysql_list_fields</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones MySQL"
+HREF="ref.mysql.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_list_dbs"
+HREF="function.mysql-list-dbs.html"><LINK
+REL="NEXT"
+TITLE="mysql_list_processes"
+HREF="function.mysql-list-processes.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-list-dbs.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-list-processes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysql-list-fields"
+></A
+>mysql_list_fields</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN63375"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mysql_list_fields&nbsp;--&nbsp;Lista los campos del resultado de MySQL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN63378"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mysql_list_fields</B
+> ( string base_de_datos, string tabla [, int identificador_de_enlace])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>mysql_list_fields()</B
+> lista información
+     sobre la tabla. Los argumentos son la base de datos y el nombre de 
+     la tabla. Se devuelve un puntero que puede ser usado por las 
+     funciónes <A
+HREF="function.mysql-field-flags.html"
+><B
+CLASS="function"
+>mysql_field_flags()</B
+></A
+>,
+     <A
+HREF="function.mysql-field-len.html"
+><B
+CLASS="function"
+>mysql_field_len()</B
+></A
+>,
+     <A
+HREF="function.mysql-field-name.html"
+><B
+CLASS="function"
+>mysql_field_name()</B
+></A
+>, y
+     <A
+HREF="function.mysql-field-type.html"
+><B
+CLASS="function"
+>mysql_field_type()</B
+></A
+>.
+    </P
+><P
+>&#13;     Un identificador de resultado es un entero positivo. La función
+     devuelve -1 si se produce un error. Una cadena de caracteres describiendo
+     el error sera introducida en <VAR
+CLASS="literal"
+>$phperrmsg</VAR
+>, y a menos que
+     la función sea llamada como <VAR
+CLASS="literal"
+>@mysql()</VAR
+> el literal 
+     del error tambien sera impreso.
+    </P
+><P
+>&#13;     Por razones de compatibilidad puede usarse tambien 
+     <B
+CLASS="function"
+>mysql_listfields()</B
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-list-dbs.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-list-processes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_list_dbs</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_list_processes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

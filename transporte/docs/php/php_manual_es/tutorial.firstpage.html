@@ -1,0 +1,400 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Su primera página con PHP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Una explicación sencilla"
+HREF="tutorial.html"><LINK
+REL="PREVIOUS"
+TITLE="Una explicación sencilla"
+HREF="tutorial.html"><LINK
+REL="NEXT"
+TITLE="Algo útil"
+HREF="tutorial.useful.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="tutorial.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 2. Una explicación sencilla</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="tutorial.useful.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="tutorial.firstpage"
+>Su primera página con PHP</A
+></H1
+><P
+>&#13;    Comienze por crear un archivo
+    llamado <TT
+CLASS="filename"
+>hola.php</TT
+> y colocarle en el
+    "directorio raíz" (<VAR
+CLASS="varname"
+>DOCUMENT_ROOT</VAR
+>) con el
+    siguiente contenido:
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN176"
+></A
+><P
+><B
+>Ejemplo 2-1. Nuestro primer script
+     PHP: <TT
+CLASS="filename"
+>hola.php</TT
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;html&gt;<br /> &lt;head&gt;<br />&nbsp;&nbsp;&lt;title&gt;Ejemplo de PHP&lt;/title&gt;<br /> &lt;/head&gt;<br /> &lt;body&gt;<br /> <font color="#0000BB">&lt;?php </font><font color="#007700">echo </font><font color="#DD0000">"&lt;p&gt;Hola Mundo&lt;/p&gt;"</font><font color="#007700">; </font><font color="#0000BB">?&gt;<br /></font> &lt;/body&gt;<br />&lt;/html&gt;</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;      Utilice su navegador web para acceder al archivo, con la URL
+      terminando en "/hola.php". Si está programando localmente
+      este URL lucirá algo
+      como <VAR
+CLASS="literal"
+>http://localhost/hola.php</VAR
+> o
+      <VAR
+CLASS="literal"
+>http://127.0.0.1/hola.php</VAR
+> pero esto depende
+      de la configuración de su servidor web. Aunque este tema
+      está fuera del alcance de este tutorial, también
+      puede ver las directivas <VAR
+CLASS="varname"
+>DocumentRoot</VAR
+> y
+      <VAR
+CLASS="varname"
+>ServerName</VAR
+> en la configuración de su
+      servidor (en Apache, esto es <TT
+CLASS="filename"
+>httpd.conf</TT
+>). Si todo está
+      configurado correctamente, el archivo será analizado por
+      PHP y el siguiente contenido aparecerá en su navegador:
+     </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;html&#62;
+ &#60;head&#62;
+  &#60;title&#62;Ejemplo de PHP&#60;/title&#62;
+ &#60;/head&#62;
+ &#60;body&#62;
+ &#60;p&#62;Hola Mundo&#60;/p&#62;
+ &#60;/body&#62;
+&#60;/html&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Note que esto no es como los scripts de CGI. El archivo no
+    necesita ninguna clase especial de permisos para ser
+    ejecutado. Piense en ellos como si fueran archivos HTML con un
+    conjunto muy especial de etiquetas disponibles, y que hacen muchas
+    cosas interesantes.
+   </P
+><P
+>&#13;    Este programa es extremadamente simple, y no necesita usar PHP
+    para crear una página como ésta. Todo lo que hace es
+    mostrar: <VAR
+CLASS="literal"
+>Hola Mundo</VAR
+> usando la sentencia
+    <A
+HREF="function.echo.html"
+><B
+CLASS="function"
+>echo()</B
+></A
+>. 
+   </P
+><P
+>&#13;    Si ha intentado usar este ejemplo, y no produjo ningún
+    resultado, preguntando si deseaba descargar el archivo, o
+    mostró todo el archivo como texto, lo más seguro es
+    que PHP no se encuentra habilitado en su servidor. Pídale a
+    su administrador que active esta función por usted, o use
+    el capítulo titulado
+    <A
+HREF="installation.html"
+>Instalación</A
+> en el
+    manual. Si está trabajando localmente, lea también
+    el capítulo dedicado a la instalación, y
+    asegúrese de que todo esté configurado
+    apropiadamente. Si el problema continúa, por favor use una
+    de las muchas opciones para obtener <A
+HREF="http://www.php.net/support.php"
+TARGET="_top"
+>ayuda con PHP</A
+>.
+   </P
+><P
+>&#13;    El objetivo de este ejemplo es demostrar cómo puede usar
+    las etiquetas PHP. En este ejemplo
+    usamos <VAR
+CLASS="literal"
+>&#60;?php</VAR
+> para indicar el inicio de la
+    etiqueta PHP. Después indicamos la sentencia y abandonamos
+    el modo PHP usando
+    <VAR
+CLASS="literal"
+>?&#62;</VAR
+>. Puede salir de PHP y regresar cuantas
+    veces lo desee usando este método. Para más
+    información, puede leer la sección en el manual
+    titulada <A
+HREF="language.basic-syntax.html"
+>Sintaxis
+    básica de PHP</A
+>.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Una nota acerca de editores de texto: </B
+>
+     Hay muchos editores de texto y Entornos Integrados de Desarrollo
+     (IDE por sus siglas en Inglés) que puede usar para crear,
+     editar, y organizar archivos PHP. Puede encontrar una lista
+     parcial de éstos en <A
+HREF="http://phpeditors.linuxbackup.co.uk/"
+TARGET="_top"
+>Lista
+     de editores de PHP</A
+>. Si desea recomendar un editor, por
+     favor visite la página mencionada anteriormente, y
+     comunique su recomendación a las personas encargadas del
+     mantenimiento para que lo incluyan en la lista. Contar con un
+     editor que resalte la sintaxis de PHP puede ser de mucha ayuda.
+    </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Una nota acerca de los procesadores de palabras: </B
+>
+     Los procesadores de palabras como "StarOffice", "Microsoft word"
+     y "Abiword" no son buenas opciones para editar archivos de
+     PHP. Si desea usar uno de éstos programas para probar sus
+     scripts, primero debe asegurarse de guardar el documento en
+     formato de "Texto" puro, o PHP no será capaz de ejecutar
+     el script.
+    </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Una nota acerca del "Bloc de Notas de Windows": </B
+>
+     Si desea escribir sus archivos PHP usando el "Bloc de Notas de
+     Windows" o en algún otro editor de texto para Windows
+     necesita asegurarse de que sus archivos sean guardados con la
+     extensión .php (la mayoría de editores de texto en
+     Windows automáticamente tratarán de añadir
+     la extensión .txt a los archivos a menos que tome los
+     siguientes pasos para prevenirlo). Cuando guarde sus archivos y
+     el programa le pregunte qué nombre le desea dar al
+     archivo, use comillas para indicar el nombre (es decir,
+     "<TT
+CLASS="filename"
+>hola.php</TT
+>"). Una alternativa es, en la lista
+     de opciones "Archivos de Texto *.txt", seleccionar la
+     opción "Todos los archivos *.*". Aquí puede
+     escribir el nombre del archivo sin las comillas.
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    Ahora que ha creado un pequeño script de PHP que funciona
+    correctamente, es hora de trabajar con el script de PHP más
+    famoso; vamos a hacer una llamada a la
+    función <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+> para obtener
+    información acerca de su sistema y configuración
+    como las <A
+HREF="language.variables.predefined.html"
+>variables
+    predefinidas disponibles</A
+>, los módulos utilizados por
+    PHP, y las diferentes opciones de <A
+HREF="configuration.html"
+>configuración</A
+>. Tomemos unos
+    segundos para revisar esta información.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="tutorial.useful.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Una explicación sencilla</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="tutorial.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Algo útil</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

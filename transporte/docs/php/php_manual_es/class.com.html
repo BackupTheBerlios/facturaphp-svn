@@ -1,0 +1,745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>COM</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones COM y .Net (Windows)"
+HREF="ref.com.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones COM y .Net (Windows)"
+HREF="ref.com.html"><LINK
+REL="NEXT"
+TITLE="DOTNET"
+HREF="class.dotnet.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.com.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="class.dotnet.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="class.com"
+></A
+>COM</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN10692"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>COM&nbsp;--&nbsp;COM class</DIV
+><DIV
+CLASS="refsynopsisdiv"
+><A
+NAME="AEN10695"
+></A
+><H2
+>Sinopsis</H2
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="synopsis"
+>$obj = new COM("Application.ID")</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.com.class"
+></A
+><H2
+>Description</H2
+><P
+>&#13;    The COM class allows you to instantiate an OLE compatible COM object and
+    call its methods and access its properties.
+   </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.com.constructor"
+></A
+><H2
+>Methods</H2
+>object <B
+CLASS="methodname"
+>COM::COM</B
+> ( string module_name [, mixed server_name [, int codepage [, string typelib]]])<BR
+></BR
+><P
+>&#13;    COM class constructor. The parameters have the following meanings:
+    <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>module_name</DT
+><DD
+><P
+>&#13;      Can be a ProgID, Class ID or Moniker that names the component to load.
+     </P
+><P
+>&#13;      A ProgID is typically the application or DLL name, followed by a period,
+      followed by the object name. e.g: <VAR
+CLASS="literal"
+>Word.Application</VAR
+>.
+     </P
+><P
+>&#13;      A Class ID is the UUID that uniquely identifies a given class.
+     </P
+><P
+>&#13;      A Moniker is a special form of naming, similar in concept to a URL
+      scheme, that identifies a resource and specifies how it should be
+      loaded.  As an example, you could load up Word and get an object
+      representing a word document by specifying the full path to the word
+      document as the module name, or you can use <VAR
+CLASS="literal"
+>LDAP:</VAR
+> as
+      a moniker to use the ADSI interface to LDAP.
+     </P
+></DD
+><DT
+>server_name</DT
+><DD
+><P
+>&#13;      The name of the DCOM server on which the component should be loaded and
+      run.  If <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+>, the object is run using the default for the
+      application.  The default is typically to run it on the local machine,
+      although the administrator might have configured the application to
+      launch on a different machine.
+     </P
+><P
+>&#13;      If you specify a non-<TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> value for server, PHP will refuse to load
+      the object unless the <A
+HREF="ref.com.html#ini.com.allow-dcom"
+><I
+CLASS="term"
+>&#13;     <VAR
+CLASS="parameter"
+>com.allow_dcom</VAR
+>
+    </I
+></A
+> configuration option
+      is set to <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>.
+     </P
+><P
+>&#13;      If <VAR
+CLASS="parameter"
+>server_name</VAR
+> is an array, it should contain the
+      following elements (case sensitive!).  Note that they are all optional
+      (although you need to specify both Username and Password together); if
+      you omit the Server setting, the default server will be used (as
+      mentioned above), and the instantiation of the object will not be
+      affected by the <A
+HREF="ref.com.html#ini.com.allow-dcom"
+><I
+CLASS="term"
+>&#13;     <VAR
+CLASS="parameter"
+>com.allow_dcom</VAR
+>
+    </I
+></A
+>
+      directive.
+
+      <DIV
+CLASS="table"
+><A
+NAME="AEN10741"
+></A
+><P
+><B
+>Tabla 1. DCOM server name</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+><VAR
+CLASS="parameter"
+>server_name</VAR
+> key</TH
+><TH
+>type</TH
+><TH
+>description</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>Server</TD
+><TD
+>string</TD
+><TD
+>The name of the server.</TD
+></TR
+><TR
+><TD
+>Username</TD
+><TD
+>string</TD
+><TD
+>The username to connect as.</TD
+></TR
+><TR
+><TD
+>Password</TD
+><TD
+>string</TD
+><TD
+>The password for <VAR
+CLASS="parameter"
+>Username</VAR
+>.</TD
+></TR
+><TR
+><TD
+>Flags</TD
+><TD
+>integer</TD
+><TD
+>One or more of the following constants, logically OR'd together:
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_INPROC_SERVER</B
+></TT
+>,
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_INPROC_HANDLER</B
+></TT
+>,
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_LOCAL_SERVER</B
+></TT
+>,
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_REMOTE_SERVER</B
+></TT
+>,
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_SERVER</B
+></TT
+> and
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_ALL</B
+></TT
+>.  The default value if not
+           specified here is <TT
+CLASS="constant"
+><B
+>CLSCTX_SERVER</B
+></TT
+> if you also
+           omit <VAR
+CLASS="parameter"
+>Server</VAR
+>, or
+           <TT
+CLASS="constant"
+><B
+>CLSCTX_REMOTE_SERVER</B
+></TT
+> if you do specify a
+           server.  You should consult the Microsoft documentation for
+           CoCreateInstance for more information on the meaning of these
+           constants; you will typically never have to use them.
+          </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+     </P
+></DD
+><DT
+>codepage</DT
+><DD
+><P
+>&#13;      Specifies the codepage that is used to convert strings to
+      unicode-strings and vice versa.  The conversion is applied whenever a
+      PHP string is passed as a parameter or returned from a method of this
+      COM object.  The code page is sticky in PHP 5, which means that it will
+      propogate to objects and variants returned from the object.
+     </P
+><P
+>&#13;      Possible values are
+      <TT
+CLASS="constant"
+><B
+>CP_ACP</B
+></TT
+> (use system default ANSI code page - the
+      default if this parameter is omitted),
+      <TT
+CLASS="constant"
+><B
+>CP_MACCP</B
+></TT
+>,
+      <TT
+CLASS="constant"
+><B
+>CP_OEMCP</B
+></TT
+>, <TT
+CLASS="constant"
+><B
+>CP_SYMBOL</B
+></TT
+>,
+      <TT
+CLASS="constant"
+><B
+>CP_THREAD_ACP</B
+></TT
+> (use codepage/locale set for the
+      current executing thread), <TT
+CLASS="constant"
+><B
+>CP_UTF7</B
+></TT
+>
+      and <TT
+CLASS="constant"
+><B
+>CP_UTF8</B
+></TT
+>.  You may also use the number for a
+      given codepage; consult the Microsoft documentation for more details on
+      codepages and their numeric values.
+     </P
+></DD
+></DL
+></DIV
+>
+   </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.com.overloadedmethods"
+></A
+><H2
+>Overloaded Methods</H2
+><P
+>&#13;    The returned object is an overloaded object, which means that PHP does
+    not see any fixed methods as it does with regular classes; instead, any
+    property or method accesses are passed through to COM. 
+   </P
+><P
+>&#13;    Starting with PHP 5, PHP will automatically detect methods that accept
+    parameters by reference, and will automatically convert regular PHP
+    variables to a form that can be passed by reference.  This means that you
+    can call the method very naturally; you needn't go to any extra effort in
+    your code.
+   </P
+><P
+>&#13;    In PHP 4, to pass parameters by reference you need to create an instance
+    of the <A
+HREF="class.variant.html"
+>VARIANT</A
+> class to wrap the
+    byref parameters.
+   </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.com.falsemethods"
+></A
+><H2
+>Pseudo Methods</H2
+><P
+>&#13;    In PHP versions prior to 5, a number of not very pleasant hacks meant that
+    the following method names were not passed through to COM and were handled
+    directly by PHP.  PHP 5 eliminates these things; read the details below to
+    determine how to fix your scripts.  These magic method names are case
+    insensitive.
+   </P
+>void <B
+CLASS="methodname"
+>COM::AddRef</B
+> ( void )<BR
+></BR
+><P
+>Artificially adds a reference count to the COM object.</P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>You should never need to use this method.  It exists a 
+     logical complement to the Release() method below.</P
+></TD
+></TR
+></TABLE
+></DIV
+>void <B
+CLASS="methodname"
+>COM::Release</B
+> ( void )<BR
+></BR
+><P
+>Artificially removes a reference count from the COM object.</P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;     You should never need to use this method.  It's existence in PHP is a bug
+     designed to work around a bug that keeps COM objects running longer than
+     they should.
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.com.iteratormethods"
+></A
+><H2
+>Pseudo Methods for Iterating</H2
+><P
+>&#13;     These pseudo methods are only available if
+     <A
+HREF="function.com-isenum.html"
+><B
+CLASS="function"
+>com_isenum()</B
+></A
+> returns <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, in which case, they hide
+     any methods with the same names that might otherwise be provided by the
+     COM object.  These methods have all been eliminated in PHP 5, and you
+     should use <A
+HREF="ref.com.html#com.foreach"
+>la sección de nombre <I
+>For Each</I
+> en Referencia VIII, <I
+>Funciones COM y .Net (Windows)</I
+></A
+> instead.
+    </P
+>object <B
+CLASS="methodname"
+>COM::All</B
+> ( void )<BR
+></BR
+><P
+>Returns a variant representing a SafeArray that has 10 elements;
+    each element will be an empty/null variant.  This function was supposed to
+    return an array containing all the elements from the iterator, but was
+    never completed.  Do not use.
+    </P
+>object <B
+CLASS="methodname"
+>COM::Next</B
+> ( void )<BR
+></BR
+><P
+>Returns a variant representing the next element available from
+    the iterator, or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> when there are no more elements.
+    </P
+>object <B
+CLASS="methodname"
+>COM::Prev</B
+> ( void )<BR
+></BR
+><P
+>Returns a variant representing the previous element available from
+    the iterator, or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> when there are no more elements.
+    </P
+>void <B
+CLASS="methodname"
+>COM::Reset</B
+> ( void )<BR
+></BR
+><P
+>Rewinds the iterator back to the start.</P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="class.com.examples"
+></A
+><H2
+>COM examples</H2
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="example.com1"
+></A
+><P
+><B
+>Ejemplo 1. COM example (1)</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// starting word<br /></font><font color="#0000BB">$word </font><font color="#007700">= new </font><font color="#0000BB">COM</font><font color="#007700">(</font><font color="#DD0000">"word.application"</font><font color="#007700">) or die(</font><font color="#DD0000">"Unable to instantiate Word"</font><font color="#007700">);<br />echo </font><font color="#DD0000">"Loaded Word, version </font><font color="#007700">{</font><font color="#DD0000">$word</font><font color="#007700">-&gt;</font><font color="#DD0000">Version</font><font color="#007700">}\n</font><font color="#DD0000">"</font><font color="#007700">;<br /><br /></font><font color="#FF8000">//bring it to front<br /></font><font color="#0000BB">$word</font><font color="#007700">-&gt;</font><font color="#0000BB">Visible </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br /><br /></font><font color="#FF8000">//open an empty document<br /></font><font color="#0000BB">$word</font><font color="#007700">-&gt;</font><font color="#0000BB">Documents</font><font color="#007700">-&gt;</font><font color="#0000BB">Add</font><font color="#007700">();<br /><br /></font><font color="#FF8000">//do some weird stuff<br /></font><font color="#0000BB">$word</font><font color="#007700">-&gt;</font><font color="#0000BB">Selection</font><font color="#007700">-&gt;</font><font color="#0000BB">TypeText</font><font color="#007700">(</font><font color="#DD0000">"This is a test..."</font><font color="#007700">);<br /></font><font color="#0000BB">$word</font><font color="#007700">-&gt;</font><font color="#0000BB">Documents</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">]-&gt;</font><font color="#0000BB">SaveAs</font><font color="#007700">(</font><font color="#DD0000">"Useless test.doc"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">//closing word<br /></font><font color="#0000BB">$word</font><font color="#007700">-&gt;</font><font color="#0000BB">Quit</font><font color="#007700">();<br /><br /></font><font color="#FF8000">//free the object<br /></font><font color="#0000BB">$word </font><font color="#007700">= </font><font color="#0000BB">null</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="example.com2"
+></A
+><P
+><B
+>Ejemplo 2. COM example (2)</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br />$conn </font><font color="#007700">= new </font><font color="#0000BB">COM</font><font color="#007700">(</font><font color="#DD0000">"ADODB.Connection"</font><font color="#007700">) or die(</font><font color="#DD0000">"Cannot start ADO"</font><font color="#007700">);<br /></font><font color="#0000BB">$conn</font><font color="#007700">-&gt;</font><font color="#0000BB">Open</font><font color="#007700">(</font><font color="#DD0000">"Provider=SQLOLEDB; Data Source=localhost;<br />Initial Catalog=database; User ID=user; Password=password"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$rs </font><font color="#007700">= </font><font color="#0000BB">$conn</font><font color="#007700">-&gt;</font><font color="#0000BB">Execute</font><font color="#007700">(</font><font color="#DD0000">"SELECT * FROM sometable"</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// Recordset<br /><br /></font><font color="#0000BB">$num_columns </font><font color="#007700">= </font><font color="#0000BB">$rs</font><font color="#007700">-&gt;</font><font color="#0000BB">Fields</font><font color="#007700">-&gt;</font><font color="#0000BB">Count</font><font color="#007700">();<br />echo </font><font color="#0000BB">$num_columns </font><font color="#007700">. </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /><br />for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">$num_columns</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$fld</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">] = </font><font color="#0000BB">$rs</font><font color="#007700">-&gt;</font><font color="#0000BB">Fields</font><font color="#007700">(</font><font color="#0000BB">$i</font><font color="#007700">);<br />}<br /><br /></font><font color="#0000BB">$rowcount </font><font color="#007700">= </font><font color="#0000BB">0</font><font color="#007700">;<br />while (!</font><font color="#0000BB">$rs</font><font color="#007700">-&gt;</font><font color="#0000BB">EOF</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i </font><font color="#007700">&lt; </font><font color="#0000BB">$num_columns</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#0000BB">$fld</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">]-&gt;</font><font color="#0000BB">value </font><font color="#007700">. </font><font color="#DD0000">"\t"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$rowcount</font><font color="#007700">++;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// increments rowcount<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$rs</font><font color="#007700">-&gt;</font><font color="#0000BB">MoveNext</font><font color="#007700">();<br />}<br /><br /></font><font color="#0000BB">$rs</font><font color="#007700">-&gt;</font><font color="#0000BB">Close</font><font color="#007700">();<br /></font><font color="#0000BB">$conn</font><font color="#007700">-&gt;</font><font color="#0000BB">Close</font><font color="#007700">();<br /><br /></font><font color="#0000BB">$rs </font><font color="#007700">= </font><font color="#0000BB">null</font><font color="#007700">;<br /></font><font color="#0000BB">$conn </font><font color="#007700">= </font><font color="#0000BB">null</font><font color="#007700">;<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.com.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="class.dotnet.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones COM y .Net (Windows)</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.com.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>DOTNET</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

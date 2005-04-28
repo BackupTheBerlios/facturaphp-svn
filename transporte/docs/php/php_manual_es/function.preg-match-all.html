@@ -1,0 +1,530 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>preg_match_all</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Expresiones Regulares (Compatibles con
+  Perl)"
+HREF="ref.pcre.html"><LINK
+REL="PREVIOUS"
+TITLE="preg_grep"
+HREF="function.preg-grep.html"><LINK
+REL="NEXT"
+TITLE="preg_match"
+HREF="function.preg-match.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.preg-grep.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.preg-match.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.preg-match-all"
+></A
+>preg_match_all</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN93804"
+></A
+><P
+>    (PHP 3&#62;= 3.0.9, PHP 4 , PHP 5)</P
+>preg_match_all&nbsp;--&nbsp;Realizar una comparación global con una
+    expresión regular</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN93807"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>preg_match_all</B
+> ( string patron, string asunto, array coincidencias [, int banderas [, int desplazamiento]])<BR
+></BR
+><P
+>&#13;     Busca el <VAR
+CLASS="parameter"
+>asunto</VAR
+> por todas las
+     coincidencias con la expresión regular dada
+     en <VAR
+CLASS="parameter"
+>patron</VAR
+>, y las coloca en
+     <VAR
+CLASS="parameter"
+>coincidencias</VAR
+> en el orden especificado
+     por <VAR
+CLASS="parameter"
+>banderas</VAR
+>.
+    </P
+><P
+>&#13;     Después de que la primera coincidencia es encontrada, las
+     búsquedas subsiguientes continúan desde el final de
+     la última coincidencia.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>banderas</VAR
+> puede ser una combinación
+     de las siguientes banderas (note que no tiene sentido
+     usar <TT
+CLASS="constant"
+><B
+>PREG_PATTERN_ORDER</B
+></TT
+> junto con
+     <TT
+CLASS="constant"
+><B
+>PREG_SET_ORDER</B
+></TT
+>):
+     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>PREG_PATTERN_ORDER</DT
+><DD
+><P
+>&#13;         Ordena los resultados de tal forma que $coincidencias[0] es
+         una matriz con las coincidencias completas del patrón,
+         $coincidencias[1] es una matriz con las cadenas que coinciden
+         con el primer sub-patrón entre paréntesis, y
+         así sucesivamente.
+        </P
+><P
+>&#13;         <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN93843"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />preg_match_all</font><font color="#007700">(</font><font color="#DD0000">"|&lt;[^&gt;]+&gt;(.*)&lt;/[^&gt;]+&gt;|U"</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"&lt;b&gt;ejemplo: &lt;/b&gt;&lt;div align=left&gt;esta es una prueba&lt;/div&gt;"</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$salida</font><font color="#007700">, </font><font color="#0000BB">PREG_PATTERN_ORDER</font><font color="#007700">);<br />echo </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">][</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">", " </font><font color="#007700">. </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">][</font><font color="#0000BB">1</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />echo </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">][</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">", " </font><font color="#007700">. </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">][</font><font color="#0000BB">1</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;           Este ejemplo producirá:
+          </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;b&#62;ejemplo: &#60;/b&#62;, &#60;div align=left&#62;esta es una prueba&#60;/div&#62;
+ejemplo: , esta es una prueba</PRE
+></TD
+></TR
+></TABLE
+><P
+>&#13;           Así que $salida[0] contiene una matriz de cadenas
+           que coincidieron con el patrón completo, y
+           $salida[1] contiene una matriz de cadenas ubicadas entre
+           etiquetas.
+          </P
+><P
+></P
+></DIV
+>
+        </P
+></DD
+><DT
+>PREG_SET_ORDER</DT
+><DD
+><P
+>&#13;         Ordena los resultados de forma tal que $coincidencias[0] es
+         una matriz que contiene el primer conjunto de coincidencias,
+         $coincidencias[1] es una matriz con el segundo conjunto de
+         coincidencias, y así sucesivamente.
+         <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN93852"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />preg_match_all</font><font color="#007700">(</font><font color="#DD0000">"|&lt;[^&gt;]+&gt;(.*)&lt;/[^&gt;]+&gt;|U"</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"&lt;b&gt;ejemplo: &lt;/b&gt;&lt;div align=\"left\"&gt;esta es una prueba&lt;/div&gt;"</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$salida</font><font color="#007700">, </font><font color="#0000BB">PREG_SET_ORDER</font><font color="#007700">);<br />echo </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">][</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">", " </font><font color="#007700">. </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">][</font><font color="#0000BB">1</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />echo </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">][</font><font color="#0000BB">0</font><font color="#007700">] . </font><font color="#DD0000">", " </font><font color="#007700">. </font><font color="#0000BB">$salida</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">][</font><font color="#0000BB">1</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;           Este ejemplo producirá:
+          </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;b&#62;ejemplo: &#60;/b&#62;, ejemplo: 
+&#60;div align="left"&#62;esta es una prueba&#60;/div&#62;, esta es una prueba</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+        </P
+><P
+>&#13;         En este caso, $coincidencias[0] es el primer conjunto de
+         coincidencias, y $coincidencias[0][0] tiene el texto que
+         coincidió con el patrón completo,
+         $coincidencias[0][1] tiene el texto que coincidió con
+         el primer sub-patrón y así sucesivamente. De
+         forma semejante, $coincidencias[1] es el segundo conjunto de
+         coincidencias, etc.
+        </P
+></DD
+><DT
+>PREG_OFFSET_CAPTURE</DT
+><DD
+><P
+>&#13;         Si es pasada esta bandera, para cada coincidencia que ocurre,
+         será devuelto también el desplazamiento de la
+         cadena adjunta. Note que esto modifica el valor de retorno,
+         convirtiéndolo en una matriz en donde cada elemento es
+         una matriz que consiste de la cadena que coincidió en
+         la posición <VAR
+CLASS="literal"
+>0</VAR
+>, y su desplazamiento
+         de cadena al interior del <VAR
+CLASS="parameter"
+>asunto</VAR
+> en la
+         posición <VAR
+CLASS="literal"
+>1</VAR
+>. Esta bandera se
+         encuentra disponible a partir de <VAR
+CLASS="literal"
+>PHP</VAR
+>
+         4.3.0.
+        </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     Si no se indica bandera alguna, se asume el uso
+     de <TT
+CLASS="constant"
+><B
+>PREG_PATTERN_ORDER</B
+></TT
+>.
+    </P
+><P
+>&#13;     Normalmente, la búsqueda comienza desde el inicio de la
+     cadena de asunto. El parámetro
+     opcional <VAR
+CLASS="parameter"
+>desplazamiento</VAR
+> puede ser usado
+     para especificar el lugar alternativo desde donde debe iniciar la
+     búsqueda. Es equivalente a
+     pasar <A
+HREF="function.substr.html"
+><B
+CLASS="function"
+>substr()</B
+></A
+>($asunto, $desplazamiento)
+     a <A
+HREF="function.preg-match.html"
+><B
+CLASS="function"
+>preg_match()</B
+></A
+> en lugar de la cadena de
+     asunto. El parámetro <VAR
+CLASS="parameter"
+>desplazamiento</VAR
+>
+     se encuentra disponible a partir de <VAR
+CLASS="literal"
+>PHP</VAR
+> 4.3.3.
+    </P
+><P
+>&#13;     Devuelve el número de coincidencias con el patrón
+     completo (que puede ser cero), o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ocurre un error.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93876"
+></A
+><P
+><B
+>Ejemplo 1. Obtener todos los números telefónicos de un
+      segmento de texto.</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />preg_match_all</font><font color="#007700">(</font><font color="#DD0000">"/\(?&nbsp;&nbsp;(\d{3})?&nbsp;&nbsp;\)?&nbsp;&nbsp;(?(1)&nbsp;&nbsp;[\-\s] ) \d{3}-\d{4}/x"</font><font color="#007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"Llame al 555-1212&nbsp;&nbsp;1-800-555-1212"</font><font color="#007700">, </font><font color="#0000BB">$telefonos</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN93880"
+></A
+><P
+><B
+>Ejemplo 2. Encontrar etiquetas HTML coincidentes (de forma
+      ambiciosa)</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// El \\2 es un ejemplo de referencia hacia atras. Este le dice a pcre<br />// que debe buscar el segundo conjunto de parentesis en la expresion<br />// regular misma, que seria ([\w]+) en este caso. La barra invertida<br />// extra es requerida ya que la cadena se encuentra entre comillas<br />// dobles.<br /></font><font color="#0000BB">$html </font><font color="#007700">= </font><font color="#DD0000">"&lt;b&gt;texto en negrilla&lt;/b&gt;&lt;a href=hola.html&gt;haga clic aqui&lt;/a&gt;"</font><font color="#007700">;<br /><br /></font><font color="#0000BB">preg_match_all</font><font color="#007700">(</font><font color="#DD0000">"/(&lt;([\w]+)[^&gt;]*&gt;)(.*)(&lt;\/\\2&gt;)/"</font><font color="#007700">, </font><font color="#0000BB">$html</font><font color="#007700">, </font><font color="#0000BB">$coincidencias</font><font color="#007700">);<br /><br />for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">&lt; </font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">]); </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;echo </font><font color="#DD0000">"coincidencia: " </font><font color="#007700">. </font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">0</font><font color="#007700">][</font><font color="#0000BB">$i</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;echo </font><font color="#DD0000">"parte 1: " </font><font color="#007700">. </font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">1</font><font color="#007700">][</font><font color="#0000BB">$i</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;echo </font><font color="#DD0000">"parte 2: " </font><font color="#007700">. </font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">3</font><font color="#007700">][</font><font color="#0000BB">$i</font><font color="#007700">] . </font><font color="#DD0000">"\n"</font><font color="#007700">;<br />&nbsp;&nbsp;echo </font><font color="#DD0000">"parte 3: " </font><font color="#007700">. </font><font color="#0000BB">$coincidencias</font><font color="#007700">[</font><font color="#0000BB">4</font><font color="#007700">][</font><font color="#0000BB">$i</font><font color="#007700">] . </font><font color="#DD0000">"\n\n"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Este ejemplo producirá
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>coincidencia: &#60;b&#62;texto en negrilla&#60;/b&#62;
+parte 1: &#60;b&#62;
+parte 2: texto en negrilla
+parte 3: &#60;/b&#62;
+
+coincidencia: &#60;a href=hola.html&#62;haga clic aqui&#60;/a&#62;
+parte 1: &#60;a href=hola.html&#62;
+parte 2: haga clic aqui
+parte 3: &#60;/a&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.preg-match.html"
+><B
+CLASS="function"
+>preg_match()</B
+></A
+>,
+     <A
+HREF="function.preg-replace.html"
+><B
+CLASS="function"
+>preg_replace()</B
+></A
+>,
+     y <A
+HREF="function.preg-split.html"
+><B
+CLASS="function"
+>preg_split()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.preg-grep.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.preg-match.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>preg_grep</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.pcre.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>preg_match</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

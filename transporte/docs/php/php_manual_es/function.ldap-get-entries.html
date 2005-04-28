@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ldap_get_entries</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones LDAP"
+HREF="ref.ldap.html"><LINK
+REL="PREVIOUS"
+TITLE="ldap_get_dn"
+HREF="function.ldap-get-dn.html"><LINK
+REL="NEXT"
+TITLE="ldap_get_option"
+HREF="function.ldap-get-option.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ldap-get-dn.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ldap-get-option.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ldap-get-entries"
+></A
+>ldap_get_entries</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN46067"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>ldap_get_entries&nbsp;--&nbsp;Obtiene todas las entradas de un resultado</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN46070"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>ldap_get_entries</B
+> ( int indentificador_de_conexion, int indentificador_de_resultado)<BR
+></BR
+><P
+>&#13;     Devuelve una completa información de un resultado de búsqueda
+     en un array multidimensional o falso en caso de error.</P
+><P
+>  
+     La función <B
+CLASS="function"
+>ldap_get_entries()</B
+> es usada para
+     simplificar el leer múltiples entradas de de un resultado y
+     después leer sus atributos y multiples valores. Toda la información
+     es devuelta por una llamada a una función en forma de array
+     multidimensional. La estructura del array es como se muestra
+     más abajo.</P
+><P
+>&#13;     Los indices de atributos son convertidos a minúsculas. (Los
+     atributos de servidores de directorios son indiferentes a las
+     mayusculas/minusculas, pero no cuando son usados como indices
+     de arrays)
+
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN46085"
+></A
+><P
+CLASS="literallayout"
+><br>
+valor_devuelto["count"]&nbsp;=&nbsp;número&nbsp;de&nbsp;entradas&nbsp;del&nbsp;resultado<br>
+valor_devuelto[0]&nbsp;:&nbsp;contiene&nbsp;los&nbsp;detalles&nbsp;de&nbsp;la&nbsp;primera&nbsp;entrada<br>
+<br>
+valor_devuelto[i]["dn"]&nbsp;=&nbsp;&nbsp;DN&nbsp;de&nbsp;la&nbsp;entrada&nbsp;iésima&nbsp;del&nbsp;resultado<br>
+<br>
+valor_devuelto[i]["count"]&nbsp;=&nbsp;número&nbsp;de&nbsp;atributos&nbsp;de&nbsp;la&nbsp;entrada&nbsp;iésima<br>
+valor_devuelto[i][j]&nbsp;=&nbsp;jésimo&nbsp;atributo&nbsp;de&nbsp;la&nbsp;iésima&nbsp;entrada&nbsp;del&nbsp;resultado<br>
+<br>
+valor_devuelto[i]["atributo"]["count"]&nbsp;=&nbsp;número&nbsp;de&nbsp;valores&nbsp;para&nbsp;"atributo"<br>
+&nbsp;&nbsp;&nbsp;&nbsp;en&nbsp;la&nbsp;entrada&nbsp;iésima<br>
+valor_devuelto[i]["atributo"][j]&nbsp;=&nbsp;jésimo&nbsp;valor&nbsp;de&nbsp;"atributo"&nbsp;en&nbsp;la&nbsp;entrada<br>
+&nbsp;&nbsp;&nbsp;&nbsp;iésima<br>
+</P
+><P
+></P
+></DIV
+></P
+><P
+>&#13;      Ver también <A
+HREF="function.ldap-first-entry.html"
+><B
+CLASS="function"
+>ldap_first_entry()</B
+></A
+> y
+      <A
+HREF="function.ldap-next-entry.html"
+><B
+CLASS="function"
+>ldap_next_entry()</B
+></A
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ldap-get-dn.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ldap-get-option.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ldap_get_dn</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ldap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ldap_get_option</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

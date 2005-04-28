@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>print_r</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Variables"
+HREF="ref.var.html"><LINK
+REL="PREVIOUS"
+TITLE="isset"
+HREF="function.isset.html"><LINK
+REL="NEXT"
+TITLE="serialize"
+HREF="function.serialize.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.isset.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.serialize.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.print-r"
+></A
+>print_r</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN112712"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>print_r&nbsp;--&nbsp;
+     Imprime información legible para humanos sobre una variable
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN112715"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>print_r</B
+> ( mixed expresion [, bool devolver])<BR
+></BR
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      El parámetro <VAR
+CLASS="parameter"
+>devolver</VAR
+> fue agregado
+      en PHP 4.3.0
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;<B
+CLASS="function"
+>print_r()</B
+> despliega información sobre una
+variable en una forma que es apta para su lectura por humanos. Si se
+le entrega una variable tipo <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+>, <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>
+o <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>, el valor mismo será impreso. Si se le
+entrega un <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+>, los valores serán presentados en
+un formato que muestra las claves y los elementos. Una notación
+parecida es usada para variables tipo <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+>.
+<B
+CLASS="function"
+>print_r()</B
+> y <A
+HREF="function.var-export.html"
+><B
+CLASS="function"
+>var_export()</B
+></A
+>
+mostrarán también propiedades protegidas y privadas de
+objetos con PHP 5, en contraste con <A
+HREF="function.var-dump.html"
+><B
+CLASS="function"
+>var_dump()</B
+></A
+>.
+    </P
+><P
+>&#13;Recuerde que <B
+CLASS="function"
+>print_r()</B
+> desplazará el
+apuntador de la matriz al final. Use <A
+HREF="function.reset.html"
+><B
+CLASS="function"
+>reset()</B
+></A
+> para
+llevarlo de vuelta al comienzo.
+    </P
+><P
+>&#13;     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN112743"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;pre&gt;<br /><font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;$a </font><font color="#007700">= array (</font><font color="#DD0000">'a' </font><font color="#007700">=&gt; </font><font color="#DD0000">'manzana'</font><font color="#007700">, </font><font color="#DD0000">'b' </font><font color="#007700">=&gt; </font><font color="#DD0000">'banano'</font><font color="#007700">, </font><font color="#DD0000">'c' </font><font color="#007700">=&gt; array (</font><font color="#DD0000">'x'</font><font color="#007700">, </font><font color="#DD0000">'y'</font><font color="#007700">, </font><font color="#DD0000">'z'</font><font color="#007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">print_r </font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;<br /></font>&lt;/pre&gt;</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Lo cual producirá la salida:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>&#60;pre&#62;
+Array
+(
+    [a] =&#62; manzana
+    [b] =&#62; banano
+    [c] =&#62; Array
+        (
+            [0] =&#62; x
+            [1] =&#62; y
+            [2] =&#62; z
+        )
+)
+&#60;/pre&#62;</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;Si quisiera capturar la salida de <B
+CLASS="function"
+>print_r()</B
+>, use el
+parámetro <VAR
+CLASS="parameter"
+>devolver</VAR
+>. Si este
+parámetro recibe el valor <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, <B
+CLASS="function"
+>print_r()</B
+>
+devolverá su salida, en lugar de imprimirla (cosa que hace por
+defecto).
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN112753"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo del parámetro <VAR
+CLASS="parameter"
+>devolver</VAR
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />&nbsp;&nbsp;&nbsp;&nbsp;$b </font><font color="#007700">= array (</font><font color="#DD0000">'m' </font><font color="#007700">=&gt; </font><font color="#DD0000">'mono'</font><font color="#007700">, </font><font color="#DD0000">'foo' </font><font color="#007700">=&gt; </font><font color="#DD0000">'bar'</font><font color="#007700">, </font><font color="#DD0000">'x' </font><font color="#007700">=&gt; array (</font><font color="#DD0000">'x'</font><font color="#007700">, </font><font color="#DD0000">'y'</font><font color="#007700">, </font><font color="#DD0000">'z'</font><font color="#007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$resultados </font><font color="#007700">= </font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$b</font><font color="#007700">, </font><font color="#0000BB">true</font><font color="#007700">);&nbsp;&nbsp;</font><font color="#FF8000">// $resultados contiene ahora la<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">salida de print_r<br />?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Si necesita capturar la salida de <B
+CLASS="function"
+>print_r()</B
+> con una
+versión de PHP anterior a 4.3.0, use las <A
+HREF="ref.outcontrol.html"
+>funciones de control de salida</A
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+Antes de PHP 4.0.4, <B
+CLASS="function"
+>print_r()</B
+> continuará
+ejecutándose indefinidamente si se le entrega
+una variable tipo <A
+HREF="language.types.array.html"
+><B
+CLASS="type"
+>array</B
+></A
+> u <A
+HREF="language.types.object.html"
+><B
+CLASS="type"
+>object</B
+></A
+> que contenga una
+referencia directa o indirecta a sí misma. Un ejemplo
+es <VAR
+CLASS="literal"
+>print_r($GLOBALS)</VAR
+> ya que la
+variable <VAR
+CLASS="literal"
+>$GLOBALS</VAR
+> es una variable global que
+contiene una referencia a sí misma.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <A
+HREF="function.ob-start.html"
+><B
+CLASS="function"
+>ob_start()</B
+></A
+>,
+     <A
+HREF="function.var-dump.html"
+><B
+CLASS="function"
+>var_dump()</B
+></A
+> y
+     <A
+HREF="function.var-export.html"
+><B
+CLASS="function"
+>var_export()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.isset.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.serialize.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>isset</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.var.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>serialize</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,449 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>XSL functions</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="xdiff_string_patch"
+HREF="function.xdiff-string-patch.html"><LINK
+REL="NEXT"
+TITLE="xsl_xsltprocessor_get_parameter"
+HREF="function.xsl-xsltprocessor-get-parameter.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.xdiff-string-patch.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.xsl-xsltprocessor-get-parameter.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.xsl"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXX. XSL functions</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN115612"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="xsl.intro"
+>Introducción</A
+></H1
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Esta extensión es
+<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>EXPERIMENTAL</I
+></SPAN
+>. Esto significa que el
+comportamiento de esta extensión, los nombre de sus funciones y
+en definitiva TODO lo documentado sobre esta extensión, puede
+cambiar en una futura versión de PHP SIN AVISO. La advertencia
+queda hecha, y utilizar esta extensión queda bajo su propia
+responsabilidad.</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;     The XSL extension implements the XSL standard, performing
+     XSLT transformations using the libxslt library.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="xsl.installation"
+>Instalación</A
+></H1
+><P
+>&#13;     PHP 5 includes the XSL extension by default and it can be enabled
+     by adding the argument <VAR
+CLASS="option"
+>--with-xsl[=DIR]</VAR
+>
+     to your configure line. <VAR
+CLASS="literal"
+>DIR</VAR
+> is the libxslt installation
+     directory. libxslt version 1.0.18 or greater is required.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="xsl.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     In this small tutorial we will learn how to transform an XML
+     document into HTML.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN115628"
+></A
+><P
+><B
+>Ejemplo 1. A simple XSL tree</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="xml"
+>&#60;xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"&#62;
+ &#60;xsl:output method="html" encoding="iso-8859-1" indent="no"/&#62;
+ &#60;xsl:template match="collection"&#62;
+  Hey! Welcome to my sweet CD collection!
+  &#60;xsl:apply-templates/&#62;
+ &#60;/xsl:template&#62;
+ &#60;xsl:template match="cd"&#62;
+  &#60;h1&#62;&#60;xsl:value-of select="title"/&#62;&#60;/h1&#62;
+  &#60;h2&#62;by &#60;xsl:value-of select="artist"/&#62;&#60;/h2&#62;
+  &#60;h3&#62; - &#60;xsl:value-of select="year"/&#62;&#60;/h3&#62;
+ &#60;/xsl:template&#62;
+&#60;/xsl:stylesheet&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN115632"
+></A
+><P
+><B
+>Ejemplo 2. Corresponding XML tree</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="xml"
+>&#60;collection&#62;
+ &#60;cd&#62;
+  &#60;title&#62;PHP Rock&#60;/title&#62;
+  &#60;artist&#62;Joe Coder&#60;/artist&#62;
+  &#60;year&#62;2003&#60;/year&#62;
+ &#60;/cd&#62;
+ &#60;cd&#62;
+  &#60;title&#62;Squashing Typos on a Winter's Eve&#60;/title&#62;
+  &#60;artist&#62;kennyt&#60;/artist&#62;
+  &#60;year&#62;2004&#60;/year&#62;
+ &#60;/cd&#62;
+&#60;/collection&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN115636"
+></A
+><P
+><B
+>Ejemplo 3. Making XML into HTML</B
+></P
+><P
+>&#13;       The following PHP code uses the XML and XSL extensions to
+       transform XML into presentable HTML.
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">/* Load the two XML sources */<br /></font><font color="#0000BB">$xml </font><font color="#007700">= new </font><font color="#0000BB">DomDocument</font><font color="#007700">; </font><font color="#FF8000">// from /ext/dom<br /></font><font color="#0000BB">$xml</font><font color="#007700">-&gt;</font><font color="#0000BB">load</font><font color="#007700">(</font><font color="#DD0000">'example.xml'</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$xsl </font><font color="#007700">= new </font><font color="#0000BB">DomDocument</font><font color="#007700">;<br /></font><font color="#0000BB">$xsl</font><font color="#007700">-&gt;</font><font color="#0000BB">load</font><font color="#007700">(</font><font color="#DD0000">'example.xsl'</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Configure the transformer */<br /></font><font color="#0000BB">$proc </font><font color="#007700">= new </font><font color="#0000BB">xsltprocessor</font><font color="#007700">;<br /></font><font color="#0000BB">$proc</font><font color="#007700">-&gt;</font><font color="#0000BB">importStyleSheet</font><font color="#007700">(</font><font color="#0000BB">$xsl</font><font color="#007700">); </font><font color="#FF8000">// attach the xsl rules<br /></font><font color="#007700">echo </font><font color="#0000BB">$proc</font><font color="#007700">-&gt;</font><font color="#0000BB">transformToXML</font><font color="#007700">(</font><font color="#0000BB">$xml</font><font color="#007700">); </font><font color="#FF8000">// actual transformation<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       This should produce an HTML fragment similar to the following:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Hey! Welcome to my sweet CD collection!
+
+&#60;h1&#62;PHP Rock&#60;/h1&#62;
+&#60;h2&#62;by Joe Coder&#60;/h2&#62;
+&#60;h3&#62; - 2003&#60;/h3&#62;
+
+&#60;h1&#62;Squashing Typos on a Winter's Eve&#60;/h1&#62;
+&#60;h2&#62; by kennyt&#60;/h2&#62;
+&#60;h3&#62; - 2004&#60;/h3&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-get-parameter.html"
+>xsl_xsltprocessor_get_parameter</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-has-exslt-support.html"
+>xsl_xsltprocessor_has_exslt_support</A
+>&nbsp;--&nbsp;Determine if PHP has EXSLT support</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-import-stylesheet.html"
+>xsl_xsltprocessor_import_stylesheet</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-register-php-functions.html"
+>xsl_xsltprocessor_register_php_functions</A
+>&nbsp;--&nbsp;Enables the ability to use PHP functions as XSLT functions</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-remove-parameter.html"
+>xsl_xsltprocessor_remove_parameter</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-set-parameter.html"
+>xsl_xsltprocessor_set_parameter</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-transform-to-doc.html"
+>xsl_xsltprocessor_transform_to_doc</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-transform-to-uri.html"
+>xsl_xsltprocessor_transform_to_uri</A
+>&nbsp;--&nbsp;</DT
+><DT
+><A
+HREF="function.xsl-xsltprocessor-transform-to-xml.html"
+>xsl_xsltprocessor_transform_to_xml</A
+>&nbsp;--&nbsp;</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.xdiff-string-patch.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.xsl-xsltprocessor-get-parameter.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>xdiff_string_patch</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>xsl_xsltprocessor_get_parameter</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

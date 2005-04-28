@@ -1,0 +1,235 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_read</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_open_wrapper"
+HREF="streams.php-stream-open-wrapper.html"><LINK
+REL="NEXT"
+TITLE="php_stream_write"
+HREF="streams.php-stream-write.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-open-wrapper.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-write.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-read"
+></A
+>php_stream_read</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN120584"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_read&nbsp;--&nbsp;Leer un número de bytes desde una secuencia a
+    un búfer</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN120587"
+></A
+><H2
+>Descripción</H2
+>size_t <B
+CLASS="methodname"
+>php_stream_read</B
+> ( php_stream * secuencia, char * buf, size_t conteo)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_read()</B
+> lee
+     hasta <VAR
+CLASS="parameter"
+>conteo</VAR
+> bytes de datos
+     desde <VAR
+CLASS="parameter"
+>secuencia</VAR
+> y los copia en el
+     búfer <VAR
+CLASS="parameter"
+>buf</VAR
+>.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_read()</B
+> devuelve el número de
+     bytes que fueron leídos satisfactoriamente. No hay
+     distinción entre una lectura fallida o una
+     condición de final-de-archivo -
+     use <B
+CLASS="function"
+>php_stream_eof()</B
+> para revisar si se
+     encuentra en <TT
+CLASS="constant"
+><B
+>EOF</B
+></TT
+>.
+    </P
+><P
+>&#13;     La posición interna de la secuencia es desplazada hacia
+     adelante por el número de bytes que fueron leídos,
+     de modo que las lecturas subsiguientes continuarán desde
+     ese punto.
+    </P
+><P
+>&#13;     Si hay menos de <VAR
+CLASS="parameter"
+>conteo</VAR
+> bytes disponibles
+     para su lectura, ésta llamada creará un bloqueo
+     (esperará) hasta que el número requerido se
+     encuentre disponible, dependiendo del status de bloqueo de la
+     secuencia. Por defecto, una secuencia es abierta en modo de
+     bloqueo. Cuando se lee desde archivos regulares, el modo de
+     bloqueo usualmente no representará ninguna diferencia:
+     cuando la secuencia alcance
+     el <TT
+CLASS="constant"
+><B
+>EOF</B
+></TT
+>, <B
+CLASS="function"
+>php_stream_read()</B
+>
+     devolverá un valor menor
+     que <VAR
+CLASS="parameter"
+>conteo</VAR
+>, y 0 en cualquier lectura
+     subsiguiente.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-open-wrapper.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-write.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_open_wrapper</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_write</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

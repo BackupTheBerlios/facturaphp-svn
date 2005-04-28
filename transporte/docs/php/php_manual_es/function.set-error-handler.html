@@ -1,0 +1,323 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>set_error_handler</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Gestión de Errores y Registros"
+HREF="ref.errorfunc.html"><LINK
+REL="PREVIOUS"
+TITLE="restore_error_handler"
+HREF="function.restore-error-handler.html"><LINK
+REL="NEXT"
+TITLE="trigger_error"
+HREF="function.trigger-error.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.restore-error-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.trigger-error.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.set-error-handler"
+></A
+>set_error_handler</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN25507"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.1, PHP 5)</P
+>set_error_handler&nbsp;--&nbsp;
+     Sets a user-defined error handler function.  
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN25510"
+></A
+><H2
+>Description</H2
+>string <B
+CLASS="methodname"
+>set_error_handler</B
+> ( string error_handler)<BR
+></BR
+><P
+>&#13;     Sets a user function (<VAR
+CLASS="parameter"
+>error_handler</VAR
+>) to handle
+     errors in a script.  Returns the previously defined error handler (if
+     any), or <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> on error.  This function can be used for defining your own
+     way of handling errors during runtime, for example in applications in
+     which you need to do cleanup of data/files when a critical error happens,
+     or when you need to trigger an error under certain conditions (using
+     <A
+HREF="function.trigger-error.html"
+><B
+CLASS="function"
+>trigger_error()</B
+></A
+>)
+    </P
+><P
+>&#13;     The user function needs to accept 2 parameters: the error code, and a
+     string describing the error. The example below shows the handling of 
+     internal execptions by triggering errors and handling them with a user
+     defined function:
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN25523"
+></A
+><P
+><B
+>Ejemplo 1. 
+       Error handling with <B
+CLASS="function"
+>set_error_handler()</B
+> and
+       <A
+HREF="function.trigger-error.html"
+><B
+CLASS="function"
+>trigger_error()</B
+></A
+>
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// redefine the user error constants - PHP4 only<br /></font><font color="#0000BB">define </font><font color="#007700">(</font><font color="#0000BB">FATAL</font><font color="#007700">,</font><font color="#0000BB">E_USER_ERROR</font><font color="#007700">);<br /></font><font color="#0000BB">define </font><font color="#007700">(</font><font color="#0000BB">ERROR</font><font color="#007700">,</font><font color="#0000BB">E_USER_WARNING</font><font color="#007700">);<br /></font><font color="#0000BB">define </font><font color="#007700">(</font><font color="#0000BB">WARNING</font><font color="#007700">,</font><font color="#0000BB">E_USER_NOTICE</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// set the error reporting level for this script<br /></font><font color="#0000BB">error_reporting&nbsp;&nbsp;</font><font color="#007700">(</font><font color="#0000BB">FATAL </font><font color="#007700">+ </font><font color="#0000BB">ERROR </font><font color="#007700">+ </font><font color="#0000BB">WARNING</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// error handler function<br /></font><font color="#007700">function </font><font color="#0000BB">myErrorHandler </font><font color="#007700">(</font><font color="#0000BB">$errno</font><font color="#007700">, </font><font color="#0000BB">$errstr</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;switch (</font><font color="#0000BB">$errno</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">FATAL</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;b&gt;FATAL&lt;/b&gt; </font><font color="#007700">[</font><font color="#DD0000">$errno</font><font color="#007700">]</font><font color="#DD0000"> $errstr&lt;br&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&nbsp;&nbsp;Fatal error in line "</font><font color="#007700">.</font><font color="#0000BB">__LINE__</font><font color="#007700">.</font><font color="#DD0000">" of file "</font><font color="#007700">.</font><font color="#0000BB">__FILE__</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">", PHP "</font><font color="#007700">.</font><font color="#0000BB">PHP_VERSION</font><font color="#007700">.</font><font color="#DD0000">" ("</font><font color="#007700">.</font><font color="#0000BB">PHP_OS</font><font color="#007700">.</font><font color="#DD0000">")&lt;br&gt;\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Aborting...&lt;br&gt;\n"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;exit -</font><font color="#0000BB">1</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">ERROR</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;b&gt;ERROR&lt;/b&gt; </font><font color="#007700">[</font><font color="#DD0000">$errno</font><font color="#007700">]</font><font color="#DD0000"> $errstr&lt;br&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;case </font><font color="#0000BB">WARNING</font><font color="#007700">:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&lt;b&gt;WARNING&lt;/b&gt; </font><font color="#007700">[</font><font color="#DD0000">$errno</font><font color="#007700">]</font><font color="#DD0000"> $errstr&lt;br&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;default:<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Unkown error type: </font><font color="#007700">[</font><font color="#DD0000">$errno</font><font color="#007700">]</font><font color="#DD0000"> $errstr&lt;br&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;break;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /></font><font color="#FF8000">// function to test the error handling<br /></font><font color="#007700">function </font><font color="#0000BB">scale_by_log </font><font color="#007700">(</font><font color="#0000BB">$vect</font><font color="#007700">, </font><font color="#0000BB">$scale</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if ( !</font><font color="#0000BB">is_numeric</font><font color="#007700">(</font><font color="#0000BB">$scale</font><font color="#007700">) || </font><font color="#0000BB">$scale </font><font color="#007700">&lt;= </font><font color="#0000BB">0 </font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">trigger_error</font><font color="#007700">(</font><font color="#DD0000">"log(x) for x &lt;= 0 is undefined, you used: scale = $scale"</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">FATAL</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000BB">is_array</font><font color="#007700">(</font><font color="#0000BB">$vect</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">trigger_error</font><font color="#007700">(</font><font color="#DD0000">"Incorrect input vector, array of values expected"</font><font color="#007700">, </font><font color="#0000BB">ERROR</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">null</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;for (</font><font color="#0000BB">$i</font><font color="#007700">=</font><font color="#0000BB">0</font><font color="#007700">; </font><font color="#0000BB">$i</font><font color="#007700">&lt;</font><font color="#0000BB">count</font><font color="#007700">(</font><font color="#0000BB">$vect</font><font color="#007700">); </font><font color="#0000BB">$i</font><font color="#007700">++) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if (!</font><font color="#0000BB">is_numeric</font><font color="#007700">(</font><font color="#0000BB">$vect</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">]))<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">trigger_error</font><font color="#007700">(</font><font color="#DD0000">"Value at position $i is not a number, using 0 (zero)"</font><font color="#007700">, <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">WARNING</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$temp</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">] = </font><font color="#0000BB">log</font><font color="#007700">(</font><font color="#0000BB">$scale</font><font color="#007700">) * </font><font color="#0000BB">$vect</font><font color="#007700">[</font><font color="#0000BB">$i</font><font color="#007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$temp</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// set to the user defined error handler<br /></font><font color="#0000BB">$old_error_handler </font><font color="#007700">= </font><font color="#0000BB">set_error_handler</font><font color="#007700">(</font><font color="#DD0000">"myErrorHandler"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// trigger some errors, first define a mixed array with a non-numeric item<br /></font><font color="#007700">echo </font><font color="#DD0000">"vector a\n"</font><font color="#007700">;<br /></font><font color="#0000BB">$a </font><font color="#007700">= array(</font><font color="#0000BB">2</font><font color="#007700">,</font><font color="#0000BB">3</font><font color="#007700">,</font><font color="#DD0000">"foo"</font><font color="#007700">,</font><font color="#0000BB">5.5</font><font color="#007700">,</font><font color="#0000BB">43.3</font><font color="#007700">,</font><font color="#0000BB">21.11</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// now generate second array, generating a warning<br /></font><font color="#007700">echo </font><font color="#DD0000">"----\nvector b - a warning (b = log(PI) * a)\n"</font><font color="#007700">;<br /></font><font color="#0000BB">$b </font><font color="#007700">= </font><font color="#0000BB">scale_by_log</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">, </font><font color="#0000BB">M_PI</font><font color="#007700">);<br /></font><font color="#0000BB">print_r</font><font color="#007700">(</font><font color="#0000BB">$b</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// this is trouble, we pass a string instead of an array<br /></font><font color="#007700">echo </font><font color="#DD0000">"----\nvector c - an error\n"</font><font color="#007700">;<br /></font><font color="#0000BB">$c </font><font color="#007700">= </font><font color="#0000BB">scale_by_log</font><font color="#007700">(</font><font color="#DD0000">"not array"</font><font color="#007700">,</font><font color="#0000BB">2.3</font><font color="#007700">);<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$c</font><font color="#007700">);<br /><br /></font><font color="#FF8000">// this is a critical error, log of zero or negative number is undefined<br /></font><font color="#007700">echo </font><font color="#DD0000">"----\nvector d - fatal error\n"</font><font color="#007700">;<br /></font><font color="#0000BB">$d </font><font color="#007700">= </font><font color="#0000BB">scale_by_log</font><font color="#007700">(</font><font color="#0000BB">$a</font><font color="#007700">, -</font><font color="#0000BB">2.5</font><font color="#007700">);<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     And when you run this sample script, the output will be
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN25528"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>vector a
+Array
+(
+    [0] =&#62; 2
+    [1] =&#62; 3
+    [2] =&#62; foo
+    [3] =&#62; 5.5
+    [4] =&#62; 43.3
+    [5] =&#62; 21.11
+)
+----
+vector b - a warning (b = log(PI) * a)
+&#60;b&#62;WARNING&#60;/b&#62; [1024] Value at position 2 is not a number, using 0 (zero)&#60;br&#62;
+Array
+(
+    [0] =&#62; 2.2894597716988
+    [1] =&#62; 3.4341896575482
+    [2] =&#62; 0
+    [3] =&#62; 6.2960143721717
+    [4] =&#62; 49.566804057279
+    [5] =&#62; 24.165247890281
+)
+----
+vector c - an error
+&#60;b&#62;ERROR&#60;/b&#62; [512] Incorrect input vector, array of values expected&#60;br&#62;
+NULL
+----
+vector d - fatal error
+&#60;b&#62;FATAL&#60;/b&#62; [256] log(x) for x &#60;= 0 is undefined, you used: scale = -2.5&#60;br&#62;
+  Fatal error in line 16 of file trigger_error.php, PHP 4.0.1pl2 (Linux)&#60;br&#62;
+Aborting...&#60;br&#62;</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+><P
+>&#13;     See also <A
+HREF="function.error-reporting.html"
+><B
+CLASS="function"
+>error_reporting()</B
+></A
+>,
+     <A
+HREF="function.restore-error-handler.html"
+><B
+CLASS="function"
+>restore_error_handler()</B
+></A
+>,
+     <A
+HREF="function.trigger-error.html"
+><B
+CLASS="function"
+>trigger_error()</B
+></A
+>, <A
+HREF="function.user-error.html"
+><B
+CLASS="function"
+>user_error()</B
+></A
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.restore-error-handler.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.trigger-error.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>restore_error_handler</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.errorfunc.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>trigger_error</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

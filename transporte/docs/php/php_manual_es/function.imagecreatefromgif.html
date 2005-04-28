@@ -1,0 +1,295 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imagecreatefromgif</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para imágenes"
+HREF="ref.image.html"><LINK
+REL="PREVIOUS"
+TITLE="imagecreatefromgd"
+HREF="function.imagecreatefromgd.html"><LINK
+REL="NEXT"
+TITLE="imagecreatefromjpeg"
+HREF="function.imagecreatefromjpeg.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imagecreatefromgd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imagecreatefromjpeg.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imagecreatefromgif"
+></A
+>imagecreatefromgif</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN38377"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>imagecreatefromgif&nbsp;--&nbsp;Crear una nueva imagen a partir de un archivo o
+    URL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN38380"
+></A
+><H2
+>Descripción</H2
+>resource <B
+CLASS="methodname"
+>imagecreatefromgif</B
+> ( string nombre_archivo)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>imagecreatefromgif()</B
+> devuelve un identificador
+     de imagen que representa la imagen obtenida desde el nombre de
+     archivo dado.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>imagecreatefromgif()</B
+> devuelve una cadena
+     vacía en caso de fallo. También genera un mensaje
+     de error, el cual, desafortunadamente, se despliega como un
+     enlace roto en un navegador. Para facilitar la depuración,
+     el siguiente ejemplo producirá un GIF de error:
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN38392"
+></A
+><P
+><B
+>Ejemplo 1. 
+       Ejemplo para gestionar un error duranto la creación
+       (cortesía de vic arroba zymsys punto com)
+      </B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">function </font><font color="#0000BB">LoadGif </font><font color="#007700">(</font><font color="#0000BB">$nombre_imagen</font><font color="#007700">) <br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$im </font><font color="#007700">= @</font><font color="#0000BB">imagecreatefromgif </font><font color="#007700">(</font><font color="#0000BB">$nombre_imagen</font><font color="#007700">); </font><font color="#FF8000">/* Intentar la apertura */<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">if (!</font><font color="#0000BB">$im</font><font color="#007700">) { </font><font color="#FF8000">/* Verificar si ha fallado */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$im </font><font color="#007700">= </font><font color="#0000BB">imagecreate </font><font color="#007700">(</font><font color="#0000BB">150</font><font color="#007700">, </font><font color="#0000BB">30</font><font color="#007700">); </font><font color="#FF8000">/* Crear una imagen en blanco */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$bgc </font><font color="#007700">= </font><font color="#0000BB">imagecolorallocate </font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">, </font><font color="#0000BB">255</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$tc </font><font color="#007700">= </font><font color="#0000BB">imagecolorallocate </font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagefilledrectangle </font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">0</font><font color="#007700">, </font><font color="#0000BB">150</font><font color="#007700">, </font><font color="#0000BB">30</font><font color="#007700">, </font><font color="#0000BB">$bgc</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">/* Generar un mensaje de error */<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">imagestring </font><font color="#007700">(</font><font color="#0000BB">$im</font><font color="#007700">, </font><font color="#0000BB">1</font><font color="#007700">, </font><font color="#0000BB">5</font><font color="#007700">, </font><font color="#0000BB">5</font><font color="#007700">, </font><font color="#DD0000">"Error en la carga de $nombre_imagen"</font><font color="#007700">, </font><font color="#0000BB">$tc</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return </font><font color="#0000BB">$im</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Dado que el soporte de GIF fue completamente retirado de la
+       biblioteca GD en la versión 1.6, esta función no
+       se encuentra disponible si está usando tal
+       versión de la biblioteca GD.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><DIV
+CLASS="tip"
+><BLOCKQUOTE
+CLASS="tip"
+><P
+><B
+>Sugerencia: </B
+>Puede usar una URL como
+nombre de archivo con esta función si los <A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>fopen wrappers</A
+> han sido
+activados.  Consulte <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> para más
+detalles sobre cómo especificar el nombre de fichero y <A
+HREF="wrappers.html"
+>Apéndice L</A
+> una lista de protocolos URL
+soportados</P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Versiones de
+<VAR
+CLASS="literal"
+>PHP</VAR
+> para Windows anteriores a 4.3.0, no soportan el
+acceso remoto a archivos para esta función, no
+funcionará ni activando siquiera <A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>allow_url_fopen</A
+>.
+</P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imagecreatefromgd.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imagecreatefromjpeg.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imagecreatefromgd</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.image.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imagecreatefromjpeg</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

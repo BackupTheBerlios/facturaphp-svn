@@ -1,0 +1,226 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ob_flush</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Control de Salida"
+HREF="ref.outcontrol.html"><LINK
+REL="PREVIOUS"
+TITLE="ob_end_flush"
+HREF="function.ob-end-flush.html"><LINK
+REL="NEXT"
+TITLE="ob_get_clean"
+HREF="function.ob-get-clean.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ob-end-flush.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ob-get-clean.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ob-flush"
+></A
+>ob_flush</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN81157"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>ob_flush&nbsp;--&nbsp;
+     Vaciar (enviar) el búfer de salida
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN81160"
+></A
+><H2
+>Descripción</H2
+>void <B
+CLASS="methodname"
+>ob_flush</B
+> ( void )<BR
+></BR
+><P
+>&#13;Esta función enviará los contenidos del búfer de
+salida (si los hay). Si desea continuar procesando los contenidos del
+búfer, tiene que llamar <A
+HREF="function.ob-get-contents.html"
+><B
+CLASS="function"
+>ob_get_contents()</B
+></A
+>
+antes de <B
+CLASS="function"
+>ob_flush()</B
+>, ya que los contenidos del
+búfer son descartados luego de que la
+función <B
+CLASS="function"
+>ob_flush()</B
+> es llamada.
+    </P
+><P
+>&#13;Esta función no destruye el búfer de salida, como lo
+hace <A
+HREF="function.ob-end-flush.html"
+><B
+CLASS="function"
+>ob_end_flush()</B
+></A
+>.
+    </P
+><P
+>&#13;     Vea también
+     <A
+HREF="function.ob-get-contents.html"
+><B
+CLASS="function"
+>ob_get_contents()</B
+></A
+>,
+     <A
+HREF="function.ob-clean.html"
+><B
+CLASS="function"
+>ob_clean()</B
+></A
+>,
+     <A
+HREF="function.ob-end-flush.html"
+><B
+CLASS="function"
+>ob_end_flush()</B
+></A
+> y
+     <A
+HREF="function.ob-end-clean.html"
+><B
+CLASS="function"
+>ob_end_clean()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ob-end-flush.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ob-get-clean.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ob_end_flush</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.outcontrol.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ob_get_clean</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

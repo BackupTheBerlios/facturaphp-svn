@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imagealphablending</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para imágenes"
+HREF="ref.image.html"><LINK
+REL="PREVIOUS"
+TITLE="image2wbmp"
+HREF="function.image2wbmp.html"><LINK
+REL="NEXT"
+TITLE="imageantialias"
+HREF="function.imageantialias.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.image2wbmp.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imageantialias.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imagealphablending"
+></A
+>imagealphablending</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN37484"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.6, PHP 5)</P
+>imagealphablending&nbsp;--&nbsp;Set the blending mode for an image</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN37487"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>imagealphablending</B
+> ( resource image, bool blendmode)<BR
+></BR
+><P
+>&#13;    <B
+CLASS="function"
+>imagealphablending()</B
+> allows for two different
+    modes of drawing on truecolor images. In blending mode, the
+    alpha channel component of the color supplied to all drawing function,
+    such as <A
+HREF="function.imagesetpixel.html"
+><B
+CLASS="function"
+>imagesetpixel()</B
+></A
+> determines how much of the
+    underlying color should be allowed to shine through.  As a result, gd
+    automatically blends the existing color at that point with the drawing color,
+    and stores the result in the image.  The resulting pixel is opaque.  In
+    non-blending mode, the drawing color is copied literally with its alpha channel
+    information, replacing the destination pixel.  Blending mode is not available
+    when drawing on palette images.
+    If <VAR
+CLASS="parameter"
+>blendmode</VAR
+> is <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>, then blending mode is enabled, otherwise
+    disabled.
+    Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si todo se
+llevó a cabo correctamente, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso
+de fallo.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     This function was added in PHP 4.0.6 and requires GD 2.0.1
+    </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.image2wbmp.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imageantialias.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>image2wbmp</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.image.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imageantialias</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

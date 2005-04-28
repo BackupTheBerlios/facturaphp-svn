@@ -1,0 +1,253 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ctype_xdigit</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Tipo de Caracter"
+HREF="ref.ctype.html"><LINK
+REL="PREVIOUS"
+TITLE="ctype_upper"
+HREF="function.ctype-upper.html"><LINK
+REL="NEXT"
+TITLE="Funciones de la capa de abstraccion de bases de datos (dbm-style)"
+HREF="ref.dba.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ctype-upper.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ref.dba.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ctype-xdigit"
+></A
+>ctype_xdigit</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN16659"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.4, PHP 5)</P
+>ctype_xdigit&nbsp;--&nbsp;
+     Chequear posibles caracteres que representen un dígito
+     hexadecimal
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN16662"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>ctype_xdigit</B
+> ( string texto)<BR
+></BR
+><P
+>&#13;     Devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si cada caracter del <VAR
+CLASS="parameter"
+>texto</VAR
+>
+     es un 'dígito' hexadecimal, lo que quiere decir un
+     dígito decimal o un caracter del rango
+     <VAR
+CLASS="literal"
+>[A-Fa-f]</VAR
+>; <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> de lo contrario.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN16676"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo de <B
+CLASS="function"
+>ctype_xdigit()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$cadenas </font><font color="#007700">= array(</font><font color="#DD0000">'AB10BC99'</font><font color="#007700">, </font><font color="#DD0000">'AR1012'</font><font color="#007700">, </font><font color="#DD0000">'ab12bc99'</font><font color="#007700">);<br />foreach (</font><font color="#0000BB">$cadenas </font><font color="#007700">as </font><font color="#0000BB">$caso_prueba</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;if (</font><font color="#0000BB">ctype_xdigit</font><font color="#007700">(</font><font color="#0000BB">$caso_prueba</font><font color="#007700">)) {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"La cadena $caso_prueba consiste completamente de d&amp;iacute;gitos hexadecimales.</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"La cadena $caso_prueba no consiste completamente de d&amp;iacute;gitos hexadecimales.</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       Este ejemplo producirá la salida:
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>La cadena AB10BC99 consiste completamente de d&#38;iacute;gitos hexadecimales.
+La cadena AR1012 no consiste completamente de d&#38;iacute;gitos hexadecimales.
+La cadena ab12bc99 consiste completamente de d&#38;iacute;gitos hexadecimales.</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.ctype-digit.html"
+><B
+CLASS="function"
+>ctype_digit()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ctype-upper.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ref.dba.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ctype_upper</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ctype.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Funciones de la capa de abstraccion de bases de datos (dbm-style)</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

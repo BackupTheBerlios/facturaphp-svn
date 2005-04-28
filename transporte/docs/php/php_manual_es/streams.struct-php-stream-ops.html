@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>struct php_stream_ops</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Estructuras de Secuencia"
+HREF="streams.structs.html"><LINK
+REL="PREVIOUS"
+TITLE="struct php_stream_dirent"
+HREF="streams.struct-php-stream-dirent.html"><LINK
+REL="NEXT"
+TITLE="struct php_stream_wrapper"
+HREF="streams.struct-php-stream-wrapper.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.struct-php-stream-dirent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.struct-php-stream-wrapper.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.struct-php-stream-ops"
+></A
+>struct php_stream_ops</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN121520"
+></A
+>struct php_stream_ops&nbsp;--&nbsp;Contiene funciones miembro para una
+        implementación de secuencia</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN121523"
+></A
+><H2
+>Descripción</H2
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="c"
+>typedef struct _php_stream_ops {
+             /* todas las secuencias DEBEN implementar estas operaciones */
+             size_t (*write)(php_stream *stream, const char *buf, size_t count TSRMLS_DC);
+             size_t (*read)(php_stream *stream, char *buf, size_t count TSRMLS_DC);
+             int (*close)(php_stream *stream, int close_handle TSRMLS_DC);
+             int (*flush)(php_stream *stream TSRMLS_DC);
+             
+             const char *label; /* nombre que describe esta clase de secuencia */
+             
+             /* estas operaciones son opcionales, y pueden definirse a NULL si la secuencia no
+              * soporta una operacion en particular */
+            int (*seek)(php_stream *stream, off_t offset, int whence TSRMLS_DC);
+            char *(*gets)(php_stream *stream, char *buf, size_t size TSRMLS_DC);
+            int (*cast)(php_stream *stream, int castas, void **ret TSRMLS_DC);
+            int (*stat)(php_stream *stream, php_stream_statbuf *ssb TSRMLS_DC);
+        } php_stream_ops;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.struct-php-stream-dirent.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.struct-php-stream-wrapper.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>struct php_stream_dirent</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="streams.structs.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>struct php_stream_wrapper</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,196 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_getc</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_eof"
+HREF="streams.php-stream-eof.html"><LINK
+REL="NEXT"
+TITLE="php_stream_gets"
+HREF="streams.php-stream-gets.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-eof.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-gets.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-getc"
+></A
+>php_stream_getc</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN120663"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_getc&nbsp;--&nbsp;Leer un byte único desde una
+    secuencia</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN120666"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>php_stream_getc</B
+> ( php_stream * secuencia)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_getc()</B
+> lee un caracter único
+     desde
+     <VAR
+CLASS="parameter"
+>secuencia</VAR
+> y lo devuelve como un char sin
+     signo, moldeado como un int, o <TT
+CLASS="constant"
+><B
+>EOF</B
+></TT
+> si se ha
+     llegado al fin-de-archivo, u ocurrió un error.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_getc()</B
+> puede bloquear en el mismo
+     modo en que bloquea <B
+CLASS="function"
+>php_stream_read()</B
+>.
+    </P
+><P
+>&#13;     La posición interna de la secuencia es desplazada hacia
+     adelante en 1 si tiene éxito.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-eof.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-gets.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_eof</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_gets</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

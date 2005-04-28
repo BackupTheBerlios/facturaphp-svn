@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>imap_fetchheader</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones IMAP"
+HREF="ref.imap.html"><LINK
+REL="PREVIOUS"
+TITLE="imap_fetchbody"
+HREF="function.imap-fetchbody.html"><LINK
+REL="NEXT"
+TITLE="imap_fetchstructure"
+HREF="function.imap-fetchstructure.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.imap-fetchbody.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.imap-fetchstructure.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.imap-fetchheader"
+></A
+>imap_fetchheader</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN40681"
+></A
+><P
+>    (PHP 3&#62;= 3.0.3, PHP 4 , PHP 5)</P
+>imap_fetchheader&nbsp;--&nbsp;Devuelve la cabecera de un mensaje</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN40684"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>imap_fetchheader</B
+> ( resource secuencia_imap, int num_mensaje [, int opciones])<BR
+></BR
+><P
+>&#13;     Esta función produce la recuperación de la cabecera
+     completa, sin filtrar, en formato
+     <A
+HREF="http://www.faqs.org/rfcs/rfc2822"
+TARGET="_top"
+>RFC2822</A
+> del mensaje
+     especificado, como una cadena de texto y devuelve esa cadena de
+     texto.
+    </P
+><P
+>&#13;     Las <VAR
+CLASS="parameter"
+>opciones</VAR
+> son:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        <TT
+CLASS="constant"
+><B
+>FT_UID</B
+></TT
+> - El
+        argumento <VAR
+CLASS="parameter"
+>num_mensaje</VAR
+> es un UID
+       </P
+></LI
+><LI
+><P
+>&#13;        <TT
+CLASS="constant"
+><B
+>FT_INTERNAL</B
+></TT
+> - La cadena de retorno
+        está en formato "interno", sin intento alguno de
+        moldear a nuevas líneas tipo CRLF
+       </P
+></LI
+><LI
+><P
+>&#13;        <TT
+CLASS="constant"
+><B
+>FT_PREFETCHTEXT</B
+></TT
+> - El archivo RFC822.TEXT
+        debe ser pre-solicitado al mismo tiempo. Esto evita un RTT
+        extra en una conexión IMAP si se desea un mensaje de
+        texto completo (p.ej. en la operación "guardar a
+        archivo local")
+       </P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.imap-fetchbody.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.imap-fetchstructure.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>imap_fetchbody</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.imap.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>imap_fetchstructure</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

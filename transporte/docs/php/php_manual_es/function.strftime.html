@@ -1,0 +1,334 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>strftime</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Fecha y Hora"
+HREF="ref.datetime.html"><LINK
+REL="PREVIOUS"
+TITLE="mktime"
+HREF="function.mktime.html"><LINK
+REL="NEXT"
+TITLE="strtotime"
+HREF="function.strtotime.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mktime.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.strtotime.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.strftime"
+></A
+>strftime</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN17634"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>strftime&nbsp;--&nbsp;da formato a la hora o fecha local de acuerdo con las
+	convenciones locales</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN17637"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>strftime</B
+> ( string format, int timestamp)<BR
+></BR
+><P
+>&#13;	 Devuelve una cadena formateada según la cadena de formato dada
+	 utilizando el valor <VAR
+CLASS="parameter"
+>timestamp</VAR
+> o la hora
+	 local actual. Los nombres del mes y el día de la semana y otras
+	 cadenas dependientes del idioma respetan lo establecido con
+	 <A
+HREF="function.setlocale.html"
+><B
+CLASS="function"
+>setlocale()</B
+></A
+>.</P
+><P
+>&#13;	 Se reconocen los siguientes especificadores de conversión en la
+	 cadena de formato:
+     <P
+></P
+><UL
+><LI
+><P
+>%a - nombre del día de la semana abreviado</P
+></LI
+><LI
+><P
+>%A - nombre del día de la semana completo</P
+></LI
+><LI
+><P
+>%b - nombre del mes abreviado</P
+></LI
+><LI
+><P
+>%B - nombre del mes completo</P
+></LI
+><LI
+><P
+>%c - representación de fecha y hora
+	  preferidas en el idioma actual</P
+></LI
+><LI
+><P
+>%d - día del mes en número (de 00 a 31)</P
+></LI
+><LI
+><P
+>%H - hora como un número de 00 a 23</P
+></LI
+><LI
+><P
+>%I - hora como un número de 01 a 12 </P
+></LI
+><LI
+><P
+>%j - día del año como un número de 001 a 366</P
+></LI
+><LI
+><P
+>%m - mes como un número de 01 a 12</P
+></LI
+><LI
+><P
+>%M - minuto en número</P
+></LI
+><LI
+><P
+>%p - `am' o `pm', según la hora dada, o las
+	  cadenas correspondientes en el idioma actual</P
+></LI
+><LI
+><P
+>%S - segundos en número</P
+></LI
+><LI
+><P
+>%U - número de la semana en el año, empezando con el primer domingo como el primer día de la primera semana</P
+></LI
+><LI
+><P
+>%W - número de la semana en el año, empezando con el primer lunes como el primer día de la primera semana</P
+></LI
+><LI
+><P
+>%w - día de la semana en número (el domingo es el 0)</P
+></LI
+><LI
+><P
+>%x - representación preferida de la fecha sin
+	  la hora</P
+></LI
+><LI
+><P
+>%X - representación preferida de la hora sin
+	  la fecha</P
+></LI
+><LI
+><P
+>%y - año en número de 00 a 99</P
+></LI
+><LI
+><P
+>%Y - año en número de cuatro cifras</P
+></LI
+><LI
+><P
+>%Z - nombre o abreviatura de la zona horaria</P
+></LI
+><LI
+><P
+>%% - carácter `%'</P
+></LI
+></UL
+>
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN17697"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>strftime()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+setlocale ("LC_TIME", "C");<br />print(strftime("%A in Finnish is "));<br />setlocale ("LC_TIME", "fi_FI");<br />print(strftime("%A, in French "));<br />setlocale ("LC_TIME", "fr_CA");<br />print(strftime("%A and in German "));<br />setlocale ("LC_TIME", "de_DE");<br />print(strftime("%A.\n"));</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+	  Este ejemplo funciona si se tienen los respectivos `locales'
+	  instalados en el sistema.</P
+><P
+>&#13;	 Ver también <A
+HREF="function.setlocale.html"
+><B
+CLASS="function"
+>setlocale()</B
+></A
+> y
+     <A
+HREF="function.mktime.html"
+><B
+CLASS="function"
+>mktime()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mktime.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.strtotime.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mktime</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.datetime.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>strtotime</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

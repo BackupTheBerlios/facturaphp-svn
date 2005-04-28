@@ -1,0 +1,590 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Como cambiar los valores de la configuración</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Configuración del comportamiento de PHP"
+HREF="configuration.html"><LINK
+REL="PREVIOUS"
+TITLE="Configuración del comportamiento de PHP"
+HREF="configuration.html"><LINK
+REL="NEXT"
+TITLE="Referencia del Lenguaje"
+HREF="langref.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="configuration.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 4. Configuración del comportamiento de PHP</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="langref.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="configuration.changes"
+>Como cambiar los valores de la configuración</A
+></H1
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="configuration.changes.apache"
+>Ejecución de PHP como un módulo de
+    Apache</A
+></H2
+><P
+>&#13;    Cuando se usa PHP como un módulo de Apache, se pueden
+    cambiar valores de la configuración usando directivas en
+    los archivos de configuración de apache, <TT
+CLASS="filename"
+>httpd.conf</TT
+> y
+    <TT
+CLASS="filename"
+>.htaccess</TT
+>. Necesitará de los privilegios "AllowOverride
+    Options" o "AllowOverride All" para hacerlo.
+   </P
+><P
+>&#13;    Con PHP 4 y PHP 5, hay varias directivas Apache que permiten
+    cambiar la configuración de PHP desde los archivos de
+    configuración de apache. Para obtener una lista de que
+    directivas son del tipo <TT
+CLASS="constant"
+><B
+>PHP_INI_ALL</B
+></TT
+>,
+    <TT
+CLASS="constant"
+><B
+>PHP_INI_PERDIR</B
+></TT
+>, ó
+    <TT
+CLASS="constant"
+><B
+>PHP_INI_SYSTEM</B
+></TT
+>, consultar la lista que se
+    encuentra en la documentación de la función
+    <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>.
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     Con PHP 3, existen directivas que corresponden a cada
+     parámetro de configuración en
+     <TT
+CLASS="filename"
+>php3.ini</TT
+>, con el prefijo "php3_".
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><SPAN
+CLASS="systemitem"
+>php_value</SPAN
+>
+       <VAR
+CLASS="parameter"
+>nombre</VAR
+>
+       <VAR
+CLASS="parameter"
+>valor</VAR
+></DT
+><DD
+><P
+>&#13;        Asigna el valor de la directiva especificada. Puede ser usado
+        solamente con directivas del tipo
+        <TT
+CLASS="constant"
+><B
+>PHP_INI_ALL</B
+></TT
+> y
+        <TT
+CLASS="constant"
+><B
+>PHP_INI_PERDIR</B
+></TT
+>. Para borrar un valor
+        previo, asignar <VAR
+CLASS="literal"
+>none</VAR
+> como valor
+       </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+         No use <SPAN
+CLASS="systemitem"
+>php_value</SPAN
+>
+         para definir valores booleanos. Debería usarse
+         <SPAN
+CLASS="systemitem"
+>php_flag</SPAN
+> en su
+         lugar (vea más abajo).
+        </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><SPAN
+CLASS="systemitem"
+>php_flag</SPAN
+>
+       <VAR
+CLASS="parameter"
+>nombre</VAR
+>
+       <VAR
+CLASS="parameter"
+>on|off</VAR
+></DT
+><DD
+><P
+>&#13;        Usado para asignar una directiva de configuración
+        booleana. Puede ser usado solamente con directivas del tipo
+        <TT
+CLASS="constant"
+><B
+>PHP_INI_ALL</B
+></TT
+> y
+        <TT
+CLASS="constant"
+><B
+>PHP_INI_PERDIR</B
+></TT
+>.
+       </P
+></DD
+><DT
+><SPAN
+CLASS="systemitem"
+>php_admin_value</SPAN
+>
+       <VAR
+CLASS="parameter"
+>nombre</VAR
+>
+       <VAR
+CLASS="parameter"
+>valor</VAR
+></DT
+><DD
+><P
+>&#13;        Asigna el valor de la directiva especificada. Esto
+        <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no puede usarse</I
+></SPAN
+> en archivos
+        <TT
+CLASS="filename"
+>.htaccess</TT
+>. Todo tipo de directiva asignada con <SPAN
+CLASS="systemitem"
+>php_admin_value</SPAN
+> no puede ser
+        cambiada con <TT
+CLASS="filename"
+>.htaccess</TT
+> ó directivas
+        "virtualhost". Para borrar un valor previo, asignar
+        <VAR
+CLASS="literal"
+>none</VAR
+> como valor.
+       </P
+></DD
+><DT
+><SPAN
+CLASS="systemitem"
+>php_admin_flag</SPAN
+>
+       <VAR
+CLASS="parameter"
+>nombre</VAR
+>
+       <VAR
+CLASS="parameter"
+>on|off</VAR
+></DT
+><DD
+><P
+>&#13;        Usado para asignar una directiva de configuración
+        booleana. Esto <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no puede usarse</I
+></SPAN
+> en
+        archivos <TT
+CLASS="filename"
+>.htaccess</TT
+>. Todo tipo de directiva asignada con
+        <SPAN
+CLASS="systemitem"
+>php_admin_flag</SPAN
+> no
+        puede ser cambiada con <TT
+CLASS="filename"
+>.htaccess</TT
+> ó directivas.
+       </P
+></DD
+></DL
+></DIV
+>
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN1952"
+></A
+><P
+><B
+>Ejemplo 4-2. Ejemplo de configuración de Apache</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="ini"
+>&#60;IfModule mod_php5.c&#62;
+  php_value include_path ".:/usr/local/lib/php"
+  php_admin_flag safe_mode on
+&#60;/IfModule&#62;
+&#60;IfModule mod_php4.c&#62;
+  php_value include_path ".:/usr/local/lib/php"
+  php_admin_flag safe_mode on
+&#60;/IfModule&#62;
+&#60;IfModule mod_php3.c&#62;
+  php3_include_path ".:/usr/local/lib/php"
+  php3_safe_mode on
+&#60;/IfModule&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><DIV
+CLASS="caution"
+><P
+></P
+><TABLE
+CLASS="caution"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Atención</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;     Las Constantes en PHP no existen fuera de PHP. Por ejemplo, en
+     <TT
+CLASS="filename"
+>httpd.conf</TT
+> no se pueden usar constantes PHP tales como
+     <TT
+CLASS="constant"
+><B
+>E_ALL</B
+></TT
+> ó
+     <TT
+CLASS="constant"
+><B
+>E_NOTICE</B
+></TT
+> para definir la directiva <A
+HREF="ref.errorfunc.html#ini.error-reporting"
+>error_reporting</A
+>, ya que no
+     tendrá ningún significado y será evaluada
+     como <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>0</I
+></SPAN
+>. Usar los valores asociados de
+     "bitmask" en su lugar. Estas constantes pueden ser usadas en
+     <TT
+CLASS="filename"
+>php.ini</TT
+>
+    </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="configuration.changes.windows"
+>Modificación de la configuración de PHP usando
+    el registro de Windows</A
+></H2
+><P
+>&#13;    Cuando se usa PHP en Windows, se pueden cambiar los valores de
+    configuración para cada directorio por medio de los
+    registros de Windows. Los valores de configuración se
+    guardan en la llave de registro <VAR
+CLASS="literal"
+>HKLM\SOFTWARE\PHP\Per
+    Directory Values</VAR
+>, en las subllaves correspondientes al
+    PATH. Por ejemplo, los valores de configuracion del directorio
+    <VAR
+CLASS="literal"
+>c:\inetpub\wwwroot</VAR
+> se guardarán en
+    <VAR
+CLASS="literal"
+>HKLM\SOFTWARE\PHP\Valores Por
+    Directorio\c\inetpub\wwwroot</VAR
+>. La configuración de
+    un directorio es válida para todos los scripts ejecutados
+    en el mismo y sus subdirectorios. Los valores en la llave deben de
+    definirse con el nombre de la directiva de configuración de
+    PHP y el valor tipo cadena. Las constantes PHP en los valores no
+    son analizadas.
+     </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="configuration.changes.other"
+>Otras interfaces con <VAR
+CLASS="literal"
+>PHP</VAR
+></A
+></H2
+><P
+>&#13;     Independientemente del modo en que ejecute PHP, es posible
+     cambiar ciertos valores en tiempo de ejecución usando
+     <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>. Vea la documentación en la
+     página sobre <A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+> para más
+     información.
+    </P
+><P
+>&#13;     Si está interesado en una lista completa de
+     parámetros de configuración en su sistema con sus
+     valores actuales, puede ejecutar la función
+     <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>, y revisar la página
+     resultante. También puede acceder a los valores de
+     directivas de configuración individuales en tiempo de
+     ejecución usando <A
+HREF="function.ini-get.html"
+><B
+CLASS="function"
+>ini_get()</B
+></A
+> o
+     <A
+HREF="function.get-cfg-var.html"
+><B
+CLASS="function"
+>get_cfg_var()</B
+></A
+>.
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="configuration.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="langref.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Configuración del comportamiento de PHP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="configuration.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Referencia del Lenguaje</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

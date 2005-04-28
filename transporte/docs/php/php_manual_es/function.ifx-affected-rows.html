@@ -1,0 +1,254 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ifx_affected_rows</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Informix"
+HREF="ref.ifx.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones de Informix"
+HREF="ref.ifx.html"><LINK
+REL="NEXT"
+TITLE="ifx_blobinfile_mode"
+HREF="function.ifx-blobinfile-mode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.ifx.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ifx-blobinfile-mode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ifx-affected-rows"
+></A
+>ifx_affected_rows</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN42229"
+></A
+><P
+>    (PHP 3&#62;= 3.0.3, PHP 4 , PHP 5)</P
+>ifx_affected_rows&nbsp;--&nbsp;Obtiene el número de registros procesados por una consulta</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN42232"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ifx_affected_rows</B
+> ( int result_id)<BR
+></BR
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>result_id</VAR
+> es un identificador válido del resultado de
+     <A
+HREF="function.ifx-query.html"
+><B
+CLASS="function"
+>ifx_query()</B
+></A
+> o <A
+HREF="function.ifx-prepare.html"
+><B
+CLASS="function"
+>ifx_prepare()</B
+></A
+>.
+    </P
+><P
+>&#13;     Devuelve el número de filas procesadas por una consulta
+     representada por un <VAR
+CLASS="parameter"
+>result_id</VAR
+> (identificador de resultado).
+    </P
+><P
+>&#13;     Para inserciones, actualizaciones y borrados el número es exactamente los registros
+     procesados (sqlerrd[2]). Para las consultas de selección es una estimación
+     (sqlerrd[0]). No confíes en él.
+    </P
+><P
+>&#13;     Es útil llamarla después de ejecutar <A
+HREF="function.ifx-prepare.html"
+><B
+CLASS="function"
+>ifx_prepare()</B
+></A
+> pues
+     así podemos limitar las consultas a número razonable de registros.
+    </P
+><P
+>&#13;     Examina también: <A
+HREF="function.ifx-num-rows.html"
+><B
+CLASS="function"
+>ifx_num_rows()</B
+></A
+>
+    </P
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN42251"
+></A
+><P
+><B
+>Ejemplo 1. Número de registros procesados por una consulta</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="php3"
+>$rid = ifx_prepare ("select * from emp where name like " . $name, $connid);
+if (! $rid) {
+    ... error ...
+}
+$rowcount = ifx_affected_rows ($rid);
+if ($rowcount &#62; 1000) {
+    printf ("Too many rows in result set (%d)\n&#60;br&#62;", $rowcount);  // Demasiados registros en el resultado
+    die ("Please restrict your query&#60;br&#62;\n");                      // Por favor, restringe tu consulta
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.ifx.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ifx-blobinfile-mode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones de Informix</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ifx.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ifx_blobinfile_mode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

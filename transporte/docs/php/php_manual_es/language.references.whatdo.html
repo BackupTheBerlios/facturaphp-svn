@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Lo que las Referencias son</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Explicando las Referencias"
+HREF="language.references.html"><LINK
+REL="PREVIOUS"
+TITLE="Explicando las Referencias"
+HREF="language.references.html"><LINK
+REL="NEXT"
+TITLE="Lo que las Referencias no son"
+HREF="language.references.arent.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.references.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 14. Explicando las Referencias</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.references.arent.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.references.whatdo"
+>Lo que las Referencias son</A
+></H1
+><P
+>&#13;		Las Referencias en PHP te permiten lograr que dos variables "apunten"
+		al mismo contenido. Cuando haces algo como:
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4483"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$a =&amp; $b</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    significa que <VAR
+CLASS="varname"
+>$a</VAR
+> y <VAR
+CLASS="varname"
+>$b</VAR
+>
+    apuntan a la misma variable.
+	<DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+					<VAR
+CLASS="varname"
+>$a</VAR
+> y <VAR
+CLASS="varname"
+>$b</VAR
+> son completamente iguales, no es que <VAR
+CLASS="varname"
+>$a</VAR
+> esté apuntando a 
+      			<VAR
+CLASS="varname"
+>$b</VAR
+> o viceversa, sino que tanto 
+      			<VAR
+CLASS="varname"
+>$a</VAR
+> como <VAR
+CLASS="varname"
+>$b</VAR
+> apuntan al mismo lugar.
+     		</P
+></BLOCKQUOTE
+></DIV
+>
+		</P
+><P
+>&#13;   La misma sintáxis puede ser utilizada con funciones, que devuelven Referencias,
+   y con el operador <VAR
+CLASS="literal"
+>new</VAR
+> (en PHP 4.0.4 o superior):
+<DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4497"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$bar =&amp; new fooclass();<br />$foo =&amp; find_var ($bar);</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+		</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+			El no utilizar el operador <VAR
+CLASS="literal"
+>&#38;</VAR
+> causa que
+			el objeto sea copiado en memoria. Si utilizamos <VAR
+CLASS="literal"
+>$this</VAR
+>
+			en la clase, entonces actuaremos sobre la instancia actual de
+			la clase. Las asignaciones sin  <VAR
+CLASS="literal"
+>&#38;</VAR
+> harán una
+			copia de la instancia (por ejemplo, del objeto) y <VAR
+CLASS="literal"
+>$this</VAR
+>
+			operará en la copia, lo que no siempre es el comportamiento
+			deseado. Usualmente se desea utilizar una sola instancia, debido
+			a razones de memoria y performance de la aplicación.
+			</P
+><P
+>&#13;			Mientras que se puede utilizar <VAR
+CLASS="literal"
+>@</VAR
+> para 
+			<SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>silenciar</I
+></SPAN
+> cualquier error en el constructor
+			utilizando <VAR
+CLASS="literal"
+>@new</VAR
+>, esto no funciona cuando
+			utilizamos <VAR
+CLASS="literal"
+>&#38;new</VAR
+>. Esto es una limitación
+			del Zend Engine y por lo tanto, resultará en un error de sintáxis.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;		Otro uso que se le puede dar a las referencias es el traspaso de variables
+		por-referencia. Esto se logra haciendo que una variable 'local' a la 
+		función y una variable en el script 'referencien' al mismo contenido.
+		Por ejemplo:
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN4511"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+function foo (&amp;$var)<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;$var++;<br />}<br /><br />$a=5;<br />foo ($a);</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    hará que <VAR
+CLASS="varname"
+>$a</VAR
+> valga 6. Esto es posible porque en 
+    la funció <VAR
+CLASS="varname"
+>foo</VAR
+>, la variable <VAR
+CLASS="varname"
+>$var</VAR
+>
+    'referencia' al mismo contenido que la variable <VAR
+CLASS="varname"
+>$a</VAR
+>. Más
+     información acerca de <A
+HREF="language.references.pass.html"
+>paso por referencia</A
+>.
+   </P
+><P
+>&#13;    Un tercer uso de las referencias es el <A
+HREF="language.references.return.html"
+>retorno por referencia</A
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.references.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.references.arent.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Explicando las Referencias</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.references.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Lo que las Referencias no son</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

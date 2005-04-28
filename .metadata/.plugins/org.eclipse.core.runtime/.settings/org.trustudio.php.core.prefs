@@ -1,0 +1,4 @@
+#Tue Apr 26 16:23:45 CEST 2005
+org.trustudio.php.core.buildpathContainer.Pruebas|org.trustudio.php.launching.PHP_CONTAINER=<?xml version\="1.0" encoding\="UTF-8"?>\n<classpath>\n<classpathentry kind\="unknown" path\="org.trustudio.php.launching.phpRuntime/org.trustudio.php.launching.PHPCLIType/1114525416315"/>\n</classpath>\n
+org.trustudio.php.core.buildpathContainer.transporte|org.trustudio.php.launching.PHP_CONTAINER=<?xml version\="1.0" encoding\="UTF-8"?>\n<classpath>\n<classpathentry kind\="unknown" path\="org.trustudio.php.launching.phpRuntime/org.trustudio.php.launching.PHPCLIType/1114525416315"/>\n</classpath>\n
+eclipse.preferences.version=1

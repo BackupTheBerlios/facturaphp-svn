@@ -1,0 +1,745 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones FTP</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="fribidi_log2vis"
+HREF="function.fribidi-log2vis.html"><LINK
+REL="NEXT"
+TITLE="ftp_alloc"
+HREF="function.ftp-alloc.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.fribidi-log2vis.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ftp-alloc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.ftp"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XXXIV. Funciones FTP</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN30983"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Las funciones en esta extensión implementan acceso de
+     cliente a servidores de archivos que entiendan el Protocolo de
+     Transferencia de Archivos (FTP, por sus siglas en Inglés),
+     tal y como se define en
+     <A
+HREF="http://www.faqs.org/rfcs/rfc959"
+TARGET="_top"
+>http://www.faqs.org/rfcs/rfc959</A
+>. Esta
+     extensión tiene como propósito el acceso detallado
+     a un servidor FTP, brindando un amplio rango de control al script
+     que se encuentre ejecutando. Si sólo desea leer desde un
+     archivo o escribir sobre un archivo en un servidor FTP, considere
+     el uso de la <A
+HREF="wrappers.ftp.html"
+>envoltura <VAR
+CLASS="literal"
+>ftp://</VAR
+></A
+>
+     con las <A
+HREF="ref.filesystem.html"
+>funciones del sistema de
+     archivos</A
+>, medio que provee una interfaz más simple
+     e intuitiva.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.requirements"
+>Requerimientos</A
+></H1
+><P
+>No se necesitan bibliotecas externas
+para construir esta extensión</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.installation"
+>Instalación</A
+></H1
+><P
+>&#13;Para usar las funciones FTP con su configuración PHP, debe
+agregar la opción <VAR
+CLASS="option"
+>--enable-ftp</VAR
+> cuando instale PHP 4, o <VAR
+CLASS="option"
+>--with-ftp</VAR
+> cuando use PHP 3.
+ </P
+><P
+>La versión para Windows de
+<VAR
+CLASS="literal"
+>PHP</VAR
+> tiene soporte nativo para esta
+extensión. No se necesita cargar ninguna extensión
+adicional para usar estas funciones.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.resources"
+>Tipos de recursos</A
+></H1
+><P
+>&#13;     Esta extensión usa un tipo de recurso, que es el
+     identificador de enlace de la conexión FTP devuelto
+     por <A
+HREF="function.ftp-connect.html"
+><B
+CLASS="function"
+>ftp_connect()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Estas constantes están
+definidas por esta extensión y estarán disponibles
+solamente cuando la extensión ha sido o bien compilada dentro
+de PHP o grabada dinámicamente en tiempo de ejecución.
+</P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_ASCII</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_TEXT</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_BINARY</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_IMAGE</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_TIMEOUT_SEC</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     Vea <A
+HREF="function.ftp-set-option.html"
+><B
+CLASS="function"
+>ftp_set_option()</B
+></A
+> para más
+     información.
+    </P
+></DD
+></DL
+></DIV
+><P
+>&#13;Las siguientes constantes fueron introducidas en PHP 4.3.0.
+ </P
+><P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_AUTOSEEK</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     Vea <A
+HREF="function.ftp-set-option.html"
+><B
+CLASS="function"
+>ftp_set_option()</B
+></A
+> para más
+     información.
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_AUTORESUME</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;Determinar automáticamente la posición de
+continuación y la posición de comienzo para peticiones
+GET y PUT (funciona únicamente si FTP_AUTOSEEK está
+habilitado)
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_FAILED</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     La transferencia asincrónica ha fallado
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_FINISHED</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     La transferencia asincrónica ha terminado
+    </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>FTP_MOREDATA</B
+></TT
+> 
+    (<A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>)</DT
+><DD
+><P
+>&#13;     La transferencia asincrónica está aun activa
+    </P
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ftp.examples"
+>Ejemplos</A
+></H1
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN31080"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de FTP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// establecer una conexion basica<br /></font><font color="#0000BB">$id_con </font><font color="#007700">= </font><font color="#0000BB">ftp_connect</font><font color="#007700">(</font><font color="#0000BB">$servidor_ftp</font><font color="#007700">); <br /><br /></font><font color="#FF8000">// inicio de sesion con nombre de usuario y contrasenya<br /></font><font color="#0000BB">$resultado_login </font><font color="#007700">= </font><font color="#0000BB">ftp_login</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">, </font><font color="#0000BB">$nombre_usuario_ftp</font><font color="#007700">, </font><font color="#0000BB">$contrasenya_ftp</font><font color="#007700">); <br /><br /></font><font color="#FF8000">// chequear la conexion<br /></font><font color="#007700">if ((!</font><font color="#0000BB">$id_con</font><font color="#007700">) || (!</font><font color="#0000BB">$resultado_login</font><font color="#007700">)) { <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&amp;iexcl;La conexi&amp;oacute;n FTP ha fallado!"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Se ha intentado la conexion con $servidor_ftp para el " </font><font color="#007700">.<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#DD0000">"usuario $nombre_usuario_ftp"</font><font color="#007700">; <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;exit; <br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Conectado con $servidor_ftp, para el usuario $nombre_usuario_ftp"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /></font><font color="#FF8000">// cargar el archivo<br /></font><font color="#0000BB">$carga </font><font color="#007700">= </font><font color="#0000BB">ftp_put</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">, </font><font color="#0000BB">$archivo_destino</font><font color="#007700">, </font><font color="#0000BB">$archivo_fuente</font><font color="#007700">, </font><font color="#0000BB">FTP_BINARY</font><font color="#007700">); <br /><br /></font><font color="#FF8000">// chequear el status de la carga<br /></font><font color="#007700">if (!</font><font color="#0000BB">$carga</font><font color="#007700">) { <br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"&amp;iexcl;La carga FTP ha fallado!"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"Se ha cargado $archivo_fuente a $servidor_ftp como $archivo_destino"</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /></font><font color="#FF8000">// cierra la secuencia FTP<br /></font><font color="#0000BB">ftp_close</font><font color="#007700">(</font><font color="#0000BB">$id_con</font><font color="#007700">); <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.ftp-alloc.html"
+>ftp_alloc</A
+>&nbsp;--&nbsp;Reserva espacio para que un archivo sea cargado.</DT
+><DT
+><A
+HREF="function.ftp-cdup.html"
+>ftp_cdup</A
+>&nbsp;--&nbsp;Cambia al directorio padre</DT
+><DT
+><A
+HREF="function.ftp-chdir.html"
+>ftp_chdir</A
+>&nbsp;--&nbsp;Cambia de directorio en un servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-chmod.html"
+>ftp_chmod</A
+>&nbsp;--&nbsp;Establecer permisos en un archivo via FTP</DT
+><DT
+><A
+HREF="function.ftp-close.html"
+>ftp_close</A
+>&nbsp;--&nbsp;Cierra una conexión FTP</DT
+><DT
+><A
+HREF="function.ftp-connect.html"
+>ftp_connect</A
+>&nbsp;--&nbsp;Establece una conexión FTP</DT
+><DT
+><A
+HREF="function.ftp-delete.html"
+>ftp_delete</A
+>&nbsp;--&nbsp;Elimina un archivo en el servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-exec.html"
+>ftp_exec</A
+>&nbsp;--&nbsp;Solicita la ejecución de un programa en el
+    servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-fget.html"
+>ftp_fget</A
+>&nbsp;--&nbsp;Descarga un archivo desde el servidor FTP y lo guarda
+    en un archivo abierto</DT
+><DT
+><A
+HREF="function.ftp-fput.html"
+>ftp_fput</A
+>&nbsp;--&nbsp;Carga un archivo abierto al servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-get-option.html"
+>ftp_get_option</A
+>&nbsp;--&nbsp;Recupera varios comportamientos de tiempo de
+    ejecución de la secuencia FTP actual</DT
+><DT
+><A
+HREF="function.ftp-get.html"
+>ftp_get</A
+>&nbsp;--&nbsp;Descarga un archivo desde el servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-login.html"
+>ftp_login</A
+>&nbsp;--&nbsp;Comienza la sesion en una conexión FTP</DT
+><DT
+><A
+HREF="function.ftp-mdtm.html"
+>ftp_mdtm</A
+>&nbsp;--&nbsp;Devuelve la última hora de modificación
+    del archivo dado</DT
+><DT
+><A
+HREF="function.ftp-mkdir.html"
+>ftp_mkdir</A
+>&nbsp;--&nbsp;Crea un directorio</DT
+><DT
+><A
+HREF="function.ftp-nb-continue.html"
+>ftp_nb_continue</A
+>&nbsp;--&nbsp;Continúa recuperando/enviando un archivo (modo
+    no-bloqueo)</DT
+><DT
+><A
+HREF="function.ftp-nb-fget.html"
+>ftp_nb_fget</A
+>&nbsp;--&nbsp;Recupera un archivo desde el servidor FTP y lo
+    escribe sobre un archivo abierto (modo no-bloqueo)</DT
+><DT
+><A
+HREF="function.ftp-nb-fput.html"
+>ftp_nb_fput</A
+>&nbsp;--&nbsp;Almacena un archivo desde un archivo abierto en el
+    servidor FTP (modo no-bloqueo)</DT
+><DT
+><A
+HREF="function.ftp-nb-get.html"
+>ftp_nb_get</A
+>&nbsp;--&nbsp;Recupera un archivo desde el servidor FTP y lo
+    escribe sobre un archivo local (modo no-bloqueo)</DT
+><DT
+><A
+HREF="function.ftp-nb-put.html"
+>ftp_nb_put</A
+>&nbsp;--&nbsp;Almacena un archivo en el servidor FTP (modo
+    no-bloqueo)</DT
+><DT
+><A
+HREF="function.ftp-nlist.html"
+>ftp_nlist</A
+>&nbsp;--&nbsp;Devuelve una lista de archivos en el directorio
+    dado</DT
+><DT
+><A
+HREF="function.ftp-pasv.html"
+>ftp_pasv</A
+>&nbsp;--&nbsp;Activa o desactiva el modo pasivo.</DT
+><DT
+><A
+HREF="function.ftp-put.html"
+>ftp_put</A
+>&nbsp;--&nbsp;Carga un archivo al servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-pwd.html"
+>ftp_pwd</A
+>&nbsp;--&nbsp;Devuelve el nombre del directorio actual</DT
+><DT
+><A
+HREF="function.ftp-quit.html"
+>ftp_quit</A
+>&nbsp;--&nbsp;Cierra una conexión FTP</DT
+><DT
+><A
+HREF="function.ftp-raw.html"
+>ftp_raw</A
+>&nbsp;--&nbsp;Envía un comando arbitrario a un servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-rawlist.html"
+>ftp_rawlist</A
+>&nbsp;--&nbsp;Devuelve una lista detallada de archivos en el
+    directorio dado</DT
+><DT
+><A
+HREF="function.ftp-rename.html"
+>ftp_rename</A
+>&nbsp;--&nbsp;Renombra un archivo en el servidor FTP</DT
+><DT
+><A
+HREF="function.ftp-rmdir.html"
+>ftp_rmdir</A
+>&nbsp;--&nbsp;Borra un directorio</DT
+><DT
+><A
+HREF="function.ftp-set-option.html"
+>ftp_set_option</A
+>&nbsp;--&nbsp;Establecer varias opciones FTP de tiempo de
+    ejecución</DT
+><DT
+><A
+HREF="function.ftp-site.html"
+>ftp_site</A
+>&nbsp;--&nbsp;Envía un comando SITE al servidor</DT
+><DT
+><A
+HREF="function.ftp-size.html"
+>ftp_size</A
+>&nbsp;--&nbsp;Devuelve el tamaño del archivo
+    dado</DT
+><DT
+><A
+HREF="function.ftp-ssl-connect.html"
+>ftp_ssl_connect</A
+>&nbsp;--&nbsp;Abre una conexión segura SSL-FTP</DT
+><DT
+><A
+HREF="function.ftp-systype.html"
+>ftp_systype</A
+>&nbsp;--&nbsp;
+     Devuelve el identificador de tipo de sistema del servidor FTP remoto.
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.fribidi-log2vis.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ftp-alloc.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>fribidi_log2vis</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ftp_alloc</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

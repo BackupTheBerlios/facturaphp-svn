@@ -1,0 +1,236 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>dba_popen</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de la capa de abstraccion de bases de datos (dbm-style)"
+HREF="ref.dba.html"><LINK
+REL="PREVIOUS"
+TITLE="dba_optimize"
+HREF="function.dba-optimize.html"><LINK
+REL="NEXT"
+TITLE="dba_replace"
+HREF="function.dba-replace.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dba-optimize.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.dba-replace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.dba-popen"
+></A
+>dba_popen</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN17048"
+></A
+><P
+>    (PHP 3&#62;= 3.0.8, PHP 4 , PHP 5)</P
+>dba_popen&nbsp;--&nbsp;Apertura persistente de una base de datos</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN17051"
+></A
+><H2
+>Descripcion</H2
+>int <B
+CLASS="methodname"
+>dba_popen</B
+> ( string path, string mode, string handler [, ...])<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>dba_popen()</B
+> establece una instancia persistente para
+     <VAR
+CLASS="parameter"
+>path</VAR
+> con <VAR
+CLASS="parameter"
+>mode</VAR
+> usando
+     <VAR
+CLASS="parameter"
+>handler</VAR
+>.</P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>path</VAR
+> normalmente es el "path" en el sistema de
+     ficheros.</P
+><P
+>&#13;    <VAR
+CLASS="parameter"
+>mode</VAR
+> es "r" para acceso de lectura, "w" para
+    lectura/escritura de una base de datos ya existente, "c" para lectura/escritura
+    y creacion de una base datos si esta no existe, y "n" para crear,
+    truncar y lectura/escritura.</P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>handler</VAR
+> es el nombre del manejador (handler)
+     que sera usado para el acceso al <VAR
+CLASS="parameter"
+>path</VAR
+>. Es pasado
+     como un parametro opcional a <B
+CLASS="function"
+>dba_popen()</B
+> y puede
+     usarse en lugar de ella.</P
+><P
+>&#13;     <B
+CLASS="function"
+>dba_popen()</B
+> devuelve un valor positivo de handler
+     o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>, en el caso de que la apertura de la base de datos se
+     realice o si falla, respectivamente.</P
+><P
+>&#13;     Ver tambien:
+     <A
+HREF="function.dba-open.html"
+><B
+CLASS="function"
+>dba_open()</B
+></A
+>
+     <A
+HREF="function.dba-close.html"
+><B
+CLASS="function"
+>dba_close()</B
+></A
+>
+	</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dba-optimize.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.dba-replace.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dba_optimize</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.dba.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>dba_replace</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

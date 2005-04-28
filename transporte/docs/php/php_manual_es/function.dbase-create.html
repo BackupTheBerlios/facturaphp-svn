@@ -1,0 +1,256 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>dbase_create</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para dBase"
+HREF="ref.dbase.html"><LINK
+REL="PREVIOUS"
+TITLE="dbase_close"
+HREF="function.dbase-close.html"><LINK
+REL="NEXT"
+TITLE="dbase_delete_record"
+HREF="function.dbase-delete-record.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.dbase-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.dbase-delete-record.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.dbase-create"
+></A
+>dbase_create</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN17792"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>dbase_create&nbsp;--&nbsp;crea una base de datos dBase</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN17795"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>dbase_create</B
+> ( string filename, array fields)<BR
+></BR
+><P
+>&#13;	El parámetro <VAR
+CLASS="parameter"
+>fields</VAR
+> es un array de arrays,
+	cada uno de los cuales describe el formato de un campo de la base
+	de datos. Cada campo consiste de un nombre, un carácter que indica
+	el tipo de campo, una longitud, y una precisión.</P
+><P
+>&#13;	Los tipos de campos disponibles son:
+	<P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+>L</DT
+><DD
+><P
+>&#13;	   Lógico. No tienen longitud ni precisión.</P
+></DD
+><DT
+>M</DT
+><DD
+><P
+>&#13;	   Memo. (Sin soporte en PHP.)
+	   No tienen longitud ni precisión.</P
+></DD
+><DT
+>D</DT
+><DD
+><P
+>&#13;	   Fecha (almacenada como AAAAMMDD). No tienen longitud ni
+	   precisión.</P
+></DD
+><DT
+>N</DT
+><DD
+><P
+>&#13;	   Número. Tienen longitud y precisión (número de cifras tras el
+	   punto decimal).</P
+></DD
+><DT
+>C</DT
+><DD
+><P
+>&#13;	   Cadena.</P
+></DD
+></DL
+></DIV
+></P
+><P
+>&#13;	Si la base de datos se crea con éxito, se devuelve un
+	dbase_identifier; en caso contrario, devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN17832"
+></A
+><P
+><B
+>Ejemplo 1. Crear un fichero dBase</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+// "database" name<br />$dbname = "/tmp/test.dbf";<br /><br />// database "definition"<br />$def =<br />&nbsp;&nbsp;&nbsp;&nbsp;array(<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array("date",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"D"),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array("name",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"C",&nbsp;&nbsp;50),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array("age",&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"N",&nbsp;&nbsp;&nbsp;3, 0),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array("email",&nbsp;&nbsp;&nbsp;&nbsp;"C", 128),<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array("ismember", "L")<br />&nbsp;&nbsp;&nbsp;&nbsp;);<br /><br />// creation<br />if (!dbase_create($dbname, $def))<br />&nbsp;&nbsp;&nbsp;&nbsp;print "&lt;strong&gt;Error!&lt;/strong&gt;";</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.dbase-close.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.dbase-delete-record.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>dbase_close</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.dbase.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>dbase_delete_record</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

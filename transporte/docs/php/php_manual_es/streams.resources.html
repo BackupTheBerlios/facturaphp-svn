@@ -1,0 +1,315 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Las Secuencias como Recursos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="API de Secuencia para Autores de Extensiones PHP"
+HREF="streams.html"><LINK
+REL="PREVIOUS"
+TITLE="Conceptos Básicos de Secuencias"
+HREF="streams.basics.html"><LINK
+REL="NEXT"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.basics.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 44. API de Secuencia para Autores de Extensiones PHP</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="streams.resources"
+>Las Secuencias como Recursos</A
+></H1
+><P
+>&#13;   Todas las secuencias son registradas como recursos cuando son
+   creadas. Esto asegura que sean limpiadas apropiadamente incluso si
+   ocurre un error fatal. Todas las funciones del sistema de archivos
+   en PHP operan sobre recursos de secuencia - lo que quiere decir que
+   sus extensiones pueden aceptar apuntadores de archivo PHP normales
+   como parámetros también, y devolver secuencias desde
+   sus funciones. La API de secuencias hace este proceso tan simple
+   como es posible:
+  </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN120459"
+></A
+><P
+><B
+>Ejemplo 44-2. Cómo aceptar una secuencia como
+      parámetro</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="c"
+>PHP_FUNCTION(ejemplo_escribir_hola)
+{
+    zval *zstream;
+    php_stream *stream;
+    
+    if (FAILURE == zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "r", &#38;zstream))
+        return;
+    
+    php_stream_from_zval(stream, &#38;zstream);
+
+    /* ahora puede usar la secuencia. Sin embargo, usted no es el
+       "duenyo" de la secuencia, lo es el script. Eso quiere decir que
+       usted NO DEBE cerrar la secuencia, ya que producira un fallo en
+       PHP! */
+
+    php_stream_write(stream, "hola\n");
+        
+    RETURN_TRUE();
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN120463"
+></A
+><P
+><B
+>Ejemplo 44-3. Cómo devolver una secuencia desde una
+      función</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="c"
+>PHP_FUNCTION(ejemplo_abrir_pagina_php)
+{
+    php_stream *stream;
+    
+    stream = php_stream_open_wrapper("http://www.php.net", "rb", REPORT_ERRORS, NULL);
+    
+    php_stream_to_zval(stream, return_value);
+
+    /* despues de este punto, el duenyo de la secuencia es el
+       script. Si la cierra ahora, hara que PHP falle! */
+
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Ya que las secuencias son limpiadas automáticamente, es
+   tentador pensar que tenemos la oportunidad de ser programadores
+   mediocres y no preocuparnos por cerrar las secuencias cuando
+   hayamos terminado con ellas. Aunque tal enfoque podría
+   funcionar, no es una buena idea por varias razones: las secuencias
+   mantienen bloqueos sobre recursos del sistema mientras están
+   abiertas, así que dejar un archivo abierto después
+   que ha terminado de usarlo puede prevenir que otros procesos tengan
+   acceso a los recursos. Si un script maneja un gran número de
+   archivos, el conjunto de los recursos usados, tanto en
+   términos de memoria y el exagerado número de archivos
+   abiertos, puede producir que las peticiones al servidor web
+   fallen. Suena mal, ¿no es así? La API de secuencias
+   incluye algo de magia que le ayuda a mantener su código
+   limpio - si una secuencia no es cerrada por su código cuando
+   debería hacerlo, encontrará un poco de
+   información útil de depuración en su registro
+   de errores del servidor web.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+    Siempre use una versión de PHP compilada para
+    depuración cuando desarrolle una extensión
+    (<VAR
+CLASS="option"
+>--enable-debug</VAR
+> cuando ejecute configure), ya que
+    se ha hecho un gran esfuerzo para advertirle sobre fugas de
+    memoria y secuencias.
+   </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   En algunos casos, es útil mantener una secuencia abierta
+   durante la duración de una petición, para actuar como
+   un registro o rastrear un archivo, por ejemplo. Escribir el
+   código necesario para limpiar de manera segura ese tipo de
+   secuencia no es difícil, pero se trata de varias
+   líneas de código que no es escrictamente
+   necesario. Para evitarse los problemas de escribir aquél
+   código, puede marcar una secuencia para que sea apta para
+   una auto-limpieza. Lo que quiere decir esto es que la API de
+   secuencias no emitirá una advertencia cuando sea momento de
+   auto-limpiar una secuencia. Para hacer esto, puede usar
+   <B
+CLASS="function"
+>php_stream_auto_cleanup()</B
+>.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.basics.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Conceptos Básicos de Secuencias</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="streams.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Referencia de la API Común de Secuencias</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

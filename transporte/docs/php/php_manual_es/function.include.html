@@ -1,0 +1,691 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>include</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Estructuras de Control"
+HREF="control-structures.html"><LINK
+REL="PREVIOUS"
+TITLE="require"
+HREF="function.require.html"><LINK
+REL="NEXT"
+TITLE="require_once"
+HREF="function.require-once.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.require.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 11. Estructuras de Control</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.require-once.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="function.include"
+><A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+></A
+></H1
+><P
+>&#13;   La sentencia <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> incluye y evalúa
+   el archivo especificado.
+   </P
+><P
+>&#13;   Esta documentación también se aplica a la función
+   <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+>. <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+> y
+   <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> son idénticas en todos los aspectos
+   excepto en el modo de actuar ante un
+   error. <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> produce un <A
+HREF="phpdevel-errors.html#internal.e-warning"
+>Warning</A
+> mientras que
+   <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+> produce un <A
+HREF="phpdevel-errors.html#internal.e-error"
+> Error Fatal</A
+>. En otras palabras,
+   no dude en utilizar <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+> si quiere que un
+   fichero no encontrado cuelgue el procesamiento de la
+   página. <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> no se comporta de esta manera,
+   el script seguirá funcionando de todas maneras. Asegurarse que
+   <A
+HREF="ini.sect.path-directory.html#ini.include-path"
+>include_path</A
+> este
+   configurado bien.
+  </P
+><P
+>&#13;   Cuando un fichero es incluido, el código que contiene hereda la
+   <A
+HREF="language.variables.scope.html"
+>variable scope</A
+> de
+   la linea en donde el include ocurre. Cualquier variable disponible
+   en esa linea en el fichero desde donde se hace la inclusión estará
+   disponible en el fichero incluido a partir de ese momento.
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4156"
+></A
+><P
+><B
+>Ejemplo 11-3. Ejemplo básico de la función<A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+vars.php<br /><font color="#0000BB">&lt;?php<br /><br />$color </font><font color="#007700">= </font><font color="#DD0000">'green'</font><font color="#007700">;<br /></font><font color="#0000BB">$fruit </font><font color="#007700">= </font><font color="#DD0000">'apple'</font><font color="#007700">;<br /><br /></font><font color="#0000BB">?&gt;<br /></font><br />test.php<br /><font color="#0000BB">&lt;?php<br /><br /></font><font color="#007700">echo </font><font color="#DD0000">"A $color $fruit"</font><font color="#007700">; </font><font color="#FF8000">// A<br /><br /></font><font color="#007700">include </font><font color="#DD0000">'vars.php'</font><font color="#007700">;<br /><br />echo </font><font color="#DD0000">"A $color $fruit"</font><font color="#007700">; </font><font color="#FF8000">// A green apple<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Si la inclusión ocurre dentro de una función en el fichero donde se
+   incluye, todo el código contenido en el fichero incluido se
+   comportará como si hubiese sido definido dentro de esta función.
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4162"
+></A
+><P
+><B
+>Ejemplo 11-4. Incluyendo desde funciones</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#007700">function </font><font color="#0000BB">foo</font><font color="#007700">()<br />{<br />&nbsp;&nbsp;&nbsp;&nbsp;global </font><font color="#0000BB">$color</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;include </font><font color="#DD0000">'vars.php'</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"A $color $fruit"</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">/* vars.php is in the scope of foo() so&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*<br /> * $fruit is NOT available outside of this&nbsp;&nbsp;*<br /> * scope.&nbsp;&nbsp;$color is because we declared it *<br /> * as global.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/<br /><br /></font><font color="#0000BB">foo</font><font color="#007700">();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// A green apple<br /></font><font color="#007700">echo </font><font color="#DD0000">"A $color $fruit"</font><font color="#007700">;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// A green<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Cuando un fichero es incluido, el intérprete sale del modo
+   PHP y entra en modo HTML al principio del archivo referenciado, y
+   vuelve de nuevo al modo PHP al final. Por esta razón,
+   cualquier código dentro del archivo referenciado que debiera
+   ser ejecutado como código PHP debe ser encerrado dentro de
+   <A
+HREF="language.basic-syntax.html#language.basic-syntax.phpmode"
+> etiquetas
+    válidas de comienzo y fin de PHP</A
+>.
+  </P
+><P
+>&#13;   Si "<A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>URL fopen wrappers</A
+>"
+    esta activada en PHP (como está en la configuración
+    inicial), se puede especificar el fichero que se va a incluir
+    usando una URL (via HTTP u otro mecanismo soportado, consultar
+    <A
+HREF="wrappers.html"
+>Apéndice L</A
+>) en vez de un fichero local. Si el
+    servidor destino interpreta el fichero destino como código PHP,
+    variables pueden ser mandadas al fichero incluido usando una
+    cadena URL de petición, tal como se hace con HTTP GET. Esto no es
+    lo mismo que incluir un fichero y que este fichero herede las
+    variables del fichero padre; el script es ejecutado en el servidor
+    remoto y el resultado es incluido en en script local.
+  </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>Versiones de
+<VAR
+CLASS="literal"
+>PHP</VAR
+> para Windows anteriores a 4.3.0, no soportan el
+acceso remoto a archivos para esta función, no
+funcionará ni activando siquiera <A
+HREF="ref.filesystem.html#ini.allow-url-fopen"
+>allow_url_fopen</A
+>.
+</P
+></TD
+></TR
+></TABLE
+></DIV
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4175"
+></A
+><P
+><B
+>Ejemplo 11-5. <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> a traves de HTTP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">/* This example assumes that www.example.com is configured to parse .php <br /> * files and not .txt files. Also, 'Works' here means that the variables <br /> * $foo and $bar are available within the included file.*/<br /><br />// Won't work; file.txt wasn't handled by www.example.com as PHP<br /></font><font color="#007700">include </font><font color="#DD0000">'http://www.example.com/file.txt?foo=1&amp;bar=2'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Won't work; looks for a file named 'file.php?foo=1&amp;bar=2' on the<br />// local filesystem.<br /></font><font color="#007700">include </font><font color="#DD0000">'file.php?foo=1&amp;bar=2'</font><font color="#007700">;<br /><br /></font><font color="#FF8000">// Works.<br /></font><font color="#007700">include </font><font color="#DD0000">'http://www.example.com/file.php?foo=1&amp;bar=2'</font><font color="#007700">;<br /><br /></font><font color="#0000BB">$foo </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br /></font><font color="#0000BB">$bar </font><font color="#007700">= </font><font color="#0000BB">2</font><font color="#007700">;<br />include </font><font color="#DD0000">'file.txt'</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">// Works.<br /></font><font color="#007700">include </font><font color="#DD0000">'file.php'</font><font color="#007700">;&nbsp;&nbsp;</font><font color="#FF8000">// Works.<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Ver también <A
+HREF="features.remote-files.html"
+>Ficheros
+     remotos</A
+>, <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+> y
+     <A
+HREF="function.file.html"
+><B
+CLASS="function"
+>file()</B
+></A
+> para obtener información adicional.
+   </P
+><P
+>&#13;   Ya que <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> y <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+>
+   son contructores especiales del lenguaje, se deben de incluir
+   dentro del bloque de una sentencia, si están dentro de un bloque
+   condicional.
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4186"
+></A
+><P
+><B
+>Ejemplo 11-6. include() y bloques condicionales</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// This is WRONG and will not work as desired.<br /></font><font color="#007700">if (</font><font color="#0000BB">$condition</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;include </font><font color="#0000BB">$file</font><font color="#007700">;<br />else<br />&nbsp;&nbsp;&nbsp;&nbsp;include </font><font color="#0000BB">$other</font><font color="#007700">;<br /><br /><br /></font><font color="#FF8000">// This is CORRECT.<br /></font><font color="#007700">if (</font><font color="#0000BB">$condition</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;include </font><font color="#0000BB">$file</font><font color="#007700">;<br />} else {<br />&nbsp;&nbsp;&nbsp;&nbsp;include </font><font color="#0000BB">$other</font><font color="#007700">;<br />}<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   Es posible ejecutar una sentencia <VAR
+CLASS="literal"
+>return</VAR
+> dentro
+   de un archivo incluido para terminar el procesado de ese archivo y
+   volver al archivo de comandos que lo llamó. Tambien es
+   posible retornar valores de ficheros incluidos. Se puede coger el
+   valor de la llamada "include" como se haría con una función normal.
+  </P
+><P
+>&#13;   <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     En PHP3, <VAR
+CLASS="literal"
+>return</VAR
+> no puede aparecer dentro de un
+     bloque a menos que sea un bloque de función, en el cual
+     <VAR
+CLASS="literal"
+>return</VAR
+> se aplica a esa función y no al
+     archivo completo.
+    </P
+></BLOCKQUOTE
+></DIV
+>
+  </P
+><P
+>&#13;   <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4197"
+></A
+><P
+><B
+>Ejemplo 11-7. <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+> y <A
+HREF="function.return.html"
+><B
+CLASS="function"
+>return()</B
+></A
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+return.php<br /><font color="#0000BB">&lt;?php<br /><br />$var </font><font color="#007700">= </font><font color="#DD0000">'PHP'</font><font color="#007700">;<br /><br />return </font><font color="#0000BB">$var</font><font color="#007700">;<br /><br /></font><font color="#0000BB">?&gt;<br /></font><br />noreturn.php<br /><font color="#0000BB">&lt;?php<br /><br />$var </font><font color="#007700">= </font><font color="#DD0000">'PHP'</font><font color="#007700">;<br /><br /></font><font color="#0000BB">?&gt;<br /></font><br />testreturns.php<br /><font color="#0000BB">&lt;?php<br /><br />$foo </font><font color="#007700">= include </font><font color="#DD0000">'return.php'</font><font color="#007700">;<br /><br />echo </font><font color="#0000BB">$foo</font><font color="#007700">; </font><font color="#FF8000">// prints 'PHP'<br /><br /></font><font color="#0000BB">$bar </font><font color="#007700">= include </font><font color="#DD0000">'noreturn.php'</font><font color="#007700">;<br /><br />echo </font><font color="#0000BB">$bar</font><font color="#007700">; </font><font color="#FF8000">// prints 1<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   <VAR
+CLASS="literal"
+>$bar</VAR
+> es igual a <VAR
+CLASS="literal"
+>1</VAR
+> porque la
+   inclusión salio bien. Notar la diferencia entre los dos ejemplos
+   anteriores. el primero usa <A
+HREF="function.return.html"
+><B
+CLASS="function"
+>return()</B
+></A
+> dentro del
+   fichero incluido y el segundo no. Otras maneras de incluir ficheros
+   en variables es con <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>,
+   <A
+HREF="function.file.html"
+><B
+CLASS="function"
+>file()</B
+></A
+> ó usando <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+>con
+   <A
+HREF="ref.outcontrol.html"
+>Funciones de control de
+    salida</A
+>.
+  </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Puesto que esto es
+una construcción del lenguaje y no una función, no puede
+ser llamado usando <A
+HREF="functions.variable-functions.html"
+>funciones
+variables</A
+></P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;   Ver también <A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+>,
+   <A
+HREF="function.require-once.html"
+><B
+CLASS="function"
+>require_once()</B
+></A
+>,
+   <A
+HREF="function.include-once.html"
+><B
+CLASS="function"
+>include_once()</B
+></A
+>, <A
+HREF="function.readfile.html"
+><B
+CLASS="function"
+>readfile()</B
+></A
+>,
+   <A
+HREF="function.virtual.html"
+><B
+CLASS="function"
+>virtual()</B
+></A
+>, y <A
+HREF="ini.sect.path-directory.html#ini.include-path"
+>include_path</A
+>.
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.require.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.require-once.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.require.html"
+><B
+CLASS="function"
+>require()</B
+></A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="control-structures.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.require-once.html"
+><B
+CLASS="function"
+>require_once()</B
+></A
+></TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

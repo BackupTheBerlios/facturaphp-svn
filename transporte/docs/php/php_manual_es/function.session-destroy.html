@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>session_destroy</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones para el manejo de sesiones"
+HREF="ref.session.html"><LINK
+REL="PREVIOUS"
+TITLE="session_decode"
+HREF="function.session-decode.html"><LINK
+REL="NEXT"
+TITLE="session_encode"
+HREF="function.session-encode.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.session-decode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.session-encode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.session-destroy"
+></A
+>session_destroy</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN96233"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>session_destroy&nbsp;--&nbsp;Destruye todos los datos guardados en una sesión</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN96236"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>session_destroy</B
+> ( void )<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>session_destroy()</B
+> destruye todos los datos
+	 asociados con la sesión actual. No destruye ninguna de
+	 las variables globales asociadas a la sesión ni la
+	 cookie.
+    </P
+><P
+>&#13;     Esta función devuelve <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si se ha destruido la
+	 sesión correctamente y <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si ha habido algún
+	 problema al intentarlo.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96248"
+></A
+><P
+><B
+>Ejemplo 1. Destrucción de una sesión</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// Inicializa de la sesi&amp;oacute;n.<br />// Si est&amp;aacute; usando session_name("algo"), &amp;iexcl;no lo olvide ahora!<br /></font><font color="#0000BB">session_start</font><font color="#007700">();<br /></font><font color="#FF8000">// Destruye todas las variables de la sesi&amp;oacute;n<br /></font><font color="#0000BB">session_unset</font><font color="#007700">();<br /></font><font color="#FF8000">// Finalmente, destruye la sesi&amp;oacute;n<br /></font><font color="#0000BB">session_destroy</font><font color="#007700">();<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN96252"
+></A
+><P
+><B
+>Ejemplo 2. Destrucción de una sesión con $_SESSION</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /><br /></font><font color="#FF8000">// Inicializa la sesi&amp;oacute;n.<br />// Si est&amp;aacute; usando session_name("algo"), &amp;iexcl;no lo olvide ahora!<br /></font><font color="#0000BB">session_start</font><font color="#007700">();<br /></font><font color="#FF8000">// Destruye todas las variables de la sesi&amp;oacute;n<br /></font><font color="#0000BB">$_SESSION </font><font color="#007700">= array();<br /></font><font color="#FF8000">// Finalmente, destruye la sesi&amp;oacute;n<br /></font><font color="#0000BB">session_destroy</font><font color="#007700">();<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.session-decode.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.session-encode.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>session_decode</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.session.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>session_encode</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

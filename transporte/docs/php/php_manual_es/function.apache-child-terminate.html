@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>apache_child_terminate</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones específicas de Apache"
+HREF="ref.apache.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones específicas de Apache"
+HREF="ref.apache.html"><LINK
+REL="NEXT"
+TITLE="apache_get_modules"
+HREF="function.apache-get-modules.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.apache.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.apache-get-modules.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.apache-child-terminate"
+></A
+>apache_child_terminate</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6033"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.5, PHP 5)</P
+>apache_child_terminate&nbsp;--&nbsp;Terminar un proceso de apache una vez concluido el requerimiento en ejecució</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6036"
+></A
+><H2
+>Descripcíon</H2
+>bool <B
+CLASS="methodname"
+>apache_child_terminate</B
+> ( void )<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>apache_child_terminate()</B
+> registrará el proceso Apache que esté ejecutando el requeriminto PHP actual para su terminacióon una vez que la ejecución del código haya finalizado. Puede ser utilizado para terminar un proceso una vez que un script con un alto consumo de memoria haya sido ejecutado, dado que la memoria únicamente sera liberada de forma interna, pero no será devuelta al sistema operativo.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      La disponibilidad de esta característica se controla mediante la directiva <VAR
+CLASS="option"
+>child_terminate</VAR
+> <TT
+CLASS="filename"
+>php.ini</TT
+>, que por defecto está establecida como <VAR
+CLASS="literal"
+>off</VAR
+> (desactivada).
+     </P
+><P
+>&#13;      Esta característica tampoco está disponible en las versiones "multi-thread" de Apache, como por ejemplo la versión win32.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Véase también la función <A
+HREF="function.exit.html"
+><B
+CLASS="function"
+>exit()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.apache.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.apache-get-modules.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones específicas de Apache</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.apache.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>apache_get_modules</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>getenv</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="get_required_files"
+HREF="function.get-required-files.html"><LINK
+REL="NEXT"
+TITLE="getlastmod"
+HREF="function.getlastmod.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-required-files.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.getlastmod.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.getenv"
+></A
+>getenv</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN85307"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>getenv&nbsp;--&nbsp;Obtiene el valor de una variable de entorno</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN85310"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>getenv</B
+> ( string varname)<BR
+></BR
+><P
+>&#13;     Devuelve el valor de la variable de entorno 
+     <VAR
+CLASS="parameter"
+>varname</VAR
+>, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso de error.
+
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN85321"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>$ip = getenv("REMOTE_ADDR"); // get the ip number of the user</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+><P
+>&#13;     Puede ver una lista de todas las variables de entorno  
+     utilizando <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+>. Puede encontrar
+     el significado de la mayoría echando un vistazo en 
+     <A
+HREF="http://hoohoo.ncsa.uiuc.edu/cgi/"
+TARGET="_top"
+>CGI
+     specification (especificación CGI)</A
+>, especialmente en <A
+HREF="http://hoohoo.ncsa.uiuc.edu/cgi/env.html"
+TARGET="_top"
+>page on environmental
+     variables (página de variables de entorno)</A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-required-files.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.getlastmod.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_required_files</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>getlastmod</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

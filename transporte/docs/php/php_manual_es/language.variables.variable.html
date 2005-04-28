@@ -1,0 +1,343 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Variables variables</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Variables"
+HREF="language.variables.html"><LINK
+REL="PREVIOUS"
+TITLE="Ambito de las variables"
+HREF="language.variables.scope.html"><LINK
+REL="NEXT"
+TITLE="Variables externas a PHP"
+HREF="language.variables.external.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.variables.scope.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 7. Variables</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.variables.external.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.variables.variable"
+>Variables variables</A
+></H1
+><P
+>&#13;   A veces es conveniente tener nombres de variables variables.  Dicho
+   de otro modo, son nombres de variables que se pueden establecer y
+   usar dinámicamente.  Una variable normal se establece con
+   una sentencia como:
+   </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3064"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$a </font><font color="#007700">= </font><font color="#DD0000">"hello"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;   Una variable variable toma el valor de una variable y lo trata como
+   el nombre de una variable.  En el ejemplo anterior,
+   <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>hello</I
+></SPAN
+>, se puede usar como el nombre de una
+   variable utilizando dos signos de dólar. p.ej.
+  </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3068"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">$</font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#DD0000">"world"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;   En este momento se han definido y almacenado dos variables en el
+   árbol de símbolos de PHP: <VAR
+CLASS="varname"
+>$a</VAR
+>, que
+   contiene "hello", y <VAR
+CLASS="varname"
+>$hello</VAR
+>, que contiene
+   "world".  Es más, esta sentencia:
+  </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3073"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo </font><font color="#DD0000">"$a </font><font color="#007700">${</font><font color="#DD0000">$a</font><font color="#007700">}</font><font color="#DD0000">"</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;   produce el mismo resultado que:
+  </P
+><DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN3076"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>&#60;?php
+echo "$a $hello";
+?&#62;</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+><P
+>&#13;   p.ej. ambas producen el resultado: <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>hello
+   world</I
+></SPAN
+>.
+  </P
+><P
+>&#13;    Para usar variables variables con matrices, hay que resolver un
+    problema de ambigüedad.  Si se escribe <VAR
+CLASS="varname"
+>$$a[1]</VAR
+>
+    el intérprete necesita saber si nos referimos a utilizar
+    <VAR
+CLASS="varname"
+>$a[1]</VAR
+> como una variable, o si se
+    pretendía utilizar <VAR
+CLASS="varname"
+>$$a</VAR
+> como variable y
+    el índice [1] como índice de dicha variable.  La
+    sintaxis para resolver esta ambigüedad es:
+    <VAR
+CLASS="varname"
+>${$a[1]}</VAR
+> para el primer caso y ${$a}[1] para el
+    segundo.
+   </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;    Tener en cuenta que variables variables no pueden usarse con <A
+HREF="language.variables.predefined.html#language.variables.superglobals"
+>Matrices
+    superglobales</A
+>. Esto significa que no se pueden hacer cosas
+    como <VAR
+CLASS="varname"
+>${$_GET}</VAR
+>. Si buscais un método para
+    manejar la disponibilidad de superglobales y las antiguas
+    <VAR
+CLASS="varname"
+>HTTP_*_VARS</VAR
+>, podeis intentar <A
+HREF="language.references.html"
+>referiros</A
+> a ellas.
+   </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.variables.scope.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.variables.external.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Ambito de las variables</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.variables.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Variables externas a PHP</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

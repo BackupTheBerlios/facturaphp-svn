@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>setlocale</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="rtrim"
+HREF="function.rtrim.html"><LINK
+REL="NEXT"
+TITLE="sha1_file"
+HREF="function.sha1-file.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.rtrim.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.sha1-file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.setlocale"
+></A
+>setlocale</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN106905"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>setlocale&nbsp;--&nbsp;Fija la información de localidad</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN106908"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>setlocale</B
+> ( string categoria, string localidad)<BR
+></BR
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>categoria</VAR
+> es una cadena que especifica
+     la categoría de las funciones afectadas por el ajuste de localidad:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        LC_ALL para todas las funciones
+       </P
+></LI
+><LI
+><P
+>&#13;        LC_COLLATE para la comparación de cadenas - aún no incluída en el PHP
+       </P
+></LI
+><LI
+><P
+>&#13;        LC_CTYPE para la conversión y clasificación de caracteres, como por
+        ejemplo <A
+HREF="function.strtoupper.html"
+><B
+CLASS="function"
+>strtoupper()</B
+></A
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        LC_MONETARY para localeconv() - aún no incluída en el PHP
+       </P
+></LI
+><LI
+><P
+> 
+        LC_NUMERIC para el separador decimal
+       </P
+></LI
+><LI
+><P
+>&#13;        LC_TIME para el formato de fecha y hora con 
+        <A
+HREF="function.strftime.html"
+><B
+CLASS="function"
+>strftime()</B
+></A
+>
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>localidad</VAR
+> es la cadena vacía
+     <VAR
+CLASS="literal"
+>""</VAR
+>, los nombres de localidad se fijarán a 
+     partir de las variables de entorno con los mismos nombres de las
+     categorías anteriores, o desde "LANG".
+    </P
+><P
+>&#13;     Si la localidad es cero o <VAR
+CLASS="literal"
+>"0"</VAR
+>, el ajuste de
+     localidad no se ve afectado y sólo se devuelve el ajuste actual.
+    </P
+><P
+>&#13;     setlocale devuelve la nueva localidad, o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> si la funcionalidad
+     de localización no está disponible en la plataforma, la localidad
+     especificada no existe o el nombre de categoría no es válido.
+     Un nombre de categoría no válido también produce un mensaje de
+     aviso.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.rtrim.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.sha1-file.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>rtrim</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sha1_file</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,270 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>AddCSlashes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="NEXT"
+TITLE="AddSlashes"
+HREF="function.addslashes.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.addslashes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.addcslashes"
+></A
+>AddCSlashes</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN105397"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>AddCSlashes&nbsp;--&nbsp;Marca una cadena con barras al estilo del C</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN105400"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>addcslashes</B
+> ( string cad, string listcar)<BR
+></BR
+><P
+>&#13;     Devuelve una cadena con barras invertidas antes de los caracteres
+     listados en el parámetro <VAR
+CLASS="parameter"
+>listcar</VAR
+>. También
+     marca <VAR
+CLASS="literal"
+>\n</VAR
+>, <VAR
+CLASS="literal"
+>\r</VAR
+> etc. Al estilo
+     del C, los caracteres con códico ASCII inferior a 32 y superior a
+     126 son convertidos a representación octal. Tenga cuidado cuando
+     marque caracteres alfanuméricos. Puede especificar un rango en
+     <VAR
+CLASS="parameter"
+>listcar</VAR
+> como el "\0..\37", que marcaría
+     todos los caracteres con código ASCII entre 0 y 31.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN105416"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>addcslashes()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$tradformado = addcslashes ($no_transf, "\0..\37!@\177..\377");</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Añadida en PHP4b3-dev.</P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.stripcslashes.html"
+><B
+CLASS="function"
+>stripcslashes()</B
+></A
+>, 
+     <A
+HREF="function.stripslashes.html"
+><B
+CLASS="function"
+>stripslashes()</B
+></A
+>, 
+     <A
+HREF="function.htmlspecialchars.html"
+><B
+CLASS="function"
+>htmlspecialchars()</B
+></A
+>,
+     <A
+HREF="function.htmlspecialchars.html"
+><B
+CLASS="function"
+>htmlspecialchars()</B
+></A
+>, y
+     <A
+HREF="function.quotemeta.html"
+><B
+CLASS="function"
+>quotemeta()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.addslashes.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Funciones de Cadenas</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>AddSlashes</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

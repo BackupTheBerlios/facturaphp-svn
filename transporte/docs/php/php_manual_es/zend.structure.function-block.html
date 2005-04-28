@@ -1,0 +1,578 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Declaration of the Zend Function Block</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Source Discussion"
+HREF="zend.structure.html"><LINK
+REL="PREVIOUS"
+TITLE="Declaring Exported Functions"
+HREF="zend.structure.exporting-functions.html"><LINK
+REL="NEXT"
+TITLE="Declaration of the Zend Module Block"
+HREF="zend.structure.module-block.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="section"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="zend.structure.exporting-functions.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 32. Source Discussion</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="zend.structure.module-block.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="zend.structure.function-block"
+>Declaration of the Zend Function Block</A
+></H1
+><P
+>&#13;    Now that you have declared the functions to be exported, you also
+    have to introduce them to Zend. Introducing the list of functions is done by
+    using an array of <VAR
+CLASS="envar"
+>zend_function_entry</VAR
+>. This array consecutively
+    contains all functions that are to be made available externally, with the function's name
+    as it should appear in PHP and its name as defined in the C source.
+    Internally, <VAR
+CLASS="envar"
+>zend_function_entry</VAR
+> is defined as shown in
+    <A
+HREF="zend.structure.function-block.html#example.zend-function-entry"
+>Ejemplo 32-1</A
+>. 
+   </P
+><P
+>&#13;    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="example.zend-function-entry"
+></A
+><P
+><B
+>Ejemplo 32-1. Internal declaration of <VAR
+CLASS="envar"
+>zend_function_entry</VAR
+>.</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>typedef struct _zend_function_entry {
+    char *fname;
+    void (*handler)(INTERNAL_FUNCTION_PARAMETERS);
+    unsigned char *func_arg_types;
+} zend_function_entry;</PRE
+></TD
+></TR
+></TABLE
+><DIV
+CLASS="informaltable"
+><P
+></P
+><A
+NAME="AEN118555"
+></A
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+TITLE="col1"><COL
+WIDTH="1.82*"
+TITLE="col2"><TBODY
+><TR
+><TD
+>Entry</TD
+><TD
+>Description</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="envar"
+>fname</VAR
+></TD
+><TD
+>&#13;          Denotes the function name as seen in PHP (for
+          example, <VAR
+CLASS="literal"
+>fopen</VAR
+>, <VAR
+CLASS="literal"
+>mysql_connect</VAR
+>, or, in our
+          example, <VAR
+CLASS="literal"
+>first_module</VAR
+>).
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="envar"
+>handler</VAR
+></TD
+><TD
+>&#13;          Pointer to the C function responsible for handling calls
+          to this function. For example, see the standard macro
+          <VAR
+CLASS="literal"
+>INTERNAL_FUNCTION_PARAMETERS</VAR
+> discussed earlier.
+         </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="envar"
+>func_arg_types</VAR
+></TD
+><TD
+>&#13;          Allows you to mark certain parameters so that they're forced
+          to be passed by reference. You usually should set this to
+          NULL.
+         </TD
+></TR
+></TBODY
+></TABLE
+><P
+></P
+></DIV
+></DIV
+></TD
+></TR
+></TABLE
+>
+    In the example above, the declaration looks like this: 
+    <TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>zend_function_entry firstmod_functions[] =
+{
+    ZEND_FE(first_module, NULL)
+    {NULL, NULL, NULL}
+};</PRE
+></TD
+></TR
+></TABLE
+>
+    You can see that the last entry in the list always has to be 
+    <VAR
+CLASS="literal"
+>{NULL, NULL, NULL}</VAR
+>. 
+    This marker has to be set for Zend to know when the end of the 
+    list of exported functions is reached. 
+   </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+     You <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>cannot</I
+></SPAN
+> use the predefined macros for the
+     end marker, as these would try to refer to a function named "NULL"!
+    </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;    The macro <VAR
+CLASS="literal"
+>ZEND_FE</VAR
+> (short for 'Zend Function
+    Entry') simply expands to a structure entry in
+    <VAR
+CLASS="envar"
+>zend_function_entry</VAR
+>. Note that these macros
+    introduce a special naming scheme to your functions - your C
+    functions will be prefixed with <VAR
+CLASS="literal"
+>zif_</VAR
+>, meaning
+    that <VAR
+CLASS="literal"
+>ZEND_FE(first_module)</VAR
+> will refer to a C
+    function <B
+CLASS="function"
+>zif_first_module()</B
+>. If you want to mix
+    macro usage with hand-coded entries (not a good practice), keep
+    this in mind. 
+   </P
+><P
+>&#13;    Tip: Compilation errors that refer to functions
+    named <B
+CLASS="function"
+>zif_*()</B
+> relate to functions defined
+    with <VAR
+CLASS="literal"
+>ZEND_FE</VAR
+>.
+   </P
+><P
+>&#13;    <A
+HREF="zend.structure.function-block.html#tab.funcdef-macros"
+>Tabla 32-2</A
+> shows a list of all the macros 
+    that you can use to define functions.
+   </P
+><DIV
+CLASS="table"
+><A
+NAME="tab.funcdef-macros"
+></A
+><P
+><B
+>Tabla 32-2. Macros for Defining Functions</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL
+WIDTH="1*"
+TITLE="col1"><COL
+WIDTH="1.08*"
+TITLE="col2"><TBODY
+><TR
+><TD
+>Macro Name</TD
+><TD
+>Description</TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>ZEND_FE(name, arg_types)</VAR
+></TD
+><TD
+>&#13;         Defines a function entry of the name <VAR
+CLASS="envar"
+>name</VAR
+> in
+         <VAR
+CLASS="envar"
+>zend_function_entry</VAR
+>. Requires a corresponding C
+         function. <VAR
+CLASS="envar"
+>arg_types</VAR
+> needs to be set to <VAR
+CLASS="literal"
+>NULL</VAR
+>.
+         This function uses automatic C function name generation by prefixing the PHP
+         function name with <VAR
+CLASS="literal"
+>zif_</VAR
+>.
+         For example, <VAR
+CLASS="literal"
+>ZEND_FE("first_module", NULL)</VAR
+> introduces a
+         function <B
+CLASS="function"
+>first_module()</B
+> to PHP and links it to the C
+         function <B
+CLASS="function"
+>zif_first_module()</B
+>. Use in conjunction
+         with <VAR
+CLASS="literal"
+>ZEND_FUNCTION</VAR
+>.
+        </TD
+></TR
+><TR
+><TD
+>&#13;         <VAR
+CLASS="literal"
+>ZEND_NAMED_FE(php_name, name, arg_types)</VAR
+>
+        </TD
+><TD
+>&#13;         Defines a function that will be available to PHP by the
+         name <VAR
+CLASS="envar"
+>php_name</VAR
+> and links it to the corresponding C
+         function <VAR
+CLASS="envar"
+>name</VAR
+>. <VAR
+CLASS="envar"
+>arg_types</VAR
+> needs to be set
+         to <VAR
+CLASS="literal"
+>NULL</VAR
+>. Use this function if you don't want the automatic
+         name prefixing introduced by <VAR
+CLASS="literal"
+>ZEND_FE</VAR
+>. Use in conjunction
+         with <VAR
+CLASS="literal"
+>ZEND_NAMED_FUNCTION</VAR
+>.
+        </TD
+></TR
+><TR
+><TD
+>&#13;         <VAR
+CLASS="literal"
+>ZEND_FALIAS(name, alias, arg_types)</VAR
+>
+        </TD
+><TD
+>&#13;         Defines an alias named <VAR
+CLASS="envar"
+>alias</VAR
+> for
+         <VAR
+CLASS="envar"
+>name</VAR
+>. <VAR
+CLASS="envar"
+>arg_types</VAR
+> needs to be set
+         to <VAR
+CLASS="literal"
+>NULL</VAR
+>. Doesn't require a corresponding C
+         function; refers to the alias target instead.
+        </TD
+></TR
+><TR
+><TD
+><VAR
+CLASS="literal"
+>PHP_FE(name, arg_types)</VAR
+></TD
+><TD
+>&#13;         Old PHP API equivalent of <VAR
+CLASS="literal"
+>ZEND_FE</VAR
+>.
+        </TD
+></TR
+><TR
+><TD
+>&#13;         <VAR
+CLASS="literal"
+>PHP_NAMED_FE(runtime_name, name, arg_types)</VAR
+>
+        </TD
+><TD
+>&#13;         Old PHP API equivalent of <VAR
+CLASS="literal"
+>ZEND_NAMED_FE</VAR
+>.
+        </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+><P
+>&#13;    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>Note:</I
+></SPAN
+> You can't use
+    <VAR
+CLASS="literal"
+>ZEND_FE</VAR
+> in conjunction with
+    <VAR
+CLASS="literal"
+>PHP_FUNCTION</VAR
+>, or <VAR
+CLASS="literal"
+>PHP_FE</VAR
+> in
+    conjunction with <VAR
+CLASS="literal"
+>ZEND_FUNCTION</VAR
+>. However, it's
+    perfectly legal to mix <VAR
+CLASS="literal"
+>ZEND_FE</VAR
+> and
+    <VAR
+CLASS="literal"
+>ZEND_FUNCTION</VAR
+> with <VAR
+CLASS="literal"
+>PHP_FE</VAR
+>
+    and <VAR
+CLASS="literal"
+>PHP_FUNCTION</VAR
+> when staying with the same
+    macro set for each function to be declared. But mixing is
+    <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>not</I
+></SPAN
+> recommended; instead, you're advised to
+    use the <VAR
+CLASS="literal"
+>ZEND_*</VAR
+> macros only.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="zend.structure.exporting-functions.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="zend.structure.module-block.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Declaring Exported Functions</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="zend.structure.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Declaration of the Zend Module Block</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

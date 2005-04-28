@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>strstr</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Cadenas"
+HREF="ref.strings.html"><LINK
+REL="PREVIOUS"
+TITLE="strspn"
+HREF="function.strspn.html"><LINK
+REL="NEXT"
+TITLE="strtok"
+HREF="function.strtok.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.strspn.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.strtok.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.strstr"
+></A
+>strstr</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN108085"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>strstr&nbsp;--&nbsp;Encuentra la primera aparición de una cadena</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN108088"
+></A
+><H2
+>Descripción</H2
+>string <B
+CLASS="methodname"
+>strstr</B
+> ( string pajar, string aguja)<BR
+></BR
+><P
+>&#13;     Devuelve todo el <VAR
+CLASS="parameter"
+>pajar</VAR
+> desde la primera
+     aparición de la <VAR
+CLASS="parameter"
+>aguja</VAR
+> hasta el final.
+    </P
+><P
+>&#13;     Si la <VAR
+CLASS="parameter"
+>aguja</VAR
+> no es hayada, devuelve <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+>.
+    </P
+><P
+>&#13;     Si la <VAR
+CLASS="parameter"
+>aguja</VAR
+> no es una cadena, se convierte
+     a entero y se aplica como el valor ordinal de un caracter.
+    </P
+><P
+>&#13;     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Nótese que esta función es sensible a mayúsculas y minúsculas.
+       Para búsquedas no sensibles, utilice <A
+HREF="function.stristr.html"
+><B
+CLASS="function"
+>stristr()</B
+></A
+>.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN108112"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>strstr()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+$email = 'sterling@designmultimedia.com';<br />$dominio = strstr ($email, '@');<br />print $dominio; // imprime @designmultimedia.com</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+> 
+    </P
+><P
+>&#13;     Vea también <A
+HREF="function.stristr.html"
+><B
+CLASS="function"
+>stristr()</B
+></A
+>,
+     <A
+HREF="function.strrchr.html"
+><B
+CLASS="function"
+>strrchr()</B
+></A
+>, <A
+HREF="function.substr.html"
+><B
+CLASS="function"
+>substr()</B
+></A
+>, y
+     <A
+HREF="function.ereg.html"
+><B
+CLASS="function"
+>ereg()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.strspn.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.strtok.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>strspn</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.strings.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>strtok</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,225 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>memory_get_usage</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Opciones e Información de PHP"
+HREF="ref.info.html"><LINK
+REL="PREVIOUS"
+TITLE="main"
+HREF="function.main.html"><LINK
+REL="NEXT"
+TITLE="php_ini_scanned_files"
+HREF="function.php-ini-scanned-files.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.main.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.php-ini-scanned-files.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.memory-get-usage"
+></A
+>memory_get_usage</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN86747"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.2, PHP 5)</P
+>memory_get_usage&nbsp;--&nbsp;Devuelve la cantidad de memoria ubicada para PHP</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN86750"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>memory_get_usage</B
+> ( void )<BR
+></BR
+><P
+>&#13;Devuelve la cantidad de memoria, en bytes, que está siendo
+ubicada actualmente para su script PHP.
+    </P
+><P
+>&#13;<B
+CLASS="function"
+>memory_get_usage()</B
+> se encontrará definida
+únicamente si su instalación de PHP es compilada con la
+opción de
+configuración <VAR
+CLASS="literal"
+>--enable-memory-limit</VAR
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN86761"
+></A
+><P
+><B
+>Ejemplo 1. Un ejemplo de <B
+CLASS="function"
+>memory_get_usage()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// Este es solo un ejemplo, los numeros presentados seran diferentes<br />// dependiendo de su sistema<br /><br /></font><font color="#007700">echo </font><font color="#0000BB">memory_get_usage</font><font color="#007700">() . </font><font color="#DD0000">"\n"</font><font color="#007700">; </font><font color="#FF8000">// 36640<br /><br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">str_repeat</font><font color="#007700">(</font><font color="#DD0000">"Hola."</font><font color="#007700">, </font><font color="#0000BB">4242</font><font color="#007700">);<br /><br />echo </font><font color="#0000BB">memory_get_usage</font><font color="#007700">() . </font><font color="#DD0000">"\n"</font><font color="#007700">; </font><font color="#FF8000">// 57960<br /><br /></font><font color="#007700">unset(</font><font color="#0000BB">$a</font><font color="#007700">);<br /><br />echo </font><font color="#0000BB">memory_get_usage</font><font color="#007700">() . </font><font color="#DD0000">"\n"</font><font color="#007700">; </font><font color="#FF8000">// 36744<br /><br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     Vea también 
+     <A
+HREF="ini.sect.resource-limits.html#ini.memory-limit"
+>memory_limit</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.main.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.php-ini-scanned-files.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>main</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.info.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_ini_scanned_files</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

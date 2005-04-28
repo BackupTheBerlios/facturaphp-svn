@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones WDDX</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="w32api_set_call_method"
+HREF="function.w32api-set-call-method.html"><LINK
+REL="NEXT"
+TITLE="wddx_add_vars"
+HREF="function.wddx-add-vars.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.w32api-set-call-method.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.wddx-add-vars.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.wddx"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>CXVI. Funciones WDDX</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN113625"
+></A
+><P
+>&#13;    Estas funciones permiten el uso de <A
+HREF="http://www.openwddx.org/"
+TARGET="_top"
+>WDDX</A
+>.</P
+><P
+>&#13;    Debe saber que todas las funciones que serializan variables usan el primer
+    elemento de un array para determinar si este ha de serializarse en forma de
+    array o como estructura.  Si el primer elemento esta indexado por una cadena,
+    se serializa como estructura, y en caso contrario, como array.
+
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN113629"
+></A
+><P
+><B
+>Ejemplo 1. Serializacion de un valor simple</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">print </font><font color="#0000BB">wddx_serialize_value</font><font color="#007700">(</font><font color="#DD0000">"Ejemplo de PHP a paquete WDDX"</font><font color="#007700">, </font><font color="#DD0000">"Paquete PHP"</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;    Este ejemplo producira:
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN113633"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;wddxPacket version='0.9'&gt;&lt;header comment='Paquete PHP'/&gt;&lt;data&gt;<br />&lt;string&gt;Ejemplo de PHP a paquete WDDX&lt;/string&gt;&lt;/data&gt;&lt;/wddxPacket&gt;</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN113635"
+></A
+><P
+><B
+>Ejemplo 2. Uso de paquetes incrementales</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$pi </font><font color="#007700">= </font><font color="#0000BB">3.1415926</font><font color="#007700">;<br /></font><font color="#0000BB">$packet_id </font><font color="#007700">= </font><font color="#0000BB">wddx_packet_start</font><font color="#007700">(</font><font color="#DD0000">"PHP"</font><font color="#007700">);<br /></font><font color="#0000BB">wddx_add_vars</font><font color="#007700">(</font><font color="#0000BB">$packet_id</font><font color="#007700">, </font><font color="#DD0000">"pi"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* Suponga que $ciudades se ha obtenido de una base de datos */<br /></font><font color="#0000BB">$ciudades </font><font color="#007700">= array(</font><font color="#DD0000">"Austin"</font><font color="#007700">, </font><font color="#DD0000">"Novato"</font><font color="#007700">, </font><font color="#DD0000">"Seattle"</font><font color="#007700">);<br /></font><font color="#0000BB">wddx_add_vars</font><font color="#007700">(</font><font color="#0000BB">$packet_id</font><font color="#007700">, </font><font color="#DD0000">"ciudades"</font><font color="#007700">);<br /><br /></font><font color="#0000BB">$packet </font><font color="#007700">= </font><font color="#0000BB">wddx_packet_end</font><font color="#007700">(</font><font color="#0000BB">$packet_id</font><font color="#007700">);<br />print </font><font color="#0000BB">$packet</font><font color="#007700">;<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+></P
+><P
+>&#13;    Este ejemplo producira:
+
+    <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN113639"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+&lt;wddxPacket version='0.9'&gt;&lt;header comment='PHP'/&gt;&lt;data&gt;&lt;struct&gt;<br />&lt;var name='pi'&gt;&lt;number&gt;3.1415926&lt;/number&gt;&lt;/var&gt;&lt;var name='ciudades'&gt;<br />&lt;array length='3'&gt;&lt;string&gt;Austin&lt;/string&gt;&lt;string&gt;Novato&lt;/string&gt;<br />&lt;string&gt;Seattle&lt;/string&gt;&lt;/array&gt;&lt;/var&gt;&lt;/struct&gt;&lt;/data&gt;&lt;/wddxPacket&gt;</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+></P
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.wddx-add-vars.html"
+>wddx_add_vars</A
+>&nbsp;--&nbsp;Finaliza un paquete WDDX con el identificador dado</DT
+><DT
+><A
+HREF="function.wddx-deserialize.html"
+>wddx_deserialize</A
+>&nbsp;--&nbsp;Des-serializa un paquete WDDX</DT
+><DT
+><A
+HREF="function.wddx-packet-end.html"
+>wddx_packet_end</A
+>&nbsp;--&nbsp;Finaliza un paquete WDDX con el identificador dado</DT
+><DT
+><A
+HREF="function.wddx-packet-start.html"
+>wddx_packet_start</A
+>&nbsp;--&nbsp;Comienza un nuevo paquete WDDX con una estructura dentro</DT
+><DT
+><A
+HREF="function.wddx-serialize-value.html"
+>wddx_serialize_value</A
+>&nbsp;--&nbsp;Serializa un valor simple en un paquete WDDX</DT
+><DT
+><A
+HREF="function.wddx-serialize-vars.html"
+>wddx_serialize_vars</A
+>&nbsp;--&nbsp;Serializa variables en un paquete WDDX</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.w32api-set-call-method.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.wddx-add-vars.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>w32api_set_call_method</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>wddx_add_vars</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

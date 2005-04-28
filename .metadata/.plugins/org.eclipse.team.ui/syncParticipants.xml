@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syncparticipants>
+<participant id="org.tigris.subversion.subclipse.participant" secondary_id="1114593240016" displayName="SVN (/transporte)">
+<data root="false">
+<org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS org.eclipse.team.ui.SCOPE_TYPE="ResourceScope">
+<org.eclipse.team.ui.TEAMSUBSRCIBER_REFRESHSCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600"/>
+<resource_scope_roots resource_scope_root_resource="/transporte"/>
+</org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS>
+</data>
+</participant>
+<participant id="org.eclipse.team.cvs.ui.cvsworkspace-participant" secondary_id="1114520348723" displayName="CVS (/transporte)">
+<data root="false">
+<org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS org.eclipse.team.ui.SCOPE_TYPE="ResourceScope">
+<org.eclipse.team.ui.TEAMSUBSRCIBER_REFRESHSCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600"/>
+<resource_scope_roots resource_scope_root_resource="/transporte"/>
+</org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS>
+</data>
+</participant>
+</syncparticipants>

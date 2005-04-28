@@ -1,0 +1,339 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>GNU Readline</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="pspell_suggest"
+HREF="function.pspell-suggest.html"><LINK
+REL="NEXT"
+TITLE="readline_add_history"
+HREF="function.readline-add-history.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.pspell-suggest.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.readline-add-history.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.readline"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XC. GNU Readline</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN92753"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="readline.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Las funciones <A
+HREF="function.readline.html"
+><B
+CLASS="function"
+>readline()</B
+></A
+> implementan una
+     interfaz con la biblioteca GNU Readline. Estas son funciones que
+     ofrecen líneas de comando editables. Un ejemplo de la
+     manera en que trabajan podría ser la forma en que Bash le
+     permite usar las teclas de flechas para insertar caracteres o
+     desplazarse a través del historial de comandos. Debido a
+     la naturaleza interactiva de esta biblioteca, tendrá un
+     uso muy reducido en la escritura de aplicaciones Web, aunque
+     puede ser útil cuando se escriben scripts al <A
+HREF="features.commandline.html"
+>usar PHP desde la línea de
+     comandos</A
+>.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>Esta
+extensión no está disponible en plataformas
+Windows</P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="readline.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Para usar las funciones readline, necesita instalar
+     libreadline. Puede encontrar libreadlinea en la página web
+     del proyecto GNU Readline, en <A
+HREF="http://cnswww.cns.cwru.edu/~chet/readline/rltop.html"
+TARGET="_top"
+>http://cnswww.cns.cwru.edu/~chet/readline/rltop.html</A
+>. Este proyecto es
+     administrado por Chet Ramey, quien es también el autor de
+     Bash.
+    </P
+><P
+>&#13;     También puede usar estas funciones con la biblioteca
+     libedit, un reemplazo no-GPL de la biblioteca readline. La
+     biblioteca libedit es distribuida bajo una licencia BSD y
+     está disponible para su descarga en <A
+HREF="http://sourceforge.net/projects/libedit/"
+TARGET="_top"
+>http://sourceforge.net/projects/libedit/</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="readline.installation"
+>Instalación</A
+></H1
+><P
+>&#13;Para usar estas funciones, debe compilar la versión CGI o CLI
+de PHP con soporte para readline. Necesita configurar PHP con la
+opción
+<VAR
+CLASS="option"
+>--with-readline[=DIR]</VAR
+>. Si desea usar
+el reemplazo de readline, libedit, configure PHP con la opción
+<VAR
+CLASS="option"
+>--with-libedit[=DIR]</VAR
+>.
+ </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="readline.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="readline.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="readline.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.readline-add-history.html"
+>readline_add_history</A
+>&nbsp;--&nbsp;Añade una línea al historial</DT
+><DT
+><A
+HREF="function.readline-clear-history.html"
+>readline_clear_history</A
+>&nbsp;--&nbsp;Borra el historial</DT
+><DT
+><A
+HREF="function.readline-completion-function.html"
+>readline_completion_function</A
+>&nbsp;--&nbsp;Registra una función de completitud</DT
+><DT
+><A
+HREF="function.readline-info.html"
+>readline_info</A
+>&nbsp;--&nbsp;Establece/Obtiene diversas variables internas de readline</DT
+><DT
+><A
+HREF="function.readline-list-history.html"
+>readline_list_history</A
+>&nbsp;--&nbsp;Lista el historial</DT
+><DT
+><A
+HREF="function.readline-read-history.html"
+>readline_read_history</A
+>&nbsp;--&nbsp;Lee el historial</DT
+><DT
+><A
+HREF="function.readline-write-history.html"
+>readline_write_history</A
+>&nbsp;--&nbsp;Escribe el historial</DT
+><DT
+><A
+HREF="function.readline.html"
+>readline</A
+>&nbsp;--&nbsp;Lee una línea</DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.pspell-suggest.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.readline-add-history.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>pspell_suggest</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>readline_add_history</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

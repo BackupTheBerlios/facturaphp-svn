@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>get_declared_classes</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Clases/Objetos"
+HREF="ref.classobj.html"><LINK
+REL="PREVIOUS"
+TITLE="get_class"
+HREF="function.get-class.html"><LINK
+REL="NEXT"
+TITLE="get_declared_interfaces"
+HREF="function.get-declared-interfaces.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-class.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.get-declared-interfaces.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.get-declared-classes"
+></A
+>get_declared_classes</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN12598"
+></A
+><P
+>    (PHP 4 , PHP 5)</P
+>get_declared_classes&nbsp;--&nbsp;Returns an array with the name of the defined classes</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN12601"
+></A
+><H2
+>Description</H2
+>array <B
+CLASS="methodname"
+>get_declared_classes</B
+> ( void )<BR
+></BR
+><P
+>&#13;     This function returns an array of the names of the declared classes
+     in the current script.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      In PHP 4.0.1pl2, three extra classes are returned at the beginning of
+      the array: <B
+CLASS="classname"
+>stdClass</B
+> (defined in 
+      <TT
+CLASS="filename"
+>Zend/zend.c</TT
+>),
+      <B
+CLASS="classname"
+>OverloadedTestClass</B
+> (defined in
+      <TT
+CLASS="filename"
+>ext/standard/basic_functions.c</TT
+>) 
+      and <B
+CLASS="classname"
+>Directory</B
+>
+      (defined in <TT
+CLASS="filename"
+>ext/standard/dir.c</TT
+>).
+     </P
+><P
+>&#13;      Also note that depending on what libraries you have compiled
+      into PHP, additional classes could be present. This means that
+      you will not be able to define your own classes using these
+      names. There is a list of predefined classes in the <A
+HREF="reserved.classes.html"
+>Predefined Classes</A
+> section of
+      the appendices.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN12619"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>get_declared_classes()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />print_r</font><font color="#007700">(</font><font color="#0000BB">get_declared_classes</font><font color="#007700">());<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+>&#13;       This script will output something close to :
+      </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Array
+(
+    [0] =&#62; stdClass
+    [1] =&#62; __PHP_Incomplete_Class
+    [2] =&#62; Directory
+)</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     See also <A
+HREF="function.class-exists.html"
+><B
+CLASS="function"
+>class_exists()</B
+></A
+>, and
+     <A
+HREF="function.get-declared-interfaces.html"
+><B
+CLASS="function"
+>get_declared_interfaces()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-class.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.get-declared-interfaces.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_class</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.classobj.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>get_declared_interfaces</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

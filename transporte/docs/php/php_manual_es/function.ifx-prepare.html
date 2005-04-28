@@ -1,0 +1,251 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>ifx_prepare</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Informix"
+HREF="ref.ifx.html"><LINK
+REL="PREVIOUS"
+TITLE="ifx_pconnect"
+HREF="function.ifx-pconnect.html"><LINK
+REL="NEXT"
+TITLE="ifx_query"
+HREF="function.ifx-query.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.ifx-pconnect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ifx-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.ifx-prepare"
+></A
+>ifx_prepare</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN42729"
+></A
+><P
+>    (PHP 3&#62;= 3.0.4, PHP 4 , PHP 5)</P
+>ifx_prepare&nbsp;--&nbsp;Preparar una sentencia-SQL para su
+    ejecución</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN42732"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>ifx_prepare</B
+> ( string consulta, int id_con [, int tipo_cursor, mixed matriz_id_blob])<BR
+></BR
+><P
+>&#13;     Devuelve un entero <VAR
+CLASS="parameter"
+>id_resultado</VAR
+> para su
+     uso por <A
+HREF="function.ifx-do.html"
+><B
+CLASS="function"
+>ifx_do()</B
+></A
+>. Define
+     <VAR
+CLASS="parameter"
+>filas_afectadas</VAR
+> para su
+     recuperación a través de la función
+     <A
+HREF="function.ifx-affected-rows.html"
+><B
+CLASS="function"
+>ifx_affected_rows()</B
+></A
+>.
+    </P
+><P
+>&#13;     Prepara <VAR
+CLASS="parameter"
+>consulta</VAR
+> sobre la conexión
+     <VAR
+CLASS="parameter"
+>id_con</VAR
+>. Para consultas "tipo select", se
+     declara y abre un cursor. El parámetro opcional
+     <VAR
+CLASS="parameter"
+>tipo_cursor</VAR
+> le permite hacer de
+     éste un cursor "scroll" o "hold". Es una máscara de
+     bits y puede ser IFX_SCROLL, IFX_HOLD, o ambos, unidos por el
+     operador lógico OR.
+    </P
+><P
+> 
+     Para cualquiera de los tipos de consulta, el número
+     estimado de filas afectadas es almacenado para su
+     recuperación por <A
+HREF="function.ifx-affected-rows.html"
+><B
+CLASS="function"
+>ifx_affected_rows()</B
+></A
+>.
+    </P
+><P
+>&#13;     Si tiene columnas BLOB (BYTE o TEXT) en la consulta, puede
+     agregar un parámetro <VAR
+CLASS="parameter"
+>matriz_id_blob</VAR
+>
+     que contenga los "ids blob" correspondientes, y debería
+     reemplazar esas columnas con un "?" en el texto de la consulta.
+    </P
+><P
+>&#13;     Si los contenidos de la columna TEXT (o BYTE) lo permiten, puede
+     usar también "ifx_textasvarchar(1)" y
+     "ifx_byteasvarchar(1)". Esto le permite tratar columnas TEXT (o
+     BYTE) como si fueran columnas VARCHAR ordinarias (pero largas)
+     para las consultas select, y no debe preocuparse por id's blob.
+    </P
+><P
+>&#13;     Con ifx_textasvarchar(0) o ifx_byteasvarchar(0) (la
+     situación predeterminada), las consultas select
+     devolverán columnas BLOB como id's blob (valor
+     entero). Puede obtener el valor del blob como una cadena o un
+     archivo con las funciones blob (vea más adelante).
+    </P
+><P
+>&#13;     Vea también: <A
+HREF="function.ifx-do.html"
+><B
+CLASS="function"
+>ifx_do()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.ifx-pconnect.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ifx-query.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>ifx_pconnect</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.ifx.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ifx_query</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

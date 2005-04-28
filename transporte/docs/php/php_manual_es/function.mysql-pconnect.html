@@ -1,0 +1,237 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysql_pconnect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones MySQL"
+HREF="ref.mysql.html"><LINK
+REL="PREVIOUS"
+TITLE="mysql_num_rows"
+HREF="function.mysql-num-rows.html"><LINK
+REL="NEXT"
+TITLE="mysql_ping"
+HREF="function.mysql-ping.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysql-num-rows.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysql-ping.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysql-pconnect"
+></A
+>mysql_pconnect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN63489"
+></A
+><P
+>    (PHP 3, PHP 4 , PHP 5)</P
+>mysql_pconnect&nbsp;--&nbsp;
+     Abre una conexión persistente al servidor MySQL
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN63492"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>mysql_pconnect</B
+> ( [string server [, string usuario [, string password]]])<BR
+></BR
+><P
+>&#13;     Devuelve: un identificador de enlace persistente,
+     o falso si se produce un error.
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>mysql_pconnect()</B
+> establece una conexión a 
+     un servidor MySQL.  Todos los argumentos son opcionales, y si no 
+     existen, se asumen los valores por defecto ('localhost', nombre del
+     usuario propietario del proceso, password vacia).
+    </P
+><P
+>&#13;     El hostname puede incluir un numero de puerto. ej. 
+     "hostname:port" o un camino al socket ej. 
+     ":/camino/al/socket" para el puerto para el host local.
+     <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       Soporte para ":puerto" fue añadido en 3.0B4.
+      </P
+><P
+>&#13;       Soporte para ":/camino/al/socket" fue añadido
+       en 3.0.10.
+      </P
+></BLOCKQUOTE
+></DIV
+>
+    </P
+><P
+>&#13;     <B
+CLASS="function"
+>mysql_pconnect()</B
+> actua como 
+     <A
+HREF="function.mysql-connect.html"
+><B
+CLASS="function"
+>mysql_connect()</B
+></A
+> con dos diferencias fundamentales.
+    </P
+><P
+>&#13;     Primero, durante la conexión, la función intenta primero
+     encontrar un enlace persistente abierto con el mismo host, usuario y
+     password.  Si lo encuentra, devuelve el identificador de enlace en lugar
+     de abrir otra conexión.
+    </P
+><P
+>&#13;     Segundo, la conexión no sera cerrado cuando acabe la 
+     ejecución del script.  El enlace permanecera abierta para ser
+     usado en el futuro (<A
+HREF="function.mysql-close.html"
+><B
+CLASS="function"
+>mysql_close()</B
+></A
+> will not
+     cierra el enlace establecido con <B
+CLASS="function"
+>mysql_pconnect()</B
+>).
+    </P
+><P
+>&#13;     Este tipo de enlaces son llamados 'persistentes'.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysql-num-rows.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysql-ping.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysql_num_rows</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysql.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysql_ping</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

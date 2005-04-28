@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Funciones de Tipo de Caracter</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de las Funciones"
+HREF="funcref.html"><LINK
+REL="PREVIOUS"
+TITLE="cyrus_unbind"
+HREF="function.cyrus-unbind.html"><LINK
+REL="NEXT"
+TITLE="ctype_alnum"
+HREF="function.ctype-alnum.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="reference"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.cyrus-unbind.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.ctype-alnum.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="reference"
+><A
+NAME="ref.ctype"
+></A
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="title"
+>XV. Funciones de Tipo de Caracter</H1
+><DIV
+CLASS="PARTINTRO"
+><A
+NAME="AEN16354"
+></A
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ctype.intro"
+>Introducción</A
+></H1
+><P
+>&#13;     Las funciones que ofrece esta extensión chequean si un
+     caracter o cadena se ubica dentro de una determinada clase de
+     caracteres, de acuerdo a la localidad actual (vea también
+     <A
+HREF="function.setlocale.html"
+><B
+CLASS="function"
+>setlocale()</B
+></A
+>).
+    </P
+><P
+>&#13;    Cuando son llamadas con un argumento entero, estas funciones se
+    comportan exactamente como sus homólogos de C provenientes
+    de <TT
+CLASS="filename"
+>ctype.h</TT
+>.
+    </P
+><P
+>&#13;    Cuando son llamadas con un argumento de tipo cadena,
+    chequearán cada caracter de la cadena y solo
+    devolverán <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> si cada caracter de la cadena coincide
+    con el criterio solicitado. Cuando son llamadas con una cadena
+    vacía, el resultado será siempre <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>.
+    </P
+><P
+>&#13;     Al pasar cualquier cosa diferente a una cadena o un entero, se
+     devolverá <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> inmediatamente.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ctype.requirements"
+>Requerimientos</A
+></H1
+><P
+>&#13;     Ninguno aparte de las funciones de la biblioteca de C
+     estándar, la cual se encuentra disponible siempre.
+    </P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ctype.installation"
+>Instalación</A
+></H1
+><P
+>&#13;  A partir de PHP 4.2.0 estas funciones están habilitadas por
+  defecto. En versiones anteriores es necesario configurar y compilar
+  PHP con el parámetro <VAR
+CLASS="option"
+>--enable-ctype</VAR
+>. Es posible deshabilitar el
+  soporte para ctype con <VAR
+CLASS="option"
+>--disable-ctype</VAR
+>.
+ </P
+><P
+>La versión para Windows de
+<VAR
+CLASS="literal"
+>PHP</VAR
+> tiene soporte nativo para esta
+extensión. No se necesita cargar ninguna extensión
+adicional para usar estas funciones.</P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+   A partir de PHP 4.3.0 el soporte para ctype es nativo.
+  </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ctype.configuration"
+>Configuración en tiempo de
+ejecución</A
+></H1
+><P
+>Esta extensión no tiene directivas de
+configuración en <TT
+CLASS="filename"
+>php.ini</TT
+>.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ctype.resources"
+>Tipos de recursos</A
+></H1
+><P
+>Esta extensión no tiene
+ningún tipo de recurso definido.</P
+></DIV
+><DIV
+CLASS="section"
+><H1
+CLASS="section"
+><A
+NAME="ctype.constants"
+>Constantes predefinidas</A
+></H1
+><P
+>Esta extensión no tiene ninguna
+constante definida.</P
+></DIV
+></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Tabla de contenidos</B
+></DT
+><DT
+><A
+HREF="function.ctype-alnum.html"
+>ctype_alnum</A
+>&nbsp;--&nbsp;Chequear posibles caracteres
+    alfanuméricos</DT
+><DT
+><A
+HREF="function.ctype-alpha.html"
+>ctype_alpha</A
+>&nbsp;--&nbsp;Chequear posibles caracteres
+    alfabéticos</DT
+><DT
+><A
+HREF="function.ctype-cntrl.html"
+>ctype_cntrl</A
+>&nbsp;--&nbsp;Chequear posibles caracteres de control</DT
+><DT
+><A
+HREF="function.ctype-digit.html"
+>ctype_digit</A
+>&nbsp;--&nbsp;Chequear posibles caracteres numéricos</DT
+><DT
+><A
+HREF="function.ctype-graph.html"
+>ctype_graph</A
+>&nbsp;--&nbsp;Chequear posibles caracteres imprimibles, con
+    excepción de los espacios</DT
+><DT
+><A
+HREF="function.ctype-lower.html"
+>ctype_lower</A
+>&nbsp;--&nbsp;Chequear posibles caracteres en
+    minúscula</DT
+><DT
+><A
+HREF="function.ctype-print.html"
+>ctype_print</A
+>&nbsp;--&nbsp;Chequear posibles caracteres imprimibles</DT
+><DT
+><A
+HREF="function.ctype-punct.html"
+>ctype_punct</A
+>&nbsp;--&nbsp;
+     Chequear posibles caracteres imprimibles que no son ni espacios
+     en blanco ni caracteres alfanuméricos
+    </DT
+><DT
+><A
+HREF="function.ctype-space.html"
+>ctype_space</A
+>&nbsp;--&nbsp;Chequear posibles caracteres de espacio en
+    blanco</DT
+><DT
+><A
+HREF="function.ctype-upper.html"
+>ctype_upper</A
+>&nbsp;--&nbsp;Chequear posibles caracteres en
+    mayúscula</DT
+><DT
+><A
+HREF="function.ctype-xdigit.html"
+>ctype_xdigit</A
+>&nbsp;--&nbsp;
+     Chequear posibles caracteres que representen un dígito
+     hexadecimal
+    </DT
+></DL
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.cyrus-unbind.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.ctype-alnum.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>cyrus_unbind</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="funcref.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>ctype_alnum</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

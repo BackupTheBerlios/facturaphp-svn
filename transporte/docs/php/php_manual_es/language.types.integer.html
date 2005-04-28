@@ -1,0 +1,666 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Enteros</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Tipos"
+HREF="language.types.html"><LINK
+REL="PREVIOUS"
+TITLE="Booleanos"
+HREF="language.types.boolean.html"><LINK
+REL="NEXT"
+TITLE="Números de punto flotante"
+HREF="language.types.float.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="language.types.boolean.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 6. Tipos</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="language.types.float.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="language.types.integer"
+>Enteros</A
+></H1
+><P
+>&#13;    Un <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+> es un número del conjunto Z = {...,
+    -2, -1, 0, 1, 2, ...}.
+   </P
+><P
+>&#13;    Vea también: <A
+HREF="ref.gmp.html"
+>Entero de longitud
+    arbitraria / GMP</A
+>, <A
+HREF="language.types.float.html"
+>Números de punto
+    flotante</A
+>, y <A
+HREF="ref.bc.html"
+>Precisión
+    arbitraria / BCMath</A
+>
+   </P
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.integer.syntax"
+>Sintaxis</A
+></H2
+><P
+>&#13;     Los enteros pueden ser especificados en notación decimal
+     (base-10), hexadecimal (base-16) u octal (base-8), opcionalmente
+     precedidos por un signo (- o +).
+    </P
+><P
+>&#13;     Si usa la notación octal, debe preceder el número
+     con un <VAR
+CLASS="literal"
+>0</VAR
+> (cero), para usar la notación
+     hexadecimal, preceda el número con <VAR
+CLASS="literal"
+>0x</VAR
+>.
+     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN2172"
+></A
+><P
+><B
+>Ejemplo 6-1. Literales tipo entero</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$a </font><font color="#007700">= </font><font color="#0000BB">1234</font><font color="#007700">; </font><font color="#FF8000">// numero decimal<br /></font><font color="#0000BB">$a </font><font color="#007700">= -</font><font color="#0000BB">123</font><font color="#007700">; </font><font color="#FF8000">// un numero negativo<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">0123</font><font color="#007700">; </font><font color="#FF8000">// numero octal (equivalente al 83 decimal)<br /></font><font color="#0000BB">$a </font><font color="#007700">= </font><font color="#0000BB">0x1A</font><font color="#007700">; </font><font color="#FF8000">// numero hexadecimal (equivalente al 26 decimal)<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+     Formalmente, la posible estructura para literales enteros es:
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2175"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="programlisting"
+>decimal     : [1-9][0-9]*
+            | 0
+
+hexadecimal : 0[xX][0-9a-fA-F]+
+
+octal       : 0[0-7]+
+
+integer     : [+-]?decimal
+            | [+-]?hexadecimal
+            | [+-]?octal</PRE
+></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     El tamaño de un entero es dependiente de la plataforma,
+     aunque un valor máximo de aproximadamente dos billones es
+     el valor usual (lo que es un valor de 32 bits con signo). PHP no
+     soporta enteros sin signo.
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.integer.overflow"
+>Desbordamiento de enteros</A
+></H2
+><P
+>&#13;     Si especifica un número más allá de los
+     límites del tipo <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, será
+     interpretado en su lugar como un <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>. Asimismo, si
+     realiza una operación que resulta en un número
+     más allá de los límites del tipo
+     <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, un <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+> es retornado en su
+     lugar.
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2184"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$numero_grande </font><font color="#007700">=&nbsp;&nbsp;</font><font color="#0000BB">2147483647</font><font color="#007700">;<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$numero_grande</font><font color="#007700">);<br /></font><font color="#FF8000">// output: int(2147483647)<br /><br /></font><font color="#0000BB">$numero_grande </font><font color="#007700">=&nbsp;&nbsp;</font><font color="#0000BB">2147483648</font><font color="#007700">;<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$numero_grande</font><font color="#007700">);<br /></font><font color="#FF8000">// output: float(2147483648)<br /><br />// esto tambien ocurre con los enteros indicados como hexadecimales:<br /></font><font color="#0000BB">var_dump</font><font color="#007700">( </font><font color="#0000BB">0x80000000 </font><font color="#007700">);<br /></font><font color="#FF8000">// output: float(2147483648)<br /><br /></font><font color="#0000BB">$millon </font><font color="#007700">= </font><font color="#0000BB">1000000</font><font color="#007700">;<br /></font><font color="#0000BB">$numero_grande </font><font color="#007700">=&nbsp;&nbsp;</font><font color="#0000BB">50000 </font><font color="#007700">* </font><font color="#0000BB">$millon</font><font color="#007700">;<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">$numero_grande</font><font color="#007700">);<br /></font><font color="#FF8000">// output: float(50000000000)<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+     <DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;       Desafortunadamente, había un fallo en PHP que provocaba
+       que esto no siempre funcionara correctamente cuando se
+       presentaban números negativos. Por ejemplo: cuando hace
+       <VAR
+CLASS="literal"
+>-50000 * $millon</VAR
+>, el resultado será
+       <VAR
+CLASS="literal"
+>-429496728</VAR
+>. Sin embargo, cuando ambos
+       operandos son positivos no se presenta ningún problema.
+      </P
+><P
+>&#13;       Este problema fue resuelto en PHP 4.1.0.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     No hay un operador de división de enteros en PHP.
+     <VAR
+CLASS="literal"
+>1/2</VAR
+> produce el <A
+HREF="language.types.float.html"
+><B
+CLASS="type"
+>float</B
+></A
+>
+     <VAR
+CLASS="literal"
+>0.5</VAR
+>. Puede moldear el valor a un entero para
+     asegurarse de redondearlo hacia abajo, o puede usar la
+     función <A
+HREF="function.round.html"
+><B
+CLASS="function"
+>round()</B
+></A
+>.
+     <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2196"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />var_dump</font><font color="#007700">(</font><font color="#0000BB">25</font><font color="#007700">/</font><font color="#0000BB">7</font><font color="#007700">);&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">// float(3.5714285714286) <br /></font><font color="#0000BB">var_dump</font><font color="#007700">((int) (</font><font color="#0000BB">25</font><font color="#007700">/</font><font color="#0000BB">7</font><font color="#007700">)); </font><font color="#FF8000">// int(3)<br /></font><font color="#0000BB">var_dump</font><font color="#007700">(</font><font color="#0000BB">round</font><font color="#007700">(</font><font color="#0000BB">25</font><font color="#007700">/</font><font color="#0000BB">7</font><font color="#007700">));&nbsp;&nbsp;</font><font color="#FF8000">// float(4) <br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+    </P
+></DIV
+><DIV
+CLASS="sect2"
+><H2
+CLASS="sect2"
+><A
+NAME="language.types.integer.casting"
+>Conversión a entero</A
+></H2
+><P
+>&#13;     Para convertir explícitamente un valor a
+     <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, use alguno de los moldeamientos
+     <VAR
+CLASS="literal"
+>(int)</VAR
+> o <VAR
+CLASS="literal"
+>(integer)</VAR
+>. Sin
+     embargo, en la mayoría de casos no necesita usar el
+     moldeamiento, ya que un valor será convertido
+     automáticamente si un operador, función o
+     estructura de control requiere un argumento tipo
+     <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>. También puede convertir un valor a
+     entero con la función <A
+HREF="function.intval.html"
+><B
+CLASS="function"
+>intval()</B
+></A
+>.
+    </P
+><P
+>&#13;     Vea también <A
+HREF="language.types.type-juggling.html"
+>Manipulación de
+     Tipos</A
+>.
+    </P
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.integer.casting.from-boolean"
+>Desde <A
+HREF="language.types.boolean.html"
+>booleans</A
+></A
+></H3
+><P
+>&#13;      <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> producirá <VAR
+CLASS="literal"
+>0</VAR
+> (cero), y <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+>
+      producirá <VAR
+CLASS="literal"
+>1</VAR
+> (uno).
+     </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.integer.casting.from-float"
+>Desde <A
+HREF="language.types.float.html"
+>números
+     de punto flotante</A
+></A
+></H3
+><P
+>&#13;      Cuando se realizan conversiones desde un flotante a un entero,
+      el número será redondeado <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>hacia
+      cero</I
+></SPAN
+>.
+     </P
+><P
+>&#13;      Si el flotante se encuentra más allá de los
+      límites del entero (usualmente <VAR
+CLASS="literal"
+>+/- 2.15e+9 =
+      2^31</VAR
+>), el resultado es indefinido, ya que el flotante
+      no tiene suficiente precisión para dar un resultado
+      entero exacto. No se producirá una advertencia, ¡ni
+      siquiera una noticia en este caso!
+     </P
+><DIV
+CLASS="warning"
+><P
+></P
+><TABLE
+CLASS="warning"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Aviso</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;       Nunca moldee una fracción desconocida a
+       <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+>, ya que esto en ocasiones produce
+       resultados inesperados.
+       <DIV
+CLASS="informalexample"
+><P
+></P
+><A
+NAME="AEN2226"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">echo (int) ( (</font><font color="#0000BB">0.1</font><font color="#007700">+</font><font color="#0000BB">0.7</font><font color="#007700">) * </font><font color="#0000BB">10 </font><font color="#007700">); </font><font color="#FF8000">// imprime 7!<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+><P
+></P
+></DIV
+>
+       Para más información, consulte la <A
+HREF="language.types.float.html#warn.float-precision"
+>advertencia sobre
+       precisión-flotante</A
+>.
+      </P
+></TD
+></TR
+></TABLE
+></DIV
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.integer.casting.from-string"
+>Desde cadenas</A
+></H3
+><P
+>&#13;      Vea <A
+HREF="language.types.string.html#language.types.string.conversion"
+>Conversión de
+      cadenas a números</A
+>
+     </P
+></DIV
+><DIV
+CLASS="sect3"
+><H3
+CLASS="sect3"
+><A
+NAME="language.types.integer.casting.from-other"
+>Desde otros tipos</A
+></H3
+><P
+>&#13;      <DIV
+CLASS="caution"
+><P
+></P
+><TABLE
+CLASS="caution"
+BORDER="1"
+WIDTH="100%"
+><TR
+><TD
+ALIGN="CENTER"
+><B
+>Atención</B
+></TD
+></TR
+><TR
+><TD
+ALIGN="LEFT"
+><P
+>&#13;        El comportamiento de convertir desde entero no es definido
+        para otros tipos. Actualmente, el comportamiento es el mismo
+        que si el valor fuera antes <A
+HREF="language.types.boolean.html#language.types.boolean.casting"
+>convertido a
+        booleano</A
+>. Sin embargo, <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+>
+        confíe en este comportamiente, ya que puede ser
+        modificado sin aviso.
+       </P
+></TD
+></TR
+></TABLE
+></DIV
+>
+     </P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="language.types.boolean.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="language.types.float.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Booleanos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="language.types.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Números de punto flotante</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

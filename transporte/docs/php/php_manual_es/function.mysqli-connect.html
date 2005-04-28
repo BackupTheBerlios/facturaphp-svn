@@ -1,0 +1,387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>mysqli_connect</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Extensión mejorada de MySQL"
+HREF="ref.mysqli.html"><LINK
+REL="PREVIOUS"
+TITLE="mysqli_connect_error"
+HREF="function.mysqli-connect-error.html"><LINK
+REL="NEXT"
+TITLE="mysqli_data_seek"
+HREF="function.mysqli-data-seek.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-connect-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.mysqli-data-seek.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.mysqli-connect"
+></A
+>mysqli_connect</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN64899"
+></A
+><P
+>    (PHP 5)</P
+>mysqli_connect<P
+>    (no version information, might be only in CVS)</P
+>mysqli()&nbsp;--&nbsp;Abre una nueva conexión al servidor MySQL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64903"
+></A
+><H2
+>Descripción</H2
+><P
+>Estilo por procedimientos</P
+>objeto <B
+CLASS="methodname"
+>mysqli_connect</B
+> ( [cadena equipo_anfitrión [, cadena usuario [, cadena contraseña [, cadena base_de_datos [, int puerto [, cadena socket]]]]]])<BR
+></BR
+><P
+>Estilo orientado a objetos (constructor):</P
+>class <B
+CLASS="classname"
+>mysqli</B
+> { <BR
+></BR
+><B
+CLASS="methodname"
+>__construct</B
+> ( [cadena equipo_anfitrión [, cadena usuario [, cadena contraseña [, cadena base_de_datos [, int puerto [, cadena socket]]]]]])<BR
+></BR
+>}<P
+>&#13;     La función <B
+CLASS="function"
+>mysqli_connect()</B
+> intenta abrir una conexión 
+	  al servidor MySQL que se está ejecutando en <VAR
+CLASS="parameter"
+>equipo_afitrión</VAR
+> 
+	  el cual puede ser el nombre de un equipo o una dirección IP. Pasando el 
+	  valor <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> o la cadena "localhost" a este parámetro, se asume que 
+	  está en el mismo equipo. Cuando sea posible se usar??? "pipes" en vez 
+	  del protocolo TCP/IP. En caso exitoso, la función <B
+CLASS="function"
+>mysqli_connect()</B
+> 
+	  regresará un objeto representando la conexión a la base de datos, 
+	  o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso contrario.
+    </P
+><P
+>&#13;	  En los parámetros <VAR
+CLASS="parameter"
+>usuario</VAR
+> y <VAR
+CLASS="parameter"
+>contraseña</VAR
+> 
+	  se específica el nombre de usuario y contraseña con los cuales 
+	  se debe conectar al servidor MySQL. Si no se da contraseña el valor 
+	  <TT
+CLASS="constant"
+><B
+>NULL</B
+></TT
+> es tomado, el servidor MySQL intentará verificar al usuario 
+	  contra los registros de usuarios que esten sin contraseña. Esto permite 
+	  que un usuario pueda ser usado con diferentes permisos (dependiendo si se 
+	  provee contraseña o no).
+    </P
+><P
+>&#13;	  Si se específica el parámetro <VAR
+CLASS="parameter"
+>base_de_datos</VAR
+> 
+	  especificará la base de datos a usar por defecto cuando se ejecuten 
+	  consultas.
+    </P
+><P
+>&#13;	  Los parámetros <VAR
+CLASS="parameter"
+>puerto</VAR
+> y <VAR
+CLASS="parameter"
+>socket</VAR
+> 
+	  son usados junto con el parámetro <VAR
+CLASS="parameter"
+>equipo_anfitrión</VAR
+> 
+	  para controla a futuro como conectar al servidor de base de datos.  
+	  El parámetro <VAR
+CLASS="parameter"
+>puerto</VAR
+> específica el número 
+	  de puerto al que se intenta conectar en el servidor MySQL, mientras que el 
+	  parámetro <VAR
+CLASS="parameter"
+>socket</VAR
+> específica el socket o 
+	  la pipa nombrada "pipe" que debe ser usada.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+	   Especificar el parámetro <VAR
+CLASS="parameter"
+>socket</VAR
+> no determina 
+		explícitamente el tipo de conexión a ser usado cuando se conecta 
+		al servidor MySQL. El parámetro <VAR
+CLASS="parameter"
+>equipo_anfitrión</VAR
+> 
+		determina como se hace la conexión a la base de datos MySQL.  
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64973"
+></A
+><H2
+>Valores regresados</H2
+><P
+>&#13;	  Regresa un objeto el cuál representa la conexión al servidor 
+	  MySQL o <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> en caso contrario.
+    </P
+></DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN64977"
+></A
+><H2
+>Ejemplos</H2
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN64979"
+></A
+><P
+><B
+>Ejemplo 1. Estilo orientado a objetos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$mysqli </font><font color="#007700">= new </font><font color="#0000BB">mysqli</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */ <br /></font><font color="#007700">if (</font><font color="#0000BB">mysqli_connect_errno</font><font color="#007700">()) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Host information: %s\n"</font><font color="#007700">, </font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">host_info</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">$mysqli</font><font color="#007700">-&gt;</font><font color="#0000BB">close</font><font color="#007700">();<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN64982"
+></A
+><P
+><B
+>Ejemplo 2. Estilo por procedimientos</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$link </font><font color="#007700">= </font><font color="#0000BB">mysqli_connect</font><font color="#007700">(</font><font color="#DD0000">"localhost"</font><font color="#007700">, </font><font color="#DD0000">"my_user"</font><font color="#007700">, </font><font color="#DD0000">"my_password"</font><font color="#007700">, </font><font color="#DD0000">"world"</font><font color="#007700">);<br /><br /></font><font color="#FF8000">/* check connection */ <br /></font><font color="#007700">if (!</font><font color="#0000BB">$link</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Connect failed: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_connect_error</font><font color="#007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;exit();<br />}<br /><br /></font><font color="#0000BB">printf</font><font color="#007700">(</font><font color="#DD0000">"Host information: %s\n"</font><font color="#007700">, </font><font color="#0000BB">mysqli_get_host_info</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">));<br /><br /></font><font color="#FF8000">/* close connection */<br /></font><font color="#0000BB">mysqli_close</font><font color="#007700">(</font><font color="#0000BB">$link</font><font color="#007700">);<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+><P
+>&#13;	  Los ejemplos anteriores producirán la siguiente salida:
+    </P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="screen"
+>Host information: Localhost via UNIX socket</PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.mysqli-connect-error.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.mysqli-data-seek.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>mysqli_connect_error</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.mysqli.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>mysqli_data_seek</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

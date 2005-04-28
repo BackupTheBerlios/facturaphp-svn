@@ -1,0 +1,650 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>curl_setopt</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones CURL (Client URL Library)"
+HREF="ref.curl.html"><LINK
+REL="PREVIOUS"
+TITLE="curl_multi_select"
+HREF="function.curl-multi-select.html"><LINK
+REL="NEXT"
+TITLE="curl_version"
+HREF="function.curl-version.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.curl-multi-select.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.curl-version.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.curl-setopt"
+></A
+>curl_setopt</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN15952"
+></A
+><P
+>    (PHP 4 &#62;= 4.0.2, PHP 5)</P
+>curl_setopt&nbsp;--&nbsp;Asigna un valor a una opción de una sesión CURL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN15955"
+></A
+><H2
+>Descripción</H2
+>bool <B
+CLASS="methodname"
+>curl_setopt</B
+> ( int ch, string option, mixed value)<BR
+></BR
+><P
+>&#13;     La función <B
+CLASS="function"
+>curl_setopt()</B
+> asigna valores para opciones
+     de una sesión CURL identificada por el parámetro <VAR
+CLASS="parameter"
+>ch</VAR
+>.
+     El parámetro <VAR
+CLASS="parameter"
+>option</VAR
+> es la opción a la que
+     se desea asignar el valor indicado en el parámetro <VAR
+CLASS="parameter"
+>value</VAR
+>.
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>value</VAR
+> debe ser un entero para las siguientes
+     opciones (especificada en el parámetro <VAR
+CLASS="parameter"
+>option</VAR
+>);
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_INFILESIZE</VAR
+>: Cuando subimos un
+	archivo a un sitio remoto, esta opción debe ser usada para
+	decirle a PHP cuál será el tamaño del archivo
+	de entrada.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_VERBOSE</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si desea que CURL reporte todo lo que
+	acontece.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_HEADER</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si desea que el encabezado sea incluido
+	en la salida.
+       </P
+></LI
+><LI
+><P
+>&#13;	<VAR
+CLASS="parameter"
+>CURLOPT_NOPROGRESS</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si no desea que PHP muestre una barra de progreso
+	para las transferencias de CURL.
+        <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          PHP automáticamente asigna un valor distinto de cero a esta opción,
+          esto sólo debe ser cambiado para operaciones de depuración.
+         </P
+></BLOCKQUOTE
+></DIV
+>
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_NOBODY</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si no desea que el cuerpo sea incluido en
+	la salida.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_FAILONERROR</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si desea que PHP falle silenciosamente si
+	el código HTTP devuelto es mayor que 300. El comportamiento por
+	defecto es devolver la página normalmente, ignorando el código.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_UPLOAD</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si desea que PHP se prepare para subir un archivo.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_POST</VAR
+>: Asigne un valor distinto
+	de cero a esta opción si desea que PHP realize un pedido HTTP POST regular.
+	Este post normalmente es del tipo application/x-www-from-urlencoded,
+        normalmente utilizado por los formularios HTML.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_FTPLISTONLY</VAR
+>: Asigne un valor distinto
+	de cero a esta opción y PHP simplemente listará los nombres de
+	un directorio FTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_FTPAPPEND</VAR
+>: Asigne un valor distinto
+	de cero a esta opción y PHP escribirá al final del archivo remoto
+	en lugar de sobreescribirlo.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_NETRC</VAR
+>: Asigne un valor distinto
+	de cero a esta opción y PHP registrará su archivo
+	~./netrc para buscar el nombre de usuario y la clave del sitio remoto
+	con el que está estableciendo una conexión.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_FOLLOWLOCATION</VAR
+>: Asigne un valor distinto
+	de cero a esta opción para seguir algún encabezado del tipo "Location: "
+	que el servidor envíe como parte de los encabezados HTTP (esto es recursivo,
+	PHP seguirá tantos encabezados "Location: " como le sean enviados).
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_PUT</VAR
+>: Asigne un valor distinto
+	de cero a esta opción para enviar un archivo utilizando el método
+	HTTP PUT. El archivo a enviar debe ser especificado con las opciones
+	CURLOPT_INFILE y CURLOPT_INFILESIZE.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_MUTE</VAR
+>: Asigne un valor distinto
+	de cero a esta opción para que PHP no genere ningúna
+	salida para las funciones CURL.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_TIMEOUT</VAR
+>: Asigna un valor que contiene
+	el tiempo máximo de ejecución, en segundos, para las
+	funciones CURL.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_LOW_SPEED_LIMIT</VAR
+>: Asigna un valor
+	a la velocidad mínima de transferencia en bytes por segundo.
+	Si la transferencia se mantiene por debajo de ese valor durante la
+	cantidad de segundos indicados en la opción CURLOPT_LOW_SPEED_TIME, 
+	será considerada demasiado lenta y abortada por PHP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_LOW_SPEED_TIME</VAR
+>: Asigna un valor a
+	la cantidad de segundos que la transferencia debe permanecer debajo de
+	la velocidad indicada en CURLOPT_LOW_SPEED_LIMIT para que PHP la
+	considere demasiado lenta y aborte.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_RESUME_FROM</VAR
+>: Asigna un valor al desplazamiento,
+	en bytes, desde	el cual desea que comience la transferencia.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_SSLVERSION</VAR
+>: Asigna un valor
+	que contiene la versión de SSL (2 o 3) a usar. Por
+	defecto PHP trata de detectar la versión automáticamente,
+	pero en algúnos casos este valor deberá ser fijado manualmente.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_TIMECONDITION</VAR
+>: Asigna un valor
+	que define cómo será tratado CURLOPT_TIMEVALUE.
+	Puede fijar este parametro a TIMECOND_IFMODSINCE o a TIMECOND_ISUNMODSINCE.
+	Esta característica es sólo para HTTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_TIMEVALUE</VAR
+>: Asigna un valor
+	en segundos al tiempo transcurrido desde el 1 de Enero de 1970.
+	El tiempo será utilizado como sea especificado por la
+	opción CURLOPT_TIMEVALUE, o en su defecto se utilizará TIMECOND_IFMODSINCE.
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     El parámetro <VAR
+CLASS="parameter"
+>value</VAR
+> debe ser una cadena para los
+     siguientes valores del parámetro <VAR
+CLASS="parameter"
+>option</VAR
+>:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_URL</VAR
+>: Esta es la URL que se desea traer.
+	Ud. también puede fijar esta opción cuando se inicializa una
+	sesión con la función <A
+HREF="function.curl-init.html"
+><B
+CLASS="function"
+>curl_init()</B
+></A
+>.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_USERPWD</VAR
+>: Asigna un valor de
+	cadena del tipo [usuario]:[clave], para ser usado por PHP
+	en la conexión.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_PROXYUSERPWD</VAR
+>: Asigna un valor de
+	cadena del tipo [usuario]:[clave], para ser usado en la 
+	conexión al servidor proxy HTTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_RANGE</VAR
+>: Asigna un rango en el 
+	formato "X-Y", donde X o Y pueden ser dejados de lado. Las
+	transferencias HTTP también soportan varios intervalos,
+	separados por comas como en X-Y,N-M.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_POSTFIELDS</VAR
+>: Asigna una cadena que
+	contiene todos los datos a ser enviados en una operación
+	HTTP "POST".
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_REFERER</VAR
+>: Asigna una cadena que
+	contiene el encabezado "referer" para ser usado en un requerimiento
+	HTTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_USERAGENT</VAR
+>: Asigna una cadena que
+	contiene el encabezado "user-agent" para ser usado en un requerimiento
+	HTTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_FTPPORT</VAR
+>: Pasa una cadena que
+	contiene el valor que será usado para obtener la dirección
+	IP a usar en la instrucción "PORT" de ftp. La instrucción "POST"
+	le indica al servidor remoto que se conecte a la dirección IP que le
+	especificamos. La cadena puede ser una dirección IP, un nombre de Host,
+	una interface de red (en UNIX), o simplemente un caracter '-' para usar
+	la dirección IP por defecto del sistema.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_COOKIE</VAR
+>: Asigna una cadena con el
+	contenido de la cookie para ser incluida en el encabezado HTTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_SSLCERT</VAR
+>: Asigna una cadena que
+	contiene el nombre del archivo que guarda el certificado con formato PEM.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_SSLCERTPASSWD</VAR
+>: Asigna una cadena que
+	contiene la clave requerida para usar el certificado indicado en la
+	opción CURLOPT_SSLCERT.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_COOKIEFILE</VAR
+>: Asigna una cadena que
+	contiene el nombre del archivo que guarda la información de
+	las cookies. Este archivo puede estar en formato Netscape, o simplemente
+	contener encabezados estilo HTTP.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_CUSTOMREQUEST</VAR
+>: Asigna una cadena para
+	ser usada en lugar de GET o HEAD cuando se realiza un requerimiento HTTP.
+	Esto es útil para realizar DELETE ú otros requerimientos
+	HTTP más oscuros.
+        <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          No haga esto sin estar seguro de que su servidor soporta el comando especificado.
+         </P
+></BLOCKQUOTE
+></DIV
+>
+       </P
+></LI
+></UL
+>
+    </P
+><P
+>&#13;     Las siguientes opciones esperan un descriptor de archivo que es obtenido
+     por medio de la función <A
+HREF="function.fopen.html"
+><B
+CLASS="function"
+>fopen()</B
+></A
+>:
+     <P
+></P
+><UL
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_FILE</VAR
+>: El archivo donde debe ser grabada la
+	salida generada por la transferencia. Por defecto es STDOUT.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_INFILE</VAR
+>: El archivo desde el que se leen los
+	datos para la transferencia.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_WRITEHEADER</VAR
+>: El archivo donde deben
+	ser grabados los encabezados de la salida de la transferencia.
+       </P
+></LI
+><LI
+><P
+>&#13;        <VAR
+CLASS="parameter"
+>CURLOPT_STDERR</VAR
+>: El archivo donde deben
+	ser grabados los errores, en lugar de stderr.
+       </P
+></LI
+></UL
+>
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.curl-multi-select.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.curl-version.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>curl_multi_select</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.curl.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>curl_version</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

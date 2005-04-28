@@ -1,0 +1,942 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Manejo de Datos</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Lista de directivas de núcleo en php.ini"
+HREF="ini.html"><LINK
+REL="PREVIOUS"
+TITLE="Límites de Recursos"
+HREF="ini.sect.resource-limits.html"><LINK
+REL="NEXT"
+TITLE="Rutas y Directorios"
+HREF="ini.sect.path-directory.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="ini.sect.resource-limits.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice H. Lista de directivas de núcleo en <TT
+CLASS="filename"
+>php.ini</TT
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="ini.sect.path-directory.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="ini.sect.data-handling"
+>Manejo de Datos</A
+></H1
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN124733"
+></A
+><P
+><B
+>Tabla H-4. Opciones de Configuración de Manejo de
+      Datos</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Nombre</TH
+><TH
+>Predeterminado</TH
+><TH
+>Modificable</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>track_vars</TD
+><TD
+>"On"</TD
+><TD
+>PHP_INI_??</TD
+></TR
+><TR
+><TD
+>arg_separator.output</TD
+><TD
+>"&#38;"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>arg_separator.input</TD
+><TD
+>"&#38;"</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>variables_order</TD
+><TD
+>"EGPCS"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>register_globals</TD
+><TD
+>"Off"</TD
+><TD
+>PHP_INI_PERDIR|PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>register_argc_argv</TD
+><TD
+>"On"</TD
+><TD
+>PHP_INI_PERDIR|PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>register_long_arrays</TD
+><TD
+>"On"</TD
+><TD
+>PHP_INI_PERDIR|PHP_INI_SYSTEM</TD
+></TR
+><TR
+><TD
+>post_max_size</TD
+><TD
+>"8M"</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>gpc_order</TD
+><TD
+>"GPC"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>auto_prepend_file</TD
+><TD
+>""</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>auto_append_file</TD
+><TD
+>""</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>default_mimetype</TD
+><TD
+>"text/html"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>default_charset</TD
+><TD
+>"iso-8859-1"</TD
+><TD
+>PHP_INI_ALL</TD
+></TR
+><TR
+><TD
+>always_populate_raw_post_data</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+><TR
+><TD
+>allow_webdav_methods</TD
+><TD
+>"0"</TD
+><TD
+>PHP_INI_SYSTEM|PHP_INI_PERDIR</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>A continuación se
+presenta una corta explicación de las directivas de
+configuración.</P
+><P
+>&#13;     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><A
+NAME="ini.track-vars"
+></A
+><VAR
+CLASS="parameter"
+>track_vars</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Si esta opción es habilitada, entonces las variables
+         de Entorno, GET, POST, Cookies y Servidor pueden encontrarse
+         en las matrices asociativas globales
+         <VAR
+CLASS="varname"
+>$_ENV</VAR
+>, <VAR
+CLASS="varname"
+>$_GET</VAR
+>,
+         <VAR
+CLASS="varname"
+>$_POST</VAR
+>, <VAR
+CLASS="varname"
+>$_COOKIE</VAR
+>, y
+         <VAR
+CLASS="varname"
+>$_SERVER</VAR
+>.
+        </P
+><P
+>&#13;         Note que a partir de PHP 4.0.3, <SPAN
+CLASS="systemitem"
+>track_vars</SPAN
+> se encuentra
+         habilitada siempre.
+        </P
+></DD
+><DT
+><A
+NAME="ini.arg-separator.output"
+></A
+><VAR
+CLASS="parameter"
+>arg_separator.output</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         El separador usado en URLs generadas por PHP para separar los
+         argumentos.
+        </P
+></DD
+><DT
+><A
+NAME="ini.arg-separator.input"
+></A
+><VAR
+CLASS="parameter"
+>arg_separator.input</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Lista de separadores usados por PHP para interpretar URLs de
+         entrada en variables.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          ¡Cada caracter en esta directiva es considerado como
+          separador!
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.variables-order"
+></A
+><VAR
+CLASS="parameter"
+>variables_order</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Establece el orden de procesamiento de variables EGPCS
+         (Entorno, GET, POST, Cookie, Servidor). La
+         configuración predeterminada de esta directiva es
+         "EGPCS". Al definir este valor como "GP", por ejemplo,
+         causará que PHP ignore completamente las variables de
+         entorno, cookies y servidor, asi como que cualquier variable
+         del método GET sea sobrescrita con una variable del
+         método POST con el mismo nombre.
+        </P
+><P
+>&#13;         Vea también <A
+HREF="ini.sect.data-handling.html#ini.register-globals"
+>register_globals</A
+>.
+        </P
+></DD
+><DT
+><A
+NAME="ini.register-globals"
+></A
+><VAR
+CLASS="parameter"
+>register_globals</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Indica si las variables EGPCS (Entorno, GET, POST, Cookie,
+         Servidor) deben registrarse como variables globales o no. Por
+         ejemplo; si register_globals = on, la URL
+         <VAR
+CLASS="literal"
+>http://www.example.com/test.php?id=3</VAR
+>
+         producirá <VAR
+CLASS="varname"
+>$id</VAR
+>. O,
+         <VAR
+CLASS="varname"
+>$DOCUMENT_ROOT</VAR
+> a partir de
+         <VAR
+CLASS="varname"
+>$_SERVER['DOCUMENT_ROOT']</VAR
+>. Puede que
+         quiera deshabilitar esta opción si no desea ensuciar
+         el contexto global de sus scripts con datos del usuario. A
+         partir de PHP <A
+HREF="http://www.php.net/release_4_2_0.php"
+TARGET="_top"
+>4.2.0</A
+>, esta directiva
+         tiene el valor predeterminado <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>off</I
+></SPAN
+>. Se
+         prefiere usar las <A
+HREF="reserved.variables.html"
+>Variables Predefinidas</A
+> en
+         su lugar, tales como las <A
+HREF="language.variables.predefined.html#language.variables.superglobals"
+>superglobales</A
+>:
+         <VAR
+CLASS="varname"
+>$_ENV</VAR
+>, <VAR
+CLASS="varname"
+>$_GET</VAR
+>,
+         <VAR
+CLASS="varname"
+>$_POST</VAR
+>, <VAR
+CLASS="varname"
+>$_COOKIE</VAR
+>, y
+         <VAR
+CLASS="varname"
+>$_SERVER</VAR
+>. Por favor lea el capítulo
+         de seguridad sobre el <A
+HREF="security.globals.html"
+>Uso de
+         register_globals</A
+> para más información al
+         respecto.
+        </P
+><P
+>&#13;         Por favor note que <SPAN
+CLASS="systemitem"
+>register_globals</SPAN
+> no puede ser
+         definido en tiempo de ejecución
+         (<A
+HREF="function.ini-set.html"
+><B
+CLASS="function"
+>ini_set()</B
+></A
+>). Sin embargo, puede usar
+         <TT
+CLASS="filename"
+>.htaccess</TT
+> si su servidor huésped lo permite como se
+         describe anteriormente. Un ejemplo de entrada en <TT
+CLASS="filename"
+>.htaccess</TT
+>:
+         <KBD
+CLASS="userinput"
+>php_flag register_globals on</KBD
+>.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          El valor <SPAN
+CLASS="systemitem"
+>register_globals</SPAN
+> es afectado
+          por la directiva <A
+HREF="ini.sect.data-handling.html#ini.variables-order"
+>variables_order</A
+>.
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.register-argc-argv"
+></A
+><VAR
+CLASS="parameter"
+>register_argc_argv</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Le dice a PHP si declarar las variables argv y argc (que
+         contendrían la información de GET).
+        </P
+><P
+>&#13;         Vea también la documentación sobre <A
+HREF="features.commandline.html"
+>la línea de
+         comandos</A
+>. Asimismo, esta directiva se encuentra
+         disponible desde PHP 4.0.0, y su valor siempre fue "on"
+         anteriormente.
+        </P
+></DD
+><DT
+><A
+NAME="ini.register-long-arrays"
+></A
+><VAR
+CLASS="parameter"
+>register_long_arrays</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Le dice a PHP si debe registrar o no las <A
+HREF="language.variables.predefined.html"
+>variables
+         predeterminadas</A
+> largas tipo
+         <VAR
+CLASS="varname"
+>$HTTP_*_VARS</VAR
+>. Cuando su valor es On
+         (predeterminado), las variables de PHP largas predefinidas
+         como <VAR
+CLASS="varname"
+>$HTTP_GET_VARS</VAR
+> serán
+         definidas. Si no las usa, se recomienda deshablitar esta
+         opción, por razones de rendimiento. En su lugar, use
+         las matrices superglobales, como <VAR
+CLASS="varname"
+>$_GET</VAR
+>.
+        </P
+><P
+>&#13;         Esta directiva se encuentra disponible a partir de PHP 5.0.0.
+        </P
+></DD
+><DT
+><A
+NAME="ini.post-max-size"
+></A
+><VAR
+CLASS="parameter"
+>post_max_size</VAR
+>
+        <A
+HREF="language.types.integer.html"
+><B
+CLASS="type"
+>integer</B
+></A
+></DT
+><DD
+><P
+>&#13;         Define el tamaño máximo permitido de datos
+         enviados mediante el método post. Este
+         parámetro afecta también la carga de
+         archivos. Para cargar archivos grandes, este valor debe ser
+         mayor que <A
+HREF="ini.sect.file_uploads.html#ini.upload-max-filesize"
+>upload_max_filesize</A
+>.
+        </P
+><P
+>&#13;         Si el límite de memoria es habilitado mediante su
+         script configure, <A
+HREF="ini.sect.resource-limits.html#ini.memory-limit"
+>memory_limit</A
+> afecta
+         también la carga de archivos. En general, <A
+HREF="ini.sect.resource-limits.html#ini.memory-limit"
+>memory_limit</A
+> debería
+         ser mayor que <VAR
+CLASS="parameter"
+>post_max_size</VAR
+>.
+        </P
+></DD
+><DT
+><A
+NAME="ini.gpc-order"
+></A
+><VAR
+CLASS="parameter"
+>gpc_order</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Define el orden de procesamiento de variables
+         GET/POST/COOKIE. El valor predeterminado de esta directiva es
+         "GPC". Al definir este valor como "GP", por ejemplo, se
+         causará que PHP ignore por completo las cookies y
+         sobrescriba cualquier variables proveniente del método
+         GET con variables del método POST que tengan el mismo
+         nombre.
+        </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+          Esta opción no se encuentra disponible en PHP 4. Use
+          <A
+HREF="ini.sect.data-handling.html#ini.variables-order"
+>variables_order</A
+>
+          en su lugar.
+         </P
+></BLOCKQUOTE
+></DIV
+></DD
+><DT
+><A
+NAME="ini.auto-prepend-file"
+></A
+><VAR
+CLASS="parameter"
+>auto_prepend_file</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Especifica el nombre de un archivo que es interpretado
+         automáticamente antes del archivo principal. El
+         archivo es incluido como si fuera llamado con la
+         función <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+>, de modo que se
+         usa el valor de <A
+HREF="ini.sect.path-directory.html#ini.include-path"
+>include_path</A
+>.
+        </P
+><P
+>&#13;         El valor especial <SPAN
+CLASS="systemitem"
+>none</SPAN
+> deshabilita el
+         preprocesamiento automático.
+        </P
+></DD
+><DT
+><A
+NAME="ini.auto-append-file"
+></A
+><VAR
+CLASS="parameter"
+>auto_append_file</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         Especifica el nombre de un archivo que es interpretado
+         automáticamente después del archivo
+         principal. El archivo es incluido como si fuera llamado con
+         la función <A
+HREF="function.include.html"
+><B
+CLASS="function"
+>include()</B
+></A
+>, así
+         que el valor de <A
+HREF="ini.sect.path-directory.html#ini.include-path"
+>include_path</A
+> es usado.
+        </P
+><P
+>&#13;         El valor especial <SPAN
+CLASS="systemitem"
+>none</SPAN
+> deshabilita el
+         procesamiento posterior automático.
+         <DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+           Si el script es terminado con <A
+HREF="function.exit.html"
+><B
+CLASS="function"
+>exit()</B
+></A
+>, el
+           procesamionto posterior <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>no</I
+></SPAN
+> occurirá.
+          </P
+></BLOCKQUOTE
+></DIV
+>
+        </P
+></DD
+><DT
+><A
+NAME="ini.default-mimetype"
+></A
+><VAR
+CLASS="parameter"
+>default_mimetype</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;        </P
+></DD
+><DT
+><A
+NAME="ini.default-charset"
+></A
+><VAR
+CLASS="parameter"
+>default_charset</VAR
+>
+        <A
+HREF="language.types.string.html"
+><B
+CLASS="type"
+>string</B
+></A
+></DT
+><DD
+><P
+>&#13;         A partir de 4.0b4, PHP siempre imprime de manera
+         predeterminada una codificación de caracteres en la
+         cabecera Content-type:. Para deshabilitar el envío del
+         juego de caracteres, simplemente defina este valor como
+         vacío.
+        </P
+></DD
+><DT
+><A
+NAME="ini.always-populate-raw-post-data"
+></A
+><VAR
+CLASS="parameter"
+>always_populate_raw_post_data</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Poblar siempre la variable $HTTP_RAW_POST_DATA.
+        </P
+></DD
+><DT
+><A
+NAME="ini.allow-webdav-methods"
+></A
+><VAR
+CLASS="parameter"
+>allow_webdav_methods</VAR
+>
+        <A
+HREF="language.types.boolean.html"
+><B
+CLASS="type"
+>boolean</B
+></A
+></DT
+><DD
+><P
+>&#13;         Permitir el manejo de peticiones WebDAV http al interior de
+         scripts PHP (p.ej.  PROPFIND, PROPPATCH, MOVE, COPY, etc..)
+         Si desea obtener los datos enviados desde tales peticiones,
+         tiene que definir <A
+HREF="ini.sect.data-handling.html#ini.always-populate-raw-post-data"
+>&#13;         always_populate_raw_post_data</A
+> también.
+        </P
+></DD
+></DL
+></DIV
+>
+    </P
+><P
+>&#13;     Vea también: <A
+HREF="ref.info.html#ini.magic-quotes-gpc"
+>magic_quotes_gpc</A
+>, <A
+HREF="ref.info.html#ini.magic-quotes-runtime"
+>magic_quotes_runtime</A
+>, y
+     <A
+HREF="missing-stuff.html#ini.magic-quotes-sybase"
+>magic_quotes_sybase</A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="ini.sect.resource-limits.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="ini.sect.path-directory.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Límites de Recursos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ini.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Rutas y Directorios</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

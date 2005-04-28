@@ -1,0 +1,360 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Conceptos Básicos de Secuencias</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="API de Secuencia para Autores de Extensiones PHP"
+HREF="streams.html"><LINK
+REL="PREVIOUS"
+TITLE="API de Secuencia para Autores de Extensiones PHP"
+HREF="streams.html"><LINK
+REL="NEXT"
+TITLE="Las Secuencias como Recursos"
+HREF="streams.resources.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 44. API de Secuencia para Autores de Extensiones PHP</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.resources.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="streams.basics"
+>Conceptos Básicos de Secuencias</A
+></H1
+><P
+>&#13;   El uso de secuencias es bastante similar al uso de funciones stdio
+   ANSI. La principal diferencia está en el modo en que obtiene
+   en un principo el gestor de la secuencia. En la mayoría de
+   casos, usted usará
+   <B
+CLASS="function"
+>php_stream_open_wrapper()</B
+> para obtener el gestor
+   de secuencia. Esta función trabaja de forma muy similar a
+   fopen, y puede apreciarse en el siguiente ejemplo:
+  </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN120386"
+></A
+><P
+><B
+>Ejemplo 44-1. ejemplo simple de secuencia que despliega la
+      página de inicio de PHP</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="c"
+>php_stream * stream = php_stream_open_wrapper("http://www.php.net", "rb", REPORT_ERRORS, NULL);
+if (stream) {
+    while(!php_stream_eof(stream)) {
+        char buf[1024];
+        
+        if (php_stream_gets(stream, buf, sizeof(buf))) {
+            printf(buf);
+        } else {
+            break;
+        }
+    }
+    php_stream_close(stream);
+}</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+  </P
+><P
+>&#13;   La tabla a continuación muestra los equivalentes de
+   Secuencia a las funciones más comunes de stdio ANSI. A menos
+   que se note lo contrario, las semánticas de las funciones
+   son idénticas.
+     <DIV
+CLASS="table"
+><A
+NAME="AEN120390"
+></A
+><P
+><B
+>Tabla 44-1. Funciones equivalentes a stdio ANSI en la API de
+      Secuencias</B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><COL><THEAD
+><TR
+><TH
+>Función Stdio ANSI</TH
+><TH
+>Función de Secuencias PHP</TH
+><TH
+>Notas</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>fopen</TD
+><TD
+>php_stream_open_wrapper</TD
+><TD
+>Las secuencias incluyen parámetros
+         opcionales</TD
+></TR
+><TR
+><TD
+>fclose</TD
+><TD
+>php_stream_close</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>fgets</TD
+><TD
+>php_stream_gets</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>fread</TD
+><TD
+>php_stream_read</TD
+><TD
+>Se asume que el parámetro nmemb tiene un valor
+         de 1, así que el prototipo luce más como
+         read(2)</TD
+></TR
+><TR
+><TD
+>fwrite</TD
+><TD
+>php_stream_write</TD
+><TD
+>Se asume que el parámetro nmemb tiene un valor
+         de 1, así que el prototipo luce más como
+         write(2)</TD
+></TR
+><TR
+><TD
+>fseek</TD
+><TD
+>php_stream_seek</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>ftell</TD
+><TD
+>php_stream_tell</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>rewind</TD
+><TD
+>php_stream_rewind</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>feof</TD
+><TD
+>php_stream_eof</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>fgetc</TD
+><TD
+>php_stream_getc</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>fputc</TD
+><TD
+>php_stream_putc</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>fflush</TD
+><TD
+>php_stream_flush</TD
+><TD
+>&nbsp;</TD
+></TR
+><TR
+><TD
+>puts</TD
+><TD
+>php_stream_puts</TD
+><TD
+>La misma semántica que puts, NO fputs</TD
+></TR
+><TR
+><TD
+>fstat</TD
+><TD
+>php_stream_stat</TD
+><TD
+>Las secuencias tienen una estructura stat más
+         rica</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+   
+  </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.resources.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>API de Secuencia para Autores de Extensiones PHP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="streams.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Las Secuencias como Recursos</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

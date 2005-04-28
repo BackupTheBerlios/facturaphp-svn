@@ -1,0 +1,301 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>is_a</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones de Clases/Objetos"
+HREF="ref.classobj.html"><LINK
+REL="PREVIOUS"
+TITLE="get_parent_class"
+HREF="function.get-parent-class.html"><LINK
+REL="NEXT"
+TITLE="is_subclass_of"
+HREF="function.is-subclass-of.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.get-parent-class.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.is-subclass-of.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.is-a"
+></A
+>is_a</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN12704"
+></A
+><P
+>    (PHP 4 &#62;= 4.2.0, PHP 5)</P
+>is_a&nbsp;--&nbsp;
+     Returns <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if the object is of this class or has this class as 
+     one of its parents
+    </DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN12708"
+></A
+><H2
+>Description</H2
+>bool <B
+CLASS="methodname"
+>is_a</B
+> ( object object, string class_name)<BR
+></BR
+><P
+>&#13;     This function returns <TT
+CLASS="constant"
+><B
+>TRUE</B
+></TT
+> if the object is of this class or 
+     has this class as one of its parents, <TT
+CLASS="constant"
+><B
+>FALSE</B
+></TT
+> otherwise.
+    </P
+><P
+>&#13;      <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN12723"
+></A
+><P
+><B
+>Ejemplo 1. <B
+CLASS="function"
+>is_a()</B
+> example</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#FF8000">// define a class<br /></font><font color="#007700">class </font><font color="#0000BB">WidgetFactory<br /></font><font color="#007700">{<br />&nbsp;&nbsp;var </font><font color="#0000BB">$oink </font><font color="#007700">= </font><font color="#DD0000">'moo'</font><font color="#007700">;<br />}<br /><br /></font><font color="#FF8000">// create a new object<br /></font><font color="#0000BB">$WF </font><font color="#007700">= new </font><font color="#0000BB">WidgetFactory</font><font color="#007700">();<br /><br />if (</font><font color="#0000BB">is_a</font><font color="#007700">(</font><font color="#0000BB">$WF</font><font color="#007700">, </font><font color="#DD0000">'WidgetFactory'</font><font color="#007700">)) {<br />&nbsp;&nbsp;echo </font><font color="#DD0000">"yes, \$WF is still a WidgetFactory\n"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     The <B
+CLASS="function"
+>is_a()</B
+> function is deprecated as of PHP 5 in
+     favor of the <A
+HREF="language.operators.type.html"
+>instanceof</A
+>
+     type operator.  In the above example we could use the following in
+     PHP 5:
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN12731"
+></A
+><P
+><B
+>Ejemplo 2. Using the <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>instanceof</I
+></SPAN
+> operator in PHP 5</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">$WF instanceof WidgetFactory</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">'Yes, $WF is a WidgetFactory'</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><P
+>&#13;     See also <A
+HREF="function.get-class.html"
+><B
+CLASS="function"
+>get_class()</B
+></A
+>, 
+     <A
+HREF="function.get-parent-class.html"
+><B
+CLASS="function"
+>get_parent_class()</B
+></A
+>, and 
+     <A
+HREF="function.is-subclass-of.html"
+><B
+CLASS="function"
+>is_subclass_of()</B
+></A
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.get-parent-class.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.is-subclass-of.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>get_parent_class</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.classobj.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>is_subclass_of</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

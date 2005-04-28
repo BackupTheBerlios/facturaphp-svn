@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Reporte de Errores</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Seguridad"
+HREF="security.index.html"><LINK
+REL="PREVIOUS"
+TITLE="Seguridad de Bases de Datos"
+HREF="security.database.html"><LINK
+REL="NEXT"
+TITLE="Uso de Register Globals"
+HREF="security.globals.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="security.database.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Capítulo 15. Seguridad</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="security.globals.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="security.errors"
+>Reporte de Errores</A
+></H1
+><P
+>&#13;    Hablando de la seguridad en PHP, hay dos caras en lo que se
+    concierne al reporte de errores. Una es benéfica al
+    incremento de la seguridad, la otra va en dirección de su
+    detrimento.
+   </P
+><P
+>&#13;    Una táctica de ataque típica involucra la
+    acumulación de un perfil de datos del sistema
+    alimentándolo con datos inapropiados, y luego chequear los
+    tipos de errores que son devueltos, y sus contextos. Esto permite
+    que el cracker del sistema pueda adquirir información del
+    servidor, para así determinar posibles debilidades. Por
+    ejemplo, si un atacante ha recogido información sobre una
+    página creada a partir de los datos de un formulario,
+    él podría intentar sobrescribir las variables, o
+    modificarlas:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4844"
+></A
+><P
+><B
+>Ejemplo 15-11. Ataque a Variables con una página HTML
+     personalizada</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;form method="post" action="destino_del_ataque?username=badfoo&#38;amp;password=badfoo"&#62;
+&#60;input type="hidden" name="username" value="badfoo" /&#62;
+&#60;input type="hidden" name="password" value="badfoo" /&#62;
+&#60;/form&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Los errores de PHP que son devueltos normalmente pueden ser
+    bastante útiles para un desarrollador que esté
+    tratando de depurar un script, indicando cosas como la
+    función o archivo que falló, el archivo PHP y el
+    número de línea en donde ocurren los fallos. Toda
+    esta es información de la que puede sacarse provecho. No es
+    extraño que un desarrollador php
+    use <A
+HREF="function.show-source.html"
+><B
+CLASS="function"
+>show_source()</B
+></A
+>,
+    <A
+HREF="function.highlight-string.html"
+><B
+CLASS="function"
+>highlight_string()</B
+></A
+>, o
+    <A
+HREF="function.highlight-file.html"
+><B
+CLASS="function"
+>highlight_file()</B
+></A
+> como medida de
+    depuración, pero en un sitio en producción, esta
+    acción puede exponer variables ocultas, sintaxis sin
+    chequear, y otra información peligrosa. Algo especialmente
+    peligroso es ejecutar código que proviene de fuentes bien
+    conocidas con gestores de depuración incorporados, o que
+    usan técnicas de depuración comunes. Si el atacante
+    puede determinar qué técnica general está
+    usando, puede intentar un ataque de fuerza bruta sobre una
+    página, enviando varias cadenas comunes de
+    depuración:
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4851"
+></A
+><P
+><B
+>Ejemplo 15-12. Explotación de variables comunes de
+     depuración</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><PRE
+CLASS="html"
+>&#60;form method="post" action="destino_del_ataque?errors=Y&#38;amp;showerrors=1&#38;amp;debug=1"&#62;
+&#60;input type="hidden" name="errors" value="Y" /&#62;
+&#60;input type="hidden" name="showerrors" value="1" /&#62;
+&#60;input type="hidden" name="debug" value="1" /&#62;
+&#60;/form&#62;</PRE
+></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+><P
+>&#13;    Independientemente del método de gestión de errores,
+    la capacidad de conseguir que un sistema revele sus posibles
+    estados de error representa un camino para darle
+    información al atacante.
+   </P
+><P
+>&#13;    Por ejemplo, el estilo mismo de un error de PHP genérico
+    indica que el sistema está ejecutando PHP. Si el atacante
+    estuviera viendo una página .html, y quisiera consultar
+    qué está siendo usado para la generación de
+    ella por detrás (en busca de debilidades conocidas en el
+    sistema), podría determinar que el sistema fue creado
+    usando PHP alimentándolo con información equivocada.
+   </P
+><P
+>&#13;    Un error de función puede indicar si el sistema está
+    ejecutando un tipo particular de motor de base de datos, o dar
+    pistas sobre cómo fue programada o diseñada una
+    página web. Esto facilita posteriores investigaciones en
+    determinados puertos abiertos de bases de datos, o en busca de
+    fallos específicos o debilidades en una página
+    web. Al entregar diferentes trozos de datos inválidos al
+    sistema, por ejemplo, un atacante puede determinar el orden de
+    autenticación en un script, (a partir de los números
+    de línea de los errores) así como averiguar sobre
+    vulnerabilidades que pueden aprovecharse en diferentes puntos del
+    script.
+   </P
+><P
+>&#13;    Un error del sistema de archivos o en general de PHP puede indicar
+    qué permisos tiene el servidor web, así como la
+    estructura y organización de los archivos en el servidor
+    web. Algún código de gestión de errores
+    escrito por el desarrollador puede agravar este problema, llevando
+    a la fácil explotación de información hasta
+    entonces "escondida".
+   </P
+><P
+>&#13;    Existen tres soluciones principales a este problema. La primera es
+    revisar cuidadosamente todas las funciones, y tratar de compensar
+    por la mayoría de errores encontrados. La segunda es
+    deshabilitar el reporte de errores completamente del código
+    que está siendo ejecutado. La tercera es usar las funciones
+    de gestión de errores personalizables de PHP para crear su
+    propio gestor de errores. Dependiendo de su política de
+    seguridad, puede encontrar que todas ellas pueden ser aplicables a
+    su situación.
+   </P
+><P
+>&#13;    Una forma de detectar este problema por adelantado es hacer uso
+    del reporte de errores propio de PHP
+    (<A
+HREF="function.error-reporting.html"
+><B
+CLASS="function"
+>error_reporting()</B
+></A
+>), para ayudarle a asegurar
+    su código y encontrar uso de variables que pueda ser
+    peligroso. Al probar su código, previamente a su entrega
+    final, con E_ALL, puede encontrar rápidamente áreas
+    en donde sus variables pueden estar abiertas a la
+    manipulación y explotación en distintas formas. Una
+    vez esté listo para liberar su código, usando E_NONE
+    puede aislarlo de posibles intentos por adquirir
+    información útil para un atacante.
+    <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN4861"
+></A
+><P
+><B
+>Ejemplo 15-13. Detección de variables peligrosas con E_ALL</B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br /></font><font color="#007700">if (</font><font color="#0000BB">$nombre_usuario</font><font color="#007700">) {&nbsp;&nbsp;</font><font color="#FF8000">// Variable no inicializada o chequeada antes de su uso<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$login_correcto </font><font color="#007700">= </font><font color="#0000BB">1</font><font color="#007700">;<br />}<br />if (</font><font color="#0000BB">$login_correcto </font><font color="#007700">== </font><font color="#0000BB">1</font><font color="#007700">) { </font><font color="#FF8000">// Si la condicion anterior falla, esta variable<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// no se encuentra inicializada ni validada<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// antes de su uso<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">readfile </font><font color="#007700">(</font><font color="#DD0000">"/informacion/altamente/confidencial/index.html"</font><font color="#007700">);<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="security.database.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="security.globals.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Seguridad de Bases de Datos</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="security.index.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Uso de Register Globals</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

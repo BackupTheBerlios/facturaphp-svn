@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>Uso del Depurador</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Depuración en PHP"
+HREF="debugger.html"><LINK
+REL="PREVIOUS"
+TITLE="Depuración en PHP"
+HREF="debugger.html"><LINK
+REL="NEXT"
+TITLE="Protocolo del Depurador"
+HREF="debugger-protocol.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="sect1"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="debugger.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+>Apéndice E. Depuración en PHP</TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="debugger-protocol.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="sect1"
+><H1
+CLASS="sect1"
+><A
+NAME="debugger-using"
+>Uso del Depurador</A
+></H1
+><P
+>&#13;    El depurador interno en PHP 3 es útil para rastrear fallos
+    difíciles de señalar. El depurador funciona creando
+    una conexión con un puerto <ACRONYM
+CLASS="acronym"
+>TCP</ACRONYM
+> en cada
+    ocasión que PHP 3 arranca. Todos los mensajes de error de
+    esa petición serán enviados a esta conexión
+    TCP. Esta información tiene como propósito ser usada
+    por un "servidor de depuración" que puede correr dentro de
+    un <ACRONYM
+CLASS="acronym"
+>IDE</ACRONYM
+> o editor programable (como Emacs).
+   </P
+><P
+>&#13;    Cómo configurar el depurador:
+    <P
+></P
+><OL
+TYPE="1"
+><LI
+><P
+>&#13;       Configure un puerto TCP para el depurador en el <A
+HREF="configuration.html#configuration.file"
+>archivo de
+       configuración</A
+> (<A
+HREF="ini.sect.debugger.html#ini.debugger.port"
+>debugger.port</A
+>) y
+       habilítelo (<A
+HREF="ini.sect.debugger.html#ini.debugger.enabled"
+>debugger.enabled</A
+>).
+      </P
+></LI
+><LI
+><P
+>&#13;       Configure un receptor TCP en ese puerto en alguna parte (por
+       ejemplo, <B
+CLASS="command"
+>socket -l -s 1400</B
+> en sistemas
+       Unix).
+      </P
+></LI
+><LI
+><P
+>&#13;       En su código, ejecute
+       "debugger_on(<VAR
+CLASS="replaceable"
+>host</VAR
+>)", en donde
+       <VAR
+CLASS="replaceable"
+>host</VAR
+> es el número IP o nombre
+       del servidor huésped en donde está corriendo el
+       receptor <ACRONYM
+CLASS="acronym"
+>TCP</ACRONYM
+>.
+      </P
+></LI
+></OL
+>
+    Ahora, todas las advertencias, noticias etc. aparecerán en
+    ese socket receptor, <SPAN
+CLASS="emphasis"
+><I
+CLASS="emphasis"
+>incluso si las ha deshabilitado con
+    <A
+HREF="function.error-reporting.html"
+><B
+CLASS="function"
+>error_reporting()</B
+></A
+></I
+></SPAN
+>.
+   </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="debugger.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="debugger-protocol.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Depuración en PHP</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="debugger.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Protocolo del Depurador</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

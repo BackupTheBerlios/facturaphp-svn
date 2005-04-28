@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>apache_request_headers</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Funciones específicas de Apache"
+HREF="ref.apache.html"><LINK
+REL="PREVIOUS"
+TITLE="apache_note"
+HREF="function.apache-note.html"><LINK
+REL="NEXT"
+TITLE="apache_response_headers"
+HREF="function.apache-response-headers.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="function.apache-note.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="function.apache-response-headers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="function.apache-request-headers"
+></A
+>apache_request_headers</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN6176"
+></A
+><P
+>    (PHP 4 &#62;= 4.3.0, PHP 5)</P
+>apache_request_headers&nbsp;--&nbsp;Obtener todas las cabeceras HTTP</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN6179"
+></A
+><H2
+>Descripción</H2
+>array <B
+CLASS="methodname"
+>apache_request_headers</B
+> ( void )<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>apache_request_headers()</B
+> devuelve una matriz 
+     asociativa de todas las cabeceras HTTP en la petición actual. 
+     Esta función está disponible únicamente cuando 
+     PHP se ejecuta como un módulo de <SPAN
+CLASS="productname"
+>Apache</SPAN
+>.
+    </P
+><P
+>&#13;     <TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+CLASS="EXAMPLE"
+><TR
+><TD
+><DIV
+CLASS="example"
+><A
+NAME="AEN6189"
+></A
+><P
+><B
+>Ejemplo 1. Ejemplo de <B
+CLASS="function"
+>apache_request_headers()</B
+></B
+></P
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+CELLPADDING="5"
+><TR
+><TD
+><code><font color="#000000">
+<font color="#0000BB">&lt;?php<br />$headers </font><font color="#007700">= </font><font color="#0000BB">apache_request_headers</font><font color="#007700">();<br /><br />foreach (</font><font color="#0000BB">$headers </font><font color="#007700">as </font><font color="#0000BB">$header </font><font color="#007700">=&gt; </font><font color="#0000BB">$value</font><font color="#007700">) {<br />&nbsp;&nbsp;&nbsp;&nbsp;echo </font><font color="#DD0000">"$header: $value &lt;br /&gt;</font><font color="#007700">\n</font><font color="#DD0000">"</font><font color="#007700">;<br />}<br /></font><font color="#0000BB">?&gt;</font>
+</font>
+</code></TD
+></TR
+></TABLE
+></DIV
+></TD
+></TR
+></TABLE
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Con anterioridad a PHP 4.3.0, <B
+CLASS="function"
+>apache_request_headers()</B
+>
+      se denominaba <A
+HREF="function.getallheaders.html"
+><B
+CLASS="function"
+>getallheaders()</B
+></A
+>.  A partir de PHP 4.3.0,
+      <A
+HREF="function.getallheaders.html"
+><B
+CLASS="function"
+>getallheaders()</B
+></A
+> es un alias para 
+      <B
+CLASS="function"
+>apache_request_headers()</B
+>.
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+       También se puede obtener el valor de las variables CGI comunes a partir
+       de las variables de entorno, lo cual funciona independientemente de que 
+       se esté utilizando PHP como un módulo de 
+       <SPAN
+CLASS="productname"
+>Apache</SPAN
+>. Utiliza <A
+HREF="function.phpinfo.html"
+><B
+CLASS="function"
+>phpinfo()</B
+></A
+> 
+       para ver una lista de todas las
+       <A
+HREF="language.variables.predefined.html"
+>variables de entorno</A
+>
+       disponibles.
+      </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="function.apache-note.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="function.apache-response-headers.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>apache_note</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="ref.apache.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>apache_response_headers</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

@@ -1,0 +1,361 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_open_wrapper</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_stat"
+HREF="streams.php-stream-stat.html"><LINK
+REL="NEXT"
+TITLE="php_stream_read"
+HREF="streams.php-stream-read.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-stat.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-read.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-open-wrapper"
+></A
+>php_stream_open_wrapper</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN120513"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_open_wrapper&nbsp;--&nbsp;Abre una secuencia sobre un archivo o URL</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN120516"
+></A
+><H2
+>Descripción</H2
+>php_stream * <B
+CLASS="methodname"
+>php_stream_open_wrapper</B
+> ( char * ruta, char * modo, int opciones, char ** abierto)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_open_wrapper()</B
+> abre una secuencia
+     sobre el archivo, URL, u otro recurso envuelto indicado
+     por <VAR
+CLASS="parameter"
+>ruta</VAR
+>. Dependiendo del valor
+     de <VAR
+CLASS="parameter"
+>modo</VAR
+>, la secuencia puede ser abierta
+     para lectura, escritura, adición o alguna
+     combinación de éstos modos. Vea la tabla más
+     adelante para conocer los diferentes modos que pueden ser usados;
+     adicionalmente a los caracteres listados más abajo, puede
+     incluir el caracter 'b' ya sea como el segundo o último
+     caracter en la cadena de modo. La presencia del caracter 'b' le
+     informa a la implementación de secuencias en
+     cuestión que abra la secuencia en modo seguro con material
+     binario.
+    </P
+><P
+>&#13;     El caracter 'b' es ignorado en todos los sistemas compatibles con
+     POSIX, que tratan los archivos binarios y de texto en la misma
+     manera. Es una buena idea especificar el caracter 'b' cuando su
+     secuencia trabaje con datos en donde todos los 8 bits son
+     importantes, de modo que su código funcione cuando sea
+     compilado en un sistema en donde la bandera 'b' es importante.
+    </P
+><P
+>&#13;     Cualquier archivo local creado por la API de secuencias
+     tendrá sus permisos iniciales definidos de acuerdo a los
+     valores predeterminados del sistema operativo - bajo sistemas
+     basados en Unix esto quiere decir que se usará el valor
+     umask del proceso. Bajo Windows, el dueño del archivo
+     será el proceso que lo originó. Todo archivo remoto
+     será creado de acuerdo a la envoltura de URL que fuera
+     usada para abrir el archivo, y las credenciales entregadas al
+     servidor remoto.
+    </P
+><P
+>&#13;     <P
+></P
+><DIV
+CLASS="variablelist"
+><DL
+><DT
+><TT
+CLASS="constant"
+><B
+>r</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Abre un archivo de texto para lectura. La secuencia es
+         ubicada al comienzo del archivo.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>r+</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Abre un archivo de texto para lectura y escritura. La
+         secuencia es ubicada el comienzo del archivo.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>w</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Trunca el archivo a una longitud de cero, o crea el archivo
+         de texto para escritura. La secuencia es ubicada al comienzo
+         del archivo.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>w+</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Abre un archivo de texto para lectura y escritura. El archivo
+         es creado si no existe, o de otra forma es truncado. La
+         secuencia es ubicada al comienzo del archivo.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>a</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Abre para escritura. El archivo es creado si no existe. La
+         secuencia es ubicada al final del archivo.
+        </P
+></DD
+><DT
+><TT
+CLASS="constant"
+><B
+>a+</B
+></TT
+></DT
+><DD
+><P
+>&#13;         Abre un archivo de texto para lectura y escritura. El archivo
+         es creado si no existe. La secuencia es ubicada al final del
+         archivo.
+        </P
+></DD
+></DL
+></DIV
+>    
+    </P
+><P
+>&#13;     <VAR
+CLASS="parameter"
+>opciones</VAR
+> afecta el modo en que se
+     interpreta la ruta/URL de la secuencia, los chequeos de modo
+     seguro y las acciones tomadas si hay un error durante la apertura
+     de la secuencia. Vea <A
+HREF="streams.options.html"
+>Opciones de
+     apertura de secuencia</A
+> para más información
+     sobre las opciones.
+    </P
+><P
+>&#13;     Si <VAR
+CLASS="parameter"
+>abierto</VAR
+> es diferente a NULL,
+     éste parámetro será definido como una cadena
+     que contiene el nombre del archivo/recurso real que fue
+     abierto. Esto es importante cuando las opciones
+     incluyen <TT
+CLASS="constant"
+><B
+>USE_PATH</B
+></TT
+>, valor que causa que
+     include_path sea usado en busca del archivo. Usted, el origen de
+     la llamada, es responsable de llamar
+     <B
+CLASS="function"
+>efree()</B
+> sobre el nombre de archivo devuelto en
+     este parámetro.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si ha especificado <TT
+CLASS="constant"
+><B
+>STREAM_MUST_SEEK</B
+></TT
+>
+      en <VAR
+CLASS="parameter"
+>opciones</VAR
+>, la ruta devuelta
+      en <VAR
+CLASS="parameter"
+>abierto</VAR
+> puede no ser el nombre de la
+      secuencia real que le fue devuelta. Sin embargo, será el
+      nombre del recurso original desde el cual se manufacturó
+      la secuencia sensible a búsquedas.
+     </P
+></BLOCKQUOTE
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-stat.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-read.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_stat</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_read</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

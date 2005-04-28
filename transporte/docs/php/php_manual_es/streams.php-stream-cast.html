@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML
+><HEAD
+><TITLE
+>php_stream_cast</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet Version 1.7"><LINK
+REL="HOME"
+TITLE="Manual de PHP"
+HREF="index.html"><LINK
+REL="UP"
+TITLE="Referencia de la API Común de Secuencias"
+HREF="stream.common-api.html"><LINK
+REL="PREVIOUS"
+TITLE="php_stream_make_seekable"
+HREF="streams.php-stream-make-seekable.html"><LINK
+REL="NEXT"
+TITLE="php_stream_can_cast"
+HREF="streams.php-stream-can-cast.html"><META
+HTTP-EQUIV="Content-type"
+CONTENT="text/html; charset=ISO-8859-1"></HEAD
+><BODY
+CLASS="refentry"
+BGCOLOR="#FFFFFF"
+TEXT="#000000"
+LINK="#0000FF"
+VLINK="#840084"
+ALINK="#0000FF"
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+SUMMARY="Header navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>Manual de PHP</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-make-seekable.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="streams.php-stream-can-cast.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+><A
+NAME="streams.php-stream-cast"
+></A
+>php_stream_cast</H1
+><DIV
+CLASS="refnamediv"
+><A
+NAME="AEN120944"
+></A
+><P
+>    (no version information, might be only in CVS)</P
+>php_stream_cast&nbsp;--&nbsp;Convertir una secuencia a otra forma, como un FILE* o
+    un socket</DIV
+><DIV
+CLASS="refsect1"
+><A
+NAME="AEN120947"
+></A
+><H2
+>Descripción</H2
+>int <B
+CLASS="methodname"
+>php_stream_cast</B
+> ( php_stream * secuencia, int moldear_como, void ** ret, int banderas)<BR
+></BR
+><P
+>&#13;     <B
+CLASS="function"
+>php_stream_cast()</B
+> intenta
+     convertir <VAR
+CLASS="parameter"
+>secuencia</VAR
+> a un recurso indicado
+     por <VAR
+CLASS="parameter"
+>moldear_como</VAR
+>. Si <VAR
+CLASS="parameter"
+>ret</VAR
+>
+     es NULL, la secuencia es consultada para conocer si tal
+     conversión es posible, sin efectuar realmente la
+     conversión (sin embargo, algún estado interno de
+     secuencias *puede* ser modificado en este
+     caso). Si <VAR
+CLASS="parameter"
+>banderas</VAR
+> es definido
+     como <TT
+CLASS="constant"
+><B
+>REPORT_ERRORS</B
+></TT
+>, se mostrará un
+     mensaje de error si hay un error durante la conversión.
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Esta función devuelve <TT
+CLASS="constant"
+><B
+>SUCCESS</B
+></TT
+> en
+      caso de tener éxito, o <TT
+CLASS="constant"
+><B
+>FAILURE</B
+></TT
+> si
+      falla. Advierta que usted debe comparar explícitamente el
+      valor de retorno con <TT
+CLASS="constant"
+><B
+>SUCCESS</B
+></TT
+>
+      o <TT
+CLASS="constant"
+><B
+>FAILURE</B
+></TT
+> debido a los valores internos de
+      éstas constantes. Una simple expresión booleana no
+      será interpretada como usted puede esperar.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     <DIV
+CLASS="table"
+><A
+NAME="AEN120978"
+></A
+><P
+><B
+>Tabla 44-1. Tipos de recurso
+      para <VAR
+CLASS="parameter"
+>moldear_como</VAR
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Valor</TH
+><TH
+>Significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>PHP_STREAM_AS_STDIO</TD
+><TD
+>Solicita un FILE* ANSI que represente la
+         secuencia</TD
+></TR
+><TR
+><TD
+>PHP_STREAM_AS_FD</TD
+><TD
+>Solicita un descriptor de archivo POSIX que represente
+         la secuencia</TD
+></TR
+><TR
+><TD
+>PHP_STREAM_AS_SOCKETD</TD
+><TD
+>Solicita un descriptor de socket de red que represente
+         la secuencia</TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><P
+>&#13;     Adicionalmente a los tipos de recurso básicos mencionados
+     anteriormente, el proceso de conversión puede ser alterado
+     mediante el uso de las siguientes banderas, al usar el operador
+     OR para combinar el tipo de recurso con uno o más de los
+     siguientes valores:
+     <DIV
+CLASS="table"
+><A
+NAME="AEN120997"
+></A
+><P
+><B
+>Tabla 44-2. Tipos de recurso
+      para <VAR
+CLASS="parameter"
+>moldear_como</VAR
+></B
+></P
+><TABLE
+BORDER="1"
+CLASS="CALSTABLE"
+><COL><COL><THEAD
+><TR
+><TH
+>Valor</TH
+><TH
+>Significado</TH
+></TR
+></THEAD
+><TBODY
+><TR
+><TD
+>PHP_STREAM_CAST_TRY_HARD</TD
+><TD
+>Intenta lo mejor posible, al precio de recursos
+         adicionales, para asegurarse de que la conversión
+         tenga éxito</TD
+></TR
+><TR
+><TD
+>PHP_STREAM_CAST_RELEASE</TD
+><TD
+>Le informa a la
+         API de secuencias que otra fuente de código
+         (posiblemente una biblioteca de algún tercero)
+         será responsable de cerrar el recurso/gestor
+         interno. Esto causa que la <VAR
+CLASS="parameter"
+>secuencia</VAR
+>
+         sea cerrada de forma tal que el gestor interno es conservado
+         y devuelto en <VAR
+CLASS="parameter"
+>ret</VAR
+>. Si esta
+         función tiene éxito, la
+         <VAR
+CLASS="parameter"
+>secuencia</VAR
+> debe ser considerada cerrada
+         y no debe ser usada más.
+         </TD
+></TR
+></TBODY
+></TABLE
+></DIV
+>
+    </P
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si su sistema soporta el uso de <B
+CLASS="function"
+>fopencookie()</B
+>
+      (sistemas con glibc 2 o versiones posteriores), la API de
+      secuencias será capaz siempre de sintetizar un apuntador
+      FILE* ANSI sobre cualquier secuencia. Aunque esto es
+      tremendamente útil para pasar cualquier secuencia PHP a
+      cualquier biblioteca de terceros, tal comportamiento no es
+      portable. Es necesario que considere las implicaciones de
+      portabilidad antes de distribuir su extensión. Si la
+      síntesis fopencookie no es deseable, debe consultar a la
+      secuencia para ver si ésta soporta FILE* de forma natural
+      mediante el uso de <B
+CLASS="function"
+>php_stream_is()</B
+>
+     </P
+></BLOCKQUOTE
+></DIV
+><DIV
+CLASS="note"
+><BLOCKQUOTE
+CLASS="note"
+><P
+><B
+>Nota: </B
+>
+      Si solicita una secuencia basada en sockets para un FILE*, la
+      API de secuencias usará <B
+CLASS="function"
+>fdopen()</B
+> para
+      crearlo por usted. Advierta que hacer esto puede causar la
+      pérdida de datos que fueran puestos en búfer en la
+      capa de secuencias si usted entremezcla las llamadas de la API
+      de secuencias con llamadas stdio ANSI.
+     </P
+></BLOCKQUOTE
+></DIV
+><P
+>&#13;     Vea también <B
+CLASS="function"
+>php_stream_is()</B
+>
+     y <B
+CLASS="function"
+>php_stream_can_cast()</B
+>.
+    </P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+SUMMARY="Footer navigation table"
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="streams.php-stream-make-seekable.html"
+ACCESSKEY="P"
+>Anterior</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="index.html"
+ACCESSKEY="H"
+>Inicio</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="streams.php-stream-can-cast.html"
+ACCESSKEY="N"
+>Siguiente</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>php_stream_make_seekable</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="stream.common-api.html"
+ACCESSKEY="U"
+>Subir</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>php_stream_can_cast</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
